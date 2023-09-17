@@ -229,24 +229,23 @@ var scrollTop='mainscrollTop';
 
  
  ?>
-
-					<li >
-                        <div class="row captions" >
-                            <div class="col-md-12 ">
-                                <img  src="img/h4-slide<?=$i+1?>.png" alt="Slide" >
-                        
-            					<div class="caption-group" >
-                                    <div class="cap_dyn">
-            							<p class="cap_head">
-            								<?=$split[0]?> <span class="primary"><?=$split[1]?> <strong><?=$split[2]?></strong></span>
-            							</p>
-            							<p class="cap_body" style="font-family:Arial;"><?=$divider[1]?></p>
-                                    </div>
-            						<a class=" button-radius" href="#" ><span class="icon"></span>Shop now</a>
-            					</div>
-                            </div>
-                         </div>
-					</li>
+    <li>
+        <div class="row captions" >
+            <div class="col-md-12 ">
+                <img  src="images/slider/h4-slide<?=$i+1?>.png" alt="Slide" >
+        
+      <div class="caption-group" >
+                    <div class="cap_dyn">
+          <p class="cap_head">
+            <?=$split[0]?> <span class="primary"><?=$split[1]?> <strong><?=$split[2]?></strong></span>
+          </p>
+          <p class="cap_body" style="font-family:Arial;"><?=$divider[1]?></p>
+                    </div>
+        <a class=" button-radius" href="#" ><span class="icon"></span>Shop now</a>
+      </div>
+            </div>
+          </div>
+    </li>
 <?php
   $i++;
 
@@ -649,9 +648,10 @@ $ct=$row11['category_id'];
 $query="SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item.category_id=$ct GROUP BY item_description.item_id LIMIT 15";
 $st=$pdo->query($query);
 $product=$st->rowCount();
-if ($product==0) {
-continue;}
-else{
+if($product==0) {
+  continue;
+}
+else {
   ?>
   <div class="difcat " style="border-radius: 5px;padding-bottom:3px">
   <span class="difhed"><?=$row11['category_name']?>
@@ -672,19 +672,15 @@ while ($row=$st->fetch(PDO::FETCH_ASSOC)) {
     </div>
 
 <?php
-
-     if(strlen($row['item_name'])>=22){
-      $item=$row['item_name'];
-      $item_name=substr($item,0,25)."...";
-    }
-    else{
-      $item_name=$row['item_name'];
-    }
+  if(strlen($row['item_name'])>=22){
+    $item=$row['item_name'];
+    $item_name=substr($item,0,25)."...";
+  }
+  else{
+    $item_name=$row['item_name'];
+  }
 ?>       
-    <div class="deupd"><?=$item_name?><br>
-    
-      </div>
-     
+    <div class="deupd"><?=$item_name?><br></div>
   </div>
  
 <?php  
@@ -1155,14 +1151,14 @@ while($ph=$sql->fetch(PDO::FETCH_ASSOC)){
                 <div class="col-md-12">
                     <div class="brand-wrapper">
                         <div class="brand-list" >
-                            <img style="height:130px;width:auto" src="img/brand1.png" alt="">
-                            <img style="height:130px;width:auto" src="img/brand2.png" alt="">
-                            <img style="height:130px;width:auto" src="img/brand3.png" alt="">
-                            <img style="height:130px;width:auto" src="img/apple.png" onclick="location.href='diff_views.php?brand=Apple'" alt="Apple">
-                            <img style="height:130px;width:auto" src="img/brand5.png" alt="">
-                            <img style="height:130px;width:auto" src="img/brand6.png" alt="">
-                            <img style="height:130px;width:auto" src="img/vivo.png" onclick="location.href='diff_views.php?brand=Vivo'" alt="Vivo">
-                            <img style="height:140px;width:auto" src="img/oppo.png" onclick="location.href='diff_views.php?brand=Oppo'" alt="Oppo">                            
+                            <img style="height:130px;width:auto" src="images/brand/nokia.png" alt="">
+                            <img style="height:130px;width:auto" src="images/brand/canon.png" alt="">
+                            <img style="height:130px;width:auto" src="images/brand/samsung.png" alt="">
+                            <img style="height:130px;width:auto" src="images/brand/apple.png" onclick="location.href='diff_views.php?brand=Apple'" alt="Apple">
+                            <img style="height:130px;width:auto" src="images/brand/htc.png" alt="">
+                            <img style="height:130px;width:auto" src="images/brand/lg.png" alt="">
+                            <img style="height:130px;width:auto" src="images/brand/vivo.png" onclick="location.href='diff_views.php?brand=Vivo'" alt="Vivo">
+                            <img style="height:140px;width:auto" src="images/brand/oppo.png" onclick="location.href='diff_views.php?brand=Oppo'" alt="Oppo">                            
                         </div>
                     </div>
                 </div>

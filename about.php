@@ -168,7 +168,7 @@ require "header.php";
 			<div class="team-agileitsinfo">
 				<div class="col-md-12">
 				<div class="col-md-3 about-team-grids">
-					<img src="images/Project/t1.JPG" alt=""  height="450px" />
+					<img src="images/team/t1.JPG" alt=""  height="450px" />
 					<div class="team-w3lstext">
 						<h4><span>GOVIND,</span> Leader</h4>
 						<p>Controls overall project and direct into the right path for the fullfilness of work.</p>
@@ -186,14 +186,14 @@ require "header.php";
 				<div class=" col-md-3 about-team-grids flip-box">
                  	<div class='flip-box-inner' >
                     	<div class='flip-box-front'>
-							<img src="images/Project/t2.JPG" alt=""  height="450px"/>
+							<img src="images/team/t2.JPG" alt=""  height="450px"/>
 							<div class="team-w3lstext">
 								<h4><span>Anumol,</span> Member</h4>
 								<p>Provides datas and support to the team which helps in reaching fullness of work.</p>
 							</div>
 						</div>
 						<div class='flip-box-back'>
-							<img src="images/Project/t5.jpg" alt=""  height="450px"/>
+							<img src="images/team/t5.jpg" alt=""  height="450px"/>
 							<div class="team-w3lstext">
 								<h4><span>Dhanalakshmi,</span> Member</h4>
 								<p>Helps collecting datas for the project completion.</p>
@@ -203,7 +203,7 @@ require "header.php";
 				</div>
 
 				<div class="col-md-3 about-team-grids">
-					<img src="images/Project/t4.JPG" alt=""  height="450px"/>
+					<img src="images/team/t4.JPG" alt=""  height="450px"/>
 					<div class="team-w3lstext">
 						<h4><span>KRISHNENDU,</span> Co-Leader</h4>				
 						<p>Functional advisor of the extra-ordinary requirements in our work.</p>
@@ -214,7 +214,7 @@ require "header.php";
 					</div>
 				</div>
 				<div class="col-md-3 about-team-grids">
-					<img src="images/Project/t3.JPG" alt=""  height="450px"/>
+					<img src="images/team/t3.JPG" alt=""  height="450px"/>
 					<div class="team-w3lstext">
 						<h4><span>SHAHANAS,</span> Supervisor</h4>
 						<p>Holds the root of our project and supervise the members group .</p>
