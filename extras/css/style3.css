@@ -1,0 +1,18 @@
+
+/****-----start-body----****/
+
+div.bg{
+background: url("../img/1.jpg") 0px 0px no-repeat;
+text-align: center;
+background-size:cover;
+background-attachment: fixed;
+}
+.form-input:hover{
+background-color:#C9F8FF;
+font-size: 16px;
+font-family: inherit;
+font-weight: bold;
+}
+.form-input{
+	font-weight: bold;
+}

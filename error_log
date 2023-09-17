@@ -1,0 +1,22 @@
+[17-Mar-2021 03:07:30 America/Chicago] PHP Warning:  session_start(): open(/var/cpanel/php/sessions/ea-php73\sess_26skocucd5ubeo8mi98kgdap7m, O_RDWR) failed: No such file or directory (2) in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php on line 2
+[17-Mar-2021 03:07:30 America/Chicago] PHP Warning:  session_start(): Failed to read session data: files (path: /var/cpanel/php/sessions/ea-php73) in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php on line 2
+[17-Mar-2021 03:07:30 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php:749
+Stack trace:
+#0 C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\index.php(2): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php on line 749
+[17-Mar-2021 03:07:31 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\ajax.php:6
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\ajax.php on line 6
+[17-Mar-2021 03:07:37 America/Chicago] PHP Warning:  session_start(): open(/var/cpanel/php/sessions/ea-php73\sess_26skocucd5ubeo8mi98kgdap7m, O_RDWR) failed: No such file or directory (2) in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php on line 2
+[17-Mar-2021 03:07:37 America/Chicago] PHP Warning:  session_start(): Failed to read session data: files (path: /var/cpanel/php/sessions/ea-php73) in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php on line 2
+[17-Mar-2021 03:07:37 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php:749
+Stack trace:
+#0 C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\index.php(2): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\header.php on line 749
+[17-Mar-2021 03:07:37 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\ajax.php:6
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\MY WEBSITES\ONESTORE\OneStore\ajax.php on line 6
