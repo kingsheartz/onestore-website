@@ -285,7 +285,7 @@ var pass=getCookie("OneStore_password");
 
         else if(data.admin=='true'){
     
-            location.href="Store admin/index.php?id="+data.id+"";
+            location.href="store-admin/index.php?id="+data.id+"";
         }
 
       else if(data.status=='error'){

@@ -1258,7 +1258,7 @@ $.ajax({
                     }
                 
                     else if(willSubmit.isConfirmed){  
-                        location.href="Store admin/index.php?id="+data.id+""; 
+                        location.href="store-admin/index.php?id="+data.id+""; 
                     }
                 });
                 return;
@@ -1278,7 +1278,7 @@ $.ajax({
             .then((willSubmit) => {
                 if (willSubmit) {  
 					$('#emppass').hide();
-                    location.href="Store admin/index.php?id="+data.id+"";
+                    location.href="store-admin/index.php?id="+data.id+"";
                 }
                 else{
                     return ;
@@ -1328,7 +1328,7 @@ $.ajax({
             .then((willSubmit) => {
                 if (willSubmit) {  
 					$('#emppass').hide();
-                    location.href="Store admin/index.php?id="+data.id+"";
+                    location.href="store-admin/index.php?id="+data.id+"";
                 }
                 else{
                     return ;
@@ -2020,7 +2020,7 @@ var pass=getCookie("OneStore_password");
 
         else if(data.status=='admin'){
   
-            location.href="Store admin/index.php?id="+data.id+"";
+            location.href="store-admin/index.php?id="+data.id+"";
         }
 
 		else if(data.status=='error'){

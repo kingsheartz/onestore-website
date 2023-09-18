@@ -1270,7 +1270,7 @@ setInterval(check_network, 2000);
 <?php
 if(isset($_SESSION['sid'])){
 ?>                            
-							<li id="shopactive"><a href="Store admin/index.php?id=<?=$_SESSION['sid']?>"><i class="fas fa-lg fa-store" ></i> Store</a></li>
+							<li id="shopactive"><a href="store-admin/index.php?id=<?=$_SESSION['sid']?>"><i class="fas fa-lg fa-store" ></i> Store</a></li>
 <?php
 }
 ?>							

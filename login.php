@@ -225,7 +225,7 @@ $.ajax({
                     }
                 
                     else if(willSubmit.isConfirmed){  
-                        location.href="Store admin/index.php?id="+data.id+""; 
+                        location.href="store-admin/index.php?id="+data.id+""; 
                     }
                 });
                 return;
@@ -258,7 +258,7 @@ $.ajax({
                 })
             .then((willSubmit) => {
                 if (willSubmit) {  
-                    location.href="Store admin/index.php?id="+data.id+"";
+                    location.href="store-admin/index.php?id="+data.id+"";
                 }
                 else{
                     return ;
