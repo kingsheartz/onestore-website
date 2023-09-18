@@ -386,7 +386,7 @@ $message .= '</div><br></body></html>';
         $mail->SMTPSecure = 'tls'; // ssl is deprecated
         $mail->SMTPAuth = true;
         $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-        $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+        $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
         $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
         $mail->addAddress($email,$first_name ); // to email and name
         $mail->Subject = $subject;

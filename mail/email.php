@@ -14,7 +14,7 @@ $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
 $mail->SMTPAuth = true;
 $mail->Username = 'onestoreforallyourneeds@gmail.com'; // email
-$mail->Password = 'lgjlpnjvlbdjlskh'; // password
+$mail->Password = 'iwshnjhsafnrpzig'; // password
 $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
 $mail->addAddress('govind.das279@gmail.com', 'Govind'); // to email and name
 $mail->Subject = 'PHPMailer GMail SMTP test';
