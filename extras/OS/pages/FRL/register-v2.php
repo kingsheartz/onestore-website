@@ -232,7 +232,7 @@ var code='<?=$code?>';
 var email='<?=$email?>';
 
 $.ajax({
-    url: "../../../../Admin/submit.php", //passing page info
+    url: "../../../../admin/submit.php", //passing page info
     data: {"setstorepass":1,"password":pass1,"email":email,"code":code},  //form data
     type: "post", //post data
     dataType: "json",   //datatype=json format
