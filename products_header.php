@@ -68,7 +68,7 @@ session_start();
 <!-- search bar -->
 
 <!-- searching the items -->
-<script type="text/javascript" src="serch.js"></script>
+<script type="text/javascript" src="search.js"></script>
 
 <script type="text/javascript">
   jQuery(document).ready(function($) {
