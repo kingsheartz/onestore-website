@@ -1,22 +1,20 @@
-(function(jsGrid) {
-
+(function (jsGrid) {
     jsGrid.locales.he = {
         grid: {
             noDataContent: "לא נמצא",
             deleteConfirm: "האם אתה בטוח?",
-            pagerFormat: "עמודים: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} מתוך {pageCount}",
+            pagerFormat:
+                "עמודים: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} מתוך {pageCount}",
             pagePrevText: "הקודם",
             pageNextText: "הבא",
             pageFirstText: "ראשון",
             pageLastText: "אחרון",
             loadMessage: "אנא המתן ...",
-            invalidMessage: "נתונים לא חוקיים!"
+            invalidMessage: "נתונים לא חוקיים!",
         },
-
         loadIndicator: {
-            message: "טוען..."
+            message: "טוען...",
         },
-
         fields: {
             control: {
                 searchModeButtonTooltip: "ביצוע חיפוש",
@@ -27,10 +25,9 @@
                 clearFilterButtonTooltip: "ניקוי מסנן",
                 insertButtonTooltip: "הכנסה",
                 updateButtonTooltip: "עדכון",
-                cancelEditButtonTooltip: "ביטול עריכה"
-            }
+                cancelEditButtonTooltip: "ביטול עריכה",
+            },
         },
-
         validators: {
             required: { message: "שדה נדרש" },
             rangeLength: { message: "אורכו של הערך הוא מחוץ לטווח המוגדר" },
@@ -39,8 +36,7 @@
             pattern: { message: "אורכו של הערך ארוך מדי" },
             range: { message: "ערך מחוץ לטווח" },
             min: { message: "ערך נמוך מדי" },
-            max: { message: "גבוה מדי" }
-        }
+            max: { message: "גבוה מדי" },
+        },
     };
-
-}(jsGrid, jQuery));
+})(jsGrid, jQuery);
