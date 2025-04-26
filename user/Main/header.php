@@ -892,9 +892,9 @@ if (session_status() === PHP_SESSION_NONE) {
 									</div>
 								</li>
 								<li style="color: white;float: right;" class="topli" id="lg_top_ph_mail"><a
-										href="tel:+918113990368" style="color:white;font-family:arial"><i
+										href="tel:+918589024973" style="color:white;font-family:arial"><i
 											class="fa fa-phone" aria-hidden="true"></i>Ph : <span><i>+91
-												8113990368</i></span></a><br><i><span>onestoreforallyourneeds</span></i>
+												8589024973</i></span></a><br><i><span>onestoreforallyourneeds</span></i>
 								</li>
 								<li style="color: white;float: right;" class="topli" id="sm_top_ph_mail"><i
 										class="fa fa-phone" aria-hidden="true"></i><br><i><span><i

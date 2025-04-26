@@ -53,7 +53,7 @@
 					<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Thrissur</li>
 					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
 							href="mailto:onestoreforallyourneeds@gmail.com">onestore</a></li>
-					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+91 8113990368</li>
+					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+91 8589024973</li>
 				</ul>
 			</div>
 			<div class="col-md-3 col-sm-6 w3_footer_grid">
@@ -111,7 +111,7 @@
 	<div class="footer-copy">
 		<div class="container">
 			<p>© 2020 OneStore. All rights reserved | <a id="me" onmouseover="$('#me').css('color','#0c99cc')"
-					onmouseleave="$('#me').css('color','#fe9126')" href="www.one-store.com">KinGsHearTz</a></p>
+					onmouseleave="$('#me').css('color','#fe9126')" href="www.one-store.com">Krishnendu</a></p>
 		</div>
 	</div>
 </div>
