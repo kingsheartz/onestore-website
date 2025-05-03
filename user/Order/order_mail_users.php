@@ -16,17 +16,17 @@ $email = $placerow_u['email'];
 $activate_link = 'extras/OS/pages/FRL/OTP-v2.html';
 $otp = rand(100000, 999999);
 /*
-                $message .= '<h3 style="color:#059DF9">Hi '.$first_name.', OneStore Welcomes You</h3><br></center>';
-                $message .= '<h3 style="color:#FF8A00;text-align:margin-left">You are now became a member of our family.Enjoy shopping with us </h3>';
-                $message .= '<p>Please click the following button to open your door to our world of shopping</p><br>';
-                $message .= ' <a style="margin-left:26%" href="'.$activate_link.'"><button style="background-color:rgba(0,0,0,85);color:white;border-radius:7px;">OneStore</button></a><br>';
-                $message .= '<br><p>Regards,</p>';
-                $message .= '<p>OneStore - for all your needs</p><br>';
-                $message .= '<br><p>if you\'re having trouble clicking the'." \"Verify Email\" ".' button,copy and paste the URL below into your web browser : '.$activate_link.' </p><br><br><br><br>';
-                //$message .= '<p><center>© 2020 <a href="https://falconsinfoworld.000webhostapp.com/">OneStore</a>. All rights reserved </center></p>';
-                //$message .= '<p><center>&#169; 2020 <a href="https://onestore.epizy.com/">OneStore</a>. All rights reserved </center></p>';
-                $message .= '<p><center>&#169; 2020 <a href="">OneStore</a>. All rights reserved </center></p>';
-                $message .= '</body></html>';
+        $message .= '<h3 style="color:#059DF9">Hi '.$first_name.', OneStore Welcomes You</h3><br></center>';
+        $message .= '<h3 style="color:#FF8A00;text-align:margin-left">You are now became a member of our family.Enjoy shopping with us </h3>';
+        $message .= '<p>Please click the following button to open your door to our world of shopping</p><br>';
+        $message .= ' <a style="margin-left:26%" href="'.$activate_link.'"><button style="background-color:rgba(0,0,0,85);color:white;border-radius:7px;">OneStore</button></a><br>';
+        $message .= '<br><p>Regards,</p>';
+        $message .= '<p>OneStore - for all your needs</p><br>';
+        $message .= '<br><p>if you\'re having trouble clicking the'." \"Verify Email\" ".' button,copy and paste the URL below into your web browser : '.$activate_link.' </p><br><br><br><br>';
+        //$message .= '<p><center>© 2020 <a href="https://falconsinfoworld.000webhostapp.com/">OneStore</a>. All rights reserved </center></p>';
+        //$message .= '<p><center>&#169; 2020 <a href="https://onestore.epizy.com/">OneStore</a>. All rights reserved </center></p>';
+        $message .= '<p><center>&#169; 2020 <a href="">OneStore</a>. All rights reserved </center></p>';
+        $message .= '</body></html>';
 */
 echo ' <table style="width:100%!important">
    <tbody>

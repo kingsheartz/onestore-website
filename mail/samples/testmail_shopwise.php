@@ -162,7 +162,8 @@ for ($l = 0; $l < $i; $l++) {
                                     Below listed item(s) are requested by the customer by
                                     <b><?= date("F j") . " , " . date("Y") ?></b> from your store
                                     <b><?= $store_array[$l]['store_name'] ?></b>. Thanks for your cooperation with us and
-                                    also wishing you best with your sales . </p>
+                                    also wishing you best with your sales .
+                                  </p>
                                 </td>
                               </tr>
                             </tbody>
@@ -175,7 +176,8 @@ for ($l = 0; $l < $i; $l++) {
                                     style="padding-left:15px;font-family:Arial;font-size:12px;line-height:1.58;margin-bottom:20px;margin-top:0;padding-top:2px">
                                     <span style="display:inline-block;width:167px;color:#212121">Total amount</span><span
                                       style="display:inline-block;font-family:Arial;font-size:12px;font-weight:700;color:#139b3b;display:inline-block">Rs.
-                                      <?= $storerecieve ?></span></p>
+                                      <?= $storerecieve ?></span>
+                                  </p>
                                 </td>
                               </tr>
                             </tbody>

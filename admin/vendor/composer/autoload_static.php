@@ -6,29 +6,29 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit9995d1e62babaea04a4742f6f17b4a74
 {
-    public static $prefixLengthsPsr4 = array (
-        'R' => 
-        array (
-            'ReCaptcha\\' => 10,
-        ),
-        'P' => 
-        array (
-            'PHPMailer\\PHPMailer\\' => 20,
-        ),
+    public static $prefixLengthsPsr4 = array(
+        'R' =>
+            array(
+                'ReCaptcha\\' => 10,
+            ),
+        'P' =>
+            array(
+                'PHPMailer\\PHPMailer\\' => 20,
+            ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'ReCaptcha\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
-        ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
-        ),
+    public static $prefixDirsPsr4 = array(
+        'ReCaptcha\\' =>
+            array(
+                0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
+            ),
+        'PHPMailer\\PHPMailer\\' =>
+            array(
+                0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+            ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array(
         'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
         'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
         'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',

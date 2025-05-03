@@ -6,11 +6,11 @@ require 'pdo.php';
 session_start();
 /*
 try{
-    $pdo=new PDO("mysql:host=sql204.epizy.com;port=3306;dbname=epiz_28189397_os;charset=utf8","epiz_28189397","KinGsHearTz123");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    $_SESSION['success']="Connected successfully";
+  $pdo=new PDO("mysql:host=sql204.epizy.com;port=3306;dbname=epiz_28189397_os;charset=utf8","epiz_28189397","KinGsHearTz123");
+  $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+  $_SESSION['success']="Connected successfully";
 }catch(PDOException $e){
-    $_SESSION['error']="OOPS !!! CONNECTION CAN'T BE ESTABLISHED";
+  $_SESSION['error']="OOPS !!! CONNECTION CAN'T BE ESTABLISHED";
 }
 */
 if (isset($_POST['setstorepass'])) {
@@ -43,26 +43,26 @@ if (isset($_POST['setstorepass'])) {
     redirectWithError("The form must be submitted with POST data.");
   }
   /*
-  // Do some validation, check to make sure the name, email and message are valid.
-  if (empty($_POST['g-recaptcha-response'])) {
-      redirectWithError("Please complete the CAPTCHA.");
-  }
-  $recaptcha = new \ReCaptcha\ReCaptcha(CONTACTFORM_RECAPTCHA_SECRET_KEY);
-  $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_REQUEST['REMOTE_ADDR']);
-  if (!$resp->isSuccess()) {
-      $errors = $resp->getErrorCodes();
-      $error = $errors[0];
-      $recaptchaErrorMapping = [
-          'missing-input-secret' => 'No reCAPTCHA secret key was submitted.',
-          'invalid-input-secret' => 'The submitted reCAPTCHA secret key was invalid.',
-          'missing-input-response' => 'No reCAPTCHA response was submitted.',
-          'invalid-input-response' => 'The submitted reCAPTCHA response was invalid.',
-          'bad-request' => 'An unknown error occurred while trying to validate your response.',
-          'timeout-or-duplicate' => 'The request is no longer valid. Please try again.',
-      ];
-      $errorMessage = $recaptchaErrorMapping[$error];
-      redirectWithError("Please retry the CAPTCHA: ".$errorMessage);
-  }*/
+   // Do some validation, check to make sure the name, email and message are valid.
+   if (empty($_POST['g-recaptcha-response'])) {
+     redirectWithError("Please complete the CAPTCHA.");
+   }
+   $recaptcha = new \ReCaptcha\ReCaptcha(CONTACTFORM_RECAPTCHA_SECRET_KEY);
+   $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_REQUEST['REMOTE_ADDR']);
+   if (!$resp->isSuccess()) {
+     $errors = $resp->getErrorCodes();
+     $error = $errors[0];
+     $recaptchaErrorMapping = [
+       'missing-input-secret' => 'No reCAPTCHA secret key was submitted.',
+       'invalid-input-secret' => 'The submitted reCAPTCHA secret key was invalid.',
+       'missing-input-response' => 'No reCAPTCHA response was submitted.',
+       'invalid-input-response' => 'The submitted reCAPTCHA response was invalid.',
+       'bad-request' => 'An unknown error occurred while trying to validate your response.',
+       'timeout-or-duplicate' => 'The request is no longer valid. Please try again.',
+     ];
+     $errorMessage = $recaptchaErrorMapping[$error];
+     redirectWithError("Please retry the CAPTCHA: ".$errorMessage);
+   }*/
   if (empty($_POST['store_name'])) {
     redirectWithError("Please enter store_name in the form.");
   }

@@ -41,9 +41,9 @@ require "../Main/header.php";
                     }
                     ?>
                     <!--<?/*php if(isset($_SESSION['errorlogin'])){
-              echo'<p style="color:red;margin-top:-5px;float:left;padding-bottom:15px;">*'.$_SESSION['errorlogin']."</p>";
-              unset($_SESSION['errorlogin']);
-    }*/ ?>-->
+  echo'<p style="color:red;margin-top:-5px;float:left;padding-bottom:15px;">*'.$_SESSION['errorlogin']."</p>";
+  unset($_SESSION['errorlogin']);
+}*/ ?>-->
                     <input type="email" name="email" id="email" placeholder="Email Address" required=" ">
                     <div class="input-group bar-srch"
                         style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">

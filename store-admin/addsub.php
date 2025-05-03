@@ -407,7 +407,7 @@ order_preference) VALUES (:item_description_id,
                 .fadeIn(1500, function () {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated For Your Store\
-                        <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
+            <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
                   );
                 });
             }
@@ -467,22 +467,22 @@ order_preference) VALUES (:item_description_id,
         <div class="proupda ">
           <div class="newupdation">
             <span style="font-size: 14px;
-    font-weight: bolder;
-    color: #ffffff;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d00bd), color-stop(1, #326086)) !important;    position: relative;
-    top: 0px;
-    left: 0;
-    text-align: center;
-    padding: 5px;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    ">
+  font-weight: bolder;
+  color: #ffffff;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d00bd), color-stop(1, #326086)) !important;    position: relative;
+  top: 0px;
+  left: 0;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  ">
               <h4 style="text-overflow: ellipsis;
-    width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    "> <?= $itna ?></h4>
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  "> <?= $itna ?></h4>
             </span><br>
             <div class="row">
               <?php
@@ -492,14 +492,14 @@ order_preference) VALUES (:item_description_id,
               if ($tr == 0) {
                 ?>
                 <div class="alert alert-danger">Product is already added <button style="background: red;
-    border: none;
-    color: white;
-    height: 30px;
-    padding: 5px;
-    border-radius: 5px;
-    width: 100px;
-    display: block;
-    margin: 20px;" onclick="location.href='additem.php'">Go Back</button></div>
+  border: none;
+  color: white;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100px;
+  display: block;
+  margin: 20px;" onclick="location.href='additem.php'">Go Back</button></div>
                 <?php
               } else {
                 while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
@@ -510,16 +510,16 @@ order_preference) VALUES (:item_description_id,
                         <div class="prim col-sm-5">
                           <div class="thd">Product</div>
                           <div class="product" style="position: absolute;
-    left: 10px;
-    top: 55px;
-    width: 100px;
-    height: 80px;">
+  left: 10px;
+  top: 55px;
+  width: 100px;
+  height: 80px;">
                             <img style=" display: inline-block;
   text-align: center;
   padding: 14px;
   position: relative;
-    height: 80px;
-    max-width: 100px;
+  height: 80px;
+  max-width: 100px;
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg');"
                               src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                           </div>
@@ -544,8 +544,8 @@ order_preference) VALUES (:item_description_id,
   text-align: center;
   padding: 14px;
   position: relative;
-    height: 80px;
-    max-width: 150px;
+  height: 80px;
+  max-width: 150px;
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
                                   src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg">
                               </div>
@@ -704,9 +704,9 @@ order_preference) VALUES (:item_description_id,
                           <input type="hidden" name="check_id" value="<?= $row['item_description_id'] ?>">
                           <button name="update_data" style="
 width: 200px;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #26a717), color-stop(1, #48c507)) !important;
-    float: right;
-    margin-right: 12px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #26a717), color-stop(1, #48c507)) !important;
+  float: right;
+  margin-right: 12px;
 " onclick="newup(<?= $row['item_description_id'] ?>,1)"><i class="fas fa-save"
                               style="margin-right: 20px;float: left;font-size: 24px"></i>Add to Store</button>
                         </div>

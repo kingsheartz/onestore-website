@@ -1111,72 +1111,72 @@
 		<?php
 		if (isset($_SESSION['id']) && !isset($_SESSION['cart_count'])) {
 			?>
-				var email = getCookie("OneStore_email");
-				var pass = getCookie("OneStore_password");
-				if (email != " " && pass != " ") {
-					//$("#strt").hide();
-					$.ajax({
-						url: "../Common/functions.php", //passing page info
-						data: { "login": 1, "email": email, "password": pass },  //form data
-						type: "post",	//post data
-						dataType: "json", 	//datatype=json format
-						timeout: 18000,	//waiting time 3 sec
-						success: function (data) {	//if logging in is success
-							if (data.status == 'success') {
-								//location.href="onestore.php";
-							}
-							else if (data.status == 'admin') {
-								location.href = "../../store-admin/index.php?id=" + data.id + "";
-							}
-							else if (data.status == 'error') {
-								return;
-							}
-						},
-						error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-							if (textstatus === "timeout") {
-								swal({
-									title: "Oops!!!",
-									text: "server time out",
-									icon: "error",
-									closeOnClickOutside: false,
-									dangerMode: true,
-									timer: 6000,
-								});
-								location.href = "onestore.php";
-								return;
-							}
-							else { return; }
+			var email = getCookie("OneStore_email");
+			var pass = getCookie("OneStore_password");
+			if (email != " " && pass != " ") {
+				//$("#strt").hide();
+				$.ajax({
+					url: "../Common/functions.php", //passing page info
+					data: { "login": 1, "email": email, "password": pass },  //form data
+					type: "post",	//post data
+					dataType: "json", 	//datatype=json format
+					timeout: 18000,	//waiting time 3 sec
+					success: function (data) {	//if logging in is success
+						if (data.status == 'success') {
+							//location.href="onestore.php";
 						}
-					}); //closing ajax
-				}
-				<?php
+						else if (data.status == 'admin') {
+							location.href = "../../store-admin/index.php?id=" + data.id + "";
+						}
+						else if (data.status == 'error') {
+							return;
+						}
+					},
+					error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+						if (textstatus === "timeout") {
+							swal({
+								title: "Oops!!!",
+								text: "server time out",
+								icon: "error",
+								closeOnClickOutside: false,
+								dangerMode: true,
+								timer: 6000,
+							});
+							location.href = "onestore.php";
+							return;
+						}
+						else { return; }
+					}
+				}); //closing ajax
+			}
+			<?php
 		}
 		if (isset($_SESSION['id']) && !isset($_SESSION['cart_count'])) {
 			?>
-					//CART COUNT
-					$.ajax({
-						url: "../Common/functions.php", //passing page info
-						data: { "cartcnt": 1, "user": "<?= $_SESSION['id'] ?>" },  //form data
-								type: "post",	//post data
-					dataType: "json", 	//datatype=json format
-					timeout: 18000,	//waiting time 3 sec
-						success: function (data) {	//if logging in is success
-							if (data.status == "success") {
-								document.getElementById("sm-cartcnt").innerHTML = "";
-								document.getElementById("lg-cartcnt").innerHTML = "";
-								document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
-								document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
-								return;
-							}
-						},
-						error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-							if (textstatus === "timeout") {
-								return;
-							}
-							else { return; }
-						}
-					}); //closing ajax
-				<?php
+			//CART COUNT
+			$.ajax({
+				url: "../Common/functions.php", //passing page info
+				data: { "cartcnt": 1, "user": "<?= $_SESSION['id'] ?>" },  //form data
+				type: "post",	//post data
+				dataType: "json", 	//datatype=json format
+				timeout: 18000,	//waiting time 3 sec
+				success: function (data) {	//if logging in is success
+					if (data.status == "success") {
+						document.getElementById("sm-cartcnt").innerHTML = "";
+						document.getElementById("lg-cartcnt").innerHTML = "";
+						document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
+						document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
+						return;
+					}
+				},
+				error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+					if (textstatus === "timeout") {
+						return;
+					}
+					else { return; }
+				}
+			}); //closing ajax
+			<?php
 		}
 		?>
 	});
@@ -1230,7 +1230,7 @@
 							icon: "success",
 							closeOnClickOutside: false,
 							dangerMode: true,
-											timer: 6000,
+							timer: 6000,
 						});
 					}
 					else if (data.status == 'error') {

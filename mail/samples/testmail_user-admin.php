@@ -113,7 +113,8 @@ for ($j = 0; $j < $i; $j++) {
                                 <p
                                   style="font-family:Arial;color:#878787;font-size:12px;font-weight:normal;font-style:normal;font-stretch:normal;margin-top:7px;line-height:.85;padding-top:0px">
                                   Hi
-                                  <span style="font-weight:bold;color:#191919"> <?= $first_name . " " . $last_name ?>,</span>
+                                  <span style="font-weight:bold;color:#191919">
+                                    <?= $first_name . " " . $last_name ?>,</span>
                                 </p>
                                 <p
                                   style="font-family:Arial;font-size:12px;color:#878787;line-height:1.22;padding-top:0px;margin-top:0px">
@@ -148,8 +149,10 @@ for ($j = 0; $j < $i; $j++) {
                                 <p
                                   style="font-family:Arial;font-size:12px;text-align:left;color:#212121;padding-left:15px;padding-top:0px;line-height:1.62;padding-right:10px">
                                   Your order for the below listed item(s) is processed successfully by
-                                  <b><?= date("F j") . " , " . date("Y") ?></b> and will be available for you to purchase at
-                                  specific shops mentioned below . </p>
+                                  <b><?= date("F j") . " , " . date("Y") ?></b> and will be available for you to
+                                  purchase at
+                                  specific shops mentioned below .
+                                </p>
                               </td>
                             </tr>
                           </tbody>
@@ -162,7 +165,8 @@ for ($j = 0; $j < $i; $j++) {
                                   style="padding-left:15px;font-family:Arial;font-size:12px;line-height:1.58;margin-bottom:20px;margin-top:0;padding-top:2px">
                                   <span style="display:inline-block;width:167px;color:#212121">Total amount</span><span
                                     style="display:inline-block;font-family:Arial;font-size:12px;font-weight:700;color:#139b3b;display:inline-block">Rs.
-                                    <?= $total_bill ?></span></p>
+                                    <?= $total_bill ?></span>
+                                </p>
                               </td>
                             </tr>
                           </tbody>
@@ -339,98 +343,98 @@ for ($j = 0; $j < $i; $j++) {
   $message .= '<h4 style="color:#878787;padding-left: 5px;text-align:left;font-weight:normal">Hi '.$first_name.', Here are the list of your requested orders. Continue enjoy shopping with us </h4>';
   for($l=0;$l<$i;$l++){
   $message .= '<div  style="margin-bottom: -20px;"><div class="product-name" colspan="2" style="padding: 0px;margin-top: 5px;padding-bottom: 5px;padding-top: 10px;text-align: center;" ><h4 style="padding:5px;margin:0px;background-color: #02171e;color: white;padding-top: 8px;padding-bottom: 25px;">
-      <span style="float:left;">Opening hours : '. $store_array[$l]['opening_hours'].'</span><br>
-      <span style="float:left;">status : '. $store_array[$l]['status'].'</span>
-      <span style="float:right;">Ph : '. $store_array[$l]['phone'].'</span>';
+    <span style="float:left;">Opening hours : '. $store_array[$l]['opening_hours'].'</span><br>
+    <span style="float:left;">status : '. $store_array[$l]['status'].'</span>
+    <span style="float:right;">Ph : '. $store_array[$l]['phone'].'</span>';
 
 
   $message .= '</h4></div></div>';
 
-      for ($m=0; $m <$store_cnt[$l] ; $m++) {
-          $store_array[$l]['item_id'][$m];
-          $store_array[$l]['item_category_id'][$m];
-          $store_array[$l]['item_sub_category_id'][$m];
-          $store_array[$l]['item_name'][$m];
-          $store_array[$l]['item_description'][$m];
-          $store_array[$l]['item_price'][$m];
-          $store_array[$l]['item_quantity'][$m];
-          $store_array[$l]['item_ordertype'][$m];
-          $store_array[$l]['item_total_amt'][$m];
+    for ($m=0; $m <$store_cnt[$l] ; $m++) {
+      $store_array[$l]['item_id'][$m];
+      $store_array[$l]['item_category_id'][$m];
+      $store_array[$l]['item_sub_category_id'][$m];
+      $store_array[$l]['item_name'][$m];
+      $store_array[$l]['item_description'][$m];
+      $store_array[$l]['item_price'][$m];
+      $store_array[$l]['item_quantity'][$m];
+      $store_array[$l]['item_ordertype'][$m];
+      $store_array[$l]['item_total_amt'][$m];
   $message .= '<hr style="    border: 3px solid #E0E0E0 !important;margin-top: 15px;margin-bottom:0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;">
-                  <p style="width: 100%;margin:0px">
-                  <div style="margin-left: 0px;;background-color:#15c;padding-bottom:5px;padding-top:5px">
-                          <a href="#" style="text-decoration: none;font-weight: bold;font-size: 16px;padding-left: 10px;color:#fff;width:100%"><i class="fa fa-product-hunt"></i>'.$store_array[$l]['item_name'][$m].'</a>
-              </div>
-            </p>
-            <table  class="shop_table cart" border="0px" style="font-weight: bold;text-align: center;margin-bottom: -10px;border-bottom: 0px none #fff;border-right: 0px none #fff;margin-bottom: 0px;width: 100%;" align="center">
-                          <center>
-                              <div style="padding: 0px;">
-                                  <div class="container">
-                                      <div class="row">
-                                          <tr class="cart_item">
-                                              <div class="col-md-12">
-                                                  <td class="product-img" style="padding: 0px; border-left: 0px none #fff;border-top: 0px none #fff;text-align: left;">
-                                                      <div class="row" style="margin-left: 5px">
-                                                          <div class="col-md-4">
-                                                              <p class="product-price" style="z-index: 1;text-align:left;margin-top: 30px;font-size: 18px">
-                                                                  <span class="amount">&#8377;<span>'.$store_array[$l]['item_price'][$m].'</span>
-                                      <i style="color: #303030" class="fa fa-tags"></i></span></p></div>';
+          <p style="width: 100%;margin:0px">
+          <div style="margin-left: 0px;;background-color:#15c;padding-bottom:5px;padding-top:5px">
+              <a href="#" style="text-decoration: none;font-weight: bold;font-size: 16px;padding-left: 10px;color:#fff;width:100%"><i class="fa fa-product-hunt"></i>'.$store_array[$l]['item_name'][$m].'</a>
+        </div>
+      </p>
+      <table  class="shop_table cart" border="0px" style="font-weight: bold;text-align: center;margin-bottom: -10px;border-bottom: 0px none #fff;border-right: 0px none #fff;margin-bottom: 0px;width: 100%;" align="center">
+              <center>
+                <div style="padding: 0px;">
+                  <div class="container">
+                    <div class="row">
+                      <tr class="cart_item">
+                        <div class="col-md-12">
+                          <td class="product-img" style="padding: 0px; border-left: 0px none #fff;border-top: 0px none #fff;text-align: left;">
+                            <div class="row" style="margin-left: 5px">
+                              <div class="col-md-4">
+                                <p class="product-price" style="z-index: 1;text-align:left;margin-top: 30px;font-size: 18px">
+                                  <span class="amount">&#8377;<span>'.$store_array[$l]['item_price'][$m].'</span>
+                    <i style="color: #303030" class="fa fa-tags"></i></span></p></div>';
   $message .=  '<div class="col-md-8">
-                  <p class="product-store"><i style="color: #303030" class="fas fa-store"></i>
-                      <a title="view store" href="#" style="text-decoration:none;font-size:15px;color:#878787;">'.$store_array[$l]['store_name'].'</a></p>
-              <p style="outline: none;border:none;background-color:#03900D;color: white;padding: 5px;border-radius: 5px;width: 150px;text-align: center; " >'.$store_array[$l]['item_ordertype'][$m].'</p>
-                </div></div></td></div>';
+          <p class="product-store"><i style="color: #303030" class="fas fa-store"></i>
+            <a title="view store" href="#" style="text-decoration:none;font-size:15px;color:#878787;">'.$store_array[$l]['store_name'].'</a></p>
+        <p style="outline: none;border:none;background-color:#03900D;color: white;padding: 5px;border-radius: 5px;width: 150px;text-align: center; " >'.$store_array[$l]['item_ordertype'][$m].'</p>
+        </div></div></td></div>';
   $message .=  '<div class="col-md-4" style="position: fixed;">
-                      <td style="padding: 0px; border-left: 0px none #fff;border-top: 0px none #fff;text-align: left;">
-                              <div class="product-quantity quantity buttons_added" style="justify-content: flex-end;display: flex;text-align: center;align-items: flex-end;position: relative;">
-                                  <div style="text-align: left;padding-top: 30px;margin-right: 10px;align-content: flex-end;">Qty : '.$store_array[$l]['item_quantity'][$m].'<br><br>
-                    <p class="product-subtotal" style="bottom: 0px;left:0px;position: relative;">Total<span class="amount">&#8377;<span>'.$store_array[$l]['item_total_amt'][$m].'</span></span></p></div>';
+            <td style="padding: 0px; border-left: 0px none #fff;border-top: 0px none #fff;text-align: left;">
+                <div class="product-quantity quantity buttons_added" style="justify-content: flex-end;display: flex;text-align: center;align-items: flex-end;position: relative;">
+                  <div style="text-align: left;padding-top: 30px;margin-right: 10px;align-content: flex-end;">Qty : '.$store_array[$l]['item_quantity'][$m].'<br><br>
+          <p class="product-subtotal" style="bottom: 0px;left:0px;position: relative;">Total<span class="amount">&#8377;<span>'.$store_array[$l]['item_total_amt'][$m].'</span></span></p></div>';
   $message .=  '<div class="product_img" style="padding: 0px;padding-left:5px;"><p class="product-thumbnail" style="text-align:right;">
-          <a href="single.php?id='.$store_array[$l]['item_id'][$m].'">
-            <img width="100" height="100" alt="poster_1_up" class="shop_thumbnail" src="images/'.$store_array[$l]['item_category_id'][$m].'/'.$store_array[$l]['item_sub_category_id'][$m].'/'.$store_array[$l]['item_id'][$m].'.jpg"></a></p></div></div></td></div></tr></div></div></div></center></table>';
+      <a href="single.php?id='.$store_array[$l]['item_id'][$m].'">
+      <img width="100" height="100" alt="poster_1_up" class="shop_thumbnail" src="images/'.$store_array[$l]['item_category_id'][$m].'/'.$store_array[$l]['item_sub_category_id'][$m].'/'.$store_array[$l]['item_id'][$m].'.jpg"></a></p></div></div></td></div></tr></div></div></div></center></table>';
 
-      }
+    }
   }
   $message .=  '<hr style="    border: 3px solid #E0E0E0 !important;margin: 0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;">';
   $message .= '<div style="padding-left: 5px;padding-right: 5px"><p>Please click the following button to check your orders</p><br>
-          <p style="padding-left:15px;margin-bottom:10px"> <a href="'.$activate_link.'" style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button" style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">View Order</button> </a>
-          </p><br><br>
-          <p style="text-align:justify">if you\'re having trouble clicking the'." \"View orders\" ".' button,copy and paste the URL below into your web browser : '.$activate_link.' </p><br><br><br><br>
-          <p><center>&#169; 2020 <a style="color:0c99cc;text-decoration:none" href="">OneStore</a>. All rights reserved </center></p></div>';
+      <p style="padding-left:15px;margin-bottom:10px"> <a href="'.$activate_link.'" style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button" style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">View Order</button> </a>
+      </p><br><br>
+      <p style="text-align:justify">if you\'re having trouble clicking the'." \"View orders\" ".' button,copy and paste the URL below into your web browser : '.$activate_link.' </p><br><br><br><br>
+      <p><center>&#169; 2020 <a style="color:0c99cc;text-decoration:none" href="">OneStore</a>. All rights reserved </center></p></div>';
   $message .= '</div><br></body></html>';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-          $mail = new PHPMailer;
-          $mail->isSMTP();
-          $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-          $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-          $mail->Port = 587; // TLS only
-          $mail->SMTPSecure = 'tls'; // ssl is deprecated
-          $mail->SMTPAuth = true;
-          $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-          $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
-          $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-          $mail->addAddress($email,$first_name ); // to email and name
-          $mail->Subject = $subject;
-          $mail->msgHTML($message);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-          $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-          // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-          $mail->SMTPOptions = array(
-                              'ssl' => array(
-                                  'verify_peer' => false,
-                                  'verify_peer_name' => false,
-                                  'allow_self_signed' => true
-                              )
-                          );
+      require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+      require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+      require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+      $mail = new PHPMailer;
+      $mail->isSMTP();
+      $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+      $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+      $mail->Port = 587; // TLS only
+      $mail->SMTPSecure = 'tls'; // ssl is deprecated
+      $mail->SMTPAuth = true;
+      $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+      $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
+      $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+      $mail->addAddress($email,$first_name ); // to email and name
+      $mail->Subject = $subject;
+      $mail->msgHTML($message);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+      $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+      // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+      $mail->SMTPOptions = array(
+                'ssl' => array(
+                  'verify_peer' => false,
+                  'verify_peer_name' => false,
+                  'allow_self_signed' => true
+                )
+              );
 
-          if(!$mail->send()){
-            $response['status']="error4";
-            $_SESSION['error']="Email can't Send";
-              //echo "Mailer Error: " . $mail->ErrorInfo;
-          }
-          else{
-            $response['status']="success";
-          }
+      if(!$mail->send()){
+      $response['status']="error4";
+      $_SESSION['error']="Email can't Send";
+        //echo "Mailer Error: " . $mail->ErrorInfo;
+      }
+      else{
+      $response['status']="success";
+      }
   */
   ?>-->

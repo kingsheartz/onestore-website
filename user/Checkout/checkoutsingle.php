@@ -53,85 +53,106 @@ $t_mrp = $mrprow['price'];
             text-transform: uppercase;
             font-size: 12px;
         }
+
         .invert,
         .invert-image {
             border: 0px solid !important;
             border-bottom: 2px solid #bbb !important;
         }
+
         .small-size {
             display: none;
         }
+
         @media(max-width:991px) {
             #bill_gap {
                 margin-bottom: 40px !important;
             }
+
             .billing_details {
                 padding-left: 0px;
             }
+
             .large-size {
                 display: none;
             }
+
             .small-size {
                 display: unset;
             }
+
             .pdt_block {
                 padding-left: 15px !important;
             }
+
             .checkout-left-basket {
                 padding-top: 15px !important;
             }
         }
+
         @media(min-width:1001px) {
             td.invert-image a img {
                 height: 150px !important;
                 width: auto !important;
             }
+
             td.invert div ul li h4 {
                 font-weight: bold;
             }
         }
+
         @media(max-width:1000px) {
             td.invert-image a img {
                 height: 150px !important;
                 width: auto !important;
             }
+
             td.invert div ul li h4 {
                 font-weight: bold;
             }
         }
+
         @media(max-width:768px) {
             td.invert div ul li h4 {
                 font-size: 16px;
             }
+
             td.invert-image a img {
                 height: 100px !important;
                 width: auto !important;
             }
+
             th.slno,
             td.slno {
                 width: 10px !important;
             }
         }
+
         @media(max-width:480px) {
             td.invert div ul li h4 {
                 font-size: 14px;
             }
+
             td.invert-image a img {
                 height: 80px !important;
                 width: auto !important;
             }
+
             .invert_details {
                 padding-left: 0px !important;
             }
+
             .smallqty,
             .slno {
                 display: none;
             }
         }
+
         .timetable_sub th {
             background-color: #3399cc;
             border-color: white;
         }
+
         .load_btn {
             outline: none;
             border: none;
@@ -142,6 +163,7 @@ $t_mrp = $mrprow['price'];
             width: 100%;
             background-color: #5a88ca;
         }
+
         .place_order.nav-maker {
             background-color: #fe9126;
             color: white;
@@ -151,9 +173,11 @@ $t_mrp = $mrprow['price'];
             transform: bakground-color;
             transition: 0.5s;
         }
+
         .place_order.nav-maker:hover {
             background-color: #337ab7;
         }
+
         @media(max-width:768px) {
             .place_order.nav-maker {
                 position: fixed;
@@ -168,14 +192,17 @@ $t_mrp = $mrprow['price'];
                 border: 0px;
                 padding: 10px;
             }
+
             .place_order.nav-maker:hover {
                 background-color: #337ab7;
             }
+
             .back-to-top {
                 right: 0 !important;
                 bottom: 43px !important;
             }
         }
+
         .checkmark {
             position: absolute;
             top: 0px;
@@ -186,9 +213,11 @@ $t_mrp = $mrprow['price'];
             border: 1px solid #ddd;
             border-radius: 50%
         }
+
         .options input:checked~.checkmark:after {
             display: block
         }
+
         .options .checkmark:after {
             content: "";
             width: 9px;
@@ -202,17 +231,21 @@ $t_mrp = $mrprow['price'];
             transform: translate(-50%, -50%) scale(0);
             transition: 300ms ease-in-out 0s
         }
+
         .options input[type="radio"]:checked~.checkmark {
             background: #61b15a;
             transition: 300ms ease-in-out 0s
         }
+
         .options input[type="radio"]:checked~.checkmark:after {
             transform: translate(-50%, -50%) scale(1)
         }
+
         .radio,
         .checkbox {
             padding: 6px 10px
         }
+
         .radio label,
         .checkbox label {
             display: block;
@@ -220,13 +253,16 @@ $t_mrp = $mrprow['price'];
             cursor: pointer;
             margin: 0
         }
+
         .options input {
             opacity: 0
         }
+
         .options {
             position: relative;
             padding-left: 25px
         }
+
         .options input {
             opacity: 0
         }
@@ -302,7 +338,8 @@ $t_mrp = $mrprow['price'];
                                             onchange="select_item_option('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>');"
                                             name="quantity" autocomplete="off"
                                             style="width: 100%;max-width: 30px;bottom: 0;box-shadow: none;outline: none;border-color:#aaa;height:25px;display: none;background-color: white">
-                                            <option value="1" id="sel_opt_s<?= $store_id . "i" . $idid ?>" selected disabled>1
+                                            <option value="1" id="sel_opt_s<?= $store_id . "i" . $idid ?>" selected
+                                                disabled>1
                                             </option>
                                             <option value="1" class="sc-update-quantity-option"
                                                 data-a-css-class="quantity-option" data-a-html-content="1">1</option>
@@ -330,8 +367,8 @@ $t_mrp = $mrprow['price'];
                                             onchange="total('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')"
                                             onblur="$(this).hide();$('#sel_s<?= $store_id . "i" . $idid ?>').hide();$('#btn_s<?= $store_id . "i" . $idid ?>').show()"
                                             style="text-align: center;display: none;height: 25px;width: 100%;max-width: 40px;outline: none;font-weight: bold"
-                                            class="input-text qty text" title="Quantity" value="<?= $row1['quantity'] ?>"
-                                            min="1" step="1"
+                                            class="input-text qty text" title="Quantity"
+                                            value="<?= $row1['quantity'] ?>" min="1" step="1"
                                             onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                                     </div>
                                     <div class="btn_add_q" style="padding: 0px;margin: 0px;width:25px"><button
@@ -432,18 +469,18 @@ inner join item i on i.item_id=id.item_id
 INNER JOIN store st ON st.store_id=pd.store_id
 where st.store_id=:store_id AND id.item_description_id=:idid";
                                     /*
-                                    //(int)$row['mrp']*(int)$row['quantity'];
-                                    //CODE:-<span style="text-decoration:line-through;padding-left:3px  ">  &#8377;<?=(int)$row['mrp']*(int)$row['quantity']?></span>
-                                    //TOTAL AMOUNT / EACH PRODUCT
-                                    */
+                                                               //(int)$row['mrp']*(int)$row['quantity'];
+                                                               //CODE:-<span style="text-decoration:line-through;padding-left:3px  ">  &#8377;<?=(int)$row['mrp']*(int)$row['quantity']?></span>
+                                                               //TOTAL AMOUNT / EACH PRODUCT
+                                                               */
                                     /*
-                                    //CODE:-<span style="text-decoration:line-through;padding-left:3px;float: right;"> &#8377;<?=$mrp_chrg?></span>
-                                    //TOTAL SERVICE CHARGES
-                                    */
+                                                               //CODE:-<span style="text-decoration:line-through;padding-left:3px;float: right;"> &#8377;<?=$mrp_chrg?></span>
+                                                               //TOTAL SERVICE CHARGES
+                                                               */
                                     /*
-                                    //CODE:-<span style="text-decoration:line-through;padding-left:3px;color: #333;font-weight: normal;"><?=$base?></span>
-                                    //TOTAL AMOUNT TO BE PAID
-                                    */
+                                                               //CODE:-<span style="text-decoration:line-through;padding-left:3px;color: #333;font-weight: normal;"><?=$base?></span>
+                                                               //TOTAL AMOUNT TO BE PAID
+                                                               */
                                     $stmt = $pdo->prepare($sql);
                                     $stmt->execute(array(
                                         ":store_id" => $store_id,
@@ -475,8 +512,9 @@ where st.store_id=:store_id AND id.item_description_id=:idid";
                                         </span>
                                     </li>
                                     <li>Total Savings <i>-</i>
-                                        <span>&#8377;<span
-                                                id="save_s<?= $store_id . "i" . $idid ?>"><?= $total_mrp - $total_amt . " " ?></span></span>
+                                        <span>&#8377;<span id="save_s<?= $store_id . "i" . $idid ?>">
+                                                <?= $total_mrp - $total_amt . " " ?>
+                                            </span></span>
                                     </li>
                                     <li><i
                                             style="font-weight: bolder;font-family:sans-serif; ;color: black;font-style: unset;">Total
@@ -1220,4 +1258,5 @@ else if (checkBox_diff.checked == true) {
 </script>
 <!--</div>-->
 </body>
+
 </html>

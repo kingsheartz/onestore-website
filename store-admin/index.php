@@ -112,32 +112,32 @@ from item where (added_date) in (
     </div>
     <div class="row">
       <div class="col-lg-5 col-sm-3" style="height: 500px;
-    margin-top: 50px;
-    background: #FFFFFF;
-    padding: 0;
-    border-top: 4px solid #2D720B
+  margin-top: 50px;
+  background: #FFFFFF;
+  padding: 0;
+  border-top: 4px solid #2D720B
 ">
         <h4 style="border-bottom: 1px solid #D6D6D6;padding-bottom: 20px;padding-left: 20px;margin-bottom: 20px;"><i
             class="fa fa-pie-chart" style="padding-right: 20px"></i>Average Day</h4>
         <div id="piechart" style="width: 100%;overflow-x: hidden;
-        justify-content:center;
-        display:flex;">
+    justify-content:center;
+    display:flex;">
         </div>
       </div>
       <div id="calendar-div" class="col-lg-5 col-sm-3" style="padding: 0;
-    margin-top: 50px;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00a65a), color-stop(1, #00ca6d)) !important;
-    border-top: none;
-    position: relative;
-    height: 500px;
+  margin-top: 50px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00a65a), color-stop(1, #00ca6d)) !important;
+  border-top: none;
+  position: relative;
+  height: 500px;
    ">
         <h4 style="border-bottom: 1px solid #D6D6D6;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    background: #fff;
-    margin: 0;
-    padding-top: 10px;
-    border-top: 4px solid #2d720b;"><i class="fas fa-calendar" style="padding-right: 20px"></i>Calendar</h4>
+  padding-bottom: 20px;
+  padding-left: 20px;
+  background: #fff;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 4px solid #2d720b;"><i class="fas fa-calendar" style="padding-right: 20px"></i>Calendar</h4>
         <?php
         require "calender.php";
         ?>
@@ -268,7 +268,7 @@ from item where (added_date) in (
                 }
                 ?>
                 <li class="list-group-item" style="padding:10px;height:50px;
-       background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #01728e)) !important;
+     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #01728e)) !important;
 ">
                   <a href="new_item.php"><button class="vwbt">View All</button></a>
                 </li>

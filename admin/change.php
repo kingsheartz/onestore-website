@@ -489,7 +489,7 @@ WHERE item_description_id=:item_description_id
                 .fadeIn(1500, function () {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated \
-                        <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
+            <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
                   );
                 });
             }
@@ -552,27 +552,27 @@ WHERE item_description_id=:item_description_id
         <div class="proupda ">
           <div class="newupdation">
             <span style="font-size: 16px;
-    font-weight: bolder;
-    color: #ffffff;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #9c27b0), color-stop(1, #741a84)) !important;
-    position: relative;
-    top: 0px;
-    left: 0;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    ">
+  font-weight: bolder;
+  color: #ffffff;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #9c27b0), color-stop(1, #741a84)) !important;
+  position: relative;
+  top: 0px;
+  left: 0;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  ">
               <h4 style="text-overflow: ellipsis;
-    width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    "> <?= $itna ?></h4>
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  "> <?= $itna ?></h4>
             </span><br>
             <form id="itemdesc">
               <div class="col-sm-12 imgdis" style="padding-top: 100px;
-    position: relative;">
+  position: relative;">
                 <?php
                 $query = "SELECT * FROM item  where item_id=$it ";
                 $st = $pdo->query($query);
@@ -583,9 +583,9 @@ WHERE item_description_id=:item_description_id
                     <input name="price"
                       onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                       style="    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    outline: none;" value="<?= $row['price'] ?>">
+  height: 40px;
+  border-radius: 5px;
+  outline: none;" value="<?= $row['price'] ?>">
                   </div>
                   <div class="form-group">
                     <span class="floating-label">Description</span>
@@ -596,16 +596,16 @@ WHERE item_description_id=:item_description_id
                 }
                 ?>
                 <button name="update_data" style="    font-weight: bold;
-    float: right;
-    background: #1336ff;
-    margin-right: 12px;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    position: absolute;
-    right: 0;
-    top: 10px;" onclick="showupda('itemdesc',1)">
+  float: right;
+  background: #1336ff;
+  margin-right: 12px;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  top: 10px;" onclick="showupda('itemdesc',1)">
                   <i class="fa fa-pencil" style="margin-right: 20px;float: left;font-size: 24px"></i>Update</button>
               </div>
             </form>
@@ -621,22 +621,22 @@ WHERE item_description_id=:item_description_id
                       <div class="prim col-sm-5">
                         <div class="thd">Product</div>
                         <div class="product" style="position: absolute;
-    left: 10px;
-    top: 55px;
-    width: 100px;
-    height: 100px;">
+  left: 10px;
+  top: 55px;
+  width: 100px;
+  height: 100px;">
                           <img style=" display: inline-block;
   text-align: center;
   padding: 14px;
   position: relative;
-    height: 100px;
-    max-width: 100px;
+  height: 100px;
+  max-width: 100px;
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg');"
                             src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                         </div>
                         <div style="    width: 100%;
-    height: 280px;
-    margin-top: 80px;">
+  height: 280px;
+  margin-top: 80px;">
                           <img id="imr<?= $row['item_description_id'] ?>"
                             src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                         </div>
@@ -659,11 +659,11 @@ WHERE item_description_id=:item_description_id
                             ?>
                             <div class="product">
                               <img style=" display: inline-block;
-    text-align: center;
-    padding: 14px;
-    position: relative;
-    height: 80px;
-    max-width: 100px;
+  text-align: center;
+  padding: 14px;
+  position: relative;
+  height: 80px;
+  max-width: 100px;
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
                                 src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg">
                             </div>
@@ -784,7 +784,7 @@ WHERE item_description_id=:item_description_id
                               <input type="number"
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                 class="form-control" style="width:70%;border-right:none;
-        float:left;" id="<?= $row['item_description_id'] ?>w1" onkeyup="conca(<?= $row['item_description_id'] ?>)"
+    float:left;" id="<?= $row['item_description_id'] ?>w1" onkeyup="conca(<?= $row['item_description_id'] ?>)"
                                 value="<?= $we3[0] ?>">
                               <select class="form-control" style="width:30%;float:left;color: white;background: #0B7383"
                                 id="<?= $row['item_description_id'] ?>w2"
@@ -804,7 +804,7 @@ WHERE item_description_id=:item_description_id
                               <input
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                 type="number" class="form-control" style="display:none;width:70%;border-right:none;
-        float:left;" id="<?= $row['item_description_id'] ?>w1" onkeyup="conca(<?= $row['item_description_id'] ?>)">
+    float:left;" id="<?= $row['item_description_id'] ?>w1" onkeyup="conca(<?= $row['item_description_id'] ?>)">
                               <select class="form-control"
                                 style="display:none;width:30%;float:left;color: white;background: #0B7383"
                                 id="<?= $row['item_description_id'] ?>w2"
@@ -1155,19 +1155,19 @@ WHERE item_description_id=:item_description_id
                         <input type="hidden" name="item_id" value="<?= $it ?>">
                       </div>
                       <div class="col-sm-12 subb" style="position: absolute;
-    bottom: 100px;
-    left: 0;
-    padding: 0;">
+  bottom: 100px;
+  left: 0;
+  padding: 0;">
                         <input type="hidden" name="check_id" value="<?= $row['item_description_id'] ?>">
                         <button name="update_data" style="font-weight: bold;
-    float: right;
-    background: green;
-    margin-right: 12px;" onclick="showupda(<?= $row['item_description_id'] ?>,1)"><i class="fas fa-pen-alt"
+  float: right;
+  background: green;
+  margin-right: 12px;" onclick="showupda(<?= $row['item_description_id'] ?>,1)"><i class="fas fa-pen-alt"
                             style="margin-right: 20px;float: left;font-size: 24px"></i>Update</button>
                         <button name="remove_data" style="font-weight: bold;
-    float: right;
-    background: red;
-    margin-right: 5px;" onclick="showupda(<?= $row['item_description_id'] ?>,0)"><i class="fas fa-trash"
+  float: right;
+  background: red;
+  margin-right: 5px;" onclick="showupda(<?= $row['item_description_id'] ?>,0)"><i class="fas fa-trash"
                             style="margin-right: 20px;float: left;font-size: 24px"></i>Remove</button>
                       </div>
                     </form>

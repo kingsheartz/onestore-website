@@ -212,16 +212,16 @@
           <input type="checkbox" id="<?= $row['list_id'] ?>"
             onclick="updatelement(<?= $row['list_id'] ?>,'<?= $row['title'] ?>')"></span>
         <?= $row['title'] ?><span class="nday" style="background:<?= $colors[array_rand($colors)] ?>;"><i style="padding-right: 4px;
-    padding-left: 4px;" class="fas fa-clock"></i><?php
-    $start = strtotime($row['add_date']);
-    $end = strtotime(date("Y/m/d"));
-    $days_between = ceil(abs($end - $start) / 86400);
-    if ($days_between == 0) {
-      echo "Today";
-    } else {
-      echo $days_between . " days";
-    }
-    ?></span><span class="close" onclick="postelement(<?= $row['list_id'] ?>)"><i class="fa fa-times"></i></span></li>
+  padding-left: 4px;" class="fas fa-clock"></i><?php
+  $start = strtotime($row['add_date']);
+  $end = strtotime(date("Y/m/d"));
+  $days_between = ceil(abs($end - $start) / 86400);
+  if ($days_between == 0) {
+    echo "Today";
+  } else {
+    echo $days_between . " days";
+  }
+  ?></span><span class="close" onclick="postelement(<?= $row['list_id'] ?>)"><i class="fa fa-times"></i></span></li>
       <?php
       $r = explode('<strike>', $row['title']);
       if (isset($r[1])) {

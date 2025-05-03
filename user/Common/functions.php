@@ -22,11 +22,11 @@ if (isset($_POST['checkname'])) {
     $response['status'] = "error";
   }
   /*
-    if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['name']) == 0) {
-      $response['status']="error";
-      //$_SESSION['error']="First name is not valid!";
-    }
-  */ else {
+     if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['name']) == 0) {
+     $response['status']="error";
+     //$_SESSION['error']="First name is not valid!";
+     }
+   */ else {
     $response['status'] = "success";
   }
   echo json_encode($response);
@@ -329,32 +329,32 @@ if (isset($_POST['register'])) {
    </tbody>
   </table>';
       /*
-              require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-              require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-              require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-              $mail = new PHPMailer;
-              $mail->isSMTP();
-              $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-              $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-              $mail->Port = 587; // TLS only
-              $mail->SMTPSecure = 'tls'; // ssl is deprecated
-              $mail->SMTPAuth = true;
-              $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-              $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-              $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-              $mail->addAddress($_POST['email'],$_POST['first_name'] ); // to email and name
-              $mail->Subject = $subject;
-              $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-              $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-              // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-              $mail->SMTPOptions = array(
-                                  'ssl' => array(
-                                  'verify_peer' => false,
-                                  'verify_peer_name' => false,
-                                  'allow_self_signed' => true
-                                  )
-                              );
-      */
+             require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+             require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+             require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+             $mail = new PHPMailer;
+             $mail->isSMTP();
+             $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+             $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+             $mail->Port = 587; // TLS only
+             $mail->SMTPSecure = 'tls'; // ssl is deprecated
+             $mail->SMTPAuth = true;
+             $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+             $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+             $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+             $mail->addAddress($_POST['email'],$_POST['first_name'] ); // to email and name
+             $mail->Subject = $subject;
+             $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+             $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+             // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+             $mail->SMTPOptions = array(
+                       'ssl' => array(
+                       'verify_peer' => false,
+                       'verify_peer_name' => false,
+                       'allow_self_signed' => true
+                       )
+                     );
+         */
       // Everything seems OK, time to send the email.
       $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
       $mail->isSMTP();
@@ -721,32 +721,32 @@ if (isset($_POST['update_user_details'])) {
    </tbody>
   </table>';
       /*
-              require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-              require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-              require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-              $mail = new PHPMailer;
-              $mail->isSMTP();
-              $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-              $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-              $mail->Port = 587; // TLS only
-              $mail->SMTPSecure = 'tls'; // ssl is deprecated
-              $mail->SMTPAuth = true;
-              $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-              $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-              $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-              $mail->addAddress($row['email'],$_POST['first_name'] ); // to email and name
-              $mail->Subject = $subject;
-              $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-              $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-              // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-              $mail->SMTPOptions = array(
-                                  'ssl' => array(
-                                      'verify_peer' => false,
-                                      'verify_peer_name' => false,
-                                      'allow_self_signed' => true
-                                  )
-                              );
-      */
+             require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+             require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+             require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+             $mail = new PHPMailer;
+             $mail->isSMTP();
+             $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+             $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+             $mail->Port = 587; // TLS only
+             $mail->SMTPSecure = 'tls'; // ssl is deprecated
+             $mail->SMTPAuth = true;
+             $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+             $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+             $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+             $mail->addAddress($row['email'],$_POST['first_name'] ); // to email and name
+             $mail->Subject = $subject;
+             $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+             $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+             // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+             $mail->SMTPOptions = array(
+                       'ssl' => array(
+                         'verify_peer' => false,
+                         'verify_peer_name' => false,
+                         'allow_self_signed' => true
+                       )
+                     );
+         */
       // Everything seems OK, time to send the email.
       $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
       $mail->isSMTP();
@@ -1165,32 +1165,32 @@ if (isset($_GET['email'], $_GET['code'], $_GET['emailverified'])) {
    </tbody>
   </table>';
           /*
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-                  $mail = new PHPMailer;
-                  $mail->isSMTP();
-                  $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-                  $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-                  $mail->Port = 587; // TLS only
-                  $mail->SMTPSecure = 'tls'; // ssl is deprecated
-                  $mail->SMTPAuth = true;
-                  $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-                  $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-                  $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-                  $mail->addAddress($email,$first_name ); // to email and name
-                  $mail->Subject = $subject;
-                  $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-                  $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-                  // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-                  $mail->SMTPOptions = array(
-                                      'ssl' => array(
-                                          'verify_peer' => false,
-                                          'verify_peer_name' => false,
-                                          'allow_self_signed' => true
-                                      )
-                                  );
-          */
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+                   $mail = new PHPMailer;
+                   $mail->isSMTP();
+                   $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+                   $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+                   $mail->Port = 587; // TLS only
+                   $mail->SMTPSecure = 'tls'; // ssl is deprecated
+                   $mail->SMTPAuth = true;
+                   $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+                   $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+                   $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+                   $mail->addAddress($email,$first_name ); // to email and name
+                   $mail->Subject = $subject;
+                   $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+                   $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+                   // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+                   $mail->SMTPOptions = array(
+                             'ssl' => array(
+                               'verify_peer' => false,
+                               'verify_peer_name' => false,
+                               'allow_self_signed' => true
+                             )
+                           );
+               */
           // Everything seems OK, time to send the email.
           $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
           $mail->isSMTP();
@@ -1486,25 +1486,25 @@ if (isset($_GET['emailnew'], $_GET['code'], $_GET['emailupdateverified'], $_GET[
    </tbody>
   </table>';
           /*
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-                  $mail = new PHPMailer;
-                  $mail->isSMTP();
-                  $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-                  $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-                  $mail->Port = 587; // TLS only
-                  $mail->SMTPSecure = 'tls'; // ssl is deprecated
-                  $mail->SMTPAuth = true;
-                  $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-                  $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-                  $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-                  $mail->addAddress($email,$first_name ); // to email and name
-                  $mail->Subject = $subject;
-                  $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-                  $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-                  // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-          */
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+                   $mail = new PHPMailer;
+                   $mail->isSMTP();
+                   $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+                   $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+                   $mail->Port = 587; // TLS only
+                   $mail->SMTPSecure = 'tls'; // ssl is deprecated
+                   $mail->SMTPAuth = true;
+                   $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+                   $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+                   $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+                   $mail->addAddress($email,$first_name ); // to email and name
+                   $mail->Subject = $subject;
+                   $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+                   $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+                   // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+               */
           // Everything seems OK, time to send the email.
           $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
           $mail->isSMTP();
@@ -2687,32 +2687,32 @@ if (isset($_POST['forgotlogin'])) {
    </tbody>
   </table>';
           /*
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-                  require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-                  $mail = new PHPMailer;
-                  $mail->isSMTP();
-                  $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-                  $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-                  $mail->Port = 587; // TLS only
-                  $mail->SMTPSecure = 'tls'; // ssl is deprecated
-                  $mail->SMTPAuth = true;
-                  $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-                  $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-                  $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-                  $mail->addAddress($_POST['email'],$first_name ); // to email and name
-                  $mail->Subject = $subject;
-                  $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-                  $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-                  // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-                  $mail->SMTPOptions = array(
-                                      'ssl' => array(
-                                          'verify_peer' => false,
-                                          'verify_peer_name' => false,
-                                          'allow_self_signed' => true
-                                      )
-                                  );
-          */
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+                   require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+                   $mail = new PHPMailer;
+                   $mail->isSMTP();
+                   $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+                   $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+                   $mail->Port = 587; // TLS only
+                   $mail->SMTPSecure = 'tls'; // ssl is deprecated
+                   $mail->SMTPAuth = true;
+                   $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+                   $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+                   $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+                   $mail->addAddress($_POST['email'],$first_name ); // to email and name
+                   $mail->Subject = $subject;
+                   $mail->msgHTML($message); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+                   $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+                   // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+                   $mail->SMTPOptions = array(
+                             'ssl' => array(
+                               'verify_peer' => false,
+                               'verify_peer_name' => false,
+                               'allow_self_signed' => true
+                             )
+                           );
+               */
           // Everything seems OK, time to send the email.
           $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
           $mail->isSMTP();
@@ -3523,25 +3523,25 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
    </tbody>
   </table>';
   /*
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-          $mail = new PHPMailer;
-          $mail->isSMTP();
-          $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-          $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-          $mail->Port = 587; // TLS only
-          $mail->SMTPSecure = 'tls'; // ssl is deprecated
-          $mail->SMTPAuth = true;
-          $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-          $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-          $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-          $mail->addAddress($email,$first_name ); // to email and name
-          $mail->Subject = $subject;
-          $mail->msgHTML($message1);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-          $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-          // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-  */
+       require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+       require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+       require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+       $mail = new PHPMailer;
+       $mail->isSMTP();
+       $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+       $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+       $mail->Port = 587; // TLS only
+       $mail->SMTPSecure = 'tls'; // ssl is deprecated
+       $mail->SMTPAuth = true;
+       $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+       $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+       $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+       $mail->addAddress($email,$first_name ); // to email and name
+       $mail->Subject = $subject;
+       $mail->msgHTML($message1);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+       $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+       // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+   */
   // Everything seems OK, time to send the email.
   $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
   $mail->isSMTP();
@@ -3817,22 +3817,22 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
    </tbody>
   </table>';
     /*
-            $mail = new PHPMailer;
-            $mail->isSMTP();
-            $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-            $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-            $mail->Port = 587; // TLS only
-            $mail->SMTPSecure = 'tls'; // ssl is deprecated
-            $mail->SMTPAuth = true;
-            $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-            $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-            $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-            $mail->addAddress( $store_array[$l]['email'],$store_array[$l]['store_name'] ); // to email and name
-            $mail->Subject = $subject;
-            $mail->msgHTML($message2);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-            $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-            // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-    */
+          $mail = new PHPMailer;
+          $mail->isSMTP();
+          $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+          $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+          $mail->Port = 587; // TLS only
+          $mail->SMTPSecure = 'tls'; // ssl is deprecated
+          $mail->SMTPAuth = true;
+          $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+          $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+          $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+          $mail->addAddress( $store_array[$l]['email'],$store_array[$l]['store_name'] ); // to email and name
+          $mail->Subject = $subject;
+          $mail->msgHTML($message2);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+          $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+          // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+      */
     // Everything seems OK, time to send the email.
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
     $mail->isSMTP();
@@ -4533,25 +4533,25 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
    </tbody>
   </table>';
   /*
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-          require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
-          $mail = new PHPMailer;
-          $mail->isSMTP();
-          $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-          $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-          $mail->Port = 587; // TLS only
-          $mail->SMTPSecure = 'tls'; // ssl is deprecated
-          $mail->SMTPAuth = true;
-          $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-          $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-          $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-          $mail->addAddress($email,$first_name ); // to email and name
-          $mail->Subject = $subject;
-          $mail->msgHTML($message1);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-          $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-          // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-  */
+       require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+       require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+       require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+       $mail = new PHPMailer;
+       $mail->isSMTP();
+       $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+       $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+       $mail->Port = 587; // TLS only
+       $mail->SMTPSecure = 'tls'; // ssl is deprecated
+       $mail->SMTPAuth = true;
+       $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+       $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+       $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+       $mail->addAddress($email,$first_name ); // to email and name
+       $mail->Subject = $subject;
+       $mail->msgHTML($message1);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+       $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+       // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+   */
   // Everything seems OK, time to send the email.
   $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
   $mail->isSMTP();
@@ -4824,22 +4824,22 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
    </tbody>
   </table>';
     /*
-            $mail = new PHPMailer;
-            $mail->isSMTP();
-            $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-            $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-            $mail->Port = 587; // TLS only
-            $mail->SMTPSecure = 'tls'; // ssl is deprecated
-            $mail->SMTPAuth = true;
-            $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-            $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
-            $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
-            $mail->addAddress( $store_array[$l]['email'],$store_array[$l]['store_name'] ); // to email and name
-            $mail->Subject = $subject;
-            $mail->msgHTML($message2);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-            $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-            // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-    */
+          $mail = new PHPMailer;
+          $mail->isSMTP();
+          $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+          $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+          $mail->Port = 587; // TLS only
+          $mail->SMTPSecure = 'tls'; // ssl is deprecated
+          $mail->SMTPAuth = true;
+          $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
+          $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+          $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
+          $mail->addAddress( $store_array[$l]['email'],$store_array[$l]['store_name'] ); // to email and name
+          $mail->Subject = $subject;
+          $mail->msgHTML($message2);//(file_get_contents('ordermailtouser.php'),'' ); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+          $mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+          // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+      */
     // Everything seems OK, time to send the email.
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
     $mail->isSMTP();
@@ -5127,11 +5127,11 @@ if (isset($_POST['filter_cat_a'])) {
       $id = $split[2];
       $name = $split[3];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $type.PHP_EOL;
-      echo $id.PHP_EOL;
-      echo $name.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $type.PHP_EOL;
+         echo $id.PHP_EOL;
+         echo $name.PHP_EOL;
+         */
       if ($type == 'star') {
         $sqlstar .= $id . ",";
         $ratingarray[$i] = $id;
@@ -5329,27 +5329,27 @@ if (isset($_POST['filter_cat_a'])) {
   $res = $pdo->query($sql);
   while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
     /*
-    if($sqlstar!=""){
-    $sumcnt="select sum(item_keys.rating) AS sumrate,COUNT(item_keys.item_keys_id) AS countkeys FROM item_keys
-    JOIN item_description on item_keys.item_description_id=item_description.item_description_id
-    JOIN product_details on product_details.item_description_id = item_description.item_description_id
-    JOIN store ON store.store_id=product_details.store_id
-    WHERE store.store_id=product_details.store_id
-    AND product_details.item_description_id=item_description.item_description_id
-    and item_description.item_description_id=".$row['item_description_id']."
-    AND product_details.price BETWEEN ".$minprice." AND ".$maxprice."
-    GROUP BY item_keys.store_id HAVING item_keys.store_id IN (".$row['store_id'].")";
-    $sumcnt_stmt=$pdo->query($sumcnt);
-    $sumcnt_row=$sumcnt_stmt->fetch(PDO::FETCH_ASSOC);
-    $cntrate=$sumcnt_row['sumrate'];
-    $cntnum=$sumcnt_row['countkeys'];
-    if($cntnum==0){
-      continue;
-    }
-    $avgrating=$cntrate/$cntnum;
-    $minrate=min($ratingarray);
-      if($avgrating>=$minrate){
-    */
+      if($sqlstar!=""){
+      $sumcnt="select sum(item_keys.rating) AS sumrate,COUNT(item_keys.item_keys_id) AS countkeys FROM item_keys
+      JOIN item_description on item_keys.item_description_id=item_description.item_description_id
+      JOIN product_details on product_details.item_description_id = item_description.item_description_id
+      JOIN store ON store.store_id=product_details.store_id
+      WHERE store.store_id=product_details.store_id
+      AND product_details.item_description_id=item_description.item_description_id
+      and item_description.item_description_id=".$row['item_description_id']."
+      AND product_details.price BETWEEN ".$minprice." AND ".$maxprice."
+      GROUP BY item_keys.store_id HAVING item_keys.store_id IN (".$row['store_id'].")";
+      $sumcnt_stmt=$pdo->query($sumcnt);
+      $sumcnt_row=$sumcnt_stmt->fetch(PDO::FETCH_ASSOC);
+      $cntrate=$sumcnt_row['sumrate'];
+      $cntnum=$sumcnt_row['countkeys'];
+      if($cntnum==0){
+        continue;
+      }
+      $avgrating=$cntrate/$cntnum;
+      $minrate=min($ratingarray);
+        if($avgrating>=$minrate){
+      */
     if ($row) {
       if (strlen($row['item_name']) >= 30) {
         $item = $row['item_name'];
@@ -5716,11 +5716,11 @@ if (isset($_POST['filter_cat_b'])) {
       $id = $split[2];
       $name = $split[3];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $type.PHP_EOL;
-      echo $id.PHP_EOL;
-      echo $name.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $type.PHP_EOL;
+         echo $id.PHP_EOL;
+         echo $name.PHP_EOL;
+         */
       if ($type == 'star') {
         $sqlstar .= $id . ",";
         $ratingarray[$i] = $id;
@@ -6355,11 +6355,11 @@ if (isset($_POST['filter_sub_cat_a'])) {
       $id = $split[2];
       $name = $split[3];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $type.PHP_EOL;
-      echo $id.PHP_EOL;
-      echo $name.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $type.PHP_EOL;
+         echo $id.PHP_EOL;
+         echo $name.PHP_EOL;
+         */
       if ($type == 'star') {
         $sqlstar .= $id . ",";
         $ratingarray[$i] = $id;
@@ -6748,11 +6748,11 @@ if (isset($_POST['filter_sub_cat_b'])) {
       $id = $split[2];
       $name = $split[3];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $type.PHP_EOL;
-      echo $id.PHP_EOL;
-      echo $name.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $type.PHP_EOL;
+         echo $id.PHP_EOL;
+         echo $name.PHP_EOL;
+         */
       if ($type == 'star') {
         $sqlstar .= $id . ",";
         $ratingarray[$i] = $id;
@@ -7224,11 +7224,11 @@ if (isset($_POST['filter_item_a'])) {
       $id = $split[2];
       $name = $split[3];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $type.PHP_EOL;
-      echo $id.PHP_EOL;
-      echo $name.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $type.PHP_EOL;
+         echo $id.PHP_EOL;
+         echo $name.PHP_EOL;
+         */
       if ($type == 'star') {
         $sqlstar .= $id . ",";
         $ratingarray[$i] = $id;
@@ -7638,11 +7638,11 @@ if (isset($_POST['filter_item_b'])) {
       $id = $split[2];
       $name = $split[3];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $type.PHP_EOL;
-      echo $id.PHP_EOL;
-      echo $name.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $type.PHP_EOL;
+         echo $id.PHP_EOL;
+         echo $name.PHP_EOL;
+         */
       if ($type == 'star') {
         $sqlstar .= $id . ",";
         $ratingarray[$i] = $id;
@@ -8245,10 +8245,10 @@ if (isset($_POST['check_mul']) && $_POST['check_mul'] == 1) {
       $sid = $sid_sec[1];
       $idid = $idid_sec[1];
       /*
-      echo $_POST['key'][$i]['type'].PHP_EOL;
-      echo $sid.PHP_EOL;
-      echo $idid.PHP_EOL;
-      */
+         echo $_POST['key'][$i]['type'].PHP_EOL;
+         echo $sid.PHP_EOL;
+         echo $idid.PHP_EOL;
+         */
       //RETRIEVING SELECTED CART ID'S
       $sql = "select cart_id from cart where store_id=" . $sid . " and item_description_id=" . $idid . " and user_id=" . $_SESSION['id'];
       $stmt = $pdo->query($sql);
@@ -9041,8 +9041,8 @@ if (isset($_POST['cancel_product'])) {
   $pid = $row['product_details_id'];
   $order_id = "OSID" . sprintf('%06d', $row['new_orders_id']);
   /*
-    echo "Order_id : ".$order_id." | product_details_id : ".$pid." | item_qnty : ".$item_qnty." | pre_tot : ".$prev_order_tot_amt." | new_tot : ".$new_order_tot_amt;
-  */
+     echo "Order_id : ".$order_id." | product_details_id : ".$pid." | item_qnty : ".$item_qnty." | pre_tot : ".$prev_order_tot_amt." | new_tot : ".$new_order_tot_amt;
+   */
   $pdtupdatestmt = $pdo->query("update product_details set quantity=quantity+" . $item_qnty . " where product_details_id=" . $pid);
   $sql = $pdo->query("update item_keys set ordered_cnt=ordered_cnt-" . $item_qnty . " where item_description_id=" . $idid . " and user_id=" . $_SESSION['id']);
   $chkpendstmt = $pdo->query("update new_ordered_products set delivery_status='cancelled' where new_ordered_products_id=" . $nopid);

@@ -255,34 +255,34 @@ if (!empty($_SESSION['_contact_form_success'])) {
     <script type="text/javascript">
       function showupda(x) {
         /*$( '#'+x ).on( "submit", function(e) {
-              //stop submit the form, we will post it manually.
-            e.preventDefault();
-            // Get form
-            var form = $('#'+x)[0];
-            // Create an FormData object
-            var data = new FormData(form);
-            // If you want to add an extra field for the FormData
+            //stop submit the form, we will post it manually.
+          e.preventDefault();
+          // Get form
+          var form = $('#'+x)[0];
+          // Create an FormData object
+          var data = new FormData(form);
+          // If you want to add an extra field for the FormData
            // data.append("CustomField", "This is some extra data, testing");
-            // disabled the submit button
-            $("#btnSubmit").prop("disabled", true);
-            $.ajax({
-                type: "POST",
-                enctype: 'multipart/form-data',
-                url: "productuplo.php",
-                data: data,
-                processData: false,
-                contentType: false,
-                cache: false,
-                timeout: 600000,
-                success: function (data) {
-                    //console.log("SUCCESS");
-                    //$("#btnSubmit").prop("disabled", false);
-                },
-                error: function (e) {
-                    //console.log("ERROR : ", e);
-                    //$("#btnSubmit").prop("disabled", false);
-                }
-            });
+          // disabled the submit button
+          $("#btnSubmit").prop("disabled", true);
+          $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "productuplo.php",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+              //console.log("SUCCESS");
+              //$("#btnSubmit").prop("disabled", false);
+            },
+            error: function (e) {
+              //console.log("ERROR : ", e);
+              //$("#btnSubmit").prop("disabled", false);
+            }
+          });
         });*/
         document.forms[x].submit();
       }
@@ -311,32 +311,32 @@ if (!empty($_SESSION['_contact_form_success'])) {
         /*var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
            if (this.readyState === this.DONE) {
-               if (xhr.status === 200) {
-                   console.log('file exist');
-               } else {
-                   return false;
-               }
+             if (xhr.status === 200) {
+               console.log('file exist');
+             } else {
+               return false;
+             }
            }
-       }
+         }
         xhr.error = function() {
-                            return false;
+                  return false;
         }
         xhr.onabort = function() {
-                            return false;
+                  return false;
         }
         xhr.timeout = function() {
-                            return false;
+                  return false;
         }
          xhr.timeout = 5000;
-       xhr.open('HEAD', url, true);
-       xhr.send(null);
-       if (xhr.status == "404") {
+         xhr.open('HEAD', url, true);
+         xhr.send(null);
+         if (xhr.status == "404") {
            console.log("File doesn't exist");
            return false;
-       } else {
+         } else {
            console.log("File exists");
            return true;
-       }*/
+         }*/
       }
       function upimg(cn, x) {
         cn = cn + 1;
@@ -346,18 +346,18 @@ if (!empty($_SESSION['_contact_form_success'])) {
         var n = $('#nj' + x).val();
         for (var i = cn; i <= n; i++) {
           $('#imgdiv' + x).append('<div class="image-upload">  \
-        <label for="'+ x + 'file-input' + i + '" style="width: 100%; cursor: pointer;"><center>\
-        <img id="'+ x + 'previewImg' + i + '" src="images/upload2.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"> </center>      </label>      <input id="' + x + 'file-input' + i + '" required type="file" name="my_file' + i + '" onchange="previewFile(\'#' + x + 'file-input' + i + '\',' + i + ',' + x + ');" style="display: none; cursor: pointer;">    </div>');
+    <label for="'+ x + 'file-input' + i + '" style="width: 100%; cursor: pointer;"><center>\
+    <img id="'+ x + 'previewImg' + i + '" src="images/upload2.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"> </center>      </label>      <input id="' + x + 'file-input' + i + '" required type="file" name="my_file' + i + '" onchange="previewFile(\'#' + x + 'file-input' + i + '\',' + i + ',' + x + ');" style="display: none; cursor: pointer;">    </div>');
           /* url="../images/"+cat+"/"+sub+"/"+it+"_"+i+".jpg";
          st=ImageExist(url) ;
          console.log(st);
-            if(st){
-              console.log('helo')
-                $("#previewImg"+i).attr("src", url);
-            }else {
-                    console.log('hi')
-                 $("#previewImg"+i).attr("src", 'images/upload2.png');
-            }
+          if(st){
+            console.log('helo')
+            $("#previewImg"+i).attr("src", url);
+          }else {
+              console.log('hi')
+             $("#previewImg"+i).attr("src", 'images/upload2.png');
+          }
         */
         }
       }
@@ -395,12 +395,12 @@ if (!empty($_SESSION['_contact_form_success'])) {
       ?>
       <div class="alert alert-success">Images Added Successfully!</div>
       <a href="view.php"><button style="background: green;color: white;
-    border: none;
-    height: 40px;
-    padding: 10px;
-    width: 200px;
-    border-radius: 5px;
-    font-weight: bolder;">Go back</button></a>
+  border: none;
+  height: 40px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px;
+  font-weight: bolder;">Go back</button></a>
       <?php
     }
     ?>
@@ -409,12 +409,12 @@ if (!empty($_SESSION['_contact_form_success'])) {
       ?>
       <div class="alert alert-danger"><?= $error ?></div>
       <a href="view.php"><button style="background: red;color: white;
-    border: none;
-    height: 40px;
-    padding: 10px;
-    width: 200px;
-    border-radius: 5px;
-    font-weight: bolder;">Go back</button></a>
+  border: none;
+  height: 40px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px;
+  font-weight: bolder;">Go back</button></a>
       <?php
     }
     ?>
@@ -435,22 +435,22 @@ if (!empty($_SESSION['_contact_form_success'])) {
         <div class="proupda ">
           <div class="newupdation">
             <span style="font-size: 16px;
-    font-weight: bolder;
-    color: #ffffff;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffc107), color-stop(1, #ff9800)) !important;    position: relative;
-    top: 0px;
-    left: 0;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    ">
+  font-weight: bolder;
+  color: #ffffff;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffc107), color-stop(1, #ff9800)) !important;    position: relative;
+  top: 0px;
+  left: 0;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  ">
               <h4 style="text-overflow: ellipsis;
-    width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    "> <?= $itna ?></h4>
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  "> <?= $itna ?></h4>
             </span><br>
             <div class="row">
               <?php
@@ -523,28 +523,28 @@ if (!empty($_SESSION['_contact_form_success'])) {
                               <div style="display: flex;width:100%;margin-top: 20px;">
                                 <button name="newim" type="button" style="
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #151414), color-stop(1, #1d1d1d)) !important;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    width: 100%;" onclick="upimg(<?= $itcn ?>,<?= $row['item_description_id'] ?>)">OK</button>
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;" onclick="upimg(<?= $itcn ?>,<?= $row['item_description_id'] ?>)">OK</button>
                                 <button class="addim" type="button" style="width: 100%;
-    height: 30px;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ff0000), color-stop(1, #d00303)) !important;
-    border: none;
-    color: white;
-    font-size: 16px;
-    padding: 2px;
-    border-radius: 5px;" name="numi" onclick="numplusone(<?= $itcn ?>,<?= $row['item_description_id'] ?>)"><i
+  height: 30px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ff0000), color-stop(1, #d00303)) !important;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 2px;
+  border-radius: 5px;" name="numi" onclick="numplusone(<?= $itcn ?>,<?= $row['item_description_id'] ?>)"><i
                                     class="fas fa-plus"></i></button>
                                 <button class="subim" type="button" style="width: 100%;
-    height: 30px;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #4caf50), color-stop(1, #08c310)) !important;
-    border: none;
-    color: white;
-    font-size: 16px;
-    padding: 2px;
-    border-radius: 5px;" name="numk" onclick="numminone(<?= $itcn ?>,<?= $row['item_description_id'] ?>)"><i
+  height: 30px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #4caf50), color-stop(1, #08c310)) !important;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 2px;
+  border-radius: 5px;" name="numk" onclick="numminone(<?= $itcn ?>,<?= $row['item_description_id'] ?>)"><i
                                     class="fas fa-minus"></i></button>
                               </div>
                             </div>
@@ -554,16 +554,15 @@ if (!empty($_SESSION['_contact_form_success'])) {
                         <input type="hidden" name="sub" value="<?= $row['sub_category_id'] ?>">
                         <input type="hidden" name="desc_id" value="<?= $row['item_description_id'] ?>">
                         <div class="col-sm-12" style="position: absolute;
-    bottom: 0;"><button id="btnSubmit" onclick="showupda(<?= $row['item_description_id'] ?>)" name="upload_image"
-                            style="width: 100%;
-    padding: 5px;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2196f4), color-stop(1, #1965a2)) !important;
-    border: none;
-    color: white;
-    font-weight: bolder;
-    position: absolute;
-    bottom: 0;
-    left: 0;"><i class="fas fa-upload" style="font-size: 24px;float: left;"></i>Upload</button></div>
+  bottom: 0;"><button id="btnSubmit" onclick="showupda(<?= $row['item_description_id'] ?>)" name="upload_image" style="width: 100%;
+  padding: 5px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2196f4), color-stop(1, #1965a2)) !important;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 0;
+  left: 0;"><i class="fas fa-upload" style="font-size: 24px;float: left;"></i>Upload</button></div>
                       </table>
                     </form>
                   </div>

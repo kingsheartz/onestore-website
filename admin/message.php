@@ -24,8 +24,8 @@ require "head.php";
     }
     if (isset($_POST['submit'])) {
       /* Attempt MySQL server connection. Assuming
-      you are running MySQL server with default
-      setting (user 'root' with no password) */
+        you are running MySQL server with default
+        setting (user 'root' with no password) */
       require 'pdo.php';
       // Escape user inputs for security
       $un = $_REQUEST['uname'];
@@ -449,12 +449,12 @@ require "head.php";
               var container = $('#chathist')[0];
             var containerHeight = container.clientHeight;
             var contentHeight = container.scrollHeight;
-                container.scrollTop = container.scrollHeight - container.clientHeight;
+              container.scrollTop = container.scrollHeight - container.clientHeight;
             var pageRefresh = 5000; //5 s
-                setInterval(function() {
-                   $('#chathist').load(location.href + " #chathist >");
-                   $('#myNavbar2').load(location.href + " #myNavbar2 >");
-                }, pageRefresh);
+              setInterval(function() {
+                 $('#chathist').load(location.href + " #chathist >");
+                 $('#myNavbar2').load(location.href + " #myNavbar2 >");
+              }, pageRefresh);
             });
             */
             function show_func() {
@@ -513,9 +513,9 @@ require "head.php";
                     <div id="triangle1" class="triangle1"></div>
                     <div id="message1" class="message1">
                       <div style="color: white;
-    float: right;
-    padding: 0;
-    width: 100%;">
+  float: right;
+  padding: 0;
+  width: 100%;">
                         <pre><?php echo trim($row['msg']); ?></pre>
                       </div>
                       <div class="spdat">
@@ -530,9 +530,9 @@ require "head.php";
                       <div id="triangle" class="triangle"></div>
                       <div id="message" class="message">
                         <div style="color: white;
-    float: right;
-    padding: 0;
-    width: 100%;">
+  float: right;
+  padding: 0;
+  width: 100%;">
                           <pre><?php echo trim($row['msg']); ?></pre>
                         </div>
                         <div class="spdat">
@@ -546,9 +546,9 @@ require "head.php";
                       <div id="triangle1" class="triangle1"></div>
                       <div id="message1" class="message1">
                         <div style="color: white;
-    float: right;
-    padding: 0;
-    width: 100%;">
+  float: right;
+  padding: 0;
+  width: 100%;">
                           <pre><?php echo trim($row['msg']); ?></pre>
                         </div>
                         <div class="spdat">

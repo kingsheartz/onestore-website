@@ -1,5 +1,5 @@
 <?php
- 
+
 /**
  * REQUIRED SETTINGS
  *

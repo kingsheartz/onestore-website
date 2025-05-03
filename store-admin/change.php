@@ -400,7 +400,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                 .fadeIn(1500, function () {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated \
-                    <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
+          <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
                   );
                 });
             }
@@ -463,23 +463,23 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
         <div class="proupda ">
           <div class="newupdation">
             <span style="font-size: 14px;
-    font-weight: bolder;
-    color: #ffffff;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0082bd), color-stop(1, #326086)) !important;
-    position: relative;
-    top: 0px;
-    left: 0;
-    text-align: center;
-    padding: 5px;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    ">
+  font-weight: bolder;
+  color: #ffffff;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0082bd), color-stop(1, #326086)) !important;
+  position: relative;
+  top: 0px;
+  left: 0;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  ">
               <h4 style="text-overflow: ellipsis;
-    width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    "> <?= $itna ?></h4>
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  "> <?= $itna ?></h4>
             </span><br>
             <div class="row">
               <?php
@@ -503,16 +503,16 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                         <div class="prim col-sm-5">
                           <div class="thd">Product</div>
                           <div class="product" style="position: absolute;
-    left: 10px;
-    top: 55px;
-    width: 100px;
-    height: 80px;">
+  left: 10px;
+  top: 55px;
+  width: 100px;
+  height: 80px;">
                             <img style=" display: inline-block;
-    text-align: center;
-    padding: 14px;
-    position: relative;
-    height: 80px;
-    max-width: 100px;
+  text-align: center;
+  padding: 14px;
+  position: relative;
+  height: 80px;
+  max-width: 100px;
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg');"
                               src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                           </div>
@@ -534,11 +534,11 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                               ?>
                               <div class="product">
                                 <img style=" display: inline-block;
-    text-align: center;
-    padding: 14px;
-    position: relative;
-    height: 80px;
-    max-width: 100px;
+  text-align: center;
+  padding: 14px;
+  position: relative;
+  height: 80px;
+  max-width: 100px;
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
                                   src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg">
                               </div>
@@ -708,16 +708,16 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                         <div class="col-sm-12 subb" style="position: absolute;bottom: 0;padding: 0">
                           <input type="hidden" name="check_id" value="<?= $row['product_details_id'] ?>">
                           <button name="update_data" style="float: right;
-    background: green;
-    margin-left: 12px;
-    margin-right: 12px;
+  background: green;
+  margin-left: 12px;
+  margin-right: 12px;
 " onclick="showupda(<?= $row['item_description_id'] ?>,1)">
                             <i class="fas fa-pencil-square"
                               style="margin-right: 20px;float: left;font-size: 24px"></i>Update</button>
                           <button name="remove_data" style="float: right;
-    background: #fd0018;
-    margin-left: 12px;
-    margin-right: 12px;" onclick="showupda(<?= $row['item_description_id'] ?>,0)"><i class="fas fa-trash"
+  background: #fd0018;
+  margin-left: 12px;
+  margin-right: 12px;" onclick="showupda(<?= $row['item_description_id'] ?>,0)"><i class="fas fa-trash"
                               style="margin-right: 20px;float: left;font-size: 24px"></i>Remove</button>
                         </div>
                       </form>

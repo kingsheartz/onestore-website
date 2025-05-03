@@ -345,18 +345,18 @@ inner join item i on i.item_id=id.item_id
 inner join product_details pd on id.item_description_id=pd.item_description_id
 where ct.user_id=$uid GROUP BY c.cart_id";
                                     /*
-                                    //(int)$row['mrp']*(int)$row['quantity'];
-                                    //CODE:-<span style="text-decoration:line-through;padding-left:3px  ">  &#8377;<?=(int)$row['mrp']*(int)$row['quantity']?></span>
-                                    //TOTAL AMOUNT / EACH PRODUCT
-                                    */
+                                                               //(int)$row['mrp']*(int)$row['quantity'];
+                                                               //CODE:-<span style="text-decoration:line-through;padding-left:3px  ">  &#8377;<?=(int)$row['mrp']*(int)$row['quantity']?></span>
+                                                               //TOTAL AMOUNT / EACH PRODUCT
+                                                               */
                                     /*
-                                    //CODE:-<span style="text-decoration:line-through;padding-left:3px;float: right;"> &#8377;<?=$mrp_chrg?></span>
-                                    //TOTAL SERVICE CHARGES
-                                    */
+                                                               //CODE:-<span style="text-decoration:line-through;padding-left:3px;float: right;"> &#8377;<?=$mrp_chrg?></span>
+                                                               //TOTAL SERVICE CHARGES
+                                                               */
                                     /*
-                                    //CODE:-<span style="text-decoration:line-through;padding-left:3px;color: #333;font-weight: normal;"><?=$base?></span>
-                                    //TOTAL AMOUNT TO BE PAID
-                                    */
+                                                               //CODE:-<span style="text-decoration:line-through;padding-left:3px;color: #333;font-weight: normal;"><?=$base?></span>
+                                                               //TOTAL AMOUNT TO BE PAID
+                                                               */
                                     $stmt = $pdo->query($sql);
                                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         ?>

@@ -263,7 +263,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
     </script>
     <form name="form" id="myform" method="post" action="upload.php" enctype="multipart/form-data">
       <div class="hed"><i style="
-    padding-right: 20px;font-size: 24px" class="fas fa-folder-plus"></i>Add Product</div><br>
+  padding-right: 20px;font-size: 24px" class="fas fa-folder-plus"></i>Add Product</div><br>
       <?php
       if (!empty($success)) {
         ?>
@@ -349,7 +349,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
             }
           </style>
           <!--  <input type="file" name="my_file"id="file" /><br><br><br>
-    <button  onclick="uploadFile()">Upload</button>-->
+  <button  onclick="uploadFile()">Upload</button>-->
           <!--place input file last !-->
           <?php
           require "pdo.php";
@@ -391,22 +391,22 @@ if (!empty($_SESSION['_contact_form_success'])) {
                 console.log('adding...');
                 $('#position_fields').append(
                   '<div id="position' + countpos + '" style="position:relative;padding-top: 20px;">\
-        <button type="button" class="rempos" \
-        onclick="$(\'#position'+ countpos + '\').remove();return(false);"><i style="font-size: 24px;float:left"  class="fa fa-minus-circle"></i>Remove</button>\
-        <label style="color:#088DA9">Select the features</label><br><br>\
-        <div class="col-sm-12" style="text-align:center">\
+    <button type="button" class="rempos" \
+    onclick="$(\'#position'+ countpos + '\').remove();return(false);"><i style="font-size: 24px;float:left"  class="fa fa-minus-circle"></i>Remove</button>\
+    <label style="color:#088DA9">Select the features</label><br><br>\
+    <div class="col-sm-12" style="text-align:center">\
 <label class="checkbox"><input class="form-control-check" type="checkbox" onclick="$(\'#size'+ countpos + '\').toggle();$(\'#size1' + countpos + '\').toggle()" name="check1' + countpos + '" value="size"><span>Size</span>\
 <div class="form-group">\
   <select id="size'+ countpos + '" class="form-control" style="display:none;width: 100%"name="size' + countpos + '" >\
-     <option value="">Select...</option>\
-    <?php
-    $cat = $pdo->query("select * from size");
-    while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-      ?>
+   <option value="">Select...</option>\
+  <?php
+  $cat = $pdo->query("select * from size");
+  while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+    ?>
                     < option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option >\
                   <?php
-    }
-    ?></select ></div ></label >\
+  }
+  ?></select ></div ></label >\
                 <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#color'+countpos+'\').toggle();$(\'#color1'+countpos+'\').toggle()" name="check1'+countpos+'" value="color"><span>Color</span>\
                   <div class="form-group">\
                     <select id="color'+countpos+'" placeholder="color" class="form-control" style="display:none;width: 100%" name="color'+countpos+'">\
@@ -526,7 +526,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
                 <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#w1'+countpos+'\').toggle();$(\'#w2'+countpos+'\').toggle();$(\'#weight1'+countpos+'\').toggle()" name="check1'+countpos+'" value="weight"><span>Weight</span>\
                   <div class="form-group" >\
                     <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" type="number" class="form-control" style="display:none;width:70%;border-right:none;\
-        float:left;" id="w1'+countpos+'" onkeyup="conca('+countpos+')">\
+    float:left;" id="w1'+countpos+'" onkeyup="conca('+countpos+')">\
                       <select class="form-control" style="display:none;width:30%;float:left;color: white;background: #0B7383" id="w2'+countpos+'" onchange="conca('+countpos+')">\
                         <option value="kg">kg</option>\
                         <option value="g">g</option>\
@@ -542,24 +542,24 @@ if (!empty($_SESSION['_contact_form_success'])) {
                     <label for="file-input'+countpos+'" style="width: 100%; cursor: pointer;">      <center>  <img id="previewImg'+countpos+'" src="images/upload.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"></center>      </label>      <input id="file-input'+countpos+'" type="file" name="my_file'+countpos+'" onchange="previewFile(\'#file-input'+countpos+'\','+countpos+');" style="display: none; cursor: pointer;"></div>\
                 </div>'
                   );
-       });
+     });
   });
           </script>
           <button type="submit" name="add" name="submit">
             <span style="color: #F9F9F9;
-    font-size: 16px;
-    float: left;
-    border-right: 1px solid #F9F9F9;
-    height: 100%;
-    padding-left: 5px;
-    padding-right: 5px;" class="glyphicon glyphicon-save-file"></span>Save</button>
+  font-size: 16px;
+  float: left;
+  border-right: 1px solid #F9F9F9;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;" class="glyphicon glyphicon-save-file"></span>Save</button>
           <button type="reset" onclick="clr()" name="reset"><i style="color: #FF0000;
-    font-size: 16px;
-    float: left;
-    border-right: 1px solid #FF0000;
-    height: 100%;
-    padding-left: 5px;
-    padding-right: 5px;" class="fa fa-ban"></i>Cancel</button><br />
+  font-size: 16px;
+  float: left;
+  border-right: 1px solid #FF0000;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;" class="fa fa-ban"></i>Cancel</button><br />
         </div>
     </form>
   </div>

@@ -70,7 +70,8 @@ $email = $placerow_u['email'];
                                 <p
                                   style="font-family:Arial;color:#878787;font-size:12px;font-weight:normal;font-style:normal;font-stretch:normal;margin-top:7px;line-height:.85;padding-top:0px">
                                   Hi
-                                  <span style="font-weight:bold;color:#191919"> <?= $first_name . " " . $last_name ?>,</span>
+                                  <span style="font-weight:bold;color:#191919">
+                                    <?= $first_name . " " . $last_name ?>,</span>
                                 </p>
                                 <p
                                   style="font-family:Arial;font-size:12px;color:#878787;line-height:1.22;padding-top:0px;margin-top:0px">
@@ -104,7 +105,8 @@ $email = $placerow_u['email'];
                               <td align="left">
                                 <p
                                   style="font-family:Arial;font-size:12px;text-align:left;color:#212121;padding-left:15px;padding-top:0px;line-height:1.62;padding-right:10px;text-align: justify;">
-                                  Your Account is created successfully by <b><?= date("F j") . " , " . date("Y") ?></b> and
+                                  Your Account is created successfully by <b><?= date("F j") . " , " . date("Y") ?></b>
+                                  and
                                   below is given your activation code (button) for activating your newly created
                                   account.You are one step away from sign in to our world of shopping </p>
                                 <p

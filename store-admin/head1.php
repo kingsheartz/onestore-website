@@ -4,21 +4,21 @@
     <h3>
       <div class="text">
         <p style="font-weight: bolder;
-    display: block;
-    margin-block-start: 1em;
-    margin-inline-start: 1rem;
-    margin-inline-end: 1rem;
-    font-size: 1.5em;"><img class="img-responsive" src="images/logo\logo-high.png"></p>
+  display: block;
+  margin-block-start: 1em;
+  margin-inline-start: 1rem;
+  margin-inline-end: 1rem;
+  font-size: 1.5em;"><img class="img-responsive" src="images/logo\logo-high.png"></p>
         <p style="text-decoration: none;
-    padding-right: 5px;
-    margin-top: 3px;
-    font-size: 11px;">
+  padding-right: 5px;
+  margin-top: 3px;
+  font-size: 11px;">
           <?= $_SESSION['username'] ?>
           <i class="fa fa-circle" style="margin-left:12px;color: #3c763d;display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased"></i> Online
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased"></i> Online
         </p>
       </div>
     </h3>
@@ -95,7 +95,7 @@
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="index.php"><i class="fa fa-home" style="font-size: 20px;color: #ff9931;
-    padding-right: 8px;"></i>Home</a>
+  padding-right: 8px;"></i>Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="neworders.php"><i class="fas fa-cart-plus"
@@ -104,11 +104,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="message.php"><i class="fa fa-comments" style="font-size: 20px;color: #ff9931;
-    padding-right: 8px;"></i><span class="uppernum1"><?= $row1['COUNT(*)'] ?></span>Chat</a>
+  padding-right: 8px;"></i><span class="uppernum1"><?= $row1['COUNT(*)'] ?></span>Chat</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../user/Account/logout.php"><i class="fa fa-power-off" style="font-size: 20px;color: #ff9931;
-    padding-right: 8px;"></i>Log Out</a>
+  padding-right: 8px;"></i>Log Out</a>
           </li>
         </ul>
       </div>

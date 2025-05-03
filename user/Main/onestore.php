@@ -410,7 +410,7 @@ require "../Common/cookie.php";
   <hr class="make_div">
   <hr class="make_div">
   <!-- Carousel
-    ================================================== -->
+  ================================================== -->
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">

@@ -83,7 +83,7 @@ class PostTest extends TestCase
         $req = new Post('https://bad.connection/');
         self::$assert = array($this, 'connectionFailureResponse');
         $response = $req->submit($this->parameters);
-        $this->assertEquals('{"success": false, "error-codes": ["'.ReCaptcha::E_CONNECTION_FAILED.'"]}', $response);
+        $this->assertEquals('{"success": false, "error-codes": ["' . ReCaptcha::E_CONNECTION_FAILED . '"]}', $response);
     }
 
     public function connectionFailureResponse()

@@ -167,11 +167,11 @@ if (isset($_GET['item'])) {
                   return;
                 }
               });/*
-                      var qnty=document.getElementById("Q"+id+"").innerHTML;
-                      if(qnty!=0){
-                        document.getElementById("Q"+id+"").innerHTML="";
-                        document.getElementById("Q"+id+"").innerHTML=qnty-1;
-                      }*/
+            var qnty=document.getElementById("Q"+id+"").innerHTML;
+            if(qnty!=0){
+            document.getElementById("Q"+id+"").innerHTML="";
+            document.getElementById("Q"+id+"").innerHTML=qnty-1;
+            }*/
             var qnty = document.getElementById("dis_qnty").innerHTML;
             if (qnty != 0) {
               document.getElementById("dis_qnty").innerHTML = "";

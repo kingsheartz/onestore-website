@@ -967,11 +967,11 @@ function randomGen($min, $max, $quantity)
                   return;
                 }
               });/*
-                      var qnty=document.getElementById("Q"+id+"").innerHTML;
-                      if(qnty!=0){
-                        document.getElementById("Q"+id+"").innerHTML="";
-                        document.getElementById("Q"+id+"").innerHTML=qnty-1;
-                      }*/
+            var qnty=document.getElementById("Q"+id+"").innerHTML;
+            if(qnty!=0){
+            document.getElementById("Q"+id+"").innerHTML="";
+            document.getElementById("Q"+id+"").innerHTML=qnty-1;
+            }*/
             var qnty = document.getElementById("dis_qnty").innerHTML;
             if (qnty != 0) {
               document.getElementById("dis_qnty").innerHTML = "";
@@ -3195,12 +3195,12 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
           //AVAILABLE STORE LISTING
           /*
           function display_store(){
-            if($('#avail_stores').css('display','none')){
-              $('#avail_stores').show();
-            }
-            else if($('#avail_stores').css('display','unset')){
-              $('#avail_stores').hide();
-            }
+          if($('#avail_stores').css('display','none')){
+            $('#avail_stores').show();
+          }
+          else if($('#avail_stores').css('display','unset')){
+            $('#avail_stores').hide();
+          }
           }
           */
         </script>
