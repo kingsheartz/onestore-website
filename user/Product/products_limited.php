@@ -1,5 +1,5 @@
 <?php
-require "../Main/header.php";
+require "../Product/products_header.php";
 require "../Main/map_pdt.php";
 require "../Common/pdo.php";
 if (isset($_GET['item'])) {

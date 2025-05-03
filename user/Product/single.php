@@ -1,5 +1,5 @@
 <?php
-require '../Main/header.php';
+require "../Product/single_header.php";
 require "../Main/map.php";
 require "../Common/pdo.php";
 $item_description_id = $_GET['id'];
@@ -1672,6 +1672,7 @@ function randomGen($min, $max, $quantity)
                 $color = array('scroll_handle_orange', 'scroll_handle_blue', 'scroll_handle_red', 'scroll_handle_cyan', 'scroll_handle_magenta', 'scroll_handle_green', 'scroll_handle_green1', 'scroll_handle_peach', 'scroll_handle_munsell', 'scroll_handle_carmine', 'scroll_handle_lightbrown', 'scroll_handle_hanblue', 'scroll_handle_kellygreen');
                 $bgcolor = array('orange', '#0c99cc', 'red', 'cyan', 'magenta', 'green', '#006622', '#FF6666', '#E6BF00', '#AB274F', '#C46210', '#485CBE', '#65BE00');
                 $reviewlen = 0;
+                $myreview = '0';
                 //USER REVIEW
 //-------------------------------------------------------------------------------------------------------------------
                 if (isset($_SESSION['id'])) {

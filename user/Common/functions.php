@@ -4097,7 +4097,7 @@ if (isset($_POST['buynow_item'])) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(
       ':item_description_id' => $_POST['item_description_id'],
-      'store_id' => $_POST['store_id']
+      ':store_id' => $_POST['store_id']
     ));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $qnty = $row['quantity'];
@@ -4115,7 +4115,7 @@ if (isset($_POST['buynow_item'])) {
       $stmt2 = $pdo->prepare($sql2);
       $stmt2->execute(array(
         ':item_description_id' => $_POST['item_description_id'],
-        'store_id' => $_POST['store_id']
+        ':store_id' => $_POST['store_id']
       ));
       $response['status'] = "error";
     }

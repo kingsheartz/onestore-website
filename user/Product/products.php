@@ -1,5 +1,5 @@
 <?php
-require "../Main/header.php";
+require "../Product/products_header.php";
 require "../Common/pdo.php";
 if (isset($_GET['item'])) {
   $nm = strtolower($_GET['item']);
@@ -42,7 +42,7 @@ if (isset($_GET['item'])) {
 }
 ?>
 <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
-<link href='css/product.css' rel='stylesheet'>
+<link href='../../css/product.css' rel='stylesheet'>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 </style>
