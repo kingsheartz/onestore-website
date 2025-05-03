@@ -23,7 +23,7 @@ if (isset($_GET['item'])) {
                 inner join product_details on product_details.item_description_id=item_description.item_description_id
         		inner join category on category.category_id=item.category_id
         		inner join sub_category on category.category_id= sub_category.category_id
-                where category.category_id=$cat and sub_category.sub_category_id=$sub GROUP BY item.item_id order by item.sub_category_id";
+                where item.category_id=$cat and item.sub_category_id=$sub GROUP BY item.item_id order by item.sub_category_id";
   $res = $pdo->query($sql);
   if ($res) {
     $row2 = $res->fetch(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@ if (isset($_GET['item'])) {
           inner join product_details on product_details.item_description_id=item_description.item_description_id
         	inner join category on category.category_id=item.category_id
         	inner join sub_category on category.category_id= sub_category.category_id
-          where category.category_id=$cat GROUP BY item.item_id order by item.sub_category_id");
+          where item.category_id=$cat GROUP BY item.item_id order by item.sub_category_id");
     if ($res) {
       $row2 = $res->fetch(PDO::FETCH_ASSOC);
       if ($row2) {
