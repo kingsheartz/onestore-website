@@ -1,0 +1,12 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "editor.formatOnSave": true,
+  "intelephense.format.enable": true,
+  "php-cs-fixer.onsave": false,  // set to true if you want it
+  "files.associations": {
+    "*.php": "php"
+  }
+}
