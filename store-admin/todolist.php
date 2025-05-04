@@ -155,8 +155,11 @@
         $.ajax({
           type: 'POST',
           url: 'delto.php',
-          data: { up_id: selected_option_value, up_tit: nw },
-          success: function (data) {
+          data: {
+            up_id: selected_option_value,
+            up_tit: nw
+          },
+          success: function(data) {
             console.log(data);
             location.reload();
           }
@@ -165,6 +168,7 @@
         console.log('not submitt');
       }
     }
+
     function postelement(x) {
       var selected_option_value = x;
       if (selected_option_value) {
@@ -172,7 +176,7 @@
           type: 'POST',
           url: 'delto.php',
           data: 'dl_id=' + selected_option_value,
-          success: function (data) {
+          success: function(data) {
             console.log(data);
             $('#myUL').load(location.href + " #myUL >");
           }
@@ -181,6 +185,7 @@
         console.log('not submitt');
       }
     }
+
     function addline() {
       var selected_option_value = document.getElementById('myInput').value;
       if (selected_option_value) {
@@ -188,7 +193,7 @@
           type: 'POST',
           url: 'delto.php',
           data: 'addnm=' + selected_option_value,
-          success: function (data) {
+          success: function(data) {
             console.log(data);
             $('#myUL').load(location.href + " #myUL >");
           }
@@ -207,7 +212,7 @@
       "select  * from to_do_list_store where store_id=" . $_SESSION['id']
     );
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-      ?>
+    ?>
       <li><span class="handle"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i>
           <input type="checkbox" id="<?= $row['list_id'] ?>"
             onclick="updatelement(<?= $row['list_id'] ?>,'<?= $row['title'] ?>')"></span>
@@ -230,7 +235,7 @@
         echo '<script>$("#' . $row['list_id'] . '").prop("checked", true);$("#' . $row['list_id'] . '").attr("disabled",true)</script>';
       }
       ?>
-      <?php
+    <?php
     }
     ?>
   </ul>

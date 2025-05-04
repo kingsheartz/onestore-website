@@ -90,15 +90,16 @@ WHERE new_ordered_products.delivery_status='completed' and store.store_id=$id");
 ";
         for (var i = 0; i < data.length; i++) {
           p += "<tr>\
-  <td align='center' >"+ data[i].new_ordered_products_id + "</td>\
-<td align='center'>"+ data[i].item_name + "</td>\
-<td align='center'>"+ data[i].order_date + "</td>\
-<td align='center'>"+ data[i].delivery_date + "</td>\
-<td align='center'>"+ data[i].user_id + "</td>\
-<td align='center'>"+ data[i].delivery_status + "</td>\
-<td align='center'>"+ data[i].total_amt + "</td></tr>";
+  <td align='center' >" + data[i].new_ordered_products_id + "</td>\
+<td align='center'>" + data[i].item_name + "</td>\
+<td align='center'>" + data[i].order_date + "</td>\
+<td align='center'>" + data[i].delivery_date + "</td>\
+<td align='center'>" + data[i].user_id + "</td>\
+<td align='center'>" + data[i].delivery_status + "</td>\
+<td align='center'>" + data[i].total_amt + "</td></tr>";
         }
-        p += "<tr  style='border-top:1px solid;padding:30px'><th align='center' colspan='7'>All Total Rupees " + tot + " only</th align='center'></table>";
+        p += "<tr  style='border-top:1px solid;padding:30px'><th align='center' colspan='7'>All Total Rupees " + tot +
+          " only</th align='center'></table>";
         return p;
       }
       //Excel printing
@@ -106,6 +107,7 @@ WHERE new_ordered_products.delivery_status='completed' and store.store_id=$id");
         p = tblpr();
         window.open('data:application/vnd.ms-excel;base64,' + base64_encode(p));
       }
+
       function base64_encode(data) {
         var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
         var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
@@ -149,7 +151,7 @@ WHERE new_ordered_products.delivery_status='completed' and store.store_id=$id");
         autoload: true,
         pageSize: 5,
         controller: {
-          loadData: function (filter) {
+          loadData: function(filter) {
             console.log(filter);
             return $.ajax({
               type: "GET",
@@ -159,13 +161,42 @@ WHERE new_ordered_products.delivery_status='completed' and store.store_id=$id");
             });
           }
         },
-        fields: [
-          { name: "item_name", title: "Products", type: "text", width: 200 },
-          { name: "user_id", title: "UserId", type: "text", width: 150 },
-          { name: "order_type", title: "Order Type", type: "text", width: 150 },
-          { name: "order_date", title: "Order Date", type: "text", width: 150 },
-          { name: "delivery_date", title: "Delivered Date", type: "text", width: 150 },
-          { name: "total_amt", title: "Total", type: "text", width: 150 },
+        fields: [{
+            name: "item_name",
+            title: "Products",
+            type: "text",
+            width: 200
+          },
+          {
+            name: "user_id",
+            title: "UserId",
+            type: "text",
+            width: 150
+          },
+          {
+            name: "order_type",
+            title: "Order Type",
+            type: "text",
+            width: 150
+          },
+          {
+            name: "order_date",
+            title: "Order Date",
+            type: "text",
+            width: 150
+          },
+          {
+            name: "delivery_date",
+            title: "Delivered Date",
+            type: "text",
+            width: 150
+          },
+          {
+            name: "total_amt",
+            title: "Total",
+            type: "text",
+            width: 150
+          },
         ]
       });
     </script>

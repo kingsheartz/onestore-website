@@ -377,13 +377,13 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
           $('#' + i + 'w3').val(v1);
         }
       }
+
       function showupda(x, y) {
-        $('#' + x).on("submit", function (e) {
+        $('#' + x).on("submit", function(e) {
           var dataString = new FormData(this);
           if (y == 1) {
             dataString.append('update_data', '1');
-          }
-          else if (y == 0) {
+          } else if (y == 0) {
             dataString.append('remove_data', '1');
           }
           $.ajax({
@@ -393,11 +393,11 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
             contentType: false,
             cache: false,
             processData: false,
-            success: function () {
+            success: function() {
               $("#" + x).html("<div id='message'></div>");
               $("#message")
                 .hide()
-                .fadeIn(1500, function () {
+                .fadeIn(1500, function() {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated \
           <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
@@ -422,6 +422,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
         $('#' + x).scrollLeft(y + 50);
         $('#' + x + '>.right-arrow').show();
       }
+
       function moveright(x) {
         var y = $('#' + x).scrollLeft();
         $('#' + x + '>.left-arrow').show();
@@ -430,17 +431,16 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
         }
         $('#' + x).scrollLeft(y - 50);
       }
+
       function movefr(x) {
         var y = $('#' + x).scrollLeft();
         var width = $('#' + x).outerWidth()
         var scrollWidth = $('#' + x)[0].scrollWidth;
         if (scrollWidth - width === y) {
           $('#' + x + '>.left-arrow').hide();
-        }
-        else if (y === 0) {
+        } else if (y === 0) {
           $('#' + x + '>.right-arrow').hide();
-        }
-        else {
+        } else {
           $('#' + x + '>.left-arrow').show();
           $('#' + x + '>.right-arrow').show();
         }
@@ -458,7 +458,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
       $description = $_POST['description'];
       $price = $_POST['price'];
       $it = $_POST['item_id'];
-      ?>
+    ?>
       <div class="pr1">
         <div class="proupda ">
           <div class="newupdation">
@@ -488,7 +488,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
               $st = $pdo->query($query);
               $tr = $st->rowCount();
               if ($tr == 0) {
-                ?>
+              ?>
                 <div class="alert alert-danger">item not yet added</div>
                 <button
                   style="background: red;padding: 10px;color: white;border-radius: 5px;border:none;font-weight: bolder;"
@@ -496,7 +496,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                 <?php
               } else {
                 while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-                  ?>
+                ?>
                   <div class="col-sm-12">
                     <div class="imgdis">
                       <form id="<?= $row['item_description_id'] ?>" method="post" name="<?= $row['item_description_id'] ?>">
@@ -531,7 +531,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                             <?php
                             $t = $row['img_count'];
                             for ($i = 1; $i <= $t; $i++) {
-                              ?>
+                            ?>
                               <div class="product">
                                 <img style=" display: inline-block;
   text-align: center;
@@ -542,7 +542,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
                                   src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg">
                               </div>
-                              <?php
+                            <?php
                             }
                             ?>
                           </div>
@@ -558,108 +558,108 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                                 $query1 = "SELECT * FROM size where size_id=" . $row['size'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Size</th>
                                   <td> <?= $row1['size_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['color'] != 0) {
                                 $query1 = "SELECT * FROM color where color_id=" . $row['color'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Color</th>
                                   <td><?= $row['color'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['weight'] != 0) {
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Weight</th>
                                   <td><?= $row['weight'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['flavour'] != 0) {
                                 $query1 = "SELECT * FROM flavour where flavour_id=" . $row['flavour'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Flavour</th>
                                   <td><?= $row1['flavour_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['processor'] != 0) {
                                 $query1 = "SELECT * FROM processor where processor_id=" . $row['processor'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Processor</th>
                                   <td><?= $row1['processor_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['display'] != 0) {
                                 $query1 = "SELECT * FROM display where display_id=" . $row['display'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Display</th>
                                   <td><?= $row1['display_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['battery'] != 0) {
                                 $query1 = "SELECT * FROM battery where battery_id=" . $row['battery'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Battery</th>
                                   <td><?= $row1['battery_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['internal_storage'] != 0) {
                                 $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row['internal_storage'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Internal Storage</th>
                                   <td><?= $row1['internal_storage_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['brand'] != 0) {
                                 $query1 = "SELECT * FROM brand where brand_id=" . $row['brand'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Brand</th>
                                   <td><?= $row1['brand_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               if ($row['material'] != 0) {
                                 $query1 = "SELECT * FROM material where material_id=" . $row['material'];
                                 $st1 = $pdo->query($query1);
                                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                                ?>
+                              ?>
                                 <tr>
                                   <th>Material</th>
                                   <td><?= $row1['material_name'] ?></td>
                                 </tr>
-                                <?php
+                              <?php
                               }
                               ?>
                             </table>
@@ -682,8 +682,8 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                               <label class="floating-label">Order Preference</label>
                               <select name="pref" required="" class="form-control">
                                 <option value="<?php if ($row['order_preference'] != 0) {
-                                  echo $row['order_preference'];
-                                } ?>">
+                                                  echo $row['order_preference'];
+                                                } ?>">
                                   <?php
                                   if ($row['order_preference'] == 1) {
                                     echo 'Booking';
@@ -723,7 +723,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
                       </form>
                     </div>
                   </div>
-                  <?php
+              <?php
                 }
               }
               ?>
@@ -731,7 +731,7 @@ quantity=:quantity,order_preference=:pref WHERE product_details_id=$it_id";
           </div>
         </div>
       </div>
-      <?php
+    <?php
     }
     ?>
     <?php

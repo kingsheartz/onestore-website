@@ -85,12 +85,12 @@ where category_id=$ctid ";
          </div>
          <?php
          //display the link of the pages in URL
-         
+
          $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id
  where item.category_id=$ctid GROUP BY item_description.item_id LIMIT " . $page_first_result . "," . $results_per_page;
          $st = $pdo->query($query);
          while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+         ?>
             <div class="products col-sm-4">
                <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;"><img class="image"
@@ -107,15 +107,14 @@ where category_id=$ctid ";
                      <input type="hidden" name="name" value="<?= $row['item_name'] ?>">
                      <input type="hidden" name="description" value="<?= $row['description'] ?>">
                      <input type="hidden" name="price" value="<?= $row['price'] ?>">
-                     <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation"><i
-                           class="fab fa-buffer" style="font-size: 24px;padding-right: 12px"
-                           aria-hidden="true"></i>Add</button>
+                     <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation"><i class="fab fa-buffer"
+                           style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add</button>
                   </form>
                </div>
                <div class="deupd"><?= $row['item_name'] ?><br>
                </div>
             </div>
-            <?php
+         <?php
          }
          ?>
       </div>
@@ -123,18 +122,18 @@ where category_id=$ctid ";
       <nav class="numbering">
          <ul class="pagination">
             <li><a href="<?php
-            $_GET['pageno'] = 1;
-            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-            ?>">First</a></li>
+                           $_GET['pageno'] = 1;
+                           echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                           ?>">First</a></li>
             <li class="<?php if ($pageno <= 1) {
-               echo 'disabled';
-            } ?>">
+                           echo 'disabled';
+                        } ?>">
                <a href="<?php if ($pageno <= 1) {
-                  echo '#';
-               } else {
-                  $_GET['pageno'] = $pageno - 1;
-                  echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-               } ?>">Prev</a>
+                           echo '#';
+                        } else {
+                           $_GET['pageno'] = $pageno - 1;
+                           echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                        } ?>">Prev</a>
             </li>
             <?php
             $ends_count = 1;  //how many items at the ends (before and after [...])
@@ -142,51 +141,51 @@ where category_id=$ctid ";
             $dots = false;
             for ($page = 1; $page <= $number_of_page; $page++) {
                if ($page == $pageno) {
-                  ?>
+            ?>
                   <li class="active">
                      <a href="<?php
-                     $_GET['pageno'] = $page;
-                     echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                              $_GET['pageno'] = $page;
+                              echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
                         <?= $page ?></a>
                   </li>
                   <?php
                   $dots = true;
                } else {
                   if ($page <= $ends_count || ($pageno && $page >= $pageno - $middle_count && $page <= $pageno + $middle_count) || $page > $number_of_page - $ends_count) {
-                     ?>
+                  ?>
                      <li>
                         <a href="<?php
-                        $_GET['pageno'] = $page;
-                        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                                 $_GET['pageno'] = $page;
+                                 echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
                            <?= $page ?></a>
                      </li>
-                     <?php
+                  <?php
                      $dots = true;
                   } elseif ($dots) {
-                     ?>
+                  ?>
                      <li><a>&hellip;</a></li><?php
-                     $dots = false;
-                  }
-               }
-               ?>
-               <?php
+                                             $dots = false;
+                                          }
+                                       }
+                                             ?>
+            <?php
             }
             ?>
             <li class="<?php if ($pageno >= $number_of_page) {
-               echo 'disabled';
-            } ?>">
+                           echo 'disabled';
+                        } ?>">
                <a href="<?php if ($pageno >= $number_of_page) {
-                  echo '#';
-               } else {
-                  $_GET['pageno'] = $pageno + 1;
-                  echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-               } ?>">
+                           echo '#';
+                        } else {
+                           $_GET['pageno'] = $pageno + 1;
+                           echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                        } ?>">
                   Next</a>
             </li>
             <li><a href="<?php
-            $_GET['pageno'] = $number_of_page;
-            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-            ?>">Last</a></li>
+                           $_GET['pageno'] = $number_of_page;
+                           echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                           ?>">Last</a></li>
          </ul>
       </nav>
       <div class="clearfix">
