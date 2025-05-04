@@ -72,17 +72,21 @@ require "../Common/cookie.php";
         ?>
         $.ajax({
           url: "../Common/functions.php", //passing page info
-          data: { "getcookie": 1, "userid": <?= $_SESSION['id'] ?> },  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
+          data: {
+            "getcookie": 1,
+            "userid": <?= $_SESSION['id'] ?>
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 30000, //waiting time 30 sec
+          success: function (data) { //if registration is success
             if (data.status == 'success') {
               return;
-            }
-            else if (data.status == 'error') {
+            } else if (data.status == 'error') {
               $('.cookiesetting').css('display', 'flex');
-              setTimeout(function () { $('.cookiesetting').css('bottom', 25); }, 500);
+              setTimeout(function () {
+                $('.cookiesetting').css('bottom', 25);
+              }, 500);
             }
           },
           error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
@@ -96,21 +100,26 @@ require "../Common/cookie.php";
                 timer: 6000,
               });
               return;
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
         <?php
       } else {
         ?>
         $('.cookiesetting').css('display', 'flex');
-        setTimeout(function () { $('.cookiesetting').css('bottom', 25); }, 500);
+        setTimeout(function () {
+          $('.cookiesetting').css('bottom', 25);
+        }, 500);
         <?php
       }
       ?>
     }
   });
-  $(window).unload(function () { document.cookie = 'mainscrollTop=' + $(window).scrollTop(); });
+  $(window).unload(function () {
+    document.cookie = 'mainscrollTop=' + $(window).scrollTop();
+  });
   var scrollTop = 'mainscrollTop';
 </script>
 <div
@@ -608,12 +617,14 @@ require "../Common/cookie.php";
       }
       $('#' + x + '>.right-arrow-btn-all').show();
     }
+
     function moveright(x) {
       var y = $('#' + x).scrollLeft();
       var width = $('#' + x).outerWidth();
       var scrollWidth = $('#' + x)[0].scrollWidth;
       $('#' + x).scrollLeft(y + 250);
     }
+
     function moveleft(x) {
       var y = $('#' + x).scrollLeft();
       $('#' + x).scrollLeft(y - 250);
@@ -676,6 +687,7 @@ require "../Common/cookie.php";
         if (window.history.replaceState) {
           window.history.replaceState(null, null, window.location.href);
         }
+
         function conca() {
           console.log('helo');
           if ($('#w1').val() != 0) {

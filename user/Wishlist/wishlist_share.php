@@ -813,7 +813,8 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                         <center><img style="justify-content: center;max-height: 288px;" class="sidebar-title"
                                 src="../../images/logo/wishlist.png">
                             <h2 class="sidebar-title"
-                                style="text-align: center;display: inline-flex;font-weight: 600;color:#c50505">This Wish
+                                style="text-align: center;display: inline-flex;font-weight: 600;color:#c50505">
+                                This Wish
                                 List is Empty</h2>
                     </div>
                     <div class="element_grid">
@@ -825,7 +826,8 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                     <button type="button"
                                         style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor1] ?>;padding: 11px auto;font-size: 12px;"
                                         name="proceed" class="checkout-button button alt wc-forward"><a href=""
-                                            style="color:<?= $c1 ?>;">View all</a></button>
+                                            style="color:<?= $c1 ?>;">View
+                                            all</a></button>
                                 </span>
                             </h4>
                             <hr style="padding: 0;margin:0;">
@@ -856,7 +858,8 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                     <button type="button"
                                         style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor2] ?>;padding: 11px auto;font-size: 12px;"
                                         name="proceed" class="checkout-button button alt wc-forward"><a href=""
-                                            style="color:<?= $c2 ?>;">View all</a></button>
+                                            style="color:<?= $c2 ?>;">View
+                                            all</a></button>
                                 </span>
                             </h4>
                             <hr style="padding: 0;margin:0;">
@@ -1004,13 +1007,11 @@ require "../Main/footer.php";
         var total_amt = document.getElementById('total_s' + store_id + "i" + item_description_id + '').innerHTML;
         if ($('#qnty_s' + store_id + "i" + item_description_id + '').css('display') != 'none') {
             var quantity = document.getElementById('qnty_s' + store_id + "i" + item_description_id + '').value;
-        }
-        else if ($('#sel_s' + store_id + "i" + item_description_id + '').css('display') != 'none') {
+        } else if ($('#sel_s' + store_id + "i" + item_description_id + '').css('display') != 'none') {
             var quantity = document.getElementById('sel_s' + store_id + "i" + item_description_id + '').value;
             document.getElementById('sel_opt_s' + store_id + "i" + item_description_id + '').innerHTML = quantity;
             document.getElementById('sel_opt_s' + store_id + "i" + item_description_id + '').value = quantity;
-        }
-        else if ($('#btn_s' + store_id + "i" + item_description_id + '').css('display') != 'none') {
+        } else if ($('#btn_s' + store_id + "i" + item_description_id + '').css('display') != 'none') {
             var quantity = document.getElementById('btn_s' + store_id + "i" + item_description_id + '').innerHTML;
         }
         //1=booking;2=cash_on_delivery
@@ -1018,11 +1019,18 @@ require "../Main/footer.php";
         var id = <?= $id ?>;
         $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "update_user_cart": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": quantity, "total_amt": total_amt, "order_type": order_type },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+                "update_user_cart": 1,
+                "item_description_id": item_description_id,
+                "store_id": store_id,
+                "quantity": quantity,
+                "total_amt": total_amt,
+                "order_type": order_type
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
                 if (data.status == 'success') {
                     swal({
                         title: "Updated!!!",
@@ -1040,8 +1048,7 @@ require "../Main/footer.php";
                                 document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                                 document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
@@ -1058,8 +1065,9 @@ require "../Main/footer.php";
                         timer: 6000,
                     });
                     return;
+                } else {
+                    return;
                 }
-                else { return; }
             }
         }); //closing ajax
     }
@@ -1098,13 +1106,11 @@ require "../Main/footer.php";
                 var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $item_description_id ?>').innerHTML;
                 if ($('#qnty_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
                     var quantity = document.getElementById('qnty_s<?= $store_id . "i" . $item_description_id ?>').value;
-                }
-                else if ($('#sel_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
+                } else if ($('#sel_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
                     var quantity = document.getElementById('sel_s<?= $store_id . "i" . $item_description_id ?>').value;
                     document.getElementById('sel_opt_s<?= $store_id . "i" . $item_description_id ?>').innerHTML = quantity;
                     document.getElementById('sel_opt_s<?= $store_id . "i" . $item_description_id ?>').value = quantity;
-                }
-                else if ($('#btn_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
+                } else if ($('#btn_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
                     var quantity = document.getElementById('btn_s<?= $store_id . "i" . $item_description_id ?>').innerHTML;
                 }
                 //1=booking;2=cash_on_delivery
@@ -1114,11 +1120,18 @@ require "../Main/footer.php";
                 var store_id = <?= $store_id ?>;
                 $.ajax({
                     url: "../Common/functions.php", //passing page info
-                    data: { "update_user_cart": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": quantity, "total_amt": total_amt, "order_type": order_type },  //form data
-                    type: "post",   //post data
-                    dataType: "json",   //datatype=json format
-                    timeout: 30000,   //waiting time 30 sec
-                    success: function (data) {    //if registration is success
+                    data: {
+                        "update_user_cart": 1,
+                        "item_description_id": item_description_id,
+                        "store_id": store_id,
+                        "quantity": quantity,
+                        "total_amt": total_amt,
+                        "order_type": order_type
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function (data) { //if registration is success
                         if (data.status == 'success') {
                             swal({
                                 title: "Updated!!!",
@@ -1136,8 +1149,7 @@ require "../Main/footer.php";
                                         document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                                         document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                                         return;
-                                    }
-                                    else {
+                                    } else {
                                         return;
                                     }
                                 });
@@ -1154,8 +1166,9 @@ require "../Main/footer.php";
                                 timer: 6000,
                             });
                             return;
+                        } else {
+                            return;
                         }
-                        else { return; }
                     }
                 }); //closing ajax
                 <?php
@@ -1173,8 +1186,7 @@ require "../Main/footer.php";
             $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
             $('#qnty_s' + store_id + 'i' + item_description_id + '').show();
             $('#btn_s' + store_id + 'i' + item_description_id + '').hide();
-        }
-        else {
+        } else {
             total(store_id, item_description_id, mrp);
         }
     }
@@ -1196,13 +1208,13 @@ require "../Main/footer.php";
             if ($('#btn_s' + store_id + 'i' + item_description_id).val() > 10) {
                 select_item_option(store_id, item_description_id, mrp);
             }
-        }
-        else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) == 1) {
+        } else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) == 1) {
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = 1;
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).innerHTML = 1;
         }
         total(store_id, item_description_id, mrp);
     }
+
     function add_item_all(store_id, item_description_id, tmrp) {
         var store_id = store_id;
         var item_description_id = item_description_id;
@@ -1217,8 +1229,7 @@ require "../Main/footer.php";
             if ($('#btn_s' + store_id + 'i' + item_description_id).val() > 10) {
                 select_item_option(store_id, item_description_id, mrp);
             }
-        }
-        else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) > 9) {
+        } else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) > 9) {
             select_item_option(store_id, item_description_id, tmrp)
         }
         total(store_id, item_description_id, mrp);
@@ -1234,12 +1245,10 @@ require "../Main/footer.php";
             var qnty = parseInt(document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value);
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-        }
-        else if ($('#sel_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
+        } else if ($('#sel_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
             var qnty = document.getElementById('sel_s' + store_id + 'i' + item_description_id).value;
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-        }
-        else if ($('#btn_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
+        } else if ($('#btn_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
             var qnty = document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML;
             if (qnty == 0) {
                 document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = 1;
@@ -1251,7 +1260,9 @@ require "../Main/footer.php";
             $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
             $('#btn_s' + store_id + 'i' + item_description_id + '').show();
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-            $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () { return ($(this).text() == qnty); }).prop('selected', true);
+            $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () {
+                return ($(this).text() == qnty);
+            }).prop('selected', true);
         }
         if (qnty >= 10) {
             $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
@@ -1264,29 +1275,31 @@ require "../Main/footer.php";
         if (qnty == 0) {
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = 1;
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).innerHTML = 1;
-        }
-        else {
+        } else {
             qnty = qnty;
         }
         var price = document.getElementById('price_s' + store_id + 'i' + item_description_id).innerHTML;
         $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "check_quantity": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": qnty },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+                "check_quantity": 1,
+                "item_description_id": item_description_id,
+                "store_id": store_id,
+                "quantity": qnty
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
                 if (data.status == 'avail') {
                     return;
-                }
-                else if (data.status == 'notavail') {
+                } else if (data.status == 'notavail') {
                     document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                     document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                     document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = data.max_qnty;
                     if (data.max_qnty >= 10) {
                         document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = 9;
-                    }
-                    else if (data.max_qnty < 10) {
+                    } else if (data.max_qnty < 10) {
                         document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                         $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
                         $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
@@ -1312,8 +1325,7 @@ require "../Main/footer.php";
                         .then((willSubmit1) => {
                             if (willSubmit1) {
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
@@ -1330,8 +1342,9 @@ require "../Main/footer.php";
                         timer: 6000,
                     });
                     return;
+                } else {
+                    return;
                 }
-                else { return; }
             }
         }); //closing ajax
         if (qnty > 0) {
@@ -1343,8 +1356,7 @@ require "../Main/footer.php";
             var save = t_mrp - total;
             var off = Math.round((save * 100) / total);
             document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
-        }
-        else if (qnty == 0) {
+        } else if (qnty == 0) {
             var total = price * 1;
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = 1;
             document.getElementById('total_s' + store_id + 'i' + item_description_id).innerHTML = "";
@@ -1353,8 +1365,7 @@ require "../Main/footer.php";
             var save = t_mrp - total;
             var off = Math.round((save * 100) / total);
             document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
-        }
-        else if (qnty < 0) {
+        } else if (qnty < 0) {
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = qnty * -1;
             var total = price * qnty * -1;
             var t_mrp = t_mrp * qnty * -1;

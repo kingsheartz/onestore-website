@@ -165,16 +165,16 @@ require "../Main/header.php";
 		$total_pages = ceil($total_rows / $no_of_records_per_page);
 		$rcount = $res->rowCount();
 		?>
-		<div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"
+		<div
+			style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"
 			class="agile_top_brands_grids">
 			<?php
 			if ($rcount < 1) {
 				?>
 			<div class="product-content-right">
-				<center><img style="justify-content: center;" class="sidebar-title"
-						src="../../images/logo/error-no-search.png">
-					<h2 class="sidebar-title"
-						style="text-align: center;color:#2d70ff;display: inline-flex;font-weight: 600;">No result found
+				<center><img style="justify-content: center;" class="sidebar-title" src="../../images/logo/error-no-search.png">
+					<h2 class="sidebar-title" style="text-align: center;color:#2d70ff;display: inline-flex;font-weight: 600;">No
+						result found
 					</h2>
 				</center>
 			</div>
@@ -193,12 +193,12 @@ require "../Main/header.php";
 								<div class="snipcart-item block">
 									<div class="snipcart-thumb">
 										<div style="display: flex;
-									justify-content: center;height: 200px;width:100%;background: white;text-align:
-									center;"> <a class="img-cont" href="../Product/single.php?id=<?= $row['item_description_id'] ?>"><img
+																		justify-content: center;height: 200px;width:100%;background: white;text-align:
+																		center;"> <a class="img-cont" href="../Product/single.php?id=<?= $row['item_description_id'] ?>"><img
 													title=" " alt=" " class="img_size" src="../../images/
-									<?= $row['category_id'] ?>/
-									<?= $row['sub_category_id'] ?>/
-									<?= $row['item_description_id'] ?>.jpg"></a>
+																		<?= $row['category_id'] ?>/
+																		<?= $row['sub_category_id'] ?>/
+																		<?= $row['item_description_id'] ?>.jpg"></a>
 										</div>
 										<?php
 										if (strlen($row['item_name']) >= 35) {
@@ -208,8 +208,7 @@ require "../Main/header.php";
 											$item_name = $row['item_name'];
 										}
 										?>
-										<p style="margin:auto;display:block;margin:0;margin-top:5px;overflow:hidden"
-											class="name_size">
+										<p style="margin:auto;display:block;margin:0;margin-top:5px;overflow:hidden" class="name_size">
 											<?= $item_name ?>
 										</p>
 										<h4 style="color:green;margin:auto;display:block;margin:0">&#8377;
@@ -231,7 +230,8 @@ require "../Main/header.php";
 			?>
 		</div>
 		<div class="clearfix"> </div>
-		<div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"
+		<div
+			style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"
 			class="agile_top_brands_grids">
 			<div class="clearfix"> </div>
 			<?php
@@ -306,7 +306,8 @@ require "../Main/header.php";
 		</div>
 		<div class=" clearfix">
 		</div>
-	</div> <!--- products --->
+	</div>
+	<!--- products --->
 	<?php
 	require "../Main/footer.php";
 	?>

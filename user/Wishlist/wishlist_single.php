@@ -485,8 +485,9 @@ $rowcount = $row_single_div['checksingle'];
                         <tr>
                             <td>
                                 <div class="div-wrapper" onclick="changed_details()"
-                                    style="grid-gap: 0;margin: auto;display: flex;"><input type="radio" value="public"
-                                        id="public" name="privacy"><label for="public">&nbsp;Public</label>
+                                    style="grid-gap: 0;margin: auto;display: flex;">
+                                    <input type="radio" value="public" id="public" name="privacy"><label
+                                        for="public">&nbsp;Public</label>
                                     <div><span style="font-size: 12px;color: #666">-Anyone can search for and see this
                                             list.You can also share using a link</span></div>
                                 </div>
@@ -495,8 +496,9 @@ $rowcount = $row_single_div['checksingle'];
                         <tr>
                             <td>
                                 <div class="div-wrapper" onclick="changed_details()"
-                                    style="grid-gap: 0;margin: auto;display: flex;"><input type="radio" value="shared"
-                                        id="shared" name="privacy"><label for="shared">&nbsp;Shared</label>
+                                    style="grid-gap: 0;margin: auto;display: flex;">
+                                    <input type="radio" value="shared" id="shared" name="privacy"><label
+                                        for="shared">&nbsp;Shared</label>
                                     <div><span style="font-size: 12px;color: #666">-Only people with the link see this
                                             list.It will not appear in public search results.</span></div>
                                 </div>
@@ -506,7 +508,8 @@ $rowcount = $row_single_div['checksingle'];
                             <td>
                                 <input type="radio" id="private" onclick="changed_details()" value="private"
                                     name="privacy"><label for="private">&nbsp;Private</label><span
-                                    style="font-size: 12px;color: #666"> - Only you can see the list</span>
+                                    style="font-size: 12px;color: #666"> - Only you can see the
+                                    list</span>
                             </td>
                         </tr>
                         <tr>
@@ -940,7 +943,8 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                 <center><img style="justify-content: center;max-height: 288px;" class="sidebar-title"
                                         src="../../images/logo/wishlist.png">
                                     <h2 class="sidebar-title"
-                                        style="text-align: center;display: inline-flex;font-weight: 600;color:#c50505">Your Wish
+                                        style="text-align: center;display: inline-flex;font-weight: 600;color:#c50505">
+                                        Your Wish
                                         List is Empty</h2>
                                     <h4>No items in your wishlist.<a href="../Main/onestore.php">Start adding!</a></h4>
                                 </center>
@@ -1037,7 +1041,7 @@ require "../Main/footer.php";
     function update_my_list() {
         var listname = document.getElementById('wishlist_name_input').value;
         var listdescription = document.getElementById('wishlist_description_input').value;
-        var wishlist_id =<?= $_GET['wishlist_id'] ?>;
+        var wishlist_id = <?= $_GET['wishlist_id'] ?>;
         var privacy_check = document.getElementsByName('privacy');
         for (i = 0; i < privacy_check.length; i++) {
             if (privacy_check[i].checked) {
@@ -1059,11 +1063,17 @@ require "../Main/footer.php";
                 if (willSubmit.dismiss) {
                     $.ajax({
                         url: "../Common/functions.php", //passing page info
-                        data: { "update_list": 1, "listname": listname, "listdescription": listdescription, "privacy": privacy, "wishlist_id": wishlist_id },  //form data
-                        type: "post",   //post data
-                        dataType: "json",   //datatype=json format
-                        timeout: 30000,   //waiting time 30 sec
-                        success: function (data) {    //if registration is success
+                        data: {
+                            "update_list": 1,
+                            "listname": listname,
+                            "listdescription": listdescription,
+                            "privacy": privacy,
+                            "wishlist_id": wishlist_id
+                        }, //form data
+                        type: "post", //post data
+                        dataType: "json", //datatype=json format
+                        timeout: 30000, //waiting time 30 sec
+                        success: function (data) { //if registration is success
                             if (data.status == 'success') {
                                 swal({
                                     title: "Updated!!!",
@@ -1072,8 +1082,7 @@ require "../Main/footer.php";
                                     timer: 6000,
                                 });
                                 return;
-                            }
-                            else {
+                            } else {
                                 swal({
                                     title: "Try again!!!",
                                     icon: "error",
@@ -1094,19 +1103,23 @@ require "../Main/footer.php";
                                     timer: 6000,
                                 });
                                 return;
+                            } else {
+                                return;
                             }
-                            else { return; }
                         }
                     }); //closing ajax
+                } else if (willSubmit.isConfirmed) {
+                    return false;
                 }
-                else if (willSubmit.isConfirmed) { return false; }
             });
         return false;
     }
+
     function changed_details() {
         $('#createlist').prop('disabled', false);
         listenchanges();
     }
+
     function succeeded() {
         var wishlist_name_input = document.getElementById("wishlist_name_input").value;
         var oldwishlist_name_input = '<?= $update_setting_row['list_name'] ?>';
@@ -1122,30 +1135,32 @@ require "../Main/footer.php";
         var oldprivacy = "<?= $update_setting_row['privacy'] ?>";
         //CHECK BOX LISTENING CHANGES
         if (oldwishlist_description_input == "" || oldwishlist_description_input == null) {
-            if ((wishlist_description_input != "") || (wishlist_description_input != null) || (wishlist_name_input != oldwishlist_name_input) || (curr_privacy != oldprivacy)) {
+            if ((wishlist_description_input != "") || (wishlist_description_input != null) || (wishlist_name_input !=
+                oldwishlist_name_input) || (curr_privacy != oldprivacy)) {
                 $('#createlist').prop('disabled', false);
+            } else if ((wishlist_description_input == oldwishlist_description_input) && (wishlist_name_input ==
+                oldwishlist_name_input) && (curr_privacy == oldprivacy)) {
+                $('#createlist').prop('disabled', true);
             }
-            else if ((wishlist_description_input == oldwishlist_description_input) && (wishlist_name_input == oldwishlist_name_input) && (curr_privacy == oldprivacy)) {
+        } else {
+            if ((wishlist_name_input != oldwishlist_name_input) || (wishlist_description_input !=
+                oldwishlist_description_input) || (curr_privacy != oldprivacy)) {
+                $('#createlist').prop('disabled', false);
+            } else if ((wishlist_name_input == oldwishlist_name_input) && (wishlist_description_input ==
+                oldwishlist_description_input) && (curr_privacy == oldprivacy)) {
                 $('#createlist').prop('disabled', true);
             }
         }
-        else {
-            if ((wishlist_name_input != oldwishlist_name_input) || (wishlist_description_input != oldwishlist_description_input) || (curr_privacy != oldprivacy)) {
-                $('#createlist').prop('disabled', false);
-            }
-            else if ((wishlist_name_input == oldwishlist_name_input) && (wishlist_description_input == oldwishlist_description_input) && (curr_privacy == oldprivacy)) {
-                $('#createlist').prop('disabled', true);
-            }
-        }
+
         function privacycheck() {
             if (curr_privacy != oldprivacy) {
                 $('#createlist').prop('disabled', false);
-            }
-            else if (curr_privacy == oldprivacy) {
+            } else if (curr_privacy == oldprivacy) {
                 $('#createlist').prop('disabled', true);
             }
         }
     }
+
     function listenchanges() {
         var wishlist_name_input = document.getElementById("wishlist_name_input").value;
         var oldwishlist_name_input = '<?= $update_setting_row['list_name'] ?>';
@@ -1156,8 +1171,7 @@ require "../Main/footer.php";
             if (wishlist_name_input != oldwishlist_name_input) {
                 $('#hide_fn').show();
                 $('#hide_fn1').show();
-            }
-            else if (wishlist_name_input == oldwishlist_name_input) {
+            } else if (wishlist_name_input == oldwishlist_name_input) {
                 $('#hide_fn').show();
                 $('#hide_fn1').hide();
             }
@@ -1168,18 +1182,15 @@ require "../Main/footer.php";
                 if ((wishlist_description_input != "") || (wishlist_description_input != null)) {
                     $('#hide_add').show();
                     $('#hide_add1').show();
-                }
-                else if ((wishlist_description_input == "") || (wishlist_description_input == null)) {
+                } else if ((wishlist_description_input == "") || (wishlist_description_input == null)) {
                     $('#hide_add').show();
                     $('#hide_add1').hide();
                 }
-            }
-            else {
+            } else {
                 if (wishlist_description_input != oldwishlist_description_input) {
                     $('#hide_add').show();
                     $('#hide_add1').show();
-                }
-                else if (wishlist_description_input == oldwishlist_description_input) {
+                } else if (wishlist_description_input == oldwishlist_description_input) {
                     $('#hide_add').show();
                     $('#hide_add1').hide();
                 }
@@ -1187,6 +1198,7 @@ require "../Main/footer.php";
         }
         succeeded();
     }
+
     function dis_fn() {
         var wishlist_name_input = document.getElementById("wishlist_name_input").value;
         var oldwishlist_name_input = '<?= $update_setting_row['list_name'] ?>';
@@ -1206,8 +1218,7 @@ require "../Main/footer.php";
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_fn').show();
             $('#hide_fn').hide();
             $('#hide_fn1').hide();
@@ -1215,6 +1226,7 @@ require "../Main/footer.php";
         }
         succeeded();
     }
+
     function reset_fn() {
         var wishlist_name_input = document.getElementById("wishlist_name_input").value;
         var oldwishlist_name_input = '<?= $update_setting_row['list_name'] ?>';
@@ -1222,8 +1234,7 @@ require "../Main/footer.php";
             $('#dis_fn').show();
             $('#hide_fn').hide();
             $('#hide_fn1').hide();
-        }
-        else if (($('#hide_fn').css('display') != 'none') && ($('#hide_fn1').css('display') == 'none')) {
+        } else if (($('#hide_fn').css('display') != 'none') && ($('#hide_fn1').css('display') == 'none')) {
             $('#dis_fn').show();
             $('#hide_fn').hide();
         }
@@ -1231,6 +1242,7 @@ require "../Main/footer.php";
         document.getElementById("wishlist_name_input").readOnly = true;
         succeeded();
     }
+
     function dis_add() {
         var wishlist_description_input = document.getElementById("wishlist_description_input").value;
         var oldwishlist_description_input = '<?= $update_setting_row['wishlist_description'] ?>';
@@ -1240,13 +1252,11 @@ require "../Main/footer.php";
                     $('#dis_add').hide();
                     $('#hide_add').show();
                     $('#hide_add1').show();
-                }
-                else if ((wishlist_description_input == "") || (wishlist_description_input == null)) {
+                } else if ((wishlist_description_input == "") || (wishlist_description_input == null)) {
                     $('#dis_add').hide();
                     $('#hide_add').show();
                 }
-            }
-            else {
+            } else {
                 if (wishlist_description_input == oldwishlist_description_input) {
                     $('#dis_add').hide();
                     $('#hide_add').show();
@@ -1263,8 +1273,7 @@ require "../Main/footer.php";
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_add').show();
             $('#hide_add').hide();
             $('#hide_add1').hide();
@@ -1272,6 +1281,7 @@ require "../Main/footer.php";
         }
         succeeded();
     }
+
     function reset_add() {
         var wishlist_description_input = document.getElementById("wishlist_description_input").value;
         var oldwishlist_description_input = '<?= $update_setting_row['wishlist_description'] ?>';
@@ -1279,8 +1289,7 @@ require "../Main/footer.php";
             $('#dis_add').show();
             $('#hide_add').hide();
             $('#hide_add1').hide();
-        }
-        else if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') == 'none')) {
+        } else if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') == 'none')) {
             $('#dis_add').show();
             $('#hide_add').hide();
         }
@@ -1299,14 +1308,21 @@ require "../Main/footer.php";
         var total_amt = document.getElementById('total_s' + store_id + "i" + item_description_id + '').innerHTML;
         //1=booking;2=cash_on_delivery
         var order_type = 'booked';
-        var id =<?= $id ?>;
+        var id = <?= $id ?>;
         $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "update_user_cart": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": 1, "total_amt": total_amt, "order_type": order_type },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+                "update_user_cart": 1,
+                "item_description_id": item_description_id,
+                "store_id": store_id,
+                "quantity": 1,
+                "total_amt": total_amt,
+                "order_type": order_type
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
                 if (data.status == 'success') {
                     swal({
                         title: "Updated!!!",
@@ -1324,8 +1340,7 @@ require "../Main/footer.php";
                                 document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                                 document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
@@ -1342,56 +1357,64 @@ require "../Main/footer.php";
                         timer: 6000,
                     });
                     return;
+                } else {
+                    return;
                 }
-                else { return; }
             }
         }); //closing ajax
     }
     //UPDATEALL CART
     function updateall_cart() {
-        <?php
-        if (isset($id)) {
-            $sql1 = "select * from wishlist_items where wishlist_id=:wid order by item_description_id";
-            $stmt1 = $pdo->prepare($sql1);
-            $stmt1->execute(array(
-                ':wid' => $wishlist_id
-            ));
-            $dup = array();
-            if (isset($dup)) {
-                unset($dup);
-            }
-        }
-        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-            $item_description_id = $row1['item_description_id'];
-            $store_id = $row1['store_id'];
-            $n = 0;
-            $sql2 = "select * from item inner join category on category.category_id=item.category_id
+  <?php
+  if (isset($id)) {
+      $sql1 = "select * from wishlist_items where wishlist_id=:wid order by item_description_id";
+      $stmt1 = $pdo->prepare($sql1);
+      $stmt1->execute(array(
+          ':wid' => $wishlist_id
+      ));
+      $dup = array();
+      if (isset($dup)) {
+          unset($dup);
+      }
+  }
+  while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+      $item_description_id = $row1['item_description_id'];
+      $store_id = $row1['store_id'];
+      $n = 0;
+      $sql2 = "select * from item inner join category on category.category_id=item.category_id
         inner join sub_category on category.category_id=sub_category.category_id
         inner join item_description on item_description.item_id=item.item_id
         inner join product_details on item_description.item_description_id=product_details.item_description_id
         inner join store on store.store_id=product_details.store_id
         where item.sub_category_id=sub_category.sub_category_id and item.item_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
-            $stmt2 = $pdo->prepare($sql2);
-            $stmt2->execute(array(
-                ':item_description_id' => $item_description_id,
-                ':store_id' => $store_id
-            ));
-            while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                $subcat = $row2['sub_category_name'];
-                ?>
-        var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $item_description_id ?>').innerHTML;
+      $stmt2 = $pdo->prepare($sql2);
+      $stmt2->execute(array(
+          ':item_description_id' => $item_description_id,
+          ':store_id' => $store_id
+      ));
+      while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+          $subcat = $row2['sub_category_name'];
+          ?>
+  var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $item_description_id ?>').innerHTML;
                 //1=booking;2=cash_on_delivery
                 var order_type = 'booked';
-                var id =<?= $id ?>;
-                var item_description_id =<?= $item_description_id ?>;
-                var store_id =<?= $store_id ?>;
+                var id = <?= $id ?>;
+                var item_description_id = <?= $item_description_id ?>;
+                var store_id = <?= $store_id ?>;
                 $.ajax({
                     url: "../Common/functions.php", //passing page info
-                    data: { "update_user_cart": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": 1, "total_amt": total_amt, "order_type": order_type },  //form data
-                    type: "post",   //post data
-                    dataType: "json",   //datatype=json format
-                    timeout: 30000,   //waiting time 30 sec
-                    success: function (data) {    //if registration is success
+                    data: {
+                        "update_user_cart": 1,
+                        "item_description_id": item_description_id,
+                        "store_id": store_id,
+                        "quantity": 1,
+                        "total_amt": total_amt,
+                        "order_type": order_type
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function (data) { //if registration is success
                         if (data.status == 'success') {
                             swal({
                                 title: "Updated!!!",
@@ -1409,8 +1432,7 @@ require "../Main/footer.php";
                                         document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                                         document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                                         return;
-                                    }
-                                    else {
+                                    } else {
                                         return;
                                     }
                                 });
@@ -1427,14 +1449,15 @@ require "../Main/footer.php";
                                 timer: 6000,
                             });
                             return;
+                        } else {
+                            return;
                         }
-                        else { return; }
                     }
                 }); //closing ajax
-<?php
-            }
-        }
-        ?>
+  <?php
+      }
+  }
+  ?>
 }
     //DELETE FROM CART
     function remove_item(wishlist_items_id) {
@@ -1454,11 +1477,14 @@ require "../Main/footer.php";
                 if (willSubmit) {
                     $.ajax({
                         url: "../Common/functions.php", //passing page info
-                        data: { "wishlist_remove_item": 1, "wishlist_items_id": wishlist_items_id },  //form data
-                        type: "post",   //post data
-                        dataType: "json",   //datatype=json format
-                        timeout: 30000,   //waiting time 30 sec
-                        success: function (data) {    //if registration is success
+                        data: {
+                            "wishlist_remove_item": 1,
+                            "wishlist_items_id": wishlist_items_id
+                        }, //form data
+                        type: "post", //post data
+                        dataType: "json", //datatype=json format
+                        timeout: 30000, //waiting time 30 sec
+                        success: function (data) { //if registration is success
                             if (data.status == 'success') {
                                 if (data.cartcnt == 0) {
                                     swal({
@@ -1472,8 +1498,7 @@ require "../Main/footer.php";
                                             if (willSubmit1) {
                                                 location.href = "../Wishlist/wishlist_single.php";
                                                 return;
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
@@ -1490,8 +1515,7 @@ require "../Main/footer.php";
                                         return;
                                     });
                                 }
-                            }
-                            else {
+                            } else {
                                 swal({
                                     title: "Try again!!!",
                                     icon: "error",
@@ -1512,12 +1536,14 @@ require "../Main/footer.php";
                                     timer: 6000,
                                 });
                                 return;
+                            } else {
+                                return;
                             }
-                            else { return; }
                         }
                     }); //closing ajax
+                } else {
+                    return;
                 }
-                else { return; }
             });
     }
     //SELECT BOX OPERATION
@@ -1526,17 +1552,16 @@ require "../Main/footer.php";
         var item_description_id = item_description_id;
         var mrp = tmrp;
         old_value = $('#sel_s' + store_id + 'i' + item_description_id + ' :selected').val();
-        if (old_value == '0') {//your specific condition
+        if (old_value == '0') { //your specific condition
             remove_item(store_id, item_id);
-            document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = document.getElementById('sel_opt_s' + store_id + 'i' + item_description_id).value;
+            document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = document.getElementById(
+                'sel_opt_s' + store_id + 'i' + item_description_id).value;
             return;
-        }
-        else if (old_value == '10') {
+        } else if (old_value == '10') {
             $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
             $('#qnty_s' + store_id + 'i' + item_description_id + '').show();
             $('#btn_s' + store_id + 'i' + item_description_id + '').hide();
-        }
-        else {
+        } else {
             total(store_id, item_description_id, mrp);
         }
     }
@@ -1558,12 +1583,12 @@ require "../Main/footer.php";
             if ($('#btn_s' + store_id + 'i' + item_description_id).val() > 10) {
                 select_item_option(store_id, item_description_id, mrp);
             }
-        }
-        else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) == 1) {
+        } else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) == 1) {
             remove_item(store_id, item_description_id);
         }
         total(store_id, item_description_id, mrp);
     }
+
     function add_item_all(store_id, item_id, tmrp) {
         var store_id = store_id;
         var item_description_id = item_description_id;
@@ -1578,8 +1603,7 @@ require "../Main/footer.php";
             if ($('#btn_s' + store_id + 'i' + item_description_id).val() > 10) {
                 select_item_option(store_id, item_description_id, mrp);
             }
-        }
-        else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) > 9) {
+        } else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) > 9) {
             select_item_option(store_id, item_description_id, tmrp)
         }
         total(store_id, item_description_id, mrp);
@@ -1587,8 +1611,8 @@ require "../Main/footer.php";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //PRICE AND CART SETTINGS
-    $(document).ready(function () {
-    });
+    $(document).ready(function () { });
+
     function total(store_id, item_description_id, tmrp) {
         var store_id = store_id;
         var item_description_id = item_description_id;
@@ -1598,12 +1622,10 @@ require "../Main/footer.php";
             var qnty = parseInt(document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value);
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-        }
-        else if ($('#sel_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
+        } else if ($('#sel_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
             var qnty = document.getElementById('sel_s' + store_id + 'i' + item_description_id).value;
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-        }
-        else if ($('#btn_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
+        } else if ($('#btn_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
             var qnty = document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML;
             if (qnty == 0) {
                 remove_item(store_id, item_description_id);
@@ -1614,7 +1636,9 @@ require "../Main/footer.php";
             $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
             $('#btn_s' + store_id + 'i' + item_description_id + '').show();
             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-            $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () { return ($(this).text() == qnty); }).prop('selected', true);
+            $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () {
+                return ($(this).text() == qnty);
+            }).prop('selected', true);
         }
         if (qnty >= 10) {
             $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
@@ -1623,29 +1647,31 @@ require "../Main/footer.php";
         }
         if (qnty < 0) {
             qnty = qnty * -1;
-        }
-        else {
+        } else {
             qnty = qnty;
         }
         var price = document.getElementById('price_s' + store_id + 'i' + item_description_id).innerHTML;
         $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "check_quantity": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": qnty },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+                "check_quantity": 1,
+                "item_description_id": item_description_id,
+                "store_id": store_id,
+                "quantity": qnty
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
                 if (data.status == 'avail') {
                     return;
-                }
-                else if (data.status == 'notavail') {
+                } else if (data.status == 'notavail') {
                     document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                     document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                     document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = data.max_qnty;
                     if (data.max_qnty >= 10) {
                         document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = 9;
-                    }
-                    else if (data.max_qnty < 10) {
+                    } else if (data.max_qnty < 10) {
                         document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                         $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
                         $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
@@ -1672,8 +1698,7 @@ require "../Main/footer.php";
                         .then((willSubmit1) => {
                             if (willSubmit1) {
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
@@ -1690,8 +1715,9 @@ require "../Main/footer.php";
                         timer: 6000,
                     });
                     return;
+                } else {
+                    return;
                 }
-                else { return; }
             }
         }); //closing ajax
         if (qnty > 0) {
@@ -1704,8 +1730,7 @@ require "../Main/footer.php";
             var off = Math.round((save * 100) / total);
             document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
             document.getElementById('off_s' + store_id + 'i' + item_description_id).innerHTML = off;
-        }
-        else if (qnty == 0) {
+        } else if (qnty == 0) {
             var total = price * 1;
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = 1;
             document.getElementById('total_s' + store_id + 'i' + item_description_id).innerHTML = "";
@@ -1715,8 +1740,7 @@ require "../Main/footer.php";
             var off = Math.round((save * 100) / total);
             document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
             document.getElementById('off_s' + store_id + 'i' + item_description_id).innerHTML = off;
-        }
-        else if (qnty < 0) {
+        } else if (qnty < 0) {
             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = qnty * -1;
             var total = price * qnty * -1;
             var t_mrp = t_mrp * qnty * -1;

@@ -49,7 +49,7 @@ l0OmzHNsDETyswMwIUTfO/4DjW6J89MKf3l2NSJGyNEuv2GyzByGQWgCulU5E3Yr
 <!--<!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+		<title></title>
 </head>
 <body>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
@@ -57,14 +57,14 @@ l0OmzHNsDETyswMwIUTfO/4DjW6J89MKf3l2NSJGyNEuv2GyzByGQWgCulU5E3Yr
 
 google.maps.event.addDomListener(window,'load',initilize);
 function initilize(){
-	var autocomplete=new google.maps.places.Autocomplete(document.getElementById('txtautocomplete'));
-	google.maps.events.addListener(autocomplete,'plac_changed',function(){
-		var place=autocomplete.getPlace();
-		var location="<b>Address</b>:"+place.formatted_address+"<br/>";
-		location+="<b>Latitude</b>:"+place.geometry.location.A+"<br/>";
-		location+="<b>Longitude</b>:"+place.geometry.location.F+"<br/>";
-		document.getElementById('lblResult').innerHTML=location;
-	});
+		var autocomplete=new google.maps.places.Autocomplete(document.getElementById('txtautocomplete'));
+		google.maps.events.addListener(autocomplete,'plac_changed',function(){
+				var place=autocomplete.getPlace();
+				var location="<b>Address</b>:"+place.formatted_address+"<br/>";
+				location+="<b>Latitude</b>:"+place.geometry.location.A+"<br/>";
+				location+="<b>Longitude</b>:"+place.geometry.location.F+"<br/>";
+				document.getElementById('lblResult').innerHTML=location;
+		});
 
 };
 </script>
@@ -77,24 +77,24 @@ function initilize(){
 /*
 $uniqid = uniqid();
 $from    = 'onestoreforallyourneeds@gmail.com';
-				$subject = 'Account Activation Required';
-				$headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-				// Update the activation variable below
-				//$activate_link = 'https://falconsinfoworld.000webhostapp.com/OneStore/functions.php?emailverified=1&email=' . $_POST['email'] . '&code=' . $uniqid;
-				$activate_link = 'http://localhost/MY%20WEBSITES/ONESTORE/OneStore/functions.php?emailverified=1&email=govind.das279@gmail.com&code='.$uniqid;
-				$message = '<html><body style="background-color:rgba(255,255,255,255.85);padding:20px;"><center>';
-				$message .= '<img src="https://falconsinfoworld.000webhostapp.com/OneStore/images/logo/logomail.png"><br>';
-				$message .= '<h3 style="color:#059DF9">Hi Govind, OneStore Welcomes You</h3><br></center>';
-				$message .= '<h3 style="color:#FF8A00;text-align:margin-left">You are one step away from sign in to our world of shopping </h3>';
-				$message .= '<p>Please click the following verify email button to activate your account</p><br>';
-				$message .= ' <a style="margin-left:26%" href="'.$activate_link.'"><button style="background-color:rgba(0,0,0,85);color:white;border-radius:7px;">Verify Email</button></a><br>';
-				$message .= '<br><p>Regards,</p>';
-				$message .= '<p>OneStore</p><br>';
-				$message .= '<br><p>if you\'re having trouble clicking the'." \"Verify Email\" ".' button,copy and paste the URL below into your web browser : '.$activate_link.' </p><br><br><br><br>';
-				$message .= '<p><center>© 2020 <a href="https://falconsinfoworld.000webhostapp.com/">OneStore</a>. All rights reserved </center></p>';
-				$message .= '</body></html>';
-				mail('asgovind686@gmail.com', $subject, $message, $headers);
-				echo"alert('hai')";
+								$subject = 'Account Activation Required';
+								$headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
+								// Update the activation variable below
+								//$activate_link = 'https://falconsinfoworld.000webhostapp.com/OneStore/functions.php?emailverified=1&email=' . $_POST['email'] . '&code=' . $uniqid;
+								$activate_link = 'http://localhost/MY%20WEBSITES/ONESTORE/OneStore/functions.php?emailverified=1&email=govind.das279@gmail.com&code='.$uniqid;
+								$message = '<html><body style="background-color:rgba(255,255,255,255.85);padding:20px;"><center>';
+								$message .= '<img src="https://falconsinfoworld.000webhostapp.com/OneStore/images/logo/logomail.png"><br>';
+								$message .= '<h3 style="color:#059DF9">Hi Govind, OneStore Welcomes You</h3><br></center>';
+								$message .= '<h3 style="color:#FF8A00;text-align:margin-left">You are one step away from sign in to our world of shopping </h3>';
+								$message .= '<p>Please click the following verify email button to activate your account</p><br>';
+								$message .= ' <a style="margin-left:26%" href="'.$activate_link.'"><button style="background-color:rgba(0,0,0,85);color:white;border-radius:7px;">Verify Email</button></a><br>';
+								$message .= '<br><p>Regards,</p>';
+								$message .= '<p>OneStore</p><br>';
+								$message .= '<br><p>if you\'re having trouble clicking the'." \"Verify Email\" ".' button,copy and paste the URL below into your web browser : '.$activate_link.' </p><br><br><br><br>';
+								$message .= '<p><center>© 2020 <a href="https://falconsinfoworld.000webhostapp.com/">OneStore</a>. All rights reserved </center></p>';
+								$message .= '</body></html>';
+								mail('asgovind686@gmail.com', $subject, $message, $headers);
+								echo"alert('hai')";
 */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

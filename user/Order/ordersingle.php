@@ -247,11 +247,14 @@ require "../Common/pdo.php";
           $('.std_text').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "cancel_product": 1, "nopid": <?= $nopid ?> },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "cancel_product": 1,
+              "nopid": <?= $nopid ?>
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
               if (data.status == 'success') {
                 $('.background_loader').hide();
                 $('.std_text').hide();
@@ -263,13 +266,13 @@ require "../Common/pdo.php";
                 })
                   .then((willSubmit1) => {
                     if (willSubmit1) {
-                      var new_sts = '<span style="background-color: rgb(255, 0, 0);border-radius: 5px;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;<i class="fa fa-close" style="color: rgb(255, 255, 255);text-shadow: 1px 2px 3px grey"></i><i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white"> cancelled</i></span>';
+                      var new_sts =
+                        '<span style="background-color: rgb(255, 0, 0);border-radius: 5px;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;<i class="fa fa-close" style="color: rgb(255, 255, 255);text-shadow: 1px 2px 3px grey"></i><i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white"> cancelled</i></span>';
                       $('.sts-now').empty();
                       $('.sts-now').html(new_sts);
                       $('.check-pending').hide();
                       return;
-                    }
-                    else {
+                    } else {
                       return;
                     }
                   });
@@ -288,17 +291,17 @@ require "../Common/pdo.php";
                   timer: 6000,
                 });
                 return;
-              }
-              else {
+              } else {
                 $('.background_loader').hide();
                 $('.std_text').hide();
                 return;
               }
             }
           }); //closing ajax
+        } else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) {
+          return;
         }
-        else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) { return; }
-      });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+      }); //NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
   }
 </script>
 <div class="table1">

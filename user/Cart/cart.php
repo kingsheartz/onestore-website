@@ -376,17 +376,20 @@ function randomGen($min, $max, $quantity)
         var id = store_id;
         $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "addtowishlist": 1, "item_description_id": item_description_id, "store_id": id },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+                "addtowishlist": 1,
+                "item_description_id": item_description_id,
+                "store_id": id
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
                 if (data.status == 'success') {
                     $(".load_btn").hide();
                     $(".real_btn").show();
                     return;
-                }
-                else {
+                } else {
                     return;
                 }
             },
@@ -401,8 +404,9 @@ function randomGen($min, $max, $quantity)
                         timer: 6000,
                     });
                     return;
+                } else {
+                    return;
                 }
-                else { return; }
             }
         }); //closing ajax
     }
@@ -415,11 +419,14 @@ function randomGen($min, $max, $quantity)
         $(".std_loader").show();
         $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "fetchedwishlistid": 1, "wishlist_id": wishlist_id },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+                "fetchedwishlistid": 1,
+                "wishlist_id": wishlist_id
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function (data) { //if registration is success
                 if (data.status == 'success') {
                     $(".background_loader").hide();
                     $(".std_loader").hide();
@@ -434,13 +441,11 @@ function randomGen($min, $max, $quantity)
                         .then((willSubmit1) => {
                             if (willSubmit1) {
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
-                }
-                else if (data.status == 'success1') {
+                } else if (data.status == 'success1') {
                     $(".background_loader").hide();
                     $(".std_loader").hide();
                     swal({
@@ -453,13 +458,11 @@ function randomGen($min, $max, $quantity)
                         .then((willSubmit1) => {
                             if (willSubmit1) {
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
-                }
-                else if (data.status == 'error') {
+                } else if (data.status == 'error') {
                     $(".background_loader").hide();
                     $(".std_loader").hide();
                     swal({
@@ -473,8 +476,7 @@ function randomGen($min, $max, $quantity)
                             if (willSubmit) {
                                 location.href = "../Account/registered.php";
                                 return;
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         });
@@ -493,14 +495,16 @@ function randomGen($min, $max, $quantity)
                         timer: 6000,
                     });
                     return;
+                } else {
+                    return;
                 }
-                else { return; }
             }
         }); //closing ajax
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var filter = [];
+
     function addorremove(checkbox) {
         if (checkbox.checked) {
             var chks = document.getElementsByClassName("checktobuy");
@@ -539,7 +543,9 @@ function randomGen($min, $max, $quantity)
             }
             $('#sel_itcnt').html(flag);
             var val = checkbox.value;
-            filter.push({ type: val });
+            filter.push({
+                type: val
+            });
             console.log('Before removing object from an array -> ' + JSON.stringify(filter));
             // Convert the cart object into JSON string and save it into storage
             localStorage.setItem("cartObject", JSON.stringify(filter));
@@ -575,7 +581,9 @@ function randomGen($min, $max, $quantity)
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //REMOVING THE TAGS WITH VALUE OF THE KEY
             console.log('Before removing object from an array -> ' + JSON.stringify(filter));
-            var removeIndex = filter.map(function (item) { return item.type; }).indexOf(val)
+            var removeIndex = filter.map(function (item) {
+                return item.type;
+            }).indexOf(val)
             console.log(removeIndex)
             filter.splice(removeIndex, 1);
             console.log('After removing object from an array -> ' + JSON.stringify(filter));
@@ -587,14 +595,19 @@ function randomGen($min, $max, $quantity)
     <?php
     if (isset($_SESSION['id'])) {
         ?>
+
         function check_mul() {
             $.ajax({
                 url: "../Common/functions.php", //passing page info
-                data: { "check_mul": 1, "key": filter, "user": <?= $_SESSION['id'] ?> },  //form data
-                type: "post",   //post data
-                dataType: "json",   //datatype=json format
-                timeout: 30000,   //waiting time 30 sec
-                success: function (data) {    //if registration is success
+                data: {
+                    "check_mul": 1,
+                    "key": filter,
+                    "user": <?= $_SESSION['id'] ?>
+                }, //form data
+                type: "post", //post data
+                dataType: "json", //datatype=json format
+                timeout: 30000, //waiting time 30 sec
+                success: function (data) { //if registration is success
                     if (data.status == 'success') {
                         location.href = "../Checkout/checkout_mul.php";
                         return;
@@ -611,14 +624,16 @@ function randomGen($min, $max, $quantity)
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
         <?php
     }
     ?>
+
     function deselect() {
         filter = [];
         $('.deselect').attr('checked', false);
@@ -673,7 +688,8 @@ function randomGen($min, $max, $quantity)
             </div>
         </div>
     </div>
-</div><!--side-ext-->
+</div>
+<!--side-ext-->
 <div class="single-product-area" style="padding-top: 0px; background-color: #eaeded;padding-bottom:0px">
     <div class="zigzag-bottom"></div>
     <div class="container nopadding-margin" style="margin-left: 0px;width: 100%;padding:0">
@@ -1478,7 +1494,8 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
                             <center><img style="justify-content: center;" class="sidebar-title"
                                     src="../../images/logo/cart-empty.png">
                                 <h2 class="sidebar-title"
-                                    style="text-align: center;display: inline-flex;font-weight: 600;color: #005549">Your Cart is
+                                    style="text-align: center;display: inline-flex;font-weight: 600;color: #005549">
+                                    Your Cart is
                                     Empty</h2>
                             </center>
                         </div>
@@ -1707,12 +1724,14 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
                             }
                             $('#' + x + '>.right-arrow-btn-all').show();
                         }
+
                         function moveright(x) {
                             var y = $('#' + x).scrollLeft();
                             var width = $('#' + x).outerWidth();
                             var scrollWidth = $('#' + x)[0].scrollWidth;
                             $('#' + x).scrollLeft(y + 250);
                         }
+
                         function moveleft(x) {
                             var y = $('#' + x).scrollLeft();
                             $('#' + x).scrollLeft(y - 250);
@@ -1913,7 +1932,8 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                         <center><img style="justify-content: center;" class="sidebar-title"
                                                 src="../../images/logo/cart-empty.png">
                                             <h2 class="sidebar-title"
-                                                style="text-align: center;display: inline-flex;font-weight: 600;">Your Cart
+                                                style="text-align: center;display: inline-flex;font-weight: 600;">Your
+                                                Cart
                                                 is Empty</h2>
                                         </center>
                                     </div>
@@ -2009,23 +2029,28 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                         var total_amt = document.getElementById('total_s' + store_id + 'i' + idid).innerHTML;
                         if ($('#qnty_s' + store_id + 'i' + idid).css('display') != 'none') {
                             var quantity = document.getElementById('qnty_s' + store_id + 'i' + idid).value;
-                        }
-                        else if ($('#sel_s' + store_id + 'i' + idid).css('display') != 'none') {
+                        } else if ($('#sel_s' + store_id + 'i' + idid).css('display') != 'none') {
                             var quantity = document.getElementById('sel_s' + store_id + 'i' + idid).value;
                             document.getElementById('sel_opt_s' + store_id + 'i' + idid).innerHTML = quantity;
                             document.getElementById('sel_opt_s' + store_id + 'i' + idid).value = quantity;
-                        }
-                        else if ($('#btn_s' + store_id + 'i' + idid).css('display') != 'none') {
+                        } else if ($('#btn_s' + store_id + 'i' + idid).css('display') != 'none') {
                             var quantity = document.getElementById('btn_s' + store_id + 'i' + idid).innerHTML;
                         }
                         //alert(order_type+","+store_id+","+id+","+idid+","+quantity+","+total_amt)
                         $.ajax({
                             url: "../Common/functions.php", //passing page info
-                            data: { "update_cart_item": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": quantity, "total_amt": total_amt, "order_type": order_type },  //form data
-                            type: "post",   //post data
-                            dataType: "json",   //datatype=json format
-                            timeout: 30000,   //waiting time 30 sec
-                            success: function (data) {    //if registration is success
+                            data: {
+                                "update_cart_item": 1,
+                                "item_description_id": item_description_id,
+                                "store_id": store_id,
+                                "quantity": quantity,
+                                "total_amt": total_amt,
+                                "order_type": order_type
+                            }, //form data
+                            type: "post", //post data
+                            dataType: "json", //datatype=json format
+                            timeout: 30000, //waiting time 30 sec
+                            success: function (data) { //if registration is success
                                 if (data.status == 'success') {
                                     swal({
                                         title: "Updated!!!",
@@ -2045,8 +2070,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                                 document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                                                 document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                                                 return;
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
@@ -2063,8 +2087,9 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                         timer: 6000,
                                     });
                                     return;
+                                } else {
+                                    return;
                                 }
-                                else { return; }
                             }
                         }); //closing ajax
                     }
@@ -2102,16 +2127,15 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                                 $subcat = $row2['sub_category_name'];
                                 ?>
-                                var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $item_description_id ?>').innerHTML;
+                                var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $item_description_id ?>')
+                                    .innerHTML;
                                 if ($('#qnty_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
                                     var quantity = document.getElementById('qnty_s<?= $store_id . "i" . $item_description_id ?>').value;
-                                }
-                                else if ($('#sel_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
+                                } else if ($('#sel_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
                                     var quantity = document.getElementById('sel_s<?= $store_id . "i" . $item_description_id ?>').value;
                                     document.getElementById('sel_opt_s<?= $store_id . "i" . $item_description_id ?>').innerHTML = quantity;
                                     document.getElementById('sel_opt_s<?= $store_id . "i" . $item_description_id ?>').value = quantity;
-                                }
-                                else if ($('#btn_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
+                                } else if ($('#btn_s<?= $store_id . "i" . $item_description_id ?>').css('display') != 'none') {
                                     var quantity = document.getElementById('btn_s<?= $store_id . "i" . $item_description_id ?>').innerHTML;
                                 }
                                 //1=booking;2=cash_on_delivery
@@ -2121,11 +2145,18 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                 var store_id = <?= $store_id ?>;
                                 $.ajax({
                                     url: "../Common/functions.php", //passing page info
-                                    data: { "update_user_cart": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": quantity, "total_amt": total_amt, "order_type": order_type },  //form data
-                                    type: "post",   //post data
-                                    dataType: "json",   //datatype=json format
-                                    timeout: 30000,   //waiting time 30 sec
-                                    success: function (data) {    //if registration is success
+                                    data: {
+                                        "update_user_cart": 1,
+                                        "item_description_id": item_description_id,
+                                        "store_id": store_id,
+                                        "quantity": quantity,
+                                        "total_amt": total_amt,
+                                        "order_type": order_type
+                                    }, //form data
+                                    type: "post", //post data
+                                    dataType: "json", //datatype=json format
+                                    timeout: 30000, //waiting time 30 sec
+                                    success: function (data) { //if registration is success
                                         if (data.status == 'success') {
                                             swal({
                                                 title: "Updated!!!",
@@ -2145,8 +2176,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                                         document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                                                         document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                                                         return;
-                                                    }
-                                                    else {
+                                                    } else {
                                                         return;
                                                     }
                                                 });
@@ -2163,8 +2193,9 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                                 timer: 6000,
                                             });
                                             return;
+                                        } else {
+                                            return;
                                         }
-                                        else { return; }
                                     }
                                 }); //closing ajax
                                 <?php
@@ -2191,11 +2222,15 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                 if (willSubmit) {
                                     $.ajax({
                                         url: "../Common/functions.php", //passing page info
-                                        data: { "remove_item": 1, "item_description_id": item_description_id, "store_id": store_id },  //form data
-                                        type: "post",   //post data
-                                        dataType: "json",   //datatype=json format
-                                        timeout: 30000,   //waiting time 30 sec
-                                        success: function (data) {    //if registration is success
+                                        data: {
+                                            "remove_item": 1,
+                                            "item_description_id": item_description_id,
+                                            "store_id": store_id
+                                        }, //form data
+                                        type: "post", //post data
+                                        dataType: "json", //datatype=json format
+                                        timeout: 30000, //waiting time 30 sec
+                                        success: function (data) { //if registration is success
                                             if (data.status == 'success') {
                                                 //document.getElementById('tot_val1').innerHTML="";
                                                 // document.getElementById('tot_val1').innerHTML=""+data.total;
@@ -2218,8 +2253,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                                             if (willSubmit1) {
                                                                 location.href = "../Cart/cart.php";
                                                                 return;
-                                                            }
-                                                            else {
+                                                            } else {
                                                                 return;
                                                             }
                                                         });
@@ -2236,8 +2270,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                                         return;
                                                     });
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 swal({
                                                     title: "Try again!!!",
                                                     icon: "error",
@@ -2258,12 +2291,14 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                                     timer: 6000,
                                                 });
                                                 return;
+                                            } else {
+                                                return;
                                             }
-                                            else { return; }
                                         }
                                     }); //closing ajax
+                                } else {
+                                    return;
                                 }
-                                else { return; }
                             });
                     }
                     //SELECT BOX OPERATION
@@ -2272,17 +2307,16 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                         var item_description_id = item_description_id;
                         var mrp = tmrp;
                         old_value = $('#sel_s' + store_id + 'i' + item_description_id + ' :selected').val();
-                        if (old_value == '0') {//your specific condition
+                        if (old_value == '0') { //your specific condition
                             remove_item(store_id, item_description_id);
-                            document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = document.getElementById('sel_opt_s' + store_id + 'i' + item_description_id).value;
+                            document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = document.getElementById(
+                                'sel_opt_s' + store_id + 'i' + item_description_id).value;
                             return;
-                        }
-                        else if (old_value == '10') {
+                        } else if (old_value == '10') {
                             $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
                             $('#qnty_s' + store_id + 'i' + item_description_id + '').show();
                             $('#btn_s' + store_id + 'i' + item_description_id + '').hide();
-                        }
-                        else {
+                        } else {
                             total(store_id, item_description_id, mrp);
                         }
                     }
@@ -2303,12 +2337,12 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             if ($('#btn_s' + store_id + 'i' + item_description_id).val() > 10) {
                                 select_item_option(store_id, item_description_id, mrp);
                             }
-                        }
-                        else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) == 1) {
+                        } else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) == 1) {
                             remove_item(store_id, item_description_id);
                         }
                         total(store_id, item_description_id, mrp);
                     }
+
                     function add_item_all(store_id, item_description_id, tmrp) {
                         var store_id = store_id;
                         var item_description_id = item_description_id;
@@ -2323,8 +2357,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             if ($('#btn_s' + store_id + 'i' + item_description_id).val() > 10) {
                                 select_item_option(store_id, item_description_id, mrp);
                             }
-                        }
-                        else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) > 9) {
+                        } else if (parseInt($('#btn_s' + store_id + 'i' + item_description_id).html()) > 9) {
                             select_item_option(store_id, item_description_id, tmrp)
                         }
                         total(store_id, item_description_id, mrp);
@@ -2332,8 +2365,8 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //PRICE AND CART SETTINGS
-                    $(document).ready(function () {
-                    });
+                    $(document).ready(function () { });
+
                     function total(store_id, item_description_id, tmrp) {
                         var store_id = store_id;
                         var item_description_id = item_description_id;
@@ -2343,12 +2376,10 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             var qnty = parseInt(document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value);
                             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
                             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-                        }
-                        else if ($('#sel_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
+                        } else if ($('#sel_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
                             var qnty = document.getElementById('sel_s' + store_id + 'i' + item_description_id).value;
                             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-                        }
-                        else if ($('#btn_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
+                        } else if ($('#btn_s' + store_id + 'i' + item_description_id).css('display') != 'none') {
                             var qnty = document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML;
                             if (qnty == 0) {
                                 remove_item(store_id, item_description_id);
@@ -2359,7 +2390,9 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
                             $('#btn_s' + store_id + 'i' + item_description_id + '').show();
                             document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-                            $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () { return ($(this).text() == qnty); }).prop('selected', true);
+                            $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () {
+                                return ($(this).text() == qnty);
+                            }).prop('selected', true);
                         }
                         if (qnty >= 10) {
                             $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
@@ -2368,29 +2401,31 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                         }
                         if (qnty < 0) {
                             qnty = qnty * -1;
-                        }
-                        else {
+                        } else {
                             qnty = qnty;
                         }
                         var price = document.getElementById('price_s' + store_id + 'i' + item_description_id).innerHTML;
                         $.ajax({
                             url: "../Common/functions.php", //passing page info
-                            data: { "check_quantity": 1, "item_description_id": item_description_id, "store_id": store_id, "quantity": qnty },  //form data
-                            type: "post",   //post data
-                            dataType: "json",   //datatype=json format
-                            timeout: 30000,   //waiting time 30 sec
-                            success: function (data) {    //if registration is success
+                            data: {
+                                "check_quantity": 1,
+                                "item_description_id": item_description_id,
+                                "store_id": store_id,
+                                "quantity": qnty
+                            }, //form data
+                            type: "post", //post data
+                            dataType: "json", //datatype=json format
+                            timeout: 30000, //waiting time 30 sec
+                            success: function (data) { //if registration is success
                                 if (data.status == 'avail') {
                                     return;
-                                }
-                                else if (data.status == 'notavail') {
+                                } else if (data.status == 'notavail') {
                                     document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                                     document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                                     document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = data.max_qnty;
                                     if (data.max_qnty >= 10) {
                                         document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = 9;
-                                    }
-                                    else if (data.max_qnty < 10) {
+                                    } else if (data.max_qnty < 10) {
                                         document.getElementById('sel_s' + store_id + 'i' + item_description_id).value = data.max_qnty;
                                         $('#sel_s' + store_id + 'i' + item_description_id + '').hide();
                                         $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
@@ -2417,8 +2452,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                         .then((willSubmit1) => {
                                             if (willSubmit1) {
                                                 return;
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
@@ -2435,8 +2469,9 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                                         timer: 6000,
                                     });
                                     return;
+                                } else {
+                                    return;
                                 }
-                                else { return; }
                             }
                         }); //closing ajax
                         if (qnty > 0) {
@@ -2449,8 +2484,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             var off = Math.round((save * 100) / total);
                             document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
                             document.getElementById('off_s' + store_id + 'i' + item_description_id).innerHTML = off;
-                        }
-                        else if (qnty == 0) {
+                        } else if (qnty == 0) {
                             var total = price * 1;
                             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = 1;
                             document.getElementById('total_s' + store_id + 'i' + item_description_id).innerHTML = "";
@@ -2460,8 +2494,7 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             var off = Math.round((save * 100) / total);
                             document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
                             document.getElementById('off_s' + store_id + 'i' + item_description_id).innerHTML = off;
-                        }
-                        else if (qnty < 0) {
+                        } else if (qnty < 0) {
                             document.getElementById('qnty_s' + store_id + 'i' + item_description_id).value = qnty * -1;
                             var total = price * qnty * -1;
                             var t_mrp = t_mrp * qnty * -1;

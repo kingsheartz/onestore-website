@@ -78,6 +78,7 @@
       $('.small-cookie-accept').html('Accept');
     }
   });
+
   function setcookie(val) {
     <?php
     if (isset($_SESSION['id'])) {
@@ -86,34 +87,37 @@
         var pc = 1;
         var fc = 1;
         var tc = 1;
-      }
-      else if (val == 2) {
+      } else if (val == 2) {
         if ($('#pc').prop("checked") == true) {
           var pc = 1;
-        }
-        else if ($('#pc').prop("checked") == false) {
+        } else if ($('#pc').prop("checked") == false) {
           var pc = 0;
         }
         if ($('#fc').prop("checked") == true) {
           var fc = 1;
-        }
-        else if ($('#fc').prop("checked") == false) {
+        } else if ($('#fc').prop("checked") == false) {
           var fc = 0;
         }
         if ($('#tc').prop("checked") == true) {
           var tc = 1;
-        }
-        else if ($('#tc').prop("checked") == false) {
+        } else if ($('#tc').prop("checked") == false) {
           var tc = 0;
         }
       }
       $.ajax({
         url: "functions.php", //passing page info
-        data: { "storecookie": 1, "sn": 1, "pc": pc, "fc": fc, "tc": tc, "userid": <?= $_SESSION['id'] ?> },  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 30000,   //waiting time 30 sec
-        success: function (data) {    //if registration is success
+        data: {
+          "storecookie": 1,
+          "sn": 1,
+          "pc": pc,
+          "fc": fc,
+          "tc": tc,
+          "userid": <?= $_SESSION['id'] ?>
+        }, //form data
+        type: "post", //post data
+        dataType: "json", //datatype=json format
+        timeout: 30000, //waiting time 30 sec
+        success: function (data) { //if registration is success
           if (data.status == 'success') {
             toastr.success("Cookies set successfully");
             return;
@@ -130,8 +134,9 @@
               timer: 6000,
             });
             return;
+          } else {
+            return;
           }
-          else { return; }
         }
       }); //closing ajax
       <?php

@@ -240,6 +240,7 @@ $_COOKIE['animate'] = 0;
       // Return null if not found
       return " ";
     }
+
     function userlogged_in() {
       setTimeout(() => {
         const loader = document.querySelector(".loader1");
@@ -253,28 +254,28 @@ $_COOKIE['animate'] = 0;
           //$("#strt").hide();
           $.ajax({
             url: "user/Common/functions.php", //passing page info
-            data: { "login": 1, "email": email, "password": pass },  //form data
+            data: {
+              "login": 1,
+              "email": email,
+              "password": pass
+            }, //form data
             type: "post", //post data
-            dataType: "json",   //datatype=json format
-            timeout: 18000,  //waiting time 3 sec
+            dataType: "json", //datatype=json format
+            timeout: 18000, //waiting time 3 sec
 
-            success: function (data) {  //if logging in is success
+            success: function (data) { //if logging in is success
               if (data.admin == 'true' && data.user == 'true') {
                 location.href = "user/Main/onestore.php";
-              }
-              else if (data.status == 'success') {
+              } else if (data.status == 'success') {
                 location.href = "user/Main/onestore.php";
                 return
-              }
-              else if (data.admin == 'true') {
+              } else if (data.admin == 'true') {
 
                 location.href = "store-admin/index.php?id=" + data.id + "";
-              }
-              else if (data.status == 'error') {
+              } else if (data.status == 'error') {
                 location.href = "user/Main/onestore.php";
                 return;
-              }
-              else {
+              } else {
                 if (status === "error1") {
                   swal({
                     title: "Oops!!!",
@@ -301,12 +302,12 @@ $_COOKIE['animate'] = 0;
                 });
                 location.href = "user/Main/onestore.php";
                 return;
+              } else {
+                return;
               }
-              else { return; }
             }
           }); //closing ajax
-        }
-        else {
+        } else {
           location.href = "user/Main/onestore.php";
         }
       }, 4800);

@@ -790,7 +790,8 @@ require "../Main/footer.php";
 <!-- Bootstrap Core JavaScript -->
 <!--<script src="../../js/bootstrap.min.js"></script>-->
 <!-- top-header and slider -->
-<!-- here stars scrolling icon --><!--
+<!-- here stars scrolling icon -->
+<!--
     <script type="text/javascript">
         $(document).ready(function() {
             /*
@@ -823,7 +824,14 @@ require "../Main/footer.php";
 <link href="../../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+        jQuery('#demo1').skdslider({
+            'delay': 5000,
+            'animationSpeed': 2000,
+            'showNextPrev': true,
+            'showPlayButton': true,
+            'autoSlide': true,
+            'animationType': 'fading'
+        });
         jQuery('#responsive').change(function () {
             $('#responsive_wrapper').width(jQuery(this).val());
         });
@@ -847,8 +855,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "yes")) {
                 if (willSubmit) {
                     location.href = "../Account/logout.php";
                     return;
-                }
-                else {
+                } else {
                     return;
                 }
             });
@@ -869,8 +876,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                 if (willSubmit) {
                     location.href = "../Main/onestore.php";
                     return;
-                }
-                else {
+                } else {
                     return;
                 }
             });
@@ -885,7 +891,8 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function user_update_locate() {
-        $("#po_list1").empty().append('<option selected="" disabled="" value="<?= $userrow['location'] ?>"><?= $userrow['location'] ?></option>');
+        $("#po_list1").empty().append(
+            '<option selected="" disabled="" value="<?= $userrow['location'] ?>"><?= $userrow['location'] ?></option>');
         var locate, pin;
         var regpin = document.getElementById("regpin").value;
         if (regpin == null || regpin == "") {
@@ -899,8 +906,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             });
             document.getElementById("regpin").focus();
             return;
-        }
-        else if (regpin.length != 6) {
+        } else if (regpin.length != 6) {
             swal({
                 title: "Oops!!!",
                 text: "Please enter valid pincode !!! ",
@@ -912,8 +918,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             document.getElementById("regpin").value = "";
             document.getElementById("regpin").focus();
             return;
-        }
-        else {
+        } else {
             pin = "https://api.postalpincode.in/pincode/" + regpin + "";
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
@@ -933,8 +938,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                         document.getElementById("regpin").value = "";
                         document.getElementById("regpin").focus();
                         return;
-                    }
-                    else {
+                    } else {
                         /*Getting the id of select*/
                         var po = document.getElementById("po_list1");
                         for (i = 0; i < locate[0].PostOffice.length; i++) {
@@ -988,8 +992,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (shipping_first_name != oldshipping_first_name) {
                 $('#hide_sfn').show();
                 $('#hide_sfn1').show();
-            }
-            else if (shipping_first_name == oldshipping_first_name) {
+            } else if (shipping_first_name == oldshipping_first_name) {
                 $('#hide_sfn').show();
                 $('#hide_sfn1').hide();
             }
@@ -999,8 +1002,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (shipping_last_name != oldshipping_last_name) {
                 $('#hide_sln').show();
                 $('#hide_sln1').show();
-            }
-            else if (shipping_last_name == oldshipping_last_name) {
+            } else if (shipping_last_name == oldshipping_last_name) {
                 $('#hide_sln').show();
                 $('#hide_sln1').hide();
             }
@@ -1010,8 +1012,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (shipping_ph_no != oldshipping_ph_no) {
                 $('#hide_sph').show();
                 $('#hide_sph1').show();
-            }
-            else if (shipping_ph_no == oldshipping_ph_no) {
+            } else if (shipping_ph_no == oldshipping_ph_no) {
                 $('#hide_sph').show();
                 $('#hide_sph1').hide();
             }
@@ -1021,8 +1022,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (shipping_ph_no2 != oldshipping_ph_no2) {
                 $('#hide_s2ph').show();
                 $('#hide_s2ph1').show();
-            }
-            else if (shipping_ph_no2 == oldshipping_ph_no2) {
+            } else if (shipping_ph_no2 == oldshipping_ph_no2) {
                 $('#hide_s2ph').show();
                 $('#hide_s2ph1').hide();
             }
@@ -1032,8 +1032,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (shipping_address_1 != oldshipping_address_1) {
                 $('#hide_sadd').show();
                 $('#hide_sadd1').show();
-            }
-            else if (shipping_address_1 == oldshipping_address_1) {
+            } else if (shipping_address_1 == oldshipping_address_1) {
                 $('#hide_sadd').show();
                 $('#hide_sadd1').hide();
             }
@@ -1043,8 +1042,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (shipping_postcode != oldshipping_postcode) {
                 $('#hide_spin').show();
                 $('#hide_spin1').show();
-            }
-            else if (shipping_postcode == oldshipping_postcode) {
+            } else if (shipping_postcode == oldshipping_postcode) {
                 $('#hide_spin').show();
                 $('#hide_spin1').hide();
             }
@@ -1054,8 +1052,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (first_name != oldfirst_name) {
                 $('#hide_fn').show();
                 $('#hide_fn1').show();
-            }
-            else if (first_name == oldfirst_name) {
+            } else if (first_name == oldfirst_name) {
                 $('#hide_fn').show();
                 $('#hide_fn1').hide();
             }
@@ -1065,8 +1062,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (last_name != oldlast_name) {
                 $('#hide_ln').show();
                 $('#hide_ln1').show();
-            }
-            else if (last_name == oldlast_name) {
+            } else if (last_name == oldlast_name) {
                 $('#hide_ln').show();
                 $('#hide_ln1').hide();
             }
@@ -1076,8 +1072,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (phone != oldphone) {
                 $('#hide_ph').show();
                 $('#hide_ph1').show();
-            }
-            else if (phone == oldphone) {
+            } else if (phone == oldphone) {
                 $('#hide_ph').show();
                 $('#hide_ph1').hide();
             }
@@ -1087,8 +1082,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (email != oldemail) {
                 $('#hide_mail').show();
                 $('#hide_mail1').show();
-            }
-            else if (email == oldemail) {
+            } else if (email == oldemail) {
                 $('#hide_mail').show();
                 $('#hide_mail1').hide();
             }
@@ -1098,8 +1092,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             if (address != oldaddress) {
                 $('#hide_add').show();
                 $('#hide_add1').show();
-            }
-            else if (address == oldaddress) {
+            } else if (address == oldaddress) {
                 $('#hide_add').show();
                 $('#hide_add1').hide();
             }
@@ -1110,8 +1103,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                 $('#hide_pass3_1').show();
                 $('#hide_pass3_2').show();
                 $('#dis_pass3').hide();
-            }
-            else if ((pass3 == oldpass3) || (pass1 == "") || (pass2 == "")) {
+            } else if ((pass3 == oldpass3) || (pass1 == "") || (pass2 == "")) {
                 $('#hide_pass3_1').show();
                 $('#hide_pass3_2').hide();
                 $('#hide_pass3').hide();
@@ -1150,11 +1142,13 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         var oldshipping_ph_no2 = '<?= $suserrow['alternative_phone'] ?>';
         var oldshipping_address_1 = '<?= $suserrow['address'] ?>';
         var oldshipping_postcode = '<?= $suserrow['pincode'] ?>';
-        if ((first_name != oldfirst_name) || (last_name != oldlast_name) || (phone != oldphone) || (address != oldaddress) || (regpin != oldregpin) || (loc != oldloc)) {
+        if ((first_name != oldfirst_name) || (last_name != oldlast_name) || (phone != oldphone) || (address != oldaddress) ||
+            (regpin != oldregpin) || (loc != oldloc)) {
             $('#succeeded').hide();
             $('#pending').show();
         }
-        if ((first_name == oldfirst_name) && (last_name == oldlast_name) && (phone == oldphone) && (address == oldaddress) && (regpin == oldregpin) && (loc == oldloc)) {
+        if ((first_name == oldfirst_name) && (last_name == oldlast_name) && (phone == oldphone) && (address == oldaddress) &&
+            (regpin == oldregpin) && (loc == oldloc)) {
             $('#succeeded').show();
             $('#pending').hide();
         }
@@ -1166,15 +1160,20 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#succeeded1').show();
             $('#pending1').hide();
         }
-        if ((shipping_first_name != oldshipping_first_name) || (shipping_last_name != oldshipping_last_name) || (shipping_ph_no != oldshipping_ph_no) || (shipping_ph_no2 != oldshipping_ph_no2) || (shipping_address_1 != oldshipping_address_1) || (shipping_postcode != oldshipping_postcode)) {
+        if ((shipping_first_name != oldshipping_first_name) || (shipping_last_name != oldshipping_last_name) || (
+            shipping_ph_no != oldshipping_ph_no) || (shipping_ph_no2 != oldshipping_ph_no2) || (shipping_address_1 !=
+                oldshipping_address_1) || (shipping_postcode != oldshipping_postcode)) {
             $('#succeeded2').hide();
             $('#pending2').show();
         }
-        if ((shipping_first_name == oldshipping_first_name) && (shipping_last_name == oldshipping_last_name) && (shipping_ph_no == oldshipping_ph_no) && (shipping_ph_no2 == oldshipping_ph_no2) && (shipping_address_1 == oldshipping_address_1) && (shipping_postcode == oldshipping_postcode)) {
+        if ((shipping_first_name == oldshipping_first_name) && (shipping_last_name == oldshipping_last_name) && (
+            shipping_ph_no == oldshipping_ph_no) && (shipping_ph_no2 == oldshipping_ph_no2) && (shipping_address_1 ==
+                oldshipping_address_1) && (shipping_postcode == oldshipping_postcode)) {
             $('#succeeded2').show();
             $('#pending2').hide();
         }
-        if (($('#succeeded1').css('display') != 'none') && ($('#succeeded').css('display') != 'none') && ($('#succeeded2').css('display') != 'none')) {
+        if (($('#succeeded1').css('display') != 'none') && ($('#succeeded').css('display') != 'none') && ($('#succeeded2')
+            .css('display') != 'none')) {
             $('#update_user_details').hide();
             $('#shipping_first_name').removeClass('invalid');
             $('#shipping_last_name').removeClass('invalid');
@@ -1204,14 +1203,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_sfn').show();
             $('#hide_sfn').hide();
             $('#hide_sfn1').hide();
             document.getElementById("shipping_first_name").readOnly = true;
         }
     }
+
     function reset_sfn() {
         var shipping_first_name = document.getElementById("shipping_first_name").value;
         var oldshipping_first_name = '<?= $suserrow['first_name'] ?>';
@@ -1219,8 +1218,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_sfn').show();
             $('#hide_sfn').hide();
             $('#hide_sfn1').hide();
-        }
-        else if (($('#hide_sfn').css('display') != 'none') && ($('#hide_sfn1').css('display') == 'none')) {
+        } else if (($('#hide_sfn').css('display') != 'none') && ($('#hide_sfn1').css('display') == 'none')) {
             $('#dis_sfn').show();
             $('#hide_sfn').hide();
         }
@@ -1249,14 +1247,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_sln').show();
             $('#hide_sln').hide();
             $('#hide_sln1').hide();
             document.getElementById("shipping_last_name").readOnly = true;
         }
     }
+
     function reset_sln() {
         var shipping_last_name = document.getElementById("shipping_last_name").value;
         var oldshipping_last_name = '<?= $suserrow['last_name'] ?>';
@@ -1264,8 +1262,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_sln').show();
             $('#hide_sln').hide();
             $('#hide_sln1').hide();
-        }
-        else if (($('#hide_sln').css('display') != 'none') && ($('#hide_sln1').css('display') == 'none')) {
+        } else if (($('#hide_sln').css('display') != 'none') && ($('#hide_sln1').css('display') == 'none')) {
             $('#dis_sln').show();
             $('#hide_sln').hide();
         }
@@ -1294,14 +1291,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_sph').show();
             $('#hide_sph').hide();
             $('#hide_sph1').hide();
             document.getElementById("shipping_ph_no").readOnly = true;
         }
     }
+
     function reset_sph() {
         var shipping_ph_no = document.getElementById("shipping_ph_no").value;
         var oldshipping_ph_no = '<?= $suserrow['phone'] ?>';
@@ -1309,8 +1306,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_sph').show();
             $('#hide_sph').hide();
             $('#hide_sph1').hide();
-        }
-        else if (($('#hide_sph').css('display') != 'none') && ($('#hide_sph1').css('display') == 'none')) {
+        } else if (($('#hide_sph').css('display') != 'none') && ($('#hide_sph1').css('display') == 'none')) {
             $('#dis_sph').show();
             $('#hide_sph').hide();
         }
@@ -1339,14 +1335,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_s2ph').show();
             $('#hide_s2ph').hide();
             $('#hide_s2ph1').hide();
             document.getElementById("shipping_ph_no2").readOnly = true;
         }
     }
+
     function reset_s2ph() {
         var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
         var oldshipping_ph_no2 = '<?= $suserrow['phone'] ?>';
@@ -1354,8 +1350,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_s2ph').show();
             $('#hide_s2ph').hide();
             $('#hide_s2ph1').hide();
-        }
-        else if (($('#hide_s2ph').css('display') != 'none') && ($('#hide_s2ph1').css('display') == 'none')) {
+        } else if (($('#hide_s2ph').css('display') != 'none') && ($('#hide_s2ph1').css('display') == 'none')) {
             $('#dis_s2ph').show();
             $('#hide_s2ph').hide();
         }
@@ -1384,14 +1379,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_s2ph').show();
             $('#hide_s2ph').hide();
             $('#hide_s2ph1').hide();
             document.getElementById("shipping_ph_no2").readOnly = true;
         }
     }
+
     function reset_s2ph() {
         var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
         var oldshipping_ph_no2 = '<?= $suserrow['alternative_phone'] ?>';
@@ -1399,8 +1394,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_s2ph').show();
             $('#hide_s2ph').hide();
             $('#hide_s2ph1').hide();
-        }
-        else if (($('#hide_s2ph').css('display') != 'none') && ($('#hide_s2ph1').css('display') == 'none')) {
+        } else if (($('#hide_s2ph').css('display') != 'none') && ($('#hide_s2ph1').css('display') == 'none')) {
             $('#dis_s2ph').show();
             $('#hide_s2ph').hide();
         }
@@ -1429,14 +1423,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_sadd').show();
             $('#hide_sadd').hide();
             $('#hide_sadd1').hide();
             document.getElementById("shipping_address_1").readOnly = true;
         }
     }
+
     function reset_sadd() {
         var oldshipping_address_1 = document.getElementById("shipping_address_1").value;
         var oldshipping_address_1 = '<?= $suserrow['address'] ?>';
@@ -1444,8 +1438,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_sadd').show();
             $('#hide_sadd').hide();
             $('#hide_sadd1').hide();
-        }
-        else if (($('#hide_sadd').css('display') != 'none') && ($('#hide_sadd1').css('display') == 'none')) {
+        } else if (($('#hide_sadd').css('display') != 'none') && ($('#hide_sadd1').css('display') == 'none')) {
             $('#dis_sadd').show();
             $('#hide_sadd').hide();
         }
@@ -1474,14 +1467,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_spin').show();
             $('#hide_spin').hide();
             $('#hide_spin1').hide();
             document.getElementById("shipping_postcode").readOnly = true;
         }
     }
+
     function reset_spin() {
         var oldshipping_postcode = document.getElementById("shipping_postcode").value;
         var oldshipping_postcode = '<?= $suserrow['pincode'] ?>';
@@ -1489,8 +1482,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_spin').show();
             $('#hide_spin').hide();
             $('#hide_spin1').hide();
-        }
-        else if (($('#hide_spin').css('display') != 'none') && ($('#hide_spin1').css('display') == 'none')) {
+        } else if (($('#hide_spin').css('display') != 'none') && ($('#hide_spin1').css('display') == 'none')) {
             $('#dis_spin').show();
             $('#hide_spin').hide();
         }
@@ -1519,14 +1511,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_fn').show();
             $('#hide_fn').hide();
             $('#hide_fn1').hide();
             document.getElementById("first_name").readOnly = true;
         }
     }
+
     function reset_fn() {
         var first_name = document.getElementById("first_name").value;
         var oldfirst_name = '<?= $userrow['first_name'] ?>';
@@ -1534,8 +1526,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_fn').show();
             $('#hide_fn').hide();
             $('#hide_fn1').hide();
-        }
-        else if (($('#hide_fn').css('display') != 'none') && ($('#hide_fn1').css('display') == 'none')) {
+        } else if (($('#hide_fn').css('display') != 'none') && ($('#hide_fn1').css('display') == 'none')) {
             $('#dis_fn').show();
             $('#hide_fn').hide();
         }
@@ -1564,14 +1555,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_ln').show();
             $('#hide_ln').hide();
             $('#hide_ln1').hide();
             document.getElementById("last_name").readOnly = true;
         }
     }
+
     function reset_ln() {
         var last_name = document.getElementById("last_name").value;
         var oldlast_name = '<?= $userrow['last_name'] ?>';
@@ -1579,8 +1570,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_ln').show();
             $('#hide_ln').hide();
             $('#hide_ln1').hide();
-        }
-        else if (($('#hide_ln').css('display') != 'none') && ($('#hide_ln1').css('display') == 'none')) {
+        } else if (($('#hide_ln').css('display') != 'none') && ($('#hide_ln1').css('display') == 'none')) {
             $('#dis_ln').show();
             $('#hide_ln').hide();
         }
@@ -1609,14 +1599,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_ph').show();
             $('#hide_ph').hide();
             $('#hide_ph1').hide();
             document.getElementById("phone").readOnly = true;
         }
     }
+
     function reset_ph() {
         var phone = document.getElementById("phone").value;
         var oldphone = '<?= $userrow['phone'] ?>';
@@ -1624,8 +1614,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_ph').show();
             $('#hide_ph').hide();
             $('#hide_ph1').hide();
-        }
-        else if (($('#hide_ph').css('display') != 'none') && ($('#hide_ph1').css('display') == 'none')) {
+        } else if (($('#hide_ph').css('display') != 'none') && ($('#hide_ph1').css('display') == 'none')) {
             $('#dis_ph').show();
             $('#hide_ph').hide();
         }
@@ -1648,6 +1637,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             });
         }
     }
+
     function reset_pin() {
         var oldregpin = '<?= $userrow['pincode'] ?>';
         var oldloc = '<?= $userrow['location'] ?>';
@@ -1693,14 +1683,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             updatedetailInput.putCursorAtEnd().on("focus", function () {
                 updatedetailInput.putCursorAtEnd()
             });
-        }
-        else {
+        } else {
             $('#dis_add').show();
             $('#hide_add').hide();
             $('#hide_add1').hide();
             document.getElementById("address").readOnly = true;
         }
     }
+
     function reset_add() {
         var address = document.getElementById("address").value;
         var oldaddress = '<?= $userrow['address'] ?>';
@@ -1708,8 +1698,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_add').show();
             $('#hide_add').hide();
             $('#hide_add1').hide();
-        }
-        else if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') == 'none')) {
+        } else if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') == 'none')) {
             $('#dis_add').show();
             $('#hide_add').hide();
         }
@@ -1734,14 +1723,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             }
             document.getElementById("email").readOnly = false;
             document.getElementById("email").focus();
-        }
-        else {
+        } else {
             $('#dis_mail').show();
             $('#hide_mail').hide();
             $('#hide_mail1').hide();
             document.getElementById("email").readOnly = true;
         }
     }
+
     function reset_mail() {
         var email = document.getElementById("email").value;
         var oldemail = '<?= $userrow['email'] ?>';
@@ -1749,8 +1738,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('#dis_mail').show();
             $('#hide_mail').hide();
             $('#hide_mail1').hide();
-        }
-        else if (($('#hide_mail').css('display') != 'none') && ($('#hide_mail1').css('display') == 'none')) {
+        } else if (($('#hide_mail').css('display') != 'none') && ($('#hide_mail1').css('display') == 'none')) {
             $('#dis_mail').show();
             $('#hide_mail').hide();
         }
@@ -1770,8 +1758,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                 document.getElementById("pass3").value = "";
                 $('#dis_pass3').hide();
                 $('#hide_pass3_1').show();
-            }
-            else if (document.getElementById("pass3").value != oldpass3 || document.getElementById("pass3").value != "") {
+            } else if (document.getElementById("pass3").value != oldpass3 || document.getElementById("pass3").value != "") {
                 $('#dis_pass3').hide();
                 $('#hide_pass3_1').show();
                 $('#hide_pass3_2').show();
@@ -1781,8 +1768,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             document.getElementById("pass3").readOnly = false;
             document.getElementById("pass3").focus();
             $('#pass').show();
-        }
-        else if ($('#dis_pass3').css('display') == 'none') {
+        } else if ($('#dis_pass3').css('display') == 'none') {
             if ((pass3 == "") || (pass1 == "") || (pass2 == "")) {
                 document.getElementById("pass3").value = oldpass3;
                 document.getElementById("passfir").value = "";
@@ -1807,6 +1793,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         }
         succeeded();
     }
+
     function reset_pass3() {
         var oldpass3 = 'abcdefghijklmnopqrstuvwxyz';
         document.getElementById("pass3").value = oldpass3;
@@ -1821,13 +1808,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         $('#pass').hide();
         succeeded();
     }
+
     function dis_change_pass() {
-        if (document.getElementById("pass3").value == "" || document.getElementById("passfir").value == "" || document.getElementById("passre").value == "") {
+        if (document.getElementById("pass3").value == "" || document.getElementById("passfir").value == "" || document
+            .getElementById("passre").value == "") {
             $('#dis_pass3').hide();
             $('#hide_pass3_1').show();
             $('#hide_pass3_2').hide();
-        }
-        else {
+        } else {
             $('#dis_pass3').hide();
             $('#hide_pass3_1').hide();
             $('#hide_pass3_2').show();
@@ -1835,6 +1823,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         $('#update_user_details').show();
         succeeded();
     }
+
     function changed_details() {
         $('#update_user_details').show();
         listenchanges();
@@ -1851,19 +1840,20 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         if (name == null || name == "") {
             $("#nameerror").hide();
             return;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php",
-                data: { "checkname": 1, "name": name },
+                data: {
+                    "checkname": 1,
+                    "name": name
+                },
                 dataType: "json",
                 type: "post",
                 timeout: 30000,
                 success: function (data) {
                     if (data.status == 'success') {
                         $("#nameerror").hide();
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         $("#nameerror").show();
                     }
                 },
@@ -1878,8 +1868,9 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
@@ -1890,19 +1881,20 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         if (email == null || email == "") {
             $("#emailerror").hide();
             return;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php",
-                data: { "checkmail": 1, "email": email },
+                data: {
+                    "checkmail": 1,
+                    "email": email
+                },
                 dataType: "json",
                 type: "post",
                 timeout: 30000,
                 success: function (data) {
                     if (data.status == 'success') {
                         $("#emailerror").hide();
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         $("#emailerror").show();
                     }
                 },
@@ -1917,14 +1909,18 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
     }
+
     function ValidateEmail(mail) {
-        if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(user_details_update_form.email.value)) {
+        if (
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                .test(user_details_update_form.email.value)) {
             return true;
         }
         return false;
@@ -1932,6 +1928,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
     $(document).ready(function (e) {
         $("#setloc2").hide();
     });
+
     function checkupdate() {
         //fetch data into variables
         var first_name = document.getElementById("first_name").value;
@@ -1951,7 +1948,8 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
         var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
         var shipping_address_1 = document.getElementById("shipping_address_1").value;
         var shipping_postcode = document.getElementById("shipping_postcode").value;
-        var alert = "<i style='color: yellow;float: left;text-shadow: 1px 2px 3px black' class='fas fa-lg fa-warning'>&nbsp;</i>";
+        var alert =
+            "<i style='color: yellow;float: left;text-shadow: 1px 2px 3px black' class='fas fa-lg fa-warning'>&nbsp;</i>";
         //checking unwanted space
         var first_namespace = first_name.split(" ");
         var Last_namespace = last_name.split(" ");
@@ -2069,8 +2067,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             document.getElementById("regpin").className += " invalid";
             document.getElementById("regpin").focus();
             return;
-        }
-        else if (regpin.length != 6) {
+        } else if (regpin.length != 6) {
             swal({
                 title: "Oops!!!",
                 text: "Please enter valid pincode !!! ",
@@ -2355,8 +2352,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             document.getElementById("shipping_postcode").focus();
             document.getElementById("shipping_postcode").className += " invalid";
             return false;
-        }
-        else if (shipping_postcode.length != 6) {
+        } else if (shipping_postcode.length != 6) {
             toastr.error("Please enter valid pincode !");
             $('.da').click();
             document.getElementById("shipping_postcode").value = "";
@@ -2374,8 +2370,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                 timer: 6000,
             });
             return;
-        }
-        else {
+        } else {
             if (pass3 == 'abcdefghijklmnopqrstuvwxyz') {
                 pass3 = 'no change';
             }
@@ -2395,47 +2390,67 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                     if (willSubmit.dismiss) {
                         $('.load_btn').show();
                         $('.real_btn').hide();
-    //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
-//REQUIRED FOR GEOLOCATION ACCESS
-    var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) { ////START IF
-            addr = JSON.parse(this.responseText);
-            console.log(addr);
-            var lat=addr.data[0].latitude;
-            console.log(lat);
-            var long=addr.data[0].longitude;
-            console.log(long); */
-/*//NOT NECESSARY
-    geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("my-address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-      alert("Latitude: "+results[0].geometry.location.lat());
-      alert("Longitude: "+results[0].geometry.location.lng());
-      }
-      else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-*/var lat = long = 0;
+                        //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
+                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
+              //REQUIRED FOR GEOLOCATION ACCESS
+                  var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
+                  xmlhttp.onreadystatechange = function() {
+                      if (this.readyState == 4 && this.status == 200) { ////START IF
+                          addr = JSON.parse(this.responseText);
+                          console.log(addr);
+                          var lat=addr.data[0].latitude;
+                          console.log(lat);
+                          var long=addr.data[0].longitude;
+                          console.log(long); */
+                        /*//NOT NECESSARY
+                            geocoder = new google.maps.Geocoder();
+                            var address = document.getElementById("my-address").value;
+                            geocoder.geocode( { 'address': address}, function(results, status) {
+                              if (status == google.maps.GeocoderStatus.OK) {
+                              alert("Latitude: "+results[0].geometry.location.lat());
+                              alert("Longitude: "+results[0].geometry.location.lng());
+                              }
+                              else {
+                                alert("Geocode was not successful for the following reason: " + status);
+                              }
+                            });
+                          }
+                        */
+                        var lat = long = 0;
                         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         $.ajax({
                             url: "../Common/functions.php", //passing page info
-                            data: { "update_user_details": 1, "first_name": first_name, "last_name": last_name, "phone": phone, "pin": regpin, "location": loc, "latitude": lat, "longitude": long, "address": address, "current_password": pass3, "email": email, "new_password": pass1, "shipping_first_name": shipping_first_name, "shipping_last_name": shipping_last_name, "shipping_ph_no": shipping_ph_no, "shipping_ph_no2": shipping_ph_no2, "shipping_address_1": shipping_address_1, "shipping_postcode": shipping_postcode },  //form data
-                            type: "post",   //post data
-                            dataType: "json",   //datatype=json format
-                            timeout: 30000,   //waiting time 30 sec
-                            success: function (data) {    //if registration is success
+                            data: {
+                                "update_user_details": 1,
+                                "first_name": first_name,
+                                "last_name": last_name,
+                                "phone": phone,
+                                "pin": regpin,
+                                "location": loc,
+                                "latitude": lat,
+                                "longitude": long,
+                                "address": address,
+                                "current_password": pass3,
+                                "email": email,
+                                "new_password": pass1,
+                                "shipping_first_name": shipping_first_name,
+                                "shipping_last_name": shipping_last_name,
+                                "shipping_ph_no": shipping_ph_no,
+                                "shipping_ph_no2": shipping_ph_no2,
+                                "shipping_address_1": shipping_address_1,
+                                "shipping_postcode": shipping_postcode
+                            }, //form data
+                            type: "post", //post data
+                            dataType: "json", //datatype=json format
+                            timeout: 30000, //waiting time 30 sec
+                            success: function (data) { //if registration is success
                                 if (data.status == 'success') {
                                     swal({
                                         title: "Success!!!",
@@ -2449,13 +2464,11 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                 if (pass3 == 'no change') {
                                                     location.reload();
                                                     return;
-                                                }
-                                                else {
+                                                } else {
                                                     location.href = "../Account/logout.php"
                                                     return;
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         })
@@ -2481,23 +2494,19 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                             if (pass3 == 'no change') {
                                                                 location.href = "../Main/onestore.php"
                                                                 return;
-                                                            }
-                                                            else {
+                                                            } else {
                                                                 location.href = "../Account/logout.php"
                                                                 return;
                                                             }
-                                                        }
-                                                        else {
+                                                        } else {
                                                             return;
                                                         }
                                                     })
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
-                                }
-                                else if (data.status == 'error3') {
+                                } else if (data.status == 'error3') {
                                     $('.load_btn').hide();
                                     $('.real_btn').show();
                                     swal({
@@ -2517,13 +2526,11 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                     $('html').scrollLeft(elem.offset().left);
                                                     return;
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
-                                }
-                                else if (data.status == 'error2') {
+                                } else if (data.status == 'error2') {
                                     $('.load_btn').hide();
                                     $('.real_btn').show();
                                     swal({
@@ -2535,7 +2542,8 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                     })
                                         .then((willSubmit) => {
                                             if (willSubmit) {
-                                                document.getElementById('nameerror2').innerHTML = alert + "Can't use any symbols(@ # $ % ... )"
+                                                document.getElementById('nameerror2').innerHTML = alert +
+                                                    "Can't use any symbols(@ # $ % ... )"
                                                 $('#error_dis2').show();
                                                 var elem = $('#error_dis2');
                                                 if (elem) {
@@ -2543,13 +2551,11 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                     $('html').scrollLeft(elem.offset().left);
                                                     return;
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
-                                }
-                                else if (data.status == 'error1') {
+                                } else if (data.status == 'error1') {
                                     $('.load_btn').hide();
                                     $('.real_btn').show();
                                     swal({
@@ -2561,7 +2567,8 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                     })
                                         .then((willSubmit) => {
                                             if (willSubmit) {
-                                                document.getElementById('nameerror').innerHTML = alert + "Another account with same mobile number already exists";
+                                                document.getElementById('nameerror').innerHTML = alert +
+                                                    "Another account with same mobile number already exists";
                                                 $('#error_dis').show();
                                                 var elem = $('#error_dis');
                                                 if (elem) {
@@ -2569,13 +2576,11 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                     $('html').scrollLeft(elem.offset().left);
                                                     return;
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
-                                }
-                                else if (data.status == 'error') {
+                                } else if (data.status == 'error') {
                                     $('.load_btn').hide();
                                     $('.real_btn').show();
                                     swal({
@@ -2587,7 +2592,8 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                     })
                                         .then((willSubmit) => {
                                             if (willSubmit) {
-                                                document.getElementById('nameerror2').innerHTML = alert + "Another account with same email ID already exists";
+                                                document.getElementById('nameerror2').innerHTML = alert +
+                                                    "Another account with same email ID already exists";
                                                 $('#error_dis2').show();
                                                 var elem = $('#error_dis2');
                                                 if (elem) {
@@ -2595,13 +2601,11 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                     $('html').scrollLeft(elem.offset().left);
                                                     return;
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
-                                }
-                                else if (data.status == 'error_no_match_password') {
+                                } else if (data.status == 'error_no_match_password') {
                                     $('.load_btn').hide();
                                     $('.real_btn').show();
                                     swal({
@@ -2613,7 +2617,8 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                     })
                                         .then((willSubmit) => {
                                             if (willSubmit) {
-                                                document.getElementById('nameerror2').innerHTML = alert + "Current passwords do not match ";
+                                                document.getElementById('nameerror2').innerHTML = alert +
+                                                    "Current passwords do not match ";
                                                 $('#error_dis2').show();
                                                 var elem = $('#error_dis2');
                                                 if (elem) {
@@ -2621,8 +2626,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                                     $('html').scrollLeft(elem.offset().left);
                                                     return;
                                                 }
-                                            }
-                                            else {
+                                            } else {
                                                 return;
                                             }
                                         });
@@ -2641,8 +2645,9 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                         timer: 6000,
                                     });
                                     return;
+                                } else {
+                                    return;
                                 }
-                                else { return; }
                             }
                         }); //closing ajax
                         /*
@@ -2655,11 +2660,14 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
                                 return;
                             }
                         }); */ //END OF SWAL WILLSUBMITTED
-                    }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
-                    else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) { return; }
-                });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
-        }//NOW END ELSE
+                    } //ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
+                    else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) {
+                        return;
+                    }
+                }); //NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+        } //NOW END ELSE
     }
+
     function view() {
         var pass1 = document.getElementById("passfir");
         var pass2 = document.getElementById("passre");
@@ -2670,8 +2678,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             pass3.type = 'text';
             $("#dis_pass1").hide();
             $("#hide_pass1").show();
-        }
-        else {
+        } else {
             pass1.type = 'password';
             pass2.type = 'password';
             pass3.type = 'password';

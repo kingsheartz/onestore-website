@@ -247,7 +247,8 @@ require "../Main/header.php";
                     <div class="stage_reg stage_reg_3"></div>
                     <div class="round_reg round_reg_3">3</div>
                     <div style="border-top-right-radius: 10px;border-bottom-right-radius: 10px "
-                        class="stage_reg stage_reg_4"></div>
+                        class="stage_reg stage_reg_4">
+                    </div>
                 </div>
                 <br>
                 <ul style="list-style: none;">
@@ -567,8 +568,8 @@ unset($_SESSION['error']);
                                 </p>
                                 <p id="shipping_last_name_field" class="form-row form-row-last validate-required">
                                     <label class="" for="shipping_last_name"
-                                        style="font-weight: normal;text-transform: capitalize;">Last Name <abbr
-                                            title="required" class="required" style="color: #c50505">*</abbr>
+                                        style="font-weight: normal;text-transform: capitalize;">Last
+                                        Name <abbr title="required" class="required" style="color: #c50505">*</abbr>
                                     </label>
                                     <input type="text" oninput="$(this).removeClass('invalid')" value=""
                                         placeholder="Last name" id="shipping_last_name" name="shipping_last_name"
@@ -689,7 +690,8 @@ require "../Main/footer.php";
 <!-- Bootstrap Core JavaScript -->
 <!--<script src="../../js/bootstrap.min.js"></script>-->
 <!-- top-header and slider -->
-<!-- here stars scrolling icon --><!--
+<!-- here stars scrolling icon -->
+<!--
     <script type="text/javascript">
         $(document).ready(function() {
             /*
@@ -734,31 +736,46 @@ require "../Main/footer.php";
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
     }
+
     function nextPrev(n) {
         // This function will figure out which tab_reg to display
         var x = document.getElementsByClassName("tab_reg");
         // Exit the function if any field in the current tab_reg is invalid:
-        if (n == 1 && !validateForm()) { return false; }
-        else {
+        if (n == 1 && !validateForm()) {
+            return false;
+        } else {
             page_selector += n;
             if (page_selector == 0) {
-                $('.my-account').removeClass('my-account-active'); $('.ad').addClass('my-account-active'); $('.account-details').removeClass('account-details-active'); $('.pi').addClass(' account-details-active'); $('.account-head').removeClass('account-head-active'); $('.acc_details').addClass(' account-head-active');
+                $('.my-account').removeClass('my-account-active');
+                $('.ad').addClass('my-account-active');
+                $('.account-details').removeClass('account-details-active');
+                $('.pi').addClass(' account-details-active');
+                $('.account-head').removeClass('account-head-active');
+                $('.acc_details').addClass(' account-head-active');
                 $('#update_user_details').hide();
                 $('.round_reg').removeClass('active');
                 $('.stage_reg').removeClass('active');
                 $('.stage_reg_1').addClass('active');
-            }
-            else if (page_selector == 1) {
-                $('.my-account').removeClass('my-account-active'); $('.cep').addClass('my-account-active'); $('.account-details').removeClass('account-details-active'); $('.li').addClass(' account-details-active'); $('.account-head').removeClass('account-head-active'); $('.changeep').addClass(' account-head-active');
+            } else if (page_selector == 1) {
+                $('.my-account').removeClass('my-account-active');
+                $('.cep').addClass('my-account-active');
+                $('.account-details').removeClass('account-details-active');
+                $('.li').addClass(' account-details-active');
+                $('.account-head').removeClass('account-head-active');
+                $('.changeep').addClass(' account-head-active');
                 $('#update_user_details').hide();
                 $('.round_reg').removeClass('active');
                 $('.stage_reg').removeClass('active');
                 $('.stage_reg_1').addClass('active');
                 $('.round_reg_1').addClass('active');
                 $('.stage_reg_2').addClass('active');
-            }
-            else if (page_selector == 2) {
-                $('.my-account').removeClass('my-account-active'); $('.da').addClass('my-account-active'); $('.account-details').removeClass('account-details-active'); $('.ada').addClass(' account-details-active'); $('.account-head').removeClass('account-head-active'); $('.deladd').addClass(' account-head-active');
+            } else if (page_selector == 2) {
+                $('.my-account').removeClass('my-account-active');
+                $('.da').addClass('my-account-active');
+                $('.account-details').removeClass('account-details-active');
+                $('.ada').addClass(' account-details-active');
+                $('.account-head').removeClass('account-head-active');
+                $('.deladd').addClass(' account-head-active');
                 $('#update_user_details').show();
                 $('.round_reg').removeClass('active');
                 $('.stage_reg').removeClass('active');
@@ -784,6 +801,7 @@ require "../Main/footer.php";
         // Otherwise, display the correct tab_reg:
         showTab_reg(currentTab_reg);
     }
+
     function validateForm() {
         // This function deals with validation of the form fields
         var x, y, i, valid = true;
@@ -808,6 +826,7 @@ require "../Main/footer.php";
         }
         return valid; // return the valid status
     }
+
     function fixStepIndicator(n) {
         // This function removes the "active" class of all steps...
         var i, x = document.getElementsByClassName("step");
@@ -822,19 +841,18 @@ require "../Main/footer.php";
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     var checkBox_diff = document.getElementById("stda_check");
     var checkBox_user = document.getElementById("use-as-register-checkbox");
+
     function stda() {
         if (checkBox_diff.checked == true) {
             $("#stda_div").css("display", "block");
-        }
-        else {
+        } else {
             $("#stda_div").css("display", "none");
         }
     }
     window.addEventListener("click", function () {
         if (checkBox_diff.checked == true) {
             checkBox_user.checked = false;
-        }
-        else if (checkBox_user.checked == true) {
+        } else if (checkBox_user.checked == true) {
             checkBox_diff.checked = false;
         }
     });
@@ -856,7 +874,14 @@ require "../Main/footer.php";
 <link href="../../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+        jQuery('#demo1').skdslider({
+            'delay': 5000,
+            'animationSpeed': 2000,
+            'showNextPrev': true,
+            'showPlayButton': true,
+            'autoSlide': true,
+            'animationType': 'fading'
+        });
         jQuery('#responsive').change(function () {
             $('#responsive_wrapper').width(jQuery(this).val());
         });
@@ -881,8 +906,7 @@ if (isset($_GET['verified'])) {
                     if (willSubmit) {
                         location.href = "../Account/login.php";
                         return;
-                    }
-                    else {
+                    } else {
                         return;
                     }
                 });
@@ -907,6 +931,7 @@ if (isset($_GET['verified'])) {
             });
         }
     }
+
     function reset_pin() {
         $('#dis_pin').show();
         $('#hide_pin').hide();
@@ -933,19 +958,20 @@ if (isset($_GET['verified'])) {
         if (name == null || name == "") {
             $("#nameerror").hide();
             return;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php",
-                data: { "checkname": 1, "name": name },
+                data: {
+                    "checkname": 1,
+                    "name": name
+                },
                 dataType: "json",
                 type: "post",
                 timeout: 30000,
                 success: function (data) {
                     if (data.status == 'success') {
                         $("#nameerror").hide();
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         $("#nameerror").show();
                     }
                 },
@@ -960,8 +986,9 @@ if (isset($_GET['verified'])) {
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
@@ -972,19 +999,20 @@ if (isset($_GET['verified'])) {
         if (email == null || email == "") {
             $("#emailerror").hide();
             return;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php",
-                data: { "checkmail": 1, "email": email },
+                data: {
+                    "checkmail": 1,
+                    "email": email
+                },
                 dataType: "json",
                 type: "post",
                 timeout: 30000,
                 success: function (data) {
                     if (data.status == 'success') {
                         $("#emailerror").hide();
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         $("#emailerror").show();
                     }
                 },
@@ -999,14 +1027,18 @@ if (isset($_GET['verified'])) {
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
     }
+
     function ValidateEmail(mail) {
-        if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail)) {
+        if (
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                .test(mail)) {
             return true;
         }
         return false;
@@ -1018,6 +1050,7 @@ if (isset($_GET['verified'])) {
     function err_display_fn() {
         return false;
     }
+
     function profile_check() {
         var first_name = document.getElementById("first_name").value;
         var last_name = document.getElementById("last_name").value;
@@ -1184,8 +1217,7 @@ if (isset($_GET['verified'])) {
             document.getElementById("regpin").focus();
             document.getElementById("regpin").className += " invalid";
             return false;
-        }
-        else if (regpin.length != 6) {
+        } else if (regpin.length != 6) {
             swal({
                 title: "Oops!!!",
                 text: "Please enter valid pincode !!! ",
@@ -1298,6 +1330,7 @@ if (isset($_GET['verified'])) {
             document.getElementById("message").style.display = "none";
         }
     }
+
     function login_info_check() {
         var pass_input = document.getElementById('passfir');
         var email = document.getElementById("email").value;
@@ -1435,8 +1468,7 @@ if (isset($_GET['verified'])) {
         if (checkBox_user.checked == false && checkBox_diff.checked == false) {
             toastr.error('Require Delivery Address!!!');
             return false;
-        }
-        else {
+        } else {
             if (checkBox_user.checked == true) {
                 if (document.getElementById("accept").checked == false) {
                     swal({
@@ -1471,51 +1503,65 @@ if (isset($_GET['verified'])) {
                             $('.std_text2').css('display', 'flex');
                             if (document.getElementById("subscribe").checked == true) {
                                 var subscribe = "1";
-                            }
-                            else {
+                            } else {
                                 var subscribe = "0";
                             }
-    //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
-//REQUIRED FOR GEOLOCATION ACCESS
-    var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) { ////START IF
-            addr = JSON.parse(this.responseText);
-            console.log(addr);
-            var lat=addr.data[0].latitude;
-            console.log(lat);
-            var long=addr.data[0].longitude;
-            console.log(long); */
-/*//NOT NECESSARY
-    geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("my-address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-      alert("Latitude: "+results[0].geometry.location.lat());
-      alert("Longitude: "+results[0].geometry.location.lng());
-      }
-      else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-*/var lat = long = 0;
+                            //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
+                //REQUIRED FOR GEOLOCATION ACCESS
+                    var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) { ////START IF
+                            addr = JSON.parse(this.responseText);
+                            console.log(addr);
+                            var lat=addr.data[0].latitude;
+                            console.log(lat);
+                            var long=addr.data[0].longitude;
+                            console.log(long); */
+                            /*//NOT NECESSARY
+                                geocoder = new google.maps.Geocoder();
+                                var address = document.getElementById("my-address").value;
+                                geocoder.geocode( { 'address': address}, function(results, status) {
+                                  if (status == google.maps.GeocoderStatus.OK) {
+                                  alert("Latitude: "+results[0].geometry.location.lat());
+                                  alert("Longitude: "+results[0].geometry.location.lng());
+                                  }
+                                  else {
+                                    alert("Geocode was not successful for the following reason: " + status);
+                                  }
+                                });
+                              }
+                            */
+                            var lat = long = 0;
                             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             $.ajax({
                                 url: "../Common/functions.php", //passing page info
-                                data: { "register": 1, "delivery": 1, "first_name": first_name, "last_name": last_name, "phone": phone, "pin": regpin, "location": loc, "latitude": lat, "longitude": long, "address": address, "subscribe": subscribe, "email": email, "password": pass1 },  //form data
-                                type: "post",   //post data
-                                dataType: "json",   //datatype=json format
-                                timeout: 30000,   //waiting time 30 sec
-                                success: function (data) {    //if registration is success
+                                data: {
+                                    "register": 1,
+                                    "delivery": 1,
+                                    "first_name": first_name,
+                                    "last_name": last_name,
+                                    "phone": phone,
+                                    "pin": regpin,
+                                    "location": loc,
+                                    "latitude": lat,
+                                    "longitude": long,
+                                    "address": address,
+                                    "subscribe": subscribe,
+                                    "email": email,
+                                    "password": pass1
+                                }, //form data
+                                type: "post", //post data
+                                dataType: "json", //datatype=json format
+                                timeout: 30000, //waiting time 30 sec
+                                success: function (data) { //if registration is success
                                     if (data.status == 'success') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
@@ -1540,18 +1586,15 @@ if (isset($_GET['verified'])) {
                                                             if (willSubmit2) {
                                                                 location.href = "../Main/onestore.php"
                                                                 return false;
-                                                            }
-                                                            else {
+                                                            } else {
                                                                 return false;
                                                             }
                                                         })
-                                                }
-                                                else {
+                                                } else {
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error') {
+                                    } else if (data.status == 'error') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -1570,14 +1613,12 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("email").className += " invalid";
                                                     document.getElementById("email").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error2') {
+                                    } else if (data.status == 'error2') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -1596,14 +1637,12 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("email").className += " invalid";
                                                     document.getElementById("email").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error3') {
+                                    } else if (data.status == 'error3') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -1623,15 +1662,13 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("first_name").className += " invalid";
                                                     document.getElementById("first_name").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     nextPrev(-1);
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error1') {
+                                    } else if (data.status == 'error1') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -1651,8 +1688,7 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("phone").className += " invalid";
                                                     document.getElementById("phone").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     nextPrev(-1);
                                                     return false;
@@ -1676,30 +1712,31 @@ if (isset($_GET['verified'])) {
                                             timer: 6000,
                                         });
                                         return false;
+                                    } else {
+                                        return false;
                                     }
-                                    else { return false; }
                                 }
                             }); //closing ajax
                             /*
                                 } //closing xmlhttprequest for lat & long
                                 };
-
+                
                                 xmlhttp.open("GET", post , true);
                                 xmlhttp.send();
                             }//END IF SUBMITTED
                                 else{
                                     return;
                                 }
-
+                
                             }); */ //END OF SWAL WILLSUBMITTED
-                        }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
+                        } //ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
                         else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) {
                             $('.round_reg_3').removeClass('active');
                             $('.stage_reg_4').removeClass('active');
                             return false;
                         }
-                    });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
-            }//IF DELIVERY = REGISTER
+                    }); //NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+            } //IF DELIVERY = REGISTER
             else if (checkBox_diff.checked == true) {
                 var shipping_first_name = document.getElementById("shipping_first_name").value;
                 var shipping_last_name = document.getElementById("shipping_last_name").value;
@@ -1854,8 +1891,7 @@ if (isset($_GET['verified'])) {
                     document.getElementById("shipping_postcode").focus();
                     document.getElementById("shipping_postcode").className += " invalid";
                     return false;
-                }
-                else if (shipping_postcode.length != 6) {
+                } else if (shipping_postcode.length != 6) {
                     swal({
                         title: "Oops!!!",
                         text: "Please enter valid pincode !!! ",
@@ -1904,51 +1940,71 @@ if (isset($_GET['verified'])) {
                             $('.std_text2').css('display', 'flex');
                             if (document.getElementById("subscribe").checked == true) {
                                 var subscribe = "1";
-                            }
-                            else {
+                            } else {
                                 var subscribe = "0";
                             }
-    //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
-//REQUIRED FOR GEOLOCATION ACCESS
-    var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) { ////START IF
-            addr = JSON.parse(this.responseText);
-            console.log(addr);
-            var lat=addr.data[0].latitude;
-            console.log(lat);
-            var long=addr.data[0].longitude;
-            console.log(long); */
-/*//NOT NECESSARY
-    geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("my-address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-      alert("Latitude: "+results[0].geometry.location.lat());
-      alert("Longitude: "+results[0].geometry.location.lng());
-      }
-      else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-*/var lat = long = 0;
+                            //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
+                //REQUIRED FOR GEOLOCATION ACCESS
+                    var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) { ////START IF
+                            addr = JSON.parse(this.responseText);
+                            console.log(addr);
+                            var lat=addr.data[0].latitude;
+                            console.log(lat);
+                            var long=addr.data[0].longitude;
+                            console.log(long); */
+                            /*//NOT NECESSARY
+                                geocoder = new google.maps.Geocoder();
+                                var address = document.getElementById("my-address").value;
+                                geocoder.geocode( { 'address': address}, function(results, status) {
+                                  if (status == google.maps.GeocoderStatus.OK) {
+                                  alert("Latitude: "+results[0].geometry.location.lat());
+                                  alert("Longitude: "+results[0].geometry.location.lng());
+                                  }
+                                  else {
+                                    alert("Geocode was not successful for the following reason: " + status);
+                                  }
+                                });
+                              }
+                            */
+                            var lat = long = 0;
                             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             $.ajax({
                                 url: "../Common/functions.php", //passing page info
-                                data: { "register": 1, "delivery": 2, "first_name": first_name, "last_name": last_name, "phone": phone, "pin": regpin, "location": loc, "latitude": lat, "longitude": long, "address": address, "subscribe": subscribe, "email": email, "password": pass1, "shipping_first_name": shipping_first_name, "shipping_last_name": shipping_last_name, "shipping_ph_no": shipping_ph_no, "shipping_ph_no2": shipping_ph_no2, "shipping_address_1": shipping_address_1, "shipping_postcode": shipping_postcode },  //form data
-                                type: "post",   //post data
-                                dataType: "json",   //datatype=json format
-                                timeout: 30000,   //waiting time 30 sec
-                                success: function (data) {    //if registration is success
+                                data: {
+                                    "register": 1,
+                                    "delivery": 2,
+                                    "first_name": first_name,
+                                    "last_name": last_name,
+                                    "phone": phone,
+                                    "pin": regpin,
+                                    "location": loc,
+                                    "latitude": lat,
+                                    "longitude": long,
+                                    "address": address,
+                                    "subscribe": subscribe,
+                                    "email": email,
+                                    "password": pass1,
+                                    "shipping_first_name": shipping_first_name,
+                                    "shipping_last_name": shipping_last_name,
+                                    "shipping_ph_no": shipping_ph_no,
+                                    "shipping_ph_no2": shipping_ph_no2,
+                                    "shipping_address_1": shipping_address_1,
+                                    "shipping_postcode": shipping_postcode
+                                }, //form data
+                                type: "post", //post data
+                                dataType: "json", //datatype=json format
+                                timeout: 30000, //waiting time 30 sec
+                                success: function (data) { //if registration is success
                                     if (data.status == 'success') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
@@ -1975,18 +2031,15 @@ if (isset($_GET['verified'])) {
                                                             if (willSubmit2) {
                                                                 location.href = "../Main/onestore.php"
                                                                 return false;
-                                                            }
-                                                            else {
+                                                            } else {
                                                                 return false;
                                                             }
                                                         })
-                                                }
-                                                else {
+                                                } else {
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error') {
+                                    } else if (data.status == 'error') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -2005,14 +2058,12 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("email").className += " invalid";
                                                     document.getElementById("email").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error2') {
+                                    } else if (data.status == 'error2') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -2029,14 +2080,12 @@ if (isset($_GET['verified'])) {
                                                 if (willSubmit) {
                                                     nextPrev(-1);
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error3') {
+                                    } else if (data.status == 'error3') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -2056,15 +2105,13 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("first_name").className += " invalid";
                                                     document.getElementById("first_name").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     nextPrev(-1);
                                                     return false;
                                                 }
                                             });
-                                    }
-                                    else if (data.status == 'error1') {
+                                    } else if (data.status == 'error1') {
                                         $('.background_loader').hide();
                                         $('.std_loader').hide();
                                         $('.load_btn').hide();
@@ -2084,8 +2131,7 @@ if (isset($_GET['verified'])) {
                                                     document.getElementById("phone").className += " invalid";
                                                     document.getElementById("phone").focus();
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     nextPrev(-1);
                                                     nextPrev(-1);
                                                     return false;
@@ -2109,32 +2155,33 @@ if (isset($_GET['verified'])) {
                                             timer: 6000,
                                         });
                                         return false;
+                                    } else {
+                                        return false;
                                     }
-                                    else { return false; }
                                 }
                             }); //closing ajax
                             /*
                                 } //closing xmlhttprequest for lat & long
                                 };
-
+                
                                 xmlhttp.open("GET", post , true);
                                 xmlhttp.send();
                             }//END IF SUBMITTED
                                 else{
                                     return;
                                 }
-
+                
                             }); */ //END OF SWAL WILLSUBMITTED
-                        }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
+                        } //ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
                         else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) {
                             $('.round_reg_3').removeClass('active');
                             $('.stage_reg_4').removeClass('active');
                             return false;
                         }
-                    });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
-            }//IF DELIVERY != REGISTER
-        }//END ELSE
-    }//NOW END CHECK REGISTER
+                    }); //NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+            } //IF DELIVERY != REGISTER
+        } //END ELSE
+    } //NOW END CHECK REGISTER
     function view() {
         var pass1 = document.getElementById("passfir");
         var pass2 = document.getElementById("passre");
@@ -2143,8 +2190,7 @@ if (isset($_GET['verified'])) {
             pass2.type = 'text';
             $("#dis_pass1").hide();
             $("#hide_pass1").show();
-        }
-        else {
+        } else {
             pass1.type = 'password';
             pass2.type = 'password';
             $("#dis_pass1").show();

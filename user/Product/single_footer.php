@@ -63,8 +63,7 @@
 					</li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Main/contact.php">Contact Us</a>
 					</li>
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
-							href="../Main/terms&conditions.php">T&C</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Main/terms&conditions.php">T&C</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Main/privacy.php">Privacy
 							Policy</a></li>
 				</ul>
@@ -76,8 +75,7 @@
 					if (isset($_SESSION['name'])) {
 						?>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Cart/cart.php">My Cart</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
-								href="../Wishlist/wishlist.php">Wishlist</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Wishlist/wishlist.php">Wishlist</a></li>
 						<?php
 					}
 					if (!isset($_SESSION['name'])) {
@@ -99,8 +97,7 @@
 						Send your email to us, so that we can let you know about our latest updates.
 					</p>
 					<form method="post" name="sendmail" action="#">
-						<input name="cntemail" id="nlmail" class="form-control" type="email"
-							placeholder="Your email here">
+						<input name="cntemail" id="nlmail" class="form-control" type="email" placeholder="Your email here">
 						<button type="button" class="btn" onclick="nlcheckmail()">Submit</button>
 					</form>
 				</div>
@@ -122,8 +119,8 @@
 			<ul>
 				<li><a href="https://www.facebook.com/falconsinfoworld/" target="_blank" class="w3_agile_facebook"><i
 							class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li><a href="https://www.instagram.com/_k_i_n_g_s_h_e_a_r_t_z/" target="_blank"
-						class="w3_agile_instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.instagram.com/_k_i_n_g_s_h_e_a_r_t_z/" target="_blank" class="w3_agile_instagram"><i
+							class="fa fa-instagram" aria-hidden="true"></i></a></li>
 				<li><a href="https://twitter.com/GovindA20531879" target="_blank" class="w3_agile_twitter"><i
 							class="fa fa-twitter" aria-hidden="true"></i></a></li>
 				<li><a href="#" data-toggle="modal" data-target="#myModal_share_apk" onclick="copyapklink()"
@@ -194,8 +191,7 @@
 					<div class="column-single">
 						<img class="demo-single cursor-single img-responsive product-image"
 							src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>_<?= $img_cnt_flag ?>.jpg"
-							onclick="currentSlide(<?= $img_cnt_flag + 1 ?>)"
-							alt="<?= $row2['item_name'] ?>_<?= $img_cnt_flag ?>">
+							onclick="currentSlide(<?= $img_cnt_flag + 1 ?>)" alt="<?= $row2['item_name'] ?>_<?= $img_cnt_flag ?>">
 					</div>
 					<?php
 					$img_cnt_flag++;
@@ -225,8 +221,7 @@
 					<div class="col-md-12" style="padding: 0px;height: 100%;background-color: white">
 						<form name="signin_form" id="signin_form">
 							<div class="col-md-12" style="padding: 0px;height: 100%;background-color: white">
-								<div class="col-md-6 hidden-xs no-padding" style="padding:0px;height: 70%"><img
-										class="img-responsive"
+								<div class="col-md-6 hidden-xs no-padding" style="padding:0px;height: 70%"><img class="img-responsive"
 										style="padding: 0px;padding-top: 0px;height: 400px;position: relative;"
 										src="../../images/logo/store.jpg">
 								</div>
@@ -238,8 +233,8 @@
 											Log in</i><br>
 										<p id="emppass" style="color: red;position: relative;top: 45px;display: none;">
 										</p><br><br>
-										<input type="email" class="form-control md-brdr" id="mobile" name="mobile"
-											placeholder="Email ID" required>
+										<input type="email" class="form-control md-brdr" id="mobile" name="mobile" placeholder="Email ID"
+											required>
 										<input type="hidden" id="valchg">
 									</div>
 									<p class="capson_warning" style="display: none;float:left;color: #d9534f"><i
@@ -249,24 +244,21 @@
 											<input type="password" class="form-control  md-brdr password_fields"
 												pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 												title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-												required=" " placeholder="Enter  Password" name="password" id="pwd"
-												required>
+												required=" " placeholder="Enter  Password" name="password" id="pwd" required>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<a href="#" data-toggle="modal" data-dismiss="modal" style="color: black">
 											<button type="button" onclick="forgottenpass()"
-												style="background-color: transparent;border: none;"
-												class="frgt-pswrd">Forgot Password?</button>
+												style="background-color: transparent;border: none;" class="frgt-pswrd">Forgot Password?</button>
 										</a>
 										<br><br><br>
 										<button onclick="signin()" type="button"
 											class="btn btn-primary btn-full mgbtm15 real_btn">LOGIN</button>
-										<button type="button" style="display:none"
-											class="btn btn-primary btn-full mgbtm15 load_btn"><i
+										<button type="button" style="display:none" class="btn btn-primary btn-full mgbtm15 load_btn"><i
 												class="fa fa-refresh fa-spin"></i> LOGIN</button>
-										<a href="../Account/registered.php"> <button type="button"
-												class="btn btn-danger btn-full mgbtm15" onclick="signup()">Sign
+										<a href="../Account/registered.php"> <button type="button" class="btn btn-danger btn-full mgbtm15"
+												onclick="signup()">Sign
 												Up</button></a><br><br>
 										<!--<a href="registered.php" data-toggle="modal" data-dismiss="modal"> <button type="button" class="btn btn-danger btn-full mgbtm15" onclick="signup()" data-dismiss="modal">Sign Up</button></a>-->
 									</div>
@@ -282,9 +274,10 @@
 	</div>
 </div>
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////----->
-<!-- Detail about shops--><!--ADD TO CART-->
+		 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////----->
+<!-- Detail about shops-->
+<!--ADD TO CART-->
 <?php
 if (isset($item_description_id)) {
 	$result = $pdo->query("select * from product_details
@@ -307,8 +300,8 @@ if (isset($item_description_id)) {
 				</div>
 				<div class="modal-guts scroll_handle_orange" style="border-bottom-left-radius: 10px">
 					<div class="model-body " style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
-						<table id="store" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info"
-							border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
+						<table id="store" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info" border="5px"
+							style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
 							<?php
 							$rows = $result->rowCount();
 							if (!is_null($rows) && $rows > 0) {
@@ -348,8 +341,8 @@ if (isset($item_description_id)) {
 													class="fas fa-store"></i></button>
 											<button
 												style="display: none;height: 45px;width:100%;border-color: white;background-color:#006904;color: white;border-radius:7px;outline: none; "
-												class="element_cart load_btn<?= $row['store_id'] ?>"><i
-													class="fa fa-refresh fa-spin"></i> <i class="fas fa-store"></i></button>
+												class="element_cart load_btn<?= $row['store_id'] ?>"><i class="fa fa-refresh fa-spin"></i> <i
+													class="fas fa-store"></i></button>
 										</td>
 										<td style="background-color: white" class="view_avail_stores"><?= $row['store_name'] ?></td>
 										<td style="background-color: white" class="view_avail_stores">₹<?= $row['price'] ?></td>
@@ -358,12 +351,10 @@ if (isset($item_description_id)) {
 										<td>
 											<form action="https://maps.google.com/maps" method="get" target="_blank">
 												<input type="hidden" name="saddr" id="daddr" value="" />
-												<input type="hidden" name="daddr"
-													value="<?= $row['latitude'] ?>,<?= $row['longitude'] ?>" />
+												<input type="hidden" name="daddr" value="<?= $row['latitude'] ?>,<?= $row['longitude'] ?>" />
 												<button type="submit"
 													style="color: white;background-color: #337ab7;border-radius: 50px;width: 20px; outline: none;"><i
-														class="fas fa-paper-plane"
-														style="display: flex; justify-content: center;"></i></button>
+														class="fas fa-paper-plane" style="display: flex; justify-content: center;"></i></button>
 											</form>
 										</td>
 									</tr>
@@ -392,13 +383,11 @@ if (isset($item_description_id)) {
 										style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size: 15px;'>You
 										Save &#8377; <span id="save"
 											style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
-										(<span
-											style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
+										(<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
 											id="off"></span>%)</span>
 									<br><br>
 									<li style="font-weight:normal;font-size: 14px;">Item remaing : <span
-											style="text-decoration: none;font-weight:normal;font-family:arial"
-											id="dis_qnty"></span> only</li>
+											style="text-decoration: none;font-weight:normal;font-family:arial" id="dis_qnty"></span> only</li>
 									<li style="font-weight: normal;font-size: 14px;">Availability : <span
 											style="text-decoration: none;font-weight:normal;" id="dis_avail"></span></li>
 									<li style="font-weight:normal;font-size: 14px;">Status : <span
@@ -474,8 +463,7 @@ if (isset($item_description_id)) {
 					<div class="modal-footer"
 						style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="outline: none;font-size: 1.2em;">Close <i style="color: red"
-								class="fa fa-times-circle"></i></button>
+							style="outline: none;font-size: 1.2em;">Close <i style="color: red" class="fa fa-times-circle"></i></button>
 					</div>
 				</div>
 			</div>
@@ -488,7 +476,8 @@ if (isset($item_description_id)) {
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------->
-<!-- Detail about shops--><!--ADD TO WISHLIST-->
+<!-- Detail about shops-->
+<!--ADD TO WISHLIST-->
 <?php
 if (isset($item_description_id)) {
 	$result = $pdo->query("select * from product_details
@@ -511,9 +500,8 @@ if (isset($item_description_id)) {
 				</div>
 				<div class="modal-guts scroll_handle_orange" style="border-bottom-left-radius: 10px">
 					<div class="model-body " style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
-						<table id="store_wishlist" cellspacing="50px" cellpadding="20px" width="100%"
-							class="single_product_info" border="5px"
-							style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
+						<table id="store_wishlist" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info"
+							border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
 							<?php
 							$rows = $result->rowCount();
 							if (!is_null($rows) && $rows > 0) {
@@ -545,13 +533,11 @@ if (isset($item_description_id)) {
 									<tr>
 										<td style="padding: 0px;margin: 0px;">
 											<!--<i style="color:#00BD16;display: none;" id="tick<?//=$row['store_id'] ?>" class="fa fa-check-circle ticking"></i>-->
-											<input type="checkbox" id="wishlist_check<?= $row['store_id'] ?>" name="select"
-												class="sel_store2" onclick="wishlist_pricing(<?= $row['store_id'] ?>)"
-												value="<?= $row['store_id'] ?>">
+											<input type="checkbox" id="wishlist_check<?= $row['store_id'] ?>" name="select" class="sel_store2"
+												onclick="wishlist_pricing(<?= $row['store_id'] ?>)" value="<?= $row['store_id'] ?>">
 											<button id="wishlist_btn<?= $row['store_id'] ?>"
 												style="display: none;height: 45px;width:100%;border-color: white;background-color:#006904;color: white;border-radius:7px;outline: none; "
-												class="element_cart2" type="button"><i class="fa fa-check"></i> <i
-													class="fas fa-store"></i></button>
+												class="element_cart2" type="button"><i class="fa fa-check"></i> <i class="fas fa-store"></i></button>
 										</td>
 										<td style="background-color: white" class="view_avail_stores"><?= $row['store_name'] ?></td>
 										<td style="background-color: white" class="view_avail_stores">₹<?= $row['price'] ?></td>
@@ -560,12 +546,10 @@ if (isset($item_description_id)) {
 										<td>
 											<form action="https://maps.google.com/maps" method="get" target="_blank">
 												<input type="hidden" name="saddr" id="wishlist_daddr" value="" />
-												<input type="hidden" name="daddr"
-													value="<?= $row['latitude'] ?>,<?= $row['longitude'] ?>" />
+												<input type="hidden" name="daddr" value="<?= $row['latitude'] ?>,<?= $row['longitude'] ?>" />
 												<button type="submit"
 													style="color: white;background-color: #337ab7;border-radius: 50px;width: 20px; outline: none;"><i
-														class="fas fa-paper-plane"
-														style="display: flex; justify-content: center;"></i></button>
+														class="fas fa-paper-plane" style="display: flex; justify-content: center;"></i></button>
 											</form>
 										</td>
 									</tr>
@@ -594,22 +578,18 @@ if (isset($item_description_id)) {
 										style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size:15px'>You
 										Save &#8377; <span id="save2"
 											style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
-										(<span
-											style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
+										(<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
 											id="off2"></span>%)</span>
 									<br><br>
 									<li style="font-weight:normal;font-size: 14px;">Item remaing : <span
 											style="text-decoration: none;font-weight:normal;font-size: 14px;font-family:arial"
 											id="dis_qnty2"></span> only</li>
 									<li style="font-weight: normal;font-size: 14px;">Availability : <span
-											style="text-decoration: none;font-weight:normal;font-size: 14px;"
-											id="dis_avail2"></span></li>
+											style="text-decoration: none;font-weight:normal;font-size: 14px;" id="dis_avail2"></span></li>
 									<li style="font-weight:normal;font-size: 14px;">Status : <span
-											style="text-decoration: none;font-weight:normal;font-size: 14px;"
-											id="dis_sts2"></span></li>
+											style="text-decoration: none;font-weight:normal;font-size: 14px;" id="dis_sts2"></span></li>
 									<li style="font-weight:normal;font-size: 14px;">Address : <span
-											style="text-decoration: none;font-weight:normal;font-size: 14px;"
-											id="dis_add2"></span></li>
+											style="text-decoration: none;font-weight:normal;font-size: 14px;" id="dis_add2"></span></li>
 									<?php
 									$sqlfeatures = "select * from item_description
         where item_description.item_description_id=:item_description_id ";
@@ -672,8 +652,8 @@ if (isset($item_description_id)) {
 								</h4>
 								<button class="wishlist_btn"
 									style="height: 45px;width:100%;border-color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white;border-radius:7px;outline: none;"
-									onclick="wishlist_check_store_select()" class="element_cart" type="button"
-									data-dismiss="modal" data-toggle="modal" data-target="#avail_wishlist"> SELECT STORE <i
+									onclick="wishlist_check_store_select()" class="element_cart" type="button" data-dismiss="modal"
+									data-toggle="modal" data-target="#avail_wishlist"> SELECT STORE <i
 										class="fa fa-arrow-right"></i></i></button>
 							</div>
 						</div>
@@ -681,8 +661,7 @@ if (isset($item_description_id)) {
 					<div class="modal-footer"
 						style="background-color: #337ab7;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="outline: none;font-size: 1.2em;">Close <i style="color: red"
-								class="fa fa-times-circle"></i></button>
+							style="outline: none;font-size: 1.2em;">Close <i style="color: red" class="fa fa-times-circle"></i></button>
 					</div>
 				</div>
 			</div>
@@ -695,7 +674,8 @@ if (isset($item_description_id)) {
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------->
-<!-- Detail about lists--><!--ADD TO WISHLIST-->
+<!-- Detail about lists-->
+<!--ADD TO WISHLIST-->
 <?php
 if (isset($item_description_id, $_SESSION['id'])) {
 	$result = $pdo->query("select * from wishlist where user_id=" . $_SESSION['id']);
@@ -715,9 +695,8 @@ if (isset($item_description_id, $_SESSION['id'])) {
 				</div>
 				<div class="modal-guts scroll_handle_orange" style="border-bottom-left-radius: 10px">
 					<div class="model-body " style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
-						<table id="list_wishlist" cellspacing="50px" cellpadding="20px" width="100%"
-							class="single_product_info" border="5px"
-							style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
+						<table id="list_wishlist" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info"
+							border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
 							<?php
 							$rows = $result->rowCount();
 							if (!is_null($rows) && $rows > 0) {
@@ -747,8 +726,9 @@ if (isset($item_description_id, $_SESSION['id'])) {
 										<td style="background-color: white" class="view_avail_stores"><?= $row['list_name'] ?></td>
 										<td style="background-color: white" class="view_avail_stores"><?= $row['privacy'] ?></td>
 										<!--<td id="Q<?= $store_id ?>"><?//=$row['quantity'] ?></td>-->
-										<td style="background-color: white" id="wish_cnt_<?= $row['wishlist_id'] ?>"
-											class="view_avail_stores"><?= $row_wish1['item_count'] ?></td>
+										<td style="background-color: white" id="wish_cnt_<?= $row['wishlist_id'] ?>" class="view_avail_stores">
+											<?= $row_wish1['item_count'] ?>
+										</td>
 										<?php
 										$dateofcreate = explode('-', $row['date']);
 										$day = $dateofcreate[1] . "/" . $dateofcreate[2] . "/" . substr($dateofcreate[0], 2);
@@ -775,11 +755,10 @@ if (isset($item_description_id, $_SESSION['id'])) {
 					<div class="modal-footer" style="background-color: white">
 						<button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal"
 							data-target="#avail_stores_wishlist"
-							style="outline: none;font-size: 1.2em;float:left;background-color:#22374e"><i
-								style="color: #fff" class="fa fa-arrow-left fa-lg"></i></button>
+							style="outline: none;font-size: 1.2em;float:left;background-color:#22374e"><i style="color: #fff"
+								class="fa fa-arrow-left fa-lg"></i></button>
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="outline: none;font-size: 1.2em;">Close <i style="color: red"
-								class="fa fa-times-circle"></i></button>
+							style="outline: none;font-size: 1.2em;">Close <i style="color: red" class="fa fa-times-circle"></i></button>
 					</div>
 				</div>
 			</div>
@@ -792,7 +771,8 @@ if (isset($item_description_id, $_SESSION['id'])) {
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------->
-<!-- Detail about shops--><!--BUY NOW-->
+<!-- Detail about shops-->
+<!--BUY NOW-->
 <?php
 if (isset($item_description_id)) {
 	$result = $pdo->query("select * from product_details
@@ -815,9 +795,8 @@ if (isset($item_description_id)) {
 				</div>
 				<div class="modal-guts scroll_handle_orange" style="border-bottom-left-radius: 10px">
 					<div class="model-body " style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
-						<table id="store_buynow" cellspacing="50px" cellpadding="20px" width="100%"
-							class="single_product_info" border="5px"
-							style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
+						<table id="store_buynow" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info"
+							border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
 							<?php
 							$rows = $result->rowCount();
 							if (!is_null($rows) && $rows > 0) {
@@ -849,13 +828,11 @@ if (isset($item_description_id)) {
 									<tr>
 										<td style="padding: 0px;margin: 0px;">
 											<!--<i style="color:#00BD16;display: none;" id="tick<?//=$row['store_id'] ?>" class="fa fa-check-circle ticking"></i>-->
-											<input type="checkbox" id="buynow_check<?= $row['store_id'] ?>" name="select"
-												class="sel_store3" onclick="buynow_pricing(<?= $row['store_id'] ?>)"
-												value="<?= $row['store_id'] ?>">
+											<input type="checkbox" id="buynow_check<?= $row['store_id'] ?>" name="select" class="sel_store3"
+												onclick="buynow_pricing(<?= $row['store_id'] ?>)" value="<?= $row['store_id'] ?>">
 											<button id="buynow_btn<?= $row['store_id'] ?>"
 												style="display: none;height: 45px;width:100%;border-color: white;background-color:#006904;color: white;border-radius:7px;outline: none; "
-												class="element_cart3" type="button"><i class="fa fa-check"></i> <i
-													class="fas fa-store"></i></button>
+												class="element_cart3" type="button"><i class="fa fa-check"></i> <i class="fas fa-store"></i></button>
 										</td>
 										<td style="background-color: white" class="view_avail_stores"><?= $row['store_name'] ?></td>
 										<td style="background-color: white" class="view_avail_stores">₹<?= $row['price'] ?></td>
@@ -864,12 +841,10 @@ if (isset($item_description_id)) {
 										<td>
 											<form action="https://maps.google.com/maps" method="get" target="_blank">
 												<input type="hidden" name="saddr" id="buynow_daddr" value="" />
-												<input type="hidden" name="daddr"
-													value="<?= $row['latitude'] ?>,<?= $row['longitude'] ?>" />
+												<input type="hidden" name="daddr" value="<?= $row['latitude'] ?>,<?= $row['longitude'] ?>" />
 												<button type="submit"
 													style="color: white;background-color: #337ab7;border-radius: 50px;width: 20px; outline: none;"><i
-														class="fas fa-paper-plane"
-														style="display: flex; justify-content: center;"></i></button>
+														class="fas fa-paper-plane" style="display: flex; justify-content: center;"></i></button>
 											</form>
 										</td>
 									</tr>
@@ -898,13 +873,11 @@ if (isset($item_description_id)) {
 										style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size: 15px;'>You
 										Save &#8377; <span id="save3"
 											style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
-										(<span
-											style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
+										(<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
 											id="off3"></span>%)</span>
 									<br><br>
 									<li style="font-weight:normal;font-size: 14px;">Item remaing : <span
-											style="text-decoration: none;font-weight:normal;font-family:arial"
-											id="dis_qnty3"></span> only</li>
+											style="text-decoration: none;font-weight:normal;font-family:arial" id="dis_qnty3"></span> only</li>
 									<li style="font-weight: normal;font-size: 14px;">Availability : <span
 											style="text-decoration: none;font-weight:normal;" id="dis_avail3"></span></li>
 									<li style="font-weight:normal;font-size: 14px;">Status : <span
@@ -973,8 +946,8 @@ if (isset($item_description_id)) {
 								</h4>
 								<button class="buynow_btn"
 									style="height: 45px;width:100%;border-color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white;border-radius:7px;outline: none;"
-									onclick="buynow_place_order_select()" class="element_cart" type="button"
-									data-dismiss="modal" data-toggle="modal" data-target="#avail_buynow"> PLACE ORDER
+									onclick="buynow_place_order_select()" class="element_cart" type="button" data-dismiss="modal"
+									data-toggle="modal" data-target="#avail_buynow"> PLACE ORDER
 									&nbsp;<i class="fa fa-shopping-bag"></i></i></button>
 							</div>
 						</div>
@@ -982,8 +955,7 @@ if (isset($item_description_id)) {
 					<div class="modal-footer"
 						style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="outline: none;font-size: 1.2em;">Close <i style="color: red"
-								class="fa fa-times-circle"></i></button>
+							style="outline: none;font-size: 1.2em;">Close <i style="color: red" class="fa fa-times-circle"></i></button>
 					</div>
 				</div>
 			</div>
@@ -1036,16 +1008,14 @@ if (isset($item_description_id)) {
 							<td>
 								<div class="input-group bar-srch"
 									style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
-									<input readonly="true" type="text" class="" id="input_apk_link"
-										placeholder="URL to share"
+									<input readonly="true" type="text" class="" id="input_apk_link" placeholder="URL to share"
 										value="http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk"
 										name="" required=" "
 										style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline-color: #e59700;">
 									<span id="" class="input-group-btn">
 										<button id="copy_wl" onclick="apkclipboard()"
 											style="color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #004114), color-stop(1, #309700)) !important;padding-top:10px;padding-bottom: 10px;outline: none;border-radius: 0;border-bottom-right-radius: 3px;border-top-right-radius: 3px;"
-											class="btn btn-default search_btn" type="button"><span
-												class="fas fa-copy"></span></button>
+											class="btn btn-default search_btn" type="button"><span class="fas fa-copy"></span></button>
 									</span>
 								</div>
 							</td>
@@ -1113,8 +1083,7 @@ if (isset($item_description_id)) {
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal"
-					onclick="$('.yw').click();">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('.yw').click();">Close</button>
 			</div>
 		</div>
 	</div>
@@ -1134,14 +1103,14 @@ if (isset($item_description_id)) {
 				dangerMode: true,
 				timer: 6000,
 			});
-		}
-		else {
+		} else {
 			copyText.select();
 			copyText.setSelectionRange(0, 999999)
 			document.execCommand("copy");
 			toastr.success('Link copied :- ' + copyText.value);
 		}
 	}
+
 	function downloadapk() {
 		var link = $('#input_apk_link').val();
 		if (link == "" || link == null) {
@@ -1153,25 +1122,25 @@ if (isset($item_description_id)) {
 				dangerMode: true,
 				timer: 6000,
 			});
-		}
-		else {
+		} else {
 			window.open('' + link + '', '_blank');
 		}
 	}
+
 	function copyapklink(n) {
 		if (n == 1) {
 			var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk";
-		}
-		else if (n == 2) {
+		} else if (n == 2) {
 			var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
-		}
-		else {
+		} else {
 			var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
 		}
 		$('#input_apk_link').val(link);
 		///////////WHATSAPP///////////
 		$('.whatsapp_apk').html('');
-		var wa_content = '<div style="margin-left:15px;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a class="wlink" target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=Download Apk Now :- ' + link + '"><i class="fa fa-whatsapp fa-lg" style="color: white;"></i></a></div><p>Whatsapp</p>';
+		var wa_content =
+			'<div style="margin-left:15px;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a class="wlink" target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=Download Apk Now :- ' +
+			link + '"><i class="fa fa-whatsapp fa-lg" style="color: white;"></i></a></div><p>Whatsapp</p>';
 		$('.whatsapp_apk').html(wa_content);
 	}
 </script>
@@ -1215,14 +1184,13 @@ if (isset($item_description_id)) {
 							<td>
 								<div class="input-group bar-srch"
 									style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
-									<input readonly="true" type="text" class="" id="input_link"
-										placeholder="URL to share" value="" name="" required=" "
+									<input readonly="true" type="text" class="" id="input_link" placeholder="URL to share" value=""
+										name="" required=" "
 										style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline-color: #e59700;">
 									<span id="" class="input-group-btn">
 										<button id="copy_wl1" onclick="clipboard()"
 											style="color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #004114), color-stop(1, #309700)) !important;padding-top:10px;padding-bottom: 10px;outline: none;border-radius: 0;border-bottom-right-radius: 3px;border-top-right-radius: 3px;"
-											class="btn btn-default search_btn" type="button"><span
-												class="fas fa-copy"></span></button>
+											class="btn btn-default search_btn" type="button"><span class="fas fa-copy"></span></button>
 									</span>
 								</div>
 							</td>
@@ -1238,25 +1206,22 @@ if (isset($item_description_id)) {
 							<td>
 								<table style="width: 100%;">
 									<tr style="overflow-x: scroll;">
-										<td class="social-share whatsapp" style="text-align: center;"
-											onclick="sharelink(1)">
+										<td class="social-share whatsapp" style="text-align: center;" onclick="sharelink(1)">
 											<!--<div style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;">
-											<i class="fa fa-whatsapp fa-lg" style="color: white;"></i>
-										</div>
-										<p>Whatsapp</p>-->
+																						<i class="fa fa-whatsapp fa-lg" style="color: white;"></i>
+																				</div>
+																				<p>Whatsapp</p>-->
 										</td>
 										<td class="social-share facebook" style="text-align: center;">
 										</td>
-										<td class="social-share twitter" style="text-align: center;"
-											onclick="setShareLinks()">
+										<td class="social-share twitter" style="text-align: center;" onclick="setShareLinks()">
 											<div
 												style="margin:auto;width: 30px;height: 30px;background-color: #1da1f2;border-radius:3px;display: flex;align-items: center;justify-content: center;">
 												<i class="fa fa-twitter fa-lg" style="color: white;"></i>
 											</div>
 											<p>Twitter</p>
 										</td>
-										<td class="social-share linkedin" style="text-align: center;"
-											onclick="setShareLinks()">
+										<td class="social-share linkedin" style="text-align: center;" onclick="setShareLinks()">
 											<div
 												style="margin:auto;width: 30px;height: 30px;background-color: #0077af;border-radius:3px;display: flex;align-items: center;justify-content: center;">
 												<i class="fa fa-linkedin fa-lg" style="color: white;"></i>
@@ -1271,8 +1236,7 @@ if (isset($item_description_id)) {
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal"
-					onclick="$('.yw').click();">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('.yw').click();">Close</button>
 			</div>
 		</div>
 	</div>
@@ -1285,13 +1249,19 @@ if (isset($item_description_id)) {
 		var code = link.split("=");
 		/////////FACEBOOK////////////
 		$('.facebook').html('');
-		var fb_content = '<div class="fb-share-button"  data-href="' + link + '" data-layout="button_count" data-size="small" style="margin:auto;width: 30px;height: 30px;background-color: #395693;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fone-store.ml%2Fsingle.php%3Fid%3D' + code[1] + '&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook fa-lg" style="color: white;"></i></a></div><p>Facebook</p>';
+		var fb_content = '<div class="fb-share-button"  data-href="' + link +
+			'" data-layout="button_count" data-size="small" style="margin:auto;width: 30px;height: 30px;background-color: #395693;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fone-store.ml%2Fsingle.php%3Fid%3D' +
+			code[1] +
+			'&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook fa-lg" style="color: white;"></i></a></div><p>Facebook</p>';
 		$('.facebook').html(fb_content);
 		///////////WHATSAPP///////////
 		$('.whatsapp').html('');
-		var wa_content = '<div style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=See this product :- http://localhost:81/One-Store-Renewed/onestore-website/user/Product/single.php?id=' + code[1] + '"><i class="fa fa-whatsapp fa-lg" style="color: white;"></i></a></div><p>Whatsapp</p>';
+		var wa_content =
+			'<div style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=See this product :- http://localhost:81/One-Store-Renewed/onestore-website/user/Product/single.php?id=' +
+			code[1] + '"><i class="fa fa-whatsapp fa-lg" style="color: white;"></i></a></div><p>Whatsapp</p>';
 		$('.whatsapp').html(wa_content);
 	}
+
 	function sharelink(sm) {
 		var social_media = sm;
 		var link = document.getElementById("input_link").value;
@@ -1301,12 +1271,14 @@ if (isset($item_description_id)) {
 			return;
 		}
 	}
+
 	function socialWindow(url) {
 		var left = (screen.width - 570) / 2;
 		var top = (screen.height - 570) / 2;
 		var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
 		window.open(url, "NewWindow", params);
 	}
+
 	function setShareLinks() {
 		var pageUrl = encodeURIComponent(document.getElementById("input_link").value);
 		var tweet = "See this product :) !!";
@@ -1319,6 +1291,7 @@ if (isset($item_description_id)) {
 			socialWindow(url);
 		})
 	}
+
 	function clipboard() {
 		var copyText = document.getElementById("input_link");
 		var link = $('#input_link').val();
@@ -1331,8 +1304,7 @@ if (isset($item_description_id)) {
 				dangerMode: true,
 				timer: 6000,
 			});
-		}
-		else {
+		} else {
 			copyText.select();
 			copyText.setSelectionRange(0, 999999)
 			document.execCommand("copy");
@@ -1340,6 +1312,7 @@ if (isset($item_description_id)) {
 		}
 	}
 	lens_cnt = 0;
+
 	function imageZoom(imgID, resultID) {
 		var img, lens, result, cx, cy;
 		img = document.getElementById(imgID);
@@ -1364,6 +1337,7 @@ if (isset($item_description_id)) {
 			lens.addEventListener("touchmove", moveLens);
 			img.addEventListener("touchmove", moveLens);
 		}
+
 		function moveLens(e) {
 			var pos, x, y;
 			/*prevent any other actions that may occur when moving over the image:*/
@@ -1374,18 +1348,28 @@ if (isset($item_description_id)) {
 			x = pos.x - (lens.offsetWidth / 2);
 			y = pos.y - (lens.offsetHeight / 2);
 			/*prevent the lens from being positioned outside the image:*/
-			if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
-			if (x < 0) { x = 0; }
-			if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
-			if (y < 0) { y = 0; }
+			if (x > img.width - lens.offsetWidth) {
+				x = img.width - lens.offsetWidth;
+			}
+			if (x < 0) {
+				x = 0;
+			}
+			if (y > img.height - lens.offsetHeight) {
+				y = img.height - lens.offsetHeight;
+			}
+			if (y < 0) {
+				y = 0;
+			}
 			/*set the position of the lens:*/
 			lens.style.left = x + "px";
 			lens.style.top = y + "px";
 			/*display what the lens "sees":*/
 			result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
 		}
+
 		function getCursorPos(e) {
-			var a, x = 0, y = 0;
+			var a, x = 0,
+				y = 0;
 			e = e || window.event;
 			/*get the x and y positions of the image:*/
 			a = img.getBoundingClientRect();
@@ -1395,7 +1379,10 @@ if (isset($item_description_id)) {
 			/*consider any page scrolling:*/
 			x = x - window.pageXOffset;
 			y = y - window.pageYOffset;
-			return { x: x, y: y };
+			return {
+				x: x,
+				y: y
+			};
 		}
 	}
 	// Initiate zoom effect:
@@ -1415,8 +1402,7 @@ if (isset($item_description_id)) {
 			for (var j = 0; j < capson_warning.length; j++) {
 				if (event.getModifierState("CapsLock")) {
 					capson_warning[j].style.display = "block";
-				}
-				else {
+				} else {
 					capson_warning[j].style.display = "none"
 				}
 			}
@@ -1449,6 +1435,7 @@ if (isset($item_description_id)) {
 		$('#side_nav_bar_lock').css("display", "flex");
 		$('#side_nav_bar_lock').css("z-index", "9999999");
 	}
+
 	function closeNav() {
 		if (typeof NavScrollTop != 'undefined') {
 			var NavScrollNow = getCookieset(NavScrollTop);
@@ -1620,9 +1607,8 @@ if (isset($item_description_id)) {
 				$("#side_cat_list_end_default").css("display", "block");
 				$("#side_nav_content_end_line").css("display", "block");
 				/*CLICK EVENT OVERRIDING USING DISPLAY BLOCK or NONE */
-			}
-			else {
-				$(".dropdown-container").hide();//HIDE ALL OPENED DROPDOWN WHEN OPEN DROPDOWN
+			} else {
+				$(".dropdown-container").hide(); //HIDE ALL OPENED DROPDOWN WHEN OPEN DROPDOWN
 				dropdownContent.style.display = "block";
 			}
 		});
@@ -1690,21 +1676,19 @@ if (isset($item_description_id)) {
 			$("#category").hide();
 		});
 	});
+
 	function catlistview() {
 		$('#display').hide();
 		document.onclick = function (div) {
 			if (div.target.id !== 'search-panel' && div.target.id !== 'search_concept' && div.target.id !== 'srch_pan') {
 				$("#category").hide();
-			}
-			else if (div.target.id == 'search-panel' || div.target.id == 'search_concept' || div.target.id == 'srch_pan') {
+			} else if (div.target.id == 'search-panel' || div.target.id == 'search_concept' || div.target.id == 'srch_pan') {
 				if ($('#category').css('display') != 'none') {
 					$("#category").hide();
-				}
-				else {
+				} else {
 					$("#category").show();
 				}
-			}
-			else {
+			} else {
 				$("#category").show();
 			}
 		}
@@ -1721,21 +1705,20 @@ if (isset($item_description_id)) {
 			$("#category2").hide();
 		});
 	});
+
 	function catlistview2() {
 		$('#display2').hide();
 		document.onclick = function (div) {
 			if (div.target.id !== 'search-panel2' && div.target.id !== 'search_concept2' && div.target.id !== 'srch_pan2') {
 				$("#category2").hide();
-			}
-			else if (div.target.id == 'search-panel2' || div.target.id == 'search_concept2' || div.target.id == 'srch_pan2') {
+			} else if (div.target.id == 'search-panel2' || div.target.id == 'search_concept2' || div.target.id ==
+				'srch_pan2') {
 				if ($('#category2').css('display') != 'none') {
 					$("#category2").hide();
-				}
-				else {
+				} else {
 					$("#category2").show();
 				}
-			}
-			else {
+			} else {
 				$("#category2").show();
 			}
 		}
@@ -1752,12 +1735,16 @@ if (isset($item_description_id)) {
 		location.href = "../Account/registered.php";
 		return;
 	}
+
 	function ValidateSigninEmail(mail) {
-		if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail)) {
+		if (
+			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				.test(mail)) {
 			return true;
 		}
 		return false;
 	}
+
 	function signin() {
 		var password = document.getElementById("pwd").value;
 		var email = document.getElementById("mobile").value;
@@ -1798,17 +1785,20 @@ if (isset($item_description_id)) {
 			document.getElementById("pwd").value = "";
 			document.getElementById("pwd").focus();
 			return;
-		}
-		else {
+		} else {
 			$('.load_btn').show();
 			$('.real_btn').hide();
 			$.ajax({
 				url: "../Common/functions.php", //passing page info
-				data: { "login": 1, "email": email, "password": password },  //form data
-				type: "post",	//post data
-				dataType: "json", 	//datatype=json format
-				timeout: 18000,	//waiting time 3 sec
-				success: function (data) {	//if logging in is success
+				data: {
+					"login": 1,
+					"email": email,
+					"password": password
+				}, //form data
+				type: "post", //post data
+				dataType: "json", //datatype=json format
+				timeout: 18000, //waiting time 3 sec
+				success: function (data) { //if logging in is success
 					if (data.admin == 'true' && data.user == 'true') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
@@ -1827,14 +1817,12 @@ if (isset($item_description_id)) {
 							.then((willSubmit) => {
 								if (willSubmit.dismiss) {
 									location.href = "../Main/onestore.php";
-								}
-								else if (willSubmit.isConfirmed) {
+								} else if (willSubmit.isConfirmed) {
 									location.href = "../../store-admin/index.php?id=" + data.id + "";
 								}
 							});
 						return;
-					}
-					else if (data.admin == 'true') {
+					} else if (data.admin == 'true') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
 						swal({
@@ -1848,13 +1836,11 @@ if (isset($item_description_id)) {
 								if (willSubmit) {
 									$('#emppass').hide();
 									location.href = "../../store-admin/index.php?id=" + data.id + "";
-								}
-								else {
+								} else {
 									return;
 								}
 							});
-					}
-					else if (data.status == 'success') {
+					} else if (data.status == 'success') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
 						swal({
@@ -1873,13 +1859,11 @@ if (isset($item_description_id)) {
 										$('#myModal').modal('toggle');
 									});
 									return;
-								}
-								else {
+								} else {
 									return;
 								}
 							});
-					}
-					else if (data.status == 'admin') {
+					} else if (data.status == 'admin') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
 						swal({
@@ -1893,13 +1877,11 @@ if (isset($item_description_id)) {
 								if (willSubmit) {
 									$('#emppass').hide();
 									location.href = "../../store-admin/index.php?id=" + data.id + "";
-								}
-								else {
+								} else {
 									return;
 								}
 							});
-					}
-					else if (data.status == 'error') {
+					} else if (data.status == 'error') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
 						swal({
@@ -1916,8 +1898,7 @@ if (isset($item_description_id)) {
 									//location.reload();
 								}
 							});
-					}
-					else if (data.status == 'errornotfound') {
+					} else if (data.status == 'errornotfound') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
 						swal({
@@ -1934,8 +1915,7 @@ if (isset($item_description_id)) {
 									//location.reload();
 								}
 							});
-					}
-					else if (data.status == 'error1') {
+					} else if (data.status == 'error1') {
 						$('.real_btn').show();
 						$('.load_btn').hide();
 						swal({
@@ -1967,8 +1947,9 @@ if (isset($item_description_id)) {
 							timer: 6000,
 						});
 						return;
+					} else {
+						return;
 					}
-					else { return; }
 				}
 			}); //closing ajax
 		}
@@ -2012,8 +1993,7 @@ if (isset($item_description_id)) {
 			});
 			document.getElementById("pincode").focus();
 			return;
-		}
-		else if (postcode.length != 6) {
+		} else if (postcode.length != 6) {
 			swal({
 				title: "Oops!!!",
 				text: "Please enter valid pincode !!! ",
@@ -2025,8 +2005,7 @@ if (isset($item_description_id)) {
 			document.getElementById("pincode").value = "";
 			document.getElementById("pincode").focus();
 			return;
-		}
-		else {
+		} else {
 			pin = "https://api.postalpincode.in/pincode/" + postcode + "";
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function () {
@@ -2056,11 +2035,14 @@ if (isset($item_description_id)) {
 		//	'<%Session["location"]="'+po+'";%>';//SET JS VALUE TO PHP SESSION VARIABLE
 		$.ajax({
 			url: "../Common/functions.php", //passing page info
-			data: { "location_access": 1, "location": po },  //form data
-			type: "post",	//post data
-			dataType: "json", 	//datatype=json format
-			timeout: 30000,	//waiting time 3 sec
-			success: function (data) {	//if registration is success
+			data: {
+				"location_access": 1,
+				"location": po
+			}, //form data
+			type: "post", //post data
+			dataType: "json", //datatype=json format
+			timeout: 30000, //waiting time 3 sec
+			success: function (data) { //if registration is success
 				if (data.status == 'success') {
 					//CODE TO REMOVE
 					swal({
@@ -2073,14 +2055,12 @@ if (isset($item_description_id)) {
 						.then((willSubmit) => {
 							if (willSubmit) {
 								location.href = "../Main/onestore.php";
-							}
-							else {
+							} else {
 								return;
 							}
 						});
 					//CODE TO REMOVE
-				}
-				else if (data.status == 'error') {
+				} else if (data.status == 'error') {
 					swal({
 						title: "Oops!!!",
 						text: "Couldn't locate your place",
@@ -2091,8 +2071,7 @@ if (isset($item_description_id)) {
 						.then((willSubmit) => {
 							if (willSubmit) {
 								return;
-							}
-							else {
+							} else {
 								return;
 							}
 						});
@@ -2109,8 +2088,9 @@ if (isset($item_description_id)) {
 						timer: 6000,
 					});
 					return;
+				} else {
+					return;
 				}
-				else { return; }
 			}
 		}); //closing ajax
 		document.getElementById("location").innerHTML = "You";
@@ -2120,17 +2100,17 @@ if (isset($item_description_id)) {
 	}
 	/*find latitude and longitude with postal code and postoffice*/
 	/*
-	   var address=document.getElementById('po_list').value;
-	   var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
-	   var xmlhttp = new XMLHttpRequest();
-	   xmlhttp.onreadystatechange = function() {
-			   if (this.readyState == 4 && this.status == 200) {
-			   locate = JSON.parse(this.responseText);
-		   }
-	   };
-	   xmlhttp.open("GET", post , true);
-	   xmlhttp.send();
-   */
+			 var address=document.getElementById('po_list').value;
+			 var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
+			 var xmlhttp = new XMLHttpRequest();
+			 xmlhttp.onreadystatechange = function() {
+							 if (this.readyState == 4 && this.status == 200) {
+							 locate = JSON.parse(this.responseText);
+					 }
+			 };
+			 xmlhttp.open("GET", post , true);
+			 xmlhttp.send();
+	 */
 	/*working*/
 	//REGISTER LOCATION & PIN
 	function reglocate() {
@@ -2148,8 +2128,7 @@ if (isset($item_description_id)) {
 			});
 			document.getElementById("regpin").focus();
 			return;
-		}
-		else if (regpin.length != 6) {
+		} else if (regpin.length != 6) {
 			swal({
 				title: "Oops!!!",
 				text: "Please enter valid pincode !!! ",
@@ -2161,8 +2140,7 @@ if (isset($item_description_id)) {
 			document.getElementById("regpin").value = "";
 			document.getElementById("regpin").focus();
 			return;
-		}
-		else {
+		} else {
 			pin = "https://api.postalpincode.in/pincode/" + regpin + "";
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function () {
@@ -2182,8 +2160,7 @@ if (isset($item_description_id)) {
 						document.getElementById("regpin").value = "";
 						document.getElementById("regpin").focus();
 						return;
-					}
-					else {
+					} else {
 						/*Getting the id of select*/
 						var po = document.getElementById("po_list1");
 						for (i = 0; i < locate[0].PostOffice.length; i++) {
@@ -2207,11 +2184,14 @@ if (isset($item_description_id)) {
 		//	'<%Session["location"]="'+po+'";%>';//SET JS VALUE TO PHP SESSION VARIABLE
 		$.ajax({
 			url: "../Common/functions.php", //passing page info
-			data: { "location_access": 1, "location": po },  //form data
-			type: "post",	//post data
-			dataType: "json", 	//datatype=json format
-			timeout: 30000,	//waiting time 3 sec
-			success: function (data) {	//if registration is success
+			data: {
+				"location_access": 1,
+				"location": po
+			}, //form data
+			type: "post", //post data
+			dataType: "json", //datatype=json format
+			timeout: 30000, //waiting time 3 sec
+			success: function (data) { //if registration is success
 				if (data.status == 'success') {
 					//CODE TO REMOVE
 					swal({
@@ -2224,14 +2204,12 @@ if (isset($item_description_id)) {
 						.then((willSubmit) => {
 							if (willSubmit) {
 								return;
-							}
-							else {
+							} else {
 								return;
 							}
 						});
 					//CODE TO REMOVE
-				}
-				else if (data.status == 'error') {
+				} else if (data.status == 'error') {
 					swal({
 						title: "Oops!!!",
 						text: "Couldn't locate your place",
@@ -2242,8 +2220,7 @@ if (isset($item_description_id)) {
 						.then((willSubmit) => {
 							if (willSubmit) {
 								return;
-							}
-							else {
+							} else {
 								return;
 							}
 						});
@@ -2260,8 +2237,9 @@ if (isset($item_description_id)) {
 						timer: 6000,
 					});
 					return;
+				} else {
+					return;
 				}
-				else { return; }
 			}
 		}); //closing ajax
 		////////////////////////////////////////////////////////////////////////////////////////
@@ -2274,17 +2252,17 @@ if (isset($item_description_id)) {
 		$("#popup2_wrapper").hide();
 		/*find latitude and longitude with postal code and postoffice*/
 		/*
-		   var address=document.getElementById('po_list').value;
-		   var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
-		   var xmlhttp = new XMLHttpRequest();
-		   xmlhttp.onreadystatechange = function() {
-				   if (this.readyState == 4 && this.status == 200) {
-				   locate = JSON.parse(this.responseText);
-			   }
-		   };
-		   xmlhttp.open("GET", post , true);
-		   xmlhttp.send();
-	   */
+				 var address=document.getElementById('po_list').value;
+				 var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
+				 var xmlhttp = new XMLHttpRequest();
+				 xmlhttp.onreadystatechange = function() {
+								 if (this.readyState == 4 && this.status == 200) {
+								 locate = JSON.parse(this.responseText);
+						 }
+				 };
+				 xmlhttp.open("GET", post , true);
+				 xmlhttp.send();
+		 */
 		/*working*/
 	}
 </script>
@@ -2292,7 +2270,7 @@ if (isset($item_description_id)) {
 <!----------THIS IS FROM HEADER ------------------->
 <!--///////////////////////////////////////////////////////////////-->
 <!-------------------------------------------------------------------- >
-	<!-- Bootstrap JS form CDN -->
+		<!-- Bootstrap JS form CDN -->
 <script type="text/javascript">
 	$('#myModal').on('show.bs.modal', function (event) {
 		$('#myModal').modal('handleUpdate');
@@ -2301,264 +2279,140 @@ if (isset($item_description_id)) {
 		$('myModal2').modal('handleUpdate');
 	});
 	/*
-			$('avail_stores').on('show.bs.model',function (event){
-				$('#avail_stores').modal('handleUpdate') ;
-			});
+					$('avail_stores').on('show.bs.model',function (event){
+							$('#avail_stores').modal('handleUpdate') ;
+					});
 	 */
 </script>
-<!-- start-smoth-scrolling --><!--
-	<script type="text/javascript" src="../../js/move-top.js"></script>
-	<script type="text/javascript" src="../../js/easing.js"></script>-->
+<!-- start-smoth-scrolling -->
+<!--
+		<script type="text/javascript" src="../../js/move-top.js"></script>
+		<script type="text/javascript" src="../../js/easing.js"></script>-->
 <!--ending of added script -->
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
 <!--	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-				};
-			*/
-			$().UItoTop({ easingType: 'easeOutQuart' });
-			});
-	</script>
+				$(document).ready(function() {
+						/*
+								var defaults = {
+								containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+								};
+						*/
+						$().UItoTop({ easingType: 'easeOutQuart' });
+						});
+		</script>
 -->
 <!-- //here ends scrolling icon -->
 <!--// Mini Cart //-->
 <script src="../../js/minicart.min.js"></script>
 <!--// Mini Cart //-->
 <script>
-	<!--// Mini Cart //-->
-	paypal.minicart.render({
-		action: '#'
-	});
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
+	<!--// Mini Cart //
+	 -->
+paypal.minicart.render({
+action:
+'#'
+});
+if
+(~window.location.search.indexOf('reset=true'))
+{
+paypal.minicart.reset();
+}
 </script>
 <!--// Mini Cart //-->
 <!-- main slider-banner -->
 <script type="text/javascript">
-	//TO REMOVE PADDING AFTER CLOSING MODAL
-	$(".close").on("hidden", function () {
-		$('#strt').css('padding', '0px');
+//TO REMOVE PADDING AFTER CLOSING MODAL
+$(".close").on("hidden", function() {
+	$('#strt').css('padding', '0px');
+});
+window.addEventListener("click", function(e) {
+	e.stopPropagation();
+	$('body').css('padding-right', '-10px');
+});
+//TO REMOVE PADDING AFTER CLOSING MODAL
+jQuery(document).ready(function() {
+	jQuery('#demo1').skdslider({
+		'delay': 5000,
+		'animationSpeed': 2000,
+		'showNextPrev': true,
+		'showPlayButton': true,
+		'autoSlide': true,
+		'animationType': 'fading'
 	});
-	window.addEventListener("click", function (e) {
-		e.stopPropagation();
-		$('body').css('padding-right', '-10px');
+	jQuery('#responsive').change(function() {
+		$('#responsive_wrapper').width(jQuery(this).val());
 	});
-	//TO REMOVE PADDING AFTER CLOSING MODAL
-	jQuery(document).ready(function () {
-		jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
-		jQuery('#responsive').change(function () {
-			$('#responsive_wrapper').width(jQuery(this).val());
-		});
-	});
-	$('#popup2').popup({
-		pagecontainer: '#page',
-		escape: false
-	});
-	$('#popup1').popup({
-		pagecontainer: '#page',
-		escape: false
-	});
-	function cartview() {
-		location.href = "../Cart/cart.php"
+});
+$('#popup2').popup({
+	pagecontainer: '#page',
+	escape: false
+});
+$('#popup1').popup({
+	pagecontainer: '#page',
+	escape: false
+});
+
+function cartview() {
+	location.href = "../Cart/cart.php"
+}
+//AUTO LOG IN
+$(document).ready(function() {
+	setTimeout(() => {
+		const loader1 = document.querySelector(".loader1");
+		const loader2 = document.querySelector(".loader2");
+		const loader = document.querySelector(".loader");
+		loader.className += " hidden";
+		loader1.className += " hidden";
+		loader2.className += " hidden";
+	}, 3000);
+
+	function getCookie(name) {
+		// Split cookie string and get all individual name=value pairs in an array
+		var cookieArr = document.cookie.split(";");
+		// Loop through the array elements
+		for (var i = 0; i < cookieArr.length; i++) {
+			var cookiePair = cookieArr[i].split("=");
+			/* Removing whitespace at the beginning of the cookie name
+			and compare it with the given string */
+			if (name == cookiePair[0].trim()) {
+				// Decode the cookie value and return
+				return decodeURIComponent(cookiePair[1]);
+			}
+		}
+		// Return null if not found
+		return " ";
 	}
-	//AUTO LOG IN
-	$(document).ready(function () {
-		setTimeout(() => {
-			const loader1 = document.querySelector(".loader1");
-			const loader2 = document.querySelector(".loader2");
-			const loader = document.querySelector(".loader");
-			loader.className += " hidden";
-			loader1.className += " hidden";
-			loader2.className += " hidden";
-		}, 3000);
-		function getCookie(name) {
-			// Split cookie string and get all individual name=value pairs in an array
-			var cookieArr = document.cookie.split(";");
-			// Loop through the array elements
-			for (var i = 0; i < cookieArr.length; i++) {
-				var cookiePair = cookieArr[i].split("=");
-				/* Removing whitespace at the beginning of the cookie name
-				and compare it with the given string */
-				if (name == cookiePair[0].trim()) {
-					// Decode the cookie value and return
-					return decodeURIComponent(cookiePair[1]);
-				}
-			}
-			// Return null if not found
-			return " ";
-		}
-		<?php
-		if (!isset($_SESSION['id'])) {
-			?>
-			var email = getCookie("OneStore_email");
-			var pass = getCookie("OneStore_password");
-			if (email != " " && pass != " ") {
-				//$("#strt").hide();
-				$.ajax({
-					url: "../Common/functions.php", //passing page info
-					data: { "login": 1, "email": email, "password": pass },  //form data
-					type: "post",	//post data
-					dataType: "json", 	//datatype=json format
-					timeout: 18000,	//waiting time 3 sec
-					success: function (data) {	//if logging in is success
-						if (data.status == 'success') {
-							//location.href="onestore.php";
-						}
-						else if (data.status == 'admin') {
-							location.href = "../../store-admin/index.php?id=" + data.id + "";
-						}
-						else if (data.status == 'error') {
-							return;
-						}
-					},
-					error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-						if (textstatus === "timeout") {
-							swal({
-								title: "Oops!!!",
-								text: "server time out",
-								icon: "error",
-								closeOnClickOutside: false,
-								dangerMode: true,
-								timer: 6000,
-							});
-							location.href = "../Main/onestore.php";
-							return;
-						}
-						else { return; }
-					}
-				}); //closing ajax
-			}
-			<?php
-		}
-		if (isset($_SESSION['id'])) {
-			?>
-			//CART COUNT
+	<?php
+	if (!isset($_SESSION['id'])) {
+		?>
+		var email = getCookie("OneStore_email");
+		var pass = getCookie("OneStore_password");
+		if (email != " " && pass != " ") {
+			//$("#strt").hide();
 			$.ajax({
 				url: "../Common/functions.php", //passing page info
-				data: { "cartcnt": 1, "user": "<?= $_SESSION['id'] ?>" },  //form data
-				type: "post",	//post data
-				dataType: "json", 	//datatype=json format
-				timeout: 18000,	//waiting time 3 sec
-				success: function (data) {	//if logging in is success
-					if (data.status == "success") {
-						document.getElementById("sm-cartcnt").innerHTML = "";
-						document.getElementById("lg-cartcnt").innerHTML = "";
-						document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
-						document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
-						return;
-					}
-				},
-				error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-					if (textstatus === "timeout") {
-						return;
-					}
-					else { return; }
-				}
-			}); //closing ajax
-			<?php
-		}
-		?>
-	});
-	//AUTO LOG IN
-	//Newsletter activation
-	//Feedback check
-	function NLValidateEmail(mail) {
-		if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(sendmail.cntemail.value)) {
-			return true;
-		}
-		return false;
-	}
-	function nlcheckmail() {
-		var nle = document.getElementById("nlmail").value;
-		if (nle == null || nle == "") {
-			swal({
-				title: "Oops!!!",
-				text: "Please enter your email",
-				icon: "error",
-				closeOnClickOutside: false,
-				dangerMode: true,
-				timer: 6000,
-			});
-			document.getElementById("nlmail").focus();
-			return;
-		}
-		else if (NLValidateEmail(nle) == false) {
-			swal({
-				title: "Oops!!!",
-				text: "Invalid email address!!! ",
-				icon: "error",
-				closeOnClickOutside: false,
-				dangerMode: true,
-				timer: 6000,
-			});
-			document.getElementById("nlmail").focus();
-			return false;
-		}
-		else {
-			$.ajax({
-				url: "../Common/functions.php",
-				data: { "nlmailcheck": 1, "email": nle },
-				dataType: "json",
-				type: "post",
-				timeout: 30000,
-				success: function (data) {
+				data: {
+					"login": 1,
+					"email": email,
+					"password": pass
+				}, //form data
+				type: "post", //post data
+				dataType: "json", //datatype=json format
+				timeout: 18000, //waiting time 3 sec
+				success: function(data) { //if logging in is success
 					if (data.status == 'success') {
-						swal({
-							title: "Added!!!",
-							text: "added to Newsletter",
-							icon: "success",
-							closeOnClickOutside: false,
-							dangerMode: true,
-							timer: 6000,
-						});
-					}
-					else if (data.status == 'error') {
-						swal({
-							title: "Oops!!!",
-							text: "Try agan later",
-							icon: "error",
-							closeOnClickOutside: false,
-							dangerMode: true,
-							timer: 6000,
-						})
-							.then((willSubmit1) => {
-								if (willSubmit1) {
-									location.href = "../Account/login.php"
-									return;
-								}
-								else {
-									return;
-								}
-							});
-					}
-					else if (data.status == 'error2') {
-						swal({
-							title: "Not found!!!",
-							text: "Please log in",
-							icon: "error",
-							closeOnClickOutside: false,
-							dangerMode: true,
-							timer: 6000,
-						})
-							.then((willSubmit1) => {
-								if (willSubmit1) {
-									//location.href="login.php"
-									return;
-								}
-								else {
-									return;
-								}
-							});
+						//location.href="onestore.php";
+					} else if (data.status == 'admin') {
+						location.href = "../../store-admin/index.php?id=" + data.id + "";
+					} else if (data.status == 'error') {
+						return;
 					}
 				},
-				error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+				error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
 					if (textstatus === "timeout") {
 						swal({
 							title: "Oops!!!",
@@ -2568,29 +2422,177 @@ if (isset($item_description_id)) {
 							dangerMode: true,
 							timer: 6000,
 						});
+						location.href = "../Main/onestore.php";
+						return;
+					} else {
 						return;
 					}
-					else { return; }
 				}
 			}); //closing ajax
 		}
+		<?php
 	}
-	//Newsletter activation
-	function hostReachable() {
-		// Handle IE and more capable browsers
-		var xhr = new (window.ActiveXObject || XMLHttpRequest)("Microsoft.XMLHTTP");
-		// Open new request as a HEAD to the root hostname with a random param to bust the cache
-		xhr.open("HEAD", "//" + window.location.hostname + "/?rand=" + Math.floor((1 + Math.random()) * 0x10000), false);
-		// Issue request and handle response
-		try {
-			xhr.send();
-			return (xhr.status >= 200 && (xhr.status < 300 || xhr.status === 304));
-		} catch (error) {
-			return false;
-		}
+	if (isset($_SESSION['id'])) {
+		?>
+		//CART COUNT
+		$.ajax({
+			url: "../Common/functions.php", //passing page info
+			data: {
+				"cartcnt": 1,
+				"user": "<?= $_SESSION['id'] ?>"
+			}, //form data
+			type: "post", //post data
+			dataType: "json", //datatype=json format
+			timeout: 18000, //waiting time 3 sec
+			success: function(data) { //if logging in is success
+				if (data.status == "success") {
+					document.getElementById("sm-cartcnt").innerHTML = "";
+					document.getElementById("lg-cartcnt").innerHTML = "";
+					document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
+					document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
+					return;
+				}
+			},
+			error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+				if (textstatus === "timeout") {
+					return;
+				} else {
+					return;
+				}
+			}
+		}); //closing ajax
+		<?php
 	}
-	var scrollNow = getCookieset(scrollTop);
-	$("html,body").animate({ scrollTop: scrollNow }, 1000);
+	?>
+});
+//AUTO LOG IN
+//Newsletter activation
+//Feedback check
+function NLValidateEmail(mail) {
+	if (
+		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		.test(sendmail.cntemail.value)) {
+		return true;
+	}
+	return false;
+}
+
+function nlcheckmail() {
+	var nle = document.getElementById("nlmail").value;
+	if (nle == null || nle == "") {
+		swal({
+			title: "Oops!!!",
+			text: "Please enter your email",
+			icon: "error",
+			closeOnClickOutside: false,
+			dangerMode: true,
+			timer: 6000,
+		});
+		document.getElementById("nlmail").focus();
+		return;
+	} else if (NLValidateEmail(nle) == false) {
+		swal({
+			title: "Oops!!!",
+			text: "Invalid email address!!! ",
+			icon: "error",
+			closeOnClickOutside: false,
+			dangerMode: true,
+			timer: 6000,
+		});
+		document.getElementById("nlmail").focus();
+		return false;
+	} else {
+		$.ajax({
+			url: "../Common/functions.php",
+			data: {
+				"nlmailcheck": 1,
+				"email": nle
+			},
+			dataType: "json",
+			type: "post",
+			timeout: 30000,
+			success: function(data) {
+				if (data.status == 'success') {
+					swal({
+						title: "Added!!!",
+						text: "added to Newsletter",
+						icon: "success",
+						closeOnClickOutside: false,
+						dangerMode: true,
+						timer: 6000,
+					});
+				} else if (data.status == 'error') {
+					swal({
+							title: "Oops!!!",
+							text: "Try agan later",
+							icon: "error",
+							closeOnClickOutside: false,
+							dangerMode: true,
+							timer: 6000,
+						})
+						.then((willSubmit1) => {
+							if (willSubmit1) {
+								location.href = "../Account/login.php"
+								return;
+							} else {
+								return;
+							}
+						});
+				} else if (data.status == 'error2') {
+					swal({
+							title: "Not found!!!",
+							text: "Please log in",
+							icon: "error",
+							closeOnClickOutside: false,
+							dangerMode: true,
+							timer: 6000,
+						})
+						.then((willSubmit1) => {
+							if (willSubmit1) {
+								//location.href="login.php"
+								return;
+							} else {
+								return;
+							}
+						});
+				}
+			},
+			error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+				if (textstatus === "timeout") {
+					swal({
+						title: "Oops!!!",
+						text: "server time out",
+						icon: "error",
+						closeOnClickOutside: false,
+						dangerMode: true,
+						timer: 6000,
+					});
+					return;
+				} else {
+					return;
+				}
+			}
+		}); //closing ajax
+	}
+}
+//Newsletter activation
+function hostReachable() {
+	// Handle IE and more capable browsers
+	var xhr = new(window.ActiveXObject || XMLHttpRequest)("Microsoft.XMLHTTP");
+	// Open new request as a HEAD to the root hostname with a random param to bust the cache
+	xhr.open("HEAD", "//" + window.location.hostname + "/?rand=" + Math.floor((1 + Math.random()) * 0x10000), false);
+	// Issue request and handle response
+	try {
+		xhr.send();
+		return (xhr.status >= 200 && (xhr.status < 300 || xhr.status === 304));
+	} catch (error) {
+		return false;
+	}
+}
+var scrollNow = getCookieset(scrollTop);
+$("html,body").animate({
+	scrollTop: scrollNow
+}, 1000);
 </script>
 <!------------------------------------------------------------>
 <!--/////////////////////START-303///END-833/////////////////////////////////////////-->
@@ -2630,18 +2632,18 @@ if (isset($item_description_id)) {
 <script src="../../extras/OS/plugins/toastr/toastr.min.js"></script>
 <!-- Defining Toastr -->
 <script type="text/javascript">
-	var Toast = Swal.mixin({
-		toast: true,
-		position: 'top-end',
-		showConfirmButton: false,
-		timer: 3000
-	});
-	/*
+var Toast = Swal.mixin({
+	toast: true,
+	position: 'top-end',
+	showConfirmButton: false,
+	timer: 3000
+});
+/*
 		Toast.fire({
-			icon: 'error',
-			title: ' Enter your OTP !!! '
+				icon: 'error',
+				title: ' Enter your OTP !!! '
 		})
-	*/
+*/
 </script>
 <!-- SweetAlert -->
 <!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->

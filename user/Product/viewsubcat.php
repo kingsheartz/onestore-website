@@ -246,8 +246,7 @@ where category_id=$ctid ";
             if ($(window).width() < 370) {
                 $("#prev").html("<i class='fa fa-angle-double-left'></i>");
                 $("#next").html("<i class='fa fa-angle-double-right'></i>");
-            }
-            else {
+            } else {
                 $("#prev").html("Prev");
                 $("#next").html("Next");
             }
@@ -255,8 +254,7 @@ where category_id=$ctid ";
                 if ($(window).width() < 370) {
                     $("#prev").html("<i class='fa fa-angle-double-left'></i>");
                     $("#next").html("<i class='fa fa-angle-double-right'></i>");
-                }
-                else {
+                } else {
                     $("#prev").html("Prev");
                     $("#next").html("Next");
                 }

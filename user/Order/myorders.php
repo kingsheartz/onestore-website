@@ -288,11 +288,14 @@ require "../Common/pdo.php";
   $(document).ready(function (f) {
     $.ajax({
       url: "../Common/functions.php", //passing page info
-      data: { "cartcnt": 1, "user": "<?= $_SESSION['id'] ?>" },  //form data
-      type: "post",	//post data
-      dataType: "json", 	//datatype=json format
-      timeout: 18000,	//waiting time 3 sec
-      success: function (data) {	//if logging in is success
+      data: {
+        "cartcnt": 1,
+        "user": "<?= $_SESSION['id'] ?>"
+      }, //form data
+      type: "post", //post data
+      dataType: "json", //datatype=json format
+      timeout: 18000, //waiting time 3 sec
+      success: function (data) { //if logging in is success
         if (data.status == "success") {
           document.getElementById("sm-cartcnt").innerHTML = "";
           document.getElementById("lg-cartcnt").innerHTML = "";
@@ -304,8 +307,9 @@ require "../Common/pdo.php";
       error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
         if (textstatus === "timeout") {
           return;
+        } else {
+          return;
         }
-        else { return; }
       }
     }); //closing ajax
     var pageId = 1;
@@ -314,7 +318,12 @@ require "../Common/pdo.php";
     $('.std_text1').css('display', 'flex');
     var filter = $('#ord_filt').val();
     var inputVal = $('#order_search').val();
-    $.get("getorder.php", { name: inputVal, "filter": filter, 'page_no': pageId, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("getorder.php", {
+      name: inputVal,
+      "filter": filter,
+      'page_no': pageId,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -332,7 +341,11 @@ require "../Common/pdo.php";
     $('.std_text1').css('display', 'flex');
     var inputVal = $('#order_search').val();
     var filter = $('#ord_filt').val();
-    $.get("getorder.php", { name: inputVal, 'filter': filter, id: <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("getorder.php", {
+      name: inputVal,
+      'filter': filter,
+      id: <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -349,7 +362,11 @@ require "../Common/pdo.php";
     $('.std_text1').css('display', 'flex');
     var inputVal = $('#order_search').val();
     var filter = $('#ord_filt').val();
-    $.get("getorder.php", { 'name': inputVal, 'filter': filter, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("getorder.php", {
+      'name': inputVal,
+      'filter': filter,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -369,7 +386,12 @@ require "../Common/pdo.php";
     $('.std_text1').css('display', 'flex');
     var inputVal = $('#order_search').val();
     var filter = $('#ord_filt').val();
-    $.get("getorder.php", { 'name': inputVal, 'filter': filter, 'page_no': pageId, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("getorder.php", {
+      'name': inputVal,
+      'filter': filter,
+      'page_no': pageId,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);

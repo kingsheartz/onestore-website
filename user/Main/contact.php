@@ -76,7 +76,8 @@ require "header.php"
                                 <li><i class="fa fa-envelope" aria-hidden="true"></i><a
                                         href="mailto:onestoreforallyourneeds@gmail.com">onestore</a></li>
                                 <li><i class="fa fa-phone" aria-hidden="true"
-                                        style="padding:0 14px 0 0;margin: 0;"></i>+91 8113990368</li>
+                                        style="padding:0 14px 0 0;margin: 0;"></i>+91 8113990368
+                                </li>
                             </ul>
                             <div class="w3_agile_social_icons w3_agile_social_icons_contact">
                                 <ul>
@@ -97,7 +98,8 @@ require "header.php"
                     <div style="background-color: #0c77aa;padding:5px;width: 100%;">
                         <div style="background-color: rgba(0,0,0,0.65);padding: 15px">
                             <h3 class="w3_agile_header"
-                                style="color: white;font-weight: bolder;margin-top: 0px;padding-top: 20px;">Leave
+                                style="color: white;font-weight: bolder;margin-top: 0px;padding-top: 20px;">
+                                Leave
                                 a<span> Message</span></h3>
                             <form action="#" name="feedback_form" method="post"
                                 style="background-color: rgba(0,0,0,0.55);padding: 5px;">
@@ -106,7 +108,8 @@ require "header.php"
                                         name="Name" onkeyup="checkname()" placeholder=" " required="" />
                                     <label class="input__label input__label--ichiro" for="input-25">
                                         <span class="input__label-content input__label-content--ichiro"
-                                            style="color: white">Your Name</span>
+                                            style="color: white">Your
+                                            Name</span>
                                     </label>
                                 </span>
                                 <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i
@@ -117,7 +120,8 @@ require "header.php"
                                         id="input-26" name="Email" placeholder=" " required="" />
                                     <label class="input__label input__label--ichiro" for="input-26">
                                         <span class="input__label-content input__label-content--ichiro"
-                                            style="color: white">Your Email</span>
+                                            style="color: white">Your
+                                            Email</span>
                                     </label>
                                 </span>
                                 <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i
@@ -157,19 +161,20 @@ require "footer.php";
         if (name == null || name == "") {
             $("#nameerror").hide();
             return;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php",
-                data: { "checkname": 1, "name": name },
+                data: {
+                    "checkname": 1,
+                    "name": name
+                },
                 dataType: "json",
                 type: "post",
                 timeout: 30000,
                 success: function (data) {
                     if (data.status == 'success') {
                         $("#nameerror").hide();
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         $("#nameerror").show();
                     }
                 },
@@ -184,8 +189,9 @@ require "footer.php";
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
@@ -196,19 +202,20 @@ require "footer.php";
         if (email == null || email == "") {
             $("#emailerror").hide();
             return;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php",
-                data: { "checkmail": 1, "email": email },
+                data: {
+                    "checkmail": 1,
+                    "email": email
+                },
                 dataType: "json",
                 type: "post",
                 timeout: 30000,
                 success: function (data) {
                     if (data.status == 'success') {
                         $("#emailerror").hide();
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         $("#emailerror").show();
                     }
                 },
@@ -223,15 +230,18 @@ require "footer.php";
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }
     }
     //Feedback check
     function ValidateEmail(mail) {
-        if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(feedback_form.Email.value)) {
+        if (
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                .test(feedback_form.Email.value)) {
             return true;
         }
         return false;
@@ -239,6 +249,7 @@ require "footer.php";
     $(document).ready(function (e) {
         $("#setloc2").hide();
     });
+
     function feedback() {
         var name = document.getElementById('input-25').value;
         var email = document.getElementById('input-26').value;
@@ -268,8 +279,7 @@ require "footer.php";
             });
             document.getElementById("input-25").focus();
             return false;
-        }
-        else if (namespace.length > 1) {
+        } else if (namespace.length > 1) {
             swal({
                 title: "Oops!!!",
                 text: "'SPACE' not allowed",
@@ -357,15 +367,19 @@ require "footer.php";
             });
             document.getElementById("input-27").focus();
             return false;
-        }
-        else {
+        } else {
             $.ajax({
                 url: "../Common/functions.php", //passing page info
-                data: { "feedback": 1, "name": name, "email": email, "msg": message },  //form data
-                type: "post",   //post data
-                dataType: "json",   //datatype=json format
-                timeout: 30000,   //waiting time 30 sec
-                success: function (data) {    //if registration is success
+                data: {
+                    "feedback": 1,
+                    "name": name,
+                    "email": email,
+                    "msg": message
+                }, //form data
+                type: "post", //post data
+                dataType: "json", //datatype=json format
+                timeout: 30000, //waiting time 30 sec
+                success: function (data) { //if registration is success
                     if (data.status == 'success') {
                         swal({
                             title: "Success!!!",
@@ -378,13 +392,11 @@ require "footer.php";
                                 if (willSubmit1) {
                                     location.href = "../Main/contact.php"
                                     return;
-                                }
-                                else {
+                                } else {
                                     return;
                                 }
                             });
-                    }
-                    else if (data.status == 'error') {
+                    } else if (data.status == 'error') {
                         swal({
                             title: "Oops!!!",
                             text: "Try again later",
@@ -395,13 +407,11 @@ require "footer.php";
                             .then((willSubmit) => {
                                 if (willSubmit) {
                                     return;
-                                }
-                                else {
+                                } else {
                                     return;
                                 }
                             });
-                    }
-                    else if (data.status == 'error2') {
+                    } else if (data.status == 'error2') {
                         swal({
                             title: "Sorry!!!",
                             text: "Please log in ",
@@ -413,8 +423,7 @@ require "footer.php";
                                 if (willSubmit) {
                                     location.href = "../Account/login.php"
                                     return;
-                                }
-                                else {
+                                } else {
                                     return;
                                 }
                             });
@@ -431,8 +440,9 @@ require "footer.php";
                             timer: 6000,
                         });
                         return;
+                    } else {
+                        return;
                     }
-                    else { return; }
                 }
             }); //closing ajax
         }

@@ -261,7 +261,11 @@ require "../Common/pdo.php";
     $('#background_loader').show();
     $('#std_loader').show();
     var inputVal = $('#order_search').val();
-    $.get("gethistorysearch.php", { "name": inputVal, 'page_no': pageId, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("gethistorysearch.php", {
+      "name": inputVal,
+      'page_no': pageId,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -276,7 +280,10 @@ require "../Common/pdo.php";
     $('#background_loader').show();
     $('#std_loader').show();
     var inputVal = $('#order_search').val();
-    $.get("gethistorysearch.php", { name: inputVal, id: <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("gethistorysearch.php", {
+      name: inputVal,
+      id: <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -292,7 +299,11 @@ require "../Common/pdo.php";
     $('#background_loader').show();
     $('#std_loader').show();
     var inputVal = $('#order_search').val();
-    $.get("gethistorysearch.php", { "name": inputVal, 'page_no': pageId, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("gethistorysearch.php", {
+      "name": inputVal,
+      'page_no': pageId,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function (data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);

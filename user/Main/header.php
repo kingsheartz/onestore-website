@@ -13,8 +13,15 @@ if (session_status() === PHP_SESSION_NONE) {
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords"
     content="One Store,OneStore,onestore,shoppingcart,One,one,Store,store,shopping,cart,for all your needs" />
-  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-    function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <script type="application/x-javascript">
+  addEventListener("load", function() {
+    setTimeout(hideURLbar, 0);
+  }, false);
+
+  function hideURLbar() {
+    window.scrollTo(0, 1);
+  }
+  </script>
   <!-- //for-mobile-apps -->
   <!--favicon-->
   <link href="../../images/logo/favicon.png" rel="icon" />
@@ -67,7 +74,9 @@ if (session_status() === PHP_SESSION_NONE) {
     jQuery(document).ready(function ($) {
       $(".scroll").click(function (event) {
         event.preventDefault();
-        $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        $('html,body').animate({
+          scrollTop: $(this.hash).offset().top
+        }, 1000);
       });
     });
   </script>
@@ -783,6 +792,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <script type="text/javascript">
     var gonenetwork = 0;
     var NavScrollTop;
+
     function network_gone() {
       if (navigator.onLine == false) {
         $('#show_offline').css('display', 'block');
@@ -791,14 +801,16 @@ if (session_status() === PHP_SESSION_NONE) {
         return true;
       }
     }
+
     function check_network() {
       if (network_gone()) {
         return false;
-      }
-      else if ((navigator.onLine == true) && (gonenetwork == 1)) {
+      } else if ((navigator.onLine == true) && (gonenetwork == 1)) {
         $('#show_online').css('display', 'block');
         $('#show_offline').hide();
-        setTimeout(function () { $('#show_online').hide(); }, 2000);
+        setTimeout(function () {
+          $('#show_online').hide();
+        }, 2000);
         gonenetwork = 0;
       }
     }
@@ -851,7 +863,8 @@ if (session_status() === PHP_SESSION_NONE) {
   </div>
   <!--ANIMATION-->
   <!-- header -->
-  <div class="headimg" style="padding: 0px;margin: 0px;left: 0px;right: 0px;"><!--#1-->
+  <div class="headimg" style="padding: 0px;margin: 0px;left: 0px;right: 0px;">
+    <!--#1-->
     <div class="container top"
       style="width:100%;padding-top: 12px;margin: 0px;left: 0px;right: 0px;padding-bottom: 5px;">
       <div style="height: 100% ;width: 100%;display: block;margin: 0px;left: 0px;right: 0px">
@@ -884,7 +897,8 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
       </div>
     </div>
-    <div class=" nav-bar shadow_b"><!--#2-->
+    <div class=" nav-bar shadow_b">
+      <!--#2-->
       <!-- //LARGE DIV -->
       <div id="large-div">
         <div class="agileits_header shadow_b">
@@ -1039,9 +1053,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
       </div><!-- //close large div -->
       <!-- //SMALL DIV -->
-      <div id="small-div"><!--#3-->
-        <div class="agileits_header"><!--#4-->
-          <div class="container head" style="padding: 0px;margin: 0px;left: 0px;right: 0px"><!--#5-->
+      <div id="small-div">
+        <!--#3-->
+        <div class="agileits_header">
+          <!--#4-->
+          <div class="container head" style="padding: 0px;margin: 0px;left: 0px;right: 0px">
+            <!--#5-->
             <!--krg-->
             <div id="search-div" class=" srch bar-srch device-width-set"
               style="padding: 0px;margin: 0px;left: 0px;right: 0px">
@@ -1090,10 +1107,13 @@ if (session_status() === PHP_SESSION_NONE) {
               </div>
             </div>
             <!--krg-->
-            <div class="option_segment"><!--#6-->
-              <div class="agile-login"><!--#7-->
+            <div class="option_segment">
+              <!--#6-->
+              <div class="agile-login">
+                <!--#7-->
                 <div>
-                  <ul class="phone_email topli"><!--SIDE OPEN NAV BAR
+                  <ul class="phone_email topli">
+                    <!--SIDE OPEN NAV BAR
             <li style="float: left;margin-top: 20px;" id="sm_side_active">
               <a href="#">
                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
@@ -1281,7 +1301,8 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
   </div>
   <!-- //header -->
-  </div><!--DON'T KNOW WHEN IT STARTS
+  </div>
+  <!--DON'T KNOW WHEN IT STARTS
 </div>
 </div>-->
   <!-- navigation -->
@@ -1996,17 +2017,28 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div> -->
-    <div id="side_cat_list_end_default" style="margin-top: 370px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_enda" style="display: none;margin-top: 333px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endb" style="display: none;margin-top: 296px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endc" style="display: none;margin-top: 259px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endd" style="display: none;margin-top: 222px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_ende" style="display: none;margin-top: 185px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endf" style="display: none;margin-top: 148px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endg" style="display: none;margin-top: 111px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endh" style="display: none;margin-top: 74px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endi" style="display: none;margin-top: 37px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endj" style="display: none;margin-top: 0px;"></div><!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_end_default" style="margin-top: 370px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_enda" style="display: none;margin-top: 333px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endb" style="display: none;margin-top: 296px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endc" style="display: none;margin-top: 259px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endd" style="display: none;margin-top: 222px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_ende" style="display: none;margin-top: 185px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endf" style="display: none;margin-top: 148px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endg" style="display: none;margin-top: 111px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endh" style="display: none;margin-top: 74px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endi" style="display: none;margin-top: 37px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endj" style="display: none;margin-top: 0px;"></div>
+    <!--n+4 breaks 37px difference-->
     <a class="side_nav_content_end" id="side_nav_content_end_line" href="#"></a><br>
     <a class="side_nav_content_header" href="#" style="color: #fe9126"> <i class="fa fa-sm fa-cog"
         style="color:white "></i> Help & Settings</a>

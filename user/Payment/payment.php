@@ -26,23 +26,87 @@ $store_id = $_POST['store_id'] ?? 'nill';
     if ('<?= $placeorder_mul ?>' != 'nill') {
         console.log("mul")
         if ('<?= $shipping_first_name ?>' != 'nill') {
-            data_used = { "placeorder_mul": 1, "user": <?= $user ?>, "user_id": <?= $user_id ?>, "shipping_first_name": '<?= $shipping_first_name ?>', "shipping_last_name": '<?= $shipping_last_name ?>', "shipping_ph_no": '<?= $shipping_ph_no ?>', "shipping_ph_no2": '<?= $shipping_ph_no2 ?>', "shipping_address_1": '<?= $shipping_address_1 ?>', "shipping_postcode": '<?= $shipping_postcode ?>', "order_notes": <?= $order_notes ?>, "pdt_cnt": <?= $pdt_cnt ?>, "total_amt": <?= $total_amt ?> };
+            data_used = {
+                "placeorder_mul": 1,
+                "user": <?= $user ?>,
+                "user_id": <?= $user_id ?>,
+                "shipping_first_name": '<?= $shipping_first_name ?>',
+                "shipping_last_name": '<?= $shipping_last_name ?>',
+                "shipping_ph_no": '<?= $shipping_ph_no ?>',
+                "shipping_ph_no2": '<?= $shipping_ph_no2 ?>',
+                "shipping_address_1": '<?= $shipping_address_1 ?>',
+                "shipping_postcode": '<?= $shipping_postcode ?>',
+                "order_notes": <?= $order_notes ?>,
+                "pdt_cnt": <?= $pdt_cnt ?>,
+                "total_amt": <?= $total_amt ?>
+            };
         }
-        data_used = { "placeorder_mul": 1, "user": <?= $user ?>, "user_id": <?= $user_id ?>, "order_notes": <?= $order_notes ?>, "pdt_cnt": <?= $pdt_cnt ?>, "total_amt": <?= $total_amt ?> };
-    }
-    else if ('<?= $buynow_placeorder ?>' != 'nill') {
+        data_used = {
+            "placeorder_mul": 1,
+            "user": <?= $user ?>,
+            "user_id": <?= $user_id ?>,
+            "order_notes": <?= $order_notes ?>,
+            "pdt_cnt": <?= $pdt_cnt ?>,
+            "total_amt": <?= $total_amt ?>
+        };
+    } else if ('<?= $buynow_placeorder ?>' != 'nill') {
         console.log("buy noe")
         if ('<?= $shipping_first_name ?>' != 'nill') {
-            data_used = { "buynow_placeorder": 1, "user": <?= $user ?>, "user_id": <?= $user_id ?>, "shipping_first_name": '<?= $shipping_first_name ?>', "shipping_last_name": '<?= $shipping_last_name ?>', "shipping_ph_no": '<?= $shipping_ph_no ?>', "shipping_ph_no2": '<?= $shipping_ph_no2 ?>', "shipping_address_1": '<?= $shipping_address_1 ?>', "shipping_postcode": '<?= $shipping_postcode ?>', "order_notes": <?= $order_notes ?>, "pdt_cnt": <?= $pdt_cnt ?>, "total_amt": <?= $total_amt ?>, "idid": '<?= $idid ?>', "store_id": '<?= $store_id ?>', "order_type": '<?= $order_type ?>' };
+            data_used = {
+                "buynow_placeorder": 1,
+                "user": <?= $user ?>,
+                "user_id": <?= $user_id ?>,
+                "shipping_first_name": '<?= $shipping_first_name ?>',
+                "shipping_last_name": '<?= $shipping_last_name ?>',
+                "shipping_ph_no": '<?= $shipping_ph_no ?>',
+                "shipping_ph_no2": '<?= $shipping_ph_no2 ?>',
+                "shipping_address_1": '<?= $shipping_address_1 ?>',
+                "shipping_postcode": '<?= $shipping_postcode ?>',
+                "order_notes": <?= $order_notes ?>,
+                "pdt_cnt": <?= $pdt_cnt ?>,
+                "total_amt": <?= $total_amt ?>,
+                "idid": '<?= $idid ?>',
+                "store_id": '<?= $store_id ?>',
+                "order_type": '<?= $order_type ?>'
+            };
         }
-        data_used = { "buynow_placeorder": 1, "user": <?= $user ?>, "user_id": <?= $user_id ?>, "order_notes": <?= $order_notes ?>, "pdt_cnt": <?= $pdt_cnt ?>, "total_amt": <?= $total_amt ?>, "idid": <?= $idid ?>, "store_id": <?= $store_id ?>, "order_type": <?= $order_type ?> };
-    }
-    else if ('<?= $placeorder ?>' != 'nill') {
+        data_used = {
+            "buynow_placeorder": 1,
+            "user": <?= $user ?>,
+            "user_id": <?= $user_id ?>,
+            "order_notes": <?= $order_notes ?>,
+            "pdt_cnt": <?= $pdt_cnt ?>,
+            "total_amt": <?= $total_amt ?>,
+            "idid": <?= $idid ?>,
+            "store_id": <?= $store_id ?>,
+            "order_type": <?= $order_type ?>
+        };
+    } else if ('<?= $placeorder ?>' != 'nill') {
         console.log("placeorder")
         if ('<?= $shipping_first_name ?>' != 'nill') {
-            data_used = { "placeorder": 1, "user": <?= $user ?>, "user_id": <?= $user_id ?>, "shipping_first_name": '<?= $shipping_first_name ?>', "shipping_last_name": '<?= $shipping_last_name ?>', "shipping_ph_no": '<?= $shipping_ph_no ?>', "shipping_ph_no2": '<?= $shipping_ph_no2 ?>', "shipping_address_1": '<?= $shipping_address_1 ?>', "shipping_postcode": '<?= $shipping_postcode ?>', "order_notes": <?= $order_notes ?>, "pdt_cnt": <?= $pdt_cnt ?>, "total_amt": <?= $total_amt ?> };
+            data_used = {
+                "placeorder": 1,
+                "user": <?= $user ?>,
+                "user_id": <?= $user_id ?>,
+                "shipping_first_name": '<?= $shipping_first_name ?>',
+                "shipping_last_name": '<?= $shipping_last_name ?>',
+                "shipping_ph_no": '<?= $shipping_ph_no ?>',
+                "shipping_ph_no2": '<?= $shipping_ph_no2 ?>',
+                "shipping_address_1": '<?= $shipping_address_1 ?>',
+                "shipping_postcode": '<?= $shipping_postcode ?>',
+                "order_notes": <?= $order_notes ?>,
+                "pdt_cnt": <?= $pdt_cnt ?>,
+                "total_amt": <?= $total_amt ?>
+            };
         }
-        data_used = { "placeorder": 1, "user": <?= $user ?>, "user_id": <?= $user_id ?>, "order_notes": <?= $order_notes ?>, "pdt_cnt": <?= $pdt_cnt ?>, "total_amt": <?= $total_amt ?> };
+        data_used = {
+            "placeorder": 1,
+            "user": <?= $user ?>,
+            "user_id": <?= $user_id ?>,
+            "order_notes": <?= $order_notes ?>,
+            "pdt_cnt": <?= $pdt_cnt ?>,
+            "total_amt": <?= $total_amt ?>
+        };
     }
     console.log(data_used)
 </script>
@@ -68,11 +132,11 @@ $store_id = $_POST['store_id'] ?? 'nill';
                     $('.std_text3').css('display', 'flex');
                     $.ajax({
                         url: "../Common/functions.php", //passing page info
-                        data: data_used,  //form data
-                        type: "post",   //post data
-                        dataType: "json",   //datatype=json format
-                        timeout: 30000,   //waiting time 30 sec
-                        success: function (data) {    //if registration is success
+                        data: data_used, //form data
+                        type: "post", //post data
+                        dataType: "json", //datatype=json format
+                        timeout: 30000, //waiting time 30 sec
+                        success: function (data) { //if registration is success
                             if (data.status == 'success') {
                                 $('.background_loader').hide();
                                 $('.std_text3').hide();
@@ -87,13 +151,11 @@ $store_id = $_POST['store_id'] ?? 'nill';
                                         if (willSubmit1) {
                                             location.href = "../Order/myorders.php";
                                             return;
-                                        }
-                                        else {
+                                        } else {
                                             return;
                                         }
                                     });
-                            }
-                            else if (data.status == 'error') {
+                            } else if (data.status == 'error') {
                                 $('.background_loader').hide();
                                 $('.load_btn').hide();
                                 $('.real_btn').show();
@@ -109,8 +171,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
                                         if (willSubmit) {
                                             location.reload();
                                             return;
-                                        }
-                                        else {
+                                        } else {
                                             return;
                                         }
                                     });
@@ -131,13 +192,16 @@ $store_id = $_POST['store_id'] ?? 'nill';
                                     timer: 6000,
                                 });
                                 return;
+                            } else {
+                                return;
                             }
-                            else { return; }
                         }
                     }); //closing ajax
-                }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
-                else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) { return; }
-            });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+                } //ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
+                else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) {
+                    return;
+                }
+            }); //NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
     }
 </script>
 <style>

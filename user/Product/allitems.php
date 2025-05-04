@@ -152,12 +152,14 @@ require "../Main/header.php";
       }
       $('#' + x + '>.right-arrow-btn-all').show();
     }
+
     function moveright(x) {
       var y = $('#' + x).scrollLeft();
       var width = $('#' + x).outerWidth();
       var scrollWidth = $('#' + x)[0].scrollWidth;
       $('#' + x).scrollLeft(y + 250);
     }
+
     function moveleft(x) {
       var y = $('#' + x).scrollLeft();
       $('#' + x).scrollLeft(y - 250);
@@ -226,6 +228,7 @@ require "../Main/header.php";
         if (window.history.replaceState) {
           window.history.replaceState(null, null, window.location.href);
         }
+
         function conca() {
           console.log('helo');
           if ($('#w1').val() != 0) {

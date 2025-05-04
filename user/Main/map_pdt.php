@@ -9,9 +9,9 @@
 /* map needs width and height to appear */
 /*
 #map{
-	width: 900px;
-	max-width: 100%;
-	height: 500px;
+		width: 900px;
+		max-width: 100%;
+		height: 500px;
 }
 */
 </style>
@@ -41,25 +41,25 @@
 			xmlhttp.send();
 			/*
 			function handlePermission() {
-			  navigator.permissions.query({name:'geolocation'}).then(function(result) {
-				if (result.state == 'granted') {
-				  report(result.state);
-				  geoBtn.style.display = 'none';
-				} else if (result.state == 'prompt') {
-				  report(result.state);
-				  geoBtn.style.display = 'none';
-				  navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
-				} else if (result.state == 'denied') {
-				  report(result.state);
-				  geoBtn.style.display = 'inline';
-				}
-				result.onchange = function() {
-				  report(result.state);
-				}
-			  });
+				navigator.permissions.query({name:'geolocation'}).then(function(result) {
+					if (result.state == 'granted') {
+						report(result.state);
+						geoBtn.style.display = 'none';
+					} else if (result.state == 'prompt') {
+						report(result.state);
+						geoBtn.style.display = 'none';
+						navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
+					} else if (result.state == 'denied') {
+						report(result.state);
+						geoBtn.style.display = 'inline';
+					}
+					result.onchange = function() {
+						report(result.state);
+					}
+				});
 			}
 			function report(state) {
-			  console.log('Permission ' + state);
+				console.log('Permission ' + state);
 			}
 			handlePermission();
 			*/
@@ -74,14 +74,19 @@
 			/////////////////////////////////////////////////////
 			//ADD TO CART
 			var car;
+
 			function showPositiona(position) {
-				car = { lat: position.coords.latitude, lng: position.coords.longitude };
+				car = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
 				document.getElementById('daddr').value = car.lat + "," + car.lng;
 				//last cut
 				for (var i = 1; i <= stores.length; i++) {
 					var el = document.getElementById('c' + i.toString());
 					if (el != null) {
-						document.getElementById('c' + i.toString()).innerHTML = distance(car.lat, car.lng, stores[i - 1].latitude, stores[i - 1].longitude, "K");
+						document.getElementById('c' + i.toString()).innerHTML = distance(car.lat, car.lng, stores[i - 1].latitude,
+							stores[i - 1].longitude, "K");
 					}
 				}
 				//last cut
@@ -97,22 +102,26 @@
 			/////////////////////////////////////////////////////
 			//WISHLIST
 			function showPositionb(position) {
-				car = { lat: position.coords.latitude, lng: position.coords.longitude };
+				car = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
 				document.getElementById('wishlist_daddr').value = car.lat + "," + car.lng;
 				//last cut
 				for (var i = 1; i <= stores.length; i++) {
 					var el = document.getElementById('w' + i.toString());
 					if (el != null) {
-						document.getElementById('w' + i.toString()).innerHTML = distance(car.lat, car.lng, stores[i - 1].latitude, stores[i - 1].longitude, "K");
+						document.getElementById('w' + i.toString()).innerHTML = distance(car.lat, car.lng, stores[i - 1].latitude,
+							stores[i - 1].longitude, "K");
 					}
 				}
 				//last cut
 			}
+
 			function distance(lat1, lon1, lat2, lon2, unit) {
 				if ((lat1 == lat2) && (lon1 == lon2)) {
 					return 0;
-				}
-				else {
+				} else {
 					var radlat1 = Math.PI * lat1 / 180;
 					var radlat2 = Math.PI * lat2 / 180;
 					var theta = lon1 - lon2;
@@ -124,15 +133,19 @@
 					dist = Math.acos(dist);
 					dist = dist * 180 / Math.PI;
 					dist = dist * 60 * 1.1515;
-					if (unit == "K") { dist = dist * 1.609344 }
-					if (unit == "N") { dist = dist * 0.8684 }
+					if (unit == "K") {
+						dist = dist * 1.609344
+					}
+					if (unit == "N") {
+						dist = dist * 0.8684
+					}
 					dis = Math.floor(dist * 100) / 100;
 					return dist.toFixed(2);
 				}
 			}
 			/*
-				function initMap() {
-				}
+					function initMap() {
+					}
 			*/
 		</script>
 		<!-- This will find the post office and store the longitude and latitude-->

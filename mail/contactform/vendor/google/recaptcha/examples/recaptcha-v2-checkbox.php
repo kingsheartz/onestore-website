@@ -80,7 +80,8 @@ $lang = 'en';
         <p>If you do not have keys already then visit <kbd> <a
                     href="https://www.google.com/recaptcha/admin">https://www.google.com/recaptcha/admin</a></kbd> to
             generate them. Edit this file and set the respective keys in the <kbd>config.php</kbd> file or directly to
-            <kbd>$siteKey</kbd> and <kbd>$secret</kbd>. Reload the page after this.</p>
+            <kbd>$siteKey</kbd> and <kbd>$secret</kbd>. Reload the page after this.
+        </p>
         <?php
     elseif (isset($_POST['g-recaptcha-response'])):
         // The POST data here is unfiltered because this is an example.
