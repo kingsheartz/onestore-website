@@ -21,7 +21,7 @@ require "../Main/header.php";
     display: block;
     white-space: nowrap;
     bottom: 0;
-    width: 100%;
+    F width: 100%;
   }
 
   .products-all-in-one {
@@ -152,12 +152,14 @@ require "../Main/header.php";
       }
       $('#' + x + '>.right-arrow-btn-all').show();
     }
+
     function moveright(x) {
       var y = $('#' + x).scrollLeft();
       var width = $('#' + x).outerWidth();
       var scrollWidth = $('#' + x)[0].scrollWidth;
       $('#' + x).scrollLeft(y + 250);
     }
+
     function moveleft(x) {
       var y = $('#' + x).scrollLeft();
       $('#' + x).scrollLeft(y - 250);
@@ -165,16 +167,16 @@ require "../Main/header.php";
   </script>
   <?php
   if (isset($_GET['topnew'])) {
-    ?>
+  ?>
     <h3 style="text-transform:capitalize;font-weight:bold;text-align:center">Top New</h3>
-    <?php
+  <?php
   }
   require "../Common/pdo.php";
   $query11 = "SELECT * from  category";
   $st11 = $pdo->query($query11);
   while ($row11 = $st11->fetch(PDO::FETCH_ASSOC)) {
     $ct = $row11['category_id'];
-    ?>
+  ?>
     <?php
     $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item.category_id=$ct and (item.added_date) in (
     select max(added_date) as date
@@ -184,7 +186,7 @@ require "../Main/header.php";
     if ($product == 0) {
       continue;
     } else {
-      ?>
+    ?>
       <div class="difcat ">
         <span class="difhed"><?= $row11['category_name'] ?>
           <button onclick="location.href='../Product/viewsubcat.php?category_id=<?= $ct ?>'">View All</button></span>
@@ -195,7 +197,7 @@ require "../Main/header.php";
               class="fas fa-chevron-right"></i></button>
           <?php
           while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+          ?>
             <div class="products-all-in-one">
               <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;"><img class="image"
@@ -213,12 +215,12 @@ require "../Main/header.php";
               <div class="deupd"><?= $item_name ?><br>
               </div>
             </div>
-            <?php
+      <?php
           }
           echo '</div></div>';
-    }
-  }
-  ?>
+        }
+      }
+      ?>
       <script type="text/javascript">
         function showupda(x) {
           document.forms[x].submit();
@@ -226,6 +228,7 @@ require "../Main/header.php";
         if (window.history.replaceState) {
           window.history.replaceState(null, null, window.location.href);
         }
+
         function conca() {
           console.log('helo');
           if ($('#w1').val() != 0) {
@@ -234,7 +237,7 @@ require "../Main/header.php";
           }
         }
       </script>
-    </div>
-    <?php
-    require "../Main/footer.php";
-    ?>
+        </div>
+        <?php
+        require "../Main/footer.php";
+        ?>

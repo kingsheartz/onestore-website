@@ -1,12 +1,7 @@
 <?php
 require "head.php";
-?>
-<?php
-
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/config.php';
-
-
 
 if (!empty($_SESSION['_contact_form_error'])) {
   $error = $_SESSION['_contact_form_error'];
@@ -17,7 +12,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
   $success = true;
   unset($_SESSION['_contact_form_success']);
 }
-
 ?>
 
 <body>
@@ -27,9 +21,9 @@ if (!empty($_SESSION['_contact_form_success'])) {
     ?>
 
     <script type="text/javascript">
-
       $('li').removeClass('active');
       $('#addstorephp').addClass('active');
+
       function conca() {
 
         if ($('#in1').val() == "" || $('#in2').val() == "" || $('#in4').val() == "" || $('#in5').val() == "") {
@@ -41,9 +35,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
             dangerMode: true,
             timer: 6000,
           });
-        }
-        else {
-
+        } else {
           console.log('helo');
           var in1 = $('#in1').val();
           var in2 = $('#in2').val();
@@ -67,58 +59,46 @@ if (!empty($_SESSION['_contact_form_success'])) {
           min2 = parseInt(min2);
 
           if (!isNaN(hr1)) {
-
             if ((hr1 > 12) && (hr1 <= 24)) {
               if (hr1 == 24) {
                 $('#in1').val('12');
                 $('#in1').val('AM');
-              }
-              else {
+              } else {
                 hour1 = hr1 - 12;
                 $('#in1').val(hour1);
               }
               $('#in3').val('AM');
-            }
-            else if (hr1 > 24) {
+            } else if (hr1 > 24) {
               $('#in1').val('12');
               $('#in3').val('AM');
-            }
-            else if (hr1 >= 10 && hr1 <= 12) {
+            } else if (hr1 >= 10 && hr1 <= 12) {
               $('#in1').val(hr1);
-            }
-            else if (hr1 >= 0 && hr1 <= 9) {
+            } else if (hr1 >= 0 && hr1 <= 9) {
               $('#in1').val('0' + hr1);
             }
-          }
-          else {
+          } else {
             $('#in1').val('');
           }
           //-------------------------------------------------------------------------------
           if (!isNaN(hr2)) {
-
             if ((hr2 > 12) && (hr2 <= 24)) {
               if (hr2 == 24) {
                 $('#in4').val('12');
                 $('#in6').val('AM');
-              }
-              else {
+              } else {
                 hour2 = hr2 - 12;
                 $('#in4').val(hour2);
               }
               $('#in6').val('AM');
-            }
-            else if (hr2 > 24) {
+            } else if (hr2 > 24) {
               $('#in4').val('12');
               $('#in6').val('AM');
-            }
-            else if (hr2 > 0 && hr2 <= 12) {
+            } else if (hr2 > 0 && hr2 <= 12) {
               $('#in4').val(hr2);
-            }
-            else if (hr2 >= 0 && hr2 <= 9) {
+            } else if (hr2 >= 0 && hr2 <= 9) {
               $('#in4').val('0' + hr2);
             }
-          }
-          else {
+          } else {
             $('#in4').val('');
           }
           //--------------------------------------------------------------------------------
@@ -126,93 +106,72 @@ if (!empty($_SESSION['_contact_form_success'])) {
           if (!isNaN(min1)) {
             var houra = 0;
             if ((min1 >= 0) && (min1 <= 60)) {
-
               if ((min1 == 60) && (hr1 <= 11)) {
-
                 $('#in2').val('00');
                 if (hr1 < 8) {
                   houra = hr1 + 1;
                   $('#in1').val('0' + houra);
-                }
-                else {
+                } else {
                   houra = hr1 + 1;
                   $('#in1').val(houra);
                 }
-
-              }
-
-              else if ((min1 == 60) && (hr1 == 12)) {
+              } else if ((min1 == 60) && (hr1 == 12)) {
                 $('#in2').val('00');
                 $('#in1').val('01');
 
                 if (('#in3').value == 'AM') {
                   $('#in3').val('PM')
-                }
-                else {
+                } else {
                   $('#in3').val('AM')
                 }
-              }
-              else if (min1 <= 60 && min1 >= 10) {
+              } else if (min1 <= 60 && min1 >= 10) {
                 $('#in2').val(min1);
               }
               if (min1 >= 0 && min1 <= 9) {
                 $('#in2').val('0' + min1);
               }
-            }
-            else {
+            } else {
               $('#in2').val('59')
             }
-          }
-          else {
+          } else {
             $('#in2').val('');
           }
           //------------------------------------------------------------------------------------
           if (!isNaN(min2)) {
             var hourb = 0;
             if ((min2 >= 0) && (min2 <= 60)) {
-
               if ((min2 == 60) && (hr2 <= 11)) {
-
                 $('#in5').val('00');
                 if (hr2 < 8) {
                   hourb = hr2 + 1;
                   $('#in4').val('0' + hourb);
-                }
-                else {
+                } else {
                   hourb = hr2 + 1;
                   $('#in4').val(hourb);
                 }
-
-              }
-
-              else if ((min2 == 60) && (hr2 == 12)) {
+              } else if ((min2 == 60) && (hr2 == 12)) {
                 $('#in5').val('00');
                 $('#in4').val('01');
 
                 if (('#in6').value == 'AM') {
                   $('#in6').val('PM')
-                }
-                else {
+                } else {
                   $('#in6').val('AM')
                 }
-              }
-              else if (min2 <= 60 && min2 >= 10) {
+              } else if (min2 <= 60 && min2 >= 10) {
                 $('#in5').val(min2);
               }
               if (min2 >= 0 && min2 <= 9) {
                 $('#in5').val('0' + min2);
               }
-            }
-            else {
+            } else {
               $('#in5').val('59')
             }
-          }
-          else {
+          } else {
             $('#in5').val('');
           }
         }
       }
-
     </script>
 
 
@@ -287,7 +246,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
         text-align: center !important;
-
       }
 
       select {
@@ -299,13 +257,10 @@ if (!empty($_SESSION['_contact_form_success'])) {
 
       .hrdiv {
         display: inline-flex;
-
       }
 
       .hadiv {
         display: inline-flex;
-
-
       }
 
       @media screen and (max-width: 1200px) and (min-width: 768px) {
@@ -318,9 +273,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
         .form-control1 {
           width: 25% !important;
           font-size: 12px;
-
         }
-
       }
 
       @media screen and (max-width: 330px) {
@@ -331,7 +284,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
         }
 
         .dot {
-
           margin-top: -3px !important;
         }
 
@@ -341,7 +293,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
       }
 
       input[type="number"]::placeholder {
-
         /* Firefox, Chrome, Opera */
         text-align: center;
       }
@@ -365,7 +316,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
         <div class="card mt-5"
           style="border-radius: 10px; border-top : 5px solid #fe9126;border-bottom: 2px solid #fe9126;">
           <center>
-
             <h3
               style="margin-top: 0px;background-color: #fff;color:#333;padding-top: 10px;padding-bottom: 10px;margin-top: -20px;border-radius: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;margin-bottom: 50px;border-bottom: 2px solid #66afe9;">
               REGISTER STORE &nbsp;<i class="fas fa-store-alt" style="font-size: 24px;color: #fe9126"
@@ -375,17 +325,14 @@ if (!empty($_SESSION['_contact_form_success'])) {
           <div class="card-body" style="padding-top: 0px;">
             <?php
             if (!empty($success)) {
-              ?>
-              <div class="alert alert-success">Your message was sent successfully!</div>
-              <?php
-            }
             ?>
-
+              <div class="alert alert-success">Your message was sent successfully!</div>
             <?php
+            }
             if (!empty($error)) {
-              ?>
+            ?>
               <div class="alert alert-danger"><?= $error ?></div>
-              <?php
+            <?php
             }
             ?>
             <form method="post" action="submit.php" style="margin-top: 30px;">
@@ -448,10 +395,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
                       <span class="fa fa-check"></span>
                     </button>
                   </div>
-
                   <!--//select boxes for hours-->
-
-
                   <i class="fa fa-hourglass-start" style="color: #777;margin-top: 1px;"></i>
                 </div>
               </div>

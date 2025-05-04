@@ -78,20 +78,20 @@ if (isset($_GET['item'])) {
   var url = window.location.href;
   if (sessionStorage.getItem("prev_url") == url) {
     var scrollTop = 'pdts_ltdscrollTop';
-  }
-  else {
+  } else {
     var scrollTop = 'scroll_begin';
   }
-  $(window).unload(function () { document.cookie = 'pdts_ltdscrollTop=' + $(window).scrollTop(); });
+  $(window).unload(function() {
+    document.cookie = 'pdts_ltdscrollTop=' + $(window).scrollTop();
+  });
   sessionStorage.setItem("prev_url", url);
   if ($(window).width() < 635) {
     $('.list_view_mul').hide();
   }
-  $(window).resize(function () {
+  $(window).resize(function() {
     if ($(window).width() < 635) {
       $('.list_view_mul').hide();
-    }
-    else {
+    } else {
       $('.list_view_mul').show();
     }
   });
@@ -103,7 +103,7 @@ if (isset($_GET['item'])) {
 <!--------------------------------------------------------------------------------------------------------------------------------------------------->
 <script type="text/javascript">
   //showing onlt mrp at loading
-  $(document).ready(function (f) {
+  $(document).ready(function(f) {
     $("#per").hide();
     $("#per2").hide();
     $("#per3").hide();
@@ -123,38 +123,40 @@ if (isset($_GET['item'])) {
     }
     if (flag == 0) {
       swal({
-        title: "Sorry!!!",
-        text: "Select a store",
-        icon: "warning",
-        closeOnClickOutside: false,
-        dangerMode: true,
-      })
+          title: "Sorry!!!",
+          text: "Select a store",
+          icon: "warning",
+          closeOnClickOutside: false,
+          dangerMode: true,
+        })
         .then((willSubmit1) => {
           if (willSubmit1) {
             return;
-          }
-          else {
+          } else {
             return;
           }
         });
-    }
-    else {
+    } else {
       var item_description_id = document.getElementById('idid_keeper').value;
       $.ajax({
         url: "../Common/functions.php", //passing page info
-        data: { "cart": 1, "item_description_id": item_description_id, "store_id": id },  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 30000,   //waiting time 30 sec
-        success: function (data) {    //if registration is success
+        data: {
+          "cart": 1,
+          "item_description_id": item_description_id,
+          "store_id": id
+        }, //form data
+        type: "post", //post data
+        dataType: "json", //datatype=json format
+        timeout: 30000, //waiting time 30 sec
+        success: function(data) { //if registration is success
           if (data.status == 'success') {
             swal({
-              title: "Added!!!",
-              text: "Check your cart",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Added!!!",
+                text: "Check your cart",
+                icon: "success",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit1) => {
                 if (willSubmit1) {
                   document.getElementById("sm-cartcnt").innerHTML = "";
@@ -162,60 +164,56 @@ if (isset($_GET['item'])) {
                   document.getElementById("sm-cartcnt").innerHTML = data.cartcnt;
                   document.getElementById("lg-cartcnt").innerHTML = data.cartcnt;
                   return;
-                }
-                else {
+                } else {
                   return;
                 }
-              });/*
-            var qnty=document.getElementById("Q"+id+"").innerHTML;
-            if(qnty!=0){
-            document.getElementById("Q"+id+"").innerHTML="";
-            document.getElementById("Q"+id+"").innerHTML=qnty-1;
-            }*/
+              });
+            /*
+                        var qnty=document.getElementById("Q"+id+"").innerHTML;
+                        if(qnty!=0){
+                        document.getElementById("Q"+id+"").innerHTML="";
+                        document.getElementById("Q"+id+"").innerHTML=qnty-1;
+                        }*/
             var qnty = document.getElementById("dis_qnty").innerHTML;
             if (qnty != 0) {
               document.getElementById("dis_qnty").innerHTML = "";
               document.getElementById("dis_qnty").innerHTML = qnty - 1;
             }
-          }
-          else if (data.status == 'error') {
+          } else if (data.status == 'error') {
             swal({
-              title: "Required!!!",
-              text: "You need to create an Account",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Required!!!",
+                text: "You need to create an Account",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.href = "../Account/registered.php";
                   return;
-                }
-                else {
+                } else {
                   return;
                 }
               });
-          }
-          else if (data.status == 'error1') {
+          } else if (data.status == 'error1') {
             swal({
-              title: "Not Available!!!",
-              text: "Choose another Store",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Not Available!!!",
+                text: "Choose another Store",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.href = "../Product/single.php?id=" + item_description_id + "";
                   return;
-                }
-                else {
+                } else {
                   return;
                 }
               });
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           if (textstatus === "timeout") {
             swal({
               title: "Oops!!!",
@@ -226,22 +224,23 @@ if (isset($_GET['item'])) {
               timer: 6000,
             });
             return;
+          } else {
+            return;
           }
-          else { return; }
         }
       }); //closing ajax
-      //location.href="../Cart/cart.php?store="+id+"&item=<?//=$row['item_id'] ?>";
+      //location.href="../Cart/cart.php?store="+id+"&item=<? //=$row['item_id']
+                                                          ?>";
     }
   }
+
   function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     if ($('#avail_stores').css('display') != 'none') {
       table = document.getElementById("store");
-    }
-    else if ($('#avail_stores_wishlist').css('display') != 'none') {
+    } else if ($('#avail_stores_wishlist').css('display') != 'none') {
       table = document.getElementById("store_wishlist");
-    }
-    else if ($('#avail_stores_buy').css('display') != 'none') {
+    } else if ($('#avail_stores_buy').css('display') != 'none') {
       table = document.getElementById("store_buynow");
     }
     switching = true;
@@ -280,8 +279,7 @@ if (isset($_GET['item'])) {
               break;
             }
           }
-        }
-        else if (n == 3) {
+        } else if (n == 3) {
           if (dir == "asc") {
             if (Number(x.innerHTML) > Number(y.innerHTML)) {
               // If so, mark as a switch and break the loop:
@@ -296,7 +294,7 @@ if (isset($_GET['item'])) {
             }
           }
         }
-      }//END FOR LOOP
+      } //END FOR LOOP
       if (shouldSwitch) {
         /* If a switch has been marked, make the switch
         and mark that a switch has been done: */
@@ -314,22 +312,22 @@ if (isset($_GET['item'])) {
       }
     }
   }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//ITEM START HERE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<?php
-if (isset($_GET['item'])) {
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //ITEM START HERE
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  <?php
+  if (isset($_GET['item'])) {
   ?>
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var filter = [];
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var filter = [];
     var page_id = 1;
     // Pagination code
-    $(document).on("click", ".pagination li a", function (e) {
+    $(document).on("click", ".pagination li a", function(e) {
       e.preventDefault();
       var pageId = $(this).attr("id");
       if ($('#mobile-filter').css("display") == "none") {
@@ -339,8 +337,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -354,11 +351,19 @@ var filter = [];
       $('.std_text2').css('display', 'flex');
       $.ajax({
         url: "../Common/functions.php", //passing page info
-        data: { "filter_item_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "page_no": pageId, "sort": sort, "item": '<?= $_GET['item'] ?>' },  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 30000,   //waiting time 30 sec
-        success: function (data) {    //if registration is success
+        data: {
+          "filter_item_a": 1,
+          "key": filter,
+          "min-price": minprice,
+          "max-price": maxprice,
+          "page_no": pageId,
+          "sort": sort,
+          "item": '<?= $_GET['item'] ?>'
+        }, //form data
+        type: "post", //post data
+        dataType: "json", //datatype=json format
+        timeout: 30000, //waiting time 30 sec
+        success: function(data) { //if registration is success
           if (data.status == 'success') {
             $("#table-data").html(data.content).show();
             $("#dynamic-paging").html(data.output).show();
@@ -367,7 +372,7 @@ var filter = [];
             return;
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           $('.background_loader').hide();
           $('.std_text2').hide();
           if (textstatus === "timeout") {
@@ -381,11 +386,13 @@ var filter = [];
             });
             location.reload();
             return;
+          } else {
+            return;
           }
-          else { return; }
         }
       }); //closing ajax
     });
+
     function sortandfilter(val, type) {
       if ($('#mobile-filter').css("display") == "none") {
         var maxprice = document.getElementById('max-price').value;
@@ -394,8 +401,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -403,11 +409,12 @@ var filter = [];
         document.getElementById('max-price').value = maxprice;
         document.getElementById('min-price').value = minprice;
       }
-      if (typeof minprice !== 'undefined' && typeof maxprice !== 'undefined' && minprice != 0 && maxprice != 0 && minprice != null && maxprice != null) {
+      if (typeof minprice !== 'undefined' && typeof maxprice !== 'undefined' && minprice != 0 && maxprice != 0 &&
+        minprice != null && maxprice != null) {
         var filter_tag_cnt = 0;
-        var type = type;//TYPE category || brand ||rating
+        var type = type; //TYPE category || brand ||rating
         if (type == 'brand' || type == 'category') {
-          var cont = $('.val-' + val).html();//INNER HTML
+          var cont = $('.val-' + val).html(); //INNER HTML
         }
         if (type == 'star') {
           var cont = $('#' + val).val();
@@ -415,23 +422,39 @@ var filter = [];
         //alert(type+" is "+cont)
         if ($('#' + val).prop('checked') == false) {
           $('#mob' + val).prop('disabled', false); //enabling radio
-          $('#mob' + val).prop('checked', true);    //check radio
-          $('#mob' + val).prop('disabled', true);   //disabling radio
+          $('#mob' + val).prop('checked', true); //check radio
+          $('#mob' + val).prop('disabled', true); //disabling radio
           $('#' + val).prop('disabled', false); //enabling radio
-          $('#' + val).prop('checked', true);    //check radio
-          $('#' + val).prop('disabled', true);   //disabling radio
-          $('.filter-container').show();//FILTER DIV UNHIDE
-          var newtag = $('#filter-tag').clone().appendTo('.filter-container-child'); //COPY THE DEFAULT TAG DESIGN #FILTER 1 & CREATE NEW
-          newtag.addClass('filter-tag-' + type + "-" + val); //ADDING CLASS WITH NAME AS " filter-tag-name-+'type_name'+get(cat || brand)+(sub_category_id || brand_id) "
+          $('#' + val).prop('checked', true); //check radio
+          $('#' + val).prop('disabled', true); //disabling radio
+          $('.filter-container').show(); //FILTER DIV UNHIDE
+          var newtag = $('#filter-tag').clone().appendTo(
+            '.filter-container-child'); //COPY THE DEFAULT TAG DESIGN #FILTER 1 & CREATE NEW
+          newtag.addClass('filter-tag-' + type + "-" +
+            val
+          ); //ADDING CLASS WITH NAME AS " filter-tag-name-+'type_name'+get(cat || brand)+(sub_category_id || brand_id) "
           if (type == 'brand' || type == 'category') {
-            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val + " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" style=\"padding-left:10px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" + type + "-" + val + "\"><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
+            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type +
+              "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val +
+              " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" +
+              val + "\',\'" + type +
+              "\')\" style=\"padding-left:10px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" +
+              type + "-" + val + "\"><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
             $('.filter-tag-' + type + "-" + val).html(tag_content).show(); //APPENDING INNERHTML TO TAG & DISPLAY
           }
           if (type == 'star') {
-            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val + " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" style=\"padding-left:2px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" + type + "-" + val + "\"><span style='padding-right:4px;color:#333' class='fa fa-star'></span><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
+            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type +
+              "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val +
+              " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" +
+              val + "\',\'" + type +
+              "\')\" style=\"padding-left:2px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" +
+              type + "-" + val +
+              "\"><span style='padding-right:4px;color:#333' class='fa fa-star'></span><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
             $('.filter-tag-' + type + "-" + val).html(tag_content).show(); //APPENDING INNERHTML TO TAG & DISPLAY
           }
-          filter.push({ type: type + "-" + val + "-" + cont });
+          filter.push({
+            type: type + "-" + val + "-" + cont
+          });
           console.log(filter)
           $(".table-data").empty();
           $("#dynamic-paging").empty();
@@ -439,11 +462,18 @@ var filter = [];
           $('.std_text2').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "filter_item_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "item": '<?= $_GET['item'] ?>' },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "filter_item_a": 1,
+              "key": filter,
+              "min-price": minprice,
+              "max-price": maxprice,
+              "sort": sort,
+              "item": '<?= $_GET['item'] ?>'
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
               if (data.status == 'success') {
                 $("#table-data").html(data.content).show();
                 $("#dynamic-paging").html(data.output).show();
@@ -452,7 +482,7 @@ var filter = [];
                 return;
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               $('.background_loader').hide();
               $('.std_text2').hide();
               if (textstatus === "timeout") {
@@ -466,23 +496,30 @@ var filter = [];
                 });
                 $('.background_loader').hide();
                 return;
+              } else {
+                return;
               }
-              else { return; }
             }
           }); //closing ajax
-        }
-        else {
+        } else {
           $(".table-data").empty();
           $("#dynamic-paging").empty();
           $('.background_loader').css('display', 'flex');
           $('.std_text2').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "filter_item_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "item": '<?= $_GET['item'] ?>' },  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "filter_item_a": 1,
+              "key": filter,
+              "min-price": minprice,
+              "max-price": maxprice,
+              "sort": sort,
+              "item": '<?= $_GET['item'] ?>'
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
               if (data.status == 'success') {
                 $("#table-data").html(data.content).show();
                 $("#dynamic-paging").html(data.output).show();
@@ -491,7 +528,7 @@ var filter = [];
                 return;
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               $('.background_loader').hide();
               $('.std_text2').hide();
               if (textstatus === "timeout") {
@@ -505,8 +542,7 @@ var filter = [];
                 });
                 $('.background_loader').hide();
                 return;
-              }
-              else {
+              } else {
                 $('.background_loader').hide();
                 return;
               }
@@ -515,6 +551,7 @@ var filter = [];
         }
       }
     }
+
     function removesortandfilter(val, type) {
       if ($('#mobile-filter').css("display") == "none") {
         var maxprice = document.getElementById('max-price').value;
@@ -523,8 +560,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -533,9 +569,9 @@ var filter = [];
         document.getElementById('min-price').value = minprice;
       }
       var filter_tag_cnt = 0;
-      var type = type;//TYPE category || brand ||rating
+      var type = type; //TYPE category || brand ||rating
       if (type == 'brand' || type == 'category') {
-        var cont = $('.val-' + val).html();//INNER HTML
+        var cont = $('.val-' + val).html(); //INNER HTML
       }
       if (type == 'star') {
         var cont = $('#' + val).val();
@@ -543,16 +579,18 @@ var filter = [];
       $(".filter-tag-" + type + "-" + val).remove();
       if ($('#' + val).prop('checked') == true) {
         $('#mob' + val).prop('disabled', false); //enabling radio
-        $('#mob' + val).prop('checked', false);    //check radio
-        $('#mob' + val).prop('disabled', true);   //disabling radio
+        $('#mob' + val).prop('checked', false); //check radio
+        $('#mob' + val).prop('disabled', true); //disabling radio
         $('#' + val).prop('disabled', false); //enabling radio
-        $('#' + val).prop('checked', false);    //check radio
-        $('#' + val).prop('disabled', true);   //disabling radio
+        $('#' + val).prop('checked', false); //check radio
+        $('#' + val).prop('disabled', true); //disabling radio
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //REMOVING THE TAGS WITH VALUE OF THE KEY
         console.log('Before removing object from an array -> ' + JSON.stringify(filter));
-        var removeIndex = filter.map(function (item) { return item.type; }).indexOf(type + "-" + val + "-" + cont)
+        var removeIndex = filter.map(function(item) {
+          return item.type;
+        }).indexOf(type + "-" + val + "-" + cont)
         console.log(removeIndex)
         filter.splice(removeIndex, 1);
         console.log('After removing object from an array -> ' + JSON.stringify(filter));
@@ -566,11 +604,18 @@ var filter = [];
         $('.std_text2').css('display', 'flex');
         $.ajax({
           url: "../Common/functions.php", //passing page info
-          data: { "filter_item_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "item": '<?= $_GET['item'] ?>' },  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
+          data: {
+            "filter_item_a": 1,
+            "key": filter,
+            "min-price": minprice,
+            "max-price": maxprice,
+            "sort": sort,
+            "item": '<?= $_GET['item'] ?>'
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 30000, //waiting time 30 sec
+          success: function(data) { //if registration is success
             if (data.status == 'success') {
               $("#table-data").html(data.content).show();
               $("#dynamic-paging").html(data.output).show();
@@ -579,7 +624,7 @@ var filter = [];
               return;
             }
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             $('.background_loader').hide();
             $('.std_text2').hide();
             if (textstatus === "timeout") {
@@ -593,35 +638,36 @@ var filter = [];
               });
               $('.background_loader').hide();
               return;
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<?php
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//ITEM ENDS HERE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  <?php
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //ITEM ENDS HERE
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
   ?>
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var filter = [];
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var filter = [];
     var page_id = 1;
     // Pagination code
-    $(document).on("click", ".pagination li a", function (e) {
+    $(document).on("click", ".pagination li a", function(e) {
       e.preventDefault();
       var pageId = $(this).attr("id");
       if ($('#mobile-filter').css("display") == "none") {
@@ -631,8 +677,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -646,11 +691,20 @@ var filter = [];
       $('.std_text2').css('display', 'flex');
       $.ajax({
         url: "../Common/functions.php", //passing page info
-        data: { "filter_sub_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "page_no": pageId, "sort": sort, "category":<?= $_GET['category_id'] ?>, "sub_category":<?= $_GET['subcategory_id'] ?>},  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 30000,   //waiting time 30 sec
-        success: function (data) {    //if registration is success
+        data: {
+          "filter_sub_cat_a": 1,
+          "key": filter,
+          "min-price": minprice,
+          "max-price": maxprice,
+          "page_no": pageId,
+          "sort": sort,
+          "category": <?= $_GET['category_id'] ?>,
+          "sub_category": <?= $_GET['subcategory_id'] ?>
+        }, //form data
+        type: "post", //post data
+        dataType: "json", //datatype=json format
+        timeout: 30000, //waiting time 30 sec
+        success: function(data) { //if registration is success
           if (data.status == 'success') {
             $("#table-data").html(data.content).show();
             $("#dynamic-paging").html(data.output).show();
@@ -659,7 +713,7 @@ var filter = [];
             return;
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           $('.background_loader').hide();
           $('.std_text2').hide();
           if (textstatus === "timeout") {
@@ -673,11 +727,13 @@ var filter = [];
             });
             location.reload();
             return;
+          } else {
+            return;
           }
-          else { return; }
         }
       }); //closing ajax
     });
+
     function sortandfilter(val, type) {
       if ($('#mobile-filter').css("display") == "none") {
         var maxprice = document.getElementById('max-price').value;
@@ -686,8 +742,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -695,11 +750,12 @@ var filter = [];
         document.getElementById('max-price').value = maxprice;
         document.getElementById('min-price').value = minprice;
       }
-      if (typeof minprice !== 'undefined' && typeof maxprice !== 'undefined' && minprice != 0 && maxprice != 0 && minprice != null && maxprice != null) {
+      if (typeof minprice !== 'undefined' && typeof maxprice !== 'undefined' && minprice != 0 && maxprice != 0 &&
+        minprice != null && maxprice != null) {
         var filter_tag_cnt = 0;
-        var type = type;//TYPE category || brand ||rating
+        var type = type; //TYPE category || brand ||rating
         if (type == 'brand' || type == 'category') {
-          var cont = $('.val-' + val).html();//INNER HTML
+          var cont = $('.val-' + val).html(); //INNER HTML
         }
         if (type == 'star') {
           var cont = $('#' + val).val();
@@ -707,23 +763,39 @@ var filter = [];
         //alert(type+" is "+cont)
         if ($('#' + val).prop('checked') == false) {
           $('#mob' + val).prop('disabled', false); //enabling radio
-          $('#mob' + val).prop('checked', true);    //check radio
-          $('#mob' + val).prop('disabled', true);   //disabling radio
+          $('#mob' + val).prop('checked', true); //check radio
+          $('#mob' + val).prop('disabled', true); //disabling radio
           $('#' + val).prop('disabled', false); //enabling radio
-          $('#' + val).prop('checked', true);    //check radio
-          $('#' + val).prop('disabled', true);   //disabling radio
-          $('.filter-container').show();//FILTER DIV UNHIDE
-          var newtag = $('#filter-tag').clone().appendTo('.filter-container-child'); //COPY THE DEFAULT TAG DESIGN #FILTER 1 & CREATE NEW
-          newtag.addClass('filter-tag-' + type + "-" + val); //ADDING CLASS WITH NAME AS " filter-tag-name-+'type_name'+get(cat || brand)+(sub_category_id || brand_id) "
+          $('#' + val).prop('checked', true); //check radio
+          $('#' + val).prop('disabled', true); //disabling radio
+          $('.filter-container').show(); //FILTER DIV UNHIDE
+          var newtag = $('#filter-tag').clone().appendTo(
+            '.filter-container-child'); //COPY THE DEFAULT TAG DESIGN #FILTER 1 & CREATE NEW
+          newtag.addClass('filter-tag-' + type + "-" +
+            val
+          ); //ADDING CLASS WITH NAME AS " filter-tag-name-+'type_name'+get(cat || brand)+(sub_category_id || brand_id) "
           if (type == 'brand' || type == 'category') {
-            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val + " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" style=\"padding-left:10px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" + type + "-" + val + "\"><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
+            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type +
+              "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val +
+              " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" +
+              val + "\',\'" + type +
+              "\')\" style=\"padding-left:10px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" +
+              type + "-" + val + "\"><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
             $('.filter-tag-' + type + "-" + val).html(tag_content).show(); //APPENDING INNERHTML TO TAG & DISPLAY
           }
           if (type == 'star') {
-            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val + " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" style=\"padding-left:2px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" + type + "-" + val + "\"><span style='padding-right:4px;color:#333' class='fa fa-star'></span><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
+            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type +
+              "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val +
+              " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" +
+              val + "\',\'" + type +
+              "\')\" style=\"padding-left:2px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" +
+              type + "-" + val +
+              "\"><span style='padding-right:4px;color:#333' class='fa fa-star'></span><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
             $('.filter-tag-' + type + "-" + val).html(tag_content).show(); //APPENDING INNERHTML TO TAG & DISPLAY
           }
-          filter.push({ type: type + "-" + val + "-" + cont });
+          filter.push({
+            type: type + "-" + val + "-" + cont
+          });
           console.log(filter)
           $(".table-data").empty();
           $("#dynamic-paging").empty();
@@ -731,11 +803,19 @@ var filter = [];
           $('.std_text2').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "filter_sub_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "category":<?= $_GET['category_id'] ?>, "sub_category":<?= $_GET['subcategory_id'] ?>},  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "filter_sub_cat_a": 1,
+              "key": filter,
+              "min-price": minprice,
+              "max-price": maxprice,
+              "sort": sort,
+              "category": <?= $_GET['category_id'] ?>,
+              "sub_category": <?= $_GET['subcategory_id'] ?>
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
               if (data.status == 'success') {
                 $("#table-data").html(data.content).show();
                 $("#dynamic-paging").html(data.output).show();
@@ -744,7 +824,7 @@ var filter = [];
                 return;
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               $('.background_loader').hide();
               $('.std_text2').hide();
               if (textstatus === "timeout") {
@@ -758,23 +838,31 @@ var filter = [];
                 });
                 $('.background_loader').hide();
                 return;
+              } else {
+                return;
               }
-              else { return; }
             }
           }); //closing ajax
-        }
-        else {
+        } else {
           $(".table-data").empty();
           $("#dynamic-paging").empty();
           $('.background_loader').css('display', 'flex');
           $('.std_text2').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "filter_sub_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "category":<?= $_GET['category_id'] ?>, "sub_category":<?= $_GET['subcategory_id'] ?>},  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "filter_sub_cat_a": 1,
+              "key": filter,
+              "min-price": minprice,
+              "max-price": maxprice,
+              "sort": sort,
+              "category": <?= $_GET['category_id'] ?>,
+              "sub_category": <?= $_GET['subcategory_id'] ?>
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
               if (data.status == 'success') {
                 $("#table-data").html(data.content).show();
                 $("#dynamic-paging").html(data.output).show();
@@ -783,7 +871,7 @@ var filter = [];
                 return;
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               $('.background_loader').hide();
               $('.std_text2').hide();
               if (textstatus === "timeout") {
@@ -797,13 +885,15 @@ var filter = [];
                 });
                 $('.background_loader').hide();
                 return;
+              } else {
+                return;
               }
-              else { return; }
             }
           }); //closing ajax
         }
       }
     }
+
     function removesortandfilter(val, type) {
       if ($('#mobile-filter').css("display") == "none") {
         var maxprice = document.getElementById('max-price').value;
@@ -812,8 +902,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -822,9 +911,9 @@ var filter = [];
         document.getElementById('min-price').value = minprice;
       }
       var filter_tag_cnt = 0;
-      var type = type;//TYPE category || brand ||rating
+      var type = type; //TYPE category || brand ||rating
       if (type == 'brand' || type == 'category') {
-        var cont = $('.val-' + val).html();//INNER HTML
+        var cont = $('.val-' + val).html(); //INNER HTML
       }
       if (type == 'star') {
         var cont = $('#' + val).val();
@@ -832,16 +921,18 @@ var filter = [];
       $(".filter-tag-" + type + "-" + val).remove();
       if ($('#' + val).prop('checked') == true) {
         $('#mob' + val).prop('disabled', false); //enabling radio
-        $('#mob' + val).prop('checked', false);    //check radio
-        $('#mob' + val).prop('disabled', true);   //disabling radio
+        $('#mob' + val).prop('checked', false); //check radio
+        $('#mob' + val).prop('disabled', true); //disabling radio
         $('#' + val).prop('disabled', false); //enabling radio
-        $('#' + val).prop('checked', false);    //check radio
-        $('#' + val).prop('disabled', true);   //disabling radio
+        $('#' + val).prop('checked', false); //check radio
+        $('#' + val).prop('disabled', true); //disabling radio
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //REMOVING THE TAGS WITH VALUE OF THE KEY
         console.log('Before removing object from an array -> ' + JSON.stringify(filter));
-        var removeIndex = filter.map(function (item) { return item.type; }).indexOf(type + "-" + val + "-" + cont)
+        var removeIndex = filter.map(function(item) {
+          return item.type;
+        }).indexOf(type + "-" + val + "-" + cont)
         console.log(removeIndex)
         filter.splice(removeIndex, 1);
         console.log('After removing object from an array -> ' + JSON.stringify(filter));
@@ -855,11 +946,19 @@ var filter = [];
         $('.std_text2').css('display', 'flex');
         $.ajax({
           url: "../Common/functions.php", //passing page info
-          data: { "filter_sub_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "category":<?= $_GET['category_id'] ?>, "sub_category":<?= $_GET['subcategory_id'] ?>},  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
+          data: {
+            "filter_sub_cat_a": 1,
+            "key": filter,
+            "min-price": minprice,
+            "max-price": maxprice,
+            "sort": sort,
+            "category": <?= $_GET['category_id'] ?>,
+            "sub_category": <?= $_GET['subcategory_id'] ?>
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 30000, //waiting time 30 sec
+          success: function(data) { //if registration is success
             if (data.status == 'success') {
               $("#table-data").html(data.content).show();
               $("#dynamic-paging").html(data.output).show();
@@ -868,7 +967,7 @@ var filter = [];
               return;
             }
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             $('.background_loader').hide();
             $('.std_text2').hide();
             if (textstatus === "timeout") {
@@ -882,28 +981,29 @@ var filter = [];
               });
               $('.background_loader').hide();
               return;
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<?php
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-else if (isset($_GET['category_id'])) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  <?php
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  else if (isset($_GET['category_id'])) {
   ?>
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var filter = [];
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var filter = [];
     var page_id = 1;
     // Pagination code
-    $(document).on("click", ".pagination li a", function (e) {
+    $(document).on("click", ".pagination li a", function(e) {
       e.preventDefault();
       var pageId = $(this).attr("id");
       if ($('#mobile-filter').css("display") == "none") {
@@ -913,8 +1013,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -928,11 +1027,19 @@ var filter = [];
       $('.std_text2').css('display', 'flex');
       $.ajax({
         url: "../Common/functions.php", //passing page info
-        data: { "filter_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "page_no": pageId, "sort": sort, "category":<?= $_GET['category_id'] ?>},  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 30000,   //waiting time 30 sec
-        success: function (data) {    //if registration is success
+        data: {
+          "filter_cat_a": 1,
+          "key": filter,
+          "min-price": minprice,
+          "max-price": maxprice,
+          "page_no": pageId,
+          "sort": sort,
+          "category": <?= $_GET['category_id'] ?>
+        }, //form data
+        type: "post", //post data
+        dataType: "json", //datatype=json format
+        timeout: 30000, //waiting time 30 sec
+        success: function(data) { //if registration is success
           if (data.status == 'success') {
             $("#table-data").html(data.content).show();
             $("#dynamic-paging").html(data.output).show();
@@ -941,7 +1048,7 @@ var filter = [];
             return;
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           $('.background_loader').hide();
           $('.std_text2').hide();
           if (textstatus === "timeout") {
@@ -955,11 +1062,13 @@ var filter = [];
             });
             location.reload();
             return;
+          } else {
+            return;
           }
-          else { return; }
         }
       }); //closing ajax
     });
+
     function sortandfilter(val, type) {
       if ($('#mobile-filter').css("display") == "none") {
         var maxprice = document.getElementById('max-price').value;
@@ -968,8 +1077,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -977,11 +1085,12 @@ var filter = [];
         document.getElementById('max-price').value = maxprice;
         document.getElementById('min-price').value = minprice;
       }
-      if (typeof minprice !== 'undefined' && typeof maxprice !== 'undefined' && minprice != 0 && maxprice != 0 && minprice != null && maxprice != null) {
+      if (typeof minprice !== 'undefined' && typeof maxprice !== 'undefined' && minprice != 0 && maxprice != 0 &&
+        minprice != null && maxprice != null) {
         var filter_tag_cnt = 0;
-        var type = type;//TYPE category || brand ||rating
+        var type = type; //TYPE category || brand ||rating
         if (type == 'brand' || type == 'category') {
-          var cont = $('.val-' + val).html();//INNER HTML
+          var cont = $('.val-' + val).html(); //INNER HTML
         }
         if (type == 'star') {
           var cont = $('#' + val).val();
@@ -989,23 +1098,39 @@ var filter = [];
         //alert(type+" is "+cont)
         if ($('#' + val).prop('checked') == false) {
           $('#mob' + val).prop('disabled', false); //enabling radio
-          $('#mob' + val).prop('checked', true);    //check radio
-          $('#mob' + val).prop('disabled', true);   //disabling radio
+          $('#mob' + val).prop('checked', true); //check radio
+          $('#mob' + val).prop('disabled', true); //disabling radio
           $('#' + val).prop('disabled', false); //enabling radio
-          $('#' + val).prop('checked', true);    //check radio
-          $('#' + val).prop('disabled', true);   //disabling radio
-          $('.filter-container').show();//FILTER DIV UNHIDE
-          var newtag = $('#filter-tag').clone().appendTo('.filter-container-child'); //COPY THE DEFAULT TAG DESIGN #FILTER 1 & CREATE NEW
-          newtag.addClass('filter-tag-' + type + "-" + val); //ADDING CLASS WITH NAME AS " filter-tag-name-+'type_name'+get(cat || brand)+(sub_category_id || brand_id) "
+          $('#' + val).prop('checked', true); //check radio
+          $('#' + val).prop('disabled', true); //disabling radio
+          $('.filter-container').show(); //FILTER DIV UNHIDE
+          var newtag = $('#filter-tag').clone().appendTo(
+            '.filter-container-child'); //COPY THE DEFAULT TAG DESIGN #FILTER 1 & CREATE NEW
+          newtag.addClass('filter-tag-' + type + "-" +
+            val
+          ); //ADDING CLASS WITH NAME AS " filter-tag-name-+'type_name'+get(cat || brand)+(sub_category_id || brand_id) "
           if (type == 'brand' || type == 'category') {
-            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val + " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" style=\"padding-left:10px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" + type + "-" + val + "\"><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
+            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type +
+              "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val +
+              " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" +
+              val + "\',\'" + type +
+              "\')\" style=\"padding-left:10px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" +
+              type + "-" + val + "\"><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
             $('.filter-tag-' + type + "-" + val).html(tag_content).show(); //APPENDING INNERHTML TO TAG & DISPLAY
           }
           if (type == 'star') {
-            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val + " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" + val + "\',\'" + type + "\')\" style=\"padding-left:2px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" + type + "-" + val + "\"><span style='padding-right:4px;color:#333' class='fa fa-star'></span><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
+            var tag_content = "<label onclick=\"removesortandfilter(\'" + val + "\',\'" + type +
+              "\')\" id=\"filter-tag-name\" class=\"filter-tag-name" + type + "-" + val +
+              " \" style=\"padding-left:0px !important;\" >" + cont + "</label><label onclick=\"removesortandfilter(\'" +
+              val + "\',\'" + type +
+              "\')\" style=\"padding-left:2px !important;\" id=\"filter-tag-close\" class=\"filter-tag-close  filter-tag-close" +
+              type + "-" + val +
+              "\"><span style='padding-right:4px;color:#333' class='fa fa-star'></span><span class=\"close\" >&times;</span></label>"; //CONTENT INSIDE THE DIV
             $('.filter-tag-' + type + "-" + val).html(tag_content).show(); //APPENDING INNERHTML TO TAG & DISPLAY
           }
-          filter.push({ type: type + "-" + val + "-" + cont });
+          filter.push({
+            type: type + "-" + val + "-" + cont
+          });
           console.log(filter)
           $(".table-data").empty();
           $("#dynamic-paging").empty();
@@ -1013,11 +1138,18 @@ var filter = [];
           $('.std_text2').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "filter_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "category":<?= $_GET['category_id'] ?>},  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "filter_cat_a": 1,
+              "key": filter,
+              "min-price": minprice,
+              "max-price": maxprice,
+              "sort": sort,
+              "category": <?= $_GET['category_id'] ?>
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
               if (data.status == 'success') {
                 $("#table-data").html(data.content).show();
                 $("#dynamic-paging").html(data.output).show();
@@ -1026,7 +1158,7 @@ var filter = [];
                 return;
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               $('.background_loader').hide();
               $('.std_text2').hide();
               if (textstatus === "timeout") {
@@ -1040,23 +1172,30 @@ var filter = [];
                 });
                 $('.background_loader').hide();
                 return;
+              } else {
+                return;
               }
-              else { return; }
             }
           }); //closing ajax
-        }
-        else {
+        } else {
           $(".table-data").empty();
           $("#dynamic-paging").empty();
           $('.background_loader').css('display', 'flex');
           $('.std_text2').css('display', 'flex');
           $.ajax({
             url: "../Common/functions.php", //passing page info
-            data: { "filter_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "category":<?= $_GET['category_id'] ?>},  //form data
-            type: "post",   //post data
-            dataType: "json",   //datatype=json format
-            timeout: 30000,   //waiting time 30 sec
-            success: function (data) {    //if registration is success
+            data: {
+              "filter_cat_a": 1,
+              "key": filter,
+              "min-price": minprice,
+              "max-price": maxprice,
+              "sort": sort,
+              "category": <?= $_GET['category_id'] ?>
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
               if (data.status == 'success') {
                 $("#table-data").html(data.content).show();
                 $("#dynamic-paging").html(data.output).show();
@@ -1065,7 +1204,7 @@ var filter = [];
                 return;
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               $('.background_loader').hide();
               $('.std_text2').hide();
               if (textstatus === "timeout") {
@@ -1079,13 +1218,15 @@ var filter = [];
                 });
                 $('.background_loader').hide();
                 return;
+              } else {
+                return;
               }
-              else { return; }
             }
           }); //closing ajax
         }
       }
     }
+
     function removesortandfilter(val, type) {
       if ($('#mobile-filter').css("display") == "none") {
         var maxprice = document.getElementById('max-price').value;
@@ -1094,8 +1235,7 @@ var filter = [];
         document.getElementById('mobsortall').value = sort;
         document.getElementById('mob-max-price').value = maxprice;
         document.getElementById('mob-min-price').value = minprice;
-      }
-      else if ($('#mobile-filter').css("display") == "block") {
+      } else if ($('#mobile-filter').css("display") == "block") {
         var maxprice = document.getElementById('mob-max-price').value;
         var minprice = document.getElementById('mob-min-price').value;
         var sort = document.getElementById('mobsortall').value;
@@ -1104,9 +1244,9 @@ var filter = [];
         document.getElementById('min-price').value = minprice;
       }
       var filter_tag_cnt = 0;
-      var type = type;//TYPE category || brand ||rating
+      var type = type; //TYPE category || brand ||rating
       if (type == 'brand' || type == 'category') {
-        var cont = $('.val-' + val).html();//INNER HTML
+        var cont = $('.val-' + val).html(); //INNER HTML
       }
       if (type == 'star') {
         var cont = $('#' + val).val();
@@ -1114,16 +1254,18 @@ var filter = [];
       $(".filter-tag-" + type + "-" + val).remove();
       if ($('#' + val).prop('checked') == true) {
         $('#mob' + val).prop('disabled', false); //enabling radio
-        $('#mob' + val).prop('checked', false);    //check radio
-        $('#mob' + val).prop('disabled', true);   //disabling radio
+        $('#mob' + val).prop('checked', false); //check radio
+        $('#mob' + val).prop('disabled', true); //disabling radio
         $('#' + val).prop('disabled', false); //enabling radio
-        $('#' + val).prop('checked', false);    //check radio
-        $('#' + val).prop('disabled', true);   //disabling radio
+        $('#' + val).prop('checked', false); //check radio
+        $('#' + val).prop('disabled', true); //disabling radio
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //REMOVING THE TAGS WITH VALUE OF THE KEY
         console.log('Before removing object from an array -> ' + JSON.stringify(filter));
-        var removeIndex = filter.map(function (item) { return item.type; }).indexOf(type + "-" + val + "-" + cont)
+        var removeIndex = filter.map(function(item) {
+          return item.type;
+        }).indexOf(type + "-" + val + "-" + cont)
         console.log(removeIndex)
         filter.splice(removeIndex, 1);
         console.log('After removing object from an array -> ' + JSON.stringify(filter));
@@ -1137,11 +1279,18 @@ var filter = [];
         $('.std_text2').css('display', 'flex');
         $.ajax({
           url: "../Common/functions.php", //passing page info
-          data: { "filter_cat_a": 1, "key": filter, "min-price": minprice, "max-price": maxprice, "sort": sort, "category":<?= $_GET['category_id'] ?>},  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
+          data: {
+            "filter_cat_a": 1,
+            "key": filter,
+            "min-price": minprice,
+            "max-price": maxprice,
+            "sort": sort,
+            "category": <?= $_GET['category_id'] ?>
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 30000, //waiting time 30 sec
+          success: function(data) { //if registration is success
             if (data.status == 'success') {
               $("#table-data").html(data.content).show();
               $("#dynamic-paging").html(data.output).show();
@@ -1150,7 +1299,7 @@ var filter = [];
               return;
             }
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             $('.background_loader').hide();
             $('.std_text2').hide();
             if (textstatus === "timeout") {
@@ -1163,19 +1312,20 @@ var filter = [];
                 timer: 6000,
               });
               return;
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-<?php
-}
-?>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  <?php
+  }
+  ?>
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1186,8 +1336,8 @@ var filter = [];
 <?php
 $result_cnt = $res->rowCount();
 if ($result_cnt == 0) {
-  ?>
-<!-- breadcrumbs -->
+?>
+  <!-- breadcrumbs -->
   <div class="breadcrumbs">
     <div class="container" style="width:100%;">
       <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
@@ -1198,7 +1348,7 @@ if ($result_cnt == 0) {
   </div>
   <!-- //breadcrumbs -->
   <div class="container" style="padding-top:100px;padding-bottom:100px;margin: 0;width: 100%;">
-    <?php
+  <?php
 } else {
   ?>
     <!-- breadcrumbs -->
@@ -1213,15 +1363,15 @@ if ($result_cnt == 0) {
     </div>
     <!-- //breadcrumbs -->
     <div class="container" style="padding: 0;margin: 0;width: 100%;">
-      <?php
-}
-?>
+    <?php
+  }
+    ?>
     <div class="row">
       <div class="col-xs-12 col-md-12 col-sm-12">
         <?php
         $result_cnt = $res->rowCount();
         if ($result_cnt == 0) {
-          ?>
+        ?>
           <div class="product-content-right">
             <center><img style="justify-content: center;" class="sidebar-title"
                 src="../../images/logo/error-no-search.png">
@@ -1232,21 +1382,21 @@ if ($result_cnt == 0) {
           <center style="margin-bottom:0px;margin-top: 50px;">
             <h4>Can't find requested product ?<a href="../Main/onestore.php"> Try again!</a></h4>
           </center>
-          <?php
+        <?php
         } else {
-          ?>
+        ?>
           <div class="wrapper hide_nav_small" style="margin: 0;width: 100% !important;">
             <div class="d-md-flex align-items-md-center" style="width: 100%;">
               <?php
               if (isset($_GET['item'])) {
-                ?>
+              ?>
                 <div class="h3" style="font-family: 'Poppins', sans-serif">Search results <span class='fa fa-search'></span>
                 </div>
-                <?php
+              <?php
               } else {
-                ?>
+              ?>
                 <div class="h3" style="font-family: 'Poppins', sans-serif"><?= $name ?></div>
-                <?php
+              <?php
               }
               ?>
               <div class="ml-auto d-flex align-items-center views "> <span
@@ -1254,23 +1404,23 @@ if ($result_cnt == 0) {
                     class="fas fa-th px-md-2 px-1"></span><span>Grid view</span> </span>
                 <?php
                 if (isset($_GET['item'])) {
-                  ?>
+                ?>
                   <span class="btn-pdt_pg list_view_mul listview"
                     onclick="location.href='../Product/products.php?item=<?= $_GET['item'] ?>'"> &nbsp; <span
                       class="fas fa-list-ul"></span><span class="px-md-2 px-1">List view</span></span>
-                  <?php
+                <?php
                 } else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
-                  ?>
-                    <span class="btn-pdt_pg list_view_mul listview"
-                      onclick="location.href='../Product/products.php?category_id=<?= $_GET['category_id'] ?> & subcategory_id=<?= $_GET['subcategory_id'] ?>'">
-                      &nbsp; <span class="fas fa-list-ul"></span><span class="px-md-2 px-1">List view</span></span>
-                  <?php
+                ?>
+                  <span class="btn-pdt_pg list_view_mul listview"
+                    onclick="location.href='../Product/products.php?category_id=<?= $_GET['category_id'] ?> & subcategory_id=<?= $_GET['subcategory_id'] ?>'">
+                    &nbsp; <span class="fas fa-list-ul"></span><span class="px-md-2 px-1">List view</span></span>
+                <?php
                 } else if (isset($_GET['category_id'])) {
-                  ?>
-                      <span class="btn-pdt_pg list_view_mul listview"
-                        onclick="location.href='../Product/products.php?category_id=<?= $_GET['category_id'] ?>'"> &nbsp; <span
-                          class="fas fa-list-ul"></span><span class="px-md-2 px-1">List view</span></span>
-                  <?php
+                ?>
+                  <span class="btn-pdt_pg list_view_mul listview"
+                    onclick="location.href='../Product/products.php?category_id=<?= $_GET['category_id'] ?>'"> &nbsp; <span
+                      class="fas fa-list-ul"></span><span class="px-md-2 px-1">List view</span></span>
+                <?php
                 }
                 ?>
                 <span class="green-label px-md-2 px-1"><?= $result_cnt ?></span> <span class="text-muted">Products</span>
@@ -1325,11 +1475,11 @@ if ($result_cnt == 0) {
                 </div>
                 <?php
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                 if (isset($_GET['category_id']) && !isset($_GET['subcategory_id'])) {
-                  ?>
+                ?>
                   <div class="py-3 side-nav-filters-head">
                     <h5 data-toggle="collapse" data-target="#cat-filter-mob" aria-expanded="false"
                       aria-controls="cat-filter-mob" class="font-weight-bold side-nav-filters"
@@ -1356,7 +1506,7 @@ if ($result_cnt == 0) {
                         if ($getsubcatqnty_row == false) {
                           $getsubcatqnty_row['qntycnt'] = 0;
                         }
-                        ?>
+                      ?>
                         <li onclick="sortandfilter('getcat-<?= $getcat_row['sub_category_id'] ?>','category')"
                           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category cat-font  getcat-<?= $getcat_row['sub_category_id'] ?>"
                           style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color:#ddd ">
@@ -1368,7 +1518,7 @@ if ($result_cnt == 0) {
                               name="mob-radio-getcat-<?= $getcat_row['sub_category_id'] ?>"> <span class="checkmark"></span>
                           </label><span class="badge badge-primary badge-pill"><?= $getsubcatqnty_row['qntycnt'] ?></span>
                         </li>
-                        <?php
+                      <?php
                       }
                       ?>
                     </ul>
@@ -1376,8 +1526,8 @@ if ($result_cnt == 0) {
                   <?php
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if (isset($_GET['category_id']) || isset($_GET['subcategory_id']) || isset($_GET['item'])) {
                   if (isset($_GET['item'])) {
                     $brandsql = "select brand.brand_name,brand.brand_id from item
@@ -1410,7 +1560,7 @@ if ($result_cnt == 0) {
                   $brandstmt = $pdo->query($brandsql);
                   $brandcnt = $brandstmt->rowCount();
                   if ($brandcnt > 0) {
-                    ?>
+                  ?>
                     <div class="py-3 side-nav-filters-head">
                       <h5 data-toggle="collapse" data-target="#brand-filter-mob" aria-expanded="false"
                         aria-controls="brand-filter-mob" class="font-weight-bold side-nav-filters"
@@ -1421,7 +1571,7 @@ if ($result_cnt == 0) {
                       <form class="brand collapse" id="brand-filter-mob" style="">
                         <?php
                         while ($getbrand_row = $brandstmt->fetch(PDO::FETCH_ASSOC)) {
-                          ?>
+                        ?>
                           <li onclick="sortandfilter('getbrand-<?= $getbrand_row['brand_id'] ?>','brand')"
                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category brand-font  getbrand-<?= $getbrand_row['brand_id'] ?>"
                             style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color:#ddd ">
@@ -1432,17 +1582,17 @@ if ($result_cnt == 0) {
                                 type="radio" disabled name="mob-radio-getbrand-<?= $getbrand_row['brand_id'] ?>"> <span
                                 class="checkmark"></span> </label>
                           </li>
-                          <?php
+                        <?php
                         }
                         ?>
                       </form>
                     </div>
-                    <?php
+                <?php
                   }
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ?>
                 <div class="py-3 side-nav-filters-head">
                   <h5 data-toggle="collapse" data-target="#rating-filter-mob" aria-expanded="false"
@@ -1556,9 +1706,9 @@ where category_id=$cat_id");
                             if ($divident * $i > $minprice and $divident * $i < $maxprice) {
                               $pricelist = $divident * $i;
                             }
-                            ?>
+                          ?>
                             <option><?= $pricelist ?></option>
-                            <?php
+                          <?php
                           }
                           ?>
                         </select>
@@ -1581,9 +1731,9 @@ where category_id=$cat_id");
                             if ($divident * $i > $minprice and $divident * $i < $maxprice) {
                               $pricelist = $divident * $i;
                             }
-                            ?>
+                          ?>
                             <option><?= $pricelist ?></option>
-                            <?php
+                          <?php
                           }
                           ?>
                         </select>
@@ -1615,11 +1765,11 @@ where category_id=$cat_id");
                   <hr style="margin-top: 15px;margin-bottom: 1px;">
                   <?php
                   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                   if (isset($_GET['category_id']) && !isset($_GET['subcategory_id'])) {
-                    ?>
+                  ?>
                     <div class="py-3 side-nav-filters-head">
                       <h5 data-toggle="collapse" data-target="#cat-filter" aria-expanded="false" aria-controls="cat-filter"
                         class="font-weight-bold side-nav-filters"
@@ -1645,7 +1795,7 @@ where category_id=$cat_id");
                           if ($getsubcatqnty_row == false) {
                             $getsubcatqnty_row['qntycnt'] = 0;
                           }
-                          ?>
+                        ?>
                           <li onclick="sortandfilter('getcat-<?= $getcat_row['sub_category_id'] ?>','category')"
                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category cat-font  getcat-<?= $getcat_row['sub_category_id'] ?>"
                             style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(1, #fff)) !important;color:#000 ">
@@ -1657,7 +1807,7 @@ where category_id=$cat_id");
                                 name="radio-getcat-<?= $getcat_row['sub_category_id'] ?>"> <span class="checkmark"></span>
                             </label><span class="badge badge-primary badge-pill"><?= $getsubcatqnty_row['qntycnt'] ?></span>
                           </li>
-                          <?php
+                        <?php
                         }
                         ?>
                       </ul>
@@ -1665,8 +1815,8 @@ where category_id=$cat_id");
                     <?php
                   }
                   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   if (isset($_GET['category_id']) || isset($_GET['subcategory_id']) || isset($_GET['item'])) {
                     if (isset($_GET['item'])) {
                       $brandsql = "select brand.brand_name,brand.brand_id from item
@@ -1699,7 +1849,7 @@ where category_id=$cat_id");
                     $brandstmt = $pdo->query($brandsql);
                     $brandcnt = $brandstmt->rowCount();
                     if ($brandcnt > 0) {
-                      ?>
+                    ?>
                       <div class="py-3 side-nav-filters-head">
                         <h5 data-toggle="collapse" data-target="#brand-filter" aria-expanded="false"
                           aria-controls="brand-filter" class="font-weight-bold side-nav-filters"
@@ -1710,7 +1860,7 @@ where category_id=$cat_id");
                         <ul id="brand-filter" class="list-group collapse" style="margin-bottom: 0px;">
                           <?php
                           while ($getbrand_row = $brandstmt->fetch(PDO::FETCH_ASSOC)) {
-                            ?>
+                          ?>
                             <li onclick="sortandfilter('getbrand-<?= $getbrand_row['brand_id'] ?>','brand')"
                               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category brand-font  getbrand-<?= $getbrand_row['brand_id'] ?>"
                               style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(1, #fff)) !important;color:#000 ">
@@ -1721,17 +1871,17 @@ where category_id=$cat_id");
                                   type="radio" disabled name="radio-getbrand-<?= $getbrand_row['brand_id'] ?>"> <span
                                   class="checkmark"></span> </label>
                             </li>
-                            <?php
+                          <?php
                           }
                           ?>
                         </ul>
                       </div>
-                      <?php
+                  <?php
                     }
                   }
                   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   ?>
                   <div class="py-3 side-nav-filters-head">
                     <h5 data-toggle="collapse" data-target="#rating-filter" aria-expanded="false"
@@ -1831,9 +1981,9 @@ where category_id=$cat_id");
                               if ($divident * $i > $minprice and $divident * $i < $maxprice) {
                                 $pricelist = $divident * $i;
                               }
-                              ?>
+                            ?>
                               <option><?= $pricelist ?></option>
-                              <?php
+                            <?php
                             }
                             ?>
                           </select>
@@ -1856,9 +2006,9 @@ where category_id=$cat_id");
                               if ($divident * $i > $minprice and $divident * $i < $maxprice) {
                                 $pricelist = $divident * $i;
                               }
-                              ?>
+                            ?>
                               <option><?= $pricelist ?></option>
-                              <?php
+                            <?php
                             }
                             ?>
                           </select>
@@ -1870,52 +2020,52 @@ where category_id=$cat_id");
               </div>
             </div>
             <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <div class="col-md-9 col-sm-12 col-xs-12" style="padding:0px;margin:0px">
-            <div style="margin-bottom: 0px;padding:0px"></div>
-            <section>
-              <div class="container py-3" style="padding:0px;">
-                <div class="row" style="margin:0;padding-top:0px !important">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col xs-12 dynamic-content" id="dynamic-content"
-                    style="width: 100%;padding:0">
-                    <div id="table-data">
-                      <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <div class="col-md-9 col-sm-12 col-xs-12" style="padding:0px;margin:0px">
+              <div style="margin-bottom: 0px;padding:0px"></div>
+              <section>
+                <div class="container py-3" style="padding:0px;">
+                  <div class="row" style="margin:0;padding-top:0px !important">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col xs-12 dynamic-content" id="dynamic-content"
+                      style="width: 100%;padding:0">
+                      <div id="table-data">
+                        <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!---ALL CONTENTS ARE LOADED HERE--->
-                      <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
                         <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
-                        <?php
-        }
-        ?>
+                        <!--------------------------------------REMOVE CONTENTS------------------------------------------------------------------------------------------>
+                      <?php
+                    }
+                      ?>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
-            <div id="dynamic-paging"></div>
+              </section>
+              <div id="dynamic-paging"></div>
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------------------------------------->
           </div>
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-          <!----------------------------------------------------------------------------------------------------------------------------------------------->
-        </div>
       </div>
     </div>
-  </div>
-  <?php
-  require "../Product/products_footer.php";
-  ?>
-  <script>
+    </div>
+    <?php
+    require "../Product/products_footer.php";
+    ?>
+    <script>
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //STORE LISTING
@@ -1924,19 +2074,21 @@ where category_id=$cat_id");
         var idid = item_description_id;
         $.ajax({
           url: "../Common/functions.php", //passing page info
-          data: { "storefinder": 1, "item_description_id": idid },  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 60000,   //waiting time 60 sec
-          success: function (data) {    //if registration is success
+          data: {
+            "storefinder": 1,
+            "item_description_id": idid
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 60000, //waiting time 60 sec
+          success: function(data) { //if registration is success
             if (data.status == "success") {
               if (data.avail != 0) {
                 console.log(data.data);
                 $('.store_rows').remove();
                 $('#store').append(data.data);
                 $("avail_store").show();
-              }
-              else {
+              } else {
                 console.log("multistore");
                 $("multi_store_response").show();
               }
@@ -1944,7 +2096,7 @@ where category_id=$cat_id");
               return;
             }
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             console.log("error");
             if (textstatus === "timeout") {
               swal({
@@ -1956,239 +2108,336 @@ where category_id=$cat_id");
                 timer: 6000,
               });
               return;
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function wishlist_storefinder(item_description_id) {
-      $("#per2").hide();
-      var idid = item_description_id;
-      $.ajax({
-        url: "../Common/functions.php", //passing page info
-        data: { "wishlist_storefinder": 1, "item_description_id": idid },  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 60000,   //waiting time 60 sec
-        success: function (data) {    //if registration is success
-          if (data.status == "success") {
-            if (data.avail != 0) {
-              $('.wishlist_store_rows').remove();
-              $('#wishlist_store').append(data.data);
-              $("avail_store_wishlist").show();
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      function wishlist_storefinder(item_description_id) {
+        $("#per2").hide();
+        var idid = item_description_id;
+        $.ajax({
+          url: "../Common/functions.php", //passing page info
+          data: {
+            "wishlist_storefinder": 1,
+            "item_description_id": idid
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 60000, //waiting time 60 sec
+          success: function(data) { //if registration is success
+            if (data.status == "success") {
+              if (data.avail != 0) {
+                $('.wishlist_store_rows').remove();
+                $('#wishlist_store').append(data.data);
+                $("avail_store_wishlist").show();
+              } else {
+                $("wishlist_multi_store_response").show();
+              }
+              //$("#multi_store_listing").show();
+              return;
             }
-            else {
-              $("wishlist_multi_store_response").show();
+          },
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            if (textstatus === "timeout") {
+              swal({
+                title: "Oops!!!",
+                text: "server time out",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+                timer: 6000,
+              });
+              return;
+            } else {
+              return;
             }
-            //$("#multi_store_listing").show();
-            return;
           }
-        },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-          if (textstatus === "timeout") {
-            swal({
-              title: "Oops!!!",
-              text: "server time out",
-              icon: "error",
+        }); //closing ajax
+      }
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //PRICE AND CART SETTINGS
+      function pricing(store, item_description_id) {
+        var idid = item_description_id;
+        var store_id = store;
+        $('.sel_store').css('display', 'unset');
+        $('.element_cart').hide();
+        $('#check' + store_id).css('display', 'none');
+        $('#btn' + store_id).css('display', 'unset');
+        //if none is checked
+        if ($('.sel_store:checkbox:checked').length == 0) {
+          $("#ini").show();
+          $("#per").hide();
+        }
+        //if none is checked
+        else {
+          $.ajax({
+            url: "../Common/functions.php", //passing page info
+            data: {
+              "pricefinder": 1,
+              "item_description_id": idid,
+              "store_id": store_id
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
+              $("#ini").hide();
+              document.getElementById('save').innerHTML = "";
+              document.getElementById('save').innerHTML += data.save;
+              document.getElementById('off').innerHTML = "";
+              document.getElementById('off').innerHTML += data.off;
+              document.getElementById('dis_avail').innerHTML = "";
+              document.getElementById('dis_avail').innerHTML = "" + data.availability;
+              document.getElementById('dis_sts').innerHTML = "";
+              document.getElementById('dis_sts').innerHTML = "" + data.sts;
+              document.getElementById('dis_qnty').innerHTML = "";
+              document.getElementById('dis_qnty').innerHTML = "" + data.quantity;
+              document.getElementById('dis_add').innerHTML = "";
+              document.getElementById('dis_add').innerHTML = "" + data.address;
+              document.getElementById('idid_keeper').value = "";
+              document.getElementById('idid_keeper').value = "" + data.idid;
+              $('#addfeature').html(data.features);
+              $("#oldpriceofitem").show();
+              $("#per").show();
+              return;
+            },
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+              if (textstatus === "timeout") {
+                swal({
+                  title: "Oops!!!",
+                  text: "server time out",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                  timer: 6000,
+                });
+                return;
+              } else {
+                return;
+              }
+            }
+          }); //closing ajax
+        }
+      }
+      //PRICE AND CART SETTINGS
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //PRICE AND CART SETTINGS WISHLIST
+      function wishlist_pricing(store, item_description_id) {
+        var idid = item_description_id;
+        var store_id = store;
+        $('.sel_store2').css('display', 'unset');
+        $('.element_cart2').hide();
+        $('#wishlist_check' + store_id).css('display', 'none');
+        $('#wishlist_btn' + store_id).css('display', 'unset');
+        //if none is checked
+        if ($('.sel_store2:checkbox:checked').length == 0) {
+          $("#ini").show();
+          $("#per2").hide();
+        }
+        //if none is checked
+        else {
+          $.ajax({
+            url: "../Common/functions.php", //passing page info
+            data: {
+              "wishlist_pricefinder": 1,
+              "item_description_id": idid,
+              "store_id": store_id
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
+              $("#ini").hide();
+              document.getElementById('save2').innerHTML = "";
+              document.getElementById('save2').innerHTML += data.save;
+              document.getElementById('off2').innerHTML = "";
+              document.getElementById('off2').innerHTML += data.off;
+              document.getElementById('dis_avail2').innerHTML = "";
+              document.getElementById('dis_avail2').innerHTML = "" + data.availability;
+              document.getElementById('dis_sts2').innerHTML = "";
+              document.getElementById('dis_sts2').innerHTML = "" + data.sts;
+              document.getElementById('dis_qnty2').innerHTML = "";
+              document.getElementById('dis_qnty2').innerHTML = "" + data.quantity;
+              document.getElementById('dis_add2').innerHTML = "";
+              document.getElementById('dis_add2').innerHTML = "" + data.address;
+              document.getElementById('wishlist_idid_keeper').value = "";
+              document.getElementById('wishlist_idid_keeper').value = "" + data.idid;
+              $('#wishaddfeature').html(data.features);
+              $("#oldpriceofitem").show();
+              $("#per2").show();
+              return;
+            },
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+              if (textstatus === "timeout") {
+                swal({
+                  title: "Oops!!!",
+                  text: "server time out",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                  timer: 6000,
+                });
+                return;
+              } else {
+                return;
+              }
+            }
+          }); //closing ajax
+        }
+      }
+      //PRICE AND CART SETTINGS  WISHLIST
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //WISHLIST ENTRY ITEMS
+      function wishlist_check_store_select() {
+        var tbl = document.getElementById("wishlist_store");
+        var chks = tbl.getElementsByTagName("INPUT");
+        var id = 0;
+        var flag = 0;
+        for (var i = 0; i < chks.length; i++) {
+          if (chks[i].checked == true) {
+            id = chks[i].value;
+            flag = 1;
+          }
+        }
+        if (flag == 0) {
+          swal({
+              title: "Sorry!!!",
+              text: "Select a store",
+              icon: "warning",
               closeOnClickOutside: false,
               dangerMode: true,
-              timer: 6000,
+            })
+            .then((willSubmit1) => {
+              if (willSubmit1) {
+                return;
+              } else {
+                return;
+              }
             });
-            return;
-          }
-          else { return; }
-        }
-      }); //closing ajax
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //PRICE AND CART SETTINGS
-    function pricing(store, item_description_id) {
-      var idid = item_description_id;
-      var store_id = store;
-      $('.sel_store').css('display', 'unset');
-      $('.element_cart').hide();
-      $('#check' + store_id).css('display', 'none');
-      $('#btn' + store_id).css('display', 'unset');
-      //if none is checked
-      if ($('.sel_store:checkbox:checked').length == 0) {
-        $("#ini").show();
-        $("#per").hide();
-      }
-      //if none is checked
-      else {
-        $.ajax({
-          url: "../Common/functions.php", //passing page info
-          data: { "pricefinder": 1, "item_description_id": idid, "store_id": store_id },  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
-            $("#ini").hide();
-            document.getElementById('save').innerHTML = "";
-            document.getElementById('save').innerHTML += data.save;
-            document.getElementById('off').innerHTML = "";
-            document.getElementById('off').innerHTML += data.off;
-            document.getElementById('dis_avail').innerHTML = "";
-            document.getElementById('dis_avail').innerHTML = "" + data.availability;
-            document.getElementById('dis_sts').innerHTML = "";
-            document.getElementById('dis_sts').innerHTML = "" + data.sts;
-            document.getElementById('dis_qnty').innerHTML = "";
-            document.getElementById('dis_qnty').innerHTML = "" + data.quantity;
-            document.getElementById('dis_add').innerHTML = "";
-            document.getElementById('dis_add').innerHTML = "" + data.address;
-            document.getElementById('idid_keeper').value = "";
-            document.getElementById('idid_keeper').value = "" + data.idid;
-            $('#addfeature').html(data.features);
-            $("#oldpriceofitem").show();
-            $("#per").show();
-            return;
-          },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-            if (textstatus === "timeout") {
-              swal({
-                title: "Oops!!!",
-                text: "server time out",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-                timer: 6000,
-              });
-              return;
+        } else {
+          var item_description_id = document.getElementById('wishlist_idid_keeper').value;
+          $.ajax({
+            url: "../Common/functions.php", //passing page info
+            data: {
+              "addtowishlist": 1,
+              "item_description_id": item_description_id,
+              "store_id": id
+            }, //form data
+            type: "post", //post data
+            dataType: "json", //datatype=json format
+            timeout: 30000, //waiting time 30 sec
+            success: function(data) { //if registration is success
+              if (data.status == 'success') {
+                return;
+              } else if (data.status == 'error') {
+                swal({
+                    title: "Required!!!",
+                    text: "You need to create an Account",
+                    icon: "error",
+                    closeOnClickOutside: false,
+                    dangerMode: true,
+                  })
+                  .then((willSubmit) => {
+                    if (willSubmit) {
+                      location.href = "../Account/registered.php";
+                      return;
+                    } else {
+                      return;
+                    }
+                  });
+              }
+            },
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+              if (textstatus === "timeout") {
+                swal({
+                  title: "Oops!!!",
+                  text: "server time out",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                  timer: 6000,
+                });
+                return;
+              } else {
+                return;
+              }
             }
-            else { return; }
-          }
-        }); //closing ajax
-      }
-    }
-    //PRICE AND CART SETTINGS
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //PRICE AND CART SETTINGS WISHLIST
-    function wishlist_pricing(store, item_description_id) {
-      var idid = item_description_id;
-      var store_id = store;
-      $('.sel_store2').css('display', 'unset');
-      $('.element_cart2').hide();
-      $('#wishlist_check' + store_id).css('display', 'none');
-      $('#wishlist_btn' + store_id).css('display', 'unset');
-      //if none is checked
-      if ($('.sel_store2:checkbox:checked').length == 0) {
-        $("#ini").show();
-        $("#per2").hide();
-      }
-      //if none is checked
-      else {
-        $.ajax({
-          url: "../Common/functions.php", //passing page info
-          data: { "wishlist_pricefinder": 1, "item_description_id": idid, "store_id": store_id },  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
-            $("#ini").hide();
-            document.getElementById('save2').innerHTML = "";
-            document.getElementById('save2').innerHTML += data.save;
-            document.getElementById('off2').innerHTML = "";
-            document.getElementById('off2').innerHTML += data.off;
-            document.getElementById('dis_avail2').innerHTML = "";
-            document.getElementById('dis_avail2').innerHTML = "" + data.availability;
-            document.getElementById('dis_sts2').innerHTML = "";
-            document.getElementById('dis_sts2').innerHTML = "" + data.sts;
-            document.getElementById('dis_qnty2').innerHTML = "";
-            document.getElementById('dis_qnty2').innerHTML = "" + data.quantity;
-            document.getElementById('dis_add2').innerHTML = "";
-            document.getElementById('dis_add2').innerHTML = "" + data.address;
-            document.getElementById('wishlist_idid_keeper').value = "";
-            document.getElementById('wishlist_idid_keeper').value = "" + data.idid;
-            $('#wishaddfeature').html(data.features);
-            $("#oldpriceofitem").show();
-            $("#per2").show();
-            return;
-          },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-            if (textstatus === "timeout") {
-              swal({
-                title: "Oops!!!",
-                text: "server time out",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-                timer: 6000,
-              });
-              return;
-            }
-            else { return; }
-          }
-        }); //closing ajax
-      }
-    }
-    //PRICE AND CART SETTINGS  WISHLIST
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //WISHLIST ENTRY ITEMS
-    function wishlist_check_store_select() {
-      var tbl = document.getElementById("wishlist_store");
-      var chks = tbl.getElementsByTagName("INPUT");
-      var id = 0;
-      var flag = 0;
-      for (var i = 0; i < chks.length; i++) {
-        if (chks[i].checked == true) {
-          id = chks[i].value;
-          flag = 1;
+          }); //closing ajax
         }
       }
-      if (flag == 0) {
-        swal({
-          title: "Sorry!!!",
-          text: "Select a store",
-          icon: "warning",
-          closeOnClickOutside: false,
-          dangerMode: true,
-        })
-          .then((willSubmit1) => {
-            if (willSubmit1) {
-              return;
-            }
-            else {
-              return;
-            }
-          });
-      }
-      else {
-        var item_description_id = document.getElementById('wishlist_idid_keeper').value;
+      //WISHLIST ENTRY ITEMS
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      function wishlist_check_list_select(wishlist_id) {
         $.ajax({
           url: "../Common/functions.php", //passing page info
-          data: { "addtowishlist": 1, "item_description_id": item_description_id, "store_id": id },  //form data
-          type: "post",   //post data
-          dataType: "json",   //datatype=json format
-          timeout: 30000,   //waiting time 30 sec
-          success: function (data) {    //if registration is success
+          data: {
+            "fetchedwishlistid": 1,
+            "wishlist_id": wishlist_id
+          }, //form data
+          type: "post", //post data
+          dataType: "json", //datatype=json format
+          timeout: 30000, //waiting time 30 sec
+          success: function(data) { //if registration is success
             if (data.status == 'success') {
-              return;
-            }
-            else if (data.status == 'error') {
+              $('#wish_cnt_' + wishlist_id + '').html(data.new_wish_cnt);
               swal({
-                title: "Required!!!",
-                text: "You need to create an Account",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Added!!!",
+                  text: "Check your wishlist",
+                  icon: "success",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
+                .then((willSubmit1) => {
+                  if (willSubmit1) {
+                    return;
+                  } else {
+                    return;
+                  }
+                });
+            } else if (data.status == 'success1') {
+              $(".background_loader").hide();
+              swal({
+                  title: "Item exists!!!",
+                  text: "Check your wishlist",
+                  icon: "warning",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
+                .then((willSubmit1) => {
+                  if (willSubmit1) {
+                    return;
+                  } else {
+                    return;
+                  }
+                });
+            } else if (data.status == 'error') {
+              swal({
+                  title: "Required!!!",
+                  text: "You need to create an Account",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
                     location.href = "../Account/registered.php";
                     return;
-                  }
-                  else {
+                  } else {
                     return;
                   }
                 });
             }
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             if (textstatus === "timeout") {
               swal({
                 title: "Oops!!!",
@@ -2199,97 +2448,14 @@ where category_id=$cat_id");
                 timer: 6000,
               });
               return;
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
-    }
-    //WISHLIST ENTRY ITEMS
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function wishlist_check_list_select(wishlist_id) {
-      $.ajax({
-        url: "../Common/functions.php", //passing page info
-        data: { "fetchedwishlistid": 1, "wishlist_id": wishlist_id },  //form data
-        type: "post",   //post data
-        dataType: "json",   //datatype=json format
-        timeout: 30000,   //waiting time 30 sec
-        success: function (data) {    //if registration is success
-          if (data.status == 'success') {
-            $('#wish_cnt_' + wishlist_id + '').html(data.new_wish_cnt);
-            swal({
-              title: "Added!!!",
-              text: "Check your wishlist",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
-              .then((willSubmit1) => {
-                if (willSubmit1) {
-                  return;
-                }
-                else {
-                  return;
-                }
-              });
-          }
-          else if (data.status == 'success1') {
-            $(".background_loader").hide();
-            swal({
-              title: "Item exists!!!",
-              text: "Check your wishlist",
-              icon: "warning",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
-              .then((willSubmit1) => {
-                if (willSubmit1) {
-                  return;
-                }
-                else {
-                  return;
-                }
-              });
-          }
-          else if (data.status == 'error') {
-            swal({
-              title: "Required!!!",
-              text: "You need to create an Account",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
-              .then((willSubmit) => {
-                if (willSubmit) {
-                  location.href = "../Account/registered.php";
-                  return;
-                }
-                else {
-                  return;
-                }
-              });
-          }
-        },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-          if (textstatus === "timeout") {
-            swal({
-              title: "Oops!!!",
-              text: "server time out",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-              timer: 6000,
-            });
-            return;
-          }
-          else { return; }
-        }
-      }); //closing ajax
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  </script>
-  </body>
-  <html>
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+    </body>
+    <html>

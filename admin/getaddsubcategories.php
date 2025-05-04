@@ -52,4 +52,3 @@ if (isset($_POST['type'])) {
 		$statement->execute();
 	}
 }
-?>

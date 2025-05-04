@@ -19,4 +19,3 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $rows[] = $row;
 }
 echo json_encode($rows);
-?>

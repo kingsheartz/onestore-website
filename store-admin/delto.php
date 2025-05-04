@@ -31,4 +31,3 @@ if (isset($_POST['up_id']) || isset($_POST['up_tit'])) {
   $statement = $pdo->prepare($query);
   $statement->execute($data);
 }
-?>

@@ -1,12 +1,7 @@
 <?php
 require "head.php";
-?>
-<?php
-
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/config.php';
-
-
 
 if (!empty($_SESSION['_contact_form_error'])) {
   $error = $_SESSION['_contact_form_error'];
@@ -17,7 +12,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
   $success = true;
   unset($_SESSION['_contact_form_success']);
 }
-
 ?>
 
 <body>
@@ -27,7 +21,6 @@ if (!empty($_SESSION['_contact_form_success'])) {
     ?>
     <style>
       .ftcl {
-
         border-color: #2e6da4;
         width: 100%;
         margin-right: 20px;
@@ -93,51 +86,45 @@ if (!empty($_SESSION['_contact_form_success'])) {
 
           y = 'addfeat.php?size=1';
           z = 'size=' + selected_option_value;
-        }
-        else if (x == 'color') {
+        } else if (x == 'color') {
           var selected_option_value = $("#color").val();
 
           y = 'addfeat.php?color=1';
           z = 'color=' + selected_option_value;
-        }
-
-        else if (x == 'flavour') {
+        } else if (x == 'flavour') {
           var selected_option_value = $("#flavour").val();
 
           y = 'addfeat.php?flavour=1';
           z = 'flavour=' + selected_option_value;
-        }
-        else if (x == 'processor') {
+        } else if (x == 'processor') {
           var selected_option_value = $("#processor").val();
 
           y = 'addfeat.php?processor=1';
           z = 'processor=' + selected_option_value;
-        }
-        else if (x == 'disp') {
+        } else if (x == 'disp') {
           var selected_option_value = $("#disp").val();
 
           y = 'addfeat.php?display=1';
           z = 'display=' + selected_option_value;
-        }
-        else if (x == 'battery') {
+        } else if (x == 'battery') {
           var selected_option_value = $("#battery").val();
 
           y = 'addfeat.php?battery=1';
           z = 'battery=' + selected_option_value;
-        }
-        else if (x == 'internal_storage') {
+        } else if (x == 'internal_storage') {
           var selected_option_value = $("#internal_storage").val();
 
           y = 'addfeat.php?internal_storage=1';
           z = 'internal_storage=' + selected_option_value;
-        }
-        else if (x == 'brand') {
+        } else if (x == 'brand') {
           var selected_option_value = $("#brand").val();
           t = $("#brct").val();
           y = 'addfeat.php?	brand=1';
-          z = { brand: selected_option_value, category: t };
-        }
-        else if (x == 'material') {
+          z = {
+            brand: selected_option_value,
+            category: t
+          };
+        } else if (x == 'material') {
           var selected_option_value = $("#material").val();
 
           y = 'addfeat.php?material=1';
@@ -148,17 +135,16 @@ if (!empty($_SESSION['_contact_form_success'])) {
           type: 'POST',
           url: 'featsub.php',
           data: z,
-          success: function (html) {
+          success: function(html) {
             $('#event').empty();
             $('#event').append('<div style=" width:100%" class="alert alert-success">New row added</div>');
           }
         });
-
       }
     </script>
     <?php
     if (isset($_GET['size'])) {
-      ?>
+    ?>
       <form id="size1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -174,11 +160,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //color
     if (isset($_GET['color'])) {
-      ?>
+    ?>
       <form id="color1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -194,11 +180,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //flavour
     if (isset($_GET['flavour'])) {
-      ?>
+    ?>
       <form id="flavour1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -214,11 +200,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //processor
     if (isset($_GET['processor'])) {
-      ?>
+    ?>
       <form id="processor1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -234,11 +220,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //display
     if (isset($_GET['display'])) {
-      ?>
+    ?>
       <form id="display22">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -254,11 +240,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //battery
     if (isset($_GET['battery'])) {
-      ?>
+    ?>
       <form id="battery1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -274,11 +260,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //internal_storage
     if (isset($_GET['internal_storage'])) {
-      ?>
+    ?>
       <form id="internal_storage1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -294,11 +280,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //brand
     if (isset($_GET['brand'])) {
-      ?>
+    ?>
       <form id="brand1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -312,12 +298,10 @@ if (!empty($_SESSION['_contact_form_success'])) {
                   <?php
                   $cat = $pdo->query("select * from category");
 
-
-
                   while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                    ?>
+                  ?>
                     <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
-                    <?php
+                  <?php
                   }
                   ?>
                 </select>
@@ -327,11 +311,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     //material
     if (isset($_GET['material'])) {
-      ?>
+    ?>
       <form id="material1">
         <div class="new" id="myModal" tabindex="-1" role="dialog">
           <div class="modal-dialog1" role="document">
@@ -347,7 +331,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
         </div>
       </form>
-      <?php
+    <?php
     }
     ?>
     <?php

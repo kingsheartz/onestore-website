@@ -106,8 +106,7 @@ require "head.php";
           $('#pass1').css('border-bottom', 'solid 4px red');
           $('#pass2').css('border-bottom', 'solid 4px red');
           return;
-        }
-        else {
+        } else {
           $('#pass1').css('border-bottom', 'solid 4px green');
           $('#pass2').css('border-bottom', 'solid 4px green');
           return false;
@@ -142,7 +141,7 @@ require "head.php";
     require 'foot.php';
     ?>
     <script>
-      $("#eye").on("click", function () {
+      $("#eye").on("click", function() {
         if ($("#eye").hasClass("fas fa-eye-slash")) {
           $("#eye").removeClass("fa-eye-slash");
           $("#eye").addClass("fas fa-eye");
@@ -153,7 +152,7 @@ require "head.php";
           $("#pass1").prop("type", "text");
         }
       });
-      $("#eye2").on("click", function () {
+      $("#eye2").on("click", function() {
         if ($("#eye2").hasClass("fas fa-eye-slash")) {
           $("#eye2").removeClass("fa-eye-slash");
           $("#eye2").addClass("fas fa-eye");

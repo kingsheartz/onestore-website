@@ -49,4 +49,3 @@ if (isset($_POST['type'])) {
 	}
 }
 //EDITED BY KINGSHEARTZ
-?>

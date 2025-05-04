@@ -5,4 +5,3 @@ while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
 	$rows[] = $row;
 }
 echo json_encode($rows);
-?>

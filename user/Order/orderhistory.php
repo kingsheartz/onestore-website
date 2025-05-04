@@ -256,12 +256,16 @@ require "../Common/pdo.php";
   }
 </style>
 <script>
-  $(document).ready(function (f) {
+  $(document).ready(function(f) {
     var pageId = 1;
     $('#background_loader').show();
     $('#std_loader').show();
     var inputVal = $('#order_search').val();
-    $.get("gethistorysearch.php", { "name": inputVal, 'page_no': pageId, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("gethistorysearch.php", {
+      "name": inputVal,
+      'page_no': pageId,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -276,7 +280,10 @@ require "../Common/pdo.php";
     $('#background_loader').show();
     $('#std_loader').show();
     var inputVal = $('#order_search').val();
-    $.get("gethistorysearch.php", { name: inputVal, id: <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("gethistorysearch.php", {
+      name: inputVal,
+      id: <?= $_SESSION['id'] ?>
+    }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);
@@ -286,13 +293,17 @@ require "../Common/pdo.php";
     $('#std_loader').hide();
   }
   // Pagination code
-  $(document).on("click", ".pagination li a", function (e) {
+  $(document).on("click", ".pagination li a", function(e) {
     e.preventDefault();
     var pageId = $(this).attr("id");
     $('#background_loader').show();
     $('#std_loader').show();
     var inputVal = $('#order_search').val();
-    $.get("gethistorysearch.php", { "name": inputVal, 'page_no': pageId, "id": <?= $_SESSION['id'] ?> }).done(function (data) {
+    $.get("gethistorysearch.php", {
+      "name": inputVal,
+      'page_no': pageId,
+      "id": <?= $_SESSION['id'] ?>
+    }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
       $('#content_order').append(data.output);

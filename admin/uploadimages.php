@@ -262,8 +262,10 @@ if (!empty($_SESSION['_contact_form_success'])) {
       }
     </script>
     <form name="form" id="myform" method="post" action="upload.php" enctype="multipart/form-data">
-      <div class="hed"><i style="
-  padding-right: 20px;font-size: 24px" class="fas fa-folder-plus"></i>Add Product</div><br>
+      <div class="hed">
+        <i style="padding-right: 20px;font-size: 24px" class="fas fa-folder-plus"></i>
+        Add Product
+      </div><br>
       <?php
       if (!empty($success)) {
         ?>
@@ -281,10 +283,11 @@ if (!empty($_SESSION['_contact_form_success'])) {
       <div class="element col-sm-7">
         <label class="addte">Features</label><br>
         <div class="col-sm-12">
-          <button type="button" name="nw" id="addpos"><i style="font-size: 24px;float:left"
-              class="fa fa-plus-circle"></i>Add</button><br><br>
-          <div id="position_fields">
-          </div>
+          <button type="button" name="nw" id="addpos">
+            <i style="font-size: 24px;float:left" class="fa fa-plus-circle"></i>
+            Add
+          </button><br><br>
+          <div id="position_fields"></div>
           <br><br>
         </div>
       </div>
@@ -329,7 +332,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
             <span class="floating-label">Price</span>
             <input type="number" required="" class="form-control"
               onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-              style="width: 100%" name="item_price">
+              style="width: 100%" name="item_price"/>
           </div>
           <div class="form-group">
             <span class="floating-label">Product Description</span>
@@ -348,8 +351,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
               border-radius: 20px;
             }
           </style>
-          <!--  <input type="file" name="my_file"id="file" /><br><br><br>
-  <button  onclick="uploadFile()">Upload</button>-->
+          <!--  <input type="file" name="my_file"id="file" /><br><br><br> <button  onclick="uploadFile()">Upload</button> -->
           <!--place input file last !-->
           <?php
           require "pdo.php";
@@ -391,179 +393,193 @@ if (!empty($_SESSION['_contact_form_success'])) {
                 console.log('adding...');
                 $('#position_fields').append(
                   '<div id="position' + countpos + '" style="position:relative;padding-top: 20px;">\
-    <button type="button" class="rempos" \
-    onclick="$(\'#position'+ countpos + '\').remove();return(false);"><i style="font-size: 24px;float:left"  class="fa fa-minus-circle"></i>Remove</button>\
-    <label style="color:#088DA9">Select the features</label><br><br>\
-    <div class="col-sm-12" style="text-align:center">\
-<label class="checkbox"><input class="form-control-check" type="checkbox" onclick="$(\'#size'+ countpos + '\').toggle();$(\'#size1' + countpos + '\').toggle()" name="check1' + countpos + '" value="size"><span>Size</span>\
-<div class="form-group">\
-  <select id="size'+ countpos + '" class="form-control" style="display:none;width: 100%"name="size' + countpos + '" >\
-   <option value="">Select...</option>\
-  <?php
-  $cat = $pdo->query("select * from size");
-  while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-    ?>
-                    < option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option >\
-                  <?php
-  }
-  ?></select ></div ></label >\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#color'+countpos+'\').toggle();$(\'#color1'+countpos+'\').toggle()" name="check1'+countpos+'" value="color"><span>Color</span>\
-                  <div class="form-group">\
-                    <select id="color'+countpos+'" placeholder="color" class="form-control" style="display:none;width: 100%" name="color'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from color");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option style="background:<?= $row['color_name'] ?>" value="<?= $row['color_id'] ?>"><?= $row['color_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select></div></label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#flavour'+countpos+'\').toggle();$(\'#flavour1'+countpos+'\').toggle()" name="check1'+countpos+'" value="flavour"><span>Flavour</span>\
-                  <div class="form-group">\
-                    <select id="flavour'+countpos+'" class="form-control" style="display:none;width: 100%" name="flavour'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from flavour");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['flavour_id'] ?>"><?= $row['flavour_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select></div></label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#processor'+countpos+'\').toggle();(\'#processor1'+countpos+'\').toggle()" name="check1'+countpos+'" value="processor"><span>Processor</span>\
-                  <div class="form-group">\
-                    <select id="processor'+countpos+'" placeholder="processor" class="form-control" style="display:none;width: 100%" name="processor'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from processor");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['processor_id'] ?>"><?= $row['processor_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select>\
-                  </div>\
-                </label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#disp'+countpos+'\').toggle();$(\'#disp1'+countpos+'\').toggle()" name="check1'+countpos+'" value="display"><span>Display</span>\
-                  <div class="form-group">\
-                    <select id="disp'+countpos+'" placeholder="display" class="form-control" style="display:none;width: 100%" name="display'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from display");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['display_id'] ?>"><?= $row['display_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select>\
-                  </div>\
-                </label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#battery'+countpos+'\').toggle();$(\'#battery1'+countpos+'\').toggle()" name="check1'+countpos+'" value="battery"><span>Battery</span>\
-                  <div class="form-group">\
-                    <select id="battery'+countpos+'" placeholder="battery" class="form-control" style="display:none;width: 100%" name="battery'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from battery");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['battery_id'] ?>"><?= $row['battery_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select>\
-                  </div>\
-                </label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#internal_storage'+countpos+'\').toggle();$(\'#internal_storage1'+countpos+'\').toggle()" name="check1'+countpos+'" value="internal_storage"><span>Internal storage</span>\
-                  <div class="form-group">\
-                    <select id="internal_storage'+countpos+'" placeholder="internal_storage" class="form-control" style="display:none;width: 100%" name="internal_storage'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from internal_storage");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['internal_storage_id'] ?>"><?= $row['internal_storage_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select>\
-                  </div>\
-                </label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#brand'+countpos+'\').toggle();$(\'#brand1'+countpos+'\').toggle()" name="check1'+countpos+'" value="brand"><span>Brand</span>\
-                  <div class="form-group">\
-                    <select id="brand'+countpos+'" placeholder="brand" class="form-control" style="display:none;width: 100%" name="brand'+countpos+'" >\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from brand");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['brand_id'] ?>"><?= $row['brand_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select>\
-                  </div>\
-                </label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#material'+countpos+'\').toggle();$(\'#material1'+countpos+'\').toggle()" name="check1'+countpos+'" value="material"><span>Material</span>\
-                  <div class="form-group">\
-                    <select id="material'+countpos+'" placeholder="material" class="form-control" style="display:none;width: 100%" name="material'+countpos+'">\
-                      <option value="">Select...</option>\
-                      <?php
-                      $cat = $pdo->query("select * from material");
-                      while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <option value="<?= $row['material_id'] ?>"><?= $row['material_name'] ?></option>\
-                        <?php
-                      }
-                      ?>
-                    </select>\
-                  </div>\
-                </label>\
-                <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#w1'+countpos+'\').toggle();$(\'#w2'+countpos+'\').toggle();$(\'#weight1'+countpos+'\').toggle()" name="check1'+countpos+'" value="weight"><span>Weight</span>\
-                  <div class="form-group" >\
-                    <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" type="number" class="form-control" style="display:none;width:70%;border-right:none;\
-    float:left;" id="w1'+countpos+'" onkeyup="conca('+countpos+')">\
-                      <select class="form-control" style="display:none;width:30%;float:left;color: white;background: #0B7383" id="w2'+countpos+'" onchange="conca('+countpos+')">\
-                        <option value="kg">kg</option>\
-                        <option value="g">g</option>\
-                        <option value="lt">lt</option>\
-                        <option value="ml">ml</option>\
-                      </select>\
-                      <input type="hidden" id="w3'+countpos+'" name="weight'+countpos+'">\
-                      </div>\
-                    </label>\
-                  </div>\
-                  <label>File Input</label>\
-                  <div class="image-upload">  \
-                    <label for="file-input'+countpos+'" style="width: 100%; cursor: pointer;">      <center>  <img id="previewImg'+countpos+'" src="images/upload.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"></center>      </label>      <input id="file-input'+countpos+'" type="file" name="my_file'+countpos+'" onchange="previewFile(\'#file-input'+countpos+'\','+countpos+');" style="display: none; cursor: pointer;"></div>\
-                </div>'
-                  );
-     });
-  });
+                    <button type="button" class="rempos" onclick="$(\'#position'+ countpos + '\').remove();return(false);"><i style="font-size: 24px;float:left"  class="fa fa-minus-circle"></i>Remove</button>\
+                    <label style="color:#088DA9">Select the features</label><br><br>\
+                    <div class="col-sm-12" style="text-align:center">\
+                      <label class="checkbox"><input class="form-control-check" type="checkbox" onclick="$(\'#size'+ countpos + '\').toggle();$(\'#size1' + countpos + '\').toggle()" name="check1' + countpos + '" value="size"><span>Size</span>\
+                        <div class="form-group">\
+                          <select id="size'+ countpos + '" class="form-control" style="display:none;width: 100%"name="size' + countpos + '" >\
+                          <option value="">Select...</option>\
+                          <?php
+                          $cat = $pdo->query("select * from size");
+                          while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                          ?>
+                            < option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option >\
+                          <?php
+                          }
+                          ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#color'+countpos+'\').toggle();$(\'#color1'+countpos+'\').toggle()" name="check1'+countpos+'" value="color"/><span>Color</span>\
+                        <div class="form-group">\
+                          <select id="color'+countpos+'" placeholder="color" class="form-control" style="display:none;width: 100%" name="color'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from color");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option style="background:<?= $row['color_name'] ?>" value="<?= $row['color_id'] ?>"><?= $row['color_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#flavour'+countpos+'\').toggle();$(\'#flavour1'+countpos+'\').toggle()" name="check1'+countpos+'" value="flavour"/><span>Flavour</span>\
+                        <div class="form-group">\
+                          <select id="flavour'+countpos+'" class="form-control" style="display:none;width: 100%" name="flavour'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from flavour");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['flavour_id'] ?>"><?= $row['flavour_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#processor'+countpos+'\').toggle();(\'#processor1'+countpos+'\').toggle()" name="check1'+countpos+'" value="processor"/><span>Processor</span>\
+                        <div class="form-group">\
+                          <select id="processor'+countpos+'" placeholder="processor" class="form-control" style="display:none;width: 100%" name="processor'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from processor");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['processor_id'] ?>"><?= $row['processor_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#disp'+countpos+'\').toggle();$(\'#disp1'+countpos+'\').toggle()" name="check1'+countpos+'" value="display"/><span>Display</span>\
+                        <div class="form-group">\
+                          <select id="disp'+countpos+'" placeholder="display" class="form-control" style="display:none;width: 100%" name="display'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from display");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['display_id'] ?>"><?= $row['display_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#battery'+countpos+'\').toggle();$(\'#battery1'+countpos+'\').toggle()" name="check1'+countpos+'" value="battery"/><span>Battery</span>\
+                        <div class="form-group">\
+                          <select id="battery'+countpos+'" placeholder="battery" class="form-control" style="display:none;width: 100%" name="battery'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from battery");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['battery_id'] ?>"><?= $row['battery_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#internal_storage'+countpos+'\').toggle();$(\'#internal_storage1'+countpos+'\').toggle()" name="check1'+countpos+'" value="internal_storage"/><span>Internal storage</span>\
+                        <div class="form-group">\
+                          <select id="internal_storage'+countpos+'" placeholder="internal_storage" class="form-control" style="display:none;width: 100%" name="internal_storage'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from internal_storage");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['internal_storage_id'] ?>"><?= $row['internal_storage_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#brand'+countpos+'\').toggle();$(\'#brand1'+countpos+'\').toggle()" name="check1'+countpos+'" value="brand"/><span>Brand</span>\
+                        <div class="form-group">\
+                          <select id="brand'+countpos+'" placeholder="brand" class="form-control" style="display:none;width: 100%" name="brand'+countpos+'" >\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from brand");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['brand_id'] ?>"><?= $row['brand_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#material'+countpos+'\').toggle();$(\'#material1'+countpos+'\').toggle()" name="check1'+countpos+'" value="material"/><span>Material</span>\
+                        <div class="form-group">\
+                          <select id="material'+countpos+'" placeholder="material" class="form-control" style="display:none;width: 100%" name="material'+countpos+'">\
+                            <option value="">Select...</option>\
+                            <?php
+                            $cat = $pdo->query("select * from material");
+                            while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
+                              ?>
+                              <option value="<?= $row['material_id'] ?>"><?= $row['material_name'] ?></option>\
+                              <?php
+                            }
+                            ?>'
+                          + '</select>\
+                        </div>\
+                      </label>\
+                      <label class="checkbox"><input type="checkbox" class="form-control-check" onclick="$(\'#w1'+countpos+'\').toggle();$(\'#w2'+countpos+'\').toggle();$(\'#weight1'+countpos+'\').toggle()" name="check1'+countpos+'" value="weight"/><span>Weight</span>\
+                        <div class="form-group" >\
+                          <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" type="number" class="form-control" style="display:none;width:70%;border-right:none; float:left;" id="w1'+countpos+'" onkeyup="conca('+countpos+')"/>\
+                          <select class="form-control" style="display:none;width:30%;float:left;color: white;background: #0B7383" id="w2'+countpos+'" onchange="conca('+countpos+')">\
+                            <option value="kg">kg</option>\
+                            <option value="g">g</option>\
+                            <option value="lt">lt</option>\
+                            <option value="ml">ml</option>\
+                          </select>\
+                          <input type="hidden" id="w3'+countpos+'" name="weight'+countpos+'"/>\
+                        </div>\
+                      </label>\
+                    </div>\
+                    <label>File Input</label>\
+                    <div class="image-upload">  \
+                      <label for="file-input'+countpos+'" style="width: 100%; cursor: pointer;"><center><img id="previewImg'+countpos+'" src="images/upload.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"></center></label><input id="file-input'+countpos+'" type="file" name="my_file'+countpos+'" onchange="previewFile(\'#file-input'+countpos+'\','+countpos+');" style="display: none; cursor: pointer;">\
+                    </div>\
+                  </div>'
+                );
+              });
+            });
           </script>
           <button type="submit" name="add" name="submit">
-            <span style="color: #F9F9F9;
-  font-size: 16px;
-  float: left;
-  border-right: 1px solid #F9F9F9;
-  height: 100%;
-  padding-left: 5px;
-  padding-right: 5px;" class="glyphicon glyphicon-save-file"></span>Save</button>
-          <button type="reset" onclick="clr()" name="reset"><i style="color: #FF0000;
-  font-size: 16px;
-  float: left;
-  border-right: 1px solid #FF0000;
-  height: 100%;
-  padding-left: 5px;
-  padding-right: 5px;" class="fa fa-ban"></i>Cancel</button><br />
+            <span
+              style="color: #F9F9F9;
+              font-size: 16px;
+              float: left;
+              border-right: 1px solid #F9F9F9;
+              height: 100%;
+              padding-left: 5px;
+              padding-right: 5px;" class="glyphicon glyphicon-save-file">
+            </span>
+            Save
+          </button>
+          <button type="reset" onclick="clr()" name="reset">
+            <i style="color: #FF0000;
+              font-size: 16px;
+              float: left;
+              border-right: 1px solid #FF0000;
+              height: 100%;
+              padding-left: 5px;
+              padding-right: 5px;" class="fa fa-ban">
+            </i>
+            Cancel
+          </button><br/>
         </div>
+      </div>
     </form>
   </div>
   <?php
   require "foot.php";
   ?>
-  </div>

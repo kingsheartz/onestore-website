@@ -254,7 +254,7 @@ from item where (added_date) in (
         ) LIMIT 4"
                 );
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                  ?>
+                ?>
                   <li class="list-group-item" style="display: flex;">
                     <div style="width:70px">
                       <img class="smimg"
@@ -265,8 +265,8 @@ from item where (added_date) in (
                           class="fas fa-rupee-sign"></i> <?= $row['price'] ?></button>
                     </div>
                   </li> <?php
-                }
-                ?>
+                      }
+                        ?>
                 <li class="list-group-item" style="padding:10px;height:50px;
      background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #01728e)) !important;
 ">
@@ -281,7 +281,7 @@ from item where (added_date) in (
       <script type="text/javascript">
         var clients;
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
+        xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             clients = JSON.parse(this.responseText);
           }
@@ -289,7 +289,9 @@ from item where (added_date) in (
         xmlhttp.open("GET", "piechart.php", true);
         xmlhttp.send();
         // Load google charts
-        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.load('current', {
+          'packages': ['corechart']
+        });
         google.charts.setOnLoadCallback(drawChart);
         setInterval(drawChart, 1000);
         // Draw the chart and set the chart values
@@ -306,8 +308,16 @@ from item where (added_date) in (
           data.addRows(result);
           // Optional; add a title and set the width and height of the chart
           var options = {
-            backgroundColor: 'transparent', color: 'none', position: 'center',
-            'title': 'Average Day', 'width': 480, 'height': 420, pieHole: 0.4, legend: { position: 'right' }
+            backgroundColor: 'transparent',
+            color: 'none',
+            position: 'center',
+            'title': 'Average Day',
+            'width': 480,
+            'height': 420,
+            pieHole: 0.4,
+            legend: {
+              position: 'right'
+            }
           };
           // Display the chart inside the <div> element with id="piechart"
           var chart = new google.visualization.PieChart(document.getElementById('piechart'));

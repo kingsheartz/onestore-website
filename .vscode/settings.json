@@ -1,0 +1,25 @@
+{
+  "editor.formatOnSave": false, // Disable global format on save to avoid conflicts with specific formatters
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Set default formatter to Prettier for all files
+
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client" // or "junstyle.php-cs-fixer" if preferred
+  },
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "php-cs-fixer.onsave": false, // disable if not using it
+  "intelephense.format.enable": true
+}
+// Note: Make sure to install the required extensions for the formatters you choose.
+// You can also customize the settings further based on your preferences and the extensions you are using.

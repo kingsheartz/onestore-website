@@ -208,6 +208,7 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
+
     function check() {
         var us = $('#user').val();
         var ps = $('#pass').val();
@@ -236,6 +237,7 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
         }
         return false;
     }
+
     function change() {
         $('#psin').hide();
         $('#psin2').show();

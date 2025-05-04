@@ -126,12 +126,11 @@ require "head.php";
         ?>
         <script type="text/javascript">
             function showupda() {
-                $('#chfrm').on("submit", function (e) {
+                $('#chfrm').on("submit", function(e) {
                     var dataString = new FormData(this);
                     if (y == 1) {
                         dataString.append('update_data', '1');
-                    }
-                    else if (y == 0) {
+                    } else if (y == 0) {
                         dataString.append('remove_data', '1');
                     }
                     $.ajax({
@@ -141,7 +140,7 @@ require "head.php";
                         contentType: false,
                         cache: false,
                         processData: false,
-                        success: function () {
+                        success: function() {
                             location.reload();
                         }
                     });
@@ -152,6 +151,7 @@ require "head.php";
             if (window.history.replaceState) {
                 window.history.replaceState(null, null, window.location.href);
             }
+
             function conca() {
                 if ($('#in1').val() == "" || $('#in2').val() == "" || $('#in4').val() == "" || $('#in5').val() == "") {
                     swal({
@@ -162,8 +162,7 @@ require "head.php";
                         dangerMode: true,
                         timer: 6000,
                     });
-                }
-                else {
+                } else {
                     console.log('helo');
                     var in1 = $('#in1').val();
                     var in2 = $('#in2').val();
@@ -174,6 +173,7 @@ require "head.php";
                     $('#hadiv').css('display', 'none')
                 }
             }
+
             function validtime() {
                 if ($('#hadiv').css('display') != 'none') {
                     var hr1 = $('#in1').val();
@@ -189,25 +189,20 @@ require "head.php";
                             if (hr1 == 24) {
                                 $('#in1').val('12');
                                 $('#in1').val('AM');
-                            }
-                            else {
+                            } else {
                                 hour1 = hr1 - 12;
                                 $('#in1').val(hour1);
                             }
                             $('#in3').val('AM');
-                        }
-                        else if (hr1 > 24) {
+                        } else if (hr1 > 24) {
                             $('#in1').val('12');
                             $('#in3').val('AM');
-                        }
-                        else if (hr1 >= 10 && hr1 <= 12) {
+                        } else if (hr1 >= 10 && hr1 <= 12) {
                             $('#in1').val(hr1);
-                        }
-                        else if (hr1 >= 0 && hr1 <= 9) {
+                        } else if (hr1 >= 0 && hr1 <= 9) {
                             $('#in1').val('0' + hr1);
                         }
-                    }
-                    else {
+                    } else {
                         $('#in1').val('');
                     }
                     //-------------------------------------------------------------------------------
@@ -216,25 +211,20 @@ require "head.php";
                             if (hr2 == 24) {
                                 $('#in4').val('12');
                                 $('#in6').val('AM');
-                            }
-                            else {
+                            } else {
                                 hour2 = hr2 - 12;
                                 $('#in4').val(hour2);
                             }
                             $('#in6').val('AM');
-                        }
-                        else if (hr2 > 24) {
+                        } else if (hr2 > 24) {
                             $('#in4').val('12');
                             $('#in6').val('AM');
-                        }
-                        else if (hr2 > 0 && hr2 <= 12) {
+                        } else if (hr2 > 0 && hr2 <= 12) {
                             $('#in4').val(hr2);
-                        }
-                        else if (hr2 >= 0 && hr2 <= 9) {
+                        } else if (hr2 >= 0 && hr2 <= 9) {
                             $('#in4').val('0' + hr2);
                         }
-                    }
-                    else {
+                    } else {
                         $('#in4').val('');
                     }
                     //--------------------------------------------------------------------------------
@@ -246,34 +236,28 @@ require "head.php";
                                 if (hr1 < 8) {
                                     houra = hr1 + 1;
                                     $('#in1').val('0' + houra);
-                                }
-                                else {
+                                } else {
                                     houra = hr1 + 1;
                                     $('#in1').val(houra);
                                 }
-                            }
-                            else if ((min1 == 60) && (hr1 == 12)) {
+                            } else if ((min1 == 60) && (hr1 == 12)) {
                                 $('#in2').val('00');
                                 $('#in1').val('01');
                                 if (('#in3').value == 'AM') {
                                     $('#in3').val('PM')
-                                }
-                                else {
+                                } else {
                                     $('#in3').val('AM')
                                 }
-                            }
-                            else if (min1 <= 60 && min1 >= 10) {
+                            } else if (min1 <= 60 && min1 >= 10) {
                                 $('#in2').val(min1);
                             }
                             if (min1 >= 0 && min1 <= 9) {
                                 $('#in2').val('0' + min1);
                             }
-                        }
-                        else {
+                        } else {
                             $('#in2').val('59')
                         }
-                    }
-                    else {
+                    } else {
                         $('#in2').val('');
                     }
                     //------------------------------------------------------------------------------------
@@ -285,34 +269,28 @@ require "head.php";
                                 if (hr2 < 8) {
                                     hourb = hr2 + 1;
                                     $('#in4').val('0' + hourb);
-                                }
-                                else {
+                                } else {
                                     hourb = hr2 + 1;
                                     $('#in4').val(hourb);
                                 }
-                            }
-                            else if ((min2 == 60) && (hr2 == 12)) {
+                            } else if ((min2 == 60) && (hr2 == 12)) {
                                 $('#in5').val('00');
                                 $('#in4').val('01');
                                 if (('#in6').value == 'AM') {
                                     $('#in6').val('PM')
-                                }
-                                else {
+                                } else {
                                     $('#in6').val('AM')
                                 }
-                            }
-                            else if (min2 <= 60 && min2 >= 10) {
+                            } else if (min2 <= 60 && min2 >= 10) {
                                 $('#in5').val(min2);
                             }
                             if (min2 >= 0 && min2 <= 9) {
                                 $('#in5').val('0' + min2);
                             }
-                        }
-                        else {
+                        } else {
                             $('#in5').val('59')
                         }
-                    }
-                    else {
+                    } else {
                         $('#in5').val('');
                     }
                 }
@@ -349,15 +327,12 @@ require "head.php";
                             style="display: none;margin-top: 12px;padding-left: 5px;width: 100% "
                             focusout="this.hide();$('#opening_hours').show()">
                             <div class="hrdiv store-opening-hours" style="width: auto;">
-                                <i class="fa fa-clock-o" class="form-control1"
-                                    style="position: relative;margin-top: 2px;"></i>
-                                <input type="number" onblur="validtime()" class="form-control1" id="in1"
-                                    placeholder="HH" name="" min="1" max="12"
-                                    style="padding: 0;margin: 0;text-align: center;">
+                                <i class="fa fa-clock-o" class="form-control1" style="position: relative;margin-top: 2px;"></i>
+                                <input type="number" onblur="validtime()" class="form-control1" id="in1" placeholder="HH" name=""
+                                    min="1" max="12" style="padding: 0;margin: 0;text-align: center;">
                                 <span class="dot" style="margin-top: 6px;font-weight: bolder;padding: 2px;">:</span>
-                                <input type="number" onblur="validtime()" class="form-control1" id="in2"
-                                    placeholder="MM" name="" min="00" max="59"
-                                    style="padding: 0;margin: 0;text-align: center;">
+                                <input type="number" onblur="validtime()" class="form-control1" id="in2" placeholder="MM" name=""
+                                    min="00" max="59" style="padding: 0;margin: 0;text-align: center;">
                                 <select id="in3" class="form-control1"
                                     style="padding: 0;margin: 0;text-align: center;background-color: #1e2629;border-color: #1e2629;box-shadow: none;border-bottom-color: orange;margin-left: 10px;outline: none;color:white;font-weight: bolder;max-width: 28px;">
                                     <option value="AM" selected="">AM</option>
@@ -366,15 +341,12 @@ require "head.php";
                             </div>
                             <div class="dot" style="width: 5%;text-align: center;">to</div>
                             <div class="hrdiv" style="width: auto;padding-bottom: 10px;">
-                                <i class="fa fa-clock-o" class="form-control1"
-                                    style="position: relative;margin-top: 2px;"></i>
-                                <input type="number" onblur="validtime()" id="in4" class="form-control1"
-                                    placeholder="HH" name="" min="1" max="12"
-                                    style="padding: 0;margin: 0;text-align: center;">
+                                <i class="fa fa-clock-o" class="form-control1" style="position: relative;margin-top: 2px;"></i>
+                                <input type="number" onblur="validtime()" id="in4" class="form-control1" placeholder="HH" name=""
+                                    min="1" max="12" style="padding: 0;margin: 0;text-align: center;">
                                 <span class="dot" style="margin-top: 6px;font-weight: bolder;padding: 2px;">:</span>
-                                <input type="number" onblur="validtime()" id="in5" class="form-control1"
-                                    placeholder="MM" name="" min="00" max="59"
-                                    style="padding: 0;margin: 0;text-align: center;">
+                                <input type="number" onblur="validtime()" id="in5" class="form-control1" placeholder="MM" name=""
+                                    min="00" max="59" style="padding: 0;margin: 0;text-align: center;">
                                 <select id="in6" class="form-control1"
                                     style="padding: 0;margin: 0;text-align: center;background-color: #1e2629;border-color: #1e2629;box-shadow: none;border-bottom-color: orange;margin-left: 10px;outline: none;color:white;font-weight: bolder;max-width: 28px;">
                                     <option value="AM" style="">AM</option>

@@ -6,4 +6,3 @@ try {
 } catch (PDOException $e) {
 	$_SESSION['error'] = "OOPS !!! CONNECTION CAN'T BE ESTABLISHED";
 }
-?>

@@ -16,4 +16,3 @@ if (!empty($_POST["category_id"])) {
         echo '<option value="">Subcategory not available</option>';
     }
 }
-?>

@@ -127,7 +127,6 @@ if (isset($_POST['newData'])) {
   // please validate the data you are expecting for security
   $myfile = fopen("event.json", "w") or die("Unable to open file!");
   fwrite($myfile, $updatedData);
-
 }
 
 ?>
@@ -135,11 +134,15 @@ if (isset($_POST['newData'])) {
   var today = new Date();
   var month = today.getMonth();
   //Using the Date prototype to assign our month names-->
-  Date.prototype.getMonthNames = function () { return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; }
+  Date.prototype.getMonthNames = function() {
+    return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  }
 
   //Getting the number of day in the month.-->
-  Date.prototype.getDaysInMonth = function () { return new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate(); }
-  Date.prototype.calendar = function () {
+  Date.prototype.getDaysInMonth = function() {
+    return new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate();
+  }
+  Date.prototype.calendar = function() {
     var numberOfDays = this.getDaysInMonth();
     //This will be the starting day to our calendar-->
     var startingDay = new Date(this.getFullYear(), this.getMonth(), 1).getDay();
@@ -156,7 +159,9 @@ if (isset($_POST['newData'])) {
     calendarTable += '<td>F</td>';
     calendarTable += '<td>S</td></tr>';
     //Lets create blank boxes until we get to the day which actually starts the month-->
-    for (var i = 0; i < startingDay; i++) { calendarTable += '<td>&nbsp;</td>'; }
+    for (var i = 0; i < startingDay; i++) {
+      calendarTable += '<td>&nbsp;</td>';
+    }
     //border is a counter, initialize it with the "blank"-->
     //days at the start of the calendar-->
     //Now each time we add new date we will do a modulus-->
@@ -165,26 +170,34 @@ if (isset($_POST['newData'])) {
     var border = startingDay;
     //For each day in the month, insert it into the calendar-->
     for (var id = '', i = 1; i <= numberOfDays; i++) {
-      if ((month == month) && (today.getDate() == i)) { id = 'id="current_day"'; }
-      else { id = ''; }
-      calendarTable += '<td  data-toggle="modal" data-target="#exampleModal" class="day"  ' + id + '>' + i + '</td>'; border++;
+      if ((month == month) && (today.getDate() == i)) {
+        id = 'id="current_day"';
+      } else {
+        id = '';
+      }
+      calendarTable += '<td  data-toggle="modal" data-target="#exampleModal" class="day"  ' + id + '>' + i + '</td>';
+      border++;
       if (((border % 7) == 0) && (i < numberOfDays)) {
         //Time to make new row, if there are any days left.-->
         calendarTable += '<tr></tr>';
       }
     }
     //All the days have been used up, so pad the empty days until the end of calendar-->
-    while ((border++ % 7) != 0) { calendarTable += '<td>&nbsp;</td>'; }
+    while ((border++ % 7) != 0) {
+      calendarTable += '<td>&nbsp;</td>';
+    }
     //Finish the table-->
     calendarTable += '</table>';
     //Return it-->
     return calendarTable;
   }
   //--> Let's add up some dynamic effect
-  window.onload = function () {
+  window.onload = function() {
     selected_month = '<form name="month_holder">';
     selected_month += '<select id="month_items" size="1" onchange="month_picker();">';
-    for (var x = 0; x <= today.getMonthNames().length; x++) { selected_month += '<option value="' + today.getMonthNames()[x] + ' 1, ' + today.getFullYear() + '">' + today.getMonthNames()[x] + '</option>'; }
+    for (var x = 0; x <= today.getMonthNames().length; x++) {
+      selected_month += '<option value="' + today.getMonthNames()[x] + ' 1, ' + today.getFullYear() + '">' + today.getMonthNames()[x] + '</option>';
+    }
     selected_month += '</select></form>';
     actual_calendar = document.getElementById('show_calendar');
     actual_calendar.innerHTML = today.calendar();
@@ -199,12 +212,11 @@ if (isset($_POST['newData'])) {
     actual_calendar.innerHTML = month_menu.calendar();
   }
   // Done Hiding -->
-
 </script>
 <script>
-  $(function () {
+  $(function() {
     $('#current_month').hide();
-    $('#nextbt').on('click', function () {
+    $('#nextbt').on('click', function() {
       $('#prev').show();
       var selected_element = $('#month_items option:selected');
       selected_element.removeAttr('selected');
@@ -218,7 +230,7 @@ if (isset($_POST['newData'])) {
       $('#month_items').val(selected_element.next().val());
       month_picker();
     });
-    $("#prev").click(function () {
+    $("#prev").click(function() {
       $('#nextbt').show();
       if ($("#month_items > option:selected").prev().val() == 'January 1, 2021') {
         $('#prev').hide();
@@ -239,7 +251,7 @@ if (isset($_POST['newData'])) {
 <div id="event"></div>
 </div>
 <script>
-  document.addEventListener("load", $.getJSON("event.json", function (data) {
+  document.addEventListener("load", $.getJSON("event.json", function(data) {
     var flag = 0;
     var evnm;
     newtt = $('#current_day').text() + " " + $('caption').text();
@@ -258,8 +270,7 @@ if (isset($_POST['newData'])) {
       h += '<div class="progress" style="height:10px">  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>';
       $('#event').append(h);
 
-    }
-    else {
+    } else {
       $('#event').empty();
 
       $('#event').append('No Event');
@@ -269,13 +280,13 @@ if (isset($_POST['newData'])) {
 
 
 
-  $("#show_calendar").on("click", "td.day", function () {
+  $("#show_calendar").on("click", "td.day", function() {
     $('.day').not('#current_day').css("background", "transparent");
 
     $(this).css("background", " -webkit-gradient(linear, left bottom, left top, color-stop(0, #59ab8d), color-stop(1, #449485))");
 
     newtt = $(this).text() + " " + $('caption').text();
-    $.getJSON("event.json", function (data) {
+    $.getJSON("event.json", function(data) {
       var flag = 0;
       var evnm;
 
@@ -299,8 +310,7 @@ if (isset($_POST['newData'])) {
 
         $('#newevent').append(p);
         $('#savebt').hide();
-      }
-      else {
+      } else {
         $('#savebt').show();
         p = "<h4 id='eventname'>" + newtt + "</h4>";
         p += "<label>Event</label><input type='text'  id='eventtxt'>";
@@ -314,12 +324,13 @@ if (isset($_POST['newData'])) {
       }
     });
   });
+
   function appjso() {
     var x = $('#eventtxt').val();
 
     var y = $('#eventname').text();
     bigid = 0;
-    $.getJSON("event.json", function (data) {
+    $.getJSON("event.json", function(data) {
       // now data is JSON converted to an object / array for you to use.
       // Tim Robbins, Morgan Freeman, Bob Gunton
 
@@ -328,7 +339,11 @@ if (isset($_POST['newData'])) {
         bigid = data[i].id;
       }
       bigid = bigid + 1
-      var newMovie = { id: bigid, name: y, title: x }; // a new movie object
+      var newMovie = {
+        id: bigid,
+        name: y,
+        title: x
+      }; // a new movie object
       //
       // add a new movie to the set
       data.push(newMovie);
@@ -336,7 +351,7 @@ if (isset($_POST['newData'])) {
       var newData = JSON.stringify(data);
       $.post('calender.php', {
         newData: newData
-      }, function (response) {
+      }, function(response) {
         $('#savebt').hide();
         p = "<h4 id='eventname'>" + y + "</h4>";
         p += "<label>Event</label><div class='placnm'>" + x + "</div>";
@@ -351,9 +366,6 @@ if (isset($_POST['newData'])) {
       });
     });
   }
-
-
-
 </script>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">

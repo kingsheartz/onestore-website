@@ -355,6 +355,7 @@ require "head.php";
         $('#' + x).scrollLeft(y + 100);
         $('#' + x + '>.right-arrow').show();
       }
+
       function moveright(x) {
         var y = $('#' + x).scrollLeft();
         $('#' + x + '>.left-arrow').show();
@@ -363,17 +364,16 @@ require "head.php";
         }
         $('#' + x).scrollLeft(y - 100);
       }
+
       function movefr(x) {
         var y = $('#' + x).scrollLeft();
         var width = $('#' + x).outerWidth()
         var scrollWidth = $('#' + x)[0].scrollWidth;
         if (scrollWidth - width === y) {
           $('#' + x + '>.left-arrow').hide();
-        }
-        else if (y === 0) {
+        } else if (y === 0) {
           $('#' + x + '>.right-arrow').hide();
-        }
-        else {
+        } else {
           $('#' + x + '>.left-arrow').show();
           $('#' + x + '>.right-arrow').show();
         }
@@ -386,8 +386,10 @@ require "head.php";
         $.ajax({
           url: 'productData.php',
           type: 'post',
-          data: { item_description_id: itid },
-          success: function (response) {
+          data: {
+            item_description_id: itid
+          },
+          success: function(response) {
             // Add response in Modal body
             $('.modal-body').html(response);
             // Display Modal
@@ -403,7 +405,7 @@ require "head.php";
     $st11 = $pdo->query($query11);
     while ($row11 = $st11->fetch(PDO::FETCH_ASSOC)) {
       $ct = $row11['category_id'];
-      ?>
+    ?>
       <?php
       $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where
  item.category_id=$ct and
@@ -413,7 +415,7 @@ item_description.item_description_id IN (SELECT item_description_id FROM product
       if ($product == 0) {
         continue;
       } else {
-        ?>
+      ?>
         <div class="difcat ">
           <span class="difhed"><?= $row11['category_name'] ?>
             <button onclick="location.href='viewnewitems.php?category_id=<?= $ct ?>'">View All</button></span>
@@ -424,7 +426,7 @@ item_description.item_description_id IN (SELECT item_description_id FROM product
                 class="fas fa-chevron-left"></i></button>
             <?php
             while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-              ?>
+            ?>
               <div class="products">
                 <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
@@ -435,12 +437,12 @@ item_description.item_description_id IN (SELECT item_description_id FROM product
                 <div class="deupd"><?= $row['item_name'] ?><br>
                 </div>
               </div>
-              <?php
+        <?php
             }
             echo '</div></div>';
-      }
-    }
-    ?>
+          }
+        }
+        ?>
         <script type="text/javascript">
           function showupda(x) {
             document.forms[x].submit();
@@ -448,6 +450,7 @@ item_description.item_description_id IN (SELECT item_description_id FROM product
           if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
           }
+
           function conca() {
             console.log('helo');
             if ($('#w1').val() != 0) {
@@ -456,23 +459,23 @@ item_description.item_description_id IN (SELECT item_description_id FROM product
             }
           }
         </script>
-      </div>
-      <div class="modal fade" id="exampleModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title">Product Info</h2>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <div class="modal fade" id="exampleModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2 class="modal-title">Product Info</h2>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <?php
-      require "foot.php";
-      ?>
+          <?php
+          require "foot.php";
+          ?>

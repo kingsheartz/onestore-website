@@ -13,8 +13,15 @@ if (session_status() === PHP_SESSION_NONE) {
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords"
     content="One Store,OneStore,onestore,shoppingcart,One,one,Store,store,shopping,cart,for all your needs" />
-  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-    function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <script type="application/x-javascript">
+    addEventListener("load", function() {
+      setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+      window.scrollTo(0, 1);
+    }
+  </script>
   <!-- //for-mobile-apps -->
   <!--favicon-->
   <link href="../../images/logo/favicon.png" rel="icon" />
@@ -64,10 +71,12 @@ if (session_status() === PHP_SESSION_NONE) {
   <!-- searching the items -->
   <script type="text/javascript" src="../JS/search.js"></script>
   <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-      $(".scroll").click(function (event) {
+    jQuery(document).ready(function($) {
+      $(".scroll").click(function(event) {
         event.preventDefault();
-        $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        $('html,body').animate({
+          scrollTop: $(this.hash).offset().top
+        }, 1000);
       });
     });
   </script>
@@ -783,6 +792,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <script type="text/javascript">
     var gonenetwork = 0;
     var NavScrollTop;
+
     function network_gone() {
       if (navigator.onLine == false) {
         $('#show_offline').css('display', 'block');
@@ -791,14 +801,16 @@ if (session_status() === PHP_SESSION_NONE) {
         return true;
       }
     }
+
     function check_network() {
       if (network_gone()) {
         return false;
-      }
-      else if ((navigator.onLine == true) && (gonenetwork == 1)) {
+      } else if ((navigator.onLine == true) && (gonenetwork == 1)) {
         $('#show_online').css('display', 'block');
         $('#show_offline').hide();
-        setTimeout(function () { $('#show_online').hide(); }, 2000);
+        setTimeout(function() {
+          $('#show_online').hide();
+        }, 2000);
         gonenetwork = 0;
       }
     }
@@ -851,7 +863,8 @@ if (session_status() === PHP_SESSION_NONE) {
   </div>
   <!--ANIMATION-->
   <!-- header -->
-  <div class="headimg" style="padding: 0px;margin: 0px;left: 0px;right: 0px;"><!--#1-->
+  <div class="headimg" style="padding: 0px;margin: 0px;left: 0px;right: 0px;">
+    <!--#1-->
     <div class="container top"
       style="width:100%;padding-top: 12px;margin: 0px;left: 0px;right: 0px;padding-bottom: 5px;">
       <div style="height: 100% ;width: 100%;display: block;margin: 0px;left: 0px;right: 0px">
@@ -884,7 +897,8 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
       </div>
     </div>
-    <div class=" nav-bar shadow_b"><!--#2-->
+    <div class=" nav-bar shadow_b">
+      <!--#2-->
       <!-- //LARGE DIV -->
       <div id="large-div">
         <div class="agileits_header shadow_b">
@@ -903,7 +917,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             </button>
                             <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
                               <?php if (isset($_SESSION['location'])) { ?>You<?php } else { ?>Location
-                              <?php } ?>
+                            <?php } ?>
                             </span>
                           </form>
                         </li style="float: left;">
@@ -970,12 +984,12 @@ if (session_status() === PHP_SESSION_NONE) {
                                 require "../Common/pdo.php";
                                 $sql = $pdo->query("select category_id,category_name from category");
                                 while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <li value="<?= $row['category_id'] ?>" style="border-color: white;"><a
                                       style='font-family:sans-serif '
                                       href="#<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a>
                                   </li>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </ul>
@@ -1004,11 +1018,11 @@ if (session_status() === PHP_SESSION_NONE) {
                   <div class="agile-login">
                     <?php
                     if (isset($_SESSION['name'])) {
-                      ?>
+                    ?>
                       <div style="float: right;margin-bottom: -7px" id="menu_items_reglog" class="menu_items_reglog">
                         <ul style="margin-top: -13px;">
                           <li>
-                            <form action="registered.php" method="post" class="last" onclick="openNav()">
+                            <form action="../Account/registered.php" method="post" class="last" onclick="openNav()">
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                               </button><span style="bottom: 0px;display: flex;justify-content:center;"
@@ -1017,18 +1031,18 @@ if (session_status() === PHP_SESSION_NONE) {
                           </li>
                         </ul>
                       </div>
-                      <?php
+                    <?php
                     } else {
-                      ?>
+                    ?>
                       <div style="float: right;" id="menu_items_reglog" class="menu_items_reglog">
                         <ul>
-                          <li><a href="registered.php"> Create Account </a></li>
+                          <li><a href="../Account/registered.php"> Create Account </a></li>
                           <a href="#myModal" data-toggle="modal" data-dismiss="modal" style="color: white">
                             <li style="margin-left: -20px;">Login</li>
                           </a>
                         </ul>
                       </div>
-                      <?php
+                    <?php
                     }
                     ?>
                   </div>
@@ -1039,9 +1053,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
       </div><!-- //close large div -->
       <!-- //SMALL DIV -->
-      <div id="small-div"><!--#3-->
-        <div class="agileits_header"><!--#4-->
-          <div class="container head" style="padding: 0px;margin: 0px;left: 0px;right: 0px"><!--#5-->
+      <div id="small-div">
+        <!--#3-->
+        <div class="agileits_header">
+          <!--#4-->
+          <div class="container head" style="padding: 0px;margin: 0px;left: 0px;right: 0px">
+            <!--#5-->
             <!--krg-->
             <div id="search-div" class=" srch bar-srch device-width-set"
               style="padding: 0px;margin: 0px;left: 0px;right: 0px">
@@ -1063,11 +1080,11 @@ if (session_status() === PHP_SESSION_NONE) {
                             require "../Common/pdo.php";
                             $sql = $pdo->query("select category_id,category_name from category");
                             while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-                              ?>
+                            ?>
                               <li value="<?= $row['category_id'] ?>"><a style='font-family:sans-serif;border:1px white;'
                                   href="#<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a>
                               </li>
-                              <?php
+                            <?php
                             }
                             ?>
                           </ul>
@@ -1090,10 +1107,13 @@ if (session_status() === PHP_SESSION_NONE) {
               </div>
             </div>
             <!--krg-->
-            <div class="option_segment"><!--#6-->
-              <div class="agile-login"><!--#7-->
+            <div class="option_segment">
+              <!--#6-->
+              <div class="agile-login">
+                <!--#7-->
                 <div>
-                  <ul class="phone_email topli"><!--SIDE OPEN NAV BAR
+                  <ul class="phone_email topli">
+                    <!--SIDE OPEN NAV BAR
             <li style="float: left;margin-top: 20px;" id="sm_side_active">
               <a href="#">
                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
@@ -1106,7 +1126,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </button>
                         <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
                           <?php if (isset($_SESSION['location'])) { ?>You<?php } else { ?>Location
-                          <?php } ?>
+                        <?php } ?>
                         </span>
                       </form>
                     </li style="float: left;">
@@ -1157,11 +1177,11 @@ if (session_status() === PHP_SESSION_NONE) {
                     </li>
                     <?php
                     if (isset($_SESSION['name'])) {
-                      ?>
+                    ?>
                       <div style="float: right;" id="menu_items_reglog">
                         <a href="#">
                           <li class="userdiv" style="float: right;">
-                            <form action="registered.php" method="post" class="last" onclick="openNav()">
+                            <form action="../Account/registered.php" method="post" class="last" onclick="openNav()">
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                               </button><span style="bottom: 0px;display: flex;justify-content:center;"
@@ -1170,24 +1190,24 @@ if (session_status() === PHP_SESSION_NONE) {
                           </li>
                         </a>
                       </div>
-                      <?php
+                    <?php
                     } else {
-                      ?>
+                    ?>
                       <div style="float: right;margin-top: 40px;" id="menu_items_reglog">
-                        <li><a href="registered.php"> Create Account </a></li>
+                        <li><a href="../Account/registered.php"> Create Account </a></li>
                         <li style="margin-left: -20px;"><a href="#myModal" data-toggle="modal"
                             data-dismiss="modal">Login</a></li>
                       </div>
-                      <?php
+                    <?php
                     }
                     ?>
                     <div id="userdetails" style="float: right;">
                       <?php
                       if (isset($_SESSION['name'])) {
-                        ?>
+                      ?>
                         <a href="#">
                           <li class="userdiv" style="float: right;">
-                            <form action="registered.php" method="post" class="last" onclick="openNav()">
+                            <form action="../Account/registered.php" method="post" class="last" onclick="openNav()">
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                               </button><span style="bottom: 0px;display: flex;justify-content:center;"
@@ -1195,84 +1215,84 @@ if (session_status() === PHP_SESSION_NONE) {
                             </form>
                           </li>
                         </a>
-                      </div>
-                      <?php
-                      } else {
-                        ?>
-                      <a href="registered.php" id="sm_sign_up">
-                        <li class="userdiv" style="float: right;">
-                          <form action="registered.php" method="post" class="last">
-                            <button class="w3view-cart usericon " type="button" name="submit" value="">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                            </button><span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
-                              id="location">Sign up</span>
-                          </form>
-                        </li>
-                      </a>
-                      <a href="#myModal" data-toggle="modal" data-dismiss="modal">
-                        <li class="logindiv" style="float: right;">
-                          <form action="login.php" method="post" class="last">
-                            <button class="w3view-cart loginicon " type="button" name="submit" value="">
-                              <i class="fa fa-sign-in" aria-hidden="true"></i>
-                            </button><span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
-                              id="location">Log in</span>
-                          </form>
-                        </li>
-                      </a>
-                  </div>
+                    </div>
                   <?php
-                      }
-                      ?>
-                <div id="vsmall">
-                  <div id="xsmall">
-                    <a href="#">
-                      <li class="logindiv" style="float: right;">
-                        <form action="#" method="post" class="last">
-                          <?php if (isset($_SESSION['name'])) { ?>
-                            <button class="w3view-cart loginicon" type="button" name="submit" value=""
-                              onclick="openNav()">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                            </button>
-                            <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
-                              <?= $_SESSION['name'] ?>
-                            </span>
-                          <?php } else { ?>
-                            <button class="w3view-cart loginicon" type="button" name="submit" value=""
-                              onclick="location.href='login.php'">
-                              <i class="fa fa-sign-in" aria-hidden="true"></i>
-                            </button>
-                            <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Log
-                              in</span><?php } ?>
+                      } else {
+                  ?>
+                    <a href="../Account/registered.php" id="sm_sign_up">
+                      <li class="userdiv" style="float: right;">
+                        <form action="../Account/registered.php" method="post" class="last">
+                          <button class="w3view-cart usericon " type="button" name="submit" value="">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                          </button><span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
+                            id="location">Sign up</span>
                         </form>
                       </li>
                     </a>
-                  </div>
-                  <div id=xxsmall>
-                    <a href="#">
+                    <a href="#myModal" data-toggle="modal" data-dismiss="modal">
                       <li class="logindiv" style="float: right;">
-                        <form action="#" method="post" class="last">
-                          <?php if (isset($_SESSION['name'])) { ?>
-                            <button class="w3view-cart loginicon " type="button" name="submit" value=""
-                              onclick="openNav()">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                            </button>
-                            <span style="bottom: 0px;display: flex;justify-content:center;"
-                              id="location"><?php echo "You"; ?>
-                            </span>
-                          <?php } else { ?>
-                            <button class="w3view-cart loginicon " type="button" name="submit" value=""
-                              onclick="location.href='login.php'">
-                              <i class="fa fa-sign-in" aria-hidden="true"></i>
-                            </button>
-                            <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
-                              Log in
-                            </span><?php } ?>
+                        <form action="../Account/login.php" method="post" class="last">
+                          <button class="w3view-cart loginicon " type="button" name="submit" value="">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                          </button><span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
+                            id="location">Log in</span>
                         </form>
                       </li>
                     </a>
-                  </div>
                 </div>
-                </ul>
+              <?php
+                      }
+              ?>
+              <div id="vsmall">
+                <div id="xsmall">
+                  <a href="#">
+                    <li class="logindiv" style="float: right;">
+                      <form action="#" method="post" class="last">
+                        <?php if (isset($_SESSION['name'])) { ?>
+                          <button class="w3view-cart loginicon" type="button" name="submit" value=""
+                            onclick="openNav()">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                          </button>
+                          <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
+                            <?= $_SESSION['name'] ?>
+                          </span>
+                        <?php } else { ?>
+                          <button class="w3view-cart loginicon" type="button" name="submit" value=""
+                            onclick="location.href='login.php'">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                          </button>
+                          <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Log
+                            in</span><?php } ?>
+                      </form>
+                    </li>
+                  </a>
+                </div>
+                <div id=xxsmall>
+                  <a href="#">
+                    <li class="logindiv" style="float: right;">
+                      <form action="#" method="post" class="last">
+                        <?php if (isset($_SESSION['name'])) { ?>
+                          <button class="w3view-cart loginicon " type="button" name="submit" value=""
+                            onclick="openNav()">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                          </button>
+                          <span style="bottom: 0px;display: flex;justify-content:center;"
+                            id="location"><?php echo "You"; ?>
+                          </span>
+                        <?php } else { ?>
+                          <button class="w3view-cart loginicon " type="button" name="submit" value=""
+                            onclick="location.href='login.php'">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                          </button>
+                          <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
+                            Log in
+                          </span><?php } ?>
+                      </form>
+                    </li>
+                  </a>
+                </div>
+              </div>
+              </ul>
               </div>
             </div>
           </div>
@@ -1281,7 +1301,8 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
   </div>
   <!-- //header -->
-  </div><!--DON'T KNOW WHEN IT STARTS
+  </div>
+  <!--DON'T KNOW WHEN IT STARTS
 </div>
 </div>-->
   <!-- navigation -->
@@ -1307,10 +1328,10 @@ if (session_status() === PHP_SESSION_NONE) {
                   Home</a></li>
               <?php
               if (isset($_SESSION['sid'])) {
-                ?>
+              ?>
                 <li id="shopactive"><a href="../../store-admin/index.php?id=<?= $_SESSION['sid'] ?>"><i
                       class="fas fa-lg fa-store"></i> Store</a></li>
-                <?php
+              <?php
               }
               ?>
               <li id="aboutactive"><a href="../Main/about.php"><i class="fa fa-lg fa-info-circle"></i>
@@ -1324,7 +1345,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <ul class="dropdown-menu" style="border:1px solid #337ab7;padding: 0px">
                   <?php
                   if (!isset($_SESSION['id'])) {
-                    ?>
+                  ?>
                     <a href="../Account/login.php">
                       <li onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
@@ -1342,45 +1363,45 @@ if (session_status() === PHP_SESSION_NONE) {
                         <span style="font-family: arial;font-weight: 700; "> Sign Up</span>
                       </li>
                     </a>
-                    <?php
+                  <?php
                   } else if (isset($_SESSION['id'])) {
-                    ?>
-                      <a href="../Order/myorders.php">
-                        <li onmouseover="$(this).css('color','white')"
-                          onmouseleave="$(this).css('background-color','white')"
-                          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-                          <span class="fas fa-shopping-bag"></span>
-                          <span style="font-family: arial;font-weight: 700; "> My Orders</span>
-                        </li>
-                      </a>
-                      <hr style="margin:0;padding: 0">
-                      <a href="../Order/orderhistory.php">
-                        <li onmouseover="$(this).css('color','white')"
-                          onmouseleave="$(this).css('background-color','white')"
-                          style="padding-bottom: 8px;;padding-top: 8px;">&nbsp;
-                          <span class="fas fa-history"></span>
-                          <span style="font-family: arial;font-weight: 700; "> Order history</span>
-                        </li>
-                      </a>
-                      <hr style="margin:0;padding: 0">
-                      <a href="../Account/edit_user_details.php">
-                        <li onmouseover="$(this).css('color','white')"
-                          onmouseleave="$(this).css('background-color','white')"
-                          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-                          <span class="fas fa-user-cog"></span>
-                          <span style="font-family: arial;font-weight: 700; "> Change details</span>
-                        </li>
-                      </a>
-                      <hr style="margin:0;padding: 0">
-                      <a href="../Account/logout.php">
-                        <li onmouseover="$(this).css('color','white')"
-                          onmouseleave="$(this).css('background-color','white')"
-                          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-                          <span class="fas fa-power-off"></span>
-                          <span style="font-family: arial;font-weight: 700; "> Log out</span>
-                        </li>
-                      </a>
-                    <?php
+                  ?>
+                    <a href="../Order/myorders.php">
+                      <li onmouseover="$(this).css('color','white')"
+                        onmouseleave="$(this).css('background-color','white')"
+                        style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+                        <span class="fas fa-shopping-bag"></span>
+                        <span style="font-family: arial;font-weight: 700; "> My Orders</span>
+                      </li>
+                    </a>
+                    <hr style="margin:0;padding: 0">
+                    <a href="../Order/orderhistory.php">
+                      <li onmouseover="$(this).css('color','white')"
+                        onmouseleave="$(this).css('background-color','white')"
+                        style="padding-bottom: 8px;;padding-top: 8px;">&nbsp;
+                        <span class="fas fa-history"></span>
+                        <span style="font-family: arial;font-weight: 700; "> Order history</span>
+                      </li>
+                    </a>
+                    <hr style="margin:0;padding: 0">
+                    <a href="../Account/edit_user_details.php">
+                      <li onmouseover="$(this).css('color','white')"
+                        onmouseleave="$(this).css('background-color','white')"
+                        style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+                        <span class="fas fa-user-cog"></span>
+                        <span style="font-family: arial;font-weight: 700; "> Change details</span>
+                      </li>
+                    </a>
+                    <hr style="margin:0;padding: 0">
+                    <a href="../Account/logout.php">
+                      <li onmouseover="$(this).css('color','white')"
+                        onmouseleave="$(this).css('background-color','white')"
+                        style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+                        <span class="fas fa-power-off"></span>
+                        <span style="font-family: arial;font-weight: 700; "> Log out</span>
+                      </li>
+                    </a>
+                  <?php
                   }
                   ?>
                 </ul>
@@ -1996,40 +2017,51 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div> -->
-    <div id="side_cat_list_end_default" style="margin-top: 370px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_enda" style="display: none;margin-top: 333px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endb" style="display: none;margin-top: 296px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endc" style="display: none;margin-top: 259px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endd" style="display: none;margin-top: 222px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_ende" style="display: none;margin-top: 185px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endf" style="display: none;margin-top: 148px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endg" style="display: none;margin-top: 111px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endh" style="display: none;margin-top: 74px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endi" style="display: none;margin-top: 37px;"></div><!--n+4 breaks 37px difference-->
-    <div id="side_cat_list_endj" style="display: none;margin-top: 0px;"></div><!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_end_default" style="margin-top: 370px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_enda" style="display: none;margin-top: 333px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endb" style="display: none;margin-top: 296px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endc" style="display: none;margin-top: 259px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endd" style="display: none;margin-top: 222px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_ende" style="display: none;margin-top: 185px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endf" style="display: none;margin-top: 148px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endg" style="display: none;margin-top: 111px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endh" style="display: none;margin-top: 74px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endi" style="display: none;margin-top: 37px;"></div>
+    <!--n+4 breaks 37px difference-->
+    <div id="side_cat_list_endj" style="display: none;margin-top: 0px;"></div>
+    <!--n+4 breaks 37px difference-->
     <a class="side_nav_content_end" id="side_nav_content_end_line" href="#"></a><br>
     <a class="side_nav_content_header" href="#" style="color: #fe9126"> <i class="fa fa-sm fa-cog"
         style="color:white "></i> Help & Settings</a>
     <?php
     if (isset($_SESSION['id'])) {
-      ?>
+    ?>
       <a class="side_nav_content_head" href="../Account/edit_user_details.php">My Account</a>
       <a class="side_nav_content_head" href="../Order/myorders.php">My orders</a>
-      <?php
+    <?php
     }
     ?>
     <a class="side_nav_content_head" href="../Main/about.php">About</a>
     <a class="side_nav_content_head" href="../Main/contact.php">Contact</a>
     <?php
     if (!isset($_SESSION['id'])) {
-      ?>
+    ?>
       <a class="side_nav_content_head" onclick="closeNav()" href="#myModal" data-toggle="modal" data-dismiss="modal">Sign
         In</a>
-      <?php
+    <?php
     } else {
-      ?>
+    ?>
       <a class="side_nav_content_head" href="../Account/logout.php">Log out</a>
-      <?php
+    <?php
     }
     ?>
     <a class="side_nav_content_end" href="#"></a>

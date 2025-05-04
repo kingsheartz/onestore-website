@@ -26,7 +26,7 @@ require "head.php";
                 paging: false,
                 autoload: true,
                 controller: {
-                    loadData: function (filter) {
+                    loadData: function(filter) {
                         console.log(filter);
                         return $.ajax({
                             type: "GET",
@@ -36,9 +36,17 @@ require "head.php";
                         });
                     }
                 },
-                fields: [
-                    { name: "category_id", type: "hidden", css: 'hide' },
-                    { name: "category_name", title: "Category", type: "text", width: 150 },
+                fields: [{
+                        name: "category_id",
+                        type: "hidden",
+                        css: 'hide'
+                    },
+                    {
+                        name: "category_name",
+                        title: "Category",
+                        type: "text",
+                        width: 150
+                    },
                 ]
             });
         </script>
