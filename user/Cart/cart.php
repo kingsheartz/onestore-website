@@ -123,8 +123,6 @@ function randomGen($min, $max, $quantity)
     background: none repeat scroll 0 0 #f4f4f4;
   }
 
-  .onsale {}
-
   div.cart-collaterals ul.products li.product .onsale {
     background: none repeat scroll 0 0 #5a88ca;
     color: #fff;
@@ -145,8 +143,6 @@ function randomGen($min, $max, $quantity)
     margin-bottom: 10px;
     overflow: hidden;
   }
-
-  .price>ins {}
 
   div.cart-collaterals ul.products li.product .price ins {
     color: #5a88ca;
@@ -204,7 +200,6 @@ function randomGen($min, $max, $quantity)
 
   table {
     border-spacing: 0px;
-    table-layout: ;
     margin-left: auto;
     margin-right: auto;
   }
@@ -723,18 +718,6 @@ function randomGen($min, $max, $quantity)
                     <table class="shop_table cart" border="0px"
                       style="background-color:#ffffff;margin: 0px;margin-top: -20px">
                       <tr>
-                        <!--
-                                        <tr style="background-color:#5a88ca;">
-                                            <th class="product-thumbnail">&nbsp;</th>
-                                            <th class="product-name">Product</th>
-                                            <th class="product-store">Store</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product-quantity">Quantity</th>
-                                            <th class="product-subtotal">Total</th>
-                                            <th class="product-order">Order Type</th>
-                                            <th class="product-remove">&nbsp;</th>
-                                        </tr>
--->
                         <?php
                         $id = $_SESSION['id'];
                         $sql1 = "select * from cart where user_id=:id order by item_description_id";
@@ -752,11 +735,11 @@ function randomGen($min, $max, $quantity)
                           $store_id = $row1['store_id'];
                           $n = 0;
                           $sql2 = "select * from item inner join category on category.category_id=item.category_id
-       inner join sub_category on category.category_id=sub_category.category_id
-       inner join item_description on item_description.item_id=item.item_id
-       inner join product_details on item_description.item_description_id=product_details.item_description_id
-       inner join store on store.store_id=product_details.store_id
-       where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id LIMIT 1";
+                                  inner join sub_category on category.category_id=sub_category.category_id
+                                  inner join item_description on item_description.item_id=item.item_id
+                                  inner join product_details on item_description.item_description_id=product_details.item_description_id
+                                  inner join store on store.store_id=product_details.store_id
+                                  where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id LIMIT 1";
                           $stmt2 = $pdo->prepare($sql2);
                           $stmt2->execute(array(
                             ':item_description_id' => $item_description_id,
@@ -919,8 +902,8 @@ function randomGen($min, $max, $quantity)
                                                   </p>
                                                   <?php
                                                   $sqlfeatures = "select * from product_details
-inner join item_description on item_description.item_description_id=product_details.item_description_id
-where item_description.item_description_id=:item_description_id and store_id=:store_id";
+                                                                  inner join item_description on item_description.item_description_id=product_details.item_description_id
+                                                                  where item_description.item_description_id=:item_description_id and store_id=:store_id";
                                                   $stmtfeatures = $pdo->prepare($sqlfeatures);
                                                   $stmtfeatures->execute(array(
                                                     ':item_description_id' => $item_description_id,
@@ -1148,9 +1131,9 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                   <?php
                   $id = $_SESSION['id'];
                   $sql = "select sum(product_details.price*cart.quantity) as subtotal from cart
-inner join item_description on item_description.item_description_id=cart.item_description_id
-inner join product_details on product_details.item_description_id=cart.item_description_id
-WHERE item_description.item_description_id=cart.item_description_id AND cart.store_id=product_details.store_id and cart.user_id=:id";
+                          inner join item_description on item_description.item_description_id=cart.item_description_id
+                          inner join product_details on product_details.item_description_id=cart.item_description_id
+                          WHERE item_description.item_description_id=cart.item_description_id AND cart.store_id=product_details.store_id and cart.user_id=:id";
                   $stmt = $pdo->prepare($sql);
                   $stmt->execute(array(
                     ':id' => $id
@@ -1267,9 +1250,9 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
             </style>
             <?php
             $stmt = $pdo->query("select item.item_name,item.category_id,item.sub_category_id,item_description.item_description_id,product_details.price from item
-    join item_description on item_description.item_id=item.item_id
-    join product_details on item_description.item_description_id=product_details.item_description_id where (added_date) in
-    (select max(added_date) as date from item) group by item_description.item_description_id ORDER BY CAST(item.item_id AS UNSIGNED) DESC LIMIT 5");
+                                join item_description on item_description.item_id=item.item_id
+                                join product_details on item_description.item_description_id=product_details.item_description_id where (added_date) in
+                                (select max(added_date) as date from item) group by item_description.item_description_id ORDER BY CAST(item.item_id AS UNSIGNED) DESC LIMIT 5");
             $checkthis = $stmt->rowCount();
             if ($checkthis != 0) {
             ?>
@@ -1336,8 +1319,8 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
                       while ($view = $viewstmt->fetch(PDO::FETCH_ASSOC)) {
                         $item_desc_id = $view['item_description_id'];
                         $ran = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                                          inner join item on item.item_id=item_description.item_id
+                                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
                         $row = $ran->fetch(PDO::FETCH_ASSOC);
                     ?>
                         <li class="list-group-itemb" style="display: flex;padding:5px;"
@@ -1444,10 +1427,10 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
           <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
             <?php
             $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+                              inner join item_description on item_description.item_id=item.item_id
+                              inner join category on category.category_id=item.category_id
+                              inner join sub_category on category.category_id=sub_category.category_id
+                              where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
             while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
@@ -1475,10 +1458,10 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
           <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
             <?php
             $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+                              inner join item_description on item_description.item_id=item.item_id
+                              inner join category on category.category_id=item.category_id
+                              inner join sub_category on category.category_id=sub_category.category_id
+                              where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
             while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
@@ -1665,11 +1648,11 @@ WHERE item_description.item_description_id=cart.item_description_id AND cart.sto
       </script>
       <?php
             $viewstmt = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
-JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
-join item on item.item_id=item_description.item_id
-join product_details on item_description.item_description_id=product_details.item_description_id
-join sub_category on item.sub_category_id=sub_category.sub_category_id
-where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.views as UNSIGNED) DESC");
+                                    JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
+                                    join item on item.item_id=item_description.item_id
+                                    join product_details on item_description.item_description_id=product_details.item_description_id
+                                    join sub_category on item.sub_category_id=sub_category.sub_category_id
+                                    where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.views as UNSIGNED) DESC");
             $isready = $viewstmt->rowCount();
             if ($isready != 0 && is_null($isready) == false) {
       ?>
@@ -1703,9 +1686,9 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                       while ($view = $viewstmt->fetch(PDO::FETCH_ASSOC)) {
                         $item_desc_id = $view['item_description_id'];
                         $ran = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                                          inner join item on item.item_id=item_description.item_id
+                                          INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
                         $row = $ran->fetch(PDO::FETCH_ASSOC);
                         $subcat_id = $view['sub_category_id'];
                       ?>
@@ -1746,10 +1729,10 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
             <h3>Recently Viewed</h3>
             <?php
             $ran = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
-JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
-join item on item.item_id=item_description.item_id
-join sub_category on item.sub_category_id=sub_category.sub_category_id
-where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC");
+                              JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
+                              join item on item.item_id=item_description.item_id
+                              join sub_category on item.sub_category_id=sub_category.sub_category_id
+                              where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC");
             $isready = $ran->rowCount();
             if ($isready != 0 && is_null($isready) == false) {
             ?>
@@ -1779,8 +1762,8 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                   while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                     $item_desc_id = $view['item_description_id'];
                     $preview = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                                          inner join item on item.item_id=item_description.item_id
+                                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
                     $row = $preview->fetch(PDO::FETCH_ASSOC);
                     $subcat_id = $view['sub_category_id'];
                   ?>
@@ -1876,10 +1859,10 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                     <div class="scrollmenu mui_item_scroll <?= $color[$rancolor1] ?>" style="background-color: #fff">
                       <?php
                       $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+                                        inner join item_description on item_description.item_id=item.item_id
+                                        inner join category on category.category_id=item.category_id
+                                        inner join sub_category on category.category_id=sub_category.category_id
+                                        where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
                       while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                       ?>
                         <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img title=" " alt=" "
@@ -1906,10 +1889,10 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                     <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor2] ?>" style="background-color: #fff">
                       <?php
                       $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+                                        inner join item_description on item_description.item_id=item.item_id
+                                        inner join category on category.category_id=item.category_id
+                                        inner join sub_category on category.category_id=sub_category.category_id
+                                        where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
                       while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                       ?>
                         <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img title=" " alt=" "
@@ -2032,12 +2015,12 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                 $store_id = $row1['store_id'];
                 $n = 0;
                 $sql2 = "select * from item
-            inner join category on category.category_id=item.category_id
-            inner join sub_category on category.category_id=sub_category.category_id
-            inner join item_description on item_description.item_id=item.item_id
-            inner join product_details on item_description.item_description_id=product_details.item_description_id
-            inner join store on store.store_id=product_details.store_id
-            where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id=sub_category.category_id
+                        inner join item_description on item_description.item_id=item.item_id
+                        inner join product_details on item_description.item_description_id=product_details.item_description_id
+                        inner join store on store.store_id=product_details.store_id
+                        where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
                 $stmt2 = $pdo->prepare($sql2);
                 $stmt2->execute(array(
                   ':item_description_id' => $item_description_id,
