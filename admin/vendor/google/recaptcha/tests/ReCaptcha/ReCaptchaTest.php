@@ -170,7 +170,7 @@ class ReCaptchaTest extends TestCase
     {
         // Responses come back like 2018-07-31T13:48:41Z
         $challengeTs = date('Y-M-d\TH:i:s\Z', time());
-        $method = $this->getMockRequestMethod('{"success": true, "challenge_ts": "'.$challengeTs.'"}');
+        $method = $this->getMockRequestMethod('{"success": true, "challenge_ts": "' . $challengeTs . '"}');
         $rc = new ReCaptcha('secret', $method);
         $response = $rc->setChallengeTimeout('1000')->verify('response');
         $this->assertTrue($response->isSuccess());
@@ -180,7 +180,7 @@ class ReCaptchaTest extends TestCase
     {
         // Responses come back like 2018-07-31T13:48:41Z
         $challengeTs = date('Y-M-d\TH:i:s\Z', time() - 600);
-        $method = $this->getMockRequestMethod('{"success": true, "challenge_ts": "'.$challengeTs.'"}');
+        $method = $this->getMockRequestMethod('{"success": true, "challenge_ts": "' . $challengeTs . '"}');
         $rc = new ReCaptcha('secret', $method);
         $response = $rc->setChallengeTimeout('60')->verify('response');
         $this->assertFalse($response->isSuccess());

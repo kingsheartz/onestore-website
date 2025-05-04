@@ -40,97 +40,97 @@ use PHPUnit\Framework\TestCase;
 
 class SocketPostTest extends TestCase
 {
-    public function testSubmitSuccess()
-    {
-        $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fsockopen', 'fwrite', 'fgets', 'feof', 'fclose'))
-            ->getMock();
-        $socket->expects($this->once())
-                ->method('fsockopen')
-                ->willReturn(true);
-        $socket->expects($this->once())
-                ->method('fwrite');
-        $socket->expects($this->once())
-                ->method('fgets')
-                ->willReturn("HTTP/1.1 200 OK\n\nRESPONSEBODY");
-        $socket->expects($this->exactly(2))
-                ->method('feof')
-                ->will($this->onConsecutiveCalls(false, true));
-        $socket->expects($this->once())
-                ->method('fclose')
-                ->willReturn(true);
+        public function testSubmitSuccess()
+        {
+                $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
+                        ->disableOriginalConstructor()
+                        ->setMethods(array('fsockopen', 'fwrite', 'fgets', 'feof', 'fclose'))
+                        ->getMock();
+                $socket->expects($this->once())
+                        ->method('fsockopen')
+                        ->willReturn(true);
+                $socket->expects($this->once())
+                        ->method('fwrite');
+                $socket->expects($this->once())
+                        ->method('fgets')
+                        ->willReturn("HTTP/1.1 200 OK\n\nRESPONSEBODY");
+                $socket->expects($this->exactly(2))
+                        ->method('feof')
+                        ->will($this->onConsecutiveCalls(false, true));
+                $socket->expects($this->once())
+                        ->method('fclose')
+                        ->willReturn(true);
 
-        $ps = new SocketPost($socket);
-        $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
-        $this->assertEquals('RESPONSEBODY', $response);
-    }
+                $ps = new SocketPost($socket);
+                $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
+                $this->assertEquals('RESPONSEBODY', $response);
+        }
 
-    public function testOverrideSiteVerifyUrl()
-    {
-        $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fsockopen', 'fwrite', 'fgets', 'feof', 'fclose'))
-            ->getMock();
-        $socket->expects($this->once())
-                ->method('fsockopen')
-                ->with('ssl://over.ride', 443, 0, '', 30)
-                ->willReturn(true);
-        $socket->expects($this->once())
-                ->method('fwrite')
-                ->with($this->matchesRegularExpression('/^POST \/some\/path.*Host: over\.ride/s'));
-        $socket->expects($this->once())
-                ->method('fgets')
-                ->willReturn("HTTP/1.1 200 OK\n\nRESPONSEBODY");
-        $socket->expects($this->exactly(2))
-                ->method('feof')
-                ->will($this->onConsecutiveCalls(false, true));
-        $socket->expects($this->once())
-                ->method('fclose')
-                ->willReturn(true);
+        public function testOverrideSiteVerifyUrl()
+        {
+                $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
+                        ->disableOriginalConstructor()
+                        ->setMethods(array('fsockopen', 'fwrite', 'fgets', 'feof', 'fclose'))
+                        ->getMock();
+                $socket->expects($this->once())
+                        ->method('fsockopen')
+                        ->with('ssl://over.ride', 443, 0, '', 30)
+                        ->willReturn(true);
+                $socket->expects($this->once())
+                        ->method('fwrite')
+                        ->with($this->matchesRegularExpression('/^POST \/some\/path.*Host: over\.ride/s'));
+                $socket->expects($this->once())
+                        ->method('fgets')
+                        ->willReturn("HTTP/1.1 200 OK\n\nRESPONSEBODY");
+                $socket->expects($this->exactly(2))
+                        ->method('feof')
+                        ->will($this->onConsecutiveCalls(false, true));
+                $socket->expects($this->once())
+                        ->method('fclose')
+                        ->willReturn(true);
 
-        $ps = new SocketPost($socket, 'https://over.ride/some/path');
-        $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
-        $this->assertEquals('RESPONSEBODY', $response);
-    }
+                $ps = new SocketPost($socket, 'https://over.ride/some/path');
+                $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
+                $this->assertEquals('RESPONSEBODY', $response);
+        }
 
-    public function testSubmitBadResponse()
-    {
-        $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fsockopen', 'fwrite', 'fgets', 'feof', 'fclose'))
-            ->getMock();
-        $socket->expects($this->once())
-                ->method('fsockopen')
-                ->willReturn(true);
-        $socket->expects($this->once())
-                ->method('fwrite');
-        $socket->expects($this->once())
-                ->method('fgets')
-                ->willReturn("HTTP/1.1 500 NOPEn\\nBOBBINS");
-        $socket->expects($this->exactly(2))
-                ->method('feof')
-                ->will($this->onConsecutiveCalls(false, true));
-        $socket->expects($this->once())
-                ->method('fclose')
-                ->willReturn(true);
+        public function testSubmitBadResponse()
+        {
+                $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
+                        ->disableOriginalConstructor()
+                        ->setMethods(array('fsockopen', 'fwrite', 'fgets', 'feof', 'fclose'))
+                        ->getMock();
+                $socket->expects($this->once())
+                        ->method('fsockopen')
+                        ->willReturn(true);
+                $socket->expects($this->once())
+                        ->method('fwrite');
+                $socket->expects($this->once())
+                        ->method('fgets')
+                        ->willReturn("HTTP/1.1 500 NOPEn\\nBOBBINS");
+                $socket->expects($this->exactly(2))
+                        ->method('feof')
+                        ->will($this->onConsecutiveCalls(false, true));
+                $socket->expects($this->once())
+                        ->method('fclose')
+                        ->willReturn(true);
 
-        $ps = new SocketPost($socket);
-        $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
-        $this->assertEquals('{"success": false, "error-codes": ["'.ReCaptcha::E_BAD_RESPONSE.'"]}', $response);
-    }
+                $ps = new SocketPost($socket);
+                $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
+                $this->assertEquals('{"success": false, "error-codes": ["' . ReCaptcha::E_BAD_RESPONSE . '"]}', $response);
+        }
 
-    public function testConnectionFailureReturnsError()
-    {
-        $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fsockopen'))
-            ->getMock();
-        $socket->expects($this->once())
-                ->method('fsockopen')
-                ->willReturn(false);
-        $ps = new SocketPost($socket);
-        $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
-        $this->assertEquals('{"success": false, "error-codes": ["'.ReCaptcha::E_CONNECTION_FAILED.'"]}', $response);
-    }
+        public function testConnectionFailureReturnsError()
+        {
+                $socket = $this->getMockBuilder(\ReCaptcha\RequestMethod\Socket::class)
+                        ->disableOriginalConstructor()
+                        ->setMethods(array('fsockopen'))
+                        ->getMock();
+                $socket->expects($this->once())
+                        ->method('fsockopen')
+                        ->willReturn(false);
+                $ps = new SocketPost($socket);
+                $response = $ps->submit(new RequestParameters("secret", "response", "remoteip", "version"));
+                $this->assertEquals('{"success": false, "error-codes": ["' . ReCaptcha::E_CONNECTION_FAILED . '"]}', $response);
+        }
 }

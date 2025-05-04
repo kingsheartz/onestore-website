@@ -6,28 +6,21 @@
 -- Generation Time: Jul 19, 2021 at 02:37 AM
 -- Server version: 5.7.34-37
 -- PHP Version: 7.2.22
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `epiz_28189397_os`
 --
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `admin`
 --
-
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -36,29 +29,22 @@ CREATE TABLE `admin` (
   `password_reset` varchar(200) DEFAULT NULL,
   `attempt` int(10) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `admin`
 --
-
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `activation_code`, `password_reset`, `attempt`) VALUES
 (1, 'onestore', '$2y$10$Kg.JIz5eNEbnLGzu97bkg.sTT7qWqZVlbea4IWXVD8q0MDHK209c2', '', NULL, 10);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `battery`
 --
-
 CREATE TABLE `battery` (
   `battery_id` int(11) NOT NULL,
   `battery_name` varchar(120) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `battery`
 --
-
 INSERT INTO `battery` (`battery_id`, `battery_name`) VALUES
 (1, 'Less than 999 mAh'),
 (2, '1000-1999 mAh'),
@@ -66,23 +52,18 @@ INSERT INTO `battery` (`battery_id`, `battery_name`) VALUES
 (4, '3000-3999 mAh'),
 (5, '4000 mAh'),
 (6, '4000 above');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `brand`
 --
-
 CREATE TABLE `brand` (
   `brand_id` int(11) NOT NULL,
   `brand_name` varchar(50) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `brand`
 --
-
 INSERT INTO `brand` (`brand_id`, `brand_name`, `category_id`) VALUES
 (1, 'Vaseline', 1),
 (2, 'Dettol', 1),
@@ -144,13 +125,10 @@ INSERT INTO `brand` (`brand_id`, `brand_name`, `category_id`) VALUES
 (61, 'PHILIPS', 6),
 (62, 'MOTOROLA', 6),
 (63, 'intex', 6);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `cart`
 --
-
 CREATE TABLE `cart` (
   `cart_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -162,44 +140,34 @@ CREATE TABLE `cart` (
   `date_of_order` date NOT NULL,
   `time_of_order` time NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `cart`
 --
-
 INSERT INTO `cart` (`cart_id`, `user_id`, `item_description_id`, `store_id`, `quantity`, `total_amt`, `order_type`, `date_of_order`, `time_of_order`) VALUES
 (9, 60, 35, 2, 1, 65, 'booking', '2021-07-01', '15:16:30'),
 (8, 59, 42, 2, 1, 8000, 'booking', '2021-07-01', '12:45:07'),
 (7, 59, 41, 2, 1, 7000, 'booking', '2021-07-01', '10:38:36'),
 (12, 38, 37, 2, 6, 7320, 'delivery', '2021-07-06', '16:59:08');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `cart_temp`
 --
-
 CREATE TABLE `cart_temp` (
   `cart_temp_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `category`
 --
-
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `category`
 --
-
 INSERT INTO `category` (`category_id`, `category_name`) VALUES
 (1, 'Personal care'),
 (2, 'Food and Groceries'),
@@ -210,13 +178,10 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 (7, 'Toys and Baby'),
 (8, 'Sports'),
 (9, 'Beauty');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `chats`
 --
-
 CREATE TABLE `chats` (
   `uname` varchar(50) NOT NULL,
   `msg` varchar(50) NOT NULL,
@@ -225,11 +190,9 @@ CREATE TABLE `chats` (
   `id` int(11) NOT NULL,
   `stat` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `chats`
 --
-
 INSERT INTO `chats` (`uname`, `msg`, `dt`, `rname`, `id`, `stat`) VALUES
 ('KRISHNENDU RG', 'helo', '21-06-26 06:51pm', 'admin', 1, 1),
 ('admin', 'hi', '21-06-26 06:51pm', 'KRISHNENDU RG', 2, 1),
@@ -244,22 +207,17 @@ INSERT INTO `chats` (`uname`, `msg`, `dt`, `rname`, `id`, `stat`) VALUES
 ('admin', 'ninakentha reply thanna', '21-07-18 07:28pm', 'Govind', 11, 0),
 ('admin', 'hlolooooo', '21-07-18 07:29pm', 'Govind', 12, 0),
 ('admin', 'hi', '21-07-18 07:36pm', 'KRISH', 13, 0);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `color`
 --
-
 CREATE TABLE `color` (
   `color_id` int(11) NOT NULL,
   `color_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `color`
 --
-
 INSERT INTO `color` (`color_id`, `color_name`) VALUES
 (1, '#000000'),
 (2, '#FFFFFF'),
@@ -418,13 +376,10 @@ INSERT INTO `color` (`color_id`, `color_name`) VALUES
 (155, '#EEE8AA'),
 (156, '#BDB76B'),
 (157, '#F0E68C');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `cookie`
 --
-
 CREATE TABLE `cookie` (
   `cookie_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -433,30 +388,23 @@ CREATE TABLE `cookie` (
   `functional` int(11) NOT NULL DEFAULT '0',
   `targeting` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `cookie`
 --
-
 INSERT INTO `cookie` (`cookie_id`, `user_id`, `strictly_necessary`, `performance`, `functional`, `targeting`) VALUES
 (3, 38, 1, 1, 1, 1),
 (4, 60, 1, 1, 1, 1);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `display`
 --
-
 CREATE TABLE `display` (
   `display_id` int(11) NOT NULL,
   `display_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `display`
 --
-
 INSERT INTO `display` (`display_id`, `display_name`) VALUES
 (1, '3.9 inch'),
 (2, '4.3 inch'),
@@ -472,42 +420,32 @@ INSERT INTO `display` (`display_id`, `display_name`) VALUES
 (12, '40 inch'),
 (13, '43 inch'),
 (14, '55 inch');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `feedback`
 --
-
 CREATE TABLE `feedback` (
   `f_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `email` varchar(150) NOT NULL DEFAULT '',
   `feedback` varchar(550) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `feedback`
 --
-
 INSERT INTO `feedback` (`f_id`, `name`, `email`, `feedback`) VALUES
 (1, 'Anumol', 'anumol456789@gmail.com', 'Hi....your service is awesome???? really good');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `flavour`
 --
-
 CREATE TABLE `flavour` (
   `flavour_id` int(11) NOT NULL,
   `flavour_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `flavour`
 --
-
 INSERT INTO `flavour` (`flavour_id`, `flavour_name`) VALUES
 (1, 'vanila'),
 (2, 'Choclate'),
@@ -523,22 +461,17 @@ INSERT INTO `flavour` (`flavour_id`, `flavour_name`) VALUES
 (12, 'Sugar, cotton candy'),
 (13, 'Truffle'),
 (14, 'Wintergreen');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `internal_storage`
 --
-
 CREATE TABLE `internal_storage` (
   `internal_storage_id` int(11) NOT NULL,
   `internal_storage_name` varchar(50) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `internal_storage`
 --
-
 INSERT INTO `internal_storage` (`internal_storage_id`, `internal_storage_name`) VALUES
 (1, '1 TB'),
 (2, '2 TB'),
@@ -550,13 +483,10 @@ INSERT INTO `internal_storage` (`internal_storage_id`, `internal_storage_name`) 
 (8, '128 GB'),
 (9, '256 GB'),
 (10, '512 GB');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `item`
 --
-
 CREATE TABLE `item` (
   `item_id` int(11) NOT NULL,
   `item_name` varchar(400) NOT NULL,
@@ -567,11 +497,9 @@ CREATE TABLE `item` (
   `added_date` date DEFAULT NULL,
   `permission` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `item`
 --
-
 INSERT INTO `item` (`item_id`, `item_name`, `description`, `price`, `category_id`, `sub_category_id`, `added_date`, `permission`) VALUES
 (1, 'Nivea Nourishing Lotion Body Milk With Deep Moisture Serum And 2x Almond Oil for Very Dry Skin, 400m', 'Nivea body lotion, nourishing body milk, for very dry skin, 400ml \r\nLasting moisturisation : The deep moisture serum formula gives you moisturized skin for up to 48 hours \r\nReduces roughness of skin \r\nThe nourishing almond oil repairs very dry skin', 339, '1', '1', '2021-06-17', 1),
 (11, 'Gaming CPU Electrobot Budget Gaming PC ', 'Electrobot Budget Gaming PC - Intel Core i5 2000 Series - 8GB RAM - 1TB HDD - GT 710 2GB, Gaming Cabinet with 3 RGB Cooling Fan, RGB Strip Light (Core I5 2nd Gen)', 20999, '6', '31', '2021-06-18', 1),
@@ -1066,13 +994,10 @@ INSERT INTO `item` (`item_id`, `item_name`, `description`, `price`, `category_id
 (498, 'Darsy Double Resistance Bands Toning Tube Exerciser with D Handle Fitness Rope Rubber Bands for Fitness Equipment Expander Exercise Tube Training (Multicolor)', 'Brand	Darsy\r\nItem Dimensions LxWxH	12 x 8 x 8 Centimeters\r\nNumber of Pieces	1\r\nAbout this item\r\nEasy to use Toning tubes for Men and Women\r\nLight resistance toning tube suitable for beginners.\r\nExercise your arms, legs and chest using this toning tube.\r\nImprove your flexibility.\r\nUsed to exercise the entire upper body\r\nBrand	‎Darsy\r\nColor	‎Multi\r\nNumber of Items	‎1\r\nNumber of Pieces	‎1\r\nSize	‎Free\r\nManufacturer	‎Darsy\r\nCountry of Origin	‎India', 799, '8', '41', '2021-07-17', 1),
 (499, 'FITNESS INDIA™ Tummy Twister Waist Trimmer, Body Toner Exerciser Fat Buster Home Gym Exercise Equipment Abdominal - Multicolour', 'Brand	Fitness India\r\nColour	Multicolour\r\nMaterial	Plastic\r\nItem Weight	450 Grams\r\nItem Dimensions LxWxH	30 x 30 x 3 Centimeters\r\nAbout this item\r\nThis twister targets your internal and external obliques along with your spinal rotation. Both sets of oblique muscles are in the sides of your stomach and run from your ribs to your hips along the sides of your torso\r\nTightens waist - This AP twister not only tightens your side bulges but also tones your waistline since your twisting exercise covers ribs to your hips\r\nStrengthens the core- it not only shapes your body but also tightens your core area. With regular usage, you\'ll see improved muscle and increased range of motion\r\nAcupressure therapy- sit on a chair and keep your feet on the acupressure side of the twister to relax your body and benefit from the therapy. This therapy removes fatigue, revives senses and improves blood circulation\r\nMade in India- AP believes that India\'s economy should be self sufficient and thus belief has made us manufacture this product in India itself rather than importing from China like many other brands. Hope you\'ll make the right choice\r\nBrand	‎Fitness India\r\nColor	‎Multicolour\r\nIncluded Components	‎Tummy Twister\r\nLength	‎30 Centimeters\r\nWidth	‎30 Centimeters\r\nWeight	‎450 Grams\r\nShape	‎Round\r\nMaterial Type	‎Plastic\r\nNumber of Items	‎1\r\nSize	‎Large\r\nManufacturer	‎Fitness India Healthcare\r\nCountry of Origin	‎India', 999, '8', '41', '2021-07-17', 1),
 (500, 'Organic India Classic Tulsi Green Tea, 100 gm', 'Detox Green Tea - Helps to Body Cleanse.\r\nPromote Healthy Skin.\r\nRich in antioxidants and other nutrients.\r\nTulsi Helps to Boost Immunity Naturally.\r\nGreen Tea Improves Liver Enzyme Levels.', 230, '2', '9', '2021-07-17', 1);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `item_description`
 --
-
 CREATE TABLE `item_description` (
   `item_description_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
@@ -1088,11 +1013,9 @@ CREATE TABLE `item_description` (
   `material` int(11) DEFAULT '0',
   `img_count` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `item_description`
 --
-
 INSERT INTO `item_description` (`item_description_id`, `item_id`, `size`, `color`, `weight`, `flavour`, `processor`, `display`, `battery`, `internal_storage`, `brand`, `material`, `img_count`) VALUES
 (1, 1, 0, 0, '0', 0, 0, 0, 0, 0, 3, 0, 2),
 (10, 11, 0, 0, '0', 0, 0, 0, 0, 0, 0, 0, 1),
@@ -1692,13 +1615,10 @@ INSERT INTO `item_description` (`item_description_id`, `item_id`, `size`, `color
 (638, 498, 0, 0, '0', 0, 0, 0, 0, 0, 0, 0, 5),
 (639, 499, 0, 5, '0', 0, 0, 0, 0, 0, 0, 0, 8),
 (640, 500, 0, 0, '0', 0, 0, 0, 0, 0, 0, 0, 0);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `item_keys`
 --
-
 CREATE TABLE `item_keys` (
   `item_keys_id` int(11) NOT NULL,
   `rating` int(11) NOT NULL DEFAULT '0',
@@ -1710,11 +1630,9 @@ CREATE TABLE `item_keys` (
   `date_of_preview` date DEFAULT NULL,
   `review` varchar(250) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `item_keys`
 --
-
 INSERT INTO `item_keys` (`item_keys_id`, `rating`, `views`, `ordered_cnt`, `user_id`, `item_description_id`, `date_of_review`, `date_of_preview`, `review`) VALUES
 (1, 0, 282, 0, 38, 35, NULL, '2021-07-16', '0'),
 (2, 0, 282, 0, 38, 148, NULL, '2021-07-16', '0'),
@@ -1836,22 +1754,17 @@ INSERT INTO `item_keys` (`item_keys_id`, `rating`, `views`, `ordered_cnt`, `user
 (123, 0, 1, 0, 38, 618, NULL, '2021-07-17', '0'),
 (124, 0, 1, 0, 38, 591, NULL, '2021-07-18', '0'),
 (125, 0, 1, 0, 38, 590, NULL, '2021-07-18', '0');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `material`
 --
-
 CREATE TABLE `material` (
   `material_id` int(11) NOT NULL,
   `material_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `material`
 --
-
 INSERT INTO `material` (`material_id`, `material_name`) VALUES
 (1, 'Cotton'),
 (2, 'Crepe'),
@@ -1860,13 +1773,10 @@ INSERT INTO `material` (`material_id`, `material_name`) VALUES
 (5, 'Rayon'),
 (6, 'Silk'),
 (7, 'Synthetic');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `new_ordered_products`
 --
-
 CREATE TABLE `new_ordered_products` (
   `new_ordered_products_id` int(11) NOT NULL,
   `new_orders_id` int(11) DEFAULT NULL,
@@ -1877,12 +1787,9 @@ CREATE TABLE `new_ordered_products` (
   `delivery_date` date DEFAULT NULL,
   `delivery_status` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
-
 --
 -- Table structure for table `new_orders`
 --
-
 CREATE TABLE `new_orders` (
   `new_orders_id` int(11) NOT NULL,
   `order_delivery_details_id` int(11) NOT NULL,
@@ -1890,38 +1797,27 @@ CREATE TABLE `new_orders` (
   `sub_total` varchar(100) NOT NULL,
   `order_date` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
-
-
 --
 -- Table structure for table `order_delivery_details`
 --
-
 CREATE TABLE `order_delivery_details` (
   `order_delivery_details_id` int(11) NOT NULL,
   `user_delivery_details_id` int(11) NOT NULL DEFAULT '0',
   `order_notes` varchar(250) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `order_delivery_details`
 --
-
-
-
 --
 -- Table structure for table `processor`
 --
-
 CREATE TABLE `processor` (
   `processor_id` int(11) NOT NULL,
   `processor_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `processor`
 --
-
 INSERT INTO `processor` (`processor_id`, `processor_name`) VALUES
 (4, 'K6-2'),
 (5, 'K6-III'),
@@ -1950,13 +1846,10 @@ INSERT INTO `processor` (`processor_id`, `processor_name`) VALUES
 (29, 'Core i5'),
 (30, 'Core i7'),
 (31, 'Core i9');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `product_details`
 --
-
 CREATE TABLE `product_details` (
   `item_description_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -1967,11 +1860,9 @@ CREATE TABLE `product_details` (
   `quantity` int(11) NOT NULL,
   `order_preference` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `product_details`
 --
-
 INSERT INTO `product_details` (`item_description_id`, `store_id`, `product_details_id`, `permission`, `availability`, `price`, `quantity`, `order_preference`) VALUES
 (1, 1, 1, 1, 'yes', '300', 4, 0),
 (47, 1, 2, 1, 'yes', '200', 100, 0),
@@ -2089,22 +1980,17 @@ INSERT INTO `product_details` (`item_description_id`, `store_id`, `product_detai
 (330, 1, 129, 0, 'yes', '163', 23, 2),
 (331, 1, 130, 0, 'yes', '120', 30, 3),
 (332, 1, 131, 0, 'yes', '95', 4, 3);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `size`
 --
-
 CREATE TABLE `size` (
   `size_id` int(11) NOT NULL,
   `size_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `size`
 --
-
 INSERT INTO `size` (`size_id`, `size_name`) VALUES
 (1, 'XL'),
 (2, 'XXL'),
@@ -2113,13 +1999,10 @@ INSERT INTO `size` (`size_id`, `size_name`) VALUES
 (5, 'M'),
 (6, 'S'),
 (7, 'L');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `store`
 --
-
 CREATE TABLE `store` (
   `store_id` int(11) NOT NULL,
   `store_name` varchar(50) NOT NULL,
@@ -2129,22 +2012,17 @@ CREATE TABLE `store` (
   `longitude` varchar(150) NOT NULL,
   `latitude` varchar(150) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `store`
 --
-
 INSERT INTO `store` (`store_id`, `store_name`, `opening_hours`, `address`, `status`, `longitude`, `latitude`) VALUES
 (1, 'Store 1', '08:00AM to 7:59PM', 'Ramamkulam(h)\r\nMelur(p.o)', 'open', '76.38115', '10.35224'),
 (2, 'store 2', '07:00AM to 8:59PM', 'Ramamkulam(h)\r\nMelur(p.o)', 'open', '76.38115', '10.30752'),
 (3, 'Falcons ltd', '08:00AM to 9:57PM', 'Mahatma Gandhi Road Pallikkunnu Thrissur , Kerala', 'closed', '76.319841', '10.422484');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `store_admin`
 --
-
 CREATE TABLE `store_admin` (
   `id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -2156,32 +2034,25 @@ CREATE TABLE `store_admin` (
   `password_reset` varchar(200) DEFAULT NULL,
   `attempt` int(20) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `store_admin`
 --
-
 INSERT INTO `store_admin` (`id`, `store_id`, `username`, `email`, `phone`, `password`, `activation_code`, `password_reset`, `attempt`) VALUES
 (1, 1, 'KRISHNENDU RG', 'krishnendugopi8592@gmail.com', 8592041645, '$2y$10$I7zj4b3gge5hnariqEoRZ.aCmGS1aWtjpHUvLvE39mDGJpGR1e1TW', 'activated', NULL, 0),
 (2, 2, 'KRISH', 'krishnendurg055@gmail.com', 8592041645, '$2y$10$Ab9rfBaedHYifdpso3IU0.rulSSeqnP7fXScAl6TPRiFJS8gVp42e', 'activated', NULL, 0),
 (3, 3, 'Govind', 'asgovind686@gmail.com', 8113990368, '$2y$10$x8DN0hADXHdKO7IY0kfGl.Iio6BDU2rNzG8uBtoVixp6U/qW14Ok.', 'activated', NULL, 0);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `sub_category`
 --
-
 CREATE TABLE `sub_category` (
   `sub_category_id` int(11) NOT NULL,
   `sub_category_name` varchar(150) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `sub_category`
 --
-
 INSERT INTO `sub_category` (`sub_category_id`, `sub_category_name`, `category_id`) VALUES
 (1, 'body lotions', 1),
 (2, 'femini', 1),
@@ -2234,57 +2105,44 @@ INSERT INTO `sub_category` (`sub_category_id`, `sub_category_name`, `category_id
 (49, 'Bath and Body', 9),
 (50, 'Fragrance', 9),
 (53, 'Skin Care', 9);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `to_do_list`
 --
-
 CREATE TABLE `to_do_list` (
   `list_id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `add_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `to_do_list`
 --
-
 INSERT INTO `to_do_list` (`list_id`, `title`, `add_date`) VALUES
 (69, 'Add Items to store admins', '2021-07-18'),
 (59, '<strike>baby care -Toddler Toys</strike>', '2021-07-12'),
 (60, '<strike>baby care -Feeding</strike>', '2021-07-12');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `to_do_list_store`
 --
-
 CREATE TABLE `to_do_list_store` (
   `list_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `add_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `to_do_list_store`
 --
-
 INSERT INTO `to_do_list_store` (`list_id`, `store_id`, `title`, `add_date`) VALUES
 (6, 1, 'new thongs for store admin', '2021-07-10'),
 (7, 1, 'change design', '2021-07-10'),
 (8, 1, 'new products to store', '2021-07-10'),
 (5, 9, '<strike>Need to finish project </strike>', '2021-06-25');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `users`
 --
-
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `first_name` varchar(50) DEFAULT NULL,
@@ -2302,11 +2160,9 @@ CREATE TABLE `users` (
   `password_reset` varchar(100) DEFAULT NULL,
   `attempt` int(20) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `users`
 --
-
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `phone`, `pincode`, `location`, `latitude`, `longitude`, `address`, `newsletter_status`, `email`, `password`, `activation_code`, `password_reset`, `attempt`) VALUES
 (57, 'Surjith', 'M M', 7356088543, 680562, 'Urakam', '0', '0', 'Melveettil(H)Urakam P.O', 0, 'surjithmm26022001@gmail.com', '$2y$10$vbDsu0Z/A5GF6Xd5Yghw6eMzOtEE54pENtWrOAbwqfN5UBNQKXmK2', 'activated', '1', 0),
 (58, 'Silpa', 'Raj', 7025636095, 680653, 'Chennaipara', '0', '0', 'Paruthuvayil House Chennaipara P. O Thrissur', 1, 'silparaj@gmail.com', '$2y$10$G6dNLoiGTULMhkzG30qGG.pzvg.86uy7lz2vtwY3Y/ScCy00UF/Jm', '60dd1e6846ef1', NULL, 0),
@@ -2317,13 +2173,10 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `phone`, `pincode`, `
 (60, 'shahanas', 'ps', 8139801253, 680308, 'Cheruvallur', '0', '0', 'Pareparambil\ncheruvaloor', 1, 'jasjasmi45@gmail.com', '$2y$10$HP9/7AA2LUp7L5VkInrdCeaHAafT2puSLt9qBdtLBM4RqkmEg9E6q', 'activated', NULL, 0),
 (61, 'Dhanalakshmi', 'K B', 7356553110, 680311, 'Kunnappilly', '0', '0', 'Kattungal', 0, 'dhanalakshmikb123@gmail.com', '$2y$10$5KO15Zyx6ePF09z9nUWks.H1nY85A6rH7U1APzBIRB3Y.j2aU31qW', 'activated', NULL, 0),
 (62, 'Octane', 'nf', 7306974256, 680312, 'Mupliyam', '0', '0', '507 Taylor Rd, Juliette, GA, 31046', 1, 'ashikjoju8055@gmail.com', '$2y$10$d8NX2keO275.Aukyp4gbte/CW369OLf8UgoSc59xhaGETnkn1vc3K', 'activated', NULL, 0);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `user_delivery_details`
 --
-
 CREATE TABLE `user_delivery_details` (
   `user_delivery_details_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -2335,11 +2188,9 @@ CREATE TABLE `user_delivery_details` (
   `pincode` int(11) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `user_delivery_details`
 --
-
 INSERT INTO `user_delivery_details` (`user_delivery_details_id`, `user_id`, `first_name`, `last_name`, `address`, `phone`, `alternative_phone`, `pincode`, `type`) VALUES
 (7, 38, 'GOVIND', 'A S', 'ARAKKAPARAMBIL (H), P.O CHENGALOOR, VALANJUPADAM, THRISSUR - 680 312', 8113990368, NULL, 680312, 'permanent'),
 (21, 60, 'shahanas', 'ps', 'Pareparambil\ncheruvaloor', 8139801253, NULL, 680308, 'permanent'),
@@ -2351,13 +2202,10 @@ INSERT INTO `user_delivery_details` (`user_delivery_details_id`, `user_id`, `fir
 (15, 55, 'Vishnudas', 'A', 'Infopark Koratty\nThrissur', 8943299199, NULL, 680308, 'permanent'),
 (22, 61, 'Dhanalakshmi', 'K B', 'Kattungal', 7356553110, NULL, 680311, 'permanent'),
 (23, 62, 'Octane', 'nf', '507 Taylor Rd, Juliette, GA, 31046', 7306974256, NULL, 680312, 'permanent');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `wishlist`
 --
-
 CREATE TABLE `wishlist` (
   `wishlist_id` int(11) NOT NULL,
   `list_name` varchar(50) DEFAULT NULL,
@@ -2368,23 +2216,18 @@ CREATE TABLE `wishlist` (
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `wishlist`
 --
-
 INSERT INTO `wishlist` (`wishlist_id`, `list_name`, `share_link`, `user_id`, `wishlist_description`, `privacy`, `date`, `time`) VALUES
 (1, 'mine', '1_60db2f4b7236c', 57, NULL, 'private', '2021-06-29', '20:07:36'),
 (3, 'edsdfd', '2_60dd5308aa378', 59, 'fdfdf', 'private', '2021-07-01', '11:00:48'),
 (4, 'dfdfdf', '4_60dd54d902f37', 59, 'dfdfdf', 'public', '2021-07-01', '11:09:21'),
 (5, 'Das', '5_60e069fd3bcbc', 38, '', 'shared', '2021-07-03', '19:15:33');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `wishlist_items`
 --
-
 CREATE TABLE `wishlist_items` (
   `wishlist_items_id` int(11) NOT NULL,
   `wishlist_id` int(11) NOT NULL DEFAULT '0',
@@ -2395,191 +2238,159 @@ CREATE TABLE `wishlist_items` (
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
 --
 -- Dumping data for table `wishlist_items`
 --
-
 INSERT INTO `wishlist_items` (`wishlist_items_id`, `wishlist_id`, `quantity`, `total_amt`, `item_description_id`, `store_id`, `date`, `time`) VALUES
 (1, 1, 1, 30, 1, 3, '2021-06-29', '20:09:43'),
 (2, 3, 1, 7000, 41, 2, '2021-07-01', '11:03:13'),
 (3, 4, 1, 7000, 41, 2, '2021-07-01', '11:11:01'),
 (4, 5, 1, 35000, 41, 2, '2021-07-03', '19:16:39'),
 (5, 5, 1, 600, 240, 2, '2021-07-06', '16:45:32');
-
 --
 -- Indexes for dumped tables
 --
-
 --
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
-
 --
 -- Indexes for table `battery`
 --
 ALTER TABLE `battery`
   ADD PRIMARY KEY (`battery_id`);
-
 --
 -- Indexes for table `brand`
 --
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`brand_id`);
-
 --
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`);
-
 --
 -- Indexes for table `cart_temp`
 --
 ALTER TABLE `cart_temp`
   ADD PRIMARY KEY (`cart_temp_id`);
-
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
-
 --
 -- Indexes for table `chats`
 --
 ALTER TABLE `chats`
   ADD PRIMARY KEY (`id`);
-
 --
 -- Indexes for table `color`
 --
 ALTER TABLE `color`
   ADD PRIMARY KEY (`color_id`);
-
 --
 -- Indexes for table `cookie`
 --
 ALTER TABLE `cookie`
   ADD PRIMARY KEY (`cookie_id`);
-
 --
 -- Indexes for table `display`
 --
 ALTER TABLE `display`
   ADD PRIMARY KEY (`display_id`);
-
 --
 -- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`f_id`);
-
 --
 -- Indexes for table `flavour`
 --
 ALTER TABLE `flavour`
   ADD PRIMARY KEY (`flavour_id`);
-
 --
 -- Indexes for table `internal_storage`
 --
 ALTER TABLE `internal_storage`
   ADD PRIMARY KEY (`internal_storage_id`);
-
 --
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`item_id`);
-
 --
 -- Indexes for table `item_description`
 --
 ALTER TABLE `item_description`
   ADD PRIMARY KEY (`item_description_id`);
-
 --
 -- Indexes for table `item_keys`
 --
 ALTER TABLE `item_keys`
   ADD PRIMARY KEY (`item_keys_id`);
-
 --
 -- Indexes for table `material`
 --
 ALTER TABLE `material`
   ADD PRIMARY KEY (`material_id`);
-
 --
 -- Indexes for table `new_ordered_products`
 --
 ALTER TABLE `new_ordered_products`
   ADD PRIMARY KEY (`new_ordered_products_id`);
-
 --
 -- Indexes for table `new_orders`
 --
 ALTER TABLE `new_orders`
   ADD PRIMARY KEY (`new_orders_id`);
-
 --
 -- Indexes for table `order_delivery_details`
 --
 ALTER TABLE `order_delivery_details`
   ADD PRIMARY KEY (`order_delivery_details_id`);
-
 --
 -- Indexes for table `processor`
 --
 ALTER TABLE `processor`
   ADD PRIMARY KEY (`processor_id`);
-
 --
 -- Indexes for table `product_details`
 --
 ALTER TABLE `product_details`
   ADD PRIMARY KEY (`product_details_id`);
-
 --
 -- Indexes for table `size`
 --
 ALTER TABLE `size`
   ADD PRIMARY KEY (`size_id`);
-
 --
 -- Indexes for table `store`
 --
 ALTER TABLE `store`
   ADD PRIMARY KEY (`store_id`);
-
 --
 -- Indexes for table `store_admin`
 --
 ALTER TABLE `store_admin`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
-
 --
 -- Indexes for table `sub_category`
 --
 ALTER TABLE `sub_category`
   ADD PRIMARY KEY (`sub_category_id`);
-
 --
 -- Indexes for table `to_do_list`
 --
 ALTER TABLE `to_do_list`
   ADD PRIMARY KEY (`list_id`);
-
 --
 -- Indexes for table `to_do_list_store`
 --
 ALTER TABLE `to_do_list_store`
   ADD PRIMARY KEY (`list_id`);
-
 --
 -- Indexes for table `users`
 --
@@ -2587,216 +2398,180 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`email`),
   ADD UNIQUE KEY `phone` (`phone`),
   ADD UNIQUE KEY `user_id` (`user_id`);
-
 --
 -- Indexes for table `user_delivery_details`
 --
 ALTER TABLE `user_delivery_details`
   ADD PRIMARY KEY (`user_delivery_details_id`) USING BTREE;
-
 --
 -- Indexes for table `wishlist`
 --
 ALTER TABLE `wishlist`
   ADD PRIMARY KEY (`wishlist_id`);
-
 --
 -- Indexes for table `wishlist_items`
 --
 ALTER TABLE `wishlist_items`
   ADD PRIMARY KEY (`wishlist_items_id`) USING BTREE;
-
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `battery`
 --
 ALTER TABLE `battery`
   MODIFY `battery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
   MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `cart_temp`
 --
 ALTER TABLE `cart_temp`
   MODIFY `cart_temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
 --
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
   MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
-
 --
 -- AUTO_INCREMENT for table `cookie`
 --
 ALTER TABLE `cookie`
   MODIFY `cookie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `display`
 --
 ALTER TABLE `display`
   MODIFY `display_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `flavour`
 --
 ALTER TABLE `flavour`
   MODIFY `flavour_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `internal_storage`
 --
 ALTER TABLE `internal_storage`
   MODIFY `internal_storage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
-
 --
 -- AUTO_INCREMENT for table `item_description`
 --
 ALTER TABLE `item_description`
   MODIFY `item_description_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=641;
-
 --
 -- AUTO_INCREMENT for table `item_keys`
 --
 ALTER TABLE `item_keys`
   MODIFY `item_keys_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
-
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
   MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `new_ordered_products`
 --
 ALTER TABLE `new_ordered_products`
   MODIFY `new_ordered_products_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
 --
 -- AUTO_INCREMENT for table `new_orders`
 --
 ALTER TABLE `new_orders`
   MODIFY `new_orders_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `order_delivery_details`
 --
 ALTER TABLE `order_delivery_details`
   MODIFY `order_delivery_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `processor`
 --
 ALTER TABLE `processor`
   MODIFY `processor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
   MODIFY `product_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
-
 --
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
   MODIFY `size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
   MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `store_admin`
 --
 ALTER TABLE `store_admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `to_do_list`
 --
 ALTER TABLE `to_do_list`
   MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
-
 --
 -- AUTO_INCREMENT for table `to_do_list_store`
 --
 ALTER TABLE `to_do_list_store`
   MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
-
 --
 -- AUTO_INCREMENT for table `user_delivery_details`
 --
 ALTER TABLE `user_delivery_details`
   MODIFY `user_delivery_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
   MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `wishlist_items`
 --
 ALTER TABLE `wishlist_items`
   MODIFY `wishlist_items_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

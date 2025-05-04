@@ -76,7 +76,7 @@ class SocketPost implements RequestMethod
         $urlParsed = parse_url($this->siteVerifyUrl);
 
         if (false === $this->socket->fsockopen('ssl://' . $urlParsed['host'], 443, $errno, $errstr, 30)) {
-            return '{"success": false, "error-codes": ["'.ReCaptcha::E_CONNECTION_FAILED.'"]}';
+            return '{"success": false, "error-codes": ["' . ReCaptcha::E_CONNECTION_FAILED . '"]}';
         }
 
         $content = $params->toQueryString();
@@ -98,7 +98,7 @@ class SocketPost implements RequestMethod
         $this->socket->fclose();
 
         if (0 !== strpos($response, 'HTTP/1.1 200 OK')) {
-            return '{"success": false, "error-codes": ["'.ReCaptcha::E_BAD_RESPONSE.'"]}';
+            return '{"success": false, "error-codes": ["' . ReCaptcha::E_BAD_RESPONSE . '"]}';
         }
 
         $parts = preg_split("#\n\s*\n#Uis", $response);

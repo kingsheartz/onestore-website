@@ -41,12 +41,22 @@ class RequestParametersTest extends Testcase
     public function provideValidData()
     {
         return array(
-            array('SECRET', 'RESPONSE', 'REMOTEIP', 'VERSION',
+            array(
+                'SECRET',
+                'RESPONSE',
+                'REMOTEIP',
+                'VERSION',
                 array('secret' => 'SECRET', 'response' => 'RESPONSE', 'remoteip' => 'REMOTEIP', 'version' => 'VERSION'),
-                'secret=SECRET&response=RESPONSE&remoteip=REMOTEIP&version=VERSION'),
-            array('SECRET', 'RESPONSE', null, null,
+                'secret=SECRET&response=RESPONSE&remoteip=REMOTEIP&version=VERSION'
+            ),
+            array(
+                'SECRET',
+                'RESPONSE',
+                null,
+                null,
                 array('secret' => 'SECRET', 'response' => 'RESPONSE'),
-                'secret=SECRET&response=RESPONSE'),
+                'secret=SECRET&response=RESPONSE'
+            ),
         );
     }
 
