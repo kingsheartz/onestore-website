@@ -6,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>OneStore || for all your needs</title>
   <!-- for-mobile-apps -->

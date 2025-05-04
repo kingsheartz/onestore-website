@@ -155,8 +155,8 @@
       <div class="modal-body">
         <center>
           <div
-            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid #018a2a;height:100px;width">
-            <img src="../../images/logo/logofullfill.png" style="max-width: 80px;height:70px;">
+            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border: 3px solid #018a2a;height: 100px;">
+            <img src="../../images/logo/logofullfill.png" style="max-width: 80px;height: 70px;">
           </div>
         </center>
         <div style="display: none;margin-top: 20px;" class="alert alert-danger"></div>
@@ -318,7 +318,7 @@
   style="width: 100%; height:100% ;background-color: rgba(0,0,0,.80) !important;">
   <div class="modal-dialog" style="width: 70%;height: 70%;">
     <!-- Modal content-->
-    <div class="modal-content" style="width: 70%,height:70%;background-color:white;">
+    <div class="modal-content" style="width: 70%;height: 70%;background-color:white;">
       <div class="modal-header" style="padding: 0px;min-height: 0px;border:0px;">
         <button type="button"
           style="font-size: 2.2em;margin-right: -20px;margin-top: -20px;opacity: unset;outline: none;color: white"
@@ -485,7 +485,7 @@
     <div class="modal-content" style="height: 90%;" style="border-bottom-left-radius: 10px">
       <div class="modal-overlay" id="modal-overlay">
         <div class="modal-header shadow_b"
-          style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;)) !important;color: white">
+          style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;color: white">
           <button type="button" class="close" data-dismiss="modal"
             style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
           <h3 id="store_title" class="modal-title">Available Stores</h3>

@@ -79,7 +79,7 @@ require "head.php";
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
       function moveleft(x) {
-        var y = $(pdo.phpollLeft());
+        var y = $('#' + x).scrollLeft();
         var width = $('#' + x).outerWidth()
         var scrollWidth = $('#' + x)[0].scrollWidth;
         if (scrollWidth - width === y) {

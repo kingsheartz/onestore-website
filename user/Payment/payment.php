@@ -21,7 +21,7 @@ $shipping_ph_no2 = $_POST['shipping_ph_no2'] ?? 'nill';
 $shipping_address_1 = $_POST['shipping_address_1'] ?? 'nill';
 $order_type = $_POST['order_type'] ?? 'nill';
 $store_id = $_POST['store_id'] ?? 'nill';
-?>F
+?>
 <script>
   if ('<?= $placeorder_mul ?>' != 'nill') {
     console.log("mul")

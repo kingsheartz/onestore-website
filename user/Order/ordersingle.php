@@ -16,7 +16,7 @@ require "../Common/pdo.php";
   .order {
     position: relative;
     height: auto;
-    F overflow: hidden;
+    overflow: hidden;
     margin-top: 30px;
     margin-bottom: 30px;
     text-overflow: ellipsis;
@@ -598,7 +598,7 @@ require "../Common/pdo.php";
           <tr>
             <th class="tablhde" colspan="2"> Delivery details </th>
           </tr>
-          <tr style="padding-bottom;30px;"></tr>
+          <tr style="padding-bottom:30px;"></tr>
           <tr class="div-wrapper dw" col-span="2">
             <th class="cust_header" style="font-size:18px;width:100%;"><?= $row['first_name'] ?> <?= $row['last_name'] ?>
             </th>

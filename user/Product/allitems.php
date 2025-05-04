@@ -21,7 +21,7 @@ require "../Main/header.php";
     display: block;
     white-space: nowrap;
     bottom: 0;
-    F width: 100%;
+    width: 100%;
   }
 
   .products-all-in-one {

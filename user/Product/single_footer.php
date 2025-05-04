@@ -210,8 +210,8 @@
   style="width: 100%; height:100% ;background-color: rgba(0,0,0,.80) !important;">
   <div class="modal-dialog" style="width: 70%;height: 70%;">
     <!-- Modal content-->
-    <div class="modal-content" style="width: 70%,height:70%;background-color:white;">
-      <div class="modal-header" style="padding: 0px;min-height: 0px;border:0px;">
+    <div class="modal-content" style="width: 70%;height: 70%;background-color: white;">
+      <div class="modal-header" style="padding: 0px;min-height: 0px;border: 0px;">
         <button type="button"
           style="font-size: 2.2em;margin-right: -20px;margin-top: -20px;opacity: unset;outline: none;color: white"
           class="close" data-dismiss="modal"><img src="../../images/close.png" alt="close"></button>
@@ -997,8 +997,8 @@ if (isset($item_description_id)) {
       <div class="modal-body">
         <center>
           <div
-            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid #018a2a;height:100px;width">
-            <img src="../../images/logo/logofullfill.png" style="max-width: 80px;height:70px;">
+            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border: 3px solid #018a2a;height: 100px;">
+            <img src="../../images/logo/logofullfill.png" style="max-width: 80px;height: 70px;">
           </div>
         </center>
         <div style="display: none;margin-top: 20px;" class="alert alert-danger"></div>

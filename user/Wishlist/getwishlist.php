@@ -14,7 +14,7 @@ if (isset($_REQUEST["name"])) {
 				$stmt_wish2 = $pdo->prepare($sql_wish2);
 				$stmt_wish2->execute(array(':wish_id' => $row['wishlist_id']));
 				$row_wish2 = $stmt_wish2->fetch(PDO::FETCH_ASSOC);
-				?>
+?>
 				<tr class="wltr" onclick="location.href='../Wishlist/wishlist_public.php?wishlist_id=<?= $row['wishlist_id'] ?>'">
 					<?php
 					if (strlen($row['first_name']) < 12) {
@@ -43,7 +43,7 @@ if (isset($_REQUEST["name"])) {
 						<h4><?= $row['date'] ?></h4>
 					</td>
 				</tr>
-				<?php
+			<?php
 			}
 		} else {
 			?>
@@ -62,7 +62,7 @@ if (isset($_REQUEST["name"])) {
 				$stmt_wish2 = $pdo->prepare($sql_wish2);
 				$stmt_wish2->execute(array(':wish_id' => $row['wishlist_id']));
 				$row_wish2 = $stmt_wish2->fetch(PDO::FETCH_ASSOC);
-				?>
+			?>
 				<tr class="wltr" onclick="location.href='../Wishlist/wishlist_public.php?wishlist_id=<?= $row['wishlist_id'] ?>'">
 					<?php
 					if (strlen($row['first_name']) < 12) {
@@ -91,14 +91,14 @@ if (isset($_REQUEST["name"])) {
 						<h4><?= $row['date'] ?></h4>
 					</td>
 				</tr>
-				<?php
+			<?php
 			}
 		} else {
 			?>
 			<tr class="wltr">
 				<td style="padding:10px" colspan="4">No Matches Found</td>
 			</tr>
-			<?php
+<?php
 		}
 	}
 }

@@ -269,9 +269,9 @@ require "../Common/pdo.php";
     $flag = 0;
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
       if ($flag != 0) {
-        ?>
+    ?>
         <br>
-        <?php
+      <?php
       }
       ?>
       <div class="order-single" style="margin:0;padding:0;">
@@ -307,18 +307,18 @@ require "../Common/pdo.php";
                 $query1 = "SELECT * FROM size where size_id=" . $row['size'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Size</th>
                   <td class="cust_details"> <?= $row1['size_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['color'] != 0) {
                 $query1 = "SELECT * FROM color where color_id=" . $row['color'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Color</th>
                   <td class="cust_details">
@@ -327,115 +327,115 @@ require "../Common/pdo.php";
                     </div>
                   </td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['weight'] != 0) {
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Weight</th>
                   <td class="cust_details"><?= $row['weight'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['flavour'] != 0) {
                 $query1 = "SELECT * FROM flavour where flavour_id=" . $row['flavour'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Flavour</th>
                   <td class="cust_details"><?= $row1['flavour_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['processor'] != 0) {
                 $query1 = "SELECT * FROM processor where processor_id=" . $row['processor'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Processor</th>
                   <td class="cust_details"><?= $row1['processor_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['display'] != 0) {
                 $query1 = "SELECT * FROM display where display_id=" . $row['display'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Display</th>
                   <td class="cust_details"><?= $row1['display_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['battery'] != 0) {
                 $query1 = "SELECT * FROM battery where battery_id=" . $row['battery'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Battery</th>
                   <td class="cust_details"><?= $row1['battery_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['internal_storage'] != 0) {
                 $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row['internal_storage'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Internal Storage</th>
                   <td class="cust_details"><?= $row1['internal_storage_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['brand'] != 0) {
                 $query1 = "SELECT * FROM brand where brand_id=" . $row['brand'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Brand</th>
                   <td class="cust_details"><?= $row1['brand_name'] ?></td>
                 </tr>
-                <?php
+              <?php
               }
               if ($row['material'] != 0) {
                 $query1 = "SELECT * FROM material where material_id=" . $row['material'];
                 $st1 = $pdo->query($query1);
                 $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                ?>
+              ?>
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Material</th>
                   <td class="cust_details"><?= $row1['material_name'] ?></td>
                 </tr <?php
-              }
-              ?> </table>
-              <table>
-                <tr>
-                  <th class="tablhde" colspan="2"> Price details </th>
-                </tr>
-                <tr style="padding-bottom:30px;"></tr>
-                <tr class="div-wrapper dw">
-                  <th class="cust_header2">MRP</th>
-                  <td class="cust_details"><del><i class='fa fa-rupee-sign'></i> <?= $row['mrp'] ?></del></td>
-                </tr>
-                <tr class="div-wrapper dw">
-                  <th class="cust_header2">Selling Price</th>
-                  <td class="cust_details"><span><i class='fa fa-rupee-sign'></i> <?= $row['price'] ?></span></td>
-                </tr>
-                <tr class="div-wrapper dw">
-                  <th class="cust_header2">Item Quantity</th>
-                  <td class="cust_details"><?= $row['item_quantity'] ?></td>
-                </tr>
-                <tr class="div-wrapper dw">
-                  <th class="cust_header2">Total</th>
-                  <td class="cust_details"><b><i class='fa fa-rupee-sign'></i> <?= $row['total_amt'] ?></b></td>
-                </tr>
-              </table>
+                    }
+                      ?> </table>
+                <table>
+                  <tr>
+                    <th class="tablhde" colspan="2"> Price details </th>
+                  </tr>
+                  <tr style="padding-bottom:30px;"></tr>
+                  <tr class="div-wrapper dw">
+                    <th class="cust_header2">MRP</th>
+                    <td class="cust_details"><del><i class='fa fa-rupee-sign'></i> <?= $row['mrp'] ?></del></td>
+                  </tr>
+                  <tr class="div-wrapper dw">
+                    <th class="cust_header2">Selling Price</th>
+                    <td class="cust_details"><span><i class='fa fa-rupee-sign'></i> <?= $row['price'] ?></span></td>
+                  </tr>
+                  <tr class="div-wrapper dw">
+                    <th class="cust_header2">Item Quantity</th>
+                    <td class="cust_details"><?= $row['item_quantity'] ?></td>
+                  </tr>
+                  <tr class="div-wrapper dw">
+                    <th class="cust_header2">Total</th>
+                    <td class="cust_details"><b><i class='fa fa-rupee-sign'></i> <?= $row['total_amt'] ?></b></td>
+                  </tr>
+                </table>
           </div>
           <div class="col-sm-6">
             <table>
@@ -472,32 +472,32 @@ require "../Common/pdo.php";
                 <td>
                   <?php
                   if ($row['delivery_status'] == 'completed') {
-                    ?>
+                  ?>
                     <span
                       style="background-color: green;border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px">&nbsp;
                       <i class="fa fa-check" style="color: orange;text-shadow: 1px 2px 3px grey"></i>
                       <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
                         completed</i>
                     </span>
-                    <?php
+                  <?php
                   } else if ($row['delivery_status'] == 'pending') {
-                    ?>
-                      <span
-                        style="background-color: rgb(255, 123, 0);border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px">&nbsp;
-                        <i class="fa fa-clock-o" style="color: rgb(0, 0, 0);text-shadow: 1px 2px 3px grey"></i>
-                        <i style="text-transform:capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
-                          pending &nbsp;</i>
-                      </span>
-                    <?php
+                  ?>
+                    <span
+                      style="background-color: rgb(255, 123, 0);border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px">&nbsp;
+                      <i class="fa fa-clock-o" style="color: rgb(0, 0, 0);text-shadow: 1px 2px 3px grey"></i>
+                      <i style="text-transform:capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
+                        pending &nbsp;</i>
+                    </span>
+                  <?php
                   } else if ($row['delivery_status'] == 'cancelled') {
-                    ?>
-                        <span
-                          style="background-color: rgb(255, 0, 0);border-radius: 5px;cofont-weight:bold;padding-bottom:3px">&nbsp;
-                          <i class="fa fa-close" style="color: rgb(255, 255, 255);text-shadow: 1px 2px 3px grey"></i>
-                          <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
-                            cancelled</i>
-                        </span>
-                    <?php
+                  ?>
+                    <span
+                      style="background-color: rgb(255, 0, 0);border-radius: 5px;cofont-weight:bold;padding-bottom:3px">&nbsp;
+                      <i class="fa fa-close" style="color: rgb(255, 255, 255);text-shadow: 1px 2px 3px grey"></i>
+                      <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
+                        cancelled</i>
+                    </span>
+                  <?php
                   }
                   ?>
                 </td>
@@ -513,7 +513,7 @@ require "../Common/pdo.php";
           </tr>
           <tr style="padding-bottom;30px;"></tr>
           <tr class="div-wrapper dw" col-span="2">
-            <th class="cust_header" style="font-size:18px;width:100%;"><?= $row['first_name'] ?>   <?= $row['last_name'] ?>
+            <th class="cust_header" style="font-size:18px;width:100%;"><?= $row['first_name'] ?> <?= $row['last_name'] ?>
             </th>
           <tr>
             <td></td>
@@ -537,7 +537,7 @@ require "../Common/pdo.php";
         </table>
         <br>
       </div>
-      <?php
+    <?php
       $flag += 1;
     }
     ?>
