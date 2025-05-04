@@ -7,8 +7,7 @@ if (!empty($_POST["category_id"])) {
     $stmt = $pdo->query($query);
     // Generate HTML of state options list
     if ($stmt->rowCount() > 0) {
-        echo '       <option disabled="" selected="" value=""> Select...</option>
-';
+        echo '<option disabled="" selected="" value=""> Select...</option>';
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo '<option value="' . $row['sub_category_id'] . '">' . $row['sub_category_name'] . '</option>';
         }
@@ -16,3 +15,4 @@ if (!empty($_POST["category_id"])) {
         echo '<option value="">Subcategory not available</option>';
     }
 }
+?>
