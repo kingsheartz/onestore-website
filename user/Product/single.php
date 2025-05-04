@@ -705,14 +705,14 @@ function randomGen($min, $max, $quantity)
   } else {
     var scrollTop = 'scroll_begin';
   }
-  $(window).unload(function () {
+  $(window).unload(function() {
     document.cookie = 'singlescrollTop=' + $(window).scrollTop();
   });
   sessionStorage.setItem("prev_url", url);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //SCROLLING AND RESIZING EFFECTS
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  $(window).scroll(function () {
+  $(window).scroll(function() {
     if ($(this).scrollTop() > 60) {
       if ($(window).width() > 825) {
         $('.fixed-pos-left').css('top', '80px');
@@ -740,7 +740,7 @@ function randomGen($min, $max, $quantity)
     }
   });
   var big_screen = 0;
-  $(window).resize(function () {
+  $(window).resize(function() {
     if ($(this).scrollTop() > 60) {
       if ($(window).width() > 825) {
         $('.fixed-pos-left').css('top', '80px');
@@ -776,7 +776,7 @@ function randomGen($min, $max, $quantity)
       $('#myresult').css('width', '50%');
     }
   });
-  window.onscroll = function (ev) {
+  window.onscroll = function(ev) {
     if ($(window).width() < 568) {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         $('.small-btn').hide();
@@ -816,7 +816,7 @@ function randomGen($min, $max, $quantity)
       }
     }
   };
-  $(window).resize(function () {
+  $(window).resize(function() {
     if ($(window).width() < 768) {
       if (big_screen == 1) {
         location.reload();
@@ -862,7 +862,7 @@ function randomGen($min, $max, $quantity)
   //SCROLLING AND RESIZING EFFECTS
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //showing onlt mrp at loading
-  $(document).ready(function (f) {
+  $(document).ready(function(f) {
     $("#per").hide();
     $("#per2").hide();
     $("#per3").hide();
@@ -913,12 +913,12 @@ function randomGen($min, $max, $quantity)
     }
     if (flag == 0) {
       swal({
-        title: "Sorry!!!",
-        text: "Select a store",
-        icon: "warning",
-        closeOnClickOutside: false,
-        dangerMode: true,
-      })
+          title: "Sorry!!!",
+          text: "Select a store",
+          icon: "warning",
+          closeOnClickOutside: false,
+          dangerMode: true,
+        })
         .then((willSubmit1) => {
           if (willSubmit1) {
             return;
@@ -938,15 +938,15 @@ function randomGen($min, $max, $quantity)
         type: "post", //post data
         dataType: "json", //datatype=json format
         timeout: 30000, //waiting time 30 sec
-        success: function (data) { //if registration is success
+        success: function(data) { //if registration is success
           if (data.status == 'success') {
             swal({
-              title: "Added!!!",
-              text: "Check your cart",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Added!!!",
+                text: "Check your cart",
+                icon: "success",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit1) => {
                 if (willSubmit1) {
                   document.getElementById("sm-cartcnt").innerHTML = "";
@@ -971,12 +971,12 @@ function randomGen($min, $max, $quantity)
             }
           } else if (data.status == 'error') {
             swal({
-              title: "Required!!!",
-              text: "You need to create an Account",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Required!!!",
+                text: "You need to create an Account",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.href = "../Account/registered.php";
@@ -987,12 +987,12 @@ function randomGen($min, $max, $quantity)
               });
           } else if (data.status == 'error1') {
             swal({
-              title: "Not Available!!!",
-              text: "Choose another Store",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Not Available!!!",
+                text: "Choose another Store",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.href = "../Product/single.php?id=" + item_description_id + "";
@@ -1003,7 +1003,7 @@ function randomGen($min, $max, $quantity)
               });
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           if (textstatus === "timeout") {
             swal({
               title: "Oops!!!",
@@ -1019,7 +1019,8 @@ function randomGen($min, $max, $quantity)
           }
         }
       }); //closing ajax
-      //location.href="../Cart/cart.php?store="+id+"&item=<?//=$row['item_id'] ?>";
+      //location.href="../Cart/cart.php?store="+id+"&item=<? //=$row['item_id']
+                                                          ?>";
     }
   }
 
@@ -1156,26 +1157,26 @@ function randomGen($min, $max, $quantity)
       }
     }
   }
-  $(document).ready(function () {
+  $(document).ready(function() {
     var starTotal = 5;
     <?php
     if ($rating != 0) {
-      ?>
+    ?>
       var ratings = <?= $rating ?>;
       var starPercentage = ratings / starTotal * 100;
       var star = starPercentage + '%';
       $(".stars-inner").width(star);
-      <?php
+    <?php
     } else {
-      ?>
+    ?>
       $(".stars-outer").empty();
       $(".stars-outer").html('<p style="color:red">No rating..!</p>');
-      <?php
+    <?php
     }
     ?>
   });
   var lastScrollTop = 0;
-  $(window).scroll(function (event) {
+  $(window).scroll(function(event) {
     var st = $(this).scrollTop();
     if (st > lastScrollTop) {
       // downscroll code
@@ -1231,21 +1232,21 @@ function randomGen($min, $max, $quantity)
                         $img_cnt_row = $img_cnt_stmt->fetch(PDO::FETCH_ASSOC);
                         if (!empty($img_cnt_row['img_count'])) {
                           if ($img_cnt_row['img_count'] > 3) {
-                            ?>
+                        ?>
                             <div class=" col-md-1 col-sm-1 hidescroll left-small-img"
                               style="justify-content: right;overflow-y:scroll;width:100%">
-                              <?php
+                            <?php
                           } else {
                             ?>
                               <div class=" col-md-1 col-sm-1 left-small-img" style="justify-content: right;">
-                                <?php
-                          }
-                        } else {
-                          ?>
+                              <?php
+                            }
+                          } else {
+                              ?>
                               <div class=" col-md-1 col-sm-1 left-small-img" style="justify-content: right;">
-                                <?php
-                        }
-                        ?>
+                              <?php
+                            }
+                              ?>
                               <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1260,77 +1261,77 @@ function randomGen($min, $max, $quantity)
                                   if (!empty($img_cnt_row['img_count'])) {
                                     $img_cnt_flag = 1;
                                     while ($img_cnt_flag <= $img_cnt_row['img_count']) {
-                                      ?>
+                                  ?>
                                       <li>
                                         <div class="product-image-thumb"><img
                                             src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>_<?= $img_cnt_flag ?>.jpg"
                                             alt=" " class="product-image img-responsive" alt="Product Image"></div>
                                       </li>
-                                      <?php
+                                  <?php
                                       $img_cnt_flag++;
                                     }
                                   }
                                   ?>
                                 </ul>
                               </div>
-                            </div>
-                            <div class="col-md-10 col-sm-10 col-xs-10 img-big"
-                              style="position: relative;justify-content:center;align-items:center;display:flex;padding-left:0;">
-                              <div id="img-zoom-container" class="img-zoom-container"
-                                onmouseover="$('.img-zoom-result').css('display','unset');imageZoom('myimage', 'myresult');$('.img-zoom-lens').css('display','unset');$('.zoom-in-adjust').css('height','max-content');"
-                                onmouseleave="$('.img-zoom-result').css('display','none');$('.img-zoom-lens').hide();$('.zoom-in-adjust').css('height','max-content');">
-                                <img id="myimage"
-                                  src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg"
-                                  alt=" " class="product-image product-image-view img-responsive myimage">
                               </div>
-                              <div id="img-zoom-conatiner-none" class="img-zoom-conatiner-none" style="display: none;">
-                                <img id="example"
-                                  src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg"
-                                  alt=" " class="product-image product-image-view img-responsive">
+                              <div class="col-md-10 col-sm-10 col-xs-10 img-big"
+                                style="position: relative;justify-content:center;align-items:center;display:flex;padding-left:0;">
+                                <div id="img-zoom-container" class="img-zoom-container"
+                                  onmouseover="$('.img-zoom-result').css('display','unset');imageZoom('myimage', 'myresult');$('.img-zoom-lens').css('display','unset');$('.zoom-in-adjust').css('height','max-content');"
+                                  onmouseleave="$('.img-zoom-result').css('display','none');$('.img-zoom-lens').hide();$('.zoom-in-adjust').css('height','max-content');">
+                                  <img id="myimage"
+                                    src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg"
+                                    alt=" " class="product-image product-image-view img-responsive myimage">
+                                </div>
+                                <div id="img-zoom-conatiner-none" class="img-zoom-conatiner-none" style="display: none;">
+                                  <img id="example"
+                                    src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg"
+                                    alt=" " class="product-image product-image-view img-responsive">
+                                </div>
+                                <!--<div id="view-single-img" style="display: flex;position: absolute;bottom: 20px;right: 25px;border:1px solid #999;padding:10px;padding-top: 13px;background-color: rgba(0,0,0,0.75);" onclick="openModal_single();currentSlide(1)"><i style="color: #fff" class="fa fa-search-plus fa-lg"></i></div>-->
                               </div>
-                              <!--<div id="view-single-img" style="display: flex;position: absolute;bottom: 20px;right: 25px;border:1px solid #999;padding:10px;padding-top: 13px;background-color: rgba(0,0,0,0.75);" onclick="openModal_single();currentSlide(1)"><i style="color: #fff" class="fa fa-search-plus fa-lg"></i></div>-->
-                            </div>
-                            <div class=" col-md-1 col-sm-1" style="justify-content: right;padding:0px;">
-                              <div class="btn btn-default btn-lg btn-flat item_wish" type="button" name="submit"
-                                class="btn btn-primary btn-lg button" data-toggle="modal"
-                                data-target="#avail_stores_wishlist"
-                                style="width: 40px;position: relative;justify-content: center;border-radius: 50%;clear:right">
-                                <i style="color: #c50505;display: flex;align-items: center;justify-content: center;margin-left: 3px;"
-                                  class="fas fa-heart fa-lg mr-2"></i>
+                              <div class=" col-md-1 col-sm-1" style="justify-content: right;padding:0px;">
+                                <div class="btn btn-default btn-lg btn-flat item_wish" type="button" name="submit"
+                                  class="btn btn-primary btn-lg button" data-toggle="modal"
+                                  data-target="#avail_stores_wishlist"
+                                  style="width: 40px;position: relative;justify-content: center;border-radius: 50%;clear:right">
+                                  <i style="color: #c50505;display: flex;align-items: center;justify-content: center;margin-left: 3px;"
+                                    class="fas fa-heart fa-lg mr-2"></i>
+                                </div>
+                                <div onclick="copylink(<?= $_GET['id'] ?>,'single.php?id=<?= $_GET['id'] ?>')"
+                                  class="btn btn-default btn-lg btn-flat item_share" type="button" name="submit"
+                                  class="btn btn-primary btn-lg button" data-toggle="modal"
+                                  data-target="#myModal_share_item"
+                                  style="width: 40px;position: relative;justify-content: center;border-radius: 50%;align-items: left;justify-content: left;display: flex;">
+                                  <i style="color: #999898;display: flex;align-items: left;justify-content: left;margin-left: -8px;border-color: #e2e2e2;"
+                                    class="fas fa-share fa-lg mr-2"></i>
+                                </div>
+                                <div id="view-single-img"
+                                  style="display: flex;position: absolute;bottom: 20px;float:left;border:1px solid #999;padding:10px;padding-top: 13px;background-color: rgba(0,0,0,0.75);"
+                                  onclick="openModal_single();currentSlide(1)"><i style="color: #fff"
+                                    class="fa fa-search-plus fa-lg"></i></div>
                               </div>
-                              <div onclick="copylink(<?= $_GET['id'] ?>,'single.php?id=<?= $_GET['id'] ?>')"
-                                class="btn btn-default btn-lg btn-flat item_share" type="button" name="submit"
-                                class="btn btn-primary btn-lg button" data-toggle="modal"
-                                data-target="#myModal_share_item"
-                                style="width: 40px;position: relative;justify-content: center;border-radius: 50%;align-items: left;justify-content: left;display: flex;">
-                                <i style="color: #999898;display: flex;align-items: left;justify-content: left;margin-left: -8px;border-color: #e2e2e2;"
-                                  class="fas fa-share fa-lg mr-2"></i>
                               </div>
-                              <div id="view-single-img"
-                                style="display: flex;position: absolute;bottom: 20px;float:left;border:1px solid #999;padding:10px;padding-top: 13px;background-color: rgba(0,0,0,0.75);"
-                                onclick="openModal_single();currentSlide(1)"><i style="color: #fff"
-                                  class="fa fa-search-plus fa-lg"></i></div>
                             </div>
-                          </div>
-                        </div>
-                        <div style="margin-top:20px;"></div>
-                        <div class="div-wrapper big-btn" style="width: 100%;display: flex;">
-                          <div class="btn btn-primary btn-lg btn-flat btn-cart button" id="atc" type="button"
-                            name="submit" data-toggle="modal" data-target="#avail_stores"
-                            style="width: 100%;justify-content: flex-start;border-radius: 4px;">
-                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
-                          </div>
-                          <div class="btn btn-default btn-lg btn-flat btn-buy button" type="button" name="submit"
-                            data-toggle="modal" data-target="#avail_stores_buy"
-                            style="width: 100%;position: relative;float: left;justify-content: flex-start;border-radius: 4px;">
-                            <div class="btn btn-default btn-lg btn-flat" type="button" name="submit"
-                              style="font-size: 16px;width: 25px;height:25px;position: relative;justify-content: center;border-radius: 50%;padding:4px;background-color: #fff;">
-                              <i style="color: #c50505;display: flex;align-items: center;justify-content: center;margin-left: 50%;"
-                                class="fas fa-flash mr-2"></i>
+                            <div style="margin-top:20px;"></div>
+                            <div class="div-wrapper big-btn" style="width: 100%;display: flex;">
+                              <div class="btn btn-primary btn-lg btn-flat btn-cart button" id="atc" type="button"
+                                name="submit" data-toggle="modal" data-target="#avail_stores"
+                                style="width: 100%;justify-content: flex-start;border-radius: 4px;">
+                                <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                              </div>
+                              <div class="btn btn-default btn-lg btn-flat btn-buy button" type="button" name="submit"
+                                data-toggle="modal" data-target="#avail_stores_buy"
+                                style="width: 100%;position: relative;float: left;justify-content: flex-start;border-radius: 4px;">
+                                <div class="btn btn-default btn-lg btn-flat" type="button" name="submit"
+                                  style="font-size: 16px;width: 25px;height:25px;position: relative;justify-content: center;border-radius: 50%;padding:4px;background-color: #fff;">
+                                  <i style="color: #c50505;display: flex;align-items: center;justify-content: center;margin-left: 50%;"
+                                    class="fas fa-flash mr-2"></i>
+                                </div>
+                                Buy Now
+                              </div>
                             </div>
-                            Buy Now
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -1350,21 +1351,21 @@ function randomGen($min, $max, $quantity)
                   $img_cnt_row = $img_cnt_stmt->fetch(PDO::FETCH_ASSOC);
                   if (!empty($img_cnt_row['img_count'])) {
                     if ($img_cnt_row['img_count'] > 3) {
-                      ?>
+                  ?>
                       <div class=" col-md-12 col-sm-12 hidescroll "
                         style="justify-content: right;overflow-x:scroll;width:100%;">
-                        <?php
+                      <?php
                     } else {
                       ?>
                         <div class=" col-md-12 col-sm-12" style="justify-content: right;">
-                          <?php
-                    }
-                  } else {
-                    ?>
+                        <?php
+                      }
+                    } else {
+                        ?>
                         <div class=" col-md-12 col-sm-12" style="justify-content: right;">
-                          <?php
-                  }
-                  ?>
+                        <?php
+                      }
+                        ?>
                         <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1378,61 +1379,61 @@ function randomGen($min, $max, $quantity)
                           if (!empty($img_cnt_row['img_count'])) {
                             $img_cnt_flag = 1;
                             while ($img_cnt_flag <= $img_cnt_row['img_count']) {
-                              ?>
+                          ?>
                               <li style="margin-right: 5px;">
                                 <div class="product-image-thumb"><img
                                     src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>_<?= $img_cnt_flag ?>.jpg"
                                     alt=" " class="product-image img-responsive" alt="Product Image"></div>
                               </li>
-                              <?php
+                          <?php
                               $img_cnt_flag++;
                             }
                           }
                           ?>
                         </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-6" id="partially_needed" style="padding-left:15px">
-                    <div style="margin-left:25px">
-                      <h3 class="my-3"><?= $row2['item_name'] ?></h3>
-                      <div class="div-wrapper" style="width: max-content;">
-                        <div style="display: flex;align-items: center;justify-content: flex-start;width: max-content;">
-                          <span class="starRating"
-                            style="margin: 0px;margin-left:0px;width:max-content;height:max-content;">
-                            <span class="stars-outer" style="width:max-content;height:max-content;margin:0;padding:0;">
-                              <span class="stars-inner"
-                                style="width:max-content;height:max-content;margin:0;padding:0;"></span>
-                            </span>
-                          </span>
                         </div>
-                        <div
-                          style="padding:0px !important;display: flex;align-items: center;justify-content: flex-start;width: max-content;">
-                          <div class="px-3" style="padding-bottom: 5px;">
-                            <h2 class="mb-0">
-                              <span class="m-sing pricetag" id="ini"> &#8377;<?= $mrp ?> /-</span>
-                              <span id="oldpriceofitem" style="display: none;">
-                                <span id="org" class="m-sing pricetag"></span>
-                                <del>
-                                  <small><span style="color: #6d6d6d;font-size: 16px;">&#8377;<?= $mrp ?></span></small>
-                                </del>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6" id="partially_needed" style="padding-left:15px">
+                        <div style="margin-left:25px">
+                          <h3 class="my-3"><?= $row2['item_name'] ?></h3>
+                          <div class="div-wrapper" style="width: max-content;">
+                            <div style="display: flex;align-items: center;justify-content: flex-start;width: max-content;">
+                              <span class="starRating"
+                                style="margin: 0px;margin-left:0px;width:max-content;height:max-content;">
+                                <span class="stars-outer" style="width:max-content;height:max-content;margin:0;padding:0;">
+                                  <span class="stars-inner"
+                                    style="width:max-content;height:max-content;margin:0;padding:0;"></span>
+                                </span>
                               </span>
-                            </h2>
-                            <h4 class="mt-0">
-                              <small style="color: white"> </small>
-                            </h4>
+                            </div>
+                            <div
+                              style="padding:0px !important;display: flex;align-items: center;justify-content: flex-start;width: max-content;">
+                              <div class="px-3" style="padding-bottom: 5px;">
+                                <h2 class="mb-0">
+                                  <span class="m-sing pricetag" id="ini"> &#8377;<?= $mrp ?> /-</span>
+                                  <span id="oldpriceofitem" style="display: none;">
+                                    <span id="org" class="m-sing pricetag"></span>
+                                    <del>
+                                      <small><span style="color: #6d6d6d;font-size: 16px;">&#8377;<?= $mrp ?></span></small>
+                                    </del>
+                                  </span>
+                                </h2>
+                                <h4 class="mt-0">
+                                  <small style="color: white"> </small>
+                                </h4>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <hr>
-                      <!---------------------------------------------------------------------------------------------------------------------------------------------------------
+                          <hr>
+                          <!---------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------->
-                      <?php
-                      //CHANGE 2////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
+                          <?php
+                          //CHANGE 2////////////////////////////////////////////////////////////////////////////////////////////////////////
+                          /*
         $sqlfeatures_color="select * from product_details
         inner join item_description on item_description.item_description_id=product_details.item_description_id
         where item_description.item_id=:item_id and store_id=:store_id";
@@ -1441,47 +1442,47 @@ function randomGen($min, $max, $quantity)
                 ':item_id'=>$row2['item_id'],
                 'store_id'=>$row2['store_id']));
 */
-                      $sqlfeatures_color = "select * from item_description
+                          $sqlfeatures_color = "select * from item_description
         where item_description.item_id=:item_id";
-                      $stmtfeatures_color = $pdo->prepare($sqlfeatures_color);
-                      $stmtfeatures_color->execute(array(
-                        ':item_id' => $row2['item_id']
-                      ));
-                      $color_cnt = 0;
-                      while ($rowfeatures_color = $stmtfeatures_color->fetch(PDO::FETCH_ASSOC)) {
-                        if (!is_null($rowfeatures_color['color']) && $rowfeatures_color['color'] != 0) {
-                          if ($color_cnt == 0) {
-                            ?>
-                      <h4>Available Colors</h4>
-                      <?php
+                          $stmtfeatures_color = $pdo->prepare($sqlfeatures_color);
+                          $stmtfeatures_color->execute(array(
+                            ':item_id' => $row2['item_id']
+                          ));
+                          $color_cnt = 0;
+                          while ($rowfeatures_color = $stmtfeatures_color->fetch(PDO::FETCH_ASSOC)) {
+                            if (!is_null($rowfeatures_color['color']) && $rowfeatures_color['color'] != 0) {
+                              if ($color_cnt == 0) {
+                          ?>
+                                <h4>Available Colors</h4>
+                              <?php
+                              }
+                              ?>
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons" style="z-index:0 !important"
+                                onclick="location.href='../Product/single.php?id=<?= $rowfeatures_color['item_description_id'] ?>'">
+                                <?php
+                                $sqlcolor_name = 'select color_name from color where color_id=' . (int) $rowfeatures_color['color'];
+                                $stmtcolor_name = $pdo->query($sqlcolor_name);
+                                while ($rowcolor_name = $stmtcolor_name->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
+                                  <label class="btn btn-default text-center active">
+                                    <input type="radio" name="color_option"
+                                      id="color_option_a1<?= $rowcolor_name['color_name'] ?>" autocomplete="off" checked>
+                                    <i class="fas fa-circle fa-2x"
+                                      style="color: <?= $rowcolor_name['color_name'] ?>!important ;"></i>
+                                  </label>
+                                <?php
+                                }
+                                ?>
+                              </div>
+                              <?php
+                              $color_cnt += 1;
+                            }
                           }
-                          ?>
-                      <div class="btn-group btn-group-toggle" data-toggle="buttons" style="z-index:0 !important"
-                        onclick="location.href='../Product/single.php?id=<?= $rowfeatures_color['item_description_id'] ?>'">
-                        <?php
-                        $sqlcolor_name = 'select color_name from color where color_id=' . (int) $rowfeatures_color['color'];
-                        $stmtcolor_name = $pdo->query($sqlcolor_name);
-                        while ($rowcolor_name = $stmtcolor_name->fetch(PDO::FETCH_ASSOC)) {
-                          ?>
-                        <label class="btn btn-default text-center active">
-                          <input type="radio" name="color_option"
-                            id="color_option_a1<?= $rowcolor_name['color_name'] ?>" autocomplete="off" checked>
-                          <i class="fas fa-circle fa-2x"
-                            style="color: <?= $rowcolor_name['color_name'] ?>!important ;"></i>
-                        </label>
-                        <?php
-                        }
-                        ?>
-                      </div>
-                      <?php
-                      $color_cnt += 1;
-                        }
-                      }
-                      if ($color_cnt > 0) {
-                        echo "<hr>";
-                      }
-                      //CHANGE 3////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
+                          if ($color_cnt > 0) {
+                            echo "<hr>";
+                          }
+                          //CHANGE 3////////////////////////////////////////////////////////////////////////////////////////////////////////
+                          /*
         $sqlfeatures_size="select * from product_details
         inner join item_description on item_description.item_description_id=product_details.item_description_id
         where item_description.item_id=:item_id and store_id=:store_id";
@@ -1490,118 +1491,117 @@ function randomGen($min, $max, $quantity)
                 ':item_id'=>$row2['item_id'],
                 'store_id'=>$row2['store_id']));
 */
-                      $sqlfeatures_size = "select * from item_description
+                          $sqlfeatures_size = "select * from item_description
         where item_description.item_id=:item_id";
-                      $stmtfeatures_size = $pdo->prepare($sqlfeatures_size);
-                      $stmtfeatures_size->execute(array(
-                        ':item_id' => $row2['item_id']
-                      ));
-                      $size_cnt = 0;
-                      while ($rowfeatures_size = $stmtfeatures_size->fetch(PDO::FETCH_ASSOC)) {
-                        if (!is_null($rowfeatures_size['size']) && $rowfeatures_size['size'] != 0) {
-                          if ($size_cnt == 0) {
+                          $stmtfeatures_size = $pdo->prepare($sqlfeatures_size);
+                          $stmtfeatures_size->execute(array(
+                            ':item_id' => $row2['item_id']
+                          ));
+                          $size_cnt = 0;
+                          while ($rowfeatures_size = $stmtfeatures_size->fetch(PDO::FETCH_ASSOC)) {
+                            if (!is_null($rowfeatures_size['size']) && $rowfeatures_size['size'] != 0) {
+                              if ($size_cnt == 0) {
+                              ?>
+                                <h4 class="mt-3">Size <small>Please select one</small></h4>
+                              <?php
+                              }
+                              ?>
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons"
+                                onclick="location.href='../Product/single.php?id=<?= $rowfeatures_size['item_description_id'] ?>'">
+                                <?php
+                                $sqlsize_name = 'select size_name from size where size_id=' . (int) $rowfeatures_size['size'];
+                                $stmtsize_name = $pdo->query($sqlsize_name);
+                                while ($rowsize_name = $stmtsize_name->fetch(PDO::FETCH_ASSOC)) {;
+                                  if ($rowsize_name['size_name'] == 'XL') {
+                                    $size_abbreviation = 'Xtra-Large';
+                                  }
+                                  if ($rowsize_name['size_name'] == 'XXL') {
+                                    $size_abbreviation = 'Xtra-Xtra-Large';
+                                  }
+                                  if ($rowsize_name['size_name'] == 'L') {
+                                    $size_abbreviation = 'Large';
+                                  }
+                                  if ($rowsize_name['size_name'] == 'M') {
+                                    $size_abbreviation = 'Medium';
+                                  }
+                                  if ($rowsize_name['size_name'] == 'SM' || $rowsize_name['size_name'] == 'S') {
+                                    $size_abbreviation = 'Small';
+                                  }
+                                  if ($rowsize_name['size_name'] == 'XS') {
+                                    $size_abbreviation = 'Xtra-Small';
+                                  }
+                                ?>
+                                  <label class="btn btn-default text-center">
+                                    <input type="radio" name="color_option" id="color_option_b1<?= $rowsize_name['size_name'] ?>"
+                                      autocomplete="off">
+                                    <span class="text-xl">
+                                      <?= $rowsize_name['size_name'] ?>
+                                    </span>
+                                    <br>
+                                    <?= $size_abbreviation ?>
+                                  </label>
+                                <?php
+                                }
+                                ?>
+                              </div>
+                          <?php
+                              $size_cnt += 1;
+                            }
+                          }
+                          if ($size_cnt > 0) {
+                            echo "<hr>";
+                          }
+                          ?>
+                          <p>
+                          <ul>
+                            <?php
+                            $cats = explode("\n", $row2['description']);
+                            foreach ($cats as $cat) {
                             ?>
-                      <h4 class="mt-3">Size <small>Please select one</small></h4>
-                      <?php
-                          }
-                          ?>
-                      <div class="btn-group btn-group-toggle" data-toggle="buttons"
-                        onclick="location.href='../Product/single.php?id=<?= $rowfeatures_size['item_description_id'] ?>'">
-                        <?php
-                        $sqlsize_name = 'select size_name from size where size_id=' . (int) $rowfeatures_size['size'];
-                        $stmtsize_name = $pdo->query($sqlsize_name);
-                        while ($rowsize_name = $stmtsize_name->fetch(PDO::FETCH_ASSOC)) {
-                          ;
-                          if ($rowsize_name['size_name'] == 'XL') {
-                            $size_abbreviation = 'Xtra-Large';
-                          }
-                          if ($rowsize_name['size_name'] == 'XXL') {
-                            $size_abbreviation = 'Xtra-Xtra-Large';
-                          }
-                          if ($rowsize_name['size_name'] == 'L') {
-                            $size_abbreviation = 'Large';
-                          }
-                          if ($rowsize_name['size_name'] == 'M') {
-                            $size_abbreviation = 'Medium';
-                          }
-                          if ($rowsize_name['size_name'] == 'SM' || $rowsize_name['size_name'] == 'S') {
-                            $size_abbreviation = 'Small';
-                          }
-                          if ($rowsize_name['size_name'] == 'XS') {
-                            $size_abbreviation = 'Xtra-Small';
-                          }
-                          ?>
-                        <label class="btn btn-default text-center">
-                          <input type="radio" name="color_option" id="color_option_b1<?= $rowsize_name['size_name'] ?>"
-                            autocomplete="off">
-                          <span class="text-xl">
-                            <?= $rowsize_name['size_name'] ?>
-                          </span>
-                          <br>
-                          <?= $size_abbreviation ?>
-                        </label>
-                        <?php
-                        }
-                        ?>
-                      </div>
-                      <?php
-                      $size_cnt += 1;
-                        }
-                      }
-                      if ($size_cnt > 0) {
-                        echo "<hr>";
-                      }
-                      ?>
-                      <p>
-                      <ul>
-                        <?php
-                        $cats = explode("\n", $row2['description']);
-                        foreach ($cats as $cat) {
-                          ?>
-                        <li>
-                          <?= $cat ?>
-                        </li>
-                        <?php
-                        }
-                        ?>
-                      </ul>
-                      </p>
-                      <hr>
-                      <!---------------------------------------------------------------------------------------------------------------------------------------------------------
+                              <li>
+                                <?= $cat ?>
+                              </li>
+                            <?php
+                            }
+                            ?>
+                          </ul>
+                          </p>
+                          <hr>
+                          <!---------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------->
-                      <div class="container">
-                        <div class="agileinfo_single">
-                          <div class="col-md-12 agileinfo_single_right">
-                            <div class="snipcart-thumb agileinfo_single_right_snipcart">
-                            </div>
-                            <div class="div-wrapper large-btn" id="btn-pc"
-                              style="width: 80%;margin-left: -30px;display: flex;">
-                              <div class="btn btn-primary btn-lg btn-flat btn-cart button" id="atc" type="button"
-                                name="submit" data-toggle="modal" data-target="#avail_stores"
-                                style="max-width: 200px;justify-content: flex-start;border-radius: 4px;">
-                                <i class="fas fa-cart-plus mr-2"></i>
-                                Add to Cart
-                              </div>
-                              <div class="btn btn-default btn-lg btn-flat btn-buy button" id="btn-buy" type="button"
-                                name="submit" data-toggle="modal" data-target="#avail_stores_buy"
-                                style="max-width: 200px;min-width: 150px;position: relative;float: left;justify-content: flex-start;border-radius: 4px;">
-                                <div class="btn btn-default btn-lg btn-flat" type="button" name="submit"
-                                  style="font-size: 16px;width: 25px;height:25px;position: relative;justify-content: center;border-radius: 50%;padding:4px;background-color: #fff;">
-                                  <i style="color: #c50505;display: flex;align-items: center;justify-content: center;margin-left: 50%;"
-                                    class="fas fa-flash mr-2"></i>
+                          <div class="container">
+                            <div class="agileinfo_single">
+                              <div class="col-md-12 agileinfo_single_right">
+                                <div class="snipcart-thumb agileinfo_single_right_snipcart">
                                 </div>
-                                Buy Now
+                                <div class="div-wrapper large-btn" id="btn-pc"
+                                  style="width: 80%;margin-left: -30px;display: flex;">
+                                  <div class="btn btn-primary btn-lg btn-flat btn-cart button" id="atc" type="button"
+                                    name="submit" data-toggle="modal" data-target="#avail_stores"
+                                    style="max-width: 200px;justify-content: flex-start;border-radius: 4px;">
+                                    <i class="fas fa-cart-plus mr-2"></i>
+                                    Add to Cart
+                                  </div>
+                                  <div class="btn btn-default btn-lg btn-flat btn-buy button" id="btn-buy" type="button"
+                                    name="submit" data-toggle="modal" data-target="#avail_stores_buy"
+                                    style="max-width: 200px;min-width: 150px;position: relative;float: left;justify-content: flex-start;border-radius: 4px;">
+                                    <div class="btn btn-default btn-lg btn-flat" type="button" name="submit"
+                                      style="font-size: 16px;width: 25px;height:25px;position: relative;justify-content: center;border-radius: 50%;padding:4px;background-color: #fff;">
+                                      <i style="color: #c50505;display: flex;align-items: center;justify-content: center;margin-left: 50%;"
+                                        class="fas fa-flash mr-2"></i>
+                                    </div>
+                                    Buy Now
+                                  </div>
+                                </div>
+                                <div style="margin-top:20px;"></div>
                               </div>
                             </div>
-                            <div style="margin-top:20px;"></div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="tab_single" style="position:inherit">
@@ -1664,7 +1664,7 @@ function randomGen($min, $max, $quantity)
                 $reviewlen = 0;
                 $myreview = '0';
                 //USER REVIEW
-//-------------------------------------------------------------------------------------------------------------------
+                //-------------------------------------------------------------------------------------------------------------------
                 if (isset($_SESSION['id'])) {
                   $myreviewstmt = $pdo->query("select ordered_cnt,review,rating,date_of_review as date,users.first_name,users.last_name from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id=" . $_SESSION['id']);
                   $myreviewcount = $myreviewstmt->rowCount();
@@ -1686,56 +1686,56 @@ function randomGen($min, $max, $quantity)
                       }
                       /*COLOR PICKER*/
                       //MY REVIEW HERE
-//-------------------------------------------------------------------------------------------------------------------
-                      ?>
-                <section id="user_reviewed_already" style="margin-top:20px;">
-                  <div class="div-wrapper" style="width:max-content">
-                    <div
-                      style="height:20px;width:20px;border-radius:50%;background-color: <?= $bgcolor[$rancolor1] ?>;display:flex;align-items:center;justify-content:center;color: <?= $c1 ?>">
-                      <?= $user_firstletter ?>
-                    </div>
-                    <p>
-                      <?= $user_firstnm . " " . $user_lastnm ?>
-                    </p>
-                  </div>
-                  <div class="div-wrapper" style="width:max-content">
-                    <?php
-                    for ($g = 1; $g <= 5; $g++) {
-                      if ($g <= $user_rated) {
-                        ?>
-                    <span class="fa fa-star star-checked"></span>
-                    <?php
-                      } else {
-                        ?>
-                    <span class="fa fa-star"></span>
-                    <?php
-                      }
-                    }
-                    $user_dor = explode("-", $user_date_of_review);
-                    $user_date = $user_dor[2] . "/" . $user_dor[1] . "/" . substr($user_dor[0], 2);
-                    ?>
-                    <p>
-                      <?= $user_date ?>
-                    </p>
-                  </div>
-                  <div>
-                    <article>
-                      <p>
-                        <?= htmlentities($myreview) ?>
-                      </p>
-                    </article>
-                    <a onclick="editurresponse()" style="cursor:pointer"><i class="fas fa-pen"></i> edit your review
-                    </a>
-                  </div>
-                </section>
-                <div class="clearfix"> </div>
-                <?php
-                $reviewlen++;
+                      //-------------------------------------------------------------------------------------------------------------------
+                ?>
+                      <section id="user_reviewed_already" style="margin-top:20px;">
+                        <div class="div-wrapper" style="width:max-content">
+                          <div
+                            style="height:20px;width:20px;border-radius:50%;background-color: <?= $bgcolor[$rancolor1] ?>;display:flex;align-items:center;justify-content:center;color: <?= $c1 ?>">
+                            <?= $user_firstletter ?>
+                          </div>
+                          <p>
+                            <?= $user_firstnm . " " . $user_lastnm ?>
+                          </p>
+                        </div>
+                        <div class="div-wrapper" style="width:max-content">
+                          <?php
+                          for ($g = 1; $g <= 5; $g++) {
+                            if ($g <= $user_rated) {
+                          ?>
+                              <span class="fa fa-star star-checked"></span>
+                            <?php
+                            } else {
+                            ?>
+                              <span class="fa fa-star"></span>
+                          <?php
+                            }
+                          }
+                          $user_dor = explode("-", $user_date_of_review);
+                          $user_date = $user_dor[2] . "/" . $user_dor[1] . "/" . substr($user_dor[0], 2);
+                          ?>
+                          <p>
+                            <?= $user_date ?>
+                          </p>
+                        </div>
+                        <div>
+                          <article>
+                            <p>
+                              <?= htmlentities($myreview) ?>
+                            </p>
+                          </article>
+                          <a onclick="editurresponse()" style="cursor:pointer"><i class="fas fa-pen"></i> edit your review
+                          </a>
+                        </div>
+                      </section>
+                      <div class="clearfix"> </div>
+                      <?php
+                      $reviewlen++;
                     }
                     //MY REVIEW HERE
-//-------------------------------------------------------------------------------------------------------------------
-//
-//USER RATING & REVIEW
+                    //-------------------------------------------------------------------------------------------------------------------
+                    //
+                    //USER RATING & REVIEW
                     else {
                       $checkbuysql = $pdo->query("select ordered_cnt,users.first_name,users.last_name from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id=" . $_SESSION['id'] . " and item_keys.ordered_cnt>0");
                       $checkbuycnt = $checkbuysql->rowCount();
@@ -1743,188 +1743,231 @@ function randomGen($min, $max, $quantity)
                         $checkbuy = $checkbuysql->fetch(PDO::FETCH_ASSOC);
                         $isorder = $checkbuy['ordered_cnt'];
                         if ($isorder != 0) {
-                          ?>
-                <div id="editoraddreview" style="margin:0;padding:0;">
-                  <h3 style="margin-top:20px;">Rate this product</h3>
-                  <div class="rate">
-                    <input type="radio" id="star5" name="rate" value="5" />
-                    <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
-                    <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
-                    <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
-                    <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
-                    <label for="star1" title="text">1 star</label>
-                  </div>
-                  <div class="clearfix"> </div>
-                  <label class="form-label" for="reviewinput">Write a review <i class="fas fa-pen"></i>
-                    <?php
-                    if (isset($_SESSION['id'])) {
-                      $checkbuysql = $pdo->query("select rating,review from item_keys where item_description_id=" . $_GET['id'] . " and user_id=" . $_SESSION['id']);
-                      $checkbuy = $checkbuysql->fetch(PDO::FETCH_ASSOC);
-                      if ($checkbuy) {
-                        if ($checkbuy['rating'] != 0 && $checkbuy['ordered_cnt'] > 1 && $checkbuy['ordered_cnt'] != "0") {
-                          ?>
-                    <span style="color:red" onclick="canceledit()">&nbsp;Cancel</span>
+                      ?>
+                          <div id="editoraddreview" style="margin:0;padding:0;">
+                            <h3 style="margin-top:20px;">Rate this product</h3>
+                            <div class="rate">
+                              <input type="radio" id="star5" name="rate" value="5" />
+                              <label for="star5" title="text">5 stars</label>
+                              <input type="radio" id="star4" name="rate" value="4" />
+                              <label for="star4" title="text">4 stars</label>
+                              <input type="radio" id="star3" name="rate" value="3" />
+                              <label for="star3" title="text">3 stars</label>
+                              <input type="radio" id="star2" name="rate" value="2" />
+                              <label for="star2" title="text">2 stars</label>
+                              <input type="radio" id="star1" name="rate" value="1" />
+                              <label for="star1" title="text">1 star</label>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <label class="form-label" for="reviewinput">Write a review <i class="fas fa-pen"></i>
+                              <?php
+                              if (isset($_SESSION['id'])) {
+                                $checkbuysql = $pdo->query("select rating,review from item_keys where item_description_id=" . $_GET['id'] . " and user_id=" . $_SESSION['id']);
+                                $checkbuy = $checkbuysql->fetch(PDO::FETCH_ASSOC);
+                                if ($checkbuy) {
+                                  if ($checkbuy['rating'] != 0 && $checkbuy['ordered_cnt'] > 1 && $checkbuy['ordered_cnt'] != "0") {
+                              ?>
+                                    <span style="color:red" onclick="canceledit()">&nbsp;Cancel</span>
+                              <?php
+                                  }
+                                }
+                              }
+                              ?>
+                              <span id="charnow" style="color:rgb(0, 97, 0);padding-left:10px">0</span>/<span
+                                style="color:rgb(0, 97, 0)">500</span>
+                            </label>
+                            <div class="form-group input-field" style="width: 100%;margin-top:0;">
+                              <textarea maxlength="500" style="width:100%;outline:#0c99cc" title="Maximum character count is 500"
+                                rows="4" oninput="$(this).removeClass('invalid');" onkeyup="changed_details();maxchar()"
+                                onfocus="dis_add();" onblur="dis_add()" id="reviewinput" placeholder=""></textarea>
+                              <span onclick="dis_add()" id="dis_add" class="fa fa-sm fa-edit"
+                                style="position: absolute;right: 0;top: 0;color: white;background-color:#0c77cc;padding: 4px;"
+                                onmouseover="$(this).css('background-color','#0c66cc')"
+                                onmouseleave="$(this).css('background-color','#0c77cc')"></span>
+                              <span onclick="reset_add()" id="hide_add" class="fa fa-sm fa-close"
+                                style="display: none;position: absolute;right: 0;top: 0;color: white;background-color:red;padding: 5px;padding-top: 4px;padding-bottom: 4px;"
+                                onmouseover="$(this).css('background-color','#bb0000')"
+                                onmouseleave="$(this).css('background-color','red')"></span>
+                              <span onclick="dis_ok()" id="hide_add1" class="fa fa-check"
+                                style="display:none;position: absolute;right: 0;top: 23px;color: white;background-color:#07C103;padding: 3px;"
+                                onmouseover="$(this).css('background-color','#4f994f')"
+                                onmouseleave="$(this).css('background-color','#07C103')"></span>
+                            </div>
+                            <div id="add_user_review" style="display: none;">
+                              <input class="shadow_b real_btn" type="button"
+                                style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #410041), color-stop(1, #4f0063)) !important;color:white;border-radius:3px"
+                                onclick="ratethisnow()" value="Submit">
+                              <button class="shadow_b load_btn"
+                                style="display:none;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #410041), color-stop(1, #4f0063)) !important;color:white;border-radius:3px"
+                                type="button"><i class="fa fa-refresh fa-spin"></i>&nbsp;Submit</button>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <br>
+                          </div>
                     <?php
                         }
                       }
                     }
                     ?>
-                    <span id="charnow" style="color:rgb(0, 97, 0);padding-left:10px">0</span>/<span
-                      style="color:rgb(0, 97, 0)">500</span>
-                  </label>
-                  <div class="form-group input-field" style="width: 100%;margin-top:0;">
-                    <textarea maxlength="500" style="width:100%;outline:#0c99cc" title="Maximum character count is 500"
-                      rows="4" oninput="$(this).removeClass('invalid');" onkeyup="changed_details();maxchar()"
-                      onfocus="dis_add();" onblur="dis_add()" id="reviewinput" placeholder=""></textarea>
-                    <span onclick="dis_add()" id="dis_add" class="fa fa-sm fa-edit"
-                      style="position: absolute;right: 0;top: 0;color: white;background-color:#0c77cc;padding: 4px;"
-                      onmouseover="$(this).css('background-color','#0c66cc')"
-                      onmouseleave="$(this).css('background-color','#0c77cc')"></span>
-                    <span onclick="reset_add()" id="hide_add" class="fa fa-sm fa-close"
-                      style="display: none;position: absolute;right: 0;top: 0;color: white;background-color:red;padding: 5px;padding-top: 4px;padding-bottom: 4px;"
-                      onmouseover="$(this).css('background-color','#bb0000')"
-                      onmouseleave="$(this).css('background-color','red')"></span>
-                    <span onclick="dis_ok()" id="hide_add1" class="fa fa-check"
-                      style="display:none;position: absolute;right: 0;top: 23px;color: white;background-color:#07C103;padding: 3px;"
-                      onmouseover="$(this).css('background-color','#4f994f')"
-                      onmouseleave="$(this).css('background-color','#07C103')"></span>
-                  </div>
-                  <div id="add_user_review" style="display: none;">
-                    <input class="shadow_b real_btn" type="button"
-                      style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #410041), color-stop(1, #4f0063)) !important;color:white;border-radius:3px"
-                      onclick="ratethisnow()" value="Submit">
-                    <button class="shadow_b load_btn"
-                      style="display:none;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #410041), color-stop(1, #4f0063)) !important;color:white;border-radius:3px"
-                      type="button"><i class="fa fa-refresh fa-spin"></i>&nbsp;Submit</button>
-                  </div>
-                  <div class="clearfix"> </div>
-                  <br>
-                </div>
-                <?php
-                        }
-                      }
-                    }
-                    ?>
-                <?php
+                  <?php
                     //USER RATING & REVIEW
                   }
                 }
                 //USER REVIEW
-//--------------------------------------------------------------------------------------------------------------------
+                //--------------------------------------------------------------------------------------------------------------------
                 if (isset($_SESSION['id'])) {
                   ?>
-                <script>
-                  function maxchar() {
-                    var reviewlen = document.getElementById('reviewinput').value.length;
-                    $('#charnow').html(reviewlen);
-                  }
-
-                  function editurresponse() {
-                    $('#background_loader').show();
-                    $('#std_loader').show();
-                    $('#user_reviewed_already').hide();
-                    var item_description_id = <?= $_GET['id'] ?>;
-                    var user_id = <?= $_SESSION['id'] ?>;
-                    $.ajax({
-                      url: "../Common/functions.php", //passing page info
-                      data: {
-                        "edituserrated": 1,
-                        "item_description_id": item_description_id,
-                        "user_id": user_id
-                      }, //form data
-                      type: "post", //post data
-                      dataType: "json", //datatype=json format
-                      timeout: 30000, //waiting time 30 sec
-                      success: function (data) { //if registration is success
-                        if (data.status == 'success') {
-                          $('#edit_user_reviewed').html(data.editreview);
-                          $('#background_loader').show();
-                          $('#std_loader').show();
-                          return;
-                        } else {
-                          return;
-                        }
-                      },
-                      error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                        if (textstatus === "timeout") {
-                          swal({
-                            title: "Oops!!!",
-                            text: "server time out",
-                            icon: "error",
-                            closeOnClickOutside: false,
-                            dangerMode: true,
-                            timer: 6000,
-                          });
-                          $('#background_loader').show();
-                          $('#std_loader').show();
-                          return;
-                        } else {
-                          return;
-                        }
-                      }
-                    }); //closing ajax
-                  }
-
-                  function ratethisnow() {
-                    var reviewtext = document.getElementById('reviewinput').value;
-                    var getSelectedValue = document.querySelector(
-                      'input[name="rate"]:checked');
-                    if (getSelectedValue == null) {
-                      swal({
-                        title: "Oops!!!",
-                        text: "Please rate this product!!",
-                        icon: "error",
-                        closeOnClickOutside: false,
-                        dangerMode: true,
-                        timer: 6000,
-                      });
-                      return;
+                  <script>
+                    function maxchar() {
+                      var reviewlen = document.getElementById('reviewinput').value.length;
+                      $('#charnow').html(reviewlen);
                     }
-                    if (getSelectedValue != null) {
-                      var noofstars = getSelectedValue.value;
+
+                    function editurresponse() {
+                      $('#background_loader').show();
+                      $('#std_loader').show();
+                      $('#user_reviewed_already').hide();
                       var item_description_id = <?= $_GET['id'] ?>;
                       var user_id = <?= $_SESSION['id'] ?>;
-                      $('.real_btn').hide();
-                      $('.load_btn').show();
                       $.ajax({
                         url: "../Common/functions.php", //passing page info
                         data: {
-                          "userrated": 1,
+                          "edituserrated": 1,
                           "item_description_id": item_description_id,
-                          "user_id": user_id,
-                          "rating": noofstars,
-                          "review": reviewtext
+                          "user_id": user_id
                         }, //form data
                         type: "post", //post data
                         dataType: "json", //datatype=json format
                         timeout: 30000, //waiting time 30 sec
-                        success: function (data) { //if registration is success
+                        success: function(data) { //if registration is success
                           if (data.status == 'success') {
-                            $('#editoraddreview').hide();
-                            $('#edit_user_reviewed').html(data.addreview);
+                            $('#edit_user_reviewed').html(data.editreview);
+                            $('#background_loader').show();
+                            $('#std_loader').show();
+                            return;
+                          } else {
+                            return;
+                          }
+                        },
+                        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                          if (textstatus === "timeout") {
                             swal({
-                              title: "Thanks!!!",
-                              text: "your response is added",
-                              icon: "success",
+                              title: "Oops!!!",
+                              text: "server time out",
+                              icon: "error",
                               closeOnClickOutside: false,
                               dangerMode: true,
                               timer: 6000,
-                            })
-                              .then((willSubmit1) => {
-                                if (willSubmit1) {
-                                  $('.real_btn').hide();
-                                  $('.load_btn').hide();
-                                  location.reload();
-                                  return;
-                                }
+                            });
+                            $('#background_loader').show();
+                            $('#std_loader').show();
+                            return;
+                          } else {
+                            return;
+                          }
+                        }
+                      }); //closing ajax
+                    }
+
+                    function ratethisnow() {
+                      var reviewtext = document.getElementById('reviewinput').value;
+                      var getSelectedValue = document.querySelector(
+                        'input[name="rate"]:checked');
+                      if (getSelectedValue == null) {
+                        swal({
+                          title: "Oops!!!",
+                          text: "Please rate this product!!",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                          timer: 6000,
+                        });
+                        return;
+                      }
+                      if (getSelectedValue != null) {
+                        var noofstars = getSelectedValue.value;
+                        var item_description_id = <?= $_GET['id'] ?>;
+                        var user_id = <?= $_SESSION['id'] ?>;
+                        $('.real_btn').hide();
+                        $('.load_btn').show();
+                        $.ajax({
+                          url: "../Common/functions.php", //passing page info
+                          data: {
+                            "userrated": 1,
+                            "item_description_id": item_description_id,
+                            "user_id": user_id,
+                            "rating": noofstars,
+                            "review": reviewtext
+                          }, //form data
+                          type: "post", //post data
+                          dataType: "json", //datatype=json format
+                          timeout: 30000, //waiting time 30 sec
+                          success: function(data) { //if registration is success
+                            if (data.status == 'success') {
+                              $('#editoraddreview').hide();
+                              $('#edit_user_reviewed').html(data.addreview);
+                              swal({
+                                  title: "Thanks!!!",
+                                  text: "your response is added",
+                                  icon: "success",
+                                  closeOnClickOutside: false,
+                                  dangerMode: true,
+                                  timer: 6000,
+                                })
+                                .then((willSubmit1) => {
+                                  if (willSubmit1) {
+                                    $('.real_btn').hide();
+                                    $('.load_btn').hide();
+                                    location.reload();
+                                    return;
+                                  }
+                                });
+                            }
+                          },
+                          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                            if (textstatus === "timeout") {
+                              swal({
+                                title: "Oops!!!",
+                                text: "server time out",
+                                icon: "error",
+                                closeOnClickOutside: false,
+                                dangerMode: true,
+                                timer: 6000,
                               });
+                              return;
+                            } else {
+                              return;
+                            }
+                          }
+                        }); //closing ajax
+                      }
+                    }
+
+                    function canceledit() {
+                      var item_description_id = <?= $_GET['id'] ?>;
+                      var user_id = <?= $_SESSION['id'] ?>;
+                      $.ajax({
+                        url: "../Common/functions.php", //passing page info
+                        data: {
+                          "canceluserrated": 1,
+                          "item_description_id": item_description_id,
+                          "user_id": user_id
+                        }, //form data
+                        type: "post", //post data
+                        dataType: "json", //datatype=json format
+                        timeout: 30000, //waiting time 30 sec
+                        success: function(data) { //if registration is success
+                          if (data.status == 'success') {
+                            $('#editoraddreview').hide();
+                            $('#edit_user_reviewed').html(data.addreview);
+                            $('.real_btn').hide();
+                            $('.load_btn').hide();
+                            return;
+                          } else {
+                            return;
                           }
                         },
-                        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
                           if (textstatus === "timeout") {
                             swal({
                               title: "Oops!!!",
@@ -1941,134 +1984,91 @@ function randomGen($min, $max, $quantity)
                         }
                       }); //closing ajax
                     }
-                  }
 
-                  function canceledit() {
-                    var item_description_id = <?= $_GET['id'] ?>;
-                    var user_id = <?= $_SESSION['id'] ?>;
-                    $.ajax({
-                      url: "../Common/functions.php", //passing page info
-                      data: {
-                        "canceluserrated": 1,
-                        "item_description_id": item_description_id,
-                        "user_id": user_id
-                      }, //form data
-                      type: "post", //post data
-                      dataType: "json", //datatype=json format
-                      timeout: 30000, //waiting time 30 sec
-                      success: function (data) { //if registration is success
-                        if (data.status == 'success') {
-                          $('#editoraddreview').hide();
-                          $('#edit_user_reviewed').html(data.addreview);
-                          $('.real_btn').hide();
-                          $('.load_btn').hide();
-                          return;
-                        } else {
-                          return;
-                        }
-                      },
-                      error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                        if (textstatus === "timeout") {
-                          swal({
-                            title: "Oops!!!",
-                            text: "server time out",
-                            icon: "error",
-                            closeOnClickOutside: false,
-                            dangerMode: true,
-                            timer: 6000,
-                          });
-                          return;
-                        } else {
-                          return;
+                    function listenchanges() {
+                      var reviewinput = document.getElementById("reviewinput").value;
+                      var oldreviewinput = '<?= $myreview ?>';
+                      //reviewinput--------------------------------------------------------------------------------------------------------------------------------------
+                      if ($('#dis_add').css('display') == 'none') {
+                        if (reviewinput != oldreviewinput) {
+                          $('#hide_add').show();
+                          $('#hide_add1').show();
+                        } else if (reviewinput == oldreviewinput) {
+                          $('#hide_add').show();
+                          $('#hide_add1').hide();
                         }
                       }
-                    }); //closing ajax
-                  }
+                    }
 
-                  function listenchanges() {
-                    var reviewinput = document.getElementById("reviewinput").value;
-                    var oldreviewinput = '<?= $myreview ?>';
-                    //reviewinput--------------------------------------------------------------------------------------------------------------------------------------
-                    if ($('#dis_add').css('display') == 'none') {
-                      if (reviewinput != oldreviewinput) {
-                        $('#hide_add').show();
-                        $('#hide_add1').show();
-                      } else if (reviewinput == oldreviewinput) {
-                        $('#hide_add').show();
+                    function changed_details() {
+                      $('#add_user_review').show();
+                      listenchanges();
+                      succeeded();
+                    }
+
+                    function succeeded() {
+                      var reviewinput = document.getElementById("reviewinput").value;
+                      var oldreviewinput = '<?= $myreview ?>';
+                      if (reviewinput != oldreviewinput && reviewinput.length > 3) {
+                        $('#add_user_review').show();
+                      } else {
+                        $('#add_user_review').hide();
+                      }
+                    }
+                    //--------------------------------------------------------------------------------------------------------------------------------------------------------
+                    //REVIEW BOX
+                    function dis_add() {
+                      var reviewinput = document.getElementById("reviewinput").value;
+                      var oldreviewinput = '<?= $myreview ?>';
+                      if ($('#hide_add').css('display') == 'none' && $('#hide_add1').css('display') == 'none') {
+                        if (reviewinput == oldreviewinput) {
+                          $('#dis_add').hide();
+                          $('#hide_add').show();
+                        }
+                        if (reviewinput != oldreviewinput) {
+                          $('#dis_add').hide();
+                          $('#hide_add').show();
+                          $('#hide_add1').show();
+                        }
+                        document.getElementById("reviewinput").readOnly = false;
+                        document.getElementById("reviewinput").focus();
+                        var updatedetailInput = $("#reviewinput");
+                        updatedetailInput.putCursorAtEnd().on("focus", function() {
+                          updatedetailInput.putCursorAtEnd()
+                        });
+                      } else if ($('#hide_add1').css('display') == 'none') {
+                        $('#dis_add').show();
+                        $('#hide_add').hide();
                         $('#hide_add1').hide();
                       }
                     }
-                  }
 
-                  function changed_details() {
-                    $('#add_user_review').show();
-                    listenchanges();
-                    succeeded();
-                  }
-
-                  function succeeded() {
-                    var reviewinput = document.getElementById("reviewinput").value;
-                    var oldreviewinput = '<?= $myreview ?>';
-                    if (reviewinput != oldreviewinput && reviewinput.length > 3) {
-                      $('#add_user_review').show();
-                    } else {
-                      $('#add_user_review').hide();
-                    }
-                  }
-                  //--------------------------------------------------------------------------------------------------------------------------------------------------------
-                  //REVIEW BOX
-                  function dis_add() {
-                    var reviewinput = document.getElementById("reviewinput").value;
-                    var oldreviewinput = '<?= $myreview ?>';
-                    if ($('#hide_add').css('display') == 'none' && $('#hide_add1').css('display') == 'none') {
-                      if (reviewinput == oldreviewinput) {
-                        $('#dis_add').hide();
-                        $('#hide_add').show();
-                      }
-                      if (reviewinput != oldreviewinput) {
-                        $('#dis_add').hide();
-                        $('#hide_add').show();
-                        $('#hide_add1').show();
-                      }
-                      document.getElementById("reviewinput").readOnly = false;
-                      document.getElementById("reviewinput").focus();
-                      var updatedetailInput = $("#reviewinput");
-                      updatedetailInput.putCursorAtEnd().on("focus", function () {
-                        updatedetailInput.putCursorAtEnd()
-                      });
-                    } else if ($('#hide_add1').css('display') == 'none') {
+                    function dis_ok() {
                       $('#dis_add').show();
                       $('#hide_add').hide();
                       $('#hide_add1').hide();
                     }
-                  }
 
-                  function dis_ok() {
-                    $('#dis_add').show();
-                    $('#hide_add').hide();
-                    $('#hide_add1').hide();
-                  }
-
-                  function reset_add() {
-                    var reviewinput = document.getElementById("reviewinput").value;
-                    var oldreviewinput = '<?= $myreview ?>';
-                    if (oldreviewinput == "0") {
-                      oldreviewinput = "";
+                    function reset_add() {
+                      var reviewinput = document.getElementById("reviewinput").value;
+                      var oldreviewinput = '<?= $myreview ?>';
+                      if (oldreviewinput == "0") {
+                        oldreviewinput = "";
+                      }
+                      if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') != 'none')) {
+                        $('#dis_add').show();
+                        $('#hide_add').hide();
+                        $('#hide_add1').hide();
+                      } else if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') == 'none')) {
+                        $('#dis_add').show();
+                        $('#hide_add').hide();
+                      }
+                      document.getElementById("reviewinput").value = oldreviewinput;
+                      succeeded();
                     }
-                    if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') != 'none')) {
-                      $('#dis_add').show();
-                      $('#hide_add').hide();
-                      $('#hide_add1').hide();
-                    } else if (($('#hide_add').css('display') != 'none') && ($('#hide_add1').css('display') == 'none')) {
-                      $('#dis_add').show();
-                      $('#hide_add').hide();
-                    }
-                    document.getElementById("reviewinput").value = oldreviewinput;
-                    succeeded();
-                  }
-                  //--------------------------------------------------------------------------------------------------------------------------------------------------------
-                </script>
-                <?php
+                    //--------------------------------------------------------------------------------------------------------------------------------------------------------
+                  </script>
+                  <?php
                 }
                 //PUBLIC REVIEW
                 if (isset($_SESSION['id'])) {
@@ -2096,52 +2096,52 @@ function randomGen($min, $max, $quantity)
                       /*COLOR PICKER*/
                       //PUBLIC REVIEW HERE
                       if ($reviewlen != 0) {
-                        ?>
-                <hr style="margin-top:10px;">
-                <?php
+                  ?>
+                        <hr style="margin-top:10px;">
+                      <?php
                       }
                       ?>
-                <section>
-                  <div class="div-wrapper" style="width:max-content;margin-top:20px;">
-                    <div
-                      style="height:20px;width:20px;border-radius:50%;background-color: <?= $bgcolor[$rancolor1] ?>;display:flex;align-items:center;justify-content:center;color: <?= $c1 ?>">
-                      <?= $firstletter ?>
-                    </div>
-                    <p>
-                      <?= $firstnm . " " . $lastnm ?>
-                    </p>
-                  </div>
-                  <div class="div-wrapper" style="width:max-content">
-                    <?php
-                    for ($k = 1; $k <= 5; $k++) {
-                      if ($k <= $pulic_rated) {
-                        ?>
-                    <span class="fa fa-star star-checked"></span>
-                    <?php
-                      } else {
-                        ?>
-                    <span class="fa fa-star"></span>
-                    <?php
-                      }
-                    }
-                    $dor = explode("-", $date_of_review);
-                    $date = $dor[2] . "/" . $dor[1] . "/" . substr($dor[0], 2);
-                    ?>
-                    <p>
-                      <?= $date ?>
-                    </p>
-                  </div>
-                  <div>
-                    <article>
-                      <p>
-                        <?= htmlentities($review) ?>
-                      </p>
-                    </article>
-                  </div>
-                </section>
-                <div class="clearfix"> </div>
+                      <section>
+                        <div class="div-wrapper" style="width:max-content;margin-top:20px;">
+                          <div
+                            style="height:20px;width:20px;border-radius:50%;background-color: <?= $bgcolor[$rancolor1] ?>;display:flex;align-items:center;justify-content:center;color: <?= $c1 ?>">
+                            <?= $firstletter ?>
+                          </div>
+                          <p>
+                            <?= $firstnm . " " . $lastnm ?>
+                          </p>
+                        </div>
+                        <div class="div-wrapper" style="width:max-content">
+                          <?php
+                          for ($k = 1; $k <= 5; $k++) {
+                            if ($k <= $pulic_rated) {
+                          ?>
+                              <span class="fa fa-star star-checked"></span>
+                            <?php
+                            } else {
+                            ?>
+                              <span class="fa fa-star"></span>
+                          <?php
+                            }
+                          }
+                          $dor = explode("-", $date_of_review);
+                          $date = $dor[2] . "/" . $dor[1] . "/" . substr($dor[0], 2);
+                          ?>
+                          <p>
+                            <?= $date ?>
+                          </p>
+                        </div>
+                        <div>
+                          <article>
+                            <p>
+                              <?= htmlentities($review) ?>
+                            </p>
+                          </article>
+                        </div>
+                      </section>
+                      <div class="clearfix"> </div>
                 <?php
-                $reviewlen++;
+                      $reviewlen++;
                     }
                   }
                 } else {
@@ -2554,8 +2554,7 @@ function randomGen($min, $max, $quantity)
   do {
     $rancolor1 = array_rand($color, 1);
     $rancolor2 = array_rand($color, 1);
-  }
-  while ($rancolor1 == $rancolor2);
+  } while ($rancolor1 == $rancolor2);
   if ($bgcolor[$rancolor1] == "cyan" || $bgcolor[$rancolor1] == "#FF6666" || $bgcolor[$rancolor1] == "#E6BF00") {
     $c1 = "black";
   }
@@ -2565,7 +2564,7 @@ function randomGen($min, $max, $quantity)
   /*COLOR PICKER*/
   $product = $ran->rowCount();
   if ($product != 0) {
-    ?>
+  ?>
     <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
       style="border-left: 5px solid <?= $bgcolor[$rancolor1] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
       Explore <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
@@ -2588,7 +2587,7 @@ function randomGen($min, $max, $quantity)
           onclick="moveright('difrow<?= $row['item_description_id'] ?>')"><i class="fas fa-chevron-right"></i></button>
         <?php
         while ($row = $ran->fetch(PDO::FETCH_ASSOC)) {
-          ?>
+        ?>
           <div class="products-all-in-one" title="<?= $row['item_name'] ?>"
             onclick="location.href='../Product/single.php?id=<?= $row['item_description_id'] ?>'">
             <div
@@ -2607,23 +2606,23 @@ function randomGen($min, $max, $quantity)
             <div class="deupd"><?= $item_name ?><br>
             </div>
           </div>
-          <?php
+      <?php
         }
         echo '</div></div>';
-  }
-  ?>
-      <div class="clearfix"> </div>
-    </div>
-    <!-- //new -->
-    <?php
-    if (isset($_SESSION['id'])) {
+      }
       ?>
-      <!-- new -->
-      <div class="newproducts-w3agile" style="padding:0;padding-top:10px;">
-        <h3>Recently Viewed</h3>
-        <?php
-        //CHANGE 4////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
+      <div class="clearfix"> </div>
+      </div>
+      <!-- //new -->
+      <?php
+      if (isset($_SESSION['id'])) {
+      ?>
+        <!-- new -->
+        <div class="newproducts-w3agile" style="padding:0;padding-top:10px;">
+          <h3>Recently Viewed</h3>
+          <?php
+          //CHANGE 4////////////////////////////////////////////////////////////////////////////////////////////////////////
+          /*
 $ran=$pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
 JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
 join product_details on item_description.item_description_id=product_details.item_description_id
@@ -2632,374 +2631,292 @@ join sub_category on item.sub_category_id=sub_category.sub_category_id
 where user_id=".$_SESSION['id']." GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC");
 $isready=$ran->rowCount();
 */
-        $ran = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
+          $ran = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
 JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
 join item on item.item_id=item_description.item_id
 join sub_category on item.sub_category_id=sub_category.sub_category_id
 where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC");
-        $isready = $ran->rowCount();
-        if ($isready != 0 && is_null($isready) == false) {
+          $isready = $ran->rowCount();
+          if ($isready != 0 && is_null($isready) == false) {
           ?>
-          <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
-            style="border-left: 5px solid <?= $bgcolor[$rancolor2] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
-            Explore <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
-            <span style="float: right;margin-right: 5px;margin-top: -4px;">
-              <button type="button"
-                style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor2] ?>;padding: 11px auto;font-size: 12px;"
-                name="proceed" class="checkout-button button alt wc-forward"><a href="../Product/diff_views.php?recent=1"
-                  style="color:<?= $c2 ?>;">View all</a></button>
-            </span>
-          </h4>
-          <div class="difcat " style="border-radius: 5px;">
-            <span class="difhed">
-            </span>
-            <div class="difrow hidescroll" id="difrow1<?= $row['item_description_id'] ?>"
-              onscroll="scrolllisten('difrow1<?= $row['item_description_id'] ?>');">
-              <button class="left-arrow-btn-all shadow_all_none"
-                onclick="moveleft('difrow1<?= $row['item_description_id'] ?>')" style="display: none;"><i
-                  class="fas fa-chevron-left"></i></button>
-              <button class="right-arrow-btn-all shadow_all_none"
-                onclick="moveright('difrow1<?= $row['item_description_id'] ?>')"><i
-                  class="fas fa-chevron-right"></i></button>
-              <?php
-              while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
-                $item_desc_id = $view['item_description_id'];
-                $preview = $pdo->query('select * from item_description
+            <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
+              style="border-left: 5px solid <?= $bgcolor[$rancolor2] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
+              Explore <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
+              <span style="float: right;margin-right: 5px;margin-top: -4px;">
+                <button type="button"
+                  style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor2] ?>;padding: 11px auto;font-size: 12px;"
+                  name="proceed" class="checkout-button button alt wc-forward"><a href="../Product/diff_views.php?recent=1"
+                    style="color:<?= $c2 ?>;">View all</a></button>
+              </span>
+            </h4>
+            <div class="difcat " style="border-radius: 5px;">
+              <span class="difhed">
+              </span>
+              <div class="difrow hidescroll" id="difrow1<?= $row['item_description_id'] ?>"
+                onscroll="scrolllisten('difrow1<?= $row['item_description_id'] ?>');">
+                <button class="left-arrow-btn-all shadow_all_none"
+                  onclick="moveleft('difrow1<?= $row['item_description_id'] ?>')" style="display: none;"><i
+                    class="fas fa-chevron-left"></i></button>
+                <button class="right-arrow-btn-all shadow_all_none"
+                  onclick="moveright('difrow1<?= $row['item_description_id'] ?>')"><i
+                    class="fas fa-chevron-right"></i></button>
+                <?php
+                while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
+                  $item_desc_id = $view['item_description_id'];
+                  $preview = $pdo->query('select * from item_description
     inner join item on item.item_id=item_description.item_id
     where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
-                $row = $preview->fetch(PDO::FETCH_ASSOC);
-                $subcat_id = $view['sub_category_id'];
+                  $row = $preview->fetch(PDO::FETCH_ASSOC);
+                  $subcat_id = $view['sub_category_id'];
                 ?>
-                <div class="products-all-in-one" title="<?= $row['item_name'] ?>"
-                  onclick="location.href='../Product/single.php?id=<?= $row['item_description_id'] ?>'">
-                  <div
-                    style="display: flex;justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
-                    <img class="image" align="middle"
-                      src="../../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+                  <div class="products-all-in-one" title="<?= $row['item_name'] ?>"
+                    onclick="location.href='../Product/single.php?id=<?= $row['item_description_id'] ?>'">
+                    <div
+                      style="display: flex;justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+                      <img class="image" align="middle"
+                        src="../../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+                    </div>
+                    <?php
+                    if (strlen($row['item_name']) >= 22) {
+                      $item = $row['item_name'];
+                      $item_name = substr($item, 0, 25) . "...";
+                    } else {
+                      $item_name = $row['item_name'];
+                    }
+                    ?>
+                    <div class="deupd"><?= $item_name ?><br>
+                    </div>
                   </div>
-                  <?php
-                  if (strlen($row['item_name']) >= 22) {
-                    $item = $row['item_name'];
-                    $item_name = substr($item, 0, 25) . "...";
-                  } else {
-                    $item_name = $row['item_name'];
-                  }
-                  ?>
-                  <div class="deupd"><?= $item_name ?><br>
-                  </div>
-                </div>
-                <?php
-              }
-              echo '</div></div>';
-        }
-        ?>
-            <div class="clearfix"> </div>
-          </div>
-          <?php
-    }
-    ?>
-        <br><br>
-        <!-- //new -->
-        <?php
-        require '../Product/single_footer.php';
-        ?>
-        <script>
-          $(document).ready(function () {
-            openhiddentab(event, 'ratingsingle');
-            document.getElementById('tab_start').className += " active";
-            $('input:checkbox').click(function () {
-              $('input:checkbox').not(this).prop('checked', false);
-            });
-          });
-          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          function openhiddentab(evt, TabSingleName) {
-            var i, tabcontentsingle, tablinkssingle;
-            tabcontentsingle = document.getElementsByClassName("tabcontentsingle");
-            for (i = 0; i < tabcontentsingle.length; i++) {
-              tabcontentsingle[i].style.display = "none";
-            }
-            tablinkssingle = document.getElementsByClassName("tablinkssingle");
-            for (i = 0; i < tablinkssingle.length; i++) {
-              tablinkssingle[i].className = tablinkssingle[i].className.replace(" active", "");
-            }
-            document.getElementById(TabSingleName).style.display = "block";
-            evt.currentTarget.className += " active";
-          }
-          //SINGLE IMG VIEW
-          function openModal_single() {
-            document.getElementById("myModal-single").style.display = "block";
-          }
-
-          function closeModal_single() {
-            document.getElementById("myModal-single").style.display = "none";
-          }
-          var slideIndex = 1;
-          showSlides_single(slideIndex);
-
-          function plusSlides(n) {
-            showSlides_single(slideIndex += n);
-          }
-
-          function currentSlide(n) {
-            showSlides_single(slideIndex = n);
-          }
-
-          function showSlides_single(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides-single");
-            var dots = document.getElementsByClassName("demo-single");
-            var captionText = document.getElementById("caption-single");
-            if (n > slides.length) {
-              slideIndex = 1
-            }
-            if (n < 1) {
-              slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-              slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-              dots[i].className = dots[i].className.replace(" active-single", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active-single";
-            //captionText.innerHTML = dots[slideIndex-1].alt;
-          }
-          //SINGLE IMG VIEW
-          //PRICE AND CART SETTINGS
-          function pricing(store) {
-            var item_description_id = <?= $item_description_id ?>;
-            var store_id = store;
-            $('.sel_store').css('display', 'unset');
-            $('.element_cart').hide();
-            $('#check' + store_id).css('display', 'none');
-            $('#btn' + store_id).css('display', 'unset');
-            //if none is checked
-            if ($('.sel_store:checkbox:checked').length == 0) {
-              $("#ini").show();
-              $("#per").hide();
-            }
-            //if none is checked
-            else {
-              $.ajax({
-                url: "../Common/functions.php", //passing page info
-                data: {
-                  "price": 1,
-                  "item_description_id": item_description_id,
-                  "store_id": store_id
-                }, //form data
-                type: "post", //post data
-                dataType: "json", //datatype=json format
-                timeout: 30000, //waiting time 30 sec
-                success: function (data) { //if registration is success
-                  $("#ini").hide();
-                  document.getElementById('org').innerHTML = "";
-                  document.getElementById('org').innerHTML += "&#8377;" + data.price + " /-";
-                  document.getElementById('save').innerHTML = "";
-                  document.getElementById('save').innerHTML += data.save;
-                  document.getElementById('off').innerHTML = "";
-                  document.getElementById('off').innerHTML += data.off;
-                  document.getElementById('dis_avail').innerHTML = "";
-                  document.getElementById('dis_avail').innerHTML = "" + data.availability;
-                  document.getElementById('dis_sts').innerHTML = "";
-                  document.getElementById('dis_sts').innerHTML = "" + data.sts;
-                  document.getElementById('dis_qnty').innerHTML = "";
-                  document.getElementById('dis_qnty').innerHTML = "" + data.quantity;
-                  document.getElementById('dis_add').innerHTML = "";
-                  document.getElementById('dis_add').innerHTML = "" + data.address;
-                  $("#oldpriceofitem").show();
-                  $("#per").show();
-                  return;
-                },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                  if (textstatus === "timeout") {
-                    swal({
-                      title: "Oops!!!",
-                      text: "server time out",
-                      icon: "error",
-                      closeOnClickOutside: false,
-                      dangerMode: true,
-                      timer: 6000,
-                    });
-                    return;
-                  } else {
-                    return;
-                  }
+              <?php
                 }
-              }); //closing ajax
-            }
-          }
-          //PRICE AND CART SETTINGS
-          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //PRICE AND CART SETTINGS WISHLIST
-          function wishlist_pricing(store) {
-            var item_description_id = <?= $item_description_id ?>;
-            var store_id = store;
-            $('.sel_store2').css('display', 'unset');
-            $('.element_cart2').hide();
-            $('#wishlist_check' + store_id).css('display', 'none');
-            $('#wishlist_btn' + store_id).css('display', 'unset');
-            //if none is checked
-            if ($('.sel_store2:checkbox:checked').length == 0) {
-              $("#ini").show();
-              $("#per2").hide();
-            }
-            //if none is checked
-            else {
-              $.ajax({
-                url: "../Common/functions.php", //passing page info
-                data: {
-                  "price": 1,
-                  "item_description_id": item_description_id,
-                  "store_id": store_id
-                }, //form data
-                type: "post", //post data
-                dataType: "json", //datatype=json format
-                timeout: 30000, //waiting time 30 sec
-                success: function (data) { //if registration is success
-                  $("#ini").hide();
-                  document.getElementById('org').innerHTML = "";
-                  document.getElementById('org').innerHTML += "&#8377;" + data.price + " /-";
-                  document.getElementById('save2').innerHTML = "";
-                  document.getElementById('save2').innerHTML += data.save;
-                  document.getElementById('off2').innerHTML = "";
-                  document.getElementById('off2').innerHTML += data.off;
-                  document.getElementById('dis_avail2').innerHTML = "";
-                  document.getElementById('dis_avail2').innerHTML = "" + data.availability;
-                  document.getElementById('dis_sts2').innerHTML = "";
-                  document.getElementById('dis_sts2').innerHTML = "" + data.sts;
-                  document.getElementById('dis_qnty2').innerHTML = "";
-                  document.getElementById('dis_qnty2').innerHTML = "" + data.quantity;
-                  document.getElementById('dis_add2').innerHTML = "";
-                  document.getElementById('dis_add2').innerHTML = "" + data.address;
-                  $("#oldpriceofitem").show();
-                  $("#per2").show();
-                  return;
-                },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                  if (textstatus === "timeout") {
-                    swal({
-                      title: "Oops!!!",
-                      text: "server time out",
-                      icon: "error",
-                      closeOnClickOutside: false,
-                      dangerMode: true,
-                      timer: 6000,
-                    });
-                    return;
-                  } else {
-                    return;
-                  }
-                }
-              }); //closing ajax
-            }
-          }
-          //PRICE AND CART SETTINGS  WISHLIST
-          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //WISHLIST ENTRY ITEMS
-          function wishlist_check_store_select() {
-            var tbl = document.getElementById("store_wishlist");
-            var chks = tbl.getElementsByTagName("INPUT");
-            var id = 0;
-            var flag = 0;
-            for (var i = 0; i < chks.length; i++) {
-              if (chks[i].checked == true) {
-                id = chks[i].value;
-                flag = 1;
+                echo '</div></div>';
               }
-            }
-            if (flag == 0) {
-              swal({
-                title: "Sorry!!!",
-                text: "Select a store",
-                icon: "warning",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
-                .then((willSubmit1) => {
-                  if (willSubmit1) {
-                    return;
-                  } else {
-                    return;
-                  }
+              ?>
+              <div class="clearfix"> </div>
+              </div>
+            <?php
+          }
+            ?>
+            <br><br>
+            <!-- //new -->
+            <?php
+            require '../Product/single_footer.php';
+            ?>
+            <script>
+              $(document).ready(function() {
+                openhiddentab(event, 'ratingsingle');
+                document.getElementById('tab_start').className += " active";
+                $('input:checkbox').click(function() {
+                  $('input:checkbox').not(this).prop('checked', false);
                 });
-            } else {
-              var item_description_id = <?= $item_description_id ?>;
-              $.ajax({
-                url: "../Common/functions.php", //passing page info
-                data: {
-                  "addtowishlist": 1,
-                  "item_description_id": item_description_id,
-                  "store_id": id
-                }, //form data
-                type: "post", //post data
-                dataType: "json", //datatype=json format
-                timeout: 30000, //waiting time 30 sec
-                success: function (data) { //if registration is success
-                  if (data.status == 'success') {
-                    return;
-                  } else if (data.status == 'error') {
-                    swal({
-                      title: "Required!!!",
-                      text: "You need to create an Account",
-                      icon: "error",
+              });
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              function openhiddentab(evt, TabSingleName) {
+                var i, tabcontentsingle, tablinkssingle;
+                tabcontentsingle = document.getElementsByClassName("tabcontentsingle");
+                for (i = 0; i < tabcontentsingle.length; i++) {
+                  tabcontentsingle[i].style.display = "none";
+                }
+                tablinkssingle = document.getElementsByClassName("tablinkssingle");
+                for (i = 0; i < tablinkssingle.length; i++) {
+                  tablinkssingle[i].className = tablinkssingle[i].className.replace(" active", "");
+                }
+                document.getElementById(TabSingleName).style.display = "block";
+                evt.currentTarget.className += " active";
+              }
+              //SINGLE IMG VIEW
+              function openModal_single() {
+                document.getElementById("myModal-single").style.display = "block";
+              }
+
+              function closeModal_single() {
+                document.getElementById("myModal-single").style.display = "none";
+              }
+              var slideIndex = 1;
+              showSlides_single(slideIndex);
+
+              function plusSlides(n) {
+                showSlides_single(slideIndex += n);
+              }
+
+              function currentSlide(n) {
+                showSlides_single(slideIndex = n);
+              }
+
+              function showSlides_single(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides-single");
+                var dots = document.getElementsByClassName("demo-single");
+                var captionText = document.getElementById("caption-single");
+                if (n > slides.length) {
+                  slideIndex = 1
+                }
+                if (n < 1) {
+                  slideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                  dots[i].className = dots[i].className.replace(" active-single", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active-single";
+                //captionText.innerHTML = dots[slideIndex-1].alt;
+              }
+              //SINGLE IMG VIEW
+              //PRICE AND CART SETTINGS
+              function pricing(store) {
+                var item_description_id = <?= $item_description_id ?>;
+                var store_id = store;
+                $('.sel_store').css('display', 'unset');
+                $('.element_cart').hide();
+                $('#check' + store_id).css('display', 'none');
+                $('#btn' + store_id).css('display', 'unset');
+                //if none is checked
+                if ($('.sel_store:checkbox:checked').length == 0) {
+                  $("#ini").show();
+                  $("#per").hide();
+                }
+                //if none is checked
+                else {
+                  $.ajax({
+                    url: "../Common/functions.php", //passing page info
+                    data: {
+                      "price": 1,
+                      "item_description_id": item_description_id,
+                      "store_id": store_id
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function(data) { //if registration is success
+                      $("#ini").hide();
+                      document.getElementById('org').innerHTML = "";
+                      document.getElementById('org').innerHTML += "&#8377;" + data.price + " /-";
+                      document.getElementById('save').innerHTML = "";
+                      document.getElementById('save').innerHTML += data.save;
+                      document.getElementById('off').innerHTML = "";
+                      document.getElementById('off').innerHTML += data.off;
+                      document.getElementById('dis_avail').innerHTML = "";
+                      document.getElementById('dis_avail').innerHTML = "" + data.availability;
+                      document.getElementById('dis_sts').innerHTML = "";
+                      document.getElementById('dis_sts').innerHTML = "" + data.sts;
+                      document.getElementById('dis_qnty').innerHTML = "";
+                      document.getElementById('dis_qnty').innerHTML = "" + data.quantity;
+                      document.getElementById('dis_add').innerHTML = "";
+                      document.getElementById('dis_add').innerHTML = "" + data.address;
+                      $("#oldpriceofitem").show();
+                      $("#per").show();
+                      return;
+                    },
+                    error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                      if (textstatus === "timeout") {
+                        swal({
+                          title: "Oops!!!",
+                          text: "server time out",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                          timer: 6000,
+                        });
+                        return;
+                      } else {
+                        return;
+                      }
+                    }
+                  }); //closing ajax
+                }
+              }
+              //PRICE AND CART SETTINGS
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              //PRICE AND CART SETTINGS WISHLIST
+              function wishlist_pricing(store) {
+                var item_description_id = <?= $item_description_id ?>;
+                var store_id = store;
+                $('.sel_store2').css('display', 'unset');
+                $('.element_cart2').hide();
+                $('#wishlist_check' + store_id).css('display', 'none');
+                $('#wishlist_btn' + store_id).css('display', 'unset');
+                //if none is checked
+                if ($('.sel_store2:checkbox:checked').length == 0) {
+                  $("#ini").show();
+                  $("#per2").hide();
+                }
+                //if none is checked
+                else {
+                  $.ajax({
+                    url: "../Common/functions.php", //passing page info
+                    data: {
+                      "price": 1,
+                      "item_description_id": item_description_id,
+                      "store_id": store_id
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function(data) { //if registration is success
+                      $("#ini").hide();
+                      document.getElementById('org').innerHTML = "";
+                      document.getElementById('org').innerHTML += "&#8377;" + data.price + " /-";
+                      document.getElementById('save2').innerHTML = "";
+                      document.getElementById('save2').innerHTML += data.save;
+                      document.getElementById('off2').innerHTML = "";
+                      document.getElementById('off2').innerHTML += data.off;
+                      document.getElementById('dis_avail2').innerHTML = "";
+                      document.getElementById('dis_avail2').innerHTML = "" + data.availability;
+                      document.getElementById('dis_sts2').innerHTML = "";
+                      document.getElementById('dis_sts2').innerHTML = "" + data.sts;
+                      document.getElementById('dis_qnty2').innerHTML = "";
+                      document.getElementById('dis_qnty2').innerHTML = "" + data.quantity;
+                      document.getElementById('dis_add2').innerHTML = "";
+                      document.getElementById('dis_add2').innerHTML = "" + data.address;
+                      $("#oldpriceofitem").show();
+                      $("#per2").show();
+                      return;
+                    },
+                    error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                      if (textstatus === "timeout") {
+                        swal({
+                          title: "Oops!!!",
+                          text: "server time out",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                          timer: 6000,
+                        });
+                        return;
+                      } else {
+                        return;
+                      }
+                    }
+                  }); //closing ajax
+                }
+              }
+              //PRICE AND CART SETTINGS  WISHLIST
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              //WISHLIST ENTRY ITEMS
+              function wishlist_check_store_select() {
+                var tbl = document.getElementById("store_wishlist");
+                var chks = tbl.getElementsByTagName("INPUT");
+                var id = 0;
+                var flag = 0;
+                for (var i = 0; i < chks.length; i++) {
+                  if (chks[i].checked == true) {
+                    id = chks[i].value;
+                    flag = 1;
+                  }
+                }
+                if (flag == 0) {
+                  swal({
+                      title: "Sorry!!!",
+                      text: "Select a store",
+                      icon: "warning",
                       closeOnClickOutside: false,
                       dangerMode: true,
                     })
-                      .then((willSubmit) => {
-                        if (willSubmit) {
-                          location.href = "../Account/registered.php";
-                          return;
-                        } else {
-                          return;
-                        }
-                      });
-                  }
-                },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                  if (textstatus === "timeout") {
-                    swal({
-                      title: "Oops!!!",
-                      text: "server time out",
-                      icon: "error",
-                      closeOnClickOutside: false,
-                      dangerMode: true,
-                      timer: 6000,
-                    });
-                    return;
-                  } else {
-                    return;
-                  }
-                }
-              }); //closing ajax
-            }
-          }
-          //WISHLIST ENTRY ITEMS
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          function wishlist_check_list_select(wishlist_id) {
-            $.ajax({
-              url: "../Common/functions.php", //passing page info
-              data: {
-                "fetchedwishlistid": 1,
-                "wishlist_id": wishlist_id
-              }, //form data
-              type: "post", //post data
-              dataType: "json", //datatype=json format
-              timeout: 30000, //waiting time 30 sec
-              success: function (data) { //if registration is success
-                if (data.status == 'success') {
-                  $('#wish_cnt_' + wishlist_id + '').html(data.new_wish_cnt);
-                  swal({
-                    title: "Added!!!",
-                    text: "Check your wishlist",
-                    icon: "success",
-                    closeOnClickOutside: false,
-                    dangerMode: true,
-                  })
                     .then((willSubmit1) => {
                       if (willSubmit1) {
                         return;
@@ -3007,241 +2924,323 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                         return;
                       }
                     });
-                } else if (data.status == 'success1') {
-                  $(".background_loader").hide();
-                  $(".std_loader").hide();
-                  swal({
-                    title: "Item exists!!!",
-                    text: "Check your wishlist",
-                    icon: "warning",
-                    closeOnClickOutside: false,
-                    dangerMode: true,
-                  })
-                    .then((willSubmit1) => {
-                      if (willSubmit1) {
-                        return;
-                      } else {
-                        return;
-                      }
-                    });
-                } else if (data.status == 'error') {
-                  swal({
-                    title: "Required!!!",
-                    text: "You need to create an Account",
-                    icon: "error",
-                    closeOnClickOutside: false,
-                    dangerMode: true,
-                  })
-                    .then((willSubmit) => {
-                      if (willSubmit) {
-                        location.href = "../Account/registered.php";
-                        return;
-                      } else {
-                        return;
-                      }
-                    });
-                }
-              },
-              error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                if (textstatus === "timeout") {
-                  swal({
-                    title: "Oops!!!",
-                    text: "server time out",
-                    icon: "error",
-                    closeOnClickOutside: false,
-                    dangerMode: true,
-                    timer: 6000,
-                  });
-                  return;
                 } else {
-                  return;
+                  var item_description_id = <?= $item_description_id ?>;
+                  $.ajax({
+                    url: "../Common/functions.php", //passing page info
+                    data: {
+                      "addtowishlist": 1,
+                      "item_description_id": item_description_id,
+                      "store_id": id
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function(data) { //if registration is success
+                      if (data.status == 'success') {
+                        return;
+                      } else if (data.status == 'error') {
+                        swal({
+                            title: "Required!!!",
+                            text: "You need to create an Account",
+                            icon: "error",
+                            closeOnClickOutside: false,
+                            dangerMode: true,
+                          })
+                          .then((willSubmit) => {
+                            if (willSubmit) {
+                              location.href = "../Account/registered.php";
+                              return;
+                            } else {
+                              return;
+                            }
+                          });
+                      }
+                    },
+                    error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                      if (textstatus === "timeout") {
+                        swal({
+                          title: "Oops!!!",
+                          text: "server time out",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                          timer: 6000,
+                        });
+                        return;
+                      } else {
+                        return;
+                      }
+                    }
+                  }); //closing ajax
                 }
               }
-            }); //closing ajax
-          }
-          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //PRICE AND CART SETTINGS /// BUY NOW ///
-          function buynow_pricing(store) {
-            var item_description_id = <?= $item_description_id ?>;
-            var store_id = store;
-            $('.sel_store3').css('display', 'unset');
-            $('.element_cart3').hide();
-            $('#buynow_check' + store_id).css('display', 'none');
-            $('#buynow_btn' + store_id).css('display', 'unset');
-            //if none is checked
-            if ($('.sel_store3:checkbox:checked').length == 0) {
-              $("#ini").show();
-              $("#per3").hide();
-            }
-            //if none is checked
-            else {
-              $.ajax({
-                url: "../Common/functions.php", //passing page info
-                data: {
-                  "price": 1,
-                  "item_description_id": item_description_id,
-                  "store_id": store_id
-                }, //form data
-                type: "post", //post data
-                dataType: "json", //datatype=json format
-                timeout: 30000, //waiting time 30 sec
-                success: function (data) { //if registration is success
-                  $("#ini").hide();
-                  document.getElementById('org').innerHTML = "";
-                  document.getElementById('org').innerHTML += "&#8377;" + data.price + " /-";
-                  document.getElementById('save3').innerHTML = "";
-                  document.getElementById('save3').innerHTML += data.save;
-                  document.getElementById('off3').innerHTML = "";
-                  document.getElementById('off3').innerHTML += data.off;
-                  document.getElementById('dis_avail3').innerHTML = "";
-                  document.getElementById('dis_avail3').innerHTML = "" + data.availability;
-                  document.getElementById('dis_sts3').innerHTML = "";
-                  document.getElementById('dis_sts3').innerHTML = "" + data.sts;
-                  document.getElementById('dis_qnty3').innerHTML = "";
-                  document.getElementById('dis_qnty3').innerHTML = "" + data.quantity;
-                  document.getElementById('dis_add3').innerHTML = "";
-                  document.getElementById('dis_add3').innerHTML = "" + data.address;
-                  $("#oldpriceofitem").show();
-                  $("#per3").show();
-                  return;
-                },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                  if (textstatus === "timeout") {
-                    swal({
-                      title: "Oops!!!",
-                      text: "server time out",
-                      icon: "error",
-                      closeOnClickOutside: false,
-                      dangerMode: true,
-                      timer: 6000,
-                    });
-                    return;
-                  } else {
-                    return;
+              //WISHLIST ENTRY ITEMS
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              function wishlist_check_list_select(wishlist_id) {
+                $.ajax({
+                  url: "../Common/functions.php", //passing page info
+                  data: {
+                    "fetchedwishlistid": 1,
+                    "wishlist_id": wishlist_id
+                  }, //form data
+                  type: "post", //post data
+                  dataType: "json", //datatype=json format
+                  timeout: 30000, //waiting time 30 sec
+                  success: function(data) { //if registration is success
+                    if (data.status == 'success') {
+                      $('#wish_cnt_' + wishlist_id + '').html(data.new_wish_cnt);
+                      swal({
+                          title: "Added!!!",
+                          text: "Check your wishlist",
+                          icon: "success",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                        })
+                        .then((willSubmit1) => {
+                          if (willSubmit1) {
+                            return;
+                          } else {
+                            return;
+                          }
+                        });
+                    } else if (data.status == 'success1') {
+                      $(".background_loader").hide();
+                      $(".std_loader").hide();
+                      swal({
+                          title: "Item exists!!!",
+                          text: "Check your wishlist",
+                          icon: "warning",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                        })
+                        .then((willSubmit1) => {
+                          if (willSubmit1) {
+                            return;
+                          } else {
+                            return;
+                          }
+                        });
+                    } else if (data.status == 'error') {
+                      swal({
+                          title: "Required!!!",
+                          text: "You need to create an Account",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                        })
+                        .then((willSubmit) => {
+                          if (willSubmit) {
+                            location.href = "../Account/registered.php";
+                            return;
+                          } else {
+                            return;
+                          }
+                        });
+                    }
+                  },
+                  error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                    if (textstatus === "timeout") {
+                      swal({
+                        title: "Oops!!!",
+                        text: "server time out",
+                        icon: "error",
+                        closeOnClickOutside: false,
+                        dangerMode: true,
+                        timer: 6000,
+                      });
+                      return;
+                    } else {
+                      return;
+                    }
+                  }
+                }); //closing ajax
+              }
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              //PRICE AND CART SETTINGS /// BUY NOW ///
+              function buynow_pricing(store) {
+                var item_description_id = <?= $item_description_id ?>;
+                var store_id = store;
+                $('.sel_store3').css('display', 'unset');
+                $('.element_cart3').hide();
+                $('#buynow_check' + store_id).css('display', 'none');
+                $('#buynow_btn' + store_id).css('display', 'unset');
+                //if none is checked
+                if ($('.sel_store3:checkbox:checked').length == 0) {
+                  $("#ini").show();
+                  $("#per3").hide();
+                }
+                //if none is checked
+                else {
+                  $.ajax({
+                    url: "../Common/functions.php", //passing page info
+                    data: {
+                      "price": 1,
+                      "item_description_id": item_description_id,
+                      "store_id": store_id
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function(data) { //if registration is success
+                      $("#ini").hide();
+                      document.getElementById('org').innerHTML = "";
+                      document.getElementById('org').innerHTML += "&#8377;" + data.price + " /-";
+                      document.getElementById('save3').innerHTML = "";
+                      document.getElementById('save3').innerHTML += data.save;
+                      document.getElementById('off3').innerHTML = "";
+                      document.getElementById('off3').innerHTML += data.off;
+                      document.getElementById('dis_avail3').innerHTML = "";
+                      document.getElementById('dis_avail3').innerHTML = "" + data.availability;
+                      document.getElementById('dis_sts3').innerHTML = "";
+                      document.getElementById('dis_sts3').innerHTML = "" + data.sts;
+                      document.getElementById('dis_qnty3').innerHTML = "";
+                      document.getElementById('dis_qnty3').innerHTML = "" + data.quantity;
+                      document.getElementById('dis_add3').innerHTML = "";
+                      document.getElementById('dis_add3').innerHTML = "" + data.address;
+                      $("#oldpriceofitem").show();
+                      $("#per3").show();
+                      return;
+                    },
+                    error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                      if (textstatus === "timeout") {
+                        swal({
+                          title: "Oops!!!",
+                          text: "server time out",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                          timer: 6000,
+                        });
+                        return;
+                      } else {
+                        return;
+                      }
+                    }
+                  }); //closing ajax
+                }
+              }
+              //PRICE AND CART SETTINGS BUY NOW
+              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              //BUY NOW ITEM RESPONSE
+              function buynow_place_order_select() {
+                var tbl = document.getElementById("store_buynow");
+                var chks = tbl.getElementsByTagName("INPUT");
+                var id = 0;
+                var flag = 0;
+                for (var i = 0; i < chks.length; i++) {
+                  if (chks[i].checked == true) {
+                    id = chks[i].value;
+                    flag = 1;
                   }
                 }
-              }); //closing ajax
-            }
-          }
-          //PRICE AND CART SETTINGS BUY NOW
-          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //BUY NOW ITEM RESPONSE
-          function buynow_place_order_select() {
-            var tbl = document.getElementById("store_buynow");
-            var chks = tbl.getElementsByTagName("INPUT");
-            var id = 0;
-            var flag = 0;
-            for (var i = 0; i < chks.length; i++) {
-              if (chks[i].checked == true) {
-                id = chks[i].value;
-                flag = 1;
-              }
-            }
-            if (flag == 0) {
-              swal({
-                title: "Sorry!!!",
-                text: "Select a store",
-                icon: "warning",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
-                .then((willSubmit1) => {
-                  if (willSubmit1) {
-                    return;
-                  } else {
-                    return;
-                  }
-                });
-            } else {
-              var item_description_id = <?= $item_description_id ?>;
-              $.ajax({
-                url: "../Common/functions.php", //passing page info
-                data: {
-                  "buynow_item": 1,
-                  "item_description_id": item_description_id,
-                  "store_id": id
-                }, //form data
-                type: "post", //post data
-                dataType: "json", //datatype=json format
-                timeout: 30000, //waiting time 30 sec
-                success: function (data) { //if registration is success
-                  if (data.status == 'success') {
-                    location.href = "../Checkout/checkoutsingle.php?store_id=" + id + "&item_description_id=" +
-                      item_description_id + "";
-                    return;
-                  } else if (data.status == 'error') {
-                    swal({
-                      title: "Not Available!!!",
-                      text: "Choose another Store",
-                      icon: "error",
+                if (flag == 0) {
+                  swal({
+                      title: "Sorry!!!",
+                      text: "Select a store",
+                      icon: "warning",
                       closeOnClickOutside: false,
                       dangerMode: true,
                     })
-                      .then((willSubmit) => {
-                        if (willSubmit) {
-                          location.href = "../Product/single.php?id=" + item_description_id + "";
-                          return;
-                        } else {
-                          return;
-                        }
-                      });
-                  } else if (data.status == 'error1') {
-                    swal({
-                      title: "Required!!!",
-                      text: "You need to create an Account",
-                      icon: "error",
-                      closeOnClickOutside: false,
-                      dangerMode: true,
-                    })
-                      .then((willSubmit) => {
-                        if (willSubmit) {
-                          location.href = "../Account/registered.php";
-                          return;
-                        } else {
-                          return;
-                        }
-                      });
-                  }
-                },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-                  if (textstatus === "timeout") {
-                    swal({
-                      title: "Oops!!!",
-                      text: "server time out",
-                      icon: "error",
-                      closeOnClickOutside: false,
-                      dangerMode: true,
-                      timer: 6000,
+                    .then((willSubmit1) => {
+                      if (willSubmit1) {
+                        return;
+                      } else {
+                        return;
+                      }
                     });
-                    return;
-                  } else {
-                    return;
-                  }
+                } else {
+                  var item_description_id = <?= $item_description_id ?>;
+                  $.ajax({
+                    url: "../Common/functions.php", //passing page info
+                    data: {
+                      "buynow_item": 1,
+                      "item_description_id": item_description_id,
+                      "store_id": id
+                    }, //form data
+                    type: "post", //post data
+                    dataType: "json", //datatype=json format
+                    timeout: 30000, //waiting time 30 sec
+                    success: function(data) { //if registration is success
+                      if (data.status == 'success') {
+                        location.href = "../Checkout/checkoutsingle.php?store_id=" + id + "&item_description_id=" +
+                          item_description_id + "";
+                        return;
+                      } else if (data.status == 'error') {
+                        swal({
+                            title: "Not Available!!!",
+                            text: "Choose another Store",
+                            icon: "error",
+                            closeOnClickOutside: false,
+                            dangerMode: true,
+                          })
+                          .then((willSubmit) => {
+                            if (willSubmit) {
+                              location.href = "../Product/single.php?id=" + item_description_id + "";
+                              return;
+                            } else {
+                              return;
+                            }
+                          });
+                      } else if (data.status == 'error1') {
+                        swal({
+                            title: "Required!!!",
+                            text: "You need to create an Account",
+                            icon: "error",
+                            closeOnClickOutside: false,
+                            dangerMode: true,
+                          })
+                          .then((willSubmit) => {
+                            if (willSubmit) {
+                              location.href = "../Account/registered.php";
+                              return;
+                            } else {
+                              return;
+                            }
+                          });
+                      }
+                    },
+                    error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                      if (textstatus === "timeout") {
+                        swal({
+                          title: "Oops!!!",
+                          text: "server time out",
+                          icon: "error",
+                          closeOnClickOutside: false,
+                          dangerMode: true,
+                          timer: 6000,
+                        });
+                        return;
+                      } else {
+                        return;
+                      }
+                    }
+                  }); //closing ajax
                 }
-              }); //closing ajax
-            }
-          }
-          //BUY NOW ITEM RESPONSE
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //AVAILABLE STORE LISTING
-          /*
-          function display_store(){
-          if($('#avail_stores').css('display','none')){
-            $('#avail_stores').show();
-          }
-          else if($('#avail_stores').css('display','unset')){
-            $('#avail_stores').hide();
-          }
-          }
-          */
-        </script>
-        <!--
+              }
+              //BUY NOW ITEM RESPONSE
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              //AVAILABLE STORE LISTING
+              /*
+              function display_store(){
+              if($('#avail_stores').css('display','none')){
+                $('#avail_stores').show();
+              }
+              else if($('#avail_stores').css('display','unset')){
+                $('#avail_stores').hide();
+              }
+              }
+              */
+            </script>
+            <!--
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM6g1c7vkW8WZjAy-vfKfCOQ3ysJrrIxY&callback=initMap" async defer></script>
 -->
-        </body>
+            </body>
 
-        </html>
+            </html>

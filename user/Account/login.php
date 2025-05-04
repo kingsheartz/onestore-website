@@ -34,9 +34,9 @@ require "../Main/header.php";
         <form name="login_form">
           <?php
           if (isset($_SESSION['errorlogin'])) {
-            ?>
+          ?>
             <div class="alert alert-danger"><?= $_SESSION['errorlogin'] ?></div>
-            <?php
+          <?php
             unset($_SESSION['errorlogin']);
           }
           ?>
@@ -53,7 +53,7 @@ unset($_SESSION['errorlogin']);
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
               class="password_fields" required=" "
-              style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;'">
+              style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
             <span id="dis_pass1" class="input-group-btn">
               <button onclick="view()" onmouseover="$(this).css('background-color','#c0c0c0')"
                 onmouseleave="$(this).css('background-color','#f1f2f3')"
@@ -121,7 +121,7 @@ require "../Main/footer.php";
   function ValidateEmail(mail) {
     if (
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        .test(login_form.email.value)) {
+      .test(login_form.email.value)) {
       return true;
     }
     return false;
@@ -191,20 +191,20 @@ require "../Main/footer.php";
         type: "post", //post data
         dataType: "json", //datatype=json format
         timeout: 18000, //waiting time 3 sec
-        success: function (data) { //if logging in is success
+        success: function(data) { //if logging in is success
           if (data.admin == 'true' && data.user == 'true') {
             Swal.fire({
-              title: "<span style='font-family-arial'>Log in as</span>",
-              text: "User (or) Store owner",
-              icon: "success",
-              showCancelButton: true,
-              showConfirmButton: true,
-              confirmButtonColor: 'red',
-              confirmButtonText: '<i class="fas fa-store"></i> Admin',
-              cancelButtonColor: 'green',
-              allowOutsideClick: false,
-              cancelButtonText: '<i class="fa fa-shopping-cart"></i> User'
-            })
+                title: "<span style='font-family-arial'>Log in as</span>",
+                text: "User (or) Store owner",
+                icon: "success",
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonColor: 'red',
+                confirmButtonText: '<i class="fas fa-store"></i> Admin',
+                cancelButtonColor: 'green',
+                allowOutsideClick: false,
+                cancelButtonText: '<i class="fa fa-shopping-cart"></i> User'
+              })
               .then((willSubmit) => {
                 if (willSubmit.dismiss) {
                   location.href = "../Main/onestore.php";
@@ -215,12 +215,12 @@ require "../Main/footer.php";
             return;
           } else if (data.status == 'success') {
             swal({
-              title: "Success!!!",
-              text: "Log in Success",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Success!!!",
+                text: "Log in Success",
+                icon: "success",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.href = "../Main/onestore.php";
@@ -230,12 +230,12 @@ require "../Main/footer.php";
               });
           } else if (data.admin == 'true') {
             swal({
-              title: "Success!!!",
-              text: "Admin privileges granted",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Success!!!",
+                text: "Admin privileges granted",
+                icon: "success",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.href = "../../store-admin/index.php?id=" + data.id + "";
@@ -245,12 +245,12 @@ require "../Main/footer.php";
               });
           } else if (data.status == 'error') {
             swal({
-              title: "Oops!!!",
-              text: "Error logging in",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Oops!!!",
+                text: "Error logging in",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.reload();
@@ -258,12 +258,12 @@ require "../Main/footer.php";
               });
           } else if (data.status == 'errornotfound') {
             swal({
-              title: "Oops!!!",
-              text: "You are not registered yet",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Oops!!!",
+                text: "You are not registered yet",
+                icon: "error",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.reload();
@@ -271,12 +271,12 @@ require "../Main/footer.php";
               });
           } else if (data.status == 'error1') {
             swal({
-              title: "Check your mailbox!!!",
-              text: "Pending email verification",
-              icon: "warning",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Check your mailbox!!!",
+                text: "Pending email verification",
+                icon: "warning",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   location.reload();
@@ -284,7 +284,7 @@ require "../Main/footer.php";
               });
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           console.log("Logging in....", message, xmlhttprequest, textstatus);
           if (textstatus === "timeout") {
             swal({

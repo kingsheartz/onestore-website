@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BSD 3-Clause License
  * @copyright (c) 2019, Google Inc.
@@ -58,12 +59,12 @@ $lang = 'en';
 <link rel="shortcut icon" href="https://www.gstatic.com/recaptcha/admin/favicon.ico" type="image/x-icon" />
 <link rel="canonical" href="https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox.php">
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "WebSite",
-  "name": "reCAPTCHA demo - \"I'm not a robot\" checkbox",
-  "url": "https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox.php"
-}
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "reCAPTCHA demo - \"I'm not a robot\" checkbox",
+    "url": "https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox.php"
+  }
 </script>
 <meta name="description" content="reCAPTCHA demo - &quot;I'm not a robot&quot; checkbox" />
 <meta property="og:url" content="https://recaptcha-demo.appspot.com/recaptcha-v2-checkbox.php" />
@@ -81,18 +82,18 @@ $lang = 'en';
 <main>
   <?php
   if ($siteKey === '' || $secret === ''):
-    ?>
+  ?>
     <h2>Add your keys</h2>
     <p>If you do not have keys already then visit <kbd> <a
           href="https://www.google.com/recaptcha/admin">https://www.google.com/recaptcha/admin</a></kbd> to
       generate them. Edit this file and set the respective keys in the <kbd>config.php</kbd> file or directly to
       <kbd>$siteKey</kbd> and <kbd>$secret</kbd>. Reload the page after this.
     </p>
-    <?php
+  <?php
   elseif (isset($_POST['g-recaptcha-response'])):
     // The POST data here is unfiltered because this is an example.
     // In production, *always* sanitise and validate your input'
-    ?>
+  ?>
     <h2><kbd>POST</kbd> data</h2>
     <kbd>
       <pre><?php var_export($_POST); ?></pre>
@@ -106,23 +107,23 @@ $lang = 'en';
     // its use with URLs, then you can use the alternative request method instead.
     // This makes use of fsockopen() instead.
     //  $recaptcha = new \ReCaptcha\ReCaptcha($secret, new \ReCaptcha\RequestMethod\SocketPost());
-  
+
     // Make the call to verify the response and also pass the user's IP address
     $resp = $recaptcha->setExpectedHostname($_SERVER['SERVER_NAME'])
       ->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
     if ($resp->isSuccess()):
       // If the response is a success, that's it!
-      ?>
+    ?>
       <h2>Success!</h2>
       <kbd>
         <pre><?php var_export($resp); ?></pre>
       </kbd>
       <p>That's it. Everything is working. Go integrate this into your real project.</p>
       <p><a href="/recaptcha-v2-checkbox.php">⤴️ Try again</a></p>
-      <?php
+    <?php
     else:
       // If it's not successful, then one or more error codes will be returned.
-      ?>
+    ?>
       <h2>Something went wrong</h2>
       <kbd>
         <pre><?php var_export($resp); ?></pre>
@@ -132,7 +133,7 @@ $lang = 'en';
       <p><strong>Note:</strong> Error code <kbd>missing-input-response</kbd> may mean the user just didn't complete the
         reCAPTCHA.</p>
       <p><a href="/recaptcha-v2-checkbox.php">⤴️ Try again</a></p>
-      <?php
+    <?php
     endif;
   else:
     // Add the g-recaptcha tag to the form you want to include the reCAPTCHA element
@@ -150,7 +151,7 @@ $lang = 'en';
       </fieldset>
     </form>
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
-    <?php
+  <?php
   endif; ?>
 </main>
 

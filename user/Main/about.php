@@ -107,7 +107,7 @@ require "header.php";
           <script src="../../js/responsiveslides.min.js"></script>
           <script>
             // You can also use "$(window).load(function() {"
-            $(function () {
+            $(function() {
               // Slideshow 5
               $("#slider5").responsiveSlides({
                 auto: true,
@@ -115,10 +115,10 @@ require "header.php";
                 nav: true,
                 speed: 500,
                 namespace: "callbacks",
-                before: function () {
+                before: function() {
                   $('.events').append("<li>before event fired.</li>");
                 },
-                after: function () {
+                after: function() {
                   $('.events').append("<li>after event fired.</li>");
                 }
               });

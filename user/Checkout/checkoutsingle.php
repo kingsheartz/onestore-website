@@ -313,7 +313,7 @@ $t_mrp = $mrprow['price'];
               $stmt2 = $pdo->prepare($sql2);
               $stmt2->execute(array(":sid" => $sid));
               while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+            ?>
                 <tr class="rem1">
                   <td class="invert slno"><?= $ai ?></td>
                   <td class="invert-image"><a href="../Product/single.php?id=<?= $row['item_description_id'] ?>"><img
@@ -323,116 +323,116 @@ $t_mrp = $mrprow['price'];
                     <div class="div-wrapper"
                       style="text-align: center;padding: 0px;margin:auto;height: 25px;width: 130px;grid-gap: 0px;display: flex;justify-content: center;">
                       <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-                  <div class="btn_sub_q" style="padding: 0px;margin: 0px;width: 25px;display: flex;">
-                    <button
-                      style="background-color: #02171e;-webkit-box-shadow: inset 0px 0px 15px 3px #02171e;box-shadow: inset 0px 0px 15px 3px #02171e;width: 100%;max-width: 30px;height: 25px ;font-weight: bold;border-color: #02171e;color: white;font-size: 14px;border-radius: 5px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
-                      type="button" id="sub_s<?= $store_id . "i" . $idid ?>"
-                      onclick="sub_item_all('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')">-</button>
-                  </div>
-                  <div style="padding: 0px;margin: 0px;">
-                    <button id="btn_s<?= $store_id . "i" . $idid ?>" type="button"
-                      style="width: 100%;width: 30px;height: 25px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
-                      onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . "i" . $idid ?>').show();}else{$('#qnty_s<?= $store_id . "i" . $idid ?>').show();}">1</button>
-                    <select id="sel_s<?= $store_id . "i" . $idid ?>"
-                      onchange="select_item_option('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>');" name="quantity"
-                      autocomplete="off"
-                      style="width: 100%;max-width: 30px;bottom: 0;box-shadow: none;outline: none;border-color:#aaa;height:25px;display: none;background-color: white">
-                      <option value="1" id="sel_opt_s<?= $store_id . "i" . $idid ?>" selected disabled>1
-                      </option>
-                      <option value="1" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="1">1</option>
-                      <option value="2" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="2">2</option>
-                      <option value="3" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="3">3</option>
-                      <option value="4" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="4">4</option>
-                      <option value="5" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="5">5</option>
-                      <option value="6" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="6">6</option>
-                      <option value="7" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="7">7</option>
-                      <option value="8" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="8">8</option>
-                      <option value="9" class="sc-update-quantity-option" data-a-css-class="quantity-option"
-                        data-a-html-content="9">9</option>
-                      <option value="10" class="sc-update-quantity-option"
-                        data-a-css-class="quantity-option quantity-option-10" data-a-html-content="10+">10+</option>
-                    </select>
-                    <input type="number" id="qnty_s<?= $store_id . "i" . $idid ?>" size="4"
-                      onchange="total('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')"
-                      onblur="$(this).hide();$('#sel_s<?= $store_id . "i" . $idid ?>').hide();$('#btn_s<?= $store_id . "i" . $idid ?>').show()"
-                      style="text-align: center;display: none;height: 25px;width: 100%;max-width: 40px;outline: none;font-weight: bold"
-                      class="input-text qty text" title="Quantity" value="<?= $row1['quantity'] ?>" min="1" step="1"
-                      onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
-                  </div>
-                  <div class="btn_add_q" style="padding: 0px;margin: 0px;width:25px"><button
-                      style="background-color: #02171e;-webkit-box-shadow: inset 0px 0px 15px 3px #02171e;box-shadow: inset 0px 0px 15px 3px #02171e;width: 100%;max-width: 45px;height: 25px;font-weight: bold;border-color: #02171e;color: white;font-size: 14px;border-radius: 5px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
-                      id="add_s<?= $store_id . "i" . $idid ?>"
-                      onclick="add_item_all('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')" type="button">+</button>
-                  </div>
-                </div>
-              </td>
-              <td class="invert">
-                <div class="invert_details"
-                  style="margin:auto;justify-content: left;align-items:left;display:flex;padding-left:20px;">
-                  <ul style="list-style: none;">
-                    <li>
-                      <h4 style="text-align: left;">
-                        <?= $row['item_name'] ?>
-                      </h4>
-                    </li>
-                    <li style="text-align: left;">
-                      Seller :
-                      <?= $row2['store_name'] ?>
-                    </li>
-                    <li style="text-align: left;">
-                      Price : &#8377; <span id="price_s<?= $store_id . "i" . $idid ?>">
-                        <?= $row['price'] ?>
-                      </span><span class="smallqty"> /<small>(1 Qty)</small></span>
-                    </li>
-                    <li style="text-align: left;">
-                      Quantity : 1
-                    </li>
-                    <li>
-                      <p style="margin:0px;margin-top: 10px;">
-                        <select
-                          style="outline: none;border:none;background-color:#006904;color: white;padding: 5px;border-radius: 3px;padding-top: 5px;padding-bottom: 5px;align-items: flex-start;justify-content: flex-start;display: flex; "
-                          id="order_s<?= $store_id . "i" . $idid ?>">
-                          <?php
-                          $preordsql = $pdo->query("select order_preference from product_details where store_id=" . $store_id . " and item_description_id=" . $idid);
-                          $preord = $preordsql->fetch(PDO::FETCH_ASSOC);
-                          if ($preord['order_preference'] == 1) {
-                            ?>
-                          <option style="background-color: white;color:#006904;font-weight: bold;text-align: center; "
-                            value="1">Booking</option>
-                          <?php
-                          } else if ($preord['order_preference'] == 2) {
-                            $ord_typ = "Delivery";
-                            ?>
-                          <option style="background-color: white;color:#006904;font-weight: bold;text-align: center;"
-                            value="2">Delivery</option>
-                          <?php
-                          } else if ($preord['order_preference'] == 3) {
-                            $ord_typ = "Delivery";
-                            ?>
-                          <option style="background-color: white;color:#006904;font-weight: bold;text-align: center; "
-                            value="1">Booking</option>
-                          <option style="background-color: white;color:#006904;font-weight: bold;text-align: center;"
-                            value="2">Delivery</option>
-                          <?php
-                          }
-                          ?>
+                      <div class="btn_sub_q" style="padding: 0px;margin: 0px;width: 25px;display: flex;">
+                        <button
+                          style="background-color: #02171e;-webkit-box-shadow: inset 0px 0px 15px 3px #02171e;box-shadow: inset 0px 0px 15px 3px #02171e;width: 100%;max-width: 30px;height: 25px ;font-weight: bold;border-color: #02171e;color: white;font-size: 14px;border-radius: 5px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+                          type="button" id="sub_s<?= $store_id . "i" . $idid ?>"
+                          onclick="sub_item_all('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')">-</button>
+                      </div>
+                      <div style="padding: 0px;margin: 0px;">
+                        <button id="btn_s<?= $store_id . "i" . $idid ?>" type="button"
+                          style="width: 100%;width: 30px;height: 25px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
+                          onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . "i" . $idid ?>').show();}else{$('#qnty_s<?= $store_id . "i" . $idid ?>').show();}">1</button>
+                        <select id="sel_s<?= $store_id . "i" . $idid ?>"
+                          onchange="select_item_option('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>');" name="quantity"
+                          autocomplete="off"
+                          style="width: 100%;max-width: 30px;bottom: 0;box-shadow: none;outline: none;border-color:#aaa;height:25px;display: none;background-color: white">
+                          <option value="1" id="sel_opt_s<?= $store_id . "i" . $idid ?>" selected disabled>1
+                          </option>
+                          <option value="1" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="1">1</option>
+                          <option value="2" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="2">2</option>
+                          <option value="3" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="3">3</option>
+                          <option value="4" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="4">4</option>
+                          <option value="5" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="5">5</option>
+                          <option value="6" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="6">6</option>
+                          <option value="7" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="7">7</option>
+                          <option value="8" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="8">8</option>
+                          <option value="9" class="sc-update-quantity-option" data-a-css-class="quantity-option"
+                            data-a-html-content="9">9</option>
+                          <option value="10" class="sc-update-quantity-option"
+                            data-a-css-class="quantity-option quantity-option-10" data-a-html-content="10+">10+</option>
                         </select>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
+                        <input type="number" id="qnty_s<?= $store_id . "i" . $idid ?>" size="4"
+                          onchange="total('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')"
+                          onblur="$(this).hide();$('#sel_s<?= $store_id . "i" . $idid ?>').hide();$('#btn_s<?= $store_id . "i" . $idid ?>').show()"
+                          style="text-align: center;display: none;height: 25px;width: 100%;max-width: 40px;outline: none;font-weight: bold"
+                          class="input-text qty text" title="Quantity" value="<?= $row1['quantity'] ?>" min="1" step="1"
+                          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+                      </div>
+                      <div class="btn_add_q" style="padding: 0px;margin: 0px;width:25px"><button
+                          style="background-color: #02171e;-webkit-box-shadow: inset 0px 0px 15px 3px #02171e;box-shadow: inset 0px 0px 15px 3px #02171e;width: 100%;max-width: 45px;height: 25px;font-weight: bold;border-color: #02171e;color: white;font-size: 14px;border-radius: 5px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
+                          id="add_s<?= $store_id . "i" . $idid ?>"
+                          onclick="add_item_all('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')" type="button">+</button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="invert">
+                    <div class="invert_details"
+                      style="margin:auto;justify-content: left;align-items:left;display:flex;padding-left:20px;">
+                      <ul style="list-style: none;">
+                        <li>
+                          <h4 style="text-align: left;">
+                            <?= $row['item_name'] ?>
+                          </h4>
+                        </li>
+                        <li style="text-align: left;">
+                          Seller :
+                          <?= $row2['store_name'] ?>
+                        </li>
+                        <li style="text-align: left;">
+                          Price : &#8377; <span id="price_s<?= $store_id . "i" . $idid ?>">
+                            <?= $row['price'] ?>
+                          </span><span class="smallqty"> /<small>(1 Qty)</small></span>
+                        </li>
+                        <li style="text-align: left;">
+                          Quantity : 1
+                        </li>
+                        <li>
+                          <p style="margin:0px;margin-top: 10px;">
+                            <select
+                              style="outline: none;border:none;background-color:#006904;color: white;padding: 5px;border-radius: 3px;padding-top: 5px;padding-bottom: 5px;align-items: flex-start;justify-content: flex-start;display: flex; "
+                              id="order_s<?= $store_id . "i" . $idid ?>">
+                              <?php
+                              $preordsql = $pdo->query("select order_preference from product_details where store_id=" . $store_id . " and item_description_id=" . $idid);
+                              $preord = $preordsql->fetch(PDO::FETCH_ASSOC);
+                              if ($preord['order_preference'] == 1) {
+                              ?>
+                                <option style="background-color: white;color:#006904;font-weight: bold;text-align: center; "
+                                  value="1">Booking</option>
+                              <?php
+                              } else if ($preord['order_preference'] == 2) {
+                                $ord_typ = "Delivery";
+                              ?>
+                                <option style="background-color: white;color:#006904;font-weight: bold;text-align: center;"
+                                  value="2">Delivery</option>
+                              <?php
+                              } else if ($preord['order_preference'] == 3) {
+                                $ord_typ = "Delivery";
+                              ?>
+                                <option style="background-color: white;color:#006904;font-weight: bold;text-align: center; "
+                                  value="1">Booking</option>
+                                <option style="background-color: white;color:#006904;font-weight: bold;text-align: center;"
+                                  value="2">Delivery</option>
+                              <?php
+                              }
+                              ?>
+                            </select>
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
             <?php
-            $ai++;
+                $ai++;
               }
             }
             ?>
@@ -463,8 +463,8 @@ where st.store_id=:store_id AND id.item_description_id=:idid";
                   /*
                                              //(int)$row['mrp']*(int)$row['quantity'];
                                              //CODE:-<span style="text-decoration:line-through;padding-left:3px  ">  &#8377;<?=(int)$row['mrp']*(int)$row['quantity']?></span>
-//TOTAL AMOUNT / EACH PRODUCT
-*/
+                  //TOTAL AMOUNT / EACH PRODUCT
+                  */
                   /*
                   //CODE:-<span style="text-decoration:line-through;padding-left:3px;float: right;">
                     &#8377;<?=$mrp_chrg?></span>
@@ -481,18 +481,18 @@ where st.store_id=:store_id AND id.item_description_id=:idid";
                     ":idid" => $idid
                   ));
                   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    ?>
-                  <li style="color: #333">
-                    <?= $row['item_name'] ?> <i>-</i> <span>&#8377; <span id="mrp_s<?= $store_id . "i" . $idid ?>">
-                        <?= $row['mrp'] ?>
-                      </span></span>
-                  </li>
+                  ?>
+                    <li style="color: #333">
+                      <?= $row['item_name'] ?> <i>-</i> <span>&#8377; <span id="mrp_s<?= $store_id . "i" . $idid ?>">
+                          <?= $row['mrp'] ?>
+                        </span></span>
+                    </li>
                   <?php
-                  $qty = 1;
-                  $service_chrg += (($row['price'] * 2) / 100);
-                  $mrp_chrg += ((($row['mrp'] * $qty) * 2) / 100);
-                  $total += $row['price'];
-                  $base += $row['mrp'] * $qty;
+                    $qty = 1;
+                    $service_chrg += (($row['price'] * 2) / 100);
+                    $mrp_chrg += ((($row['mrp'] * $qty) * 2) / 100);
+                    $total += $row['price'];
+                    $base += $row['mrp'] * $qty;
                   }
                   $total_amt = $total;
                   $total_mrp = $base;
@@ -672,7 +672,7 @@ where st.store_id=:store_id AND id.item_description_id=:idid";
 require "../Main/footer.php";
 ?>
 <script type="text/javascript">
-  $(window).resize(function () {
+  $(window).resize(function() {
     if ($(window).width() < 769) {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         $('#payment').hide();
@@ -683,7 +683,7 @@ require "../Main/footer.php";
       $('#payment').show();
     }
   });
-  window.onscroll = function (ev) {
+  window.onscroll = function(ev) {
     if ($(window).width() < 769) {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         $('#payment').hide();
@@ -777,7 +777,7 @@ require "../Main/footer.php";
       $('#qnty_s' + store_id + 'i' + item_description_id + '').hide();
       $('#btn_s' + store_id + 'i' + item_description_id + '').show();
       document.getElementById('btn_s' + store_id + 'i' + item_description_id).innerHTML = qnty;
-      $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function () {
+      $('#sel_s' + store_id + 'i' + item_description_id + ' option').filter(function() {
         return ($(this).text() == qnty);
       }).prop('selected', true);
     }
@@ -807,7 +807,7 @@ require "../Main/footer.php";
       type: "post", //post data
       dataType: "json", //datatype=json format
       timeout: 30000, //waiting time 30 sec
-      success: function (data) { //if registration is success
+      success: function(data) { //if registration is success
         if (data.status == 'avail') {
           return;
         } else if (data.status == 'notavail') {
@@ -832,13 +832,13 @@ require "../Main/footer.php";
           var off = Math.round((save * 100) / t_amnt);
           document.getElementById('save_s' + store_id + 'i' + item_description_id).innerHTML = save;
           swal({
-            title: "Out of Stock!!!",
-            text: "Choose another store !!!",
-            icon: "warning",
-            closeOnClickOutside: false,
-            dangerMode: true,
-            timer: 6000,
-          })
+              title: "Out of Stock!!!",
+              text: "Choose another store !!!",
+              icon: "warning",
+              closeOnClickOutside: false,
+              dangerMode: true,
+              timer: 6000,
+            })
             .then((willSubmit1) => {
               if (willSubmit1) {
                 return;
@@ -848,7 +848,7 @@ require "../Main/footer.php";
             });
         }
       },
-      error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+      error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
         if (textstatus === "timeout") {
           swal({
             title: "Oops!!!",
@@ -905,298 +905,28 @@ require "../Main/footer.php";
       $("#stda_div").css("display", "none");
     }
   }
-  window.addEventListener("click", function () {
+  window.addEventListener("click", function() {
     if (checkBox_diff.checked == true) {
       checkBox_user.checked = false;
     } else if (checkBox_user.checked == true) {
       checkBox_diff.checked = false;
     }
   });
-  checkBox_user.addEventListener("click", function () {
+  checkBox_user.addEventListener("click", function() {
     $("#stda_div").css("display", "none");
     checkBox_diff.checked = false;
   });
-/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
-/*/ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
-function placeorder() {
-  var order_notes = document.getElementById('order_comments').value;
-  if (order_notes == "" || order_notes == null) {
-    order_notes = 0;
-  }
-  if (checkBox_user.checked == false && checkBox_diff.checked == false) {
-    toastr.error('Require billing details!!!')
-    return;
-  } else if (checkBox_user.checked == true) {
-    var quantity = document.getElementById('btn_s<?= $store_id . "i" . $idid ?>').innerHTML;
-  //1=booking;2=cash_on_delivery
-  var order_type = document.getElementById('order_s' + '<?= $store_id . "i" . $idid ?>').value;
-  var idid = "<?= $idid ?>";
-  var store_id = "<?= $store_id ?>";
-  var uid = "<?= $_SESSION['id'] ?>";
-  var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $idid ?>').innerHTML;
-  var data = {
-    "buynow_placeorder": 1,
-    "user": 1,
-    "user_id": uid,
-    "order_notes": order_notes,
-    "pdt_cnt": quantity,
-    "total_amt": total_amt,
-    "idid": idid,
-    "store_id": store_id,
-    "order_type": order_type
-  };
-  // Create a form dynamically
-  var form = document.createElement('form');
-  form.method = 'POST';
-  form.action = '../Payment/payment.php';
-  for (let key in data) {
-    let input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = data[key];
-    form.appendChild(input);
-  }
-  document.body.appendChild(form);
-  form.submit(); // This opens payment.php with POST data
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "placing your orders !!!",
-    //         icon: "warning",
-    //         showCancelButton:true,
-    //         showConfirmButton:true,
-    //         confirmButtonColor: 'red',
-    //         allowOutsideClick: false,
-    //         confirmButtonText:'<i class="fa fa-close"></i> Cancel',
-    //         cancelButtonColor:'green',
-    //         cancelButtonText:'<i class="fa fa-shopping-bag"></i> Place'
-    //         })
-    // .then((willSubmit) => {
-    //     if (willSubmit.dismiss) {
-    //         $('.background_loader').css('display','flex');
-    //         $('.load_btn').show();
-    //         $('.real_btn').hide();
-    //         $('.std_text3').css('display','flex');
-    // var quantity=document.getElementById('btn_s<?= $store_id . "i" . $idid ?>').innerHTML;
-    // //1=booking;2=cash_on_delivery
-    // var order_type=document.getElementById('order_s'+'<?= $store_id . "i" . $idid ?>').value;
-    // var idid="<?= $idid ?>";
-    // var store_id="<?= $store_id ?>";
-    // var uid="<?= $_SESSION['id'] ?>";
-    // var total_amt=document.getElementById('total_s'+'<?= $store_id . "i" . $idid ?>').innerHTML;
-    // data: {"buynow_placeorder":1,"user":1,"user_id":uid,"order_notes":order_notes,"pdt_cnt":quantity,"total_amt":total_amt,"idid":idid,"store_id":store_id,"order_type":order_type},  //form data
-    //         $.ajax({
-    //             url: "../Common/functions.php", //passing page info
-    //             data: {"buynow_placeorder":1,"user":1,"user_id":uid,"order_notes":order_notes,"pdt_cnt":quantity,"total_amt":total_amt,"idid":idid,"store_id":store_id,"order_type":order_type},  //form data
-    //             type: "post",   //post data
-    //             dataType: "json",   //datatype=json format
-    //             timeout:30000,   //waiting time 30 sec
-    //             success: function(data){    //if registration is success
-    //                 if(data.status=='success'){
-    //                     $('.background_loader').hide();
-    //                     $('.std_text3').hide();
-    //                     swal({
-    //                         title: "Success!!!",
-    //                         text: "Order Placed Successfully",
-    //                         icon: "success",
-    //                         closeOnClickOutside: false,
-    //                         dangerMode: true,
-    //                     })
-    //                     .then((willSubmit1) => {
-    //                         if(willSubmit1) {
-    //                            location.href="../Order/myorders.php";
-    //                         }
-    //                         else{
-    //                             return ;
-    //                         }
-    //                     });
-    //                     }
-    //                 else if(data.status=='error'){
-    //                     $('.background_loader').hide();
-    //                     $('.load_btn').hide();
-    //                     $('.real_btn').show();
-    //                     $('.std_text3').hide();
-    //                     swal({
-    //                         title: "Sorry!!!",
-    //                         text: "Try again",
-    //                         icon: "error",
-    //                         closeOnClickOutside: false,
-    //                         dangerMode: true,
-    //                     })
-    //                     .then((willSubmit) => {
-    //                         if(willSubmit) {
-    //                             location.reload();
-    //                             return;
-    //                         }
-    //                         else{
-    //                             return ;
-    //                         }
-    //                     });
-    //                     }
-    //             },
-    //             error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-    //                 if(textstatus==="timeout") {
-    //                     $('.background_loader').hide();
-    //                     $('.load_btn').hide();
-    //                     $('.real_btn').show();
-    //                     $('.std_text3').hide();
-    //                         swal({
-    //                             title: "Oops!!!",
-    //                             text: "server time out",
-    //                             icon: "error",
-    //                             closeOnClickOutside: false,
-    //                             dangerMode: true,
-    //                             timer: 6000,
-    //                         });
-    //                 return ;
-    //                 }
-    //                 else{return;}
-    //             }
-    //             }); //closing ajax
-    //     }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
-    //     else if(willSubmit.isConfirmed === Swal.DismissReason.cancel){return;}
-    // });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
-  } else if (checkBox_diff.checked == true) {
-    var shipping_first_name = document.getElementById("shipping_first_name").value;
-    var shipping_last_name = document.getElementById("shipping_last_name").value;
-    var shipping_ph_no = document.getElementById("shipping_ph_no").value;
-    var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
-    var shipping_address_1 = document.getElementById("shipping_address_1").value;
-    var shipping_postcode = document.getElementById("shipping_postcode").value;
-    //checking unwanted space
-    var shipping_first_namespace = shipping_first_name.split(" ");
-    //validating first name isempty
-    if (shipping_first_name == null || shipping_first_name == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////---> //
+  function placeorder() {
+    var order_notes = document.getElementById('order_comments').value;
+    if (order_notes == "" || order_notes == null) {
+      order_notes = 0;
     }
-    //validating first name is not a number
-    if (!(isNaN(shipping_first_name))) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //validating white spaces
-    else if (shipping_first_namespace.length > 1) {
-      swal({
-        title: "Oops!!!",
-        text: "'SPACE' not allowed",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //limiting the name length
-    else if (shipping_first_name.length > 20) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //minimal character check
-    else if (shipping_first_name.length < 2) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //validating last name isempty
-    if (shipping_last_name == null || shipping_last_name == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_last_name").focus();
-      document.getElementById("shipping_last_name").className += " invalid";
-      return false;
-    }
-    //validating first name is not a number
-    else if (!(isNaN(shipping_last_name))) {
-      swal({
-        title: "Oops!!!",
-        text: "Please use Albhabets",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_last_name").focus();
-      document.getElementById("shipping_last_name").className += " invalid";
-      return false;
-    }
-    //Phone 2 number check
-    if (shipping_ph_no == null || shipping_ph_no == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_ph_no").focus();
-      document.getElementById("shipping_ph_no").className += " invalid";
-      return false;
-    }
-    //validating shipping_ph_no is a number
-    else if (isNaN(shipping_ph_no) || shipping_ph_no.length != 10) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_ph_no").focus();
-      document.getElementById("shipping_ph_no").className += " invalid";
-      return false;
-    }
-    //validating shipping_ph_no 2 is a number
-    if (shipping_ph_no2 != "" && shipping_ph_no2.length != 10) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_ph_no2").focus();
-      document.getElementById("shipping_ph_no2").className += " invalid";
-      return false;
-    }
-    //address check
-    if (shipping_address_1 == null || shipping_address_1 == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_address_1").focus();
-      document.getElementById("shipping_address_1").className += " invalid";
-      return false;
-    }
-    //validating address if its length above 4
-    if (shipping_address_1 != null && shipping_address_1.length < 10) {
-      swal({
-        title: "Oops!!!",
-        text: "Invalid address",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_address_1").focus();
-      document.getElementById("shipping_address_1").className += " invalid";
-      return false;
-    }
-    //PIN check
-    //PIN check
-    else if (shipping_postcode == null || shipping_postcode == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_postcode").focus();
-      document.getElementById("shipping_postcode").className += " invalid";
-      return false;
-    } else if (shipping_postcode.length != 6) {
-      swal({
-        title: "Oops!!!",
-        text: "Please enter valid pincode !!! ",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_postcode").value = "";
-      document.getElementById("shipping_postcode").focus();
-      document.getElementById("shipping_postcode").className += " invalid";
-      return false;
-    }
-    //PIN check
-    else {
-      var uid = "<?= $_SESSION['id'] ?>";
+    if (checkBox_user.checked == false && checkBox_diff.checked == false) {
+      toastr.error('Require billing details!!!')
+      return;
+    } else if (checkBox_user.checked == true) {
       var quantity = document.getElementById('btn_s<?= $store_id . "i" . $idid ?>').innerHTML;
       //1=booking;2=cash_on_delivery
       var order_type = document.getElementById('order_s' + '<?= $store_id . "i" . $idid ?>').value;
@@ -1206,14 +936,8 @@ function placeorder() {
       var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $idid ?>').innerHTML;
       var data = {
         "buynow_placeorder": 1,
-        "user": 2,
+        "user": 1,
         "user_id": uid,
-        "shipping_first_name": shipping_first_name,
-        "shipping_last_name": shipping_last_name,
-        "shipping_ph_no": shipping_ph_no,
-        "shipping_ph_no2": shipping_ph_no2,
-        "shipping_address_1": shipping_address_1,
-        "shipping_postcode": shipping_postcode,
         "order_notes": order_notes,
         "pdt_cnt": quantity,
         "total_amt": total_amt,
@@ -1234,9 +958,285 @@ function placeorder() {
       }
       document.body.appendChild(form);
       form.submit(); // This opens payment.php with POST data
+      //     Swal.fire({
+      //         title: "Are you sure?",
+      //         text: "placing your orders !!!",
+      //         icon: "warning",
+      //         showCancelButton:true,
+      //         showConfirmButton:true,
+      //         confirmButtonColor: 'red',
+      //         allowOutsideClick: false,
+      //         confirmButtonText:'<i class="fa fa-close"></i> Cancel',
+      //         cancelButtonColor:'green',
+      //         cancelButtonText:'<i class="fa fa-shopping-bag"></i> Place'
+      //         })
+      // .then((willSubmit) => {
+      //     if (willSubmit.dismiss) {
+      //         $('.background_loader').css('display','flex');
+      //         $('.load_btn').show();
+      //         $('.real_btn').hide();
+      //         $('.std_text3').css('display','flex');
+      // var quantity=document.getElementById('btn_s<?= $store_id . "i" . $idid ?>').innerHTML;
+      // //1=booking;2=cash_on_delivery
+      // var order_type=document.getElementById('order_s'+'<?= $store_id . "i" . $idid ?>').value;
+      // var idid="<?= $idid ?>";
+      // var store_id="<?= $store_id ?>";
+      // var uid="<?= $_SESSION['id'] ?>";
+      // var total_amt=document.getElementById('total_s'+'<?= $store_id . "i" . $idid ?>').innerHTML;
+      // data: {"buynow_placeorder":1,"user":1,"user_id":uid,"order_notes":order_notes,"pdt_cnt":quantity,"total_amt":total_amt,"idid":idid,"store_id":store_id,"order_type":order_type},  //form data
+      //         $.ajax({
+      //             url: "../Common/functions.php", //passing page info
+      //             data: {"buynow_placeorder":1,"user":1,"user_id":uid,"order_notes":order_notes,"pdt_cnt":quantity,"total_amt":total_amt,"idid":idid,"store_id":store_id,"order_type":order_type},  //form data
+      //             type: "post",   //post data
+      //             dataType: "json",   //datatype=json format
+      //             timeout:30000,   //waiting time 30 sec
+      //             success: function(data){    //if registration is success
+      //                 if(data.status=='success'){
+      //                     $('.background_loader').hide();
+      //                     $('.std_text3').hide();
+      //                     swal({
+      //                         title: "Success!!!",
+      //                         text: "Order Placed Successfully",
+      //                         icon: "success",
+      //                         closeOnClickOutside: false,
+      //                         dangerMode: true,
+      //                     })
+      //                     .then((willSubmit1) => {
+      //                         if(willSubmit1) {
+      //                            location.href="../Order/myorders.php";
+      //                         }
+      //                         else{
+      //                             return ;
+      //                         }
+      //                     });
+      //                     }
+      //                 else if(data.status=='error'){
+      //                     $('.background_loader').hide();
+      //                     $('.load_btn').hide();
+      //                     $('.real_btn').show();
+      //                     $('.std_text3').hide();
+      //                     swal({
+      //                         title: "Sorry!!!",
+      //                         text: "Try again",
+      //                         icon: "error",
+      //                         closeOnClickOutside: false,
+      //                         dangerMode: true,
+      //                     })
+      //                     .then((willSubmit) => {
+      //                         if(willSubmit) {
+      //                             location.reload();
+      //                             return;
+      //                         }
+      //                         else{
+      //                             return ;
+      //                         }
+      //                     });
+      //                     }
+      //             },
+      //             error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+      //                 if(textstatus==="timeout") {
+      //                     $('.background_loader').hide();
+      //                     $('.load_btn').hide();
+      //                     $('.real_btn').show();
+      //                     $('.std_text3').hide();
+      //                         swal({
+      //                             title: "Oops!!!",
+      //                             text: "server time out",
+      //                             icon: "error",
+      //                             closeOnClickOutside: false,
+      //                             dangerMode: true,
+      //                             timer: 6000,
+      //                         });
+      //                 return ;
+      //                 }
+      //                 else{return;}
+      //             }
+      //             }); //closing ajax
+      //     }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
+      //     else if(willSubmit.isConfirmed === Swal.DismissReason.cancel){return;}
+      // });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+    } else if (checkBox_diff.checked == true) {
+      var shipping_first_name = document.getElementById("shipping_first_name").value;
+      var shipping_last_name = document.getElementById("shipping_last_name").value;
+      var shipping_ph_no = document.getElementById("shipping_ph_no").value;
+      var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
+      var shipping_address_1 = document.getElementById("shipping_address_1").value;
+      var shipping_postcode = document.getElementById("shipping_postcode").value;
+      //checking unwanted space
+      var shipping_first_namespace = shipping_first_name.split(" ");
+      //validating first name isempty
+      if (shipping_first_name == null || shipping_first_name == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //validating first name is not a number
+      if (!(isNaN(shipping_first_name))) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //validating white spaces
+      else if (shipping_first_namespace.length > 1) {
+        swal({
+          title: "Oops!!!",
+          text: "'SPACE' not allowed",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //limiting the name length
+      else if (shipping_first_name.length > 20) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //minimal character check
+      else if (shipping_first_name.length < 2) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //validating last name isempty
+      if (shipping_last_name == null || shipping_last_name == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_last_name").focus();
+        document.getElementById("shipping_last_name").className += " invalid";
+        return false;
+      }
+      //validating first name is not a number
+      else if (!(isNaN(shipping_last_name))) {
+        swal({
+          title: "Oops!!!",
+          text: "Please use Albhabets",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_last_name").focus();
+        document.getElementById("shipping_last_name").className += " invalid";
+        return false;
+      }
+      //Phone 2 number check
+      if (shipping_ph_no == null || shipping_ph_no == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_ph_no").focus();
+        document.getElementById("shipping_ph_no").className += " invalid";
+        return false;
+      }
+      //validating shipping_ph_no is a number
+      else if (isNaN(shipping_ph_no) || shipping_ph_no.length != 10) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_ph_no").focus();
+        document.getElementById("shipping_ph_no").className += " invalid";
+        return false;
+      }
+      //validating shipping_ph_no 2 is a number
+      if (shipping_ph_no2 != "" && shipping_ph_no2.length != 10) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_ph_no2").focus();
+        document.getElementById("shipping_ph_no2").className += " invalid";
+        return false;
+      }
+      //address check
+      if (shipping_address_1 == null || shipping_address_1 == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_address_1").focus();
+        document.getElementById("shipping_address_1").className += " invalid";
+        return false;
+      }
+      //validating address if its length above 4
+      if (shipping_address_1 != null && shipping_address_1.length < 10) {
+        swal({
+          title: "Oops!!!",
+          text: "Invalid address",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_address_1").focus();
+        document.getElementById("shipping_address_1").className += " invalid";
+        return false;
+      }
+      //PIN check
+      //PIN check
+      else if (shipping_postcode == null || shipping_postcode == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_postcode").focus();
+        document.getElementById("shipping_postcode").className += " invalid";
+        return false;
+      } else if (shipping_postcode.length != 6) {
+        swal({
+          title: "Oops!!!",
+          text: "Please enter valid pincode !!! ",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_postcode").value = "";
+        document.getElementById("shipping_postcode").focus();
+        document.getElementById("shipping_postcode").className += " invalid";
+        return false;
+      }
+      //PIN check
+      else {
+        var uid = "<?= $_SESSION['id'] ?>";
+        var quantity = document.getElementById('btn_s<?= $store_id . "i" . $idid ?>').innerHTML;
+        //1=booking;2=cash_on_delivery
+        var order_type = document.getElementById('order_s' + '<?= $store_id . "i" . $idid ?>').value;
+        var idid = "<?= $idid ?>";
+        var store_id = "<?= $store_id ?>";
+        var uid = "<?= $_SESSION['id'] ?>";
+        var total_amt = document.getElementById('total_s' + '<?= $store_id . "i" . $idid ?>').innerHTML;
+        var data = {
+          "buynow_placeorder": 1,
+          "user": 2,
+          "user_id": uid,
+          "shipping_first_name": shipping_first_name,
+          "shipping_last_name": shipping_last_name,
+          "shipping_ph_no": shipping_ph_no,
+          "shipping_ph_no2": shipping_ph_no2,
+          "shipping_address_1": shipping_address_1,
+          "shipping_postcode": shipping_postcode,
+          "order_notes": order_notes,
+          "pdt_cnt": quantity,
+          "total_amt": total_amt,
+          "idid": idid,
+          "store_id": store_id,
+          "order_type": order_type
+        };
+        // Create a form dynamically
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../Payment/payment.php';
+        for (let key in data) {
+          let input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = data[key];
+          form.appendChild(input);
+        }
+        document.body.appendChild(form);
+        form.submit(); // This opens payment.php with POST data
+      }
     }
   }
-}
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
 </script>

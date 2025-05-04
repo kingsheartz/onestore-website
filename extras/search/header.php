@@ -9,13 +9,13 @@
   <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
   <script type="application/x-javascript">
-  addEventListener("load", function() {
-    setTimeout(hideURLbar, 0);
-  }, false);
+    addEventListener("load", function() {
+      setTimeout(hideURLbar, 0);
+    }, false);
 
-  function hideURLbar() {
-    window.scrollTo(0, 1);
-  }
+    function hideURLbar() {
+      window.scrollTo(0, 1);
+    }
   </script>
   <!-- //for-mobile-apps -->
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -40,8 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script type="text/javascript" src="js/easing.js"></script>
   <script type="text/javascript" src="script.js"></script>
   <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-      $(".scroll").click(function (event) {
+    jQuery(document).ready(function($) {
+      $(".scroll").click(function(event) {
         event.preventDefault();
         $('html,body').animate({
           scrollTop: $(this.hash).offset().top
@@ -52,7 +52,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!-- start-smoth-scrolling -->
 
   <!-- connecting with another template -->
-
 
   <!-- Bootstrap -->
 
@@ -67,8 +66,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
   <!-- coc -->
-
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <link href="extras/lib/slick/slick.css" rel="stylesheet">
   <link href="extras/lib/slick/slick-theme.css" rel="stylesheet">
@@ -148,14 +145,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-4">
           <div class="header-right">
             <ul>
-
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div> <!-- End header area -->
-
 
   <div class="headimg">
     <div class="container top" style="width:100%">
@@ -165,7 +160,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="phone_email topli">
               <li style="color: white;" class="topli"><i class="fa fa-phone" aria-hidden="true"></i>Order
                 online or call us : +91 8113990368</li>
-
             </ul>
           </div>
         </div>
@@ -202,15 +196,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               $id6 = $r6->fetch(PDO::FETCH_ASSOC);
               $it = $id6['item_id'];
             }
-
           }
-
 
           ?>
           <div class="col-md-5 col-lg-5 col-sm-9 col-9 srch">
             <div class="w3l_search">
               <form id="form1" action="single.php?id=<?= $it = isset($it) ? $it : 0;
-              ?>" method="post">
+                                                      ?>" method="post">
                 <input type="search" id="search" name="Search" placeholder="Search for a Product..." required="">
                 <button class="btn btn-default search" aria-label="Left Align">
                   <i class="fa fa-search" aria-hidden="true"> </i>
@@ -293,7 +285,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </li>
                   </ul>
                 </div>
-
               </div>
             </ul>
           </li>
@@ -314,8 +305,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </li>
                   </ul>
                 </div>
-
-
               </div>
             </ul>
           </li>
@@ -334,7 +323,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="personalcare.html">Diapers & Wipes</a></li>
                   </ul>
                 </div>
-
               </div>
             </ul>
           </li>
@@ -353,8 +341,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="packagedfoods.html">Chocolates & Sweets</a></li>
                   </ul>
                 </div>
-
-
               </div>
             </ul>
           </li>
@@ -373,7 +359,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="beverages.html">Tea Bags</a></li>
                   </ul>
                 </div>
-
               </div>
             </ul>
           </li>

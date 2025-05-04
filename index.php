@@ -263,7 +263,7 @@ $_COOKIE['animate'] = 0;
             dataType: "json", //datatype=json format
             timeout: 18000, //waiting time 3 sec
 
-            success: function (data) { //if logging in is success
+            success: function(data) { //if logging in is success
               if (data.admin == 'true' && data.user == 'true') {
                 location.href = "user/Main/onestore.php";
               } else if (data.status == 'success') {
@@ -290,7 +290,7 @@ $_COOKIE['animate'] = 0;
                 location.href = "user/Main/onestore.php";
               }
             },
-            error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
               if (textstatus === "timeout") {
                 swal({
                   title: "Oops!!!",

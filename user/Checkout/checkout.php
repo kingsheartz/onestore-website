@@ -286,7 +286,7 @@ $pdt_cnt = $stmt->rowCount();
               $stmt2 = $pdo->prepare($sql2);
               $stmt2->execute(array(":sid" => $sid));
               while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+            ?>
                 <tr class="rem1">
                   <td class="invert slno"><?= $ai ?></td>
                   <td class="invert-image" style=" "><a
@@ -312,7 +312,7 @@ $pdt_cnt = $stmt->rowCount();
                     </div>
                   </td>
                 </tr>
-                <?php
+            <?php
                 $ai++;
               }
             }
@@ -354,10 +354,10 @@ where user_id=$uid GROUP BY c.cart_id";
                   */
                   $stmt = $pdo->query($sql);
                   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    ?>
+                  ?>
                     <li style="color: #333"><?= $row['item_name'] ?> <i>-</i> <span>&#8377;
                         <?= $row['total_amt'] ?></span></li>
-                    <?php
+                  <?php
                     $qty = $row['quantity'];
                     $service_chrg += (($row['total_amt'] * 2) / 100);
                     $mrp_chrg += ((($row['mrp'] * $qty) * 2) / 100);
@@ -537,7 +537,7 @@ where user_id=$uid GROUP BY c.cart_id";
 require "../Main/footer.php";
 ?>
 <script type="text/javascript">
-  $(window).resize(function () {
+  $(window).resize(function() {
     if ($(window).width() < 769) {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         $('#payment').hide();
@@ -548,7 +548,7 @@ require "../Main/footer.php";
       $('#payment').show();
     }
   });
-  window.onscroll = function (ev) {
+  window.onscroll = function(ev) {
     if ($(window).width() < 769) {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         $('#payment').hide();
@@ -569,208 +569,37 @@ require "../Main/footer.php";
       $("#stda_div").css("display", "none");
     }
   }
-  window.addEventListener("click", function () {
+  window.addEventListener("click", function() {
     if (checkBox_diff.checked == true) {
       checkBox_user.checked = false;
     } else if (checkBox_user.checked == true) {
       checkBox_diff.checked = false;
     }
   });
-  checkBox_user.addEventListener("click", function () {
+  checkBox_user.addEventListener("click", function() {
     $("#stda_div").css("display", "none");
     checkBox_diff.checked = false;
   });
   /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
-/*/ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
+  /*/ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
 </script>
 <script>
-function placeorder() {
-  var order_notes = document.getElementById('order_comments').value;
-  if (order_notes == "" || order_notes == null) {
-    order_notes = 0;
-  }
-  if (checkBox_user.checked == false && checkBox_diff.checked == false) {
-    toastr.error('Require billing details!!!')
-    return;
-  } else if (checkBox_user.checked == true) {
-    var uid = "<?= $_SESSION['id'] ?>";
-  var pdt_cnt = "<?= $pdt_cnt ?>";
-  var total_amt = "<?= $total_amt ?>";
-  var data = {
-    "placeorder": 1,
-    "user": 1,
-    "user_id": uid,
-    "order_notes": order_notes,
-    "pdt_cnt": pdt_cnt,
-    "total_amt": total_amt
-  };
-  // Create a form dynamically
-  var form = document.createElement('form');
-  form.method = 'POST';
-  form.action = '../Payment/payment.php';
-  for (let key in data) {
-    let input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = data[key];
-    form.appendChild(input);
-  }
-  document.body.appendChild(form);
-  form.submit(); // This opens payment.php with POST data
-  } else if (checkBox_diff.checked == true) {
-    var shipping_first_name = document.getElementById("shipping_first_name").value;
-    var shipping_last_name = document.getElementById("shipping_last_name").value;
-    var shipping_ph_no = document.getElementById("shipping_ph_no").value;
-    var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
-    var shipping_address_1 = document.getElementById("shipping_address_1").value;
-    var shipping_postcode = document.getElementById("shipping_postcode").value;
-    //checking unwanted space
-    var shipping_first_namespace = shipping_first_name.split(" ");
-    //validating first name isempty
-    if (shipping_first_name == null || shipping_first_name == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
+  function placeorder() {
+    var order_notes = document.getElementById('order_comments').value;
+    if (order_notes == "" || order_notes == null) {
+      order_notes = 0;
     }
-    //validating first name is not a number
-    if (!(isNaN(shipping_first_name))) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //validating white spaces
-    else if (shipping_first_namespace.length > 1) {
-      swal({
-        title: "Oops!!!",
-        text: "'SPACE' not allowed",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //limiting the name length
-    else if (shipping_first_name.length > 20) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //minimal character check
-    else if (shipping_first_name.length < 2) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_first_name").focus();
-      document.getElementById("shipping_first_name").className += " invalid";
-      return false;
-    }
-    //validating last name isempty
-    if (shipping_last_name == null || shipping_last_name == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_last_name").focus();
-      document.getElementById("shipping_last_name").className += " invalid";
-      return false;
-    }
-    //validating first name is not a number
-    else if (!(isNaN(shipping_last_name))) {
-      swal({
-        title: "Oops!!!",
-        text: "Please use Albhabets",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_last_name").focus();
-      document.getElementById("shipping_last_name").className += " invalid";
-      return false;
-    }
-    //Phone 2 number check
-    if (shipping_ph_no == null || shipping_ph_no == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_ph_no").focus();
-      document.getElementById("shipping_ph_no").className += " invalid";
-      return false;
-    }
-    //validating shipping_ph_no is a number
-    else if (isNaN(shipping_ph_no) || shipping_ph_no.length != 10) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_ph_no").focus();
-      document.getElementById("shipping_ph_no").className += " invalid";
-      return false;
-    }
-    //validating shipping_ph_no 2 is a number
-    if (shipping_ph_no2 != "" && shipping_ph_no2.length != 10) {
-      $('#delivery_button').click();
-      document.getElementById("shipping_ph_no2").focus();
-      document.getElementById("shipping_ph_no2").className += " invalid";
-      return false;
-    }
-    //address check
-    if (shipping_address_1 == null || shipping_address_1 == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_address_1").focus();
-      document.getElementById("shipping_address_1").className += " invalid";
-      return false;
-    }
-    //validating address if its length above 4
-    if (shipping_address_1 != null && shipping_address_1.length < 10) {
-      swal({
-        title: "Oops!!!",
-        text: "Invalid address",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_address_1").focus();
-      document.getElementById("shipping_address_1").className += " invalid";
-      return false;
-    }
-    //PIN check
-    //PIN check
-    else if (shipping_postcode == null || shipping_postcode == "") {
-      $('#delivery_button').click();
-      document.getElementById("shipping_postcode").focus();
-      document.getElementById("shipping_postcode").className += " invalid";
-      return false;
-    } else if (shipping_postcode.length != 6) {
-      swal({
-        title: "Oops!!!",
-        text: "Please enter valid pincode !!! ",
-        icon: "error",
-        closeOnClickOutside: false,
-        dangerMode: true,
-        timer: 6000,
-      });
-      $('#delivery_button').click();
-      document.getElementById("shipping_postcode").value = "";
-      document.getElementById("shipping_postcode").focus();
-      document.getElementById("shipping_postcode").className += " invalid";
-      return false;
-    }
-    //PIN check
-    else {
+    if (checkBox_user.checked == false && checkBox_diff.checked == false) {
+      toastr.error('Require billing details!!!')
+      return;
+    } else if (checkBox_user.checked == true) {
       var uid = "<?= $_SESSION['id'] ?>";
       var pdt_cnt = "<?= $pdt_cnt ?>";
       var total_amt = "<?= $total_amt ?>";
       var data = {
         "placeorder": 1,
-        "user": 2,
+        "user": 1,
         "user_id": uid,
-        "shipping_first_name": shipping_first_name,
-        "shipping_last_name": shipping_last_name,
-        "shipping_ph_no": shipping_ph_no,
-        "shipping_ph_no2": shipping_ph_no2,
-        "shipping_address_1": shipping_address_1,
-        "shipping_postcode": shipping_postcode,
         "order_notes": order_notes,
         "pdt_cnt": pdt_cnt,
         "total_amt": total_amt
@@ -788,9 +617,180 @@ function placeorder() {
       }
       document.body.appendChild(form);
       form.submit(); // This opens payment.php with POST data
+    } else if (checkBox_diff.checked == true) {
+      var shipping_first_name = document.getElementById("shipping_first_name").value;
+      var shipping_last_name = document.getElementById("shipping_last_name").value;
+      var shipping_ph_no = document.getElementById("shipping_ph_no").value;
+      var shipping_ph_no2 = document.getElementById("shipping_ph_no2").value;
+      var shipping_address_1 = document.getElementById("shipping_address_1").value;
+      var shipping_postcode = document.getElementById("shipping_postcode").value;
+      //checking unwanted space
+      var shipping_first_namespace = shipping_first_name.split(" ");
+      //validating first name isempty
+      if (shipping_first_name == null || shipping_first_name == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //validating first name is not a number
+      if (!(isNaN(shipping_first_name))) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //validating white spaces
+      else if (shipping_first_namespace.length > 1) {
+        swal({
+          title: "Oops!!!",
+          text: "'SPACE' not allowed",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //limiting the name length
+      else if (shipping_first_name.length > 20) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //minimal character check
+      else if (shipping_first_name.length < 2) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_first_name").focus();
+        document.getElementById("shipping_first_name").className += " invalid";
+        return false;
+      }
+      //validating last name isempty
+      if (shipping_last_name == null || shipping_last_name == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_last_name").focus();
+        document.getElementById("shipping_last_name").className += " invalid";
+        return false;
+      }
+      //validating first name is not a number
+      else if (!(isNaN(shipping_last_name))) {
+        swal({
+          title: "Oops!!!",
+          text: "Please use Albhabets",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_last_name").focus();
+        document.getElementById("shipping_last_name").className += " invalid";
+        return false;
+      }
+      //Phone 2 number check
+      if (shipping_ph_no == null || shipping_ph_no == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_ph_no").focus();
+        document.getElementById("shipping_ph_no").className += " invalid";
+        return false;
+      }
+      //validating shipping_ph_no is a number
+      else if (isNaN(shipping_ph_no) || shipping_ph_no.length != 10) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_ph_no").focus();
+        document.getElementById("shipping_ph_no").className += " invalid";
+        return false;
+      }
+      //validating shipping_ph_no 2 is a number
+      if (shipping_ph_no2 != "" && shipping_ph_no2.length != 10) {
+        $('#delivery_button').click();
+        document.getElementById("shipping_ph_no2").focus();
+        document.getElementById("shipping_ph_no2").className += " invalid";
+        return false;
+      }
+      //address check
+      if (shipping_address_1 == null || shipping_address_1 == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_address_1").focus();
+        document.getElementById("shipping_address_1").className += " invalid";
+        return false;
+      }
+      //validating address if its length above 4
+      if (shipping_address_1 != null && shipping_address_1.length < 10) {
+        swal({
+          title: "Oops!!!",
+          text: "Invalid address",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_address_1").focus();
+        document.getElementById("shipping_address_1").className += " invalid";
+        return false;
+      }
+      //PIN check
+      //PIN check
+      else if (shipping_postcode == null || shipping_postcode == "") {
+        $('#delivery_button').click();
+        document.getElementById("shipping_postcode").focus();
+        document.getElementById("shipping_postcode").className += " invalid";
+        return false;
+      } else if (shipping_postcode.length != 6) {
+        swal({
+          title: "Oops!!!",
+          text: "Please enter valid pincode !!! ",
+          icon: "error",
+          closeOnClickOutside: false,
+          dangerMode: true,
+          timer: 6000,
+        });
+        $('#delivery_button').click();
+        document.getElementById("shipping_postcode").value = "";
+        document.getElementById("shipping_postcode").focus();
+        document.getElementById("shipping_postcode").className += " invalid";
+        return false;
+      }
+      //PIN check
+      else {
+        var uid = "<?= $_SESSION['id'] ?>";
+        var pdt_cnt = "<?= $pdt_cnt ?>";
+        var total_amt = "<?= $total_amt ?>";
+        var data = {
+          "placeorder": 1,
+          "user": 2,
+          "user_id": uid,
+          "shipping_first_name": shipping_first_name,
+          "shipping_last_name": shipping_last_name,
+          "shipping_ph_no": shipping_ph_no,
+          "shipping_ph_no2": shipping_ph_no2,
+          "shipping_address_1": shipping_address_1,
+          "shipping_postcode": shipping_postcode,
+          "order_notes": order_notes,
+          "pdt_cnt": pdt_cnt,
+          "total_amt": total_amt
+        };
+        // Create a form dynamically
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../Payment/payment.php';
+        for (let key in data) {
+          let input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = data[key];
+          form.appendChild(input);
+        }
+        document.body.appendChild(form);
+        form.submit(); // This opens payment.php with POST data
+      }
     }
   }
-}
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--->
 </script>

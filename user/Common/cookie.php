@@ -68,12 +68,12 @@
   }
 </style>
 <script>
-  $(document).ready(function (f) {
+  $(document).ready(function(f) {
     if ($(window).width() < 365) {
       $('.small-cookie-accept').html('Accept');
     }
   });
-  $(window).resize(function () {
+  $(window).resize(function() {
     if ($(window).width() < 365) {
       $('.small-cookie-accept').html('Accept');
     }
@@ -82,7 +82,7 @@
   function setcookie(val) {
     <?php
     if (isset($_SESSION['id'])) {
-      ?>
+    ?>
       if (val == 1) {
         var pc = 1;
         var fc = 1;
@@ -117,13 +117,13 @@
         type: "post", //post data
         dataType: "json", //datatype=json format
         timeout: 30000, //waiting time 30 sec
-        success: function (data) { //if registration is success
+        success: function(data) { //if registration is success
           if (data.status == 'success') {
             toastr.success("Cookies set successfully");
             return;
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           if (textstatus === "timeout") {
             swal({
               title: "Oops!!!",
@@ -139,11 +139,11 @@
           }
         }
       }); //closing ajax
-      <?php
+    <?php
     } else {
-      ?>
+    ?>
       document.cookie = 'cookieset=y';
-      <?php
+    <?php
     }
     ?>
     $('.cookiesetting').hide();
