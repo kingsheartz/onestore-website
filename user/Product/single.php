@@ -1019,8 +1019,7 @@ function randomGen($min, $max, $quantity)
           }
         }
       }); //closing ajax
-      //location.href="../Cart/cart.php?store="+id+"&item=<? //=$row['item_id']
-                                                          ?>";
+      //location.href="../Cart/cart.php?store="+id+"&item=<? //=$row['item_id']?>";
     }
   }
 
@@ -1511,7 +1510,7 @@ function randomGen($min, $max, $quantity)
                                 <?php
                                 $sqlsize_name = 'select size_name from size where size_id=' . (int) $rowfeatures_size['size'];
                                 $stmtsize_name = $pdo->query($sqlsize_name);
-                                while ($rowsize_name = $stmtsize_name->fetch(PDO::FETCH_ASSOC)) {;
+                                while ($rowsize_name = $stmtsize_name->fetch(PDO::FETCH_ASSOC)) {
                                   if ($rowsize_name['size_name'] == 'XL') {
                                     $size_abbreviation = 'Xtra-Large';
                                   }
