@@ -364,6 +364,7 @@ require "head.php";
         $('#' + x).scrollLeft(y + 100);
         $('#' + x + '>.right-arrow').show();
       }
+
       function moveright(x) {
         var y = $('#' + x).scrollLeft();
         $('#' + x + '>.left-arrow').show();
@@ -372,17 +373,16 @@ require "head.php";
         }
         $('#' + x).scrollLeft(y - 100);
       }
+
       function movefr(x) {
         var y = $('#' + x).scrollLeft();
         var width = $('#' + x).outerWidth()
         var scrollWidth = $('#' + x)[0].scrollWidth;
         if (scrollWidth - width === y) {
           $('#' + x + '>.left-arrow').hide();
-        }
-        else if (y === 0) {
+        } else if (y === 0) {
           $('#' + x + '>.right-arrow').hide();
-        }
-        else {
+        } else {
           $('#' + x + '>.left-arrow').show();
           $('#' + x + '>.right-arrow').show();
         }
@@ -395,8 +395,10 @@ require "head.php";
         $.ajax({
           url: 'productData.php',
           type: 'post',
-          data: { item_description_id: itid },
-          success: function (response) {
+          data: {
+            item_description_id: itid
+          },
+          success: function(response) {
             // Add response in Modal body
             $('.modal-body').html(response);
             // Display Modal
@@ -412,7 +414,7 @@ require "head.php";
     $st11 = $pdo->query($query11);
     while ($row11 = $st11->fetch(PDO::FETCH_ASSOC)) {
       $ct = $row11['category_id'];
-      ?>
+    ?>
       <?php
       $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item.category_id=$ct";
       $st = $pdo->query($query);
@@ -420,7 +422,7 @@ require "head.php";
       if ($product == 0) {
         continue;
       } else {
-        ?>
+      ?>
         <div class="difcat ">
           <span class="difhed"><?= $row11['category_name'] ?>
             <button onclick="location.href='viewnewitems.php?category_id=<?= $ct ?>'">View All</button></span>
@@ -431,7 +433,7 @@ require "head.php";
                 class="fas fa-chevron-left"></i></button>
             <?php
             while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-              ?>
+            ?>
               <div class="products">
                 <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
@@ -442,18 +444,18 @@ require "head.php";
                 <div class="deupd"><?= $row['item_name'] ?><br>
                 </div>
               </div>
-              <?php
+        <?php
             }
             echo '</div></div>';
-      }
-    }
-    ?>
+          }
+        }
+        ?>
         <?php
         $query11 = "SELECT * from  sub_category";
         $st11 = $pdo->query($query11);
         while ($row11 = $st11->fetch(PDO::FETCH_ASSOC)) {
           $ct = $row11['sub_category_id'];
-          ?>
+        ?>
           <?php
           $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item.sub_category_id=$ct";
           $st = $pdo->query($query);
@@ -470,7 +472,7 @@ require "head.php";
                   class="fas fa-chevron-left"></i></button>
               <?php
               while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+              ?>
                 <div class="products">
                   <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
@@ -481,11 +483,11 @@ require "head.php";
                   <div class="deupd"><?= $row['item_name'] ?><br>
                   </div>
                 </div>
-                <?php
+            <?php
               }
               echo '</div></div>';
-        }
-        ?>
+            }
+            ?>
             <script type="text/javascript">
               function showupda(x) {
                 document.forms[x].submit();
@@ -493,6 +495,7 @@ require "head.php";
               if (window.history.replaceState) {
                 window.history.replaceState(null, null, window.location.href);
               }
+
               function conca() {
                 console.log('helo');
                 if ($('#w1').val() != 0) {
@@ -501,23 +504,23 @@ require "head.php";
                 }
               }
             </script>
-          </div>
-          <div class="modal fade" id="exampleModal" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title">Product Info</h3>
-                  <button type="button" class="close" style="margin-top: -30px;" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal fade" id="exampleModal" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title">Product Info</h3>
+                    <button type="button" class="close" style="margin-top: -30px;" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <?php
-          require "foot.php";
-          ?>
+            <?php
+            require "foot.php";
+            ?>

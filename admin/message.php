@@ -12,8 +12,7 @@ require "head.php";
       $('#chatphp').addClass('active');
     </script>
     <script type="text/javascript">
-      $("#chatphp").click(
-      );
+      $("#chatphp").click();
     </script>
     <?php
     unset($_SESSION['name']);
@@ -404,7 +403,7 @@ require "head.php";
           $cn = 0;
           while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $cn++;
-            ?>
+          ?>
             <div id="<?= $row['username'] ?>" class="connect" onclick="getfile('<?= $row['username'] ?>')">
               <span class="conimg"><i id="<?= $row['username'] ?><?= $cn ?>" class="fa fa-user-circle-o"></i> <span
                   class="uppernum3">
@@ -413,13 +412,13 @@ require "head.php";
                   $statement1 = $pdo->prepare($query1);
                   $statement1->execute();
                   $row1 = $statement1->fetch(PDO::FETCH_ASSOC);
-                  ?>   <?= $row1['COUNT(*)'] ?>
+                  ?> <?= $row1['COUNT(*)'] ?>
                 </span></span>
               <h6>
                 <?= $row['username'] ?>
               </h6>
             </div>
-            <?php
+          <?php
           }
           ?>
         </div>
@@ -435,10 +434,10 @@ require "head.php";
                 $statement->execute(array(':name' => $_GET['name']));
                 $row1 = $statement->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['name'] = $row1['username'];
-                ?>
+              ?>
                 <span class="conimg"><i class="fa fa-user-circle-o" style="color:white;"></i></span>
                 <h4><?= $_SESSION['name'] ?></h4>
-                <?php
+              <?php
               }
               ?>
             </div>
@@ -461,8 +460,9 @@ require "head.php";
               var element = document.getElementById("chathist");
               element.scrollTop = element.scrollHeight;
             }
+
             function sub() {
-              $('#myform').on("submit", function (e) {
+              $('#myform').on("submit", function(e) {
                 var dataString = new FormData(this);
                 dataString.append('submit', '1');
                 $.ajax({
@@ -472,7 +472,7 @@ require "head.php";
                   contentType: false,
                   cache: false,
                   processData: false,
-                  success: function () {
+                  success: function() {
                     $('textarea').val('');
                   }
                 });
@@ -485,7 +485,7 @@ require "head.php";
             <div class="inner_div" id="chathist">
               <?php
               if (isset($_SESSION['name'])) {
-                ?>
+              ?>
                 <input type="hidden" id="rname" name="rname" value="<?= $_SESSION['name'] ?>">
                 <input type="hidden" id="uname" name="uname" value="admin">
                 <?php
@@ -500,16 +500,16 @@ require "head.php";
                   $date[0] = date("d-m-Y", strtotime($date[0]));
                   if ($date[0] != $ct) {
                     $ct = date("d-m-Y", strtotime($date[0]));
-                    ?>
+                ?>
                     <div class="clear-fix"></div><br><br>
                     <div class="date"><?= $ct ?></div><br><br>
                     <div class="clear-fix"></div>
-                    <?php
+                  <?php
                   }
                   if ($i == 0) {
                     $i = 5;
                     $first = $row;
-                    ?>
+                  ?>
                     <div id="triangle1" class="triangle1"></div>
                     <div id="message1" class="message1">
                       <div style="color: white;
@@ -526,7 +526,7 @@ require "head.php";
                     <?php
                   } else {
                     if ($row['uname'] != $first['uname']) {
-                      ?>
+                    ?>
                       <div id="triangle" class="triangle"></div>
                       <div id="message" class="message">
                         <div style="color: white;
@@ -540,9 +540,9 @@ require "head.php";
                         </div>
                       </div>
                       <br /><br />
-                      <?php
+                    <?php
                     } else {
-                      ?>
+                    ?>
                       <div id="triangle1" class="triangle1"></div>
                       <div id="message1" class="message1">
                         <div style="color: white;
@@ -556,7 +556,7 @@ require "head.php";
                         </div>
                       </div>
                       <br /><br />
-                      <?php
+              <?php
                     }
                   }
                 endwhile;
@@ -570,6 +570,7 @@ require "head.php";
                 }
                 setText(e.target.value);
               }
+
               function change() {
                 console.log('helo');
                 if ($.trim($("#chat-head").html()) == '') {
@@ -578,27 +579,27 @@ require "head.php";
                   alert('please select a contact');
                   document.getElementById('textarea').value = '';
                   return false;
-                }
-                else if ($('#textarea').val() == '') {
+                } else if ($('#textarea').val() == '') {
                   console.log('helo5656');
                   $('#myBtn').prop('disabled', true);
                   return false;
-                }
-                else {
+                } else {
                   console.log('kildjfrekrh');
                   // $('#myBtn').removeAttr('disabled');
                   $('#myBtn').prop('disabled', false);
                   return true;
                 }
               }
+
               function getfile(x) {
                 console.log(x);
                 $.ajax({
                   type: "POST",
                   url: "message.php?name=" + x,
-                  data: { status: 1 },
-                  success: function () {
-                  }
+                  data: {
+                    status: 1
+                  },
+                  success: function() {}
                 });
                 location.href = "message.php?name=" + x;
               }
@@ -620,7 +621,7 @@ require "head.php";
     require 'foot.php';
     ?>
     <script>
-      $(".inner-switch").on("click", function () {
+      $(".inner-switch").on("click", function() {
         if ($("#chat").hasClass("dark")) {
           $("#chat").removeClass("dark");
           $(".inner-switch").text("OFF");

@@ -21,7 +21,7 @@ try {
     $term = $_REQUEST["term"] . '%';
     // bind parameters to statement
     $stmt->bindParam(":term", $term);
-    ?>
+?>
     <div class="row">
       <?php
       $i = 0;
@@ -33,7 +33,7 @@ try {
         while ($row = $stmt->fetch()) {
           $cn++;
           $i++;
-          ?>
+      ?>
           <div class="products" style="width: 320px">
             <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;"><img class="image"
@@ -72,11 +72,11 @@ try {
           <?php
           if ($cn >= 3) {
             $cn = 0;
-            ?>
-          </div>
-          <div class="clearfix"> </div>
-          <div class="row">
-            <?php
+          ?>
+    </div>
+    <div class="clearfix"> </div>
+    <div class="row">
+<?php
           }
           if ($i == $rt) {
             echo "</div>";
@@ -85,12 +85,12 @@ try {
       } else {
         echo "<p>No matches found</p>";
       }
+    }
+  } catch (PDOException $e) {
+    die("ERROR: Could not able to execute $sql. " . $e->getMessage());
   }
-} catch (PDOException $e) {
-  die("ERROR: Could not able to execute $sql. " . $e->getMessage());
-}
-// Close statement
-unset($stmt);
-// Close connection
-unset($pdo);
+  // Close statement
+  unset($stmt);
+  // Close connection
+  unset($pdo);
 ?>

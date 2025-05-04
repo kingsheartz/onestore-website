@@ -53,4 +53,3 @@ $rows[] = $nwo;
 $npo = $newproduct->fetch(PDO::FETCH_ASSOC);
 $rows[] = $npo;
 echo json_encode($rows);
-?>

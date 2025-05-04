@@ -181,4 +181,3 @@ material) VALUES (:item_id,
         redirectWithError("Wrong Input ");
     }
 }
-?>

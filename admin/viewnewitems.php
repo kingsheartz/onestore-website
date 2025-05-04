@@ -86,6 +86,7 @@ require "head.php";
         $('#' + x).scrollLeft(y + 100);
         $('#' + x + '>.right-arrow').show();
       }
+
       function moveright(x) {
         var y = $('#' + x).scrollLeft();
         $('#' + x + '>.left-arrow').show();
@@ -94,17 +95,16 @@ require "head.php";
         }
         $('#' + x).scrollLeft(y - 100);
       }
+
       function movefr(x) {
         var y = $('#' + x).scrollLeft();
         var width = $('#' + x).outerWidth()
         var scrollWidth = $('#' + x)[0].scrollWidth;
         if (scrollWidth - width === y) {
           $('#' + x + '>.left-arrow').hide();
-        }
-        else if (y === 0) {
+        } else if (y === 0) {
           $('#' + x + '>.right-arrow').hide();
-        }
-        else {
+        } else {
           $('#' + x + '>.left-arrow').show();
           $('#' + x + '>.right-arrow').show();
         }
@@ -117,8 +117,10 @@ require "head.php";
         $.ajax({
           url: 'productData.php',
           type: 'post',
-          data: { item_description_id: itid },
-          success: function (response) {
+          data: {
+            item_description_id: itid
+          },
+          success: function(response) {
             // Add response in Modal body
             $('.modal-body').html(response);
             // Display Modal
@@ -162,11 +164,11 @@ where category_id=$ctid ";
       </div>
       <?php
       //display the link of the pages in URL
-      
+
       $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item.category_id=$ctid LIMIT " . $page_first_result . "," . $results_per_page;
       $st = $pdo->query($query);
       while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-        ?>
+      ?>
         <div class="products col-sm-4">
           <div style="display: flex;
   justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
@@ -177,7 +179,7 @@ where category_id=$ctid ";
           <div class="deupd"><?= $row['item_name'] ?><br>
           </div>
         </div>
-        <?php
+      <?php
       }
       ?>
     </div>
@@ -185,18 +187,18 @@ where category_id=$ctid ";
     <nav class="numbering">
       <ul class="pagination">
         <li><a href="<?php
-        $_GET['pageno'] = 1;
-        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-        ?>">First</a></li>
+                      $_GET['pageno'] = 1;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                      ?>">First</a></li>
         <li class="<?php if ($pageno <= 1) {
-          echo 'disabled';
-        } ?>">
+                      echo 'disabled';
+                    } ?>">
           <a href="<?php if ($pageno <= 1) {
-            echo '#';
-          } else {
-            $_GET['pageno'] = $pageno - 1;
-            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-          } ?>">Prev</a>
+                      echo '#';
+                    } else {
+                      $_GET['pageno'] = $pageno - 1;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                    } ?>">Prev</a>
         </li>
         <?php
         $ends_count = 1;  //how many items at the ends (before and after [...])
@@ -204,51 +206,51 @@ where category_id=$ctid ";
         $dots = false;
         for ($page = 1; $page <= $number_of_page; $page++) {
           if ($page == $pageno) {
-            ?>
+        ?>
             <li class="active">
               <a href="<?php
-              $_GET['pageno'] = $page;
-              echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                        $_GET['pageno'] = $page;
+                        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
                 <?= $page ?></a>
             </li>
             <?php
             $dots = true;
           } else {
             if ($page <= $ends_count || ($pageno && $page >= $pageno - $middle_count && $page <= $pageno + $middle_count) || $page > $number_of_page - $ends_count) {
-              ?>
+            ?>
               <li>
                 <a href="<?php
-                $_GET['pageno'] = $page;
-                echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                          $_GET['pageno'] = $page;
+                          echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
                   <?= $page ?></a>
               </li>
-              <?php
+            <?php
               $dots = true;
             } elseif ($dots) {
-              ?>
+            ?>
               <li><a>&hellip;</a></li><?php
-              $dots = false;
-            }
-          }
-          ?>
-          <?php
+                                      $dots = false;
+                                    }
+                                  }
+                                      ?>
+        <?php
         }
         ?>
         <li class="<?php if ($pageno >= $number_of_page) {
-          echo 'disabled';
-        } ?>">
+                      echo 'disabled';
+                    } ?>">
           <a href="<?php if ($pageno >= $number_of_page) {
-            echo '#';
-          } else {
-            $_GET['pageno'] = $pageno + 1;
-            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-          } ?>">
+                      echo '#';
+                    } else {
+                      $_GET['pageno'] = $pageno + 1;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                    } ?>">
             Next</a>
         </li>
         <li><a href="<?php
-        $_GET['pageno'] = $number_of_page;
-        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-        ?>">Last</a></li>
+                      $_GET['pageno'] = $number_of_page;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                      ?>">Last</a></li>
       </ul>
     </nav>
     <div class="clearfix">

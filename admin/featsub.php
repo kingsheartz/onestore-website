@@ -64,4 +64,3 @@ if (isset($_POST['material'])) {
   $statement1 = $pdo->prepare($query1);
   $statement1->execute();
 }
-?>

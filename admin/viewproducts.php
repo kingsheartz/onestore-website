@@ -8,48 +8,48 @@ require "head.php";
     include "head1.php";
     ?>
     <style>
-    .products {
-      display: inline-block;
-      text-align: center;
-      padding: 14px;
-      position: relative;
-      height: 300px;
-      background: white;
-      color: #000;
-    }
+      .products {
+        display: inline-block;
+        text-align: center;
+        padding: 14px;
+        position: relative;
+        height: 300px;
+        background: white;
+        color: #000;
+      }
 
-    .products img {
-      margin: auto;
-      display: block;
-      background: white;
-      image-rendering: auto;
-      image-rendering: crisp-edges;
-      width: auto;
-      max-width: 170px;
-      height: auto;
-      max-height: 200px;
-    }
+      .products img {
+        margin: auto;
+        display: block;
+        background: white;
+        image-rendering: auto;
+        image-rendering: crisp-edges;
+        width: auto;
+        max-width: 170px;
+        height: auto;
+        max-height: 200px;
+      }
 
-    .content {
-      position: relative;
-      background: white;
-      height: auto;
-      padding-bottom: 50px;
-      border-top: none;
-    }
+      .content {
+        position: relative;
+        background: white;
+        height: auto;
+        padding-bottom: 50px;
+        border-top: none;
+      }
 
-    .divhed {
-      padding: 20px;
-      font-family: Roboto;
-      font-size: 32px;
-      text-align: center;
-      border-bottom: 1px solid #dcdcdc;
-      margin-bottom: 50px;
-    }
+      .divhed {
+        padding: 20px;
+        font-family: Roboto;
+        font-size: 32px;
+        text-align: center;
+        border-bottom: 1px solid #dcdcdc;
+        margin-bottom: 50px;
+      }
 
-    nav.numbering {
-      float: right;
-    }
+      nav.numbering {
+        float: right;
+      }
     </style>
     <?php
     if (isset($_GET['category_id'])) {
@@ -88,44 +88,44 @@ where category_id=$ctid ";
       $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item.category_id=$ctid GROUP BY item_description.item_id LIMIT " . $page_first_result . "," . $results_per_page;
       $st = $pdo->query($query);
       while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-      <div class="products col-sm-4">
-        <div
-          style="display: flex; justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
-          <img class="image" align="middle"
-            src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+      ?>
+        <div class="products col-sm-4">
+          <div
+            style="display: flex; justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+            <img class="image" align="middle"
+              src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+          </div>
+          <div class="middle">
+            <form id="<?= $row['item_description_id'] ?>" method="post" action="change.php"
+              name="<?= $row['item_description_id'] ?>">
+              <input type="hidden" name="pr_id" value="<?= $row['item_description_id'] ?>">
+              <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
+              <input type="hidden" name="im_url"
+                value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+              <input type="hidden" name="name" value="<?= $row['item_name'] ?>">
+              <input type="hidden" name="description" value="<?= $row['description'] ?>">
+              <input type="hidden" name="price" value="<?= $row['price'] ?>">
+              <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation"><i
+                  class="fa fa-pencil-square-o" style="font-size: 24px;padding-right: 12px"
+                  aria-hidden="true"></i>Change</button>
+            </form>
+            <form id="a<?= $row['item_description_id'] ?>" method="post" action="productuplo.php"
+              name="1<?= $row['item_description_id'] ?>">
+              <input type="hidden" name="uppr_id" value="<?= $row['item_description_id'] ?>">
+              <input type="hidden" name="upitem_id" value="<?= $row['item_id'] ?>">
+              <input type="hidden" name="upim_url"
+                value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+              <input type="hidden" name="upname" value="<?= $row['item_name'] ?>">
+              <input type="hidden" name="updescription" value="<?= $row['description'] ?>">
+              <input type="hidden" name="upprice" value="<?= $row['price'] ?>">
+              <button onclick="showupda('1<?= $row['item_description_id'] ?>')" class="updation"><i class="fas fa-upload"
+                  style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Upload</button>
+            </form>
+          </div>
+          <div class="deupd"><?= $row['item_name'] ?><br><br>
+            <span style="color:green"><i class="fas fa-rupee"></i><?= $row['price'] ?></span>
+          </div>
         </div>
-        <div class="middle">
-          <form id="<?= $row['item_description_id'] ?>" method="post" action="change.php"
-            name="<?= $row['item_description_id'] ?>">
-            <input type="hidden" name="pr_id" value="<?= $row['item_description_id'] ?>">
-            <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-            <input type="hidden" name="im_url"
-              value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
-            <input type="hidden" name="name" value="<?= $row['item_name'] ?>">
-            <input type="hidden" name="description" value="<?= $row['description'] ?>">
-            <input type="hidden" name="price" value="<?= $row['price'] ?>">
-            <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation"><i
-                class="fa fa-pencil-square-o" style="font-size: 24px;padding-right: 12px"
-                aria-hidden="true"></i>Change</button>
-          </form>
-          <form id="a<?= $row['item_description_id'] ?>" method="post" action="productuplo.php"
-            name="1<?= $row['item_description_id'] ?>">
-            <input type="hidden" name="uppr_id" value="<?= $row['item_description_id'] ?>">
-            <input type="hidden" name="upitem_id" value="<?= $row['item_id'] ?>">
-            <input type="hidden" name="upim_url"
-              value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
-            <input type="hidden" name="upname" value="<?= $row['item_name'] ?>">
-            <input type="hidden" name="updescription" value="<?= $row['description'] ?>">
-            <input type="hidden" name="upprice" value="<?= $row['price'] ?>">
-            <button onclick="showupda('1<?= $row['item_description_id'] ?>')" class="updation"><i class="fas fa-upload"
-                style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Upload</button>
-          </form>
-        </div>
-        <div class="deupd"><?= $row['item_name'] ?><br><br>
-          <span style="color:green"><i class="fas fa-rupee"></i><?= $row['price'] ?></span>
-        </div>
-      </div>
       <?php
       }
       ?>
@@ -134,18 +134,18 @@ where category_id=$ctid ";
     <nav class="numbering">
       <ul class="pagination">
         <li><a href="<?php
-        $_GET['pageno'] = 1;
-        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-        ?>">First</a></li>
+                      $_GET['pageno'] = 1;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                      ?>">First</a></li>
         <li class="<?php if ($pageno <= 1) {
-          echo 'disabled';
-        } ?>">
+                      echo 'disabled';
+                    } ?>">
           <a href="<?php if ($pageno <= 1) {
-            echo '#';
-          } else {
-            $_GET['pageno'] = $pageno - 1;
-            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-          } ?>">Prev</a>
+                      echo '#';
+                    } else {
+                      $_GET['pageno'] = $pageno - 1;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                    } ?>">Prev</a>
         </li>
         <?php
         $ends_count = 1;  //how many items at the ends (before and after [...])
@@ -153,29 +153,29 @@ where category_id=$ctid ";
         $dots = false;
         for ($page = 1; $page <= $number_of_page; $page++) {
           if ($page == $pageno) {
-            ?>
-        <li class="active">
-          <a href="<?php
-              $_GET['pageno'] = $page;
-              echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
-            <?= $page ?></a>
-        </li>
-        <?php
+        ?>
+            <li class="active">
+              <a href="<?php
+                        $_GET['pageno'] = $page;
+                        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                <?= $page ?></a>
+            </li>
+            <?php
             $dots = true;
           } else {
             if ($page <= $ends_count || ($pageno && $page >= $pageno - $middle_count && $page <= $pageno + $middle_count) || $page > $number_of_page - $ends_count) {
-              ?>
-        <li>
-          <a href="<?php
-                $_GET['pageno'] = $page;
-                echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
-            <?= $page ?></a>
-        </li>
-        <?php
+            ?>
+              <li>
+                <a href="<?php
+                          $_GET['pageno'] = $page;
+                          echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                  <?= $page ?></a>
+              </li>
+            <?php
               $dots = true;
             } elseif ($dots) {
-              ?>
-        <li><a>&hellip;</a></li>
+            ?>
+              <li><a>&hellip;</a></li>
         <?php
               $dots = false;
             }
@@ -183,20 +183,20 @@ where category_id=$ctid ";
         }
         ?>
         <li class="<?php if ($pageno >= $number_of_page) {
-          echo 'disabled';
-        } ?>">
+                      echo 'disabled';
+                    } ?>">
           <a href="<?php if ($pageno >= $number_of_page) {
-            echo '#';
-          } else {
-            $_GET['pageno'] = $pageno + 1;
-            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-          } ?>">
+                      echo '#';
+                    } else {
+                      $_GET['pageno'] = $pageno + 1;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                    } ?>">
             Next</a>
         </li>
         <li><a href="<?php
-        $_GET['pageno'] = $number_of_page;
-        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-        ?>">Last</a></li>
+                      $_GET['pageno'] = $number_of_page;
+                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                      ?>">Last</a></li>
       </ul>
     </nav>
     <div class="clearfix">

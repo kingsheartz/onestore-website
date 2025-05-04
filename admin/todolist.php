@@ -155,8 +155,11 @@
         $.ajax({
           type: 'POST',
           url: 'delto.php',
-          data: { up_id: selected_option_value, up_tit: nw },
-          success: function (data) {
+          data: {
+            up_id: selected_option_value,
+            up_tit: nw
+          },
+          success: function(data) {
             console.log(data);
             location.reload();
           }
@@ -165,6 +168,7 @@
         console.log('not submitt');
       }
     }
+
     function postelement(x) {
       var selected_option_value = x;
       if (selected_option_value) {
@@ -172,7 +176,7 @@
           type: 'POST',
           url: 'delto.php',
           data: 'dl_id=' + selected_option_value,
-          success: function (data) {
+          success: function(data) {
             console.log(data);
             $('#myUL').load(location.href + " #myUL >");
           }
@@ -181,6 +185,7 @@
         console.log('not submitt');
       }
     }
+
     function addline() {
       var selected_option_value = document.getElementById('myInput').value;
       if (selected_option_value) {
@@ -188,7 +193,7 @@
           type: 'POST',
           url: 'delto.php',
           data: 'addnm=' + selected_option_value,
-          success: function (data) {
+          success: function(data) {
             console.log(data);
             $('#myUL').load(location.href + " #myUL >");
           }
@@ -207,28 +212,28 @@
       "select  * from to_do_list"
     );
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-      ?>
+    ?>
       <li><span class="handle"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i>
           <input type="checkbox" id="<?= $row['list_id'] ?>"
             onclick="updatelement(<?= $row['list_id'] ?>,'<?= $row['title'] ?>')"></span>
         <?= $row['title'] ?><span class="nday" style="background:<?= $colors[array_rand($colors)] ?>;"><i style="padding-right: 4px;
   padding-left: 4px;" class="fas fa-clock"></i><?php
-  $start = strtotime($row['add_date']);
-  $end = strtotime(date("Y/m/d"));
-  $days_between = ceil(abs($end - $start) / 86400);
-  if ($days_between == 0) {
-    echo "Today";
-  } else {
-    echo $days_between . " days";
-  }
-  ?></span><span class="close" onclick="postelement(<?= $row['list_id'] ?>)"><i class="fa fa-times"></i></span></li>
+                                                $start = strtotime($row['add_date']);
+                                                $end = strtotime(date("Y/m/d"));
+                                                $days_between = ceil(abs($end - $start) / 86400);
+                                                if ($days_between == 0) {
+                                                  echo "Today";
+                                                } else {
+                                                  echo $days_between . " days";
+                                                }
+                                                ?></span><span class="close" onclick="postelement(<?= $row['list_id'] ?>)"><i class="fa fa-times"></i></span></li>
       <?php
       $r = explode('<strike>', $row['title']);
       if (isset($r[1])) {
         echo '<script>$("#' . $row['list_id'] . '").prop("checked", true);$("#' . $row['list_id'] . '").attr("disabled",true)</script>';
       }
       ?>
-      <?php
+    <?php
     }
     ?>
   </ul>

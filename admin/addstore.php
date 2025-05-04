@@ -325,14 +325,14 @@ if (!empty($_SESSION['_contact_form_success'])) {
           <div class="card-body" style="padding-top: 0px;">
             <?php
             if (!empty($success)) {
-              ?>
+            ?>
               <div class="alert alert-success">Your message was sent successfully!</div>
-              <?php
+            <?php
             }
             if (!empty($error)) {
-              ?>
+            ?>
               <div class="alert alert-danger"><?= $error ?></div>
-              <?php
+            <?php
             }
             ?>
             <form method="post" action="submit.php" style="margin-top: 30px;">

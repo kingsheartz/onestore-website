@@ -61,7 +61,7 @@ require "head.php";
         pageButtonCount: 5,
         deleteConfirm: "Do you really want to delete?",
         controller: {
-          loadData: function (filter) {
+          loadData: function(filter) {
             console.log("hdgahgdjagj")
             return $.ajax({
               type: "GET",
@@ -70,7 +70,7 @@ require "head.php";
               dataType: "json"
             });
           },
-          insertItem: function (item) {
+          insertItem: function(item) {
             return $.ajax({
               type: "POST",
               url: "getneworders.php",
@@ -78,14 +78,14 @@ require "head.php";
               dataType: "json"
             });
           },
-          updateItem: function (item) {
+          updateItem: function(item) {
             return $.ajax({
               type: "PUT",
               url: "getneworders.php",
               data: item
             });
           },
-          deleteItem: function (item) {
+          deleteItem: function(item) {
             return $.ajax({
               type: "DELETE",
               url: "getneworders.php",
@@ -94,54 +94,54 @@ require "head.php";
           },
         },
         fields: [{
-          name: "store_id",
-          title: "# Id",
-          type: "text",
-          //width:80,
-          validate: "required"
-        },
-        {
-          name: "store_name",
-          title: "Store Name",
-          type: "text",
-          //width:150,
-          validate: "required"
-        },
-        {
-          name: "opening_hours",
-          title: "Opening Hours",
-          type: "text",
-          //width:150,
-          validate: "required"
-        },
-        {
-          name: "address",
-          title: "Address",
-          type: "text",
-          // width:150,
-          validate: "required"
-        },
-        {
-          name: "status",
-          title: "Open/Closed",
-          type: "text",
-          //width:150,
-          validate: "required"
-        },
-        {
-          name: "longitude",
-          title: "Longitude",
-          type: "text",
-          //width:150,
-          validate: "required"
-        },
-        {
-          name: "latitude",
-          title: "Latitude",
-          type: "text",
-          // width:150,
-          validate: "required"
-        },
+            name: "store_id",
+            title: "# Id",
+            type: "text",
+            //width:80,
+            validate: "required"
+          },
+          {
+            name: "store_name",
+            title: "Store Name",
+            type: "text",
+            //width:150,
+            validate: "required"
+          },
+          {
+            name: "opening_hours",
+            title: "Opening Hours",
+            type: "text",
+            //width:150,
+            validate: "required"
+          },
+          {
+            name: "address",
+            title: "Address",
+            type: "text",
+            // width:150,
+            validate: "required"
+          },
+          {
+            name: "status",
+            title: "Open/Closed",
+            type: "text",
+            //width:150,
+            validate: "required"
+          },
+          {
+            name: "longitude",
+            title: "Longitude",
+            type: "text",
+            //width:150,
+            validate: "required"
+          },
+          {
+            name: "latitude",
+            title: "Latitude",
+            type: "text",
+            // width:150,
+            validate: "required"
+          },
         ]
       });
     </script>

@@ -286,27 +286,33 @@ if (!empty($_SESSION['_contact_form_success'])) {
         });*/
         document.forms[x].submit();
       }
+
       function previewFile(inp, i, x) {
         var file = $('' + inp).get(0).files[0];
         if (file) {
           var reader = new FileReader();
-          reader.onload = function () {
+          reader.onload = function() {
             $("#" + x + "previewImg" + i).attr("src", reader.result);
           }
           reader.readAsDataURL(file);
         }
       }
+
       function ImageExist(url) {
         result = false;
-        $.ajaxSetup({ async: false });
+        $.ajaxSetup({
+          async: false
+        });
         $.get(url)
-          .done(function () {
+          .done(function() {
             result = true;
           })
-          .fail(function () {
+          .fail(function() {
             result = false;
           })
-        $.ajaxSetup({ async: true });
+        $.ajaxSetup({
+          async: true
+        });
         return (result);
         /*var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -338,6 +344,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
            return true;
          }*/
       }
+
       function upimg(cn, x) {
         cn = cn + 1;
         for (var i = cn; i <= 10; i++) {
@@ -346,8 +353,8 @@ if (!empty($_SESSION['_contact_form_success'])) {
         var n = $('#nj' + x).val();
         for (var i = cn; i <= n; i++) {
           $('#imgdiv' + x).append('<div class="image-upload">  \
-    <label for="'+ x + 'file-input' + i + '" style="width: 100%; cursor: pointer;"><center>\
-    <img id="'+ x + 'previewImg' + i + '" src="images/upload2.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"> </center>      </label>      <input id="' + x + 'file-input' + i + '" required type="file" name="my_file' + i + '" onchange="previewFile(\'#' + x + 'file-input' + i + '\',' + i + ',' + x + ');" style="display: none; cursor: pointer;">    </div>');
+    <label for="' + x + 'file-input' + i + '" style="width: 100%; cursor: pointer;"><center>\
+    <img id="' + x + 'previewImg' + i + '" src="images/upload2.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"> </center>      </label>      <input id="' + x + 'file-input' + i + '" required type="file" name="my_file' + i + '" onchange="previewFile(\'#' + x + 'file-input' + i + '\',' + i + ',' + x + ');" style="display: none; cursor: pointer;">    </div>');
           /* url="../images/"+cat+"/"+sub+"/"+it+"_"+i+".jpg";
          st=ImageExist(url) ;
          console.log(st);
@@ -361,6 +368,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
         */
         }
       }
+
       function numplusone(cn, x) {
         var n = parseInt($('#nj' + x).val());
         console.log(n);
@@ -376,6 +384,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
         $('#nj' + x).val(b);
         upimg(cn, x);
       }
+
       function numminone(cn, x) {
         var n = parseInt($('#nj' + x).val());
         if (n < 1) {
@@ -392,7 +401,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
     </script>
     <?php
     if (!empty($success)) {
-      ?>
+    ?>
       <div class="alert alert-success">Images Added Successfully!</div>
       <a href="view.php"><button style="background: green;color: white;
   border: none;
@@ -401,12 +410,12 @@ if (!empty($_SESSION['_contact_form_success'])) {
   width: 200px;
   border-radius: 5px;
   font-weight: bolder;">Go back</button></a>
-      <?php
+    <?php
     }
     ?>
     <?php
     if (!empty($error)) {
-      ?>
+    ?>
       <div class="alert alert-danger"><?= $error ?></div>
       <a href="view.php"><button style="background: red;color: white;
   border: none;
@@ -415,7 +424,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
   width: 200px;
   border-radius: 5px;
   font-weight: bolder;">Go back</button></a>
-      <?php
+    <?php
     }
     ?>
     <?php
@@ -430,7 +439,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
       $description = $_POST['updescription'];
       $price = $_POST['upprice'];
       $it = $_POST['upitem_id'];
-      ?>
+    ?>
       <div class="pr1">
         <div class="proupda ">
           <div class="newupdation">
@@ -457,7 +466,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
               $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item_description.item_id=$it ";
               $st = $pdo->query($query);
               while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+              ?>
                 <div class="col-sm-12" style="padding: 20px;">
                   <div class="imgdis">
                     <form id="<?= $row['item_description_id'] ?>" target='ifr<?= $row['item_description_id'] ?>'
@@ -489,7 +498,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
                                 $ico = $itcn;
                                 if ($itcn > 0) {
                                   for ($i = 1; $i <= $ico; $i++) {
-                                    ?>
+                                ?>
                                     <div class="image-upload">
                                       <label for="<?= $row['item_description_id'] ?>file-input<?= $i ?>"
                                         style="width: 100%; cursor: pointer;">
@@ -504,7 +513,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
                                         onchange="previewFile('#<?= $row['item_description_id'] ?>file-input<?= $i ?>',<?= $i ?>,<?= $row['item_description_id'] ?>);"
                                         style="display: none; cursor: pointer;">
                                     </div>
-                                    <?php
+                                <?php
                                   }
                                 }
                                 ?>
@@ -571,20 +580,20 @@ if (!empty($_SESSION['_contact_form_success'])) {
                   style='display: none;'></iframe>
                 <script>
                   var iframe = document.getElementById("ifr<?= $row['item_description_id'] ?>");
-                  iframe.onload = function () {
+                  iframe.onload = function() {
                     var bodycontent = iframe.contentDocument.body.innerHTML;
                     console.log(bodycontent);
                     // processing content acquired;
                   }
                 </script>
-                <?php
+              <?php
               }
               ?>
             </div>
           </div>
         </div>
       </div>
-      <?php
+    <?php
     }
     ?>
     <?php

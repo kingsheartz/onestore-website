@@ -466,13 +466,13 @@ WHERE item_description_id=:item_description_id
           $('#' + i + 'w3').val(v1);
         }
       }
+
       function showupda(x, y) {
-        $('#' + x).on("submit", function (e) {
+        $('#' + x).on("submit", function(e) {
           var dataString = new FormData(this);
           if (y == 1) {
             dataString.append('update_data', '1');
-          }
-          else if (y == 0) {
+          } else if (y == 0) {
             dataString.append('remove_data', '1');
           }
           $.ajax({
@@ -482,11 +482,11 @@ WHERE item_description_id=:item_description_id
             contentType: false,
             cache: false,
             processData: true,
-            success: function () {
+            success: function() {
               $("#" + x).html("<div id='message'></div>");
               $("#message")
                 .hide()
-                .fadeIn(1500, function () {
+                .fadeIn(1500, function() {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated \
             <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
@@ -511,6 +511,7 @@ WHERE item_description_id=:item_description_id
         $('#' + x).scrollLeft(y + 100);
         $('#' + x + '>.right-arrow').show();
       }
+
       function moveright(x) {
         var y = $('#' + x).scrollLeft();
         $('#' + x + '>.left-arrow').show();
@@ -519,17 +520,16 @@ WHERE item_description_id=:item_description_id
         }
         $('#' + x).scrollLeft(y - 100);
       }
+
       function movefr(x) {
         var y = $('#' + x).scrollLeft();
         var width = $('#' + x).outerWidth()
         var scrollWidth = $('#' + x)[0].scrollWidth;
         if (scrollWidth - width === y) {
           $('#' + x + '>.left-arrow').hide();
-        }
-        else if (y === 0) {
+        } else if (y === 0) {
           $('#' + x + '>.right-arrow').hide();
-        }
-        else {
+        } else {
           $('#' + x + '>.left-arrow').show();
           $('#' + x + '>.right-arrow').show();
         }
@@ -547,7 +547,7 @@ WHERE item_description_id=:item_description_id
       $description = $_POST['description'];
       $price = $_POST['price'];
       $it = $_POST['item_id'];
-      ?>
+    ?>
       <div class="pr1">
         <div class="proupda ">
           <div class="newupdation">
@@ -577,7 +577,7 @@ WHERE item_description_id=:item_description_id
                 $query = "SELECT * FROM item  where item_id=$it ";
                 $st = $pdo->query($query);
                 while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-                  ?>
+                ?>
                   <div class="form-group" style="margin-bottom: 30px;">
                     <span class="floating-label">Price</span>
                     <input name="price"
@@ -592,7 +592,7 @@ WHERE item_description_id=:item_description_id
                     <textarea name="description"><?= $row['description'] ?></textarea>
                   </div>
                   <input type="hidden" name="cid" value="<?= $row['item_id'] ?>">
-                  <?php
+                <?php
                 }
                 ?>
                 <button name="update_data" style="    font-weight: bold;
@@ -614,7 +614,7 @@ WHERE item_description_id=:item_description_id
               $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item_description.item_id=$it ";
               $st = $pdo->query($query);
               while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+              ?>
                 <div class="col-sm-12">
                   <div class="imgdis">
                     <form id="<?= $row['item_description_id'] ?>" method="post" name="<?= $row['item_description_id'] ?>">
@@ -656,7 +656,7 @@ WHERE item_description_id=:item_description_id
                           <?php
                           $t = $row['img_count'];
                           for ($i = 1; $i <= $t; $i++) {
-                            ?>
+                          ?>
                             <div class="product">
                               <img style=" display: inline-block;
   text-align: center;
@@ -667,7 +667,7 @@ WHERE item_description_id=:item_description_id
    " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
                                 src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg">
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </div>
@@ -683,8 +683,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM size where size_id=" . $row['size'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check1').prop('checked', true); $('#<?= $row['item_description_id'] ?>check1').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check1').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check1').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>size" class="form-control" name="size">
@@ -692,16 +694,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from size");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['size_id'] ?>"><?= $row2['size_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>size" class="form-control"
                                 style="display:none;width: 100%" name="size">
@@ -709,14 +711,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from size");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['size_id'] ?>"><?= $row2['size_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } ?>
                         </label>
                         <label class="checkbox">
@@ -728,8 +730,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM color where color_id=" . $row['color'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check2').prop('checked', true); $('#<?= $row['item_description_id'] ?>check2').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check2').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check2').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>color" class="form-control" name="color">
@@ -739,18 +743,18 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from color");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option style="background:<?= $row2['color_name'] ?>" value="<?= $row2['color_id'] ?>">
                                     <?= $row2['color_name'] ?>
                                   </option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>color" placeholder="color" class="form-control"
                                 style="display:none;width: 100%" name="color">
@@ -758,14 +762,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from color");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['color_id'] ?>"><?= $row2['color_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -777,8 +781,10 @@ WHERE item_description_id=:item_description_id
                           if ($row['weight'] != 0) {
                             $we = $row['weight'];
                             $we3 = explode(' ', $we);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check3').prop('checked', true); $('#<?= $row['item_description_id'] ?>check3').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check3').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check3').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <input type="number"
@@ -797,9 +803,9 @@ WHERE item_description_id=:item_description_id
                               </select>
                               <input type="hidden" id="<?= $row['item_description_id'] ?>w3" name="weight">
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <input
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
@@ -816,7 +822,7 @@ WHERE item_description_id=:item_description_id
                               </select>
                               <input type="hidden" id="<?= $row['item_description_id'] ?>w3" name="weight">
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -829,8 +835,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM flavour where flavour_id=" . $row['flavour'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check4').prop('checked', true); $('#<?= $row['item_description_id'] ?>check4').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check4').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check4').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>flavour" class="form-control" name="flavour">
@@ -838,16 +846,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from flavour");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['flavour_id'] ?>"><?= $row2['flavour_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>flavour" class="form-control"
                                 style="display:none;width: 100%" name="flavour">
@@ -855,14 +863,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from flavour");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['flavour_id'] ?>"><?= $row2['flavour_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -876,8 +884,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM processor where processor_id=" . $row['processor'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check5').prop('checked', true); $('#<?= $row['item_description_id'] ?>check5').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check5').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check5').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>processor" class="form-control" name="processor">
@@ -885,16 +895,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from processor");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['processor_id'] ?>"><?= $row2['processor_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>processor" placeholder="processor"
                                 class="form-control" style="display:none;width: 100%" name="processor">
@@ -902,14 +912,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from processor");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['processor_id'] ?>"><?= $row2['processor_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -922,8 +932,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM display where display_id=" . $row['display'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check6').prop('checked', true); $('#<?= $row['item_description_id'] ?>check6').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check6').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check6').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>disp" class="form-control" name="display">
@@ -931,16 +943,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from display");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['display_id'] ?>"><?= $row2['display_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>disp" placeholder="display" class="form-control"
                                 style="display:none;width: 100%" name="display">
@@ -948,14 +960,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from display");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['display_id'] ?>"><?= $row2['display_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -968,8 +980,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM battery where battery_id=" . $row['battery'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check7').prop('checked', true); $('#<?= $row['item_description_id'] ?>check7').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check7').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check7').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>battery" class="form-control" name="battery">
@@ -977,16 +991,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from battery");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['battery_id'] ?>"><?= $row2['battery_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>battery" placeholder="battery"
                                 class="form-control" style="display:none;width: 100%" name="battery">
@@ -994,14 +1008,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from battery");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['battery_id'] ?>"><?= $row2['battery_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -1015,8 +1029,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row['internal_storage'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check8').prop('checked', true); $('#<?= $row['item_description_id'] ?>check8').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check8').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check8').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>internal_storage" class="form-control"
@@ -1026,17 +1042,17 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from internal_storage");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['internal_storage_id'] ?>"><?= $row2['internal_storage_name'] ?>
                                   </option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>internal_storage" placeholder="internal_storage"
                                 class="form-control" style="display:none;width: 100%" name="internal_storage">
@@ -1044,15 +1060,15 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from internal_storage");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['internal_storage_id'] ?>"><?= $row2['internal_storage_name'] ?>
                                   </option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -1065,8 +1081,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM brand where brand_id=" . $row['brand'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check9').prop('checked', true); $('#<?= $row['item_description_id'] ?>check9').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check9').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check9').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <span id="<?= $row['item_description_id'] ?>brand" class="floating-label"
@@ -1076,16 +1094,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from brand where category_id=" . $row['category_id']);
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['brand_id'] ?>"><?= $row2['brand_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>brand" placeholder="brand" class="form-control"
                                 style="display:none;width: 100%" name="brand">
@@ -1093,14 +1111,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from brand where category_id=" . $row['category_id']);
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['brand_id'] ?>"><?= $row2['brand_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -1114,8 +1132,10 @@ WHERE item_description_id=:item_description_id
                             $query1 = "SELECT * FROM material where material_id=" . $row['material'];
                             $st1 = $pdo->query($query1);
                             $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                            ?>
-                            <script type="text/javascript">$('#<?= $row['item_description_id'] ?>check10').prop('checked', true); $('#<?= $row['item_description_id'] ?>check10').attr('disabled', true);
+                          ?>
+                            <script type="text/javascript">
+                              $('#<?= $row['item_description_id'] ?>check10').prop('checked', true);
+                              $('#<?= $row['item_description_id'] ?>check10').attr('disabled', true);
                             </script>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>material" class="form-control" name="material">
@@ -1123,16 +1143,16 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from material");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['material_id'] ?>"><?= $row2['material_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <div class="form-group">
                               <select id="<?= $row['item_description_id'] ?>material" placeholder="material"
                                 class="form-control" style="display:none;width: 100%" name="material">
@@ -1140,14 +1160,14 @@ WHERE item_description_id=:item_description_id
                                 <?php
                                 $cat = $pdo->query("select * from material");
                                 while ($row2 = $cat->fetch(PDO::FETCH_ASSOC)) {
-                                  ?>
+                                ?>
                                   <option value="<?= $row2['material_id'] ?>"><?= $row2['material_name'] ?></option>
-                                  <?php
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
-                            <?php
+                          <?php
                           }
                           ?>
                         </label>
@@ -1173,14 +1193,14 @@ WHERE item_description_id=:item_description_id
                     </form>
                   </div>
                 </div>
-                <?php
+              <?php
               }
               ?>
             </div>
           </div>
         </div>
       </div>
-      <?php
+    <?php
     }
     ?>
     <?php

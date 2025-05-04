@@ -64,4 +64,3 @@ $query="DELETE FROM store WHERE store_id='".$_DELETE['store_id']."'";
 $statement=$pdo->prepare($query);
 $statement->execute();
 }*/
-?>

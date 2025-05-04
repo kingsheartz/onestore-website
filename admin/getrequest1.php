@@ -24,7 +24,6 @@ if ($method == 'GET') {
 		);
 	}
 	echo json_encode($output);
-
 }
 if (isset($_POST['type'])) {
 	if ($_POST['type'] == "update") { //EDITED LINE
@@ -46,4 +45,3 @@ if (isset($_POST['type'])) {
 		$statement->execute();
 	}
 }
-?>

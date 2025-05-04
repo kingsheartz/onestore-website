@@ -40,8 +40,8 @@ require "head.php";
           pageButtonCount: 5,
           deleteConfirm: "Do you really want to delete?",
           controller: {
-            loadData: function (filter) {
-              filter.type = "filter";//EDITED LINE
+            loadData: function(filter) {
+              filter.type = "filter"; //EDITED LINE
               return $.ajax({
                 type: "GET",
                 url: "getrequest1.php",
@@ -50,19 +50,19 @@ require "head.php";
               });
             },
             //EDITED BY KINGSHEARTZ
-            updateItem: function (item) {
-              item.type = "update";//EDITED LINE
+            updateItem: function(item) {
+              item.type = "update"; //EDITED LINE
               console.log(item)
               return $.ajax({
                 type: "POST",
                 url: "getrequest1.php",
                 data: item,
                 dataType: "json",
-                timeout: 30000,   //waiting time 30 sec
-                success: function (data) {
+                timeout: 30000, //waiting time 30 sec
+                success: function(data) {
                   location.href = " request.php";
                 },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
                   if (textstatus === "timeout") {
                     swal({
                       title: "Oops!!!",
@@ -77,19 +77,19 @@ require "head.php";
                 }
               });
             },
-            deleteItem: function (item) {
-              item.type = "delete";//EDITED LINE
+            deleteItem: function(item) {
+              item.type = "delete"; //EDITED LINE
               console.log(item)
               return $.ajax({
                 type: "POST",
                 url: "getrequest1.php",
                 data: item,
                 dataType: "json",
-                timeout: 30000,   //waiting time 30 sec
-                success: function (data) {
+                timeout: 30000, //waiting time 30 sec
+                success: function(data) {
                   return;
                 },
-                error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
                   if (textstatus === "timeout") {
                     swal({
                       title: "Oops!!!",
@@ -107,48 +107,57 @@ require "head.php";
             },
           },
           fields: [{
-            name: "product_details_id",
-            title: "Id",
-            type: "text",
-            width: 50,
-            editing: false,
-            validate: "required"
-          },
-          {
-            name: "item_description_id",
-            title: "description_id",
-            type: "text",
-            width: 100,
-            editing: false,
-            validate: "required"
-          },
-          {
-            name: "item_name",
-            title: "Product",
-            type: "text",
-            width: 150,
-            editing: false,
-            validate: "required"
-          },
-          {
-            name: "store_name",
-            title: "Store",
-            type: "text",
-            editing: false,
-            width: 100,
-            validate: "required"
-          },
-          {
-            name: "permission",
-            title: "Permission",
-            type: "select",
-            items: [{ Name: "", Id: "" }, { Name: "Allow", Id: "1" }, { Name: "Denied", Id: "0" }],
-            valueField: "Id",
-            textField: "Name"
-          },
-          {
-            type: "control"
-          }
+              name: "product_details_id",
+              title: "Id",
+              type: "text",
+              width: 50,
+              editing: false,
+              validate: "required"
+            },
+            {
+              name: "item_description_id",
+              title: "description_id",
+              type: "text",
+              width: 100,
+              editing: false,
+              validate: "required"
+            },
+            {
+              name: "item_name",
+              title: "Product",
+              type: "text",
+              width: 150,
+              editing: false,
+              validate: "required"
+            },
+            {
+              name: "store_name",
+              title: "Store",
+              type: "text",
+              editing: false,
+              width: 100,
+              validate: "required"
+            },
+            {
+              name: "permission",
+              title: "Permission",
+              type: "select",
+              items: [{
+                Name: "",
+                Id: ""
+              }, {
+                Name: "Allow",
+                Id: "1"
+              }, {
+                Name: "Denied",
+                Id: "0"
+              }],
+              valueField: "Id",
+              textField: "Name"
+            },
+            {
+              type: "control"
+            }
           ]
         });
       </script>

@@ -201,25 +201,26 @@
     </div>
   </nav>
   <script>
-    $('#sidebar li').on('click', 'a', function (e) {
+    $('#sidebar li').on('click', 'a', function(e) {
       if ($(this).parent().children('ul').length) {
         e.preventDefault();
         $('#featic').attr('class', 'fas fa-angle-down');
         $(this).addClass('active');
         $(this).parent().children('ul').slideDown();
-        setTimeout(function () {
+        setTimeout(function() {
           //$.fn.matchHeight._update();
           //  $.fn.matchHeight._maintainScroll = true;
         }, 1000);
       }
     });
-    $('#sidebar li').on('click', 'a.active', function (e) {
+    $('#sidebar li').on('click', 'a.active', function(e) {
       e.preventDefault();
       $(this).removeClass('active');
       $('#featic').attr('class', 'fas fa-angle-right');
       $(this).parent().children('ul').slideUp();
-      setTimeout(function () {
+      setTimeout(function() {
         // $.fn.matchHeight._update();
         // $.fn.matchHeight._maintainScroll = true;
       }, 1000);
-    });</script>
+    });
+  </script>
