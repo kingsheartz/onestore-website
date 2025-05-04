@@ -132,7 +132,7 @@ require "header.php";
                   <p>Thanks for your visit to our store.We believe ,you like to shop with us.Feel free
                     to explore our world.We are here to help you. :)</p>
                   <div class="testi-subscript">
-                    <p><a href="#">Govind,</a>Leader</p>
+                    <p><a href="#">KRISHNENDU,</a>Leader</p>
                     <span class="w3-agilesub"> </span>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ require "header.php";
                   <p>World is so big,we can't roam for every needs.We try to bring that to your finger
                     tips, so that you can save your precious time.</p>
                   <div class="testi-subscript">
-                    <p><a href="#">KING'S HEARTZ,</a>Manager</p>
+                    <p><a href="#">KRISHNENDU,</a>Manager</p>
                     <span class="w3-agilesub"> </span>
                   </div>
                 </div>
@@ -192,7 +192,7 @@ require "header.php";
         <div class="col-md-3 about-team-grids">
           <img src="../../images/team/t1.JPG" alt="" height="450px" />
           <div class="team-w3lstext">
-            <h4><span>GOVIND,</span> Leader</h4>
+            <h4><span>KRISHNENDU,</span> Leader</h4>
             <p>Controls overall project and direct into the right path for the fullfilness of work.</p>
           </div>
           <div class="social-icons caption">
@@ -212,14 +212,14 @@ require "header.php";
             <div class='flip-box-front'>
               <img src="../../images/team/t2.JPG" alt="" height="450px" />
               <div class="team-w3lstext">
-                <h4><span>Anumol,</span> Member</h4>
+                <h4><span>KRISHNENDU,</span> Member</h4>
                 <p>Provides datas and support to the team which helps in reaching fullness of work.</p>
               </div>
             </div>
             <div class='flip-box-back'>
               <img src="../../images/team/t5.jpg" alt="" height="450px" />
               <div class="team-w3lstext">
-                <h4><span>Dhanalakshmi,</span> Member</h4>
+                <h4><span>KRISHNENDU,</span> Member</h4>
                 <p>Helps collecting datas for the project completion.</p>
               </div>
             </div>
@@ -238,7 +238,7 @@ require "header.php";
         <div class="col-md-3 about-team-grids">
           <img src="../../images/team/t3.JPG" alt="" height="450px" />
           <div class="team-w3lstext">
-            <h4><span>SHAHANAS,</span> Supervisor</h4>
+            <h4><span>KRISHNENDU,</span> Supervisor</h4>
             <p>Holds the root of our project and supervise the members group .</p>
           </div>
           <div class="social-icons caption">
