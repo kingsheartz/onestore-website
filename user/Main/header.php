@@ -1985,38 +1985,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#EXTRAS#/////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////#EXTRAS#/////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////#END#/////////////////////////////////////////////////////////////////-->
-    <!-- <button class="dropdown-btn category_side_head" id="list_endk" style="width: 100%;float: left;padding-left: 0px;display: none;"><a href="#" style="color: white;"> Unknown
-      <i class="fa fa-caret-down"></i></a>
-    </button>
-    <div class="dropdown-container side_drop_li_main slide_drop_li_main_first" style="display: none;">
-      <a href="#" style="width: 100%;padding: 0px;padding-top: 111px;">
-        <li class="side_drop_li"  onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-    </div> -->
     <div id="side_cat_list_end_default" style="margin-top: 370px;"></div>
     <!--n+4 breaks 37px difference-->
     <div id="side_cat_list_enda" style="display: none;margin-top: 333px;"></div>
@@ -2066,6 +2034,3 @@ if (session_status() === PHP_SESSION_NONE) {
     ?>
     <a class="side_nav_content_end" href="#"></a>
   </div>
-  <!--SIDE-BAR-DIV #fe9126,#02171e,#337ab7-->
-  <!--<div id="main_all" style="padding: 0px;margin: 0px;left: 0px;right: 0px">-->
-  <!--SIDE-BAR-DIV-->

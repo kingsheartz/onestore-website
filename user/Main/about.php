@@ -44,7 +44,8 @@ require "header.php";
 <div class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-      <li><a href="../Main/onestore.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+      <li>
+        <a href="../Main/onestore.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
       </li>
       <li class="active">About</li>
     </ol>
@@ -129,8 +130,7 @@ require "header.php";
               <li>
                 <div class="testi-slider">
                   <h4>" I AM VERY PLEASED.</h4>
-                  <p>Thanks for your visit to our store.We believe ,you like to shop with us.Feel free
-                    to explore our world.We are here to help you. :)</p>
+                  <p>Thanks for your visit to our store.We believe ,you like to shop with us.Feel free to explore our world.We are here to help you. :)</p>
                   <div class="testi-subscript">
                     <p><a href="#">Govind,</a>Leader</p>
                     <span class="w3-agilesub"> </span>
@@ -140,8 +140,7 @@ require "header.php";
               <li>
                 <div class="testi-slider">
                   <h4>" WORLD IS SO BIG</h4>
-                  <p>World is so big,we can't roam for every needs.We try to bring that to your finger
-                    tips, so that you can save your precious time.</p>
+                  <p>World is so big,we can't roam for every needs.We try to bring that to your finger tips, so that you can save your precious time.</p>
                   <div class="testi-subscript">
                     <p><a href="#">KING'S HEARTZ,</a>Manager</p>
                     <span class="w3-agilesub"> </span>
@@ -151,8 +150,7 @@ require "header.php";
               <li>
                 <div class="testi-slider">
                   <h4>" THANKS TO YOU.</h4>
-                  <p>Everything we doing great because of your support.We are expecting that it will
-                    continue from your side,Thank you !! </p>
+                  <p>Everything we doing great because of your support.We are expecting that it will continue from your side,Thank you !! </p>
                   <div class="testi-subscript">
                     <p><a href="#">Supporting Team,</a>OneStore</p>
                     <span class="w3-agilesub"> </span>
@@ -177,7 +175,8 @@ require "header.php";
         <p style="text-align:justify">Technology is growing day to day for saving our time and giving
           extraordinary features and specifications to us. We also thinks in the same way to provide the same
           result to you. We believe in providing you a best user friendly atmosphere is our success. We are
-          trying hard time-to-time in achieving that .</p>
+          trying hard time-to-time in achieving that.
+        </p>
       </div>
     </div>
   </div>
@@ -197,12 +196,14 @@ require "header.php";
           </div>
           <div class="social-icons caption">
             <ul>
-              <li><a href="https://www.facebook.com/As.Govind" target="_blank" class="fa fa-facebook facebook"> </a>
+              <li><a href="https://www.facebook.com/As.Govind" target="_blank" class="fa fa-facebook facebook"></a>
               </li>
-              <li><a href="https://wa.me/[918113990368]?text=Hai%2C%20There!" data-action="share/whatsapp/share"
-                  target="_blank" class="fa fa-whatsapp" style="font-size:15px"> </a></li>
-              <li><a href="mailto:govind.das279@gmail.com" target="_blank" class="fa fa-envelope mail">
-                </a></li>
+              <li>
+                <a href="https://wa.me/[918113990368]?text=Hai%2C%20There!" data-action="share/whatsapp/share" target="_blank" class="fa fa-whatsapp" style="font-size:15px"> </a>
+              </li>
+              <li>
+                <a href="mailto:govind.das279@gmail.com" target="_blank" class="fa fa-envelope mail"></a>
+              </li>
             </ul>
             <div class="clearfix"> </div>
           </div>
