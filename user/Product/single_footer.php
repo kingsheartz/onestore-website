@@ -978,7 +978,7 @@ if (isset($item_description_id)) {
 <!----------------------------------------------------------------------------------------------------------------------------->
 <!----------------------------------------------------------------------------------------------------------------------------->
 <!----------------------------------------------------------------------------------------------------------------------------->
-<!--///////////////////////////SHARE APK////////////////////////////////////////////////////////////////////////////////-->
+<!------------------------------------- #SHARE APK# --------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!--SHARE APK-->
 <!-- Modal -->
@@ -1153,7 +1153,7 @@ if (isset($item_description_id)) {
 </script>
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------------------>
-<!--///////////////////////////SHARE WISHLIST////////////////////////////////////////////////////////////////////////////////-->
+<!------------------------------------- #SHARE WISHLIST# ----------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!--SHARE WISHLIST-->
 <!-- Modal -->
@@ -1640,10 +1640,9 @@ if (isset($item_description_id)) {
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- added script for new template -->
 <!-- Latest jQuery form server -->
-<!------------------------------------------------------------>
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!------------------------------------------------->
 <script src="https://cdn.jsdelivr.net/gh/vast-engineering/jquery-popup-overlay@2/jquery.popupoverlay.min.js"></script>
 <script type="text/javascript">
   jQuery.fn.putCursorAtEnd = function() {
@@ -2260,25 +2259,24 @@ if (isset($item_description_id)) {
     $("#popup2_wrapper").hide();
     /*find latitude and longitude with postal code and postoffice*/
     /*
-    		 var address=document.getElementById('po_list').value;
-    		 var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
-    		 var xmlhttp = new XMLHttpRequest();
-    		 xmlhttp.onreadystatechange = function() {
-    						 if (this.readyState == 4 && this.status == 200) {
-    						 locate = JSON.parse(this.responseText);
-    				 }
-    		 };
-    		 xmlhttp.open("GET", post , true);
-    		 xmlhttp.send();
+        var address=document.getElementById('po_list').value;
+        var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                locate = JSON.parse(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", post , true);
+        xmlhttp.send();
      */
     /*working*/
   }
 </script>
-<!--//////////////////////END-833///START-303/////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
-<!-------------------------------------------------------------------- >
-		<!-- Bootstrap JS form CDN -->
+<!------------------------------------------------->
+<!-- Bootstrap JS form CDN -->
 <script type="text/javascript">
   $('#myModal').on('show.bs.modal', function(event) {
     $('#myModal').modal('handleUpdate');
@@ -2602,10 +2600,9 @@ if (isset($item_description_id)) {
     scrollTop: scrollNow
   }, 1000);
 </script>
-<!------------------------------------------------------------>
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!------------------------------------------------->
 <!-- Scroll->Drag -->
 <script src="../../js/scroll.js"></script>
 <!-- jQuery sticky menu -->
@@ -2623,10 +2620,9 @@ if (isset($item_description_id)) {
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/skdslider.min.js"></script>
 <link href="../../css/skdslider.css" rel="stylesheet">
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
-<!------------------------------------------------------------>
+<!------------------------------------------------->
 <!-- //main slider-banner -->
 <!-- coc -->
 <!-- JavaScript Libraries -->

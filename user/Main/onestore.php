@@ -351,7 +351,7 @@ require "../Common/cookie.php";
   <hr class="make_div">
   <hr class="make_div">
   <!-- //top-brands -->
-  <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!------------------------------------------------------------------------------------------------------->
   <!-- main-slider -->
   <ul id="demo1">
     <li>
@@ -1411,7 +1411,7 @@ require "../Common/cookie.php";
                 }
 
                 .divmain {
-                  height: 500px;
+                  height: auto;
                 }
               }
 
@@ -1930,9 +1930,10 @@ require "../Common/cookie.php";
                     </div>
                 </div> <!-- End product widget area -->
               </div>
-              <?php
-              require "footer.php";
-              ?>
-              </body>
+            </div>
+            <?php
+            require "footer.php";
+            ?>
+            </body>
 
-              </html>
+            </html>
