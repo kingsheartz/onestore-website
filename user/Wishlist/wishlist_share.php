@@ -39,7 +39,8 @@ require "../Main/header.php";
 <div class="breadcrumbs" style="background-color: #eaeded">
   <div class="container">
     <ol class="breadcrumb breadcrumb1" style="background-color: #eaeded">
-      <li><a href="../Main/onestore.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+      <li>
+        <a href="../Main/onestore.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
       </li>
       <li class="active" style="text-transform: capitalize;">Wish list of <?= $rowc2['first_name'] ?></li>
     </ol>
@@ -309,23 +310,24 @@ require "../Main/header.php";
         if ($rowc) {
         ?>
           <div class="col-md-12" style="margin:0px;padding: 0px;margin: 0px;">
-            <div class="product-content-right nopadding-margin"
-              style="margin:0px;padding: 0px;margin-right: 10px;background-color: white;border-radius: 10px;width: 100%;">
-              <h2 class="sidebar-title"
-                style="border-left: 5px solid #c50505;border-top-left-radius: 10px;text-align: left;padding-bottom: 30px;padding-top: 20px;background-color: white;margin-top: 0px;font-weight:normal;border-bottom:#333;margin-bottom: 0px;border-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; ">
+            <div class="product-content-right nopadding-margin" style="margin:0px;padding: 0px;margin-right: 10px;background-color: white;border-radius: 10px;width: 100%;">
+              <h2 class="sidebar-title" style="border-left: 5px solid #c50505;border-top-left-radius: 10px;text-align: left;padding-bottom: 30px;padding-top: 20px;background-color: white;margin-top: 0px;font-weight:normal;border-bottom:#333;margin-bottom: 0px;border-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; ">
                 Wish List <i style="color: red" class="fa fa-heart"></i>
                 <span style="float: right;margin-right: 5px;margin-top: -16px;">
-                  <input type="button"
+                  <input
+                    type="button"
                     style="max-width: 150px;height: 60px;font-weight: bold;border-top-right-radius: 10px;background-color: #c50505"
-                    onclick="updateall_cart()" value="Move to cart" id="proceed" name="proceed"
+                    onclick="updateall_cart()"
+                    value="Move to cart"
+                    id="proceed"
+                    name="proceed"
                     class="checkout-button button alt wc-forward">
                 </span>
               </h2>
               <hr class="make_divc" style="margin-bottom: 0px;margin-top: -10px;">
               <div class="woocommerce">
                 <form method="post" action="#" class="hidescroll" style="overflow-x: hidden;">
-                  <table class="shop_table cart" border="0px"
-                    style="background-color:#ffffff;margin: 0px;margin-top: -20px">
+                  <table class="shop_table cart" border="0px" style="background-color:#ffffff;margin: 0px;margin-top: -20px">
                     <tr>
                       <?php
                       $sql1 = "select * from wishlist_items where wishlist_id=:wid order by item_description_id";
@@ -343,11 +345,11 @@ require "../Main/header.php";
                         $store_id = $row1['store_id'];
                         $n = 0;
                         $sql2 = "select * from item inner join category on category.category_id=item.category_id
-       inner join sub_category on category.category_id=sub_category.category_id
-       inner join item_description on item_description.item_id=item.item_id
-       inner join product_details on item_description.item_description_id=product_details.item_description_id
-       inner join store on store.store_id=product_details.store_id
-       where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
+                                inner join sub_category on category.category_id=sub_category.category_id
+                                inner join item_description on item_description.item_id=item.item_id
+                                inner join product_details on item_description.item_description_id=product_details.item_description_id
+                                inner join store on store.store_id=product_details.store_id
+                                where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
                         $stmt2 = $pdo->prepare($sql2);
                         $stmt2->execute(array(
                           ':item_description_id' => $item_description_id,
@@ -363,18 +365,14 @@ require "../Main/header.php";
                           $off = round(($save * 100) / $total);
                           $subcat = $row2['sub_category_name'];
                       ?>
-                          <table style="width: 100%;margin-top: 0px;margin-right: -10px;"
-                            class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
-                            <table style="font-weight: bold;width: 100%;"
-                              class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
+                          <table style="width: 100%;margin-top: 0px;margin-right: -10px;" class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
+                            <table style="font-weight: bold;width: 100%;" class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
                               <tr>
-                                <table style="padding: 0px;width: 100%;"
-                                  class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
+                                <table style="padding: 0px;width: 100%;" class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
                                   <tr>
                                     <td class="product-name" colspan="2" style="padding: 0px;margin-top: 5px;">
                                       <p style="margin:0px;margin-bottom: 20px;font-size:17px;">
-                                      <div
-                                        style="margin-left: 0px;background-color: #02171e;padding-left: 15px;padding-right:15px;width: 100%;border-radius: 2px;margin-bottom: -8px;padding-top:8px;padding-bottom:8px;text-align:justify">
+                                      <div style="margin-left: 0px;background-color: #02171e;padding-left: 15px;padding-right:15px;width: 100%;border-radius: 2px;margin-bottom: -8px;padding-top:8px;padding-bottom:8px;text-align:justify">
                                         <?php
                                         if (strlen($row2['item_name']) >= 50) {
                                           $item_name = substr($row2['item_name'], 0, 50);
@@ -383,9 +381,8 @@ require "../Main/header.php";
                                           $item_name2 = $row2['item_name'];
                                         }
                                         ?>
-                                        <a href="#"
-                                          style="color: white;font-weight: normal;text-align:justify;font-size:17px;"><i
-                                            class="fa fa-product-hunt" style=""></i>
+                                        <a href="#" style="color: white;font-weight: normal;text-align:justify;font-size:17px;">
+                                          <i class="fa fa-product-hunt"></i>
                                           <?= $item_name2 ?></a>
                                       </div>
                                       </p>
@@ -393,24 +390,26 @@ require "../Main/header.php";
                                   </tr>
                                   <tr class="cart_item" style="width: 100%; background-color: #fff">
                                     <td style="padding: 0px;width: 20%">
-                                      <table style="width: 180px;margin-top: 5px;"
-                                        class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
+                                      <table style="width: 180px;margin-top: 5px;" class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
                                         <tr>
                                           <td style="padding: 0px;padding-left: 10px;padding-right: 10px;">
-                                            <input style="display:none"
-                                              id="check_s<?= $store_id . "i" . $item_description_id ?>" type="checkbox"
+                                            <input
+                                              style="display:none"
+                                              id="check_s<?= $store_id . "i" . $item_description_id ?>"
+                                              type="checkbox"
                                               name="select_item">
                                           </td>
                                           <td>
-                                            <div class="product-quantity quantity buttons_added"
-                                              style="justify-content: center;display: flex;text-align: center;align-items: center;position: relative;margin-right: 0px">
-                                              <div class="product_img"
-                                                style="padding: 0px; margin-top: 7px;margin-left: 15px;">
+                                            <div class="product-quantity quantity buttons_added" style="justify-content: center;display: flex;text-align: center;align-items: center;position: relative;margin-right: 0px">
+                                              <div class="product_img" style="padding: 0px; margin-top: 7px;margin-left: 15px;">
                                                 <p class="product-thumbnail" style="text-align:right;">
-                                                  <a href="../Product/single.php?id=<?= $row2['item_description_id'] ?>"><img
+                                                  <a href="../Product/single.php?id=<?= $row2['item_description_id'] ?>">
+                                                    <img
                                                       style="max-width:180px;max-height:180px;"
-                                                      alt="<?= $row2['item_name'] ?>" class="shop_thumbnail"
-                                                      src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg"></a>
+                                                      alt="<?= $row2['item_name'] ?>"
+                                                      class="shop_thumbnail"
+                                                      src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg">
+                                                  </a>
                                                 </p>
                                               </div>
                                             </div>
@@ -423,28 +422,32 @@ require "../Main/header.php";
                                         <tr>
                                           <td>
                                             <div class="row" style="margin-left: 5px;float: left;">
-                                              <div class="col-md-6 full-size-cart-store-div"
-                                                style="padding: 0px;margin-left: 20px;width: 200px;">
+                                              <div class="col-md-6 full-size-cart-store-div" style="padding: 0px;margin-left: 20px;width: 200px;">
                                                 <p style="z-index: 1;text-align:left;margin-top: 35px;">
-                                                  <span
-                                                    style='font-family: arial;color:#006904;font-weight: bold;text-decoration: none;font-size: 12px'>You
-                                                    Save &#8377; <span
-                                                      id="save_s<?= $store_id . "i" . $item_description_id ?>"
-                                                      style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px"><?= $save ?></span>
-                                                    (<span
-                                                      style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px"
-                                                      id="off_s<?= $store_id . "i" . $item_description_id ?>"><?= $off ?></span>%)
+                                                  <span style='font-family: arial;color:#006904;font-weight: bold;text-decoration: none;font-size: 12px'>
+                                                    You Save &#8377;
+                                                    <span id="save_s<?= $store_id . "i" . $item_description_id ?>" style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px">
+                                                      <?= $save ?>
+                                                    </span>
+                                                    (<span style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px" id="off_s<?= $store_id . "i" . $item_description_id ?>">
+                                                      <?= $off ?>
+                                                    </span>%)
                                                   </span>
                                                 </p>
-                                                <p class="product-price"
-                                                  style="z-index: 1;text-align:left;margin-top: 10px;;font-weight: bold;font-size: 2vw">
-                                                  <span class="amount">&#8377;<span
-                                                      id="total_s<?= $store_id . "i" . $item_description_id ?>"><?= $total ?></span>
-                                                    <i style="color: #303030" class="fa fa-tags">&nbsp;<del
-                                                        style="color: #999;font-weight:normal;font-size: 13px;">&#8377;</del></i><del
+                                                <p class="product-price" style="z-index: 1;text-align:left;margin-top: 10px;;font-weight: bold;font-size: 2vw">
+                                                  <span class="amount">
+                                                    &#8377;
+                                                    <span id="total_s<?= $store_id . "i" . $item_description_id ?>"><?= $total ?></span>
+                                                    <i style="color: #303030" class="fa fa-tags">&nbsp;
+                                                      <del style="color: #999;font-weight:normal;font-size: 13px;">&#8377;</del>
+                                                    </i>
+                                                    <del
                                                       style="color: #999;font-weight:normal;font-size: 13px;"
                                                       id="mrp_s<?= $store_id . "i" . $item_description_id ?>"
-                                                      style="text-decoration:"><?= (int) $t_mrp * (int) $row1['quantity'] ?></del></span>
+                                                      style="text-decoration:line-through">
+                                                      <?= (int) $t_mrp * (int) $row1['quantity'] ?>
+                                                    </del>
+                                                  </span>
                                                 </p>
                                                 <p style="margin-top:10px;">
                                                   <select
@@ -470,18 +473,22 @@ require "../Main/header.php";
                                               <!--FEATURES-->
                                               <ul>
                                                 <li><span class="a-list-item">
-                                                    <span class="a-size-small a-color-success sc-product-availability"><b
-                                                        style="color:#86001d; ">In
-                                                        stock</b></span>
+                                                    <span class="a-size-small a-color-success sc-product-availability">
+                                                      <b style="color:#86001d; ">In stock</b>
+                                                    </span>
                                                   </span>
                                                 </li>
-                                                <p><img alt="" src="../../images/logo/logofill-sm.png" style="max-width:115px"
+                                                <p>
+                                                  <img
+                                                    alt=""
+                                                    src="../../images/logo/logofill-sm.png"
+                                                    style="max-width:115px"
                                                     data-a-hires="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px-2x._CB485942108_.png">
                                                 </p>
                                                 <?php
                                                 $sqlfeatures = "select * from product_details
-inner join item_description on item_description.item_description_id=product_details.item_description_id
-where item_description.item_description_id=:item_description_id and store_id=:store_id";
+                                                                inner join item_description on item_description.item_description_id=product_details.item_description_id
+                                                                where item_description.item_description_id=:item_description_id and store_id=:store_id";
                                                 $stmtfeatures = $pdo->prepare($sqlfeatures);
                                                 $stmtfeatures->execute(array(
                                                   ':item_description_id' => $item_description_id,
@@ -511,10 +518,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                 ?>
                                                       <li class="sc-product-variation">
                                                         <span class="a-list-item">
-                                                          <span class="a-size-small a-text-bold"><b><?= ucwords($features[$f]) ?>:
-                                                            </b></span>
-                                                          <span class="a-size-small"
-                                                            style="text-decoration: none;font-weight:normal;width:10px;height:0px !important;padding-right: 7px;padding-left: 7px;border:1px solid #000;padding-top:0px;padding-bottom:0px;background-color:<?= $rowfeature_name[$features[$f] . '_name'] ?>;font-size:12px;"></span>
+                                                          <span class="a-size-small a-text-bold">
+                                                            <b><?= ucwords($features[$f]) ?>: </b>
+                                                          </span>
+                                                          <span class="a-size-small" style="text-decoration: none;font-weight:normal;width:10px;height:0px !important;padding-right: 7px;padding-left: 7px;border:1px solid #000;padding-top:0px;padding-bottom:0px;background-color:<?= $rowfeature_name[$features[$f] . '_name'] ?>;font-size:12px;"></span>
                                                         </span>
                                                       </li>
                                                     <?php
@@ -522,10 +529,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                     ?>
                                                       <li class="sc-product-variation">
                                                         <span class="a-list-item">
-                                                          <span class="a-size-small a-text-bold"><b><?= ucwords($features[$f]) ?>:
-                                                            </b></span>
-                                                          <span class="a-size-small"
-                                                            style="text-decoration: none;font-weight:normal;padding: 0px;"><?= $rowfeatures['f2'] ?></span>
+                                                          <span class="a-size-small a-text-bold">
+                                                            <b><?= ucwords($features[$f]) ?>: </b>
+                                                          </span>
+                                                          <span class="a-size-small" style="text-decoration: none;font-weight:normal;padding: 0px;"><?= $rowfeatures['f2'] ?></span>
                                                         </span>
                                                       </li>
                                                     <?php
@@ -533,10 +540,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                     ?>
                                                       <li class="sc-product-variation">
                                                         <span class="a-list-item">
-                                                          <span class="a-size-small a-text-bold"><b><?= ucwords($features[$f]) ?>:
-                                                            </b></span>
-                                                          <span
-                                                            class="a-size-small"><?= $rowfeature_name[$features[$f] . '_name'] ?></span>
+                                                          <span class="a-size-small a-text-bold">
+                                                            <b><?= ucwords($features[$f]) ?>: </b>
+                                                          </span>
+                                                          <span class="a-size-small"><?= $rowfeature_name[$features[$f] . '_name'] ?></span>
                                                         </span>
                                                       </li>
                                                 <?php
@@ -553,9 +560,12 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                 ?>
                                                 <li class="sc-product-variation">
                                                   <span class="a-list-item">
-                                                    <small><span class="a-size-small a-text-bold"><b>Description:
-                                                        </b></span>
-                                                      <span class="a-size-small"><?= $description2 ?></span></small>
+                                                    <small>
+                                                      <span class="a-size-small a-text-bold">
+                                                        <b>Description: </b>
+                                                      </span>
+                                                      <span class="a-size-small"><?= $description2 ?></span>
+                                                    </small>
                                                   </span>
                                                 </li>
                                               </ul>
@@ -567,21 +577,21 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                   </tr>
                                   <tr style="width: 100%">
                                     <table width="100%" class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
-                                      <tr class="product-quantity quantity buttons_added"
-                                        style="margin-right: 0px;width: 100%">
+                                      <tr class="product-quantity quantity buttons_added" style="margin-right: 0px;width: 100%">
                                         <td>
-                                          <p class="product-subtotal"
-                                            style="bottom: 0px;margin-left: 15px;float: left;font-weight: bold;">
+                                          <p class="product-subtotal" style="bottom: 0px;margin-left: 15px;float: left;font-weight: bold;">
                                             Price
-                                            <span class="amount">&#8377;<span
-                                                id="price_s<?= $store_id . "i" . $item_description_id ?>"><?= $row2['price'] ?></span><span>/-</span>
-                                              (1 Qty) |</span>
+                                            <span class="amount">&#8377;
+                                              <span id="price_s<?= $store_id . "i" . $item_description_id ?>"><?= $row2['price'] ?></span>
+                                              <span>/-</span>
+                                              (1 Qty) |
+                                            </span>
                                           </p>
                                         </td>
                                         <td>
-                                          <p class="product-store"><span>|</span><i
-                                              style="color: #303030;bottom: 0px;margin-top: 2px;margin-left: 5px;"
-                                              class="fas fa-store">&nbsp;</i>
+                                          <p class="product-store">
+                                            <span>|</span>
+                                            <i style="color: #303030;bottom: 0px;margin-top: 2px;margin-left: 5px;" class="fas fa-store">&nbsp;</i>
                                             <a title="<?= $row2['store_name'] ?>" href="#"><?= $row2['store_name'] ?></a>
                                           </p>
                                         </td>
@@ -592,25 +602,32 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                     <table width="100%" class="tbl_s<?= $store_id . "i" . $item_description_id ?>">
                                       <tr class="shadow_b">
                                         <td style="padding: 0px;width: 10%">
-                                          <div class="div-wrapper"
-                                            style="text-align: left;padding: 0px;margin:0px;height: 40px;grid-gap: 0px;">
+                                          <div class="div-wrapper" style="text-align: left;padding: 0px;margin:0px;height: 40px;grid-gap: 0px;">
                                             <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
                                             <div class="btn_sub_q" style="padding: 0px;margin: 0px;margin-left: 2px;">
                                               <button
                                                 style="background-color: #02171e;-webkit-box-shadow: inset 0px 0px 15px 3px #02171e;box-shadow: inset 0px 0px 15px 3px #02171e;width: 100%;min-width: 30px;height: 40px;font-weight: bold;border-color: #02171e;color: white;font-size: 18px;border-radius: 5px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
-                                                type="button" id="sub_s<?= $store_id . "i" . $item_description_id ?>"
-                                                onclick="sub_item_all('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')">-</button>
+                                                type="button"
+                                                id="sub_s<?= $store_id . "i" . $item_description_id ?>"
+                                                onclick="sub_item_all('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')">
+                                                -
+                                              </button>
                                             </div>
                                             <div style="padding: 0px;margin: 0px;">
-                                              <button id="btn_s<?= $store_id . "i" . $item_description_id ?>" type="button"
+                                              <button
+                                                id="btn_s<?= $store_id . "i" . $item_description_id ?>"
+                                                type="button"
                                                 style="width: 100%;min-width: 50px;height: 40px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
-                                                onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . "i" . $item_description_id ?>').show();}else{$('#qnty_s<?= $store_id . "i" . $item_description_id ?>').show();}">1</button>
-                                              <select id="sel_s<?= $store_id . "i" . $item_description_id ?>"
+                                                onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . "i" . $item_description_id ?>').show();}else{$('#qnty_s<?= $store_id . "i" . $item_description_id ?>').show();}">
+                                                1
+                                              </button>
+                                              <select
+                                                id="sel_s<?= $store_id . "i" . $item_description_id ?>"
                                                 onchange="select_item_option('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>');"
-                                                name="quantity" autocomplete="off"
+                                                name="quantity"
+                                                autocomplete="off"
                                                 style="width: 100%;min-width: 50px;bottom: 0;box-shadow: none;outline: none;border-color:#aaa;height:40px;display: none;background-color: white">
-                                                <option value="1" id="sel_opt_s<?= $store_id . "i" . $item_description_id ?>"
-                                                  selected disabled>1</option>
+                                                <option value="1" id="sel_opt_s<?= $store_id . "i" . $item_description_id ?>" selected disabled>1</option>
                                                 <option value="1" class="sc-update-quantity-option"
                                                   data-a-css-class="quantity-option" data-a-html-content="1">1
                                                 </option>
@@ -639,17 +656,21 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                   data-a-css-class="quantity-option" data-a-html-content="9">9
                                                 </option>
                                                 <option value="10" class="sc-update-quantity-option"
-                                                  data-a-css-class="quantity-option quantity-option-10"
-                                                  data-a-html-content="10+">10+
+                                                  data-a-css-class="quantity-option quantity-option-10" data-a-html-content="10+">10+
                                                 </option>
                                               </select>
-                                              <input type="number" id="qnty_s<?= $store_id . "i" . $item_description_id ?>"
+                                              <input
+                                                type="number"
+                                                id="qnty_s<?= $store_id . "i" . $item_description_id ?>"
                                                 size="4"
                                                 onchange="total('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')"
-                                                onblur="$(this).hide();$('#sel_s<?= $store_id . "i" . $item_description_id ?>').hide();$('#btn_s<?= $store_id . "i" . $item_description_id ?>').show()"
+                                                onblur="$(this).hide();$('#sel_s<?= $store_id . `i` . $item_description_id ?>').hide();$('#btn_s<?= $store_id . `i` . $item_description_id ?>').show()"
                                                 style="text-align: center;display: none;height: 40px;width: 100%;min-width: 50px;outline: none;font-weight: bold"
-                                                class="input-text qty text" title="Quantity" value="<?= $row1['quantity'] ?>"
-                                                min="1" step="1"
+                                                class="input-text qty text"
+                                                title="Quantity"
+                                                value="<?= $row1['quantity'] ?>"
+                                                min="1"
+                                                step="1"
                                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                                             </div>
                                             <div class="btn_add_q" style="padding: 0px;margin: 0px;">
@@ -657,25 +678,32 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                 style="background-color: #02171e;-webkit-box-shadow: inset 0px 0px 15px 3px #02171e;box-shadow: inset 0px 0px 15px 3px #02171e;width: 100%;min-width: 30px;height: 40px;font-weight: bold;border-color: #02171e;color: white;font-size: 18px;border-radius: 5px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
                                                 id="add_s<?= $store_id . "i" . $item_description_id ?>"
                                                 onclick="add_item_all('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')"
-                                                type="button">+</button>
+                                                type="button">
+                                                +
+                                              </button>
                                             </div>
                                           </div>
                                           <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
                                         </td>
                                         <td style="padding: 0px;width: 45%">
-                                          <button type="button"
+                                          <button
+                                            type="button"
                                             onclick="updatecart(<?= $item_description_id ?>,<?= $store_id ?>)"
                                             title="Add to wish list"
-                                            style="width: 100%;height: 40px;background-color: #f6f6f6;border: 0px solid #999;outline: none;font-weight: bold;-webkit-box-shadow: inset -1px 1px 15px 3px #bbb;box-shadow: inset -1px 1px 15px 3px #ccc;"><i
-                                              class="fa fa trash"></i> Add to Cart <i style="color: #ff5722"
-                                              class="fa fa-shopping-cart fa-lg"></i></button>
+                                            style="width: 100%;height: 40px;background-color: #f6f6f6;border: 0px solid #999;outline: none;font-weight: bold;-webkit-box-shadow: inset -1px 1px 15px 3px #bbb;box-shadow: inset -1px 1px 15px 3px #ccc;">
+                                            <i class="fa fa trash"></i> Add to Cart <i style="color: #ff5722" class="fa fa-shopping-cart fa-lg"></i>
+                                          </button>
                                         </td>
                                         <td class="product-remove" style="padding: 0px;width: 45%;">
-                                          <button type="button" title="Buy this item"
+                                          <button
+                                            type="button"
+                                            title="Buy this item"
                                             style="width: 100%;height: 40px;border:none;border-color: #fff;color: #fff;background-color: #c50505;outline: none;-webkit-box-shadow: inset -1px 1px 15px 3px #76001d;box-shadow: inset -1px 1px 15px 3px #86001d;"
                                             class="remove"
                                             onclick="location.href='../Checkout/checkoutsingle.php?store_id=<?= $store_id ?>&item_description_id=<?= $item_description_id ?>';"
-                                            href="#"><b>Buy Now </b><i class="fas fa-flash"></i></button>
+                                            href="#">
+                                            <b>Buy Now </b><i class="fas fa-flash"></i>
+                                          </button>
                                         </td>
                                       </tr>
                                     </table>
@@ -752,37 +780,43 @@ where item_description.item_description_id=:item_description_id and store_id=:st
     ?>
       <div class="row emp_cart">
         <div class="product-content-right">
-          <center><img style="justify-content: center;max-height: 288px;" class="sidebar-title"
-              src="../../images/logo/wishlist.png">
+          <center>
+            <img style="justify-content: center;max-height: 288px;" class="sidebar-title" src="../../images/logo/wishlist.png">
             <h2 class="sidebar-title" style="text-align: center;display: inline-flex;font-weight: 600;color:#c50505">
-              This Wish
-              List is Empty</h2>
+              This Wish List is Empty
+            </h2>
         </div>
         <div class="element_grid">
           <div class="shadow_b">
-            <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
-              style="border-left: 5px solid <?= $bgcolor[$rancolor1] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
+            <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat" style="border-left: 5px solid <?= $bgcolor[$rancolor1] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
               <?= $sub_cat_name1 ?> <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
               <span style="float: right;margin-right: 5px;margin-top: -4px;">
-                <button type="button"
+                <button
+                  type="button"
                   style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor1] ?>;padding: 11px auto;font-size: 12px;"
-                  name="proceed" class="checkout-button button alt wc-forward"><a href="" style="color:<?= $c1 ?>;">View
-                    all</a></button>
+                  name="proceed"
+                  class="checkout-button button alt wc-forward">
+                  <a href="" style="color:<?= $c1 ?>;">View all</a>
+                </button>
               </span>
             </h4>
             <hr style="padding: 0;margin:0;">
             <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
               <?php
               $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+                                inner join item_description on item_description.item_id=item.item_id
+                                inner join category on category.category_id=item.category_id
+                                inner join sub_category on category.category_id=sub_category.category_id
+                                where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
               while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
               ?>
-                <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
-                    title="<?= $row1['item_name'] ?> " alt=" <?= $row1['item_name'] ?>" class="new_size"
-                    src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg"></a>
+                <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
+                  <img
+                    title="<?= $row1['item_name'] ?> "
+                    alt=" <?= $row1['item_name'] ?>"
+                    class="new_size"
+                    src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg">
+                </a>
               <?php
               }
               ?>
@@ -790,29 +824,35 @@ where item_description.item_description_id=:item_description_id and store_id=:st
           </div>
           <br>
           <div class="shadow_b">
-            <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
-              style="border-left: 5px solid <?= $bgcolor[$rancolor2] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
+            <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat" style="border-left: 5px solid <?= $bgcolor[$rancolor2] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
               <?= $sub_cat_name2 ?> <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
               <span style="float: right;margin-right: 5px;margin-top: -4px;">
-                <button type="button"
+                <button
+                  type="button"
                   style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor2] ?>;padding: 11px auto;font-size: 12px;"
-                  name="proceed" class="checkout-button button alt wc-forward"><a href="" style="color:<?= $c2 ?>;">View
-                    all</a></button>
+                  name="proceed"
+                  class="checkout-button button alt wc-forward">
+                  <a href="" style="color:<?= $c2 ?>;">View all</a>
+                </button>
               </span>
             </h4>
             <hr style="padding: 0;margin:0;">
             <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
               <?php
               $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+                                inner join item_description on item_description.item_id=item.item_id
+                                inner join category on category.category_id=item.category_id
+                                inner join sub_category on category.category_id=sub_category.category_id
+                                where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
               while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
               ?>
-                <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
-                    title="<?= $row1['item_name'] ?> " alt=" <?= $row1['item_name'] ?>" class="new_size"
-                    src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg"></a>
+                <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
+                  <img
+                    title="<?= $row1['item_name'] ?> "
+                    alt=" <?= $row1['item_name'] ?>"
+                    class="new_size"
+                    src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg">
+                </a>
               <?php
               }
               ?>
@@ -835,11 +875,11 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                 $it_id = 1;
                 $n = 0;
                 $sql5 = "select * from item
-                                    inner join category on category.category_id=item.category_id
-                                    inner join sub_category on category.category_id=sub_category.category_id
-                                    inner join item_description on item.item_id=item_description.item_id
-                                    inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                    where item.sub_category_id=sub_category.sub_category_id and item.item_id=$it_id ";
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id=sub_category.category_id
+                        inner join item_description on item.item_id=item_description.item_id
+                        inner join product_details on product_details.item_description_id=item_description.item_description_id
+                        where item.sub_category_id=sub_category.sub_category_id and item.item_id=$it_id ";
                 //Generate Dynamic Loading
                 function randomGen($min, $max, $quantity)
                 {
@@ -852,10 +892,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                 $row5 = $stmt5->fetch(PDO::FETCH_ASSOC);
                 $subcat = $row5['sub_category_id'];
                 $r = $pdo->query("select * from item_description
-                                        inner join item on item.item_id=item_description.item_id
-                                        inner join category on category.category_id=item.category_id
-                                        inner join sub_category on category.category_id=sub_category.category_id
-                                        where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_id=" . $subcat . " limit 4");
+                                inner join item on item.item_id=item_description.item_id
+                                inner join category on category.category_id=item.category_id
+                                inner join sub_category on category.category_id=sub_category.category_id
+                                where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_id=" . $subcat . " limit 4");
                 $cn = 0;
                 while ($rw = $r->fetch(PDO::FETCH_ASSOC)) {
                 ?>
@@ -869,9 +909,14 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                           <figure>
                             <div class="snipcart-item block" style="height: 230px">
                               <div class="snipcart-thumb" style="height: 220px">
-                                <a href="../Product/single.php?id=<?= $rw['item_id'] ?>"><img title=" " alt=" "
-                                    style="height: 100px;" class="new_size"
-                                    src="../../images/<?= $rw['category_id'] ?>/<?= $rw['sub_category_id'] ?>/<?= $rw['item_description_id'] ?>.jpg"></a>
+                                <a href="../Product/single.php?id=<?= $rw['item_id'] ?>">
+                                  <img
+                                    title=" "
+                                    alt=" "
+                                    style="height: 100px;"
+                                    class="new_size"
+                                    src="../../images/<?= $rw['category_id'] ?>/<?= $rw['sub_category_id'] ?>/<?= $rw['item_description_id'] ?>.jpg">
+                                </a>
                                 <p style="height: 50px;"><?= $rw['item_name'] ?></p>
                                 <div class="stars">
                                   <i class="fa fa-star blue-star" aria-hidden="true"></i>
@@ -882,24 +927,6 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                 </div>
                                 <h4><i class="fa fa-inr"></i> <?= $rw['price'] ?></h4>
                               </div>
-                              <!--
-                                                            <div class="snipcart-details top_brand_home_details" style="margin-top: -30px;">
-                                                                <form action="#" method="post">
-                                                                    <fieldset>
-                                                                        <input type="hidden" name="cmd" value="_cart">
-                                                                        <input type="hidden" name="add" value="1">
-                                                                        <input type="hidden" name="business" value=" ">
-                                                                        <input type="hidden" name="item_name" value="<?= $rw['item_name'] ?>">
-                                                                        <input type="hidden" name="amount" value="35.99">
-                                                                        <input type="hidden" name="discount_amount" value="1.00">
-                                                                        <input type="hidden" name="currency_code" value="USD">
-                                                                        <input type="hidden" name="return" value=" ">
-                                                                        <input type="hidden" name="cancel_return" value=" ">
-                                                                        <input type="submit" name="submit" value="Add to cart" class="button">
-                                                                    </fieldset>
-                                                                </form>
-                                                            </div>
--->
                             </div>
                           </figure>
                         </div>

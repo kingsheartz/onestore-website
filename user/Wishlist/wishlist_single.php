@@ -15,10 +15,12 @@ $update_setting_row = $update_setting_stmt->fetch(PDO::FETCH_ASSOC);
 <div class="breadcrumbs" style="background-color: #eaeded">
   <div class="container">
     <ol class="breadcrumb breadcrumb1" style="background-color: #eaeded">
-      <li><a href="../Main/onestore.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+      <li>
+        <a href="../Main/onestore.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
       </li>
-      <li><a href="../Wishlist/wishlist.php"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Wish
-          list</a></li>
+      <li>
+        <a href="../Wishlist/wishlist.php"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Wish list</a>
+      </li>
       <li class="active">Manage List</li>
     </ol>
   </div>
@@ -351,8 +353,7 @@ $rowcount = $row_single_div['checksingle'];
           <br>
           <div>
             <table style="width: 100%;" class="manage_list_table">
-              <tr class="list_items_row"
-                onclick="$('.wishlist_items_show').show();$('.settings_row_close').show();$('.wishlist_items_show_open').show();$('.settings_show').hide();$('.settings_row_open').hide();$('.wishlist_items_show_close').hide();">
+              <tr class="list_items_row" onclick="$('.wishlist_items_show').show();$('.settings_row_close').show();$('.wishlist_items_show_open').show();$('.settings_show').hide();$('.settings_row_open').hide();$('.wishlist_items_show_close').hide();">
                 <td style="cursor: pointer;">
                   <h4>
                     List Items &nbsp;<i class="fa fa-file-text-o"></i>
@@ -365,8 +366,7 @@ $rowcount = $row_single_div['checksingle'];
                   </h4>
                 </td>
               </tr>
-              <tr class="settings_row"
-                onclick="$('.settings_show').show();$('.settings_row_open').show();$('.wishlist_items_show_close').show();$('.settings_row_close').hide();$('.wishlist_items_show_open').hide();$('.wishlist_items_show').hide();">
+              <tr class="settings_row" onclick="$('.settings_show').show();$('.settings_row_open').show();$('.wishlist_items_show_close').show();$('.settings_row_close').hide();$('.wishlist_items_show_open').hide();$('.wishlist_items_show').hide();">
                 <td style="cursor: pointer;">
                   <h4>
                     Settings &nbsp;<i class="fa fa-cog"></i>
@@ -396,8 +396,7 @@ $rowcount = $row_single_div['checksingle'];
       <!----------------------------------------------------------------------------------------------------------------------------->
       <div style="display: none;" class="col-md-12 settings_show" style="margin:0px;padding: 15px;width: 100%;">
         <h3>Settings <i class="fa fa-cog"></i></h3>
-        <form action="#" onsubmit="return update_my_list()" class=" shadow_b"
-          style="background-color: white;padding: 15px;border-radius: 5px;">
+        <form action="#" onsubmit="return update_my_list()" class=" shadow_b" style="background-color: white;padding: 15px;border-radius: 5px;">
           <table style="width: 100%;padding: 5px;" class="create_wishlist_table">
             <tr>
               <td>
@@ -408,30 +407,48 @@ $rowcount = $row_single_div['checksingle'];
             </tr>
             <tr>
               <td>
-                <div class="input-group bar-srch listgrp"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;grid-gap: 0px;">
-                  <input type="text" placeholder="Wishlist name" id="wishlist_name_input" onkeyup="changed_details()"
-                    value="<?= $update_setting_row['list_name'] ?>" name=""
+                <div class="input-group bar-srch listgrp" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;grid-gap: 0px;">
+                  <input
+                    type="text"
+                    placeholder="Wishlist name"
+                    id="wishlist_name_input"
+                    onkeyup="changed_details()"
+                    value="<?= $update_setting_row['list_name'] ?>"
+                    name=""
                     style="width: 100%;border-radius: 5px;outline-color: #e59700;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
-                    required="" readonly>
+                    required=""
+                    readonly>
                   <span id="dis_fn" class="input-group-btn">
-                    <button onclick="dis_fn()" onmouseover="$(this).css('background-color','#0c66cc')"
+                    <button
+                      onclick="dis_fn()"
+                      onmouseover="$(this).css('background-color','#0c66cc')"
                       onmouseleave="$(this).css('background-color','#0c77cc')"
                       style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                      class="btn btn-default search_btn" type="button">
+                      <span class="fa fa-edit"></span>
+                    </button>
                   </span>
                   <span id="hide_fn" class="input-group-btn" style="display: none;">
-                    <button onclick="reset_fn()" onmouseover="$(this).css('background-color','#bb0000')"
+                    <button
+                      onclick="reset_fn()"
+                      onmouseover="$(this).css('background-color','#bb0000')"
                       onmouseleave="$(this).css('background-color','red')"
                       style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                        style="margin-left: -18px;"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-close" style="margin-left: -18px;"></span>
+                    </button>
                   </span>
                   <span id="hide_fn1" style="display: none;" class="input-group-btn">
-                    <button onclick="dis_fn()" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="dis_fn()"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-check"></span>
+                    </button>
                   </span>
                 </div>
               </td>
@@ -447,21 +464,38 @@ $rowcount = $row_single_div['checksingle'];
               <td>
                 <!--ADDRESS-->
                 <div class="form-group listgrp" style="text-align: right;width: 100%;position: relative;">
-                  <textarea rows="4" onkeyup="changed_details()" id="wishlist_description_input"
-                    style="width: 100%;border-radius: 5px;outline-color: #e59700" placeholder="Describe your wishlist"
-                    readonly><?= $update_setting_row['wishlist_description'] ?></textarea>
-                  <span onclick="dis_add()" id="dis_add" class="fa fa-sm fa-edit"
+                  <textarea
+                    rows="4"
+                    onkeyup="changed_details()"
+                    id="wishlist_description_input"
+                    style="width: 100%;border-radius: 5px;outline-color: #e59700"
+                    placeholder="Describe your wishlist"
+                    readonly><?= $update_setting_row['wishlist_description'] ?>
+                  </textarea>
+                  <span
+                    onclick="dis_add()"
+                    id="dis_add"
+                    class="fa fa-sm fa-edit"
                     style="position: absolute;right: 0;top: 0;color: white;background-color:#0c77cc;padding: 4px;"
                     onmouseover="$(this).css('background-color','#0c66cc')"
-                    onmouseleave="$(this).css('background-color','#0c77cc')"></span>
-                  <span onclick="reset_add()" id="hide_add" class="fa fa-sm fa-close"
+                    onmouseleave="$(this).css('background-color','#0c77cc')">
+                  </span>
+                  <span
+                    onclick="reset_add()"
+                    id="hide_add"
+                    class="fa fa-sm fa-close"
                     style="display: none;position: absolute;right: 0;top: 0;color: white;background-color:red;padding: 5px;padding-top: 4px;padding-bottom: 4px;"
                     onmouseover="$(this).css('background-color','#bb0000')"
-                    onmouseleave="$(this).css('background-color','red')"></span>
-                  <span onclick="dis_add()" id="hide_add1" class="fa fa-check"
+                    onmouseleave="$(this).css('background-color','red')">
+                  </span>
+                  <span
+                    onclick="dis_add()"
+                    id="hide_add1"
+                    class="fa fa-check"
                     style="display:none;position: absolute;right: 0;top: 23px;color: white;background-color:#07C103;padding: 3px;"
                     onmouseover="$(this).css('background-color','#4f994f')"
-                    onmouseleave="$(this).css('background-color','#07C103')"></span>
+                    onmouseleave="$(this).css('background-color','#07C103')">
+                  </span>
                 </div>
                 <!--ADDRESS-->
               </td>
@@ -477,32 +511,40 @@ $rowcount = $row_single_div['checksingle'];
               <td>
                 <div class="div-wrapper" onclick="changed_details()" style="grid-gap: 0;margin: auto;display: flex;">
                   <input type="radio" value="public" id="public" name="privacy"><label for="public">&nbsp;Public</label>
-                  <div><span style="font-size: 12px;color: #666">-Anyone can search for and see this
-                      list.You can also share using a link</span></div>
+                  <div>
+                    <span style="font-size: 12px;color: #666">-Anyone can search for and see this list.You can also share using a link</span>
+                  </div>
                 </div>
               </td>
             </tr>
             <tr>
               <td>
                 <div class="div-wrapper" onclick="changed_details()" style="grid-gap: 0;margin: auto;display: flex;">
-                  <input type="radio" value="shared" id="shared" name="privacy"><label for="shared">&nbsp;Shared</label>
-                  <div><span style="font-size: 12px;color: #666">-Only people with the link see this
-                      list.It will not appear in public search results.</span></div>
+                  <input type="radio" value="shared" id="shared" name="privacy">
+                  <label for="shared">&nbsp;Shared</label>
+                  <div>
+                    <span style="font-size: 12px;color: #666">-Only people with the link see this list.It will not appear in public search results.</span>
+                  </div>
                 </div>
               </td>
             </tr>
             <tr>
               <td>
-                <input type="radio" id="private" onclick="changed_details()" value="private" name="privacy"><label
-                  for="private">&nbsp;Private</label><span style="font-size: 12px;color: #666"> - Only you can see the
-                  list</span>
+                <input type="radio" id="private" onclick="changed_details()" value="private" name="privacy">
+                <label for="private">&nbsp;Private</label>
+                <span style="font-size: 12px;color: #666"> - Only you can see the list</span>
               </td>
             </tr>
             <tr>
               <td><br><br>
                 <center>
-                  <button style="width: 40%;color: white;padding-top: 3px;padding-bottom: 3px;float:left" type="submit"
-                    id="createlist" class="btn btn-default search" name="createlist" disabled="">
+                  <button
+                    style="width: 40%;color: white;padding-top: 3px;padding-bottom: 3px;float:left"
+                    type="submit"
+                    id="createlist"
+                    class="btn btn-default search"
+                    name="createlist"
+                    disabled="">
                     <h4 style="text-transform: capitalize;">Save changes</h4>
                   </button>
                 </center>
@@ -544,15 +586,17 @@ $rowcount = $row_single_div['checksingle'];
           if ($rowc) {
         ?>
             <div class="col-md-12" style="margin:0px;padding: 0px;">
-              <div class="product-content-right nopadding-margin"
-                style="margin:0px;padding: 0px;margin-right:0px;background-color: white;border-radius: 10px;">
-                <h2 class="sidebar-title"
-                  style="border-left: 5px solid #c50505;border-top-left-radius: 10px;text-align: left;padding-bottom: 30px;padding-top: 20px;background-color: white;margin-top: 0px;font-weight:normal;border-bottom:#333;margin-bottom: 0px;border-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; ">
+              <div class="product-content-right nopadding-margin" style="margin:0px;padding: 0px;margin-right:0px;background-color: white;border-radius: 10px;">
+                <h2 class="sidebar-title" style="border-left: 5px solid #c50505;border-top-left-radius: 10px;text-align: left;padding-bottom: 30px;padding-top: 20px;background-color: white;margin-top: 0px;font-weight:normal;border-bottom:#333;margin-bottom: 0px;border-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; ">
                   Wish List <i style="color: red" class="fa fa-heart"></i>
                   <span style="float: right;margin-right: 5px;margin-top: -16px;">
-                    <input type="button"
+                    <input
+                      type="button"
                       style="max-width: 150px;height: 60px;font-weight: bold;border-top-right-radius: 10px;background-color: #c50505"
-                      onclick="updateall_cart()" value="Move to cart" id="proceed" name="proceed"
+                      onclick="updateall_cart()"
+                      value="Move to cart"
+                      id="proceed"
+                      name="proceed"
                       class="checkout-button button alt wc-forward">
                   </span>
                 </h2>
@@ -578,11 +622,11 @@ $rowcount = $row_single_div['checksingle'];
                       $store_id = $row1['store_id'];
                       $n = 0;
                       $sql2 = "select * from item inner join category on category.category_id=item.category_id
-       inner join sub_category on category.category_id=sub_category.category_id
-       inner join item_description on item_description.item_id=item.item_id
-       inner join product_details on item_description.item_description_id=product_details.item_description_id
-       inner join store on store.store_id=product_details.store_id
-       where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
+                              inner join sub_category on category.category_id=sub_category.category_id
+                              inner join item_description on item_description.item_id=item.item_id
+                              inner join product_details on item_description.item_description_id=product_details.item_description_id
+                              inner join store on store.store_id=product_details.store_id
+                              where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
                       $stmt2 = $pdo->prepare($sql2);
                       $stmt2->execute(array(
                         ':item_description_id' => $item_description_id,
@@ -604,19 +648,16 @@ $rowcount = $row_single_div['checksingle'];
                     ?>
                           <div class="container" style="padding: 0px;margin:0;width: 100%">
                             <div class="row" style="padding: 0;margin:0;width: 100%;">
-                              <div class="col-md-12 shop_table cart"
-                                style="background-color: :#fff;margin: 0px;margin-top: -28px;padding: 0;width: 100%;">
+                              <div class="col-md-12 shop_table cart" style="background-color: :#fff;margin: 0px;margin-top: -28px;padding: 0;width: 100%;">
                               <?php
                             }
                               ?>
-                              <div style="margin-top: 0px;margin-right: 0px;padding: 0;border-right: 2px solid #a2a3a4"
-                                class="col-md-6 tbl_wi<?= $wishlist_items_id ?>">
+                              <div style="margin-top: 0px;margin-right: 0px;padding: 0;border-right: 2px solid #a2a3a4" class="col-md-6 tbl_wi<?= $wishlist_items_id ?>">
                                 <div style="font-weight: bold;padding: 0;" class="tbl_wi<?= $wishlist_items_id ?> col-md-12">
                                   <div style="padding: 0px;" class="tbl_wi<?= $wishlist_items_id ?> col-md-12">
                                     <div class="product-name col-md-12" colspan="2" style="padding: 0px;margin-top: 5px;">
                                       <p style="margin:0px;margin-bottom: 20px;font-size:17px;">
-                                      <div
-                                        style="margin-left: 0px;background-color: #02171e;padding-left: 15px;padding-right:15px;width: 100%;border-radius: 2px;margin-bottom: -8px;padding-top:8px;padding-bottom:8px;text-align:justify">
+                                      <div style="margin-left: 0px;background-color: #02171e;padding-left: 15px;padding-right:15px;width: 100%;border-radius: 2px;margin-bottom: -8px;padding-top:8px;padding-bottom:8px;text-align:justify">
                                         <?php
                                         if (strlen($row2['item_name']) >= 50) {
                                           $item_name = substr($row2['item_name'], 0, 50);
@@ -625,9 +666,8 @@ $rowcount = $row_single_div['checksingle'];
                                           $item_name2 = $row2['item_name'];
                                         }
                                         ?>
-                                        <a href="#"
-                                          style="color: white;font-weight: normal;text-align:justify;font-size:17px;"><i
-                                            class="fa fa-product-hunt" style=""></i>
+                                        <a href="#" style="color: white;font-weight: normal;text-align:justify;font-size:17px;">
+                                          <i class="fa fa-product-hunt"></i>
                                           <?= $item_name2 ?>
                                         </a>
                                       </div>
@@ -637,16 +677,18 @@ $rowcount = $row_single_div['checksingle'];
                                       <div class="div-wrapper height_setter" style="height: 250px;">
                                         <div class="img_check_big col-md-5" style="padding: 0px;">
                                           <div style="width: 180px;margin-top: 5px;" class="tbl_wi<?= $wishlist_items_id ?>">
-                                            <div class="product-quantity quantity buttons_added"
-                                              style="justify-content: center;display: flex;text-align: center;align-items: center;position: relative;margin-right: 0px">
-                                              <div class="product_img div-wrapper"
-                                                style="padding: 0px; margin-top: 7px;margin-left: 15px;grid-gap: 10px;">
-                                                <input style="display:none"
-                                                  id="check_s<?= $store_id . "i" . $item_description_id ?>" type="checkbox"
+                                            <div class="product-quantity quantity buttons_added" style="justify-content: center;display: flex;text-align: center;align-items: center;position: relative;margin-right: 0px">
+                                              <div class="product_img div-wrapper" style="padding: 0px; margin-top: 7px;margin-left: 15px;grid-gap: 10px;">
+                                                <input
+                                                  style="display:none"
+                                                  id="check_s<?= $store_id . "i" . $item_description_id ?>"
+                                                  type="checkbox"
                                                   name="select_item">
-                                                <p class="product-thumbnail" style="text-align:right;">
+                                                <p class="product-thumbnail"
+                                                  style="text-align:right;">
                                                   <a href="../Product/single.php?id=<?= $row2['item_description_id'] ?>">
-                                                    <img style="max-width:180px;max-height:180px;"
+                                                    <img
+                                                      style="max-width:180px;max-height:180px;"
                                                       alt="<?= $row2['item_name'] ?>" class="shop_thumbnail"
                                                       src="../../images/<?= $row2['category_id'] ?>/<?= $row2['sub_category_id'] ?>/<?= $row2['item_description_id'] ?>.jpg">
                                                   </a>
@@ -655,54 +697,57 @@ $rowcount = $row_single_div['checksingle'];
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="tbl_wi<?= $wishlist_items_id ?> item_description_td col-md-7 product-img"
-                                          style="padding:0;">
-                                          <div class=" full-size-cart-store-div"
-                                            style="padding: 0px;margin-left: 20px;width: 200px;">
+                                        <div class="tbl_wi<?= $wishlist_items_id ?> item_description_td col-md-7 product-img" style="padding:0;">
+                                          <div class=" full-size-cart-store-div" style="padding: 0px;margin-left: 20px;width: 200px;">
                                             <p style="z-index: 1;text-align:left;margin-top: 15px;">
-                                              <span
-                                                style='font-family: arial;color:#006904;font-weight: bold;text-decoration: none;font-size: 12px'>You
-                                                Save &#8377; <span id="save_s<?= $store_id . "i" . $item_description_id ?>"
-                                                  style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px">
+                                              <span style='font-family: arial;color:#006904;font-weight: bold;text-decoration: none;font-size: 12px'>
+                                                You Save &#8377;
+                                                <span id="save_s<?= $store_id . "i" . $item_description_id ?>" style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px">
                                                   <?= $save ?>
-                                                </span> (<span
-                                                  style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px"
-                                                  id="off_s<?= $store_id . "i" . $item_description_id ?>">
+                                                </span>
+                                                (<span style="text-decoration: none;font-weight: bold;color: #006904;padding-left: 0px" id="off_s<?= $store_id . "i" . $item_description_id ?>">
                                                   <?= $off ?>
                                                 </span>%)
                                               </span>
                                             </p>
-                                            <p class="product-price"
-                                              style="z-index: 1;text-align:left;margin-top: 10px;;font-weight: bold;font-size: 2vw">
-                                              <span class="amount">&#8377;<span
-                                                  id="total_s<?= $store_id . "i" . $item_description_id ?>">
+                                            <p class="product-price" style="z-index: 1;text-align:left;margin-top: 10px;;font-weight: bold;font-size: 2vw">
+                                              <span class="amount">&#8377;
+                                                <span id="total_s<?= $store_id . "i" . $item_description_id ?>">
                                                   <?= $total ?>
-                                                </span> <i style="color: #303030" class="fa fa-tags">&nbsp;<del
-                                                    style="color: #999;font-weight:normal;font-size: 13px;">&#8377;</del></i><del
+                                                </span>
+                                                <i style="color: #303030" class="fa fa-tags">&nbsp;
+                                                  <del style="color: #999;font-weight:normal;font-size: 13px;">&#8377;</del>
+                                                </i>
+                                                <del
                                                   style="color: #999;font-weight:normal;font-size: 13px;"
                                                   id="mrp_s<?= $store_id . "i" . $item_description_id ?>"
-                                                  style="text-decoration:">
+                                                  style="text-decoration:line-through">
                                                   <?= (int) $t_mrp * (int) $row1['quantity'] ?>
-                                                </del></span>
+                                                </del>
+                                              </span>
                                             </p>
                                           </div>
                                           <div>
                                             <!--FEATURES-->
                                             <ul>
-                                              <li class="large_specs_seen"><span class="a-list-item">
-                                                  <span class="a-size-small a-color-success sc-product-availability"><b
-                                                      style="color:#86001d;">In
-                                                      stock</b></span>
+                                              <li class="large_specs_seen">
+                                                <span class="a-list-item">
+                                                  <span class="a-size-small a-color-success sc-product-availability">
+                                                    <b style="color:#86001d;">In stock</b>
+                                                  </span>
                                                 </span>
                                               </li>
                                               <p class="large_specs_seen">
-                                                <img alt="" src="../../images/logo/logofill-sm.png" style="max-width:115px"
+                                                <img
+                                                  alt=""
+                                                  src="../../images/logo/logofill-sm.png"
+                                                  style="max-width:115px"
                                                   data-a-hires="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px-2x._CB485942108_.png">
                                               </p>
                                               <?php
                                               $sqlfeatures = "select * from product_details
-inner join item_description on item_description.item_description_id=product_details.item_description_id
-where item_description.item_description_id=:item_description_id and store_id=:store_id";
+                                                              inner join item_description on item_description.item_description_id=product_details.item_description_id
+                                                              where item_description.item_description_id=:item_description_id and store_id=:store_id";
                                               $stmtfeatures = $pdo->prepare($sqlfeatures);
                                               $stmtfeatures->execute(array(
                                                 ':item_description_id' => $item_description_id,
@@ -732,10 +777,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                               ?>
                                                     <li class="sc-product-variation">
                                                       <span class="a-list-item">
-                                                        <span class="a-size-small a-text-bold"><b><?= ucwords($features[$f]) ?>:
-                                                          </b></span>
-                                                        <span class="a-size-small"
-                                                          style="text-decoration: none;font-weight:normal;width:10px;height:0px !important;padding-right: 7px;padding-left: 7px;border:1px solid #000;padding-top:0px;padding-bottom:0px;background-color:<?= $rowfeature_name[$features[$f] . '_name'] ?>;font-size:12px;"></span>
+                                                        <span class="a-size-small a-text-bold">
+                                                          <b><?= ucwords($features[$f]) ?>: </b>
+                                                        </span>
+                                                        <span class="a-size-small" style="text-decoration: none;font-weight:normal;width:10px;height:0px !important;padding-right: 7px;padding-left: 7px;border:1px solid #000;padding-top:0px;padding-bottom:0px;background-color:<?= $rowfeature_name[$features[$f] . '_name'] ?>;font-size:12px;"></span>
                                                       </span>
                                                     </li>
                                                   <?php
@@ -743,10 +788,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                   ?>
                                                     <li class="sc-product-variation">
                                                       <span class="a-list-item">
-                                                        <span class="a-size-small a-text-bold"><b><?= ucwords($features[$f]) ?>:
-                                                          </b></span>
-                                                        <span class="a-size-small"
-                                                          style="text-decoration: none;font-weight:normal;padding: 0px;"><?= $rowfeatures['f2'] ?></span>
+                                                        <span class="a-size-small a-text-bold">
+                                                          <b><?= ucwords($features[$f]) ?>: </b>
+                                                        </span>
+                                                        <span class="a-size-small" style="text-decoration: none;font-weight:normal;padding: 0px;"><?= $rowfeatures['f2'] ?></span>
                                                       </span>
                                                     </li>
                                                   <?php
@@ -754,10 +799,10 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                                   ?>
                                                     <li class="sc-product-variation">
                                                       <span class="a-list-item">
-                                                        <span class="a-size-small a-text-bold"><b><?= ucwords($features[$f]) ?>:
-                                                          </b></span>
-                                                        <span
-                                                          class="a-size-small"><?= $rowfeature_name[$features[$f] . '_name'] ?></span>
+                                                        <span class="a-size-small a-text-bold">
+                                                          <b><?= ucwords($features[$f]) ?>: </b>
+                                                        </span>
+                                                        <span class="a-size-small"><?= $rowfeature_name[$features[$f] . '_name'] ?></span>
                                                       </span>
                                                     </li>
                                               <?php
@@ -771,21 +816,22 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                         </div>
                                       </div>
                                       <div width="100%" class="tbl_wi<?= $wishlist_items_id ?>">
-                                        <div class="product-quantity quantity buttons_added big_bottom_pdt_dtls"
-                                          style="margin-right: 0px;width: 100%">
+                                        <div class="product-quantity quantity buttons_added big_bottom_pdt_dtls" style="margin-right: 0px;width: 100%">
                                           <div>
-                                            <p class="product-subtotal"
-                                              style="bottom: 0px;margin-left: 15px;float: left;font-weight: bold;">
+                                            <p class="product-subtotal" style="bottom: 0px;margin-left: 15px;float: left;font-weight: bold;">
                                               Price
-                                              <span class="amount">&#8377;<span
-                                                  id="price_s<?= $store_id . "i" . $item_description_id ?>"><?= $row2['price'] ?></span><span>/-</span>
-                                                (1 Qty) |</span>
+                                              <span class="amount">&#8377;
+                                                <span id="price_s<?= $store_id . "i" . $item_description_id ?>">
+                                                  <?= $row2['price'] ?>
+                                                </span>
+                                                <span>/-</span>
+                                                (1 Qty) |
+                                              </span>
                                             </p>
                                           </div>
                                           <div>
-                                            <p class="product-store"><i
-                                                style="color: #303030;bottom: 0px;margin-top: 2px;margin-left: 5px;"
-                                                class="fas fa-store">&nbsp;</i>
+                                            <p class="product-store">
+                                              <i style="color: #303030;bottom: 0px;margin-top: 2px;margin-left: 5px;" class="fas fa-store">&nbsp;</i>
                                               <a title="<?= $row2['store_name'] ?>" href="#"><?= $row2['store_name'] ?></a>
                                             </p>
                                           </div>
@@ -794,18 +840,24 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                                       <div width="100%" class="tbl_wi<?= $wishlist_items_id ?>">
                                         <div class="shadow_b div-wrapper" style="grid-gap: 0px;width: 100%;">
                                           <div style="padding: 0px;width: 100%" class="col-md-6 ">
-                                            <button type="button"
+                                            <button
+                                              type="button"
                                               onclick="updatecart(<?= $item_description_id ?>,<?= $store_id ?>)"
                                               title="Add to wish list"
-                                              style="width: 100%;height: 40px;background-color: #f6f6f6;border: 0px solid #999;outline: none;font-weight: bold;-webkit-box-shadow: inset -1px 1px 15px 3px #bbb;box-shadow: inset -1px 1px 15px 3px #ccc;"><i
-                                                class="fa fa trash"></i> Add to Cart <i style="color: red"
-                                                class="fa fa-shopping-cart fa-lg"></i></button>
+                                              style="width: 100%;height: 40px;background-color: #f6f6f6;border: 0px solid #999;outline: none;font-weight: bold;-webkit-box-shadow: inset -1px 1px 15px 3px #bbb;box-shadow: inset -1px 1px 15px 3px #ccc;">
+                                              <i class="fa fa trash"></i> Add to Cart
+                                              <i style="color: red" class="fa fa-shopping-cart fa-lg"></i>
+                                            </button>
                                           </div>
                                           <div class="product-remove col-md-6" style="padding: 0px;width: 100%;">
-                                            <button type="button" title="Remove this item"
+                                            <button
+                                              type="button"
+                                              title="Remove this item"
                                               style="width: 100%;height: 40px;border:none;border-color: #fff;color: #fff;background-color: #c50505;outline: none;-webkit-box-shadow: inset -1px 1px 15px 3px #76001d;box-shadow: inset -1px 1px 15px 3px #86001d;"
                                               class="remove" onclick="remove_item('<?= $row1['wishlist_items_id'] ?>')"
-                                              href="#"><b>Remove </b><i class="fas fa-trash-alt"></i></button>
+                                              href="#">
+                                              <b>Remove </b><i class="fas fa-trash-alt"></i>
+                                            </button>
                                           </div>
                                         </div>
                                       </div>
@@ -895,39 +947,40 @@ where item_description.item_description_id=:item_description_id and store_id=:st
           ?>
             <div class="row emp_cart">
               <div class="product-content-right">
-                <center><img style="justify-content: center;max-height: 288px;" class="sidebar-title"
-                    src="../../images/logo/wishlist.png">
+                <center><img style="justify-content: center;max-height: 288px;" class="sidebar-title" src="../../images/logo/wishlist.png">
                   <h2 class="sidebar-title" style="text-align: center;display: inline-flex;font-weight: 600;color:#c50505">
-                    Your Wish
-                    List is Empty</h2>
+                    Your Wish List is Empty
+                  </h2>
                   <h4>No items in your wishlist.<a href="../Main/onestore.php">Start adding!</a></h4>
                 </center>
               </div>
               <div class="element_grid">
                 <div class="shadow_b">
-                  <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
-                    style="border-left: 5px solid <?= $bgcolor[$rancolor1] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
+                  <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat" style="border-left: 5px solid <?= $bgcolor[$rancolor1] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
                     <?= $sub_cat_name1 ?> <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
                     <span style="float: right;margin-right: 5px;margin-top: -4px;">
-                      <button type="button"
+                      <button
+                        type="button"
                         style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor1] ?>;padding: 11px auto;font-size: 12px;"
-                        name="proceed" class="checkout-button button alt wc-forward"><a href=""
-                          style="color:<?= $c1 ?>;">View all</a></button>
+                        name="proceed"
+                        class="checkout-button button alt wc-forward">
+                        <a href="" style="color:<?= $c1 ?>;">View all</a>
+                      </button>
                     </span>
                   </h4>
                   <hr style="padding: 0;margin:0;">
                   <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
                     <?php
                     $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+                                      inner join item_description on item_description.item_id=item.item_id
+                                      inner join category on category.category_id=item.category_id
+                                      inner join sub_category on category.category_id=sub_category.category_id
+                                      where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
                     while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                     ?>
-                      <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
-                          title="<?= $row1['item_name'] ?> " alt=" <?= $row1['item_name'] ?>" class="new_size"
-                          src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg"></a>
+                      <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
+                        <img title="<?= $row1['item_name'] ?> " alt=" <?= $row1['item_name'] ?>" class="new_size" src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg">
+                      </a>
                     <?php
                     }
                     ?>
@@ -935,29 +988,35 @@ where item_description.item_description_id=:item_description_id and store_id=:st
                 </div>
                 <br>
                 <div class="shadow_b">
-                  <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat"
-                    style="border-left: 5px solid <?= $bgcolor[$rancolor2] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
+                  <h4 class="show_cat_list_main tb-padding sidebar-title cart_empty_show_cat" style="border-left: 5px solid <?= $bgcolor[$rancolor2] ?>;border-top-left-radius: 10px;text-align: left;padding-bottom: 10px;padding-top: 10px;background-color: white;font-weight:normal;border-bottom:#333;margin-bottom: -5px;margin-top: 13px;border-top-right-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px; overflow: hidden;font-size: 18px;">
                     <?= $sub_cat_name2 ?> <i style="color: #ff5722;" class="fa fa-arrow-right"></i>
                     <span style="float: right;margin-right: 5px;margin-top: -4px;">
-                      <button type="button"
+                      <button
+                        type="button"
                         style="max-width: 150px;height: 30px;font-weight: bold;border-top-right-radius: 10px;background-color: <?= $bgcolor[$rancolor2] ?>;padding: 11px auto;font-size: 12px;"
-                        name="proceed" class="checkout-button button alt wc-forward"><a href=""
-                          style="color:<?= $c2 ?>;">View all</a></button>
+                        name="proceed"
+                        class="checkout-button button alt wc-forward">
+                        <a href="" style="color:<?= $c2 ?>;">View all</a>
+                      </button>
                     </span>
                   </h4>
                   <hr style="padding: 0;margin:0;">
                   <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
                     <?php
                     $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+                                      inner join item_description on item_description.item_id=item.item_id
+                                      inner join category on category.category_id=item.category_id
+                                      inner join sub_category on category.category_id=sub_category.category_id
+                                      where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
                     while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                     ?>
-                      <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
-                          title="<?= $row1['item_name'] ?> " alt=" <?= $row1['item_name'] ?>" class="new_size"
-                          src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg"></a>
+                      <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
+                        <img
+                          title="<?= $row1['item_name'] ?> "
+                          alt=" <?= $row1['item_name'] ?>"
+                          class="new_size"
+                          src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg">
+                      </a>
                     <?php
                     }
                     ?>
