@@ -11,9 +11,11 @@ if ($method == 'GET') {
     ':longitude' => "%" . $_GET['longitude'] . "%",
     ':latitude' => "%" . $_GET['latitude'] . "%"
   );
+
   $query = "SELECT * FROM store WHERE store_name LIKE :store_name AND opening_hours LIKE :opening_hours AND
-	 address LIKE :address AND status LIKE :status AND longitude LIKE :longitude AND latitude LIKE :latitude
-	  AND store_id LIKE :store_id";
+  address LIKE :address AND status LIKE :status AND longitude LIKE :longitude AND latitude LIKE :latitude AND
+  store_id LIKE :store_id";
+
   $statement = $pdo->prepare($query);
   $statement->execute($data);
   $result = $statement->fetchAll();
@@ -29,7 +31,9 @@ if ($method == 'GET') {
     );
   }
   echo json_encode($output);
-}/*
+}
+
+/*
 if($method=='POST'){
 $data=array(
 ':store_name'=>$_POST['store_name'],

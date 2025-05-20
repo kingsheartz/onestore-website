@@ -16,14 +16,15 @@ require "head.php";
       $('#addcategoriesphp').addClass('active');
     </script>
     <div class="table1">
-      <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;"><i
-          class="fas fa-list" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add Categories</h4>
+      <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;">
+        <i class="fas fa-list" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add Categories
+      </h4>
       <div id="jsGrid"></div>
     </div>
     <br>
     <div class="table1">
-      <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;"><i
-          class="fa fa-list-alt" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add Subcategories
+      <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;">
+        <i class="fa fa-list-alt" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add Subcategories
       </h4>
       <div id="jsGrid1"></div>
     </div>

@@ -47,21 +47,21 @@ require "head.php";
         console.log(data[0]);
         var p = "";
         p += "<table><tr>\
-<th>OrderId</th>\
-<th>Product</th>\
-<th>Order Date</th>\
-<th>Store Name</th>\
-<th>Status</th>\
-<th>Total Amount</th></tr>\
-";
+              <th>OrderId</th>\
+              <th>Product</th>\
+              <th>Order Date</th>\
+              <th>Store Name</th>\
+              <th>Status</th>\
+              <th>Total Amount</th></tr>\
+              ";
         for (var i = 0; i < data.length; i++) {
           p += "<tr>\
-  <th>" + data[i].new_ordered_products_id + "</th>\
-<th>" + data[i].item_name + "</th>\
-<th>" + data[i].order_date + "</th>\
-<th>" + data[i].store_name + "</th>\
-<th>" + data[i].delivery_status + "</th>\
-<th>" + data[i].total_amt + "</th></tr>";
+                <th>" + data[i].new_ordered_products_id + "</th>\
+                <th>" + data[i].item_name + "</th>\
+                <th>" + data[i].order_date + "</th>\
+                <th>" + data[i].store_name + "</th>\
+                <th>" + data[i].delivery_status + "</th>\
+                <th>" + data[i].total_amt + "</th></tr>";
         }
         p += "</table>";
         return p;

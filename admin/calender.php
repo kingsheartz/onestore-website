@@ -244,8 +244,10 @@ if (isset($_POST['newData'])) {
 </script>
 <div class="cont">
   <button id="prev"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></button>
-  <div id="show_calendar">&nbsp;</div><button id="nextbt"><i class="fas fa-chevron-right"></i><i
-      class="fas fa-chevron-right"></i></button>
+  <div id="show_calendar">&nbsp;</div><button id="nextbt">
+    <i class="fas fa-chevron-right"></i>
+    <i class="fas fa-chevron-right"></i>
+    </button>
   <div id="current_month">&nbsp;</div>
 </div>
 <div id="event"></div>

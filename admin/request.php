@@ -17,9 +17,10 @@ require "head.php";
       require "pdo.php";
       ?>
       <div class="table1">
-        <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;"><i
-            class="fas fa-file-contract" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Permssion
-          for Stores</h4>
+        <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;">
+          <i class="fas fa-file-contract" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>
+          Permission for Stores
+        </h4>
         <div id="jsGrid1"></div>
       </div><br><br>
       <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsgrid@1.5.3/dist/jsgrid.min.css" />
