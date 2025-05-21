@@ -219,20 +219,24 @@ where category_id=$ctid ";
             if ($page <= $ends_count || ($pageno && $page >= $pageno - $middle_count && $page <= $pageno + $middle_count) || $page > $number_of_page - $ends_count) {
             ?>
               <li>
-                <a href="<?php
-                          $_GET['pageno'] = $page;
-                          echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
+                <a href="
+                <?php
+                $_GET['pageno'] = $page;
+                echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                ?>
+                ">
                   <?= $page ?></a>
               </li>
             <?php
               $dots = true;
             } elseif ($dots) {
             ?>
-              <li><a>&hellip;</a></li><?php
-                                      $dots = false;
-                                    }
-                                  }
-                                      ?>
+              <li><a>&hellip;</a></li>
+          <?php
+              $dots = false;
+            }
+          }
+          ?>
         <?php
         }
         ?>

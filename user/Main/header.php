@@ -1248,7 +1248,9 @@ if (session_status() === PHP_SESSION_NONE) {
                   <a href="#">
                     <li class="logindiv" style="float: right;">
                       <form action="#" method="post" class="last">
-                        <?php if (isset($_SESSION['name'])) { ?>
+                        <?php
+                        if (isset($_SESSION['name'])) {
+                        ?>
                           <button class="w3view-cart loginicon" type="button" name="submit" value=""
                             onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -1256,13 +1258,18 @@ if (session_status() === PHP_SESSION_NONE) {
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
                             <?= $_SESSION['name'] ?>
                           </span>
-                        <?php } else { ?>
+                        <?php
+                        } else {
+                        ?>
                           <button class="w3view-cart loginicon" type="button" name="submit" value=""
                             onclick="location.href='login.php'">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           </button>
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Log
-                            in</span><?php } ?>
+                            in</span>
+                        <?php
+                        }
+                        ?>
                       </form>
                     </li>
                   </a>
@@ -1271,7 +1278,9 @@ if (session_status() === PHP_SESSION_NONE) {
                   <a href="#">
                     <li class="logindiv" style="float: right;">
                       <form action="#" method="post" class="last">
-                        <?php if (isset($_SESSION['name'])) { ?>
+                        <?php
+                        if (isset($_SESSION['name'])) {
+                        ?>
                           <button class="w3view-cart loginicon " type="button" name="submit" value=""
                             onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -1279,14 +1288,19 @@ if (session_status() === PHP_SESSION_NONE) {
                           <span style="bottom: 0px;display: flex;justify-content:center;"
                             id="location"><?php echo "You"; ?>
                           </span>
-                        <?php } else { ?>
+                        <?php
+                        } else {
+                        ?>
                           <button class="w3view-cart loginicon " type="button" name="submit" value=""
                             onclick="location.href='login.php'">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           </button>
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
                             Log in
-                          </span><?php } ?>
+                          </span>
+                        <?php
+                        }
+                        ?>
                       </form>
                     </li>
                   </a>

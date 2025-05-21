@@ -213,11 +213,15 @@
     );
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     ?>
-      <li><span class="handle"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i>
-          <input type="checkbox" id="<?= $row['list_id'] ?>"
-            onclick="updatelement(<?= $row['list_id'] ?>,'<?= $row['title'] ?>')"></span>
-        <?= $row['title'] ?><span class="nday" style="background:<?= $colors[array_rand($colors)] ?>;"><i style="padding-right: 4px;
-  padding-left: 4px;" class="fas fa-clock"></i>
+      <li>
+        <span class="handle">
+          <i class="fas fa-ellipsis-v"></i>
+          <i class="fas fa-ellipsis-v"></i>
+          <input type="checkbox" id="<?= $row['list_id'] ?>" onclick="updatelement(<?= $row['list_id'] ?>,'<?= $row['title'] ?>')">
+        </span>
+        <?= $row['title'] ?>
+        <span class="nday" style="background:<?= $colors[array_rand($colors)] ?>;">
+          <i style="padding-right: 4px; padding-left: 4px;" class="fas fa-clock"></i>
           <?php
           $start = strtotime($row['add_date']);
           $end = strtotime(date("Y/m/d"));
@@ -228,7 +232,11 @@
             echo $days_between . " days";
           }
           ?>
-        </span><span class="close" onclick="postelement(<?= $row['list_id'] ?>)"><i class="fa fa-times"></i></span></li>
+        </span>
+        <span class="close" onclick="postelement(<?= $row['list_id'] ?>)">
+          <i class="fa fa-times"></i>
+        </span>
+      </li>
       <?php
       $r = explode('<strike>', $row['title']);
       if (isset($r[1])) {
@@ -246,8 +254,7 @@
     // Create a "close" button and append it to each list item
     // Click on a close button to hide the current list items
   </script>
-  <li class="list-group-item"
-    style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #01728e)) !important;">
+  <li class="list-group-item" style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #01728e)) !important;">
     <div id="myDIV" class="header1">
       <form method="post" id="tofrm">
         <input type="text" id="myInput" name="addnm" placeholder="Title...">

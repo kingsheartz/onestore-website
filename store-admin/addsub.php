@@ -363,20 +363,8 @@ require "head.php";
           ':quantity' => $quantity,
           ':pref' => $pref
         );
-        $query1 = "INSERT INTO product_details (item_description_id,
-store_id,
-permission,
-availability,
-price,
-quantity,
-order_preference) VALUES (:item_description_id,
-:store_id,
-:permission,
-:availability,
-:price,
-:quantity,
-:pref
-)";
+        $query1 = "INSERT INTO product_details (item_description_id,store_id,permission,availability,price,quantity,order_preference)
+                  VALUES (:item_description_id,:store_id,:permission,:availability,:price,:quantity,:pref)";
         $statement = $pdo->prepare($query1);
         $statement->execute($data);
         print_r($statement);
@@ -406,7 +394,8 @@ order_preference) VALUES (:item_description_id,
                 .fadeIn(1500, function() {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated For Your Store\
-            <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
+                      <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button>\
+                    </div>"
                   );
                 });
             }
@@ -465,23 +454,8 @@ order_preference) VALUES (:item_description_id,
       <div class="pr1">
         <div class="proupda ">
           <div class="newupdation">
-            <span style="font-size: 14px;
-  font-weight: bolder;
-  color: #ffffff;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d00bd), color-stop(1, #326086)) !important;    position: relative;
-  top: 0px;
-  left: 0;
-  text-align: center;
-  padding: 5px;
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  ">
-              <h4 style="text-overflow: ellipsis;
-  width: 400px;
-  white-space: nowrap;
-  overflow: hidden;
-  "> <?= $itna ?></h4>
+            <span style="font-size: 14px;font-weight: bolder;color: #ffffff;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d00bd), color-stop(1, #326086)) !important;    position: relative;top: 0px;left: 0;text-align: center;padding: 5px;width: 100%;justify-content: center;display: flex;">
+              <h4 style="text-overflow: ellipsis;width: 400px;white-space: nowrap;overflow: hidden;"> <?= $itna ?></h4>
             </span><br>
             <div class="row">
               <?php
@@ -490,15 +464,9 @@ order_preference) VALUES (:item_description_id,
               $tr = $st->rowCount();
               if ($tr == 0) {
               ?>
-                <div class="alert alert-danger">Product is already added <button style="background: red;
-  border: none;
-  color: white;
-  height: 30px;
-  padding: 5px;
-  border-radius: 5px;
-  width: 100px;
-  display: block;
-  margin: 20px;" onclick="location.href='additem.php'">Go Back</button></div>
+                <div class="alert alert-danger">Product is already added
+                  <button style="background: red;border: none;color: white;height: 30px;padding: 5px;border-radius: 5px;width: 100px;display: block;margin: 20px;" onclick="location.href='additem.php'">Go Back</button>
+                </div>
                 <?php
               } else {
                 while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
@@ -508,44 +476,30 @@ order_preference) VALUES (:item_description_id,
                       <form id="<?= $row['item_description_id'] ?>" name="<?= $row['item_description_id'] ?>">
                         <div class="prim col-sm-5">
                           <div class="thd">Product</div>
-                          <div class="product" style="position: absolute;
-  left: 10px;
-  top: 55px;
-  width: 100px;
-  height: 80px;">
-                            <img style=" display: inline-block;
-  text-align: center;
-  padding: 14px;
-  position: relative;
-  height: 80px;
-  max-width: 100px;
-   " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg');"
+                          <div class="product" style="position: absolute;left: 10px;top: 55px;width: 100px;height: 80px;">
+                            <img
+                              style=" display: inline-block;text-align: center;padding: 14px;position: relative;height: 80px;max-width: 100px;"
+                              onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg');"
                               src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                           </div>
                           <div style="width: 100%;">
-                            <img id="imr<?= $row['item_description_id'] ?>"
-                              src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+                            <img id="imr<?= $row['item_description_id'] ?>" src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                           </div>
-                          <div class="imscr" id="imsrc<?= $row['item_description_id'] ?>"
-                            onscroll="movefr('imsrc<?= $row['item_description_id'] ?>')">
-                            <button type="button" name="lfarr" class="left-arrow"
-                              onclick="moveleft('imsrc<?= $row['item_description_id'] ?>')"><i
-                                class="fas fa-chevron-right"></i></button>
-                            <button type="button" name="rfarr" class="right-arrow"
-                              onclick="moveright('imsrc<?= $row['item_description_id'] ?>')" style="display: none;"><i
-                                class="fas fa-chevron-left"></i></button>
+                          <div class="imscr" id="imsrc<?= $row['item_description_id'] ?>" onscroll="movefr('imsrc<?= $row['item_description_id'] ?>')">
+                            <button type="button" name="lfarr" class="left-arrow" onclick="moveleft('imsrc<?= $row['item_description_id'] ?>')">
+                              <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <button type="button" name="rfarr" class="right-arrow" onclick="moveright('imsrc<?= $row['item_description_id'] ?>')" style="display: none;">
+                              <i class="fas fa-chevron-left"></i>
+                            </button>
                             <?php
                             $t = $row['img_count'];
                             for ($i = 1; $i <= $t; $i++) {
                             ?>
                               <div class="product">
-                                <img style=" display: inline-block;
-  text-align: center;
-  padding: 14px;
-  position: relative;
-  height: 80px;
-  max-width: 150px;
-   " onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
+                                <img
+                                  style=" display: inline-block;text-align: center;padding: 14px;position: relative;height: 80px;max-width: 150px;"
+                                  onclick="$('#imr<?= $row['item_description_id'] ?>').attr('src', '../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg');"
                                   src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>_<?= $i ?>.jpg">
                               </div>
                             <?php
@@ -678,15 +632,21 @@ order_preference) VALUES (:item_description_id,
                             <div class="thd">Product Details</div>
                             <div class="form-group">
                               <label class="floating-label">Price</label>
-                              <input type="number"
+                              <input
+                                type="number"
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                name="price" required="" class="form-control">
+                                name="price"
+                                required=""
+                                class="form-control">
                             </div>
                             <div class="form-group">
                               <label class="floating-label">Quantity</label>
-                              <input type="number"
+                              <input
+                                type="number"
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                name="quantity" required="" class="form-control">
+                                name="quantity"
+                                required=""
+                                class="form-control">
                             </div>
                             <div class="form-group">
                               <label class="floating-label">Order Preference</label>
@@ -701,13 +661,9 @@ order_preference) VALUES (:item_description_id,
                         </div>
                         <div class="col-sm-12 subb" style="position: absolute;bottom: 0;padding: 0">
                           <input type="hidden" name="check_id" value="<?= $row['item_description_id'] ?>">
-                          <button name="update_data" style="
-width: 200px;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #26a717), color-stop(1, #48c507)) !important;
-  float: right;
-  margin-right: 12px;
-" onclick="newup(<?= $row['item_description_id'] ?>,1)"><i class="fas fa-save"
-                              style="margin-right: 20px;float: left;font-size: 24px"></i>Add to Store</button>
+                          <button name="update_data" style="width: 200px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #26a717), color-stop(1, #48c507)) !important;float: right;margin-right: 12px;" onclick="newup(<?= $row['item_description_id'] ?>,1)">
+                            <i class="fas fa-save" style="margin-right: 20px;float: left;font-size: 24px"></i>Add to Store
+                          </button>
                         </div>
                       </form>
                     </div>
