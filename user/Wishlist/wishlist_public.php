@@ -764,11 +764,13 @@ require "../Main/header.php";
             <hr style="padding: 0;margin:0;">
             <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
               <?php
-              $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                                inner join item_description on item_description.item_id=item.item_id
-                                inner join category on category.category_id=item.category_id
-                                inner join sub_category on category.category_id=sub_category.category_id
-                                where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+              $row = $pdo->query(
+                "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                inner join item_description on item_description.item_id=item.item_id
+                inner join category on category.category_id=item.category_id
+                inner join sub_category on category.category_id=sub_category.category_id
+                where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+              );
               while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
               ?>
                 <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
@@ -800,11 +802,13 @@ require "../Main/header.php";
             <hr style="padding: 0;margin:0;">
             <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
               <?php
-              $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                                inner join item_description on item_description.item_id=item.item_id
-                                inner join category on category.category_id=item.category_id
-                                inner join sub_category on category.category_id=sub_category.category_id
-                                where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+              $row = $pdo->query(
+                "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                inner join item_description on item_description.item_id=item.item_id
+                inner join category on category.category_id=item.category_id
+                inner join sub_category on category.category_id=sub_category.category_id
+                where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+              );
               while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
               ?>
                 <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
@@ -852,17 +856,21 @@ require "../Main/header.php";
                 $stmt5 = $pdo->query($sql5);
                 $row5 = $stmt5->fetch(PDO::FETCH_ASSOC);
                 $subcat = $row5['sub_category_name'];
-                $r1 = $pdo->query("select MIN(item_description_id) from item_description
-                                  inner join item on item.item_id=item_description.item_id
-                                  inner join category on category.category_id=item.category_id
-                                  inner join sub_category on category.category_id=sub_category.category_id
-                                  where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_name= '$subcat'");
+                $r1 = $pdo->query(
+                  "select MIN(item_description_id) from item_description
+                  inner join item on item.item_id=item_description.item_id
+                  inner join category on category.category_id=item.category_id
+                  inner join sub_category on category.category_id=sub_category.category_id
+                  where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_name= '$subcat'"
+                );
                 $id1 = $r1->fetch(PDO::FETCH_ASSOC);
-                $r2 = $pdo->query("select MAX(item_description_id) from item_description
-                                  inner join item on item.item_id=item_description.item_id
-                                  inner join category on category.category_id=item.category_id
-                                  inner join sub_category on category.category_id=sub_category.category_id
-                                  where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_name= '$subcat' ");
+                $r2 = $pdo->query(
+                  "select MAX(item_description_id) from item_description
+                  inner join item on item.item_id=item_description.item_id
+                  inner join category on category.category_id=item.category_id
+                  inner join sub_category on category.category_id=sub_category.category_id
+                  where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_name= '$subcat' "
+                );
                 $id2 = $r2->fetch(PDO::FETCH_ASSOC);
                 $cn = 0;
                 $ran = randomGen($id1['MIN(item_description_id)'], $id2['MAX(item_description_id)'], (int) $id2['MAX(item_description_id)'] - (int) $id1['MIN(item_description_id)']);

@@ -3,12 +3,14 @@ require "../Product/products_header.php";
 require "../Common/pdo.php";
 if (isset($_GET['item'])) {
   $nm = strtolower($_GET['item']);
-  $res = $pdo->query("select category.category_name,item.item_id,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,sub_category.sub_category_name from item
-                    inner join item_description on item_description.item_id=item.item_id
-                    inner join product_details on product_details.item_description_id=item_description.item_description_id
-                    inner join category on category.category_id=item.category_id
-                    inner join sub_category on category.category_id= sub_category.category_id
-                    where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id");
+  $res = $pdo->query(
+    "select category.category_name,item.item_id,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,sub_category.sub_category_name from item
+    inner join item_description on item_description.item_id=item.item_id
+    inner join product_details on product_details.item_description_id=item_description.item_description_id
+    inner join category on category.category_id=item.category_id
+    inner join sub_category on category.category_id= sub_category.category_id
+    where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id"
+  );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
   $name = $row2['item_name'];
   $cat_id = $row2['category_id'];
@@ -33,13 +35,15 @@ if (isset($_GET['item'])) {
   }
 } else if (isset($_GET['category_id'])) {
   $cat = $_GET['category_id'];
-  $res = $pdo->query("select category.category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                    inner join item_description on item_description.item_id=item.item_id
-                    inner join product_details on product_details.item_description_id=item_description.item_description_id
-                    inner join store on product_details.store_id=store.store_id
-                    inner join category on category.category_id=item.category_id
-                    inner join sub_category on category.category_id= sub_category.category_id
-                    where item.category_id=$cat GROUP BY item.item_id order by item.sub_category_id");
+  $res = $pdo->query(
+    "select category.category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+    inner join item_description on item_description.item_id=item.item_id
+    inner join product_details on product_details.item_description_id=item_description.item_description_id
+    inner join store on product_details.store_id=store.store_id
+    inner join category on category.category_id=item.category_id
+    inner join sub_category on category.category_id= sub_category.category_id
+    where item.category_id=$cat GROUP BY item.item_id order by item.sub_category_id"
+  );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
   $name = $row2['category_name'];
   $cat_id = $row2['category_id'];
@@ -1672,10 +1676,12 @@ if ($result_cnt == 0) {
                   </form>
                 </div>
                 <?php
-                $pricesql = $pdo->query("select product_details.price FROM product_details
-                                        join item_description on item_description.item_description_id=product_details.item_description_id
-                                        join item on item_description.item_id=item.item_id
-                                        where category_id=$cat_id");
+                $pricesql = $pdo->query(
+                  "select product_details.price FROM product_details
+                  join item_description on item_description.item_description_id=product_details.item_description_id
+                  join item on item_description.item_id=item.item_id
+                  where category_id=$cat_id"
+                );
                 $pricecnt = 0;
                 while ($pricerow = $pricesql->fetch(PDO::FETCH_ASSOC)) {
                   $pricearray[$pricecnt] = $pricerow['price'];
@@ -2072,32 +2078,38 @@ if ($result_cnt == 0) {
                     require "../Common/pdo.php";
                     if (isset($_GET['item'])) {
                       $nm = $_GET['item'];
-                      $res = $pdo->query("select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                                        inner join item_description on item_description.item_id=item.item_id
-                                        inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                        inner join store on product_details.store_id=store.store_id
-                                        inner join category on category.category_id=item.category_id
-                                        inner join sub_category on category.category_id= sub_category.category_id
-                                        where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id");
+                      $res = $pdo->query(
+                        "select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+                        inner join item_description on item_description.item_id=item.item_id
+                        inner join product_details on product_details.item_description_id=item_description.item_description_id
+                        inner join store on product_details.store_id=store.store_id
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id= sub_category.category_id
+                        where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id"
+                      );
                     } else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
                       $cat = $_GET['category_id'];
                       $sub = $_GET['subcategory_id'];
-                      $res = $pdo->query("select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                                        inner join item_description on item_description.item_id=item.item_id
-                                        inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                        inner join store on product_details.store_id=store.store_id
-                                        inner join category on category.category_id=item.category_id
-                                        inner join sub_category on category.category_id= sub_category.category_id
-                                        where category.category_id=$cat and sub_category.sub_category_id=$sub GROUP BY item.item_id order by item.sub_category_id");
+                      $res = $pdo->query(
+                        "select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+                        inner join item_description on item_description.item_id=item.item_id
+                        inner join product_details on product_details.item_description_id=item_description.item_description_id
+                        inner join store on product_details.store_id=store.store_id
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id= sub_category.category_id
+                        where category.category_id=$cat and sub_category.sub_category_id=$sub GROUP BY item.item_id order by item.sub_category_id"
+                      );
                     } else if (isset($_GET['category_id'])) {
                       $cat = $_GET['category_id'];
-                      $res = $pdo->query("select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,category.category_name,sub_category.sub_category_name,store.store_name from item
-                                        inner join item_description on item_description.item_id=item.item_id
-                                        inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                        inner join store on product_details.store_id=store.store_id
-                                        inner join category on category.category_id=item.category_id
-                                        inner join sub_category on category.category_id= sub_category.category_id
-                                        where category.category_id=$cat GROUP BY item.item_id order by item.sub_category_id");
+                      $res = $pdo->query(
+                        "select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,category.category_name,sub_category.sub_category_name,store.store_name from item
+                        inner join item_description on item_description.item_id=item.item_id
+                        inner join product_details on product_details.item_description_id=item_description.item_description_id
+                        inner join store on product_details.store_id=store.store_id
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id= sub_category.category_id
+                        where category.category_id=$cat GROUP BY item.item_id order by item.sub_category_id"
+                      );
                     }
                     ?>
                     <div class="col-lg-12 col-md-12 col-sm-12 col xs-12 dynamic-content" id="dynamic-content" style="width: 100%;padding:0">

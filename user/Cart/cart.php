@@ -1263,10 +1263,12 @@ function randomGen($min, $max, $quantity)
               }
             </style>
             <?php
-            $stmt = $pdo->query("select item.item_name,item.category_id,item.sub_category_id,item_description.item_description_id,product_details.price from item
-                                join item_description on item_description.item_id=item.item_id
-                                join product_details on item_description.item_description_id=product_details.item_description_id where (added_date) in
-                                (select max(added_date) as date from item) group by item_description.item_description_id ORDER BY CAST(item.item_id AS UNSIGNED) DESC LIMIT 5");
+            $stmt = $pdo->query(
+              "select item.item_name,item.category_id,item.sub_category_id,item_description.item_description_id,product_details.price from item
+              join item_description on item_description.item_id=item.item_id
+              join product_details on item_description.item_description_id=product_details.item_description_id where (added_date) in
+              (select max(added_date) as date from item) group by item_description.item_description_id ORDER BY CAST(item.item_id AS UNSIGNED) DESC LIMIT 5"
+            );
             $checkthis = $stmt->rowCount();
             if ($checkthis != 0) {
             ?>
@@ -1336,9 +1338,11 @@ function randomGen($min, $max, $quantity)
                     if ($checkthis != 0) {
                       while ($view = $viewstmt->fetch(PDO::FETCH_ASSOC)) {
                         $item_desc_id = $view['item_description_id'];
-                        $ran = $pdo->query('select * from item_description
-                                          inner join item on item.item_id=item_description.item_id
-                                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                        $ran = $pdo->query(
+                          'select * from item_description
+                          inner join item on item.item_id=item_description.item_id
+                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                        );
                         $row = $ran->fetch(PDO::FETCH_ASSOC);
                     ?>
                         <li class="list-group-itemb" style="display: flex;padding:5px;" onclick="location.href='../Product/single.php?id=<?= $row['item_description_id'] ?>'">
@@ -1452,11 +1456,13 @@ function randomGen($min, $max, $quantity)
           <hr style="padding: 0;margin:0;">
           <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
             <?php
-            $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                              inner join item_description on item_description.item_id=item.item_id
-                              inner join category on category.category_id=item.category_id
-                              inner join sub_category on category.category_id=sub_category.category_id
-                              where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+            $row = $pdo->query(
+              "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+              inner join item_description on item_description.item_id=item.item_id
+              inner join category on category.category_id=item.category_id
+              inner join sub_category on category.category_id=sub_category.category_id
+              where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+            );
             while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
@@ -1491,11 +1497,13 @@ function randomGen($min, $max, $quantity)
           <hr style="padding: 0;margin:0;">
           <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
             <?php
-            $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                              inner join item_description on item_description.item_id=item.item_id
-                              inner join category on category.category_id=item.category_id
-                              inner join sub_category on category.category_id=sub_category.category_id
-                              where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+            $row = $pdo->query(
+              "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+              inner join item_description on item_description.item_id=item.item_id
+              inner join category on category.category_id=item.category_id
+              inner join sub_category on category.category_id=sub_category.category_id
+              where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+            );
             while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
@@ -1685,12 +1693,14 @@ function randomGen($min, $max, $quantity)
         }
       </script>
       <?php
-            $viewstmt = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
-                                    JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
-                                    join item on item.item_id=item_description.item_id
-                                    join product_details on item_description.item_description_id=product_details.item_description_id
-                                    join sub_category on item.sub_category_id=sub_category.sub_category_id
-                                    where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.views as UNSIGNED) DESC");
+            $viewstmt = $pdo->query(
+              "select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
+              JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
+              join item on item.item_id=item_description.item_id
+              join product_details on item_description.item_description_id=product_details.item_description_id
+              join sub_category on item.sub_category_id=sub_category.sub_category_id
+              where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.views as UNSIGNED) DESC"
+            );
             $isready = $viewstmt->rowCount();
             if ($isready != 0 && is_null($isready) == false) {
       ?>
@@ -1729,10 +1739,12 @@ function randomGen($min, $max, $quantity)
                       <?php
                       while ($view = $viewstmt->fetch(PDO::FETCH_ASSOC)) {
                         $item_desc_id = $view['item_description_id'];
-                        $ran = $pdo->query('select * from item_description
-                                          inner join item on item.item_id=item_description.item_id
-                                          INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
-                                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                        $ran = $pdo->query(
+                          'select * from item_description
+                          inner join item on item.item_id=item_description.item_id
+                          INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                        );
                         $row = $ran->fetch(PDO::FETCH_ASSOC);
                         $subcat_id = $view['sub_category_id'];
                       ?>
@@ -1771,11 +1783,13 @@ function randomGen($min, $max, $quantity)
           <div class="newproducts-w3agile" style="padding:0;padding-top:10px;">
             <h3>Recently Viewed</h3>
             <?php
-            $ran = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
-                              JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
-                              join item on item.item_id=item_description.item_id
-                              join sub_category on item.sub_category_id=sub_category.sub_category_id
-                              where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC");
+            $ran = $pdo->query(
+              "select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
+              JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
+              join item on item.item_id=item_description.item_id
+              join sub_category on item.sub_category_id=sub_category.sub_category_id
+              where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
+            );
             $isready = $ran->rowCount();
             if ($isready != 0 && is_null($isready) == false) {
             ?>
@@ -1812,9 +1826,11 @@ function randomGen($min, $max, $quantity)
                   <?php
                   while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                     $item_desc_id = $view['item_description_id'];
-                    $preview = $pdo->query('select * from item_description
-                                          inner join item on item.item_id=item_description.item_id
-                                          where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                    $preview = $pdo->query(
+                      'select * from item_description
+                      inner join item on item.item_id=item_description.item_id
+                      where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                    );
                     $row = $preview->fetch(PDO::FETCH_ASSOC);
                     $subcat_id = $view['sub_category_id'];
                   ?>
@@ -1909,11 +1925,13 @@ function randomGen($min, $max, $quantity)
                     </h4>
                     <div class="scrollmenu mui_item_scroll <?= $color[$rancolor1] ?>" style="background-color: #fff">
                       <?php
-                      $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                                        inner join item_description on item_description.item_id=item.item_id
-                                        inner join category on category.category_id=item.category_id
-                                        inner join sub_category on category.category_id=sub_category.category_id
-                                        where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+                      $row = $pdo->query(
+                        "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                        inner join item_description on item_description.item_id=item.item_id
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id=sub_category.category_id
+                        where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+                      );
                       while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                       ?>
                         <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
@@ -1943,11 +1961,13 @@ function randomGen($min, $max, $quantity)
                     </h4>
                     <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor2] ?>" style="background-color: #fff">
                       <?php
-                      $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                                        inner join item_description on item_description.item_id=item.item_id
-                                        inner join category on category.category_id=item.category_id
-                                        inner join sub_category on category.category_id=sub_category.category_id
-                                        where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+                      $row = $pdo->query(
+                        "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                        inner join item_description on item_description.item_id=item.item_id
+                        inner join category on category.category_id=item.category_id
+                        inner join sub_category on category.category_id=sub_category.category_id
+                        where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+                      );
                       while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                       ?>
                         <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">

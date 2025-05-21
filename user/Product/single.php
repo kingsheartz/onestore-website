@@ -2583,11 +2583,13 @@ function randomGen($min, $max, $quantity)
 <div class="newproducts-w3agile" style="padding:0;padding-top:10px;">
   <h3>Related Products</h3>
   <?php
-  $ran = $pdo->query("select * from item_description
-                    inner join item on item.item_id=item_description.item_id
-                    inner join category on category.category_id=item.category_id
-                    inner join sub_category on category.category_id=sub_category.category_id
-                    where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_id= '$subcat_id' ");
+  $ran = $pdo->query(
+    "select * from item_description
+    inner join item on item.item_id=item_description.item_id
+    inner join category on category.category_id=item.category_id
+    inner join sub_category on category.category_id=sub_category.category_id
+    where item.sub_category_id=sub_category.sub_category_id and sub_category.sub_category_id= '$subcat_id' "
+  );
   /*COLOR PICKER*/
   $color = array('scroll_handle_orange', 'scroll_handle_blue', 'scroll_handle_red', 'scroll_handle_cyan', 'scroll_handle_magenta', 'scroll_handle_green', 'scroll_handle_green1', 'scroll_handle_peach', 'scroll_handle_munsell', 'scroll_handle_carmine', 'scroll_handle_lightbrown', 'scroll_handle_hanblue', 'scroll_handle_kellygreen');
   $bgcolor = array('orange', '#0c99cc', 'red', 'cyan', 'magenta', 'green', '#006622', '#FF6666', '#E6BF00', '#AB274F', '#C46210', '#485CBE', '#65BE00');
@@ -2666,11 +2668,13 @@ function randomGen($min, $max, $quantity)
           <h3>Recently Viewed</h3>
           <?php
           //CHANGE 4////////////////////////////////////////////////////////////////////////////////////////////////////////
-          $ran = $pdo->query("select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
-                            JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
-                            join item on item.item_id=item_description.item_id
-                            join sub_category on item.sub_category_id=sub_category.sub_category_id
-                            where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC");
+          $ran = $pdo->query(
+            "select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
+            JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
+            join item on item.item_id=item_description.item_id
+            join sub_category on item.sub_category_id=sub_category.sub_category_id
+            where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
+          );
           $isready = $ran->rowCount();
           if ($isready != 0 && is_null($isready) == false) {
           ?>
@@ -2698,9 +2702,11 @@ function randomGen($min, $max, $quantity)
                 <?php
                 while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                   $item_desc_id = $view['item_description_id'];
-                  $preview = $pdo->query('select * from item_description
-                                        inner join item on item.item_id=item_description.item_id
-                                        where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                  $preview = $pdo->query(
+                    'select * from item_description
+                    inner join item on item.item_id=item_description.item_id
+                    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                  );
                   $row = $preview->fetch(PDO::FETCH_ASSOC);
                   $subcat_id = $view['sub_category_id'];
                 ?>

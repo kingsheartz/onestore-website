@@ -971,11 +971,13 @@ $rowcount = $row_single_div['checksingle'];
                   <hr style="padding: 0;margin:0;">
                   <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
                     <?php
-                    $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                                      inner join item_description on item_description.item_id=item.item_id
-                                      inner join category on category.category_id=item.category_id
-                                      inner join sub_category on category.category_id=sub_category.category_id
-                                      where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+                    $row = $pdo->query(
+                      "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                      inner join item_description on item_description.item_id=item.item_id
+                      inner join category on category.category_id=item.category_id
+                      inner join sub_category on category.category_id=sub_category.category_id
+                      where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+                    );
                     while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                       <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
@@ -1003,11 +1005,13 @@ $rowcount = $row_single_div['checksingle'];
                   <hr style="padding: 0;margin:0;">
                   <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
                     <?php
-                    $row = $pdo->query("select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-                                      inner join item_description on item_description.item_id=item.item_id
-                                      inner join category on category.category_id=item.category_id
-                                      inner join sub_category on category.category_id=sub_category.category_id
-                                      where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+                    $row = $pdo->query(
+                      "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                      inner join item_description on item_description.item_id=item.item_id
+                      inner join category on category.category_id=item.category_id
+                      inner join sub_category on category.category_id=sub_category.category_id
+                      where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+                    );
                     while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                       <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">

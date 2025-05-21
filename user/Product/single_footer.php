@@ -308,10 +308,12 @@
 <!--ADD TO CART-->
 <?php
 if (isset($item_description_id)) {
-  $result = $pdo->query("select * from product_details
-                        INNER JOIN store ON product_details.store_id=store.store_id
-                        INNER JOIN item_description on item_description.item_description_id=product_details.item_description_id
-                        where product_details.item_description_id=$item_description_id and product_details.availability='yes'");
+  $result = $pdo->query(
+    "select * from product_details
+    INNER JOIN store ON product_details.store_id=store.store_id
+    INNER JOIN item_description on item_description.item_description_id=product_details.item_description_id
+    where product_details.item_description_id=$item_description_id and product_details.availability='yes'"
+  );
   $status = 0;
 ?>
   <div
@@ -530,10 +532,12 @@ if (isset($item_description_id)) {
 <!--ADD TO WISHLIST-->
 <?php
 if (isset($item_description_id)) {
-  $result = $pdo->query("select * from product_details
-                        INNER JOIN store ON product_details.store_id=store.store_id
-                        INNER JOIN item_description on item_description.item_description_id=product_details.item_description_id
-                        where product_details.item_description_id=$item_description_id and product_details.availability='yes'");
+  $result = $pdo->query(
+    "select * from product_details
+    INNER JOIN store ON product_details.store_id=store.store_id
+    INNER JOIN item_description on item_description.item_description_id=product_details.item_description_id
+    where product_details.item_description_id=$item_description_id and product_details.availability='yes'"
+  );
   $status = 0;
 ?>
   <div id="avail_stores_wishlist" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal fade modal-xl hidescroll" style="height: 90%;">
@@ -838,10 +842,12 @@ if (isset($item_description_id, $_SESSION['id'])) {
 <!--BUY NOW-->
 <?php
 if (isset($item_description_id)) {
-  $result = $pdo->query("select * from product_details
-                        INNER JOIN store ON product_details.store_id=store.store_id
-                        INNER JOIN item_description on item_description.item_description_id=product_details.item_description_id
-                        where product_details.item_description_id=$item_description_id and product_details.availability='yes'");
+  $result = $pdo->query(
+    "select * from product_details
+    INNER JOIN store ON product_details.store_id=store.store_id
+    INNER JOIN item_description on item_description.item_description_id=product_details.item_description_id
+    where product_details.item_description_id=$item_description_id and product_details.availability='yes'"
+  );
   $status = 0;
 ?>
   <div id="avail_stores_buy" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal fade modal-xl hidescroll" style="height: 90%;">
@@ -2686,7 +2692,6 @@ if (isset($item_description_id)) {
     showConfirmButton: false,
     timer: 3000
   });
-
 </script>
 <!-- SweetAlert -->
 <!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
