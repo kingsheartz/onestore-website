@@ -428,8 +428,7 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                   onkeyup="changed_details()"
                   id="address"
                   placeholder=""
-                  readonly>
-                  <?= $userrow['address'] ?>
+                  readonly><?= $userrow['address'] ?>
                 </textarea>
                 <label class="form-label" for="address">Address</label>
                 <span
