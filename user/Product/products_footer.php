@@ -1200,7 +1200,7 @@ if (isset($_SESSION['id'])) {
       $('.load_btn').show();
       $('.real_btn').hide();
       $.ajax({
-        url: "functions.php", //passing page info
+        url: "../Common/functions.php", //passing page info
         data: {
           "login": 1,
           "email": email,
@@ -1227,7 +1227,7 @@ if (isset($_SESSION['id'])) {
               })
               .then((willSubmit) => {
                 if (willSubmit.dismiss) {
-                  location.href = "onestore.php";
+                  location.href = "../Main/onestore.php";
                 } else if (willSubmit.isConfirmed) {
                   location.href = "store-admin/index.php?id=" + data.id + "";
                 }
@@ -1446,7 +1446,7 @@ if (isset($_SESSION['id'])) {
     var po = document.getElementById("po_list").value;
     //	'<%Session["location"]="'+po+'";%>';//SET JS VALUE TO PHP SESSION VARIABLE
     $.ajax({
-      url: "functions.php", //passing page info
+      url: "../Common/functions.php", //passing page info
       data: {
         "location_access": 1,
         "location": po
@@ -1466,7 +1466,7 @@ if (isset($_SESSION['id'])) {
             })
             .then((willSubmit) => {
               if (willSubmit) {
-                location.href = "onestore.php";
+                location.href = "../Main/onestore.php";
               } else {
                 return;
               }
@@ -1595,7 +1595,7 @@ if (isset($_SESSION['id'])) {
     var po = document.getElementById("po_list").value;
     //	'<%Session["location"]="'+po+'";%>';//SET JS VALUE TO PHP SESSION VARIABLE
     $.ajax({
-      url: "functions.php", //passing page info
+      url: "../Common/functions.php", //passing page info
       data: {
         "location_access": 1,
         "location": po
@@ -1787,7 +1787,7 @@ if (isset($_SESSION['id'])) {
       if (email != " " && pass != " ") {
         //$("#strt").hide();
         $.ajax({
-          url: "functions.php", //passing page info
+          url: "../Common/functions.php", //passing page info
           data: {
             "login": 1,
             "email": email,
@@ -1815,7 +1815,7 @@ if (isset($_SESSION['id'])) {
                 dangerMode: true,
                 timer: 6000,
               });
-              location.href = "onestore.php";
+              location.href = "../Main/onestore.php";
               return;
             } else {
               return;
@@ -1829,7 +1829,7 @@ if (isset($_SESSION['id'])) {
     ?>
       //CART COUNT
       $.ajax({
-        url: "functions.php", //passing page info
+        url: "../Common/functions.php", //passing page info
         data: {
           "cartcnt": 1,
           "user": "<?= $_SESSION['id'] ?>"
@@ -1896,7 +1896,7 @@ if (isset($_SESSION['id'])) {
       return false;
     } else {
       $.ajax({
-        url: "functions.php",
+        url: "../Common/functions.php",
         data: {
           "nlmailcheck": 1,
           "email": nle

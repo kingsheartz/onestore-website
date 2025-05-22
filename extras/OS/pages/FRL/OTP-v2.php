@@ -44,7 +44,7 @@ if (!isset($_SESSION['forgot_pass_email'])) {
     <div class="login-box" style="display: inline-flex;">
       <div class="card card-outline card-primary">
         <div class="card-header text-center">
-          <a href="../../../../onestore.php" class="h1"><img src="../../../../images/logo/logost.svg" height="auto"
+          <a href="../../../../user/Main/onestore.php" class="h1"><img src="../../../../images/logo/logost.svg" height="auto"
               width="auto " style="width: 80%;height: auto;" class="image-fluid mb-2"></a>
         </div>
         <div class="card-body">
@@ -107,12 +107,10 @@ if (!isset($_SESSION['forgot_pass_email'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script type="text/javascript">
-
-
     var time = 120;
     var distance = 60;
     // Update the count down every 1 second
-    var x = setInterval(function () {
+    var x = setInterval(function() {
       time = time - 1;
       var minutes = Math.floor(time / 60);
       distance = distance - 1;
@@ -137,7 +135,7 @@ if (!isset($_SESSION['forgot_pass_email'])) {
         clearInterval(x);
         $('#expiry_caption').hide();
         document.getElementById("expiry").innerHTML = "Expired OTP !";
-        setInterval(function () {
+        setInterval(function() {
           document.getElementById("expiry").innerHTML = "<a href='#' onclick='retry()'>Retry</a>";
         }, 2000)
       }
@@ -152,13 +150,16 @@ if (!isset($_SESSION['forgot_pass_email'])) {
       var email = "<?= $_SESSION['forgot_pass_email'] ?>";
 
       $.ajax({
-        url: "../../../../functions.php", //passing page info
-        data: { "forgotlogin": 1, "email": email },  //form data
+        url: "../../../../user/Common/functions.php", //passing page info
+        data: {
+          "forgotlogin": 1,
+          "email": email
+        }, //form data
         type: "post", //post data
-        dataType: "json",   //datatype=json format
-        timeout: 18000,  //waiting time 3 sec
+        dataType: "json", //datatype=json format
+        timeout: 18000, //waiting time 3 sec
 
-        success: function (data) {  //if logging in is success
+        success: function(data) { //if logging in is success
 
           if (data.status == 'success') {
 
@@ -166,49 +167,46 @@ if (!isset($_SESSION['forgot_pass_email'])) {
             $('.std_loader').hide();
 
             swal({
-              title: "Success!!!",
-              text: "OTP Send",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Success!!!",
+                text: "OTP Send",
+                icon: "success",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
-                  $(function () {
+                  $(function() {
                     location.href = "OTP-v2.php"
                     $('#emppass').hide();
 
                   });
                   return false;
-                }
-                else {
+                } else {
                   return false;
                 }
               });
-          }
-          else if (data.status == 'admin') {
+          } else if (data.status == 'admin') {
 
             $('.background_loader').hide();
             $('.std_loader').hide();
 
             swal({
-              title: "Success!!!",
-              text: "OTP Send",
-              closeOnClickOutside: false,
-              dangerMode: true,
-            })
+                title: "Success!!!",
+                text: "OTP Send",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              })
               .then((willSubmit) => {
                 if (willSubmit) {
                   $('#emppass').hide();
                   location.href = "OTP-v2.php";
-                }
-                else {
+                } else {
                   return false;
                 }
               });
           }
         },
-        error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+        error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
           if (textstatus === "timeout") {
 
             $('.background_loader').hide();
@@ -225,8 +223,9 @@ if (!isset($_SESSION['forgot_pass_email'])) {
 
             return false;
 
+          } else {
+            return false;
           }
-          else { return false; }
         }
       }); //closing ajax
 
@@ -249,15 +248,15 @@ if (!isset($_SESSION['forgot_pass_email'])) {
       <?php
       if (isset($_GET['otp'])) {
         $otp = $_GET['otp'];
-        ?>
+      ?>
         document.getElementById('otp').value = "<?= $otp ?>";
         document.getElementById('otpbtn').click();
-        <?php
+      <?php
       }
       ?>
     }
 
-    $('#otp').keyup(function () {
+    $('#otp').keyup(function() {
       if ($('#otp').val().length == 6) {
         otpcheck();
       }
@@ -286,20 +285,22 @@ if (!isset($_SESSION['forgot_pass_email'])) {
         $('#emppass').show();
         document.getElementById("otp").focus();
         return;
-      }
-      else {
+      } else {
 
         $('.load_btn').show();
         $('.real_btn').hide();
 
         $.ajax({
-          url: "../../../../functions.php", //passing page info
-          data: { "otppass": 1, "otp": otp },  //form data
+          url: "../../../../user/Common/functions.php", //passing page info
+          data: {
+            "otppass": 1,
+            "otp": otp
+          }, //form data
           type: "post", //post data
-          dataType: "json",   //datatype=json format
-          timeout: 18000,  //waiting time 3 sec
+          dataType: "json", //datatype=json format
+          timeout: 18000, //waiting time 3 sec
 
-          success: function (data) {  //if logging in is success
+          success: function(data) { //if logging in is success
 
             if (data.status == 'success') {
 
@@ -307,59 +308,54 @@ if (!isset($_SESSION['forgot_pass_email'])) {
               $('.real_btn').show();
 
               swal({
-                title: "Success!!!",
-                text: "Verification success",
-                icon: "success",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Success!!!",
+                  text: "Verification success",
+                  icon: "success",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
-                    $(function () {
+                    $(function() {
                       location.href = "recover-password-v2.php?otp=" + data.otp + "";
                       $('#emppass').hide();
                     });
                     return;
-                  }
-                  else {
+                  } else {
                     return;
                   }
                 });
-            }
-            else if (data.status == 'admin') {
+            } else if (data.status == 'admin') {
 
               $('.load_btn').hide();
               $('.real_btn').show();
 
               swal({
-                title: "Success!!!",
-                text: "Verification success",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Success!!!",
+                  text: "Verification success",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
                     $('#emppass').hide();
                     location.href = "recover-password-v2.php?otp=" + data.otp + "";
-                  }
-                  else {
+                  } else {
                     return;
                   }
                 });
-            }
-
-            else if (data.status == 'error') {
+            } else if (data.status == 'error') {
 
               $('.load_btn').hide();
               $('.real_btn').show();
 
               swal({
-                title: "Oops!!!",
-                text: "Invalid OTP !!! ",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Oops!!!",
+                  text: "Invalid OTP !!! ",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
                     $('#emppass').html("Invalid OTP !!!");
@@ -367,19 +363,18 @@ if (!isset($_SESSION['forgot_pass_email'])) {
                     //location.reload();
                   }
                 });
-            }
-            else if (data.status == 'expired') {
+            } else if (data.status == 'expired') {
 
               $('.load_btn').hide();
               $('.real_btn').show();
 
               swal({
-                title: "Oops!!!",
-                text: " OTP expired!!!",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Oops!!!",
+                  text: " OTP expired!!!",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
                     $('#emppass').html("OTP expired!!!.");
@@ -390,7 +385,7 @@ if (!isset($_SESSION['forgot_pass_email'])) {
             }
 
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             if (textstatus === "timeout") {
 
               $('.load_btn').hide();
@@ -407,8 +402,9 @@ if (!isset($_SESSION['forgot_pass_email'])) {
 
               return;
 
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
