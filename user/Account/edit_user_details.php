@@ -467,7 +467,8 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
               <span id='succeeded1' style="float: right;background-color: green;border-radius: 5px;color:white">&nbsp;
                 <i class="fa fa-check" style="color: orange;text-shadow: 1px 2px 3px grey"></i>
                 <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey">
-                  verified &nbsp;</i>
+                  verified &nbsp;
+                </i>
               </span>
               <span id='pending1' style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
                 <i class="fa fa-close" style="color: red;text-shadow: 1px 2px 3px grey"></i>
