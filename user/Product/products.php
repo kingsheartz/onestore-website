@@ -255,8 +255,6 @@ if (isset($_GET['item'])) {
           }
         }
       }); //closing ajax
-      //location.href="../Cart/cart.php?store="+id+"&item=<? //=$row['item_id']
-                                                          ?>";
     }
   }
 
@@ -1808,7 +1806,7 @@ if ($result_cnt == 0) {
                                             inner join category on category.category_id=item.category_id
                                             inner join sub_category on item.sub_category_id= sub_category.sub_category_id
                                             where category.category_id=(" . $_GET['category_id'] . ") AND sub_category.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")
- 				                                    GROUP BY item.item_id AND item.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")";
+                                            GROUP BY item.item_id AND item.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")";
                           $getsubcatqnty_stmt = $pdo->query($getsubcatqnty);
                           $getsubcatqnty_row = $getsubcatqnty_stmt->fetch(PDO::FETCH_ASSOC);
                           if ($getsubcatqnty_row == false) {
