@@ -312,13 +312,13 @@ $(function() {
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- added script for new template -->
 <!-- Latest jQuery form server -->
-<!------------------------------------------------------------>
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
+<!------------------------------------------------->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!------------------------------------------------->
 <script src="https://cdn.jsdelivr.net/gh/vast-engineering/jquery-popup-overlay@2/jquery.popupoverlay.min.js"></script>
 <script type="text/javascript">
-////////////CAPSLOCK FINDER//////////////////////////////////////////////////
+//////////CAPSLOCK FINDER//////////////////////////////////////////////////
 var capson_warning = document.getElementsByClassName("capson_warning");
 var password_field = document.getElementsByClassName('password_fields');
 for (var i = 0; i < password_field.length; i++) {
@@ -991,11 +991,10 @@ function regsetlocation() {
   /*working*/
 }
 </script>
-<!--//////////////////////END-833///START-303/////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
-<!-------------------------------------------------------------------- >
-		<!-- Bootstrap JS form CDN -->
+<!------------------------------------------------->
+<!------------- Bootstrap JS form CDN ------------->
 <script type="text/javascript">
 $('#myModal').on('show.bs.modal', function(event) {
   $('#myModal').modal('handleUpdate');
@@ -1003,40 +1002,13 @@ $('#myModal').on('show.bs.modal', function(event) {
 $('#myModal2').on('show.bs.modal', function(event) {
   $('myModal2').modal('handleUpdate');
 });
-/*
-				$('avail_stores').on('show.bs.model',function (event){
-						$('#avail_stores').modal('handleUpdate') ;
-				});
- */
 </script>
-<!-- start-smoth-scrolling -->
-<!--
-		<script type="text/javascript" src="../../js/move-top.js"></script>
-		<script type="text/javascript" src="../../js/easing.js"></script>-->
-<!--ending of added script -->
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
-<!--	<script type="text/javascript">
-				$(document).ready(function() {
-						/*
-								var defaults = {
-								containerID: 'toTop', // fading element id
-								containerHoverID: 'toTopHover', // fading element hover id
-								scrollSpeed: 1200,
-								easingType: 'linear'
-								};
-						*/
-						$().UItoTop({ easingType: 'easeOutQuart' });
-						});
-		</script>
--->
 <!-- //here ends scrolling icon -->
 <!--// Mini Cart //-->
 <script src="../../js/minicart.min.js"></script>
 <!--// Mini Cart //-->
 <script>
-<!--// Mini Cart //
--->
+//--- Mini Cart ---//
 paypal.minicart.render({
 action:
 '#'
@@ -1086,16 +1058,9 @@ function cartview() {
 }
 //AUTO LOG IN
 $(document).ready(function() {
-  /*/////////////////////////////HIDDING LOADER//////////////////////////////////////////////
-  		setTimeout(() => {
-  		const loader = document.querySelector(".loader");
-  		const loader1 = document.querySelector(".loader1");
-  		const loader2 = document.querySelector(".loader2");
-  		loader.className += " hidden";
-  		loader1.className += " hidden";
-  		loader2.className += " hidden";
-  			}, 3000);
-  /*/ ////////////////////////////HIDDING LOADER//////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
   function getCookie(name) {
     // Split cookie string and get all individual name=value pairs in an array
     var cookieArr = document.cookie.split(";");
@@ -1317,9 +1282,8 @@ function hostReachable() {
 }
 </script>
 <!------------------------------------------------------------>
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
-<!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!------------------ THIS IS FROM HEADER --------------------->
+<!------------------------------------------------------------>
 <!-- Scroll->Drag -->
 <!-- jQuery sticky menu -->
 <script src="../../js/owl.carousel.min.js"></script>
@@ -1336,9 +1300,8 @@ function hostReachable() {
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/skdslider.min.js"></script>
 <link href="../../css/skdslider.css" rel="stylesheet">
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
-<!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!------------------------------------------------------------>
+<!------------------ THIS IS FROM HEADER --------------------->
 <!------------------------------------------------------------>
 <!-- //main slider-banner -->
 <!-- coc -->

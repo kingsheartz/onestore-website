@@ -104,50 +104,62 @@ require "../Main/header.php";
 		$offset = ($pageno - 1) * $no_of_records_per_page;
 		if (isset($_GET['item'])) {
 			$nm = ucwords($_GET['item']);
-			$total_pages_sql = $pdo->query("select COUNT(*) from item
-			inner join item_description on item_description.item_id=item.item_id
-			inner join product_details on product_details.item_description_id=item_description.item_description_id
-			inner join category on category.category_id=item.category_id
-			inner join sub_category on category.category_id=sub_category.category_id
-			where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id");
-			$res = $pdo->query("select item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-        		inner join item_description on item_description.item_id=item.item_id
-        		inner join product_details on product_details.item_description_id=item_description.item_description_id
-        		inner join category on category.category_id=item.category_id
-        		inner join sub_category on category.category_id=sub_category.category_id
-        		where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id
-				LIMIT $offset, $no_of_records_per_page");
+			$total_pages_sql = $pdo->query(
+				"select COUNT(*) from item
+				inner join item_description on item_description.item_id=item.item_id
+				inner join product_details on product_details.item_description_id=item_description.item_description_id
+				inner join category on category.category_id=item.category_id
+				inner join sub_category on category.category_id=sub_category.category_id
+				where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id"
+			);
+			$res = $pdo->query(
+				"select item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+				inner join item_description on item_description.item_id=item.item_id
+				inner join product_details on product_details.item_description_id=item_description.item_description_id
+				inner join category on category.category_id=item.category_id
+				inner join sub_category on category.category_id=sub_category.category_id
+				where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id
+				LIMIT $offset, $no_of_records_per_page"
+			);
 		} else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
 			$cat = $_GET['category_id'];
 			$sub = $_GET['subcategory_id'];
-			$total_pages_sql = $pdo->query("select COUNT(*) from item
-			inner join item_description on item_description.item_id=item.item_id
-			inner join product_details on product_details.item_description_id=item_description.item_description_id
-			inner join sub_category on sub_category.sub_category_id=item.sub_category_id
-			inner join category on category.category_id=sub_category.category_id
-			where sub_category.sub_category_id=item.sub_category_id and category.category_id='$cat' and sub_category.sub_category_id='$sub' ");
-			$res = $pdo->query("select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-	        	inner join item_description on item_description.item_id=item.item_id
-                inner join product_details on product_details.item_description_id=item_description.item_description_id
-                inner join store on product_details.store_id=store.store_id
-        		inner join category on category.category_id=item.category_id
-        		inner join sub_category on category.category_id= sub_category.category_id
-	        	where sub_category.sub_category_id=item.sub_category_id and category.category_id='$cat'
-				 and sub_category.sub_category_id='$sub' LIMIT $offset, $no_of_records_per_page");
+			$total_pages_sql = $pdo->query(
+				"select COUNT(*) from item
+				inner join item_description on item_description.item_id=item.item_id
+				inner join product_details on product_details.item_description_id=item_description.item_description_id
+				inner join sub_category on sub_category.sub_category_id=item.sub_category_id
+				inner join category on category.category_id=sub_category.category_id
+				where sub_category.sub_category_id=item.sub_category_id and category.category_id='$cat' and sub_category.sub_category_id='$sub' "
+			);
+			$res = $pdo->query(
+				"select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+				inner join item_description on item_description.item_id=item.item_id
+				inner join product_details on product_details.item_description_id=item_description.item_description_id
+				inner join store on product_details.store_id=store.store_id
+				inner join category on category.category_id=item.category_id
+				inner join sub_category on category.category_id= sub_category.category_id
+				where sub_category.sub_category_id=item.sub_category_id and category.category_id='$cat'
+				and sub_category.sub_category_id='$sub' LIMIT $offset, $no_of_records_per_page"
+			);
 		} else if (isset($_GET['category_id'])) {
 			$cat = $_GET['category_id'];
-			$total_pages_sql = $pdo->query("select COUNT(*),item.category_id from item
+			$total_pages_sql = $pdo->query(
+				"select COUNT(*),item.category_id from item
 				inner join item_description on item_description.item_id=item.item_id
 				inner join product_details on product_details.item_description_id=item_description.item_description_id
 				inner join category on category.category_id=item.category_id
 				inner join sub_category on category.category_id= sub_category.category_id
-				GROUP BY item.item_id HAVING item.category_id=$cat");
-			$res = $pdo->query("select item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-        		inner join item_description on item_description.item_id=item.item_id
-        		inner join product_details on product_details.item_description_id=item_description.item_description_id
-        		inner join category on category.category_id=item.category_id
-        		inner join sub_category on category.category_id=sub_category.category_id
-        		GROUP BY item.item_id HAVING item.category_id=$cat LIMIT $offset, $no_of_records_per_page");
+				GROUP BY item.item_id HAVING item.category_id=$cat"
+			);
+			$res = $pdo->query(
+				"select item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+				inner join item_description on item_description.item_id=item.item_id
+				inner join product_details on product_details.item_description_id=item_description.item_description_id
+				inner join category on category.category_id=item.category_id
+				inner join sub_category on category.category_id=sub_category.category_id
+				GROUP BY item.item_id HAVING item.category_id=$cat LIMIT $offset, $no_of_records_per_page"
+			);
 		}
 		function addOrUpdateUrlParam($name, $value)
 		{
@@ -323,4 +335,5 @@ require "../Main/header.php";
 		//catactive.className="active";
 	</script>
 	</body>
+
 	</html>

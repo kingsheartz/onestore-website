@@ -392,8 +392,9 @@ require "head.php";
           <span class="icon-bar"></span>
         </button>
         <div class="connect" style="background: #000000;text-align: center;">
-          <span><i class="fa fa-user-circle-o
-"></i></span>
+          <span>
+            <i class="fa fa-user-circle-o"></i>
+          </span>
           <h6 style="color:white;font-size:16px">CONTACTS</h6>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar2">
@@ -405,15 +406,17 @@ require "head.php";
             $cn++;
           ?>
             <div id="<?= $row['username'] ?>" class="connect" onclick="getfile('<?= $row['username'] ?>')">
-              <span class="conimg"><i id="<?= $row['username'] ?><?= $cn ?>" class="fa fa-user-circle-o"></i> <span
-                  class="uppernum3">
+              <span class="conimg">
+                <i id="<?= $row['username'] ?><?= $cn ?>" class="fa fa-user-circle-o"></i>
+                <span class="uppernum3">
                   <?php
                   $query1 = "SELECT COUNT(*) FROM chats WHERE uname='" . $row['username'] . "' AND stat=0";
                   $statement1 = $pdo->prepare($query1);
                   $statement1->execute();
                   $row1 = $statement1->fetch(PDO::FETCH_ASSOC);
                   ?> <?= $row1['COUNT(*)'] ?>
-                </span></span>
+                </span>
+              </span>
               <h6>
                 <?= $row['username'] ?>
               </h6>
@@ -451,8 +454,8 @@ require "head.php";
               container.scrollTop = container.scrollHeight - container.clientHeight;
             var pageRefresh = 5000; //5 s
               setInterval(function() {
-                 $('#chathist').load(location.href + " #chathist >");
-                 $('#myNavbar2').load(location.href + " #myNavbar2 >");
+                $('#chathist').load(location.href + " #chathist >");
+                $('#myNavbar2').load(location.href + " #myNavbar2 >");
               }, pageRefresh);
             });
             */
@@ -512,10 +515,7 @@ require "head.php";
                   ?>
                     <div id="triangle1" class="triangle1"></div>
                     <div id="message1" class="message1">
-                      <div style="color: white;
-  float: right;
-  padding: 0;
-  width: 100%;">
+                      <div style="color: white;float: right;padding: 0;width: 100%;">
                         <pre><?php echo trim($row['msg']); ?></pre>
                       </div>
                       <div class="spdat">
@@ -529,10 +529,7 @@ require "head.php";
                     ?>
                       <div id="triangle" class="triangle"></div>
                       <div id="message" class="message">
-                        <div style="color: white;
-  float: right;
-  padding: 0;
-  width: 100%;">
+                        <div style="color: white;float: right;padding: 0;width: 100%;">
                           <pre><?php echo trim($row['msg']); ?></pre>
                         </div>
                         <div class="spdat">
@@ -545,10 +542,7 @@ require "head.php";
                     ?>
                       <div id="triangle1" class="triangle1"></div>
                       <div id="message1" class="message1">
-                        <div style="color: white;
-  float: right;
-  padding: 0;
-  width: 100%;">
+                        <div style="color: white;float: right;padding: 0;width: 100%;">
                           <pre><?php echo trim($row['msg']); ?></pre>
                         </div>
                         <div class="spdat">
@@ -608,10 +602,18 @@ require "head.php";
               }
             </script>
             <footer>
-              <textarea class="col-sm-12" id="textarea" style="white-space: pre-line" wrap="hard" name="msg"
-                onChange={handleChange} onkeyup="change()"></textarea>
+              <textarea
+                class="col-sm-12"
+                id="textarea"
+                style="white-space: pre-line"
+                wrap="hard"
+                name="msg"
+                onChange={handleChange}
+                onkeyup="change()">
+              </textarea>
               <button id="myBtn" disabled name="submit" type="submit">
-                <i class="fa fa-arrow-right"></i></button>
+                <i class="fa fa-arrow-right"></i>
+              </button>
             </footer>
           </form>
         </main>

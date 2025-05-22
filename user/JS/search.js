@@ -50,7 +50,7 @@ function fill(Value) {
 var item;
 function getitems(src) {
   $.ajax({
-    url: "ajax.php",
+    url: "../Common/ajax.php",
     type: "POST",
     data: { key: src },
     dataType: "json",

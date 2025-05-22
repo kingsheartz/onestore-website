@@ -467,9 +467,6 @@ if (session_status() === PHP_SESSION_NONE) {
       }
     }
 
-    /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
     #category,
     #category li {
       z-index: 999999999 !important;
@@ -1248,7 +1245,9 @@ if (session_status() === PHP_SESSION_NONE) {
                   <a href="#">
                     <li class="logindiv" style="float: right;">
                       <form action="#" method="post" class="last">
-                        <?php if (isset($_SESSION['name'])) { ?>
+                        <?php
+                        if (isset($_SESSION['name'])) {
+                        ?>
                           <button class="w3view-cart loginicon" type="button" name="submit" value=""
                             onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -1256,13 +1255,18 @@ if (session_status() === PHP_SESSION_NONE) {
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
                             <?= $_SESSION['name'] ?>
                           </span>
-                        <?php } else { ?>
+                        <?php
+                        } else {
+                        ?>
                           <button class="w3view-cart loginicon" type="button" name="submit" value=""
                             onclick="location.href='login.php'">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           </button>
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Log
-                            in</span><?php } ?>
+                            in</span>
+                        <?php
+                        }
+                        ?>
                       </form>
                     </li>
                   </a>
@@ -1271,7 +1275,9 @@ if (session_status() === PHP_SESSION_NONE) {
                   <a href="#">
                     <li class="logindiv" style="float: right;">
                       <form action="#" method="post" class="last">
-                        <?php if (isset($_SESSION['name'])) { ?>
+                        <?php
+                        if (isset($_SESSION['name'])) {
+                        ?>
                           <button class="w3view-cart loginicon " type="button" name="submit" value=""
                             onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -1279,14 +1285,19 @@ if (session_status() === PHP_SESSION_NONE) {
                           <span style="bottom: 0px;display: flex;justify-content:center;"
                             id="location"><?php echo "You"; ?>
                           </span>
-                        <?php } else { ?>
+                        <?php
+                        } else {
+                        ?>
                           <button class="w3view-cart loginicon " type="button" name="submit" value=""
                             onclick="location.href='login.php'">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           </button>
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
                             Log in
-                          </span><?php } ?>
+                          </span>
+                        <?php
+                        }
+                        ?>
                       </form>
                     </li>
                   </a>
@@ -1510,7 +1521,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <span>Log in<?php } ?></span></span>
       </i>
     </a><br>
-    <!--////////////////////////////////////////////////#1#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #1# ------------------------------------------------->
     <a class="side_nav_content_header" href="#" style="color: #fe9126"> <i class="fa fa-sm fa-shopping-cart"
         style="color:white "></i> Shop By Category</a>
     <button class="dropdown-btn  category_side_head" id="list_enda"
@@ -1562,7 +1573,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#2#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #2# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endb" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Food & Groceries
         <i class="fa fa-caret-down"></i></a>
@@ -1634,7 +1645,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#3#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #3# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endc" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Mobile
         <i class="fa fa-caret-down"></i></a>
@@ -1657,7 +1668,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#4#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #4# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endd" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Fasion
         <i class="fa fa-caret-down"></i></a>
@@ -1708,7 +1719,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#5#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #5# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_ende" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Home
         <i class="fa fa-caret-down"></i></a>
@@ -1738,7 +1749,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#6#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #6# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endf" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Electronics
         <i class="fa fa-caret-down"></i></a>
@@ -1782,7 +1793,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#7#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #7# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endg" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Toys and Baby
         <i class="fa fa-caret-down"></i></a>
@@ -1840,7 +1851,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#8#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #8# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endh" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Sports
         <i class="fa fa-caret-down"></i></a>
@@ -1919,7 +1930,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#9#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #9# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endi" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Beauty
         <i class="fa fa-caret-down"></i></a>
@@ -1949,7 +1960,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#10#/////////////////////////////////////////////////////////////////-->
+    <!------------------------------------------------- #10# ------------------------------------------------->
     <button class="dropdown-btn category_side_head" id="list_endj" style="width: 100%;float: left;padding-left: 0px;"><a
         href="#" style="color: white;"> Appliances
         <i class="fa fa-caret-down"></i></a>
@@ -1985,38 +1996,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
     </div>
-    <!--////////////////////////////////////////////////#EXTRAS#/////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////#EXTRAS#/////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////#END#/////////////////////////////////////////////////////////////////-->
-    <!-- <button class="dropdown-btn category_side_head" id="list_endk" style="width: 100%;float: left;padding-left: 0px;display: none;"><a href="#" style="color: white;"> Unknown
-      <i class="fa fa-caret-down"></i></a>
-    </button>
-    <div class="dropdown-container side_drop_li_main slide_drop_li_main_first" style="display: none;">
-      <a href="#" style="width: 100%;padding: 0px;padding-top: 111px;">
-        <li class="side_drop_li"  onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-    </div> -->
     <div id="side_cat_list_end_default" style="margin-top: 370px;"></div>
     <!--n+4 breaks 37px difference-->
     <div id="side_cat_list_enda" style="display: none;margin-top: 333px;"></div>
@@ -2066,6 +2045,3 @@ if (session_status() === PHP_SESSION_NONE) {
     ?>
     <a class="side_nav_content_end" href="#"></a>
   </div>
-  <!--SIDE-BAR-DIV #fe9126,#02171e,#337ab7-->
-  <!--<div id="main_all" style="padding: 0px;margin: 0px;left: 0px;right: 0px">-->
-  <!--SIDE-BAR-DIV-->

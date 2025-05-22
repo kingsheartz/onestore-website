@@ -98,7 +98,7 @@ margin-left: -0.75rem;justify-content:center;padding-top:50px;padding-bottom:50p
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
     </button>
-   <a class="navbar-brand" href="#"  style="color:white"> <img src="images/logo/logo.png" height="50px" width="140px;" style="margin-top: -15px;"></a>
+    <a class="navbar-brand" href="#"  style="color:white"> <img src="images/logo/logo.png" height="50px" width="140px;" style="margin-top: -15px;"></a>
   </div>
   <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
@@ -120,8 +120,8 @@ margin-left: -0.75rem;justify-content:center;padding-top:50px;padding-bottom:50p
   <div id="side-nav" class="col-sm-2  hidden-xs ">
     <div class="heading"><img src="images/logo\favicon.png" class="img_size">
     <div class="text">
-   <p style="font-weight: bolder;
-   display: block;
+    <p style="font-weight: bolder;
+    display: block;
   margin-block-start: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;font-size: 1.5em">OneStore</p><p style="text-decoration: none;

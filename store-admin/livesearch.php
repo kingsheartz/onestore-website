@@ -31,22 +31,20 @@ try {
           $i++;
       ?>
           <div class="products" style="width: 300px">
-            <div style="display: flex;
-  justify-content: center;height: 200px;width:100%;background: white;text-align: center;"><img class="image"
-                align="middle"
-                src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+            <div style="display: flex;justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+              <img class="image" align="middle" src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
             </div>
             <div class="middle">
               <form id="<?= $row['item_id'] ?>" name="<?= $row['item_id'] ?>" method="post">
                 <input type="hidden" name="pr_id" value="<?= $row['item_description_id'] ?>">
                 <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-                <input type="hidden" name="im_url"
-                  value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+                <input type="hidden" name="im_url" value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                 <input type="hidden" name="name" value="<?= $row['item_name'] ?>">
                 <input type="hidden" name="description" value="<?= $row['description'] ?>">
                 <input type="hidden" name="price" value="<?= $row['price'] ?>">
-                <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation"><i class="fab fa-buffer"
-                    style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add</button>
+                <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation">
+                  <i class="fab fa-buffer" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Add
+                </button>
               </form>
             </div>
             <div class="deupd"><?= $row['item_name'] ?><br>

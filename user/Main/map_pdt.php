@@ -1,24 +1,4 @@
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-<title>map test</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style type="text/css">
-/* map needs width and height to appear */
-/*
-#map{
-		width: 900px;
-		max-width: 100%;
-		height: 500px;
-}
-*/
-</style>
-</head>
--->
 </script>
-
 <body>
   <div>
     <form class="" action="single.php" method="post">
@@ -39,30 +19,6 @@
       };
       xmlhttp.open("GET", "../Main/getjson.php", true);
       xmlhttp.send();
-      /*
-      function handlePermission() {
-      	navigator.permissions.query({name:'geolocation'}).then(function(result) {
-      		if (result.state == 'granted') {
-      			report(result.state);
-      			geoBtn.style.display = 'none';
-      		} else if (result.state == 'prompt') {
-      			report(result.state);
-      			geoBtn.style.display = 'none';
-      			navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
-      		} else if (result.state == 'denied') {
-      			report(result.state);
-      			geoBtn.style.display = 'inline';
-      		}
-      		result.onchange = function() {
-      			report(result.state);
-      		}
-      	});
-      }
-      function report(state) {
-      	console.log('Permission ' + state);
-      }
-      handlePermission();
-      */
       // Getting location info
       function getLocationa() {
         if (navigator.geolocation) {
@@ -71,7 +27,6 @@
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
       }
-      /////////////////////////////////////////////////////
       //ADD TO CART
       var car;
 
@@ -99,7 +54,6 @@
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
       }
-      /////////////////////////////////////////////////////
       //WISHLIST
       function showPositionb(position) {
         car = {
@@ -143,15 +97,8 @@
           return dist.toFixed(2);
         }
       }
-      /*
-      		function initMap() {
-      		}
-      */
     </script>
     <!-- This will find the post office and store the longitude and latitude-->
-    <!--
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM6g1c7vkW8WZjAy-vfKfCOQ3ysJrrIxY&callback=initMap" async defer></script>
--->
 </body>
 
 </html>

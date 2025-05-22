@@ -16,7 +16,7 @@ require "../Common/pdo.php";
   .order {
     position: relative;
     height: auto;
-    F overflow: hidden;
+    overflow: hidden;
     margin-top: 30px;
     margin-bottom: 30px;
     text-overflow: ellipsis;
@@ -307,19 +307,27 @@ require "../Common/pdo.php";
 <div class="table1">
   <div class="order">
     <div class="orhead">
-      <h2 class="sidebar-title"
-        style="border-left: 5px solid #fff;border-top-left-radius: 10px;text-align: left;padding-bottom: 29px;padding-top: 20px;margin-top: 0px;font-weight:normal;border-bottom:#333;margin-bottom: 0px;border-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px;color:white ">
+      <h2 class="sidebar-title" style="border-left: 5px solid #fff;border-top-left-radius: 10px;text-align: left;padding-bottom: 29px;padding-top: 20px;margin-top: 0px;font-weight:normal;border-bottom:#333;margin-bottom: 0px;border-radius: 10px;color: black;text-transform: capitalize;padding-left: 10px;color:white ">
         Ordered Product <i style="color: #fffd00" class="fa fa-product-hunt "></i>
         <span style="float: right;margin-right: 5px;margin-top: -16px;">
-          <button type="button"
+          <button
+            type="button"
             style="max-width: 180px;min-width:90px;height: 62px;font-weight: bold;border-top-right-radius: 10px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;;"
-            id="proceed" name="proceed" class="checkout-button button alt wc-forward back-lg"
-            onclick="location.href='../Order/myorders.php'"><i class='fas fa-arrow-circle-left'></i> Back</button>
-          <button type="button"
+            id="proceed"
+            name="proceed"
+            class="checkout-button button alt wc-forward back-lg"
+            onclick="location.href='../Order/myorders.php'">
+            <i class='fas fa-arrow-circle-left'></i> Back
+          </button>
+          <button
+            type="button"
             style="display:none;max-width: 180px;width:50px;height: 62px;font-weight: bold;border-top-right-radius: 10px;color:#c7c7c7;background-color:#0080ff"
-            id="proceed" name="proceed" class="checkout-button button alt wc-forward back-sm"
-            onclick="location.href='../Order/myorders.php'"><i class='fas fa-arrow-circle-left'
-              style="background-color:#000;padding:6px;border-radius:50%"></i></button>
+            id="proceed"
+            name="proceed"
+            class="checkout-button button alt wc-forward back-sm"
+            onclick="location.href='../Order/myorders.php'">
+            <i class='fas fa-arrow-circle-left' style="background-color:#000;padding:6px;border-radius:50%"></i>
+          </button>
         </span>
       </h2>
     </div>
@@ -330,9 +338,12 @@ require "../Common/pdo.php";
     if ($sts == 'pending') {
     ?>
       <div class="check-pending">
-        <div onclick="cancel();" onmouseover="$(this).css('cursor','pointer')"
+        <div
+          onclick="cancel();"
+          onmouseover="$(this).css('cursor','pointer')"
           style="float:right;border:1px solid rgb(165, 164, 164);color:red;padding-left:10px;padding-right:10px;margin-top:10px;clear:both;border-radius: 3px;">
-          <i class="fa fa-close"></i><span style="color: #000;"><b> Cancel this order</b></span>
+          <i class="fa fa-close"></i>
+          <span style="color: #000;"><b> Cancel this order</b></span>
         </div><br>
       </div>
     <?php
@@ -341,17 +352,17 @@ require "../Common/pdo.php";
     <br>
     <?php
     $query = "select user_delivery_details.first_name,user_delivery_details.last_name,user_delivery_details.phone,user_delivery_details.address,user_delivery_details.pincode,users.email,new_orders.new_orders_id,new_orders.order_quantity,new_orders.sub_total,new_orders.order_date,size,color,weight,flavour,processor,display,battery,internal_storage,brand,material,new_ordered_products.order_type,new_ordered_products.new_ordered_products_id,new_ordered_products.item_quantity,new_ordered_products.total_amt,new_ordered_products.delivery_status,product_details.product_details_id,product_details.price,store.store_name,item.price as mrp,item_description.item_description_id,category.category_id,sub_category.sub_category_id,item.item_name FROM new_orders
-      JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
-      JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id
-      JOIN users ON users.user_id=user_delivery_details.user_id
-      JOIN new_ordered_products ON new_ordered_products.new_orders_id=new_orders.new_orders_id
-      JOIN product_details ON new_ordered_products.product_details_id=product_details.product_details_id
-      JOIN item_description ON product_details.item_description_id=item_description.item_description_id
-      JOIN item ON item.item_id=item_description.item_id
-      JOIN category ON category.category_id=item.category_id
-      JOIN sub_category ON sub_category.sub_category_id=item.sub_category_id
-      JOIN store on store.store_id=product_details.store_id
-      WHERE users.user_id=:user_id and new_ordered_products.new_ordered_products_id=:nopid ";
+              JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
+              JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id
+              JOIN users ON users.user_id=user_delivery_details.user_id
+              JOIN new_ordered_products ON new_ordered_products.new_orders_id=new_orders.new_orders_id
+              JOIN product_details ON new_ordered_products.product_details_id=product_details.product_details_id
+              JOIN item_description ON product_details.item_description_id=item_description.item_description_id
+              JOIN item ON item.item_id=item_description.item_id
+              JOIN category ON category.category_id=item.category_id
+              JOIN sub_category ON sub_category.sub_category_id=item.sub_category_id
+              JOIN store on store.store_id=product_details.store_id
+              WHERE users.user_id=:user_id and new_ordered_products.new_ordered_products_id=:nopid ";
     $statement = $pdo->prepare($query);
     $statement->execute(array(
       ':user_id' => $_SESSION['id'],
@@ -502,31 +513,33 @@ require "../Common/pdo.php";
                 <tr class="div-wrapper dw">
                   <th class="cust_header2">Material</th>
                   <td class="cust_details"><?= $row1['material_name'] ?></td>
-                </tr <?php
-                    }
-                      ?> </table>
-                <table>
-                  <tr>
-                    <th class="tablhde" colspan="2"> Price details </th>
-                  </tr>
-                  <tr style="padding-bottom:30px;"></tr>
-                  <tr class="div-wrapper dw">
-                    <th class="cust_header2">MRP</th>
-                    <td class="cust_details"><del><i class='fa fa-rupee-sign'></i> <?= $row['mrp'] ?></del></td>
-                  </tr>
-                  <tr class="div-wrapper dw">
-                    <th class="cust_header2">Selling Price</th>
-                    <td class="cust_details"><span><i class='fa fa-rupee-sign'></i> <?= $row['price'] ?></span></td>
-                  </tr>
-                  <tr class="div-wrapper dw">
-                    <th class="cust_header2">Item Quantity</th>
-                    <td class="cust_details"><?= $row['item_quantity'] ?></td>
-                  </tr>
-                  <tr class="div-wrapper dw">
-                    <th class="cust_header2">Total</th>
-                    <td class="cust_details"><b><i class='fa fa-rupee-sign'></i> <?= $row['total_amt'] ?></b></td>
-                  </tr>
-                </table>
+                </tr>
+              <?php
+              }
+              ?>
+            </table>
+            <table>
+              <tr>
+                <th class="tablhde" colspan="2"> Price details </th>
+              </tr>
+              <tr style="padding-bottom:30px;"></tr>
+              <tr class="div-wrapper dw">
+                <th class="cust_header2">MRP</th>
+                <td class="cust_details"><del><i class='fa fa-rupee-sign'></i> <?= $row['mrp'] ?></del></td>
+              </tr>
+              <tr class="div-wrapper dw">
+                <th class="cust_header2">Selling Price</th>
+                <td class="cust_details"><span><i class='fa fa-rupee-sign'></i> <?= $row['price'] ?></span></td>
+              </tr>
+              <tr class="div-wrapper dw">
+                <th class="cust_header2">Item Quantity</th>
+                <td class="cust_details"><?= $row['item_quantity'] ?></td>
+              </tr>
+              <tr class="div-wrapper dw">
+                <th class="cust_header2">Total</th>
+                <td class="cust_details"><b><i class='fa fa-rupee-sign'></i> <?= $row['total_amt'] ?></b></td>
+              </tr>
+            </table>
           </div>
           <div class="col-sm-6">
             <table>
@@ -560,29 +573,29 @@ require "../Common/pdo.php";
                   <?php
                   if ($row['delivery_status'] == 'completed') {
                   ?>
-                    <span
-                      style="background-color: green;border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;
+                    <span style="background-color: green;border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;
                       <i class="fa fa-check" style="color: orange;text-shadow: 1px 2px 3px grey"></i>
                       <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
-                        completed</i>
+                        completed
+                      </i>
                     </span>
                   <?php
                   } else if ($row['delivery_status'] == 'pending') {
                   ?>
-                    <span
-                      style="background-color: rgb(255, 123, 0);border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;
+                    <span style="background-color: rgb(255, 123, 0);border-radius: 5px;color:white;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;
                       <i class="fa fa-clock-o" style="color: rgb(0, 0, 0);text-shadow: 1px 2px 3px grey"></i>
                       <i style="text-transform:capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
-                        pending &nbsp;</i>
+                        pending &nbsp;
+                      </i>
                     </span>
                   <?php
                   } else if ($row['delivery_status'] == 'cancelled') {
                   ?>
-                    <span
-                      style="background-color: rgb(255, 0, 0);border-radius: 5px;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;
+                    <span style="background-color: rgb(255, 0, 0);border-radius: 5px;font-weight:bold;padding-bottom:3px;padding-right:5px">&nbsp;
                       <i class="fa fa-close" style="color: rgb(255, 255, 255);text-shadow: 1px 2px 3px grey"></i>
                       <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey;color:white">
-                        cancelled</i>
+                        cancelled
+                      </i>
                     </span>
                   <?php
                   }
@@ -598,7 +611,7 @@ require "../Common/pdo.php";
           <tr>
             <th class="tablhde" colspan="2"> Delivery details </th>
           </tr>
-          <tr style="padding-bottom;30px;"></tr>
+          <tr style="padding-bottom:30px;"></tr>
           <tr class="div-wrapper dw" col-span="2">
             <th class="cust_header" style="font-size:18px;width:100%;"><?= $row['first_name'] ?> <?= $row['last_name'] ?>
             </th>

@@ -1,357 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OneStore | Log in</title>
-  <!--favicon-->
-  <link href="../../../../images/logo/favicon.png" rel="icon"/>
-  <!--//favicon-->
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <link href="../../../../css/font-awesome.css" rel="stylesheet">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- SweetAlert -->
-  <link rel="stylesheet" href="../CSS/OS.css">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition login-page" style="background: url(../../../../images/logo/check1.jpg) no-repeat;position: absolute;background-position: center;width: 100%;">
-<div style="background-color: rgba(0,0,0,0.65); position: absolute;width: 100%;height: 100%;align-items: center;justify-content: center;display: flex;" >  
-<div class="login-box" style="display: inline-flex;">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><img src="../../../../images/logo/logost.svg" height="auto" width="auto " style="width: 80%;height: auto;" class="image-fluid mb-2"></a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OneStore | Log in</title>
+    <!--favicon-->
+    <link href="../../../../images/logo/favicon.png" rel="icon" />
+    <!--//favicon-->
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css" />
+    <link href="../../../../css/font-awesome.css" rel="stylesheet" />
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" />
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="../CSS/OS.css" />
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css" />
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css" />
+  </head>
+  <body
+    class="hold-transition login-page"
+    style="background: url(../../../../images/logo/check1.jpg) no-repeat;position: absolute;background-position: center;width: 100%;"
+  >
+    <div
+      style="background-color: rgba(0,0,0,0.65); position: absolute;width: 100%;height: 100%;align-items: center;justify-content: center;display: flex;"
+    >
+      <div class="login-box" style="display: inline-flex;">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+          <div class="card-header text-center">
+            <a href="../../index2.html" class="h1"
+              ><img
+                src="../../../../images/logo/logost.svg"
+                height="auto"
+                width="auto "
+                style="width: 80%;height: auto;"
+                class="image-fluid mb-2"
+            /></a>
+          </div>
+          <div class="card-body">
+            <p class="login-box-msg" style="padding-bottom: 0px;">Sign in to start your session</p>
+            <p id="emppass" style="color: red;display: none;"></p>
+            <form action="#" method="post">
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" id="email" placeholder="Email" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>
+              <p class="capson_warning" style="display: none;float:left;color: #d9534f">
+                <i class="fa fa-warning"></i> &nbsp;WARNING! Caps lock is ON.
+              </p>
+              <div class="input-group mb-3">
+                <input
+                  type="password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                  required=" "
+                  class="form-control password_fields"
+                  id="pwd"
+                  placeholder="Password"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8">
+                  <div class="icheck-primary">
+                    <input type="checkbox" id="remember" />
+                    <label for="remember"> Remember Me </label>
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                  <button type="button" onclick="signin()" class="btn btn-primary btn-block ">
+                    Sign In
+                  </button>
+                </div>
+                <!-- /.col -->
+              </div>
+            </form>
+
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+              <a href="forgot-password-v2.html">I forgot my password</a>
+            </p>
+            <p class="mb-0">
+              <a href="../../../../user/Account/registered.php" class="text-center">Register a new membership</a>
+            </p>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.login-box -->
     </div>
-    <div class="card-body">
-      <p class="login-box-msg" style="padding-bottom: 0px;">Sign in to start your session</p>
-      <p id="emppass" style="color: red;display: none;"></p>
-      <form action="#" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <p class="capson_warning" style="display: none;float:left;color: #d9534f"><i class="fa fa-warning"></i> &nbsp;WARNING! Caps lock is ON.</p>
-        <div class="input-group mb-3">
-          <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required=" "  class="form-control password_fields" id="pwd" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="button" onclick="signin()" class="btn btn-primary btn-block ">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
 
-  
-      <!-- /.social-auth-links -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="../../plugins/toastr/toastr.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+    <script src="../../../../js/sweetalert.min.js"></script>
 
-      <p class="mb-1">
-        <a href="forgot-password-v2.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="../../../../registered.php" class="text-center">Register a new membership</a>
-      </p>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
-<!-- /.login-box -->
-</div>
+    <script type="text/javascript">
+        var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+    </script>
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- SweetAlert2 -->
-<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- Toastr -->
-<script src="../../plugins/toastr/toastr.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
-<script src="../../../../js/sweetalert.min.js"></script>
+    <script type="text/javascript">
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<script type="text/javascript">
-      var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-</script>      
+      var capson_warning = document.getElementsByClassName("capson_warning");
+      var  password_field=document.getElementsByClassName('password_fields');
 
-
-
-<script type="text/javascript">
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-var capson_warning = document.getElementsByClassName("capson_warning");
-var  password_field=document.getElementsByClassName('password_fields');
-
-for (var i = 0; i < password_field.length; i++) {
-    password_field[i].addEventListener("keyup", function(event) {
-    for (var j = 0; j < capson_warning.length; j++) {
-        if (event.getModifierState("CapsLock")) {
-            capson_warning[j].style.display = "block";
-        }
-        else {
-            capson_warning[j].style.display = "none"
-        }
-    } 
-        
-});
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function ValidateSigninEmail(mail) 
-{
-  if(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail))
-    {
-      return true;
-    }
-      return false;
-}
-
-
-function signin(){
-
-var password=document.getElementById("pwd").value;
-var email=document.getElementById("email").value;
-
-if(email == null || email == "" ){
-
-    Toast.fire({
-        icon: 'error',
-        title: ' Please enter your email ID !!! '
-      })
-    $('#emppass').html("Please enter your email ID !!!");
-    $('#emppass').show();
-    document.getElementById("email").focus();
-    return ;
-}
-
-if(ValidateSigninEmail(email)==false){
-
-    toastr.error('Invalid email address!!!')
-    $('#emppass').html("Invalid email address !!!");
-    $('#emppass').show();
-    document.getElementById("email").focus();
-    return ;  
-}
-
-//password verification of null value
-if(password == null || password == "" ){
-
-
-    Toast.fire({
-        icon: 'error',
-        title: ' Please enter the password !!!'
-    })
-    $('#emppass').html("Please enter the password !!!");
-    $('#emppass').show();
-    document.getElementById("pwd").value="";
-    document.getElementById("pwd").focus();
-    return ;
-
-} 
-
-else{
-
-  if(document.getElementById('remember').checked==true){
-    var rem=1;
-  }
-  else{
-    var rem=0;
-  }
-  
-$.ajax({
-    url: "../../../../functions.php", //passing page info
-    data: {"adlogin":1,"email":email,"password":password,"remember":rem},  //form data
-    type: "post", //post data
-    dataType: "json",   //datatype=json format
-    timeout:18000,  //waiting time 3 sec
-    
-    success: function(data){  //if logging in is success
-      
-      if(data.status=='success'){
-        swal({
-              title: "Success!!!",
-              text: "Log in Success",
-              icon: "success",
-              closeOnClickOutside: false,
-              dangerMode: true,
-              })
-        .then((willSubmit) => {
-          if (willSubmit) {  
-            $(function () {
-              location.href="../../../../index.php"
-            $('#emppass').hide();
-              $('#myModal').modal('toggle');
-          });
-            return;
+      for (var i = 0; i < password_field.length; i++) {
+          password_field[i].addEventListener("keyup", function(event) {
+          for (var j = 0; j < capson_warning.length; j++) {
+              if (event.getModifierState("CapsLock")) {
+                  capson_warning[j].style.display = "block";
+              }
+              else {
+                  capson_warning[j].style.display = "none"
+              }
           }
-          else{
-            return ;
-          }
+
       });
       }
-        else if(data.status=='admin'){
-            swal({
-                title: "Success!!!",
-                text: "Admin privileges granted",
-                icon: "success",
-                closeOnClickOutside: false,
-                dangerMode: true,
-                })
-            .then((willSubmit) => {
-                if (willSubmit) {  
-          $('#emppass').hide();
-                    location.href="../../../../store-admin/index.php?id="+data.id+"";
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function ValidateSigninEmail(mail)
+      {
+        if(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail))
+          {
+            return true;
+          }
+            return false;
+      }
+
+
+      function signin(){
+
+      var password=document.getElementById("pwd").value;
+      var email=document.getElementById("email").value;
+
+      if(email == null || email == "" ){
+
+          Toast.fire({
+              icon: 'error',
+              title: ' Please enter your email ID !!! '
+            })
+          $('#emppass').html("Please enter your email ID !!!");
+          $('#emppass').show();
+          document.getElementById("email").focus();
+          return ;
+      }
+
+      if(ValidateSigninEmail(email)==false){
+
+          toastr.error('Invalid email address!!!')
+          $('#emppass').html("Invalid email address !!!");
+          $('#emppass').show();
+          document.getElementById("email").focus();
+          return ;
+      }
+
+      //password verification of null value
+      if(password == null || password == "" ){
+
+
+          Toast.fire({
+              icon: 'error',
+              title: ' Please enter the password !!!'
+          })
+          $('#emppass').html("Please enter the password !!!");
+          $('#emppass').show();
+          document.getElementById("pwd").value="";
+          document.getElementById("pwd").focus();
+          return ;
+
+      }
+
+      else{
+
+        if(document.getElementById('remember').checked==true){
+          var rem=1;
+        }
+        else{
+          var rem=0;
+        }
+
+      $.ajax({
+          url: "../../../../user/Common/functions.php", //passing page info
+          data: {"adlogin":1,"email":email,"password":password,"remember":rem},  //form data
+          type: "post", //post data
+          dataType: "json",   //datatype=json format
+          timeout:18000,  //waiting time 3 sec
+
+          success: function(data){  //if logging in is success
+
+            if(data.status=='success'){
+              swal({
+                    title: "Success!!!",
+                    text: "Log in Success",
+                    icon: "success",
+                    closeOnClickOutside: false,
+                    dangerMode: true,
+                    })
+              .then((willSubmit) => {
+                if (willSubmit) {
+                  $(function () {
+                    location.href="../../../../index.php"
+                  $('#emppass').hide();
+                    $('#myModal').modal('toggle');
+                });
+                  return;
                 }
                 else{
-                    return ;
+                  return ;
                 }
             });
             }
+              else if(data.status=='admin'){
+                  swal({
+                      title: "Success!!!",
+                      text: "Admin privileges granted",
+                      icon: "success",
+                      closeOnClickOutside: false,
+                      dangerMode: true,
+                      })
+                  .then((willSubmit) => {
+                      if (willSubmit) {
+                $('#emppass').hide();
+                          location.href="../../../../store-admin/index.php?id="+data.id+"";
+                      }
+                      else{
+                          return ;
+                      }
+                  });
+                  }
 
-    else if(data.status=='error'){
-      swal({
-              title: "Oops!!!",
-              text: "Error logging in",
-              icon: "error",
-              closeOnClickOutside: false,
-              dangerMode: true,
-              })
-      .then((willSubmit)=>{
-        if(willSubmit){
-          $('#emppass').html("Incorrect Password");
-          $('#emppass').show();
-          //location.reload();
+          else if(data.status=='error'){
+            swal({
+                    title: "Oops!!!",
+                    text: "Error logging in",
+                    icon: "error",
+                    closeOnClickOutside: false,
+                    dangerMode: true,
+                    })
+            .then((willSubmit)=>{
+              if(willSubmit){
+                $('#emppass').html("Incorrect Password");
+                $('#emppass').show();
+                //location.reload();
+              }
+            });
+            }
+          else if(data.status=='errornotfound'){
+                  swal({
+                      title: "Oops!!!",
+                      text: "You are not registered yet",
+                      icon: "error",
+                      closeOnClickOutside: false,
+                      dangerMode: true,
+                      })
+                  .then((willSubmit)=>{
+                      if(willSubmit){
+                        $('#emppass').html("You are not registered with us. Please sign up.");
+                        $('#emppass').show();
+                          //location.reload();
+                      }
+                  });
+                  }
+              else if(data.status=='error1'){
+                  swal({
+                      title: "Check your mailbox!!!",
+                      text: "Pending email verification",
+                      icon: "warning",
+                      closeOnClickOutside: false,
+                      dangerMode: true,
+                      })
+                  .then((willSubmit)=>{
+                      if(willSubmit){
+                        $('#emppass').html("Verify your email");
+                        $('#emppass').show();
+                          //location.reload();
+                      }
+                  });
+                  }
+
+          },
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+            if(textstatus==="timeout") {
+                swal({
+                      title: "Oops!!!",
+                      text: "server time out",
+                      icon: "error",
+                      closeOnClickOutside: false,
+                      dangerMode: true,
+                      timer: 6000,
+                    });
+
+            return ;
+
+            }
+            else{return;}
         }
-      });
+          }); //closing ajax
       }
-    else if(data.status=='errornotfound'){
-            swal({
-                title: "Oops!!!",
-                text: "You are not registered yet",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-                })
-            .then((willSubmit)=>{
-                if(willSubmit){
-                  $('#emppass').html("You are not registered with us. Please sign up.");
-                  $('#emppass').show();
-                    //location.reload();
-                }
-            });
-            } 
-        else if(data.status=='error1'){
-            swal({
-                title: "Check your mailbox!!!",
-                text: "Pending email verification",
-                icon: "warning",
-                closeOnClickOutside: false,
-                dangerMode: true,
-                })
-            .then((willSubmit)=>{
-                if(willSubmit){
-                  $('#emppass').html("Verify your email");
-                  $('#emppass').show();
-                    //location.reload();
-                }
-            });
-            }
-              
-    },
-    error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-      if(textstatus==="timeout") {      
-          swal({
-                title: "Oops!!!",
-                text: "server time out",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-                timer: 6000,
-              });
 
-      return ;
 
       }
-      else{return;}
-  }
-    }); //closing ajax
-}
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+
+    <script type="text/javascript">
+
+      /*
+            Toast.fire({
+              icon: 'success',
+              title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+
+            Toast.fire({
+              icon: 'info',
+              title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
 
 
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Toast.fire({
+              icon: 'error',
+              title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
 
-</script>
-
-
-<script type="text/javascript">
-
-/*
-      Toast.fire({
-        icon: 'success',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-
-      Toast.fire({
-        icon: 'info',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
+            Toast.fire({
+              icon: 'warning',
+              title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
 
 
-      Toast.fire({
-        icon: 'error',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-
-      Toast.fire({
-        icon: 'warning',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-
-
-      Toast.fire({
-        icon: 'question',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-*/
-</script>
-</body>
+            Toast.fire({
+              icon: 'question',
+              title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+      */
+    </script>
+  </body>
 </html>

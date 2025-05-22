@@ -31,10 +31,8 @@ try {
           $i++;
       ?>
           <div class="products" style="width: 320px">
-            <div style="display: flex;
-  justify-content: center;height: 200px;width:100%;background: white;text-align: center;"><img class="image"
-                align="middle"
-                src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+            <div style="display: flex;justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+              <img class="image" align="middle" src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
             </div>
             <div class="deupd"><?= $row['item_name'] ?><br>
             </div>

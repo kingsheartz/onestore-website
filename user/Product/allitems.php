@@ -21,7 +21,7 @@ require "../Main/header.php";
     display: block;
     white-space: nowrap;
     bottom: 0;
-    F width: 100%;
+    width: 100%;
   }
 
   .products-all-in-one {
@@ -189,21 +189,25 @@ require "../Main/header.php";
     ?>
       <div class="difcat ">
         <span class="difhed"><?= $row11['category_name'] ?>
-          <button onclick="location.href='../Product/viewsubcat.php?category_id=<?= $ct ?>'">View All</button></span>
+          <button onclick="location.href='../Product/viewsubcat.php?category_id=<?= $ct ?>'">View All</button>
+        </span>
         <div class="difrow" id="difrow<?= $ct ?>" onscroll="scrolllisten('difrow<?= $ct ?>');">
-          <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow<?= $ct ?>')"
-            style="display: none;"><i class="fas fa-chevron-left"></i></button>
-          <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow<?= $ct ?>')"><i
-              class="fas fa-chevron-right"></i></button>
+          <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow<?= $ct ?>')" style="display: none;">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow<?= $ct ?>')">
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <?php
           while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
           ?>
             <div class="products-all-in-one">
-              <div style="display: flex;
-  justify-content: center;height: 200px;width:100%;background: white;text-align: center;"><img class="image"
+              <div style="display: flex; justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+                <img class="image"
                   align="middle"
                   src="../../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg"
-                  onclick="location.href='../Product/single.php?id=<?= $row['item_description_id'] ?>'"></div>
+                  onclick="location.href='../Product/single.php?id=<?= $row['item_description_id'] ?>'">
+              </div>
               <?php
               if (strlen($row['item_name']) >= 25) {
                 $item = $row['item_name'];
@@ -212,8 +216,7 @@ require "../Main/header.php";
                 $item_name = $row['item_name'];
               }
               ?>
-              <div class="deupd"><?= $item_name ?><br>
-              </div>
+              <div class="deupd"><?= $item_name ?><br></div>
             </div>
       <?php
           }

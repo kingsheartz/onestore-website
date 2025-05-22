@@ -51,8 +51,10 @@
         <h3>Contact</h3>
         <ul class="address">
           <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Thrissur</li>
-          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
-              href="mailto:onestoreforallyourneeds@gmail.com">onestore</a></li>
+          <li>
+            <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+            <a href="mailto:onestoreforallyourneeds@gmail.com">onestore</a>
+          </li>
           <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+91 8113990368</li>
         </ul>
       </div>
@@ -79,8 +81,7 @@
           if (!isset($_SESSION['name'])) {
           ?>
             <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Account/login.php">Login</a></li>
-            <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Account/registered.php">Create Account</a>
-            </li>
+            <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Account/registered.php">Create Account</a></li>
           <?php
           }
           ?>
@@ -104,8 +105,7 @@
   </div>
   <div class="footer-copy">
     <div class="container">
-      <p>© 2020 OneStore. All rights reserved | <a id="me" onmouseover="$('#me').css('color','#0c99cc')"
-          onmouseleave="$('#me').css('color','#fe9126')" href="www.one-store.com">KinGsHearTz</a></p>
+      <p>© 2020 OneStore. All rights reserved | <a id="me" onmouseover="$('#me').css('color','#0c99cc')" onmouseleave="$('#me').css('color','#fe9126')" href="www.one-store.com">KinGsHearTz</a></p>
     </div>
   </div>
 </div>
@@ -114,14 +114,26 @@
   <div class="container">
     <div class="w3layouts-foot">
       <ul>
-        <li><a href="https://www.facebook.com/falconsinfoworld/" target="_blank" class="w3_agile_facebook"><i
-              class="fa fa-facebook" aria-hidden="true"></i></a></li>
-        <li><a href="https://www.instagram.com/_k_i_n_g_s_h_e_a_r_t_z/" target="_blank" class="w3_agile_instagram"><i
-              class="fa fa-instagram" aria-hidden="true"></i></a></li>
-        <li><a href="https://twitter.com/GovindA20531879" target="_blank" class="w3_agile_twitter"><i
-              class="fa fa-twitter" aria-hidden="true"></i></a></li>
-        <li><a href="#" data-toggle="modal" data-target="#myModal_share_apk" onclick="copyapklink()"
-            class="w3_agile_android" style=><i class="fa fa-android" aria-hidden="true"></i></a></li>
+        <li>
+          <a href="https://www.facebook.com/falconsinfoworld/" target="_blank" class="w3_agile_facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/_k_i_n_g_s_h_e_a_r_t_z/" target="_blank" class="w3_agile_instagram">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/GovindA20531879" target="_blank" class="w3_agile_twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-toggle="modal" data-target="#myModal_share_apk" onclick="copyapklink()" class="w3_agile_android" style=>
+            <i class="fa fa-android" aria-hidden="true"></i>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="payment-w3ls">
@@ -136,7 +148,7 @@
 <!---------------------------------------------SINGLE ITEM---------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------------------------------>
-<!--///////////////////////////SHARE APK////////////////////////////////////////////////////////////////////////////////-->
+<!---------------------------------------------SHARE APK------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!--SHARE APK-->
 <!-- Modal -->
@@ -144,8 +156,7 @@
   <div class="modal-dialog modal-m" style="background-color: white;border-radius: 7px;">
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header item_share_header"
-        style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #004114), color-stop(1, #309700)) !important;">
+      <div class="modal-header item_share_header" style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #004114), color-stop(1, #309700)) !important;">
         <button type="button" class="close" data-dismiss="modal" onclick="$('.yw').click();">&times;</button>
         <h4 class="modal-title">
           <span class="fa fa-info-circle fa-lg" style="color: #fff;"></span>
@@ -154,9 +165,8 @@
       </div>
       <div class="modal-body">
         <center>
-          <div
-            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid #018a2a;height:100px;width">
-            <img src="../../images/logo/logofullfill.png" style="max-width: 80px;height:70px;">
+          <div style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border: 3px solid #018a2a;height: 100px;">
+            <img src="../../images/logo/logofullfill.png" style="max-width: 80px;height: 70px;">
           </div>
         </center>
         <div style="display: none;margin-top: 20px;" class="alert alert-danger"></div>
@@ -171,16 +181,26 @@
             </tr>
             <tr>
               <td>
-                <div class="input-group bar-srch"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
-                  <input readonly="true" type="text" class="" id="input_apk_link" placeholder="URL to share"
+                <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
+                  <input
+                    readonly="true"
+                    type="text"
+                    class=""
+                    id="input_apk_link"
+                    placeholder="URL to share"
                     value="http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk"
-                    name="" required=" "
+                    name=""
+                    required=" "
                     style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline-color: #e59700;">
                   <span id="" class="input-group-btn">
-                    <button id="copy_wl" onclick="apkclipboard()"
+                    <button
+                      id="copy_wl"
+                      onclick="apkclipboard()"
                       style="color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #004114), color-stop(1, #309700)) !important;padding-top:10px;padding-bottom: 10px;outline: none;border-radius: 0;border-bottom-right-radius: 3px;border-top-right-radius: 3px;"
-                      class="btn btn-default search_btn" type="button"><span class="fas fa-copy"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fas fa-copy"></span>
+                    </button>
                   </span>
                 </div>
               </td>
@@ -198,8 +218,7 @@
               <td>
                 <table style="width: 100%;">
                   <tr style="overflow-x: scroll;">
-                    <td class="social-share whatsapp_apk" style="text-align: left;">
-                    </td>
+                    <td class="social-share whatsapp_apk" style="text-align: left;"></td>
                   </tr>
                 </table>
               </td>
@@ -216,7 +235,8 @@
                 <table style="width: 100%;">
                   <tr style="overflow-x: scroll;">
                     <td class="social-share " style="text-align: left;">
-                      <div onclick="$('.apk').removeClass('selected');$(this).addClass('selected');copyapklink(1)"
+                      <div
+                        onclick="$('.apk').removeClass('selected');$(this).addClass('selected');copyapklink(1)"
                         class="apk"
                         style="margin-left:20px;width: 30px;height: 30px;background-color: #1da1f2;border-radius:3px;display: flex;align-items: center;justify-content: center;">
                         <i class="fa fa-mobile fa-lg" style="color: white;"></i>
@@ -224,7 +244,8 @@
                       <p><i class="fa fa-arrow-up" style="color:#348f00"></i> Android 9</p>
                     </td>
                     <td class="social-share " style="text-align: left;">
-                      <div onclick="$('.apk').removeClass('selected');$(this).addClass('selected');copyapklink(2)"
+                      <div
+                        onclick="$('.apk').removeClass('selected');$(this).addClass('selected');copyapklink(2)"
                         class="apk"
                         style="margin-left:20px;width: 30px;height: 30px;background-color: #0077af;border-radius:3px;display: flex;align-items: center;justify-content: center;">
                         <i class="fa fa-mobile fa-lg" style="color: white;"></i>
@@ -232,8 +253,7 @@
                       <p><i class="fa fa-arrow-up" style="color:#348f00"></i> Android 6.1</p>
                     </td>
                     <td class="social-share" style="text-align: center;">
-                      <div class="downloadapk" onclick="downloadapk()"
-                        style="margin:auto;width: max-content;height: 30px;background-color: #ff6600;border-radius:3px;display: flex;align-items: center;justify-content: center;padding-left:20px;padding-right:20px">
+                      <div class="downloadapk" onclick="downloadapk()" style="margin:auto;width: max-content;height: 30px;background-color: #ff6600;border-radius:3px;display: flex;align-items: center;justify-content: center;padding-left:20px;padding-right:20px">
                         <i class="fa fa-download fa-lg" style="color: white;"> Download</i>
                       </div>
                       <p></p>
@@ -314,67 +334,80 @@
 <!---------------------------------------------LOG IN--FORM--------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------------------------------>
-<div class="modal fade" id="myModal" role="dialog"
-  style="width: 100%; height:100% ;background-color: rgba(0,0,0,.80) !important;">
+<div class="modal fade" id="myModal" role="dialog" style="width: 100%; height:100% ;background-color: rgba(0,0,0,.80) !important;">
   <div class="modal-dialog" style="width: 70%;height: 70%;">
     <!-- Modal content-->
-    <div class="modal-content" style="width: 70%,height:70%;background-color:white;">
+    <div class="modal-content" style="width: 70%;height: 70%;background-color:white;">
       <div class="modal-header" style="padding: 0px;min-height: 0px;border:0px;">
-        <button type="button"
+        <button
+          type="button"
           style="font-size: 2.2em;margin-right: -20px;margin-top: -20px;opacity: unset;outline: none;color: white"
-          class="close" data-dismiss="modal"><img src="../../images/close.png" alt="close"></button>
+          class="close"
+          data-dismiss="modal">
+          <img src="../../images/close.png" alt="close">
+        </button>
       </div>
       <div class="modal-body" style="padding:0px;height: 100%;">
         <div class="col-md-12">
           <div class="col-md-12" style="padding: 0px;height: 100%;background-color: white">
             <form name="signin_form" id="signin_form">
               <div class="col-md-12" style="padding: 0px;height: 100%;background-color: white">
-                <div class="col-md-6 hidden-xs no-padding" style="padding:0px;height: 70%"><img class="img-responsive"
-                    style="padding: 0px;padding-top: 0px;height: 400px;position: relative;"
-                    src="../../images/logo/store.jpg">
+                <div class="col-md-6 hidden-xs no-padding" style="padding:0px;height: 70%">
+                  <img class="img-responsive" style="padding: 0px;padding-top: 0px;height: 400px;position: relative;" src="../../images/logo/store.jpg">
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <br>
-                    <img src="../../images/logo/logost.svg" height="50px"><i
-                      style="font-size: 1.6em;font-weight: bolder;font-family: sans-serif;font-style: normal;">
-                      Log in</i><br>
-                    <p id="emppass" style="color: red;position: relative;top: 45px;display: none;">
-                    </p><br><br>
+                    <img src="../../images/logo/logost.svg" height="50px">
+                    <i style="font-size: 1.6em;font-weight: bolder;font-family: sans-serif;font-style: normal;">
+                      Log in
+                    </i><br>
+                    <p id="emppass" style="color: red;position: relative;top: 45px;display: none;"></p><br><br>
                     <input type="email" class="form-control md-brdr" id="mobile" name="mobile" placeholder="Email ID"
                       required>
                     <input type="hidden" id="valchg">
                   </div>
-                  <p class="capson_warning" style="display: none;float:left;color: #d9534f"><i
-                      class="fa fa-warning"></i> &nbsp;WARNING! Caps lock is ON.</p>
+                  <p class="capson_warning" style="display: none;float:left;color: #d9534f">
+                    <i class="fa fa-warning"></i> &nbsp;WARNING! Caps lock is ON.
+                  </p>
                   <div id="passdiv" style="display: block;background-color: white">
                     <div class="form-group">
-                      <input type="password" class="form-control  md-brdr password_fields"
+                      <input
+                        type="password"
+                        class="form-control  md-brdr password_fields"
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                         title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                        required=" " placeholder="Enter  Password" name="password" id="pwd" required>
+                        required=" "
+                        placeholder="Enter  Password"
+                        name="password"
+                        id="pwd"
+                        required>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <a href="#" data-toggle="modal" data-dismiss="modal" style="color: black">
-                      <button type="button" onclick="forgottenpass()"
-                        style="background-color: transparent;border: none;" class="frgt-pswrd">Forgot Password?</button>
+                      <button
+                        type="button"
+                        onclick="forgottenpass()"
+                        style="background-color: transparent;border: none;"
+                        class="frgt-pswrd">
+                        Forgot Password?
+                      </button>
                     </a>
                     <br><br><br>
-                    <button onclick="signin()" type="button"
-                      class="btn btn-primary btn-full mgbtm15 real_btn">LOGIN</button>
-                    <button type="button" style="display:none" class="btn btn-primary btn-full mgbtm15 load_btn"><i
-                        class="fa fa-refresh fa-spin"></i> LOGIN</button>
-                    <a href="../Account/registered.php"> <button type="button" class="btn btn-danger btn-full mgbtm15"
-                        onclick="signup()">Sign
-                        Up</button></a><br><br>
+                    <button onclick="signin()" type="button" class="btn btn-primary btn-full mgbtm15 real_btn">LOGIN</button>
+                    <button type="button" style="display:none" class="btn btn-primary btn-full mgbtm15 load_btn">
+                      <i class="fa fa-refresh fa-spin"></i>
+                      LOGIN
+                    </button>
+                    <a href="../Account/registered.php">
+                      <button type="button" class="btn btn-danger btn-full mgbtm15" onclick="signup()">Sign Up</button></a><br><br>
                     <!--<a href="../Account/registered.php" data-toggle="modal" data-dismiss="modal"> <button type="button" class="btn btn-danger btn-full mgbtm15" onclick="signup()" data-dismiss="modal">Sign Up</button></a>-->
                   </div>
                 </div>
               </div>
             </form>
-            <div class="pop-btm-fx">
-            </div>
+            <div class="pop-btm-fx"></div>
           </div>
         </div>
       </div>
@@ -386,37 +419,38 @@
      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////----->
 <!-- Detail about shops-->
 <!--ADD TO CART-->
-<div id="avail_stores" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal modal-xl hidescroll"
-  style="height: 90%;position:fixed">
+<div id="avail_stores" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal modal-xl hidescroll" style="height: 90%;position:fixed">
   <div class="modal-dialog modal-xl" style="height: 90%;">
     <div class="modal-content" style="height: 90%;" style="border-bottom-left-radius: 10px">
       <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-header shadow_b"
-          style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;color: white">
-          <button type="button" class="close" data-dismiss="modal"
-            style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
+        <div class="modal-header shadow_b" style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;color: white">
+          <button type="button" class="close" data-dismiss="modal" style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
           <h3 id="store_title" class="modal-title">Available Stores</h3>
         </div>
       </div>
       <div class="modal-guts scroll_handle_orange" style="border-bottom-left-radius: 10px">
-        <div class="model-body" id="multi_store_listing"
-          style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
-          <table id="store" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info" border="5px"
-            style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
+        <div class="model-body" id="multi_store_listing" style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
+          <table id="store" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info" border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
             <tbody>
-              <tr
-                style="border-left:white;border-right:white;border-top:white;border-left:none;border:0px;border-top: none;border-right: none;">
+              <tr style="border-left:white;border-right:white;border-top:white;border-left:none;border:0px;border-top: none;border-right: none;">
                 <td colspan="9">
-                  <button type="button" onclick="sortTable(3)"
+                  <button
+                    type="button"
+                    onclick="sortTable(3)"
                     style="float: left;color: white;background-color: #F08200;border-radius: 5px;border:#ffffff"
-                    name="button">Sort by Distance</button>
-                  <button type="button" onclick="sortTable(2)"
+                    name="button">
+                    Sort by Distance
+                  </button>
+                  <button
+                    type="button"
+                    onclick="sortTable(2)"
                     style="float: left;color: white;background-color: #F08200;margin-left:3px;border-radius: 5px;border:#ffffff"
-                    name="button">Sort by Price</button>
+                    name="button">
+                    Sort by Price
+                  </button>
                 </td>
               </tr>
-              <tr
-                style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white">
+              <tr style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white">
                 <th style="border: none;text-align:center" class="view_avail_stores">Select</th>
                 <th style="border: none;text-align:center" class="view_avail_stores">Store Name </th>
                 <th style="border: none;text-align:center" class="view_avail_stores">Price </th>
@@ -433,41 +467,43 @@
               </div>
             </tbody>
           </table>
-          <div class="m-sing" id="per"
-            style="background-color: #f2f2f2;color:black;padding-top: 7px;padding-bottom: 7px;;">
+          <div class="m-sing" id="per" style="background-color: #f2f2f2;color:black;padding-top: 7px;padding-bottom: 7px;;">
             <div class="px-3">
               <h4 class="m-sing">
-                <span
-                  style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size:15px'>You
-                  Save &#8377; <span id="save"
-                    style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
-                  (<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
-                    id="off"></span>%)</span>
+                <span style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size:15px'>
+                  You Save &#8377;
+                  <span id="save" style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
+                  (<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px" id="off"></span>%)
+                </span>
                 <br><br>
                 <ul id="item_detailed_features" style="padding-left:10px;margin:0;">
-                  <li style="font-weight:normal;font-size: 14px;">Item remaing : <span
-                      style="text-decoration: none;font-weight:normal;font-family:arial" id="dis_qnty"></span> only</li>
-                  <li style="font-weight: normal;font-size: 14px;">Availability : <span
-                      style="text-decoration: none;font-weight:normal;" id="dis_avail"></span>
+                  <li style="font-weight:normal;font-size: 14px;">
+                    Item remaing : <span style="text-decoration: none;font-weight:normal;font-family:arial" id="dis_qnty"></span> only
                   </li>
-                  <li style="font-weight:normal;font-size: 14px;">Status : <span
-                      style="text-decoration: none;font-weight:normal;" id="dis_sts"></span></li>
-                  <li style="font-weight:normal;font-size: 14px;">Address : <span
-                      style="text-decoration: none;font-weight:normal;" id="dis_add"></span></li>
+                  <li style="font-weight: normal;font-size: 14px;">
+                    Availability : <span style="text-decoration: none;font-weight:normal;" id="dis_avail"></span>
+                  </li>
+                  <li style="font-weight:normal;font-size: 14px;">
+                    Status : <span style="text-decoration: none;font-weight:normal;" id="dis_sts"></span>
+                  </li>
+                  <li style="font-weight:normal;font-size: 14px;">
+                    Address : <span style="text-decoration: none;font-weight:normal;" id="dis_add"></span>
+                  </li>
                   <div id="addfeature"></div>
                 </ul>
                 <input type="hidden" value="" id="idid_keeper" />
               </h4>
-              <button
-                style="height: 45px;width:100%;border-color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white;border-radius:7px;outline: none; "
-                onclick="check_store_select()"><i class="fa fa-cart-plus"></i>&nbsp;ADD TO CART</button>
+              <button style="height: 45px;width:100%;border-color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white;border-radius:7px;outline: none;" onclick="check_store_select()">
+                <i class="fa fa-cart-plus"></i>
+                &nbsp;ADD TO CART
+              </button>
             </div>
           </div>
         </div>
-        <div class="modal-footer"
-          style=" background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
-          <button type="button" class="btn btn-default" data-dismiss="modal"
-            style="outline: none;font-size: 1.2em;">Close <i style="color: red" class="fa fa-times-circle"></i></button>
+        <div class="modal-footer" style=" background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="outline: none;font-size: 1.2em;">
+            Close <i style="color: red" class="fa fa-times-circle"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -479,32 +515,35 @@
 <!--------------------------------------------------------------------------------------------------------------------------------->
 <!-- Detail about shops-->
 <!--ADD TO WISHLIST-->
-<div id="avail_stores_wishlist" tabindex="-1" role="dialog" aria-labelledby="store_title"
-  class="modal fade modal-xl hidescroll" style="height: 90%;">
+<div id="avail_stores_wishlist" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal fade modal-xl hidescroll" style="height: 90%;">
   <div class="modal-dialog modal-xl" style="height: 90%;">
     <div class="modal-content" style="height: 90%;" style="border-bottom-left-radius: 10px">
       <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-header shadow_b"
-          style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;)) !important;color: white">
-          <button type="button" class="close" data-dismiss="modal"
-            style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
+        <div class="modal-header shadow_b" style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;color: white">
+          <button type="button" class="close" data-dismiss="modal" style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
           <h3 id="store_title" class="modal-title">Available Stores</h3>
         </div>
       </div>
       <div class="modal-guts scroll_handle_orange" style="border-bottom-left-radius: 10px">
         <div class="model-body " style="overflow-x: scroll;margin-top: 50px;background-color: white"><br>
-          <table id="wishlist_store" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info"
-            border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
+          <table id="wishlist_store" cellspacing="50px" cellpadding="20px" width="100%" class="single_product_info" border="5px" style="overflow-x: scroll;border: 5px ;border-radius: 10px;">
             <tbody>
-              <tr
-                style="border-left:white;border-right:white;border-top:white;border-left:none;border:0px;border-top: none;border-right: none;">
+              <tr style="border-left:white;border-right:white;border-top:white;border-left:none;border:0px;border-top: none;border-right: none;">
                 <td colspan="9">
-                  <button type="button" onclick="sortTable(3)"
+                  <button
+                    type="button"
+                    onclick="sortTable(3)"
                     style="float: left;color: white;background-color: #F08200;border-radius: 5px;border:#ffffff"
-                    name="button">Sort by Distance</button>
-                  <button type="button" onclick="sortTable(2)"
+                    name="button">
+                    Sort by Distance
+                  </button>
+                  <button
+                    type="button"
+                    onclick="sortTable(2)"
                     style="float: left;color: white;background-color: #F08200;margin-left:3px;border-radius: 5px;border:#ffffff"
-                    name="button">Sort by Price</button>
+                    name="button">
+                    Sort by Price
+                  </button>
                 </td>
               </tr>
               <tr
@@ -525,43 +564,50 @@
               </div>
             </tbody>
           </table>
-          <div class="m-sing" id="per2"
-            style="background-color: #f2f2f2;color:black;padding-top: 7px;padding-bottom: 7px;;">
+          <div class="m-sing" id="per2" style="background-color: #f2f2f2;color:black;padding-top: 7px;padding-bottom: 7px;;">
             <div class="px-3">
               <h4 class="m-sing">
-                <span
-                  style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size:15px'>You
-                  Save &#8377; <span id="save2"
-                    style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
-                  (<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"
-                    id="off2"></span>%)</span>
+                <span style='font-family: arial;color:#07C103;font-weight: bold;text-decoration: none;font-size:15px'>
+                  You Save &#8377;
+                  <span id="save2" style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px"></span>
+                  (<span style="text-decoration: none;font-weight: bold;color: #07C103;padding-left: 0px" id="off2"></span>%)
+                </span>
                 <br><br>
                 <ul id="wishlist_item_detailed_features" style="padding-left:10px">
-                  <li style="font-weight:normal;font-size: 14px;">Item remaing : <span
-                      style="text-decoration: none;font-weight:normal;font-family:arial" id="dis_qnty2"></span> only
+                  <li style="font-weight:normal;font-size: 14px;">
+                    Item remaing : <span style="text-decoration: none;font-weight:normal;font-family:arial" id="dis_qnty2"></span> only
                   </li>
-                  <li style="font-weight: normal;font-size: 14px;">Availability : <span
-                      style="text-decoration: none;font-weight:normal;" id="dis_avail2"></span>
+                  <li style="font-weight: normal;font-size: 14px;">
+                    Availability : <span style="text-decoration: none;font-weight:normal;" id="dis_avail2"></span>
                   </li>
-                  <li style="font-weight:normal;font-size: 14px;">Status : <span
-                      style="text-decoration: none;font-weight:normal;" id="dis_sts2"></span></li>
-                  <li style="font-weight:normal;font-size: 14px;">Address : <span
-                      style="text-decoration: none;font-weight:normal;" id="dis_add2"></span></li>
+                  <li style="font-weight:normal;font-size: 14px;">
+                    Status : <span style="text-decoration: none;font-weight:normal;" id="dis_sts2"></span>
+                  </li>
+                  <li style="font-weight:normal;font-size: 14px;">
+                    Address : <span style="text-decoration: none;font-weight:normal;" id="dis_add2"></span>
+                  </li>
                   <div id="wishaddfeature"></div>
                 </ul>
                 <input type="hidden" value="" id="wishlist_idid_keeper" />
               </h4>
-              <button class="wishlist_btn" style="height: 45px;width:100%;border-color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;
-color: white;border-radius:7px;outline: none;" onclick="wishlist_check_store_select()" class="element_cart"
-                type="button" data-dismiss="modal" data-toggle="modal" data-target="#wishlist_avail">
-                SELECT STORE <i class="fa fa-arrow-right"></i></i></button>
+              <button
+                class="wishlist_btn"
+                style="height: 45px;width:100%;border-color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;color: white;border-radius:7px;outline: none;"
+                onclick="wishlist_check_store_select()"
+                class="element_cart"
+                type="button"
+                data-dismiss="modal"
+                data-toggle="modal"
+                data-target="#wishlist_avail">
+                SELECT STORE <i class="fa fa-arrow-right"></i>
+              </button>
             </div>
           </div>
         </div>
-        <div class="modal-footer"
-          style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
-          <button type="button" class="btn btn-default" data-dismiss="modal"
-            style="outline: none;font-size: 1.2em;">Close <i style="color: red" class="fa fa-times-circle"></i></button>
+        <div class="modal-footer" style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #007ab7), color-stop(1, #01728e)) !important;">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="outline: none;font-size: 1.2em;">
+            Close <i style="color: red" class="fa fa-times-circle"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -578,14 +624,18 @@ if (isset($_SESSION['id'])) {
   $result = $pdo->query("select * from wishlist where user_id=" . $_SESSION['id']);
   $status = 0;
 ?>
-  <div id="wishlist_avail" tabindex="-1" role="dialog" aria-labelledby="store_title"
-    class="modal fade modal-xl hidescroll" style="height: 90%;">
+  <div
+    id="wishlist_avail"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="store_title"
+    class="modal fade modal-xl hidescroll"
+    style="height: 90%;">
     <div class="modal-dialog modal-xl" style="height: 90%;">
       <div class="modal-content" style="height: 90%;" style="border-bottom-left-radius: 10px">
         <div class="modal-overlay" id="modal-overlay">
           <div class="modal-header shadow_b" style="background-color: #337ab7;color: white">
-            <button type="button" class="close" data-dismiss="modal"
-              style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
+            <button type="button" class="close" data-dismiss="modal" style="outline: none;background-color: white;opacity: unset;color: red;margin-top: 0px;font-size: 2.3em;border-radius: 5px;padding-left:5px;padding-right: 5px; ">&times;</button>
             <h3 id="store_title" class="modal-title">Your Wishlists</h3>
           </div>
         </div>
@@ -613,10 +663,12 @@ if (isset($_SESSION['id'])) {
                 ?>
                   <tr>
                     <td style="padding: 0px;margin: 0px;">
-                      <button id="list_btn<?= $row['wishlist_id'] ?>"
+                      <button
+                        id="list_btn<?= $row['wishlist_id'] ?>"
                         style="height: 45px;width:100%;border-color: white;background-color:#006904;color: white;border-radius:7px;outline: none;display:unset; "
-                        onclick="wishlist_check_list_select(<?= $row['wishlist_id'] ?>)">Add <i
-                          class="fa fa-heart"></i></button>
+                        onclick="wishlist_check_list_select(<?= $row['wishlist_id'] ?>)">
+                        Add <i class="fa fa-heart"></i>
+                      </button>
                     </td>
                     <td style="background-color: white" class="view_avail_stores"><?= $row['list_name'] ?></td>
                     <td style="background-color: white" class="view_avail_stores"><?= $row['privacy'] ?></td>
@@ -994,9 +1046,8 @@ if (isset($_SESSION['id'])) {
 <!-- added script for new template -->
 <!-- Latest jQuery form server -->
 <!------------------------------------------------------------>
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
-<!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!----------THIS IS FROM HEADER ------------------------------>
+<!------------------------------------------------------------>
 <script src="https://cdn.jsdelivr.net/gh/vast-engineering/jquery-popup-overlay@2/jquery.popupoverlay.min.js"></script>
 <script type="text/javascript">
   jQuery.fn.putCursorAtEnd = function() {
@@ -1149,7 +1200,7 @@ if (isset($_SESSION['id'])) {
       $('.load_btn').show();
       $('.real_btn').hide();
       $.ajax({
-        url: "functions.php", //passing page info
+        url: "../Common/functions.php", //passing page info
         data: {
           "login": 1,
           "email": email,
@@ -1176,7 +1227,7 @@ if (isset($_SESSION['id'])) {
               })
               .then((willSubmit) => {
                 if (willSubmit.dismiss) {
-                  location.href = "onestore.php";
+                  location.href = "../Main/onestore.php";
                 } else if (willSubmit.isConfirmed) {
                   location.href = "store-admin/index.php?id=" + data.id + "";
                 }
@@ -1395,7 +1446,7 @@ if (isset($_SESSION['id'])) {
     var po = document.getElementById("po_list").value;
     //	'<%Session["location"]="'+po+'";%>';//SET JS VALUE TO PHP SESSION VARIABLE
     $.ajax({
-      url: "functions.php", //passing page info
+      url: "../Common/functions.php", //passing page info
       data: {
         "location_access": 1,
         "location": po
@@ -1415,7 +1466,7 @@ if (isset($_SESSION['id'])) {
             })
             .then((willSubmit) => {
               if (willSubmit) {
-                location.href = "onestore.php";
+                location.href = "../Main/onestore.php";
               } else {
                 return;
               }
@@ -1544,7 +1595,7 @@ if (isset($_SESSION['id'])) {
     var po = document.getElementById("po_list").value;
     //	'<%Session["location"]="'+po+'";%>';//SET JS VALUE TO PHP SESSION VARIABLE
     $.ajax({
-      url: "functions.php", //passing page info
+      url: "../Common/functions.php", //passing page info
       data: {
         "location_access": 1,
         "location": po
@@ -1613,25 +1664,24 @@ if (isset($_SESSION['id'])) {
     $("#popup2_wrapper").hide();
     /*find latitude and longitude with postal code and postoffice*/
     /*
-         var address=document.getElementById('po_list').value;
-         var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
-         var xmlhttp = new XMLHttpRequest();
-         xmlhttp.onreadystatechange = function() {
-                 if (this.readyState == 4 && this.status == 200) {
-                 locate = JSON.parse(this.responseText);
-             }
-         };
-         xmlhttp.open("GET", post , true);
-         xmlhttp.send();
+      var address=document.getElementById('po_list').value;
+      var post="https://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+address+"";
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+              locate = JSON.parse(this.responseText);
+          }
+      };
+      xmlhttp.open("GET", post , true);
+      xmlhttp.send();
      */
     /*working*/
   }
 </script>
-<!--//////////////////////END-833///START-303/////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
-<!-------------------------------------------------------------------- >
-    <!-- Bootstrap JS form CDN -->
+<!------------------------------------------------->
+<!-- Bootstrap JS form CDN -->
 <script type="text/javascript">
   $('#myModal').on('show.bs.modal', function(event) {
     $('#myModal').modal('handleUpdate');
@@ -1652,20 +1702,6 @@ if (isset($_SESSION['id'])) {
 <!--ending of added script -->
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
-<!--	<script type="text/javascript">
-        $(document).ready(function() {
-            /*
-                var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-                };
-            */
-            $().UItoTop({ easingType: 'easeOutQuart' });
-            });
-    </script>
--->
 <!-- //here ends scrolling icon -->
 <!--// Mini Cart //-->
 <script src="../../js/minicart.min.js"></script>
@@ -1751,7 +1787,7 @@ if (isset($_SESSION['id'])) {
       if (email != " " && pass != " ") {
         //$("#strt").hide();
         $.ajax({
-          url: "functions.php", //passing page info
+          url: "../Common/functions.php", //passing page info
           data: {
             "login": 1,
             "email": email,
@@ -1779,7 +1815,7 @@ if (isset($_SESSION['id'])) {
                 dangerMode: true,
                 timer: 6000,
               });
-              location.href = "onestore.php";
+              location.href = "../Main/onestore.php";
               return;
             } else {
               return;
@@ -1793,7 +1829,7 @@ if (isset($_SESSION['id'])) {
     ?>
       //CART COUNT
       $.ajax({
-        url: "functions.php", //passing page info
+        url: "../Common/functions.php", //passing page info
         data: {
           "cartcnt": 1,
           "user": "<?= $_SESSION['id'] ?>"
@@ -1860,7 +1896,7 @@ if (isset($_SESSION['id'])) {
       return false;
     } else {
       $.ajax({
-        url: "functions.php",
+        url: "../Common/functions.php",
         data: {
           "nlmailcheck": 1,
           "email": nle
@@ -1947,10 +1983,9 @@ if (isset($_SESSION['id'])) {
     }
   }
 </script>
-<!------------------------------------------------------------>
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
+<!------------------------------------------------->
 <!-- Scroll->Drag -->
 <script src="../../js/scroll.js"></script>
 <!-- jQuery sticky menu -->
@@ -1968,10 +2003,9 @@ if (isset($_SESSION['id'])) {
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/skdslider.min.js"></script>
 <link href="../../css/skdslider.css" rel="stylesheet">
-<!--/////////////////////START-303///END-833/////////////////////////////////////////-->
+<!------------------------------------------------->
 <!----------THIS IS FROM HEADER ------------------->
-<!--///////////////////////////////////////////////////////////////-->
-<!------------------------------------------------------------>
+<!------------------------------------------------->
 <!-- //main slider-banner -->
 <!-- coc -->
 <!-- JavaScript Libraries -->

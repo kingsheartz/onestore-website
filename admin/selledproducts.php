@@ -35,9 +35,9 @@ require "head.php";
       $('#selledproductsphp').addClass('active');
     </script>
     <div class="table1">
-      <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;"><i
-          class="fas fa-clipboard-list" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Completed
-        Orders</h4>
+      <h4 style="margin-top: 30px;margin-bottom:50px;border-bottom:  1px solid#E3E3E3;padding:10px;">
+        <i class="fas fa-clipboard-list" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Completed Orders
+      </h4>
       <div id="jsGrid"></div>
       <br><br><br>
       <a class="excelbt" href="javascript:void(0);" onclick="printPageArea('jsGrid')">Print to Excel</a>
@@ -51,23 +51,23 @@ require "head.php";
         console.log(data[0]);
         var p = "";
         p += "<table><tr>\
-<th>OrderId</th>\
-<th>Product</th>\
-<th>Order Date</th>\
-<th>Delivered Date</th>\
-<th>Store Name</th>\
-<th>Status</th>\
-<th>Total Amount</th></tr>\
-";
+              <th>OrderId</th>\
+              <th>Product</th>\
+              <th>Order Date</th>\
+              <th>Delivered Date</th>\
+              <th>Store Name</th>\
+              <th>Status</th>\
+              <th>Total Amount</th></tr>\
+              ";
         for (var i = 0; i < data.length; i++) {
           p += "<tr>\
-  <th>" + data[i].new_ordered_products_id + "</th>\
-<th>" + data[i].item_name + "</th>\
-<th>" + data[i].order_date + "</th>\
-<th>" + data[i].delivery_date + "</th>\
-<th>" + data[i].store_name + "</th>\
-<th>" + data[i].delivery_status + "</th>\
-<th>" + data[i].total_amt + "</th></tr>";
+                <th>" + data[i].new_ordered_products_id + "</th>\
+                <th>" + data[i].item_name + "</th>\
+                <th>" + data[i].order_date + "</th>\
+                <th>" + data[i].delivery_date + "</th>\
+                <th>" + data[i].store_name + "</th>\
+                <th>" + data[i].delivery_status + "</th>\
+                <th>" + data[i].total_amt + "</th></tr>";
         }
         p += "</table>";
         return p;

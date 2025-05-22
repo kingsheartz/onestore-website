@@ -313,14 +313,13 @@ if (!empty($_SESSION['_contact_form_success'])) {
 
     <div class="row">
       <div class="col-sm-6 ">
-        <div class="card mt-5"
-          style="border-radius: 10px; border-top : 5px solid #fe9126;border-bottom: 2px solid #fe9126;">
+        <div class="card mt-5" style="border-radius: 10px; border-top : 5px solid #fe9126;border-bottom: 2px solid #fe9126;">
           <center>
-            <h3
-              style="margin-top: 0px;background-color: #fff;color:#333;padding-top: 10px;padding-bottom: 10px;margin-top: -20px;border-radius: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;margin-bottom: 50px;border-bottom: 2px solid #66afe9;">
-              REGISTER STORE &nbsp;<i class="fas fa-store-alt" style="font-size: 24px;color: #fe9126"
-                aria-hidden="true"></i><i class="fas fa-plus" style="font-size: 16px;color: #fff"
-                aria-hidden="true"></i></h3>
+            <h3 style="margin-top: 0px;background-color: #fff;color:#333;padding-top: 10px;padding-bottom: 10px;margin-top: -20px;border-radius: 10px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;margin-bottom: 50px;border-bottom: 2px solid #66afe9;">
+              REGISTER STORE &nbsp;
+              <i class="fas fa-store-alt" style="font-size: 24px;color: #fe9126" aria-hidden="true"></i>
+              <i class="fas fa-plus" style="font-size: 16px;color: #fff" aria-hidden="true"></i>
+            </h3>
           </center>
           <div class="card-body" style="padding-top: 0px;">
             <?php
@@ -339,59 +338,103 @@ if (!empty($_SESSION['_contact_form_success'])) {
               <h5><i class="fa fa-info-circle fa-lg"></i>&nbsp;Store informations</h5>
               <div class="form-group">
                 <div class="input-class">
-                  <input type="text" title="store name" name="store_name" id="store_name"
-                    class="form-control field_entry" placeholder="Store Name" required="">
+                  <input type="text" title="store name" name="store_name" id="store_name" class="form-control field_entry" placeholder="Store Name" required="">
                   <i class="fas fa-store " style="color: #777;margin-top: 1px;"></i>
                 </div>
               </div>
 
               <div class="form-group" class="store-opening-hours" id="store-opening-hours">
                 <div class="input-class store-opening-hours" style="background-color: #ededed;border-radius: 5px">
-                  <input type="text" title="opening hour" name="opening_hours" id="opening_hours"
-                    style="background-color: #fff;" class="form-control store-opening-hours field_entry"
-                    placeholder="Opening hours" autocomplete="false" required="" readonly=""
+                  <input
+                    type="text"
+                    title="opening hour"
+                    name="opening_hours"
+                    id="opening_hours"
+                    style="background-color: #fff;"
+                    class="form-control store-opening-hours field_entry"
+                    placeholder="Opening hours"
+                    autocomplete="false"
+                    required=""
+                    readonly=""
                     onfocus="$('.hadiv').css('display','block');if(this.value==''){this.value='12:00AM to 11:59PM';$('#in1').val('12');$('#in2').val('00');$('#in4').val('11');$('#in5').val('59')}">
                   <!--select boxes for hours-->
-                  <div class="hadiv store-opening-hours" id="hadiv"
+                  <div
+                    class="hadiv store-opening-hours"
+                    id="hadiv"
                     style="display: none;margin-top: 12px;padding-left: 5px;width: 100% "
                     focusout="this.hide();$('#opening_hours').show()">
                     <div class="hrdiv store-opening-hours" style="width: auto;">
-                      <i class="fa fa-clock-o" class="form-control1"
-                        style="position: relative;margin-top: 2px;"></i>&nbsp;
-                      <input type="number" onblur="validtime()" class="form-control1" id="in1" placeholder="HH" name=""
-                        min="1" max="12" maxlength="2" style="padding: 0;margin: 0;text-align: center;">
+                      <i class="fa fa-clock-o" class="form-control1" style="position: relative;margin-top: 2px;"></i>&nbsp;
+                      <input
+                        type="number"
+                        onblur="validtime()"
+                        class="form-control1"
+                        id="in1"
+                        placeholder="HH"
+                        name=""
+                        min="1"
+                        max="12"
+                        maxlength="2"
+                        style="padding: 0;margin: 0;text-align: center;">
                       <span class="dot" style="margin-top: 6px;font-weight: bolder;padding: 2px;">:</span>
 
-                      <input type="number" onblur="validtime()" class="form-control1" id="in2" placeholder="MM" name=""
-                        min="00" max="59" maxlength="2" style="padding: 0;margin: 0;text-align: center;">
+                      <input
+                        type="number"
+                        onblur="validtime()"
+                        class="form-control1"
+                        id="in2"
+                        placeholder="MM"
+                        name=""
+                        min="00"
+                        max="59"
+                        maxlength="2"
+                        style="padding: 0;margin: 0;text-align: center;">
 
-                      <select id="in3" class="form-control1"
-                        style="padding: 0;margin: 0;text-align: center;background-color: #1e2629;border-color: #1e2629;box-shadow: none;border-bottom-color: orange;margin-left: 10px;outline: none;color:white;font-weight: bolder;max-width: 28px;">
+                      <select id="in3" class="form-control1" style="padding: 0;margin: 0;text-align: center;background-color: #1e2629;border-color: #1e2629;box-shadow: none;border-bottom-color: orange;margin-left: 10px;outline: none;color:white;font-weight: bolder;max-width: 28px;">
                         <option value="AM" selected="">AM</option>
                         <option value="PM">PM</option>
                       </select>
                     </div>
                     <div class="dot" style="width: 5%;text-align: center;">to</div>
                     <div class="hrdiv" style="width: auto;padding-bottom: 10px;">
-                      <i class="fa fa-clock-o" class="form-control1"
-                        style="position: relative;margin-top: 2px;"></i>&nbsp;
-                      <input type="number" onblur="validtime()" id="in4" class="form-control1" placeholder="HH" name=""
-                        min="1" max="12" maxlength="2" style="padding: 0;margin: 0;text-align: center;">
+                      <i class="fa fa-clock-o" class="form-control1" style="position: relative;margin-top: 2px;"></i>&nbsp;
+                      <input
+                        type="number"
+                        onblur="validtime()"
+                        id="in4"
+                        class="form-control1"
+                        placeholder="HH"
+                        name=""
+                        min="1"
+                        max="12"
+                        maxlength="2"
+                        style="padding: 0;margin: 0;text-align: center;">
                       <span class="dot" style="margin-top: 6px;font-weight: bolder;padding: 2px;">:</span>
 
-                      <input type="number" onblur="validtime()" id="in5" class="form-control1" placeholder="MM" name=""
-                        min="00" max="59" maxlength="2" style="padding: 0;margin: 0;text-align: center;">
+                      <input
+                        type="number"
+                        onblur="validtime()"
+                        id="in5"
+                        class="form-control1"
+                        placeholder="MM"
+                        name=""
+                        min="00"
+                        max="59"
+                        maxlength="2"
+                        style="padding: 0;margin: 0;text-align: center;">
 
-                      <select id="in6" class="form-control1"
-                        style="padding: 0;margin: 0;text-align: center;background-color: #1e2629;border-color: #1e2629;box-shadow: none;border-bottom-color: orange;margin-left: 10px;outline: none;color:white;font-weight: bolder;max-width: 28px;">
+                      <select id="in6" class="form-control1" style="padding: 0;margin: 0;text-align: center;background-color: #1e2629;border-color: #1e2629;box-shadow: none;border-bottom-color: orange;margin-left: 10px;outline: none;color:white;font-weight: bolder;max-width: 28px;">
                         <option value="AM" style="">AM</option>
                         <option value="PM" selected="">PM</option>
                       </select>
                     </div>&nbsp;
-                    <button onclick="conca();" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="conca();"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;outline: none;margin-top: 0px;padding: 0px;padding-left: 2px;padding-right:2px;max-width: 30px;position: absolute;border:2px solid white;height: 35px;"
-                      class="form-control1" type="button">
+                      class="form-control1"
+                      type="button">
                       <span class="fa fa-check"></span>
                     </button>
                   </div>
@@ -402,15 +445,28 @@ if (!empty($_SESSION['_contact_form_success'])) {
 
               <div class="form-group">
                 <div class="input-class">
-                  <textarea name="address" title="address" rows="8" id="address" class="form-control"
-                    placeholder="Address" style="border-color:#66afe9" required=""></textarea>
+                  <textarea
+                    name="address"
+                    title="address"
+                    rows="8"
+                    id="address"
+                    class="form-control"
+                    placeholder="Address"
+                    style="border-color:#66afe9"
+                    required="">
+                  </textarea>
                   <i class="fa fa-address-card " style="color: #777"></i>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-class">
-                  <select name="status" title="status" id="status" class="form-control field_entry" placeholder="Status"
+                  <select
+                    name="status"
+                    title="status"
+                    id="status"
+                    class="form-control field_entry"
+                    placeholder="Status"
                     required="">
                     <option value="open">open</option>
                     <option value="closed">closed</option>
@@ -421,16 +477,28 @@ if (!empty($_SESSION['_contact_form_success'])) {
 
               <div class="form-group">
                 <div class="input-class">
-                  <input type="text" title="longitude" name="longitude" id="longitude" class="form-control field_entry"
-                    placeholder="longitude" required="">
+                  <input
+                    type="text"
+                    title="longitude"
+                    name="longitude"
+                    id="longitude"
+                    class="form-control field_entry"
+                    placeholder="longitude"
+                    required="">
                   <i class="fa fa-map-marker" style="color: #777"></i>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-class">
-                  <input type="text" title="latitude" name="latitude" id="latitude" class="form-control field_entry"
-                    placeholder="latitude" required="">
+                  <input
+                    type="text"
+                    title="latitude"
+                    name="latitude"
+                    id="latitude"
+                    class="form-control field_entry"
+                    placeholder="latitude"
+                    required="">
                   <i class="fa fa-map-marker" style="color: #777"></i>
                 </div>
               </div>
@@ -438,16 +506,28 @@ if (!empty($_SESSION['_contact_form_success'])) {
                 information</h5>
               <div class="form-group">
                 <div class="input-class">
-                  <input type="text" title="Owner name" name="name" id="name" class="form-control field_entry"
-                    placeholder="Username" required="">
+                  <input
+                    type="text"
+                    title="Owner name"
+                    name="name"
+                    id="name"
+                    class="form-control field_entry"
+                    placeholder="Username"
+                    required="">
                   <i class="fa fa-user" style="color: #777"></i>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-class">
-                  <input type="email" title="email" name="email" id="email" class="form-control field_entry"
-                    placeholder="Email" required="">
+                  <input
+                    type="email"
+                    title="email"
+                    name="email"
+                    id="email"
+                    class="form-control field_entry"
+                    placeholder="Email"
+                    required="">
                   <i class="fa fa-envelope" style="color: #777;margin-top: 2px;"></i>
                 </div>
               </div>
@@ -456,14 +536,21 @@ if (!empty($_SESSION['_contact_form_success'])) {
                 <div class="input-class">
                   <input type="text"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                    maxlength="10" pattern="^(\d{0}|\d{10})$" title="Phone Number Format (9876543210)- 10 digits"
-                    name="phone" id="phone" class="form-control field_entry" placeholder="Phone Number" required="">
+                    maxlength="10"
+                    pattern="^(\d{0}|\d{10})$"
+                    title="Phone Number Format (9876543210)- 10 digits"
+                    name="phone"
+                    id="phone"
+                    class="form-control field_entry"
+                    placeholder="Phone Number"
+                    required="">
                   <i class="fa fa-volume-control-phone" style="color: #777"></i>
                 </div>
               </div>
 
-              <center><button title="Add store" class="btn btn-primary btn-block"
-                  style="background-color: #0c99cc;width: 75%;">Add Store</button></center>
+              <center>
+                <button title="Add store" class="btn btn-primary btn-block" style="background-color: #0c99cc;width: 75%;">Add Store</button>
+              </center>
             </form>
           </div>
         </div>
