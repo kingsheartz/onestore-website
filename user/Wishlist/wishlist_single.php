@@ -1390,16 +1390,17 @@ require "../Main/footer.php";
         unset($dup);
       }
     }
+
     while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
       $item_description_id = $row1['item_description_id'];
       $store_id = $row1['store_id'];
       $n = 0;
       $sql2 = "select * from item inner join category on category.category_id=item.category_id
-        inner join sub_category on category.category_id=sub_category.category_id
-        inner join item_description on item_description.item_id=item.item_id
-        inner join product_details on item_description.item_description_id=product_details.item_description_id
-        inner join store on store.store_id=product_details.store_id
-        where item.sub_category_id=sub_category.sub_category_id and item.item_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
+              inner join sub_category on category.category_id=sub_category.category_id
+              inner join item_description on item_description.item_id=item.item_id
+              inner join product_details on item_description.item_description_id=product_details.item_description_id
+              inner join store on store.store_id=product_details.store_id
+              where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
       $stmt2 = $pdo->prepare($sql2);
       $stmt2->execute(array(
         ':item_description_id' => $item_description_id,
@@ -1578,7 +1579,6 @@ require "../Main/footer.php";
       total(store_id, item_description_id, mrp);
     }
   }
-  selected = "<?= $row1['quantity'] ?>"
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function sub_item_all(store_id, item_id, tmrp) {
