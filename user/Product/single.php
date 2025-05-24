@@ -46,9 +46,17 @@ inner join sub_category on category.category_id=sub_category.category_id
 where item.sub_category_id=sub_category.sub_category_id and item_description.item_description_id=$item_description_id ";
 $stmt = $pdo->query($sql);
 $row2 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$row2) {
+  echo "<script>alert('No such item found');</script>";
+  echo "<script>location.href='../Main/onestore.php';</script>";
+  exit();
+}
+
 $cat_id = $row2['category_id'];
 $subcat = $row2['sub_category_name'];
 $subcat_id = $row2['sub_category_id'];
+
 $sql1 = "select price from item inner join item_description on item_description.item_id=item.item_id where item_description_id=:item_description_id ";
 $stmt1 = $pdo->prepare($sql1);
 $stmt1->execute(array(
@@ -2622,11 +2630,11 @@ function randomGen($min, $max, $quantity)
     </h4>
     <div class="difcat " style="border-radius: 5px;">
       <span class="difhed"></span>
-      <div class="difrow hidescroll" id="difrow<?= $row['item_description_id'] ?>" onscroll="scrolllisten('difrow<?= $row['item_description_id'] ?>');">
-        <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow<?= $row['item_description_id'] ?>')" style="display: none;">
+      <div class="difrow hidescroll" id="difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>" onscroll="scrolllisten('difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>');">
+        <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')" style="display: none;">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow<?= $row['item_description_id'] ?>')">
+        <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')">
           <i class="fas fa-chevron-right"></i>
         </button>
         <?php
@@ -2690,11 +2698,14 @@ function randomGen($min, $max, $quantity)
             </h4>
             <div class="difcat " style="border-radius: 5px;">
               <span class="difhed"></span>
-              <div class="difrow hidescroll" id="difrow1<?= $row['item_description_id'] ?>" onscroll="scrolllisten('difrow1<?= $row['item_description_id'] ?>');">
-                <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow1<?= $row['item_description_id'] ?>')" style="display: none;">
+              <div
+                class="difrow hidescroll"
+                id="difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>"
+                onscroll="scrolllisten('difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')">
+                <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')" style="display: none;">
                   <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow1<?= $row['item_description_id'] ?>')">
+                <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')">
                   <i class="fas fa-chevron-right"></i>
                 </button>
                 <?php
