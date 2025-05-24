@@ -580,7 +580,7 @@ require "../Main/header.php";
                                                 id="btn_s<?= $store_id . "i" . $item_description_id ?>"
                                                 type="button"
                                                 style="width: 100%;min-width: 50px;height: 40px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
-                                                onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . `i` . $item_description_id ?>').show();}else{$('#qnty_s<?= $store_id . `i` . $item_description_id ?>').show();}">
+                                                onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . 'i' . $item_description_id ?>').show();}else{$('#qnty_s<?= $store_id . 'i' . $item_description_id ?>').show();}">
                                                 1
                                               </button>
                                               <select
@@ -626,7 +626,7 @@ require "../Main/header.php";
                                                 id="qnty_s<?= $store_id . "i" . $item_description_id ?>"
                                                 size="4"
                                                 onchange="total('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')"
-                                                onblur="$(this).hide();$('#sel_s<?= $store_id . `i` . $item_description_id ?>').hide();$('#btn_s<?= $store_id . `i` . $item_description_id ?>').show()"
+                                                onblur="$(this).hide();$('#sel_s<?= $store_id . 'i' . $item_description_id ?>').hide();$('#btn_s<?= $store_id . 'i' . $item_description_id ?>').show()"
                                                 style="text-align: center;display: none;height: 40px;width: 100%;min-width: 50px;outline: none;font-weight: bold"
                                                 class="input-text qty text"
                                                 title="Quantity"

@@ -664,7 +664,7 @@ require "../Main/header.php";
                                                 id="qnty_s<?= $store_id . "i" . $item_description_id ?>"
                                                 size="4"
                                                 onchange="total('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')"
-                                                onblur="$(this).hide();$('#sel_s<?= $store_id . `i` . $item_description_id ?>').hide();$('#btn_s<?= $store_id . `i` . $item_description_id ?>').show()"
+                                                onblur="$(this).hide();$('#sel_s<?= $store_id . 'i' . $item_description_id ?>').hide();$('#btn_s<?= $store_id . 'i' . $item_description_id ?>').show()"
                                                 style="text-align: center;display: none;height: 40px;width: 100%;min-width: 50px;outline: none;font-weight: bold"
                                                 class="input-text qty text"
                                                 title="Quantity"
