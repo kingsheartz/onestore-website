@@ -4,28 +4,28 @@ if (!isset($_SESSION['id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
-$placeorder_mul = $_POST['placeorder_mul'] ?? 'nill';
-$buynow_placeorder = $_POST['buynow_placeorder'] ?? 'nill';
-$placeorder = $_POST['placeorder'] ?? 'nill';
-$shipping_first_name = $_POST['shipping_first_name'] ?? 'nill';
-$shipping_last_name = $_POST['shipping_last_name'] ?? 'nill';
-$user = $_POST['user'] ?? 'nill';
-$user_id = $_POST['user_id'] ?? 'nill';
-$order_notes = $_POST['order_notes'] ?? 'nill';
-$pdt_cnt = $_POST['pdt_cnt'] ?? 'nill';
-$total_amt = $_POST['total_amt'] ?? 'nill';
-$shipping_postcode = $_POST['shipping_postcode'] ?? 'nill';
-$shipping_ph_no = $_POST['shipping_ph_no'] ?? 'nill';
-$idid = $_POST['idid'] ?? 'nill';
-$shipping_ph_no2 = $_POST['shipping_ph_no2'] ?? 'nill';
-$shipping_address_1 = $_POST['shipping_address_1'] ?? 'nill';
-$order_type = $_POST['order_type'] ?? 'nill';
-$store_id = $_POST['store_id'] ?? 'nill';
+$placeorder_mul = $_POST['placeorder_mul'] ?? null;
+$buynow_placeorder = $_POST['buynow_placeorder'] ?? null;
+$placeorder = $_POST['placeorder'] ?? null;
+$shipping_first_name = $_POST['shipping_first_name'] ?? null;
+$shipping_last_name = $_POST['shipping_last_name'] ?? null;
+$user = $_POST['user'] ?? null;
+$user_id = $_POST['user_id'] ?? null;
+$order_notes = $_POST['order_notes'] ?? null;
+$pdt_cnt = $_POST['pdt_cnt'] ?? null;
+$total_amt = $_POST['total_amt'] ?? null;
+$shipping_postcode = $_POST['shipping_postcode'] ?? null;
+$shipping_ph_no = $_POST['shipping_ph_no'] ?? null;
+$idid = $_POST['idid'] ?? null;
+$shipping_ph_no2 = $_POST['shipping_ph_no2'] ?? null;
+$shipping_address_1 = $_POST['shipping_address_1'] ?? null;
+$order_type = $_POST['order_type'] ?? null;
+$store_id = $_POST['store_id'] ?? null;
 ?>
 <script>
-  if ('<?= $placeorder_mul ?>' != 'nill') {
+  if ('<?= $placeorder_mul ?>' != null) {
     console.log("mul")
-    if ('<?= $shipping_first_name ?>' != 'nill') {
+    if ('<?= $shipping_first_name ?>' != null) {
       data_used = {
         "placeorder_mul": 1,
         "user": <?= $user ?>,
@@ -36,7 +36,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
         "shipping_ph_no2": '<?= $shipping_ph_no2 ?>',
         "shipping_address_1": '<?= $shipping_address_1 ?>',
         "shipping_postcode": '<?= $shipping_postcode ?>',
-        "order_notes": <?= $order_notes ?>,
+        "order_notes": '<?= $order_notes ?>',
         "pdt_cnt": <?= $pdt_cnt ?>,
         "total_amt": <?= $total_amt ?>
       };
@@ -45,13 +45,13 @@ $store_id = $_POST['store_id'] ?? 'nill';
       "placeorder_mul": 1,
       "user": <?= $user ?>,
       "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
+      "order_notes": '<?= $order_notes ?>',
       "pdt_cnt": <?= $pdt_cnt ?>,
       "total_amt": <?= $total_amt ?>
     };
-  } else if ('<?= $buynow_placeorder ?>' != 'nill') {
+  } else if ('<?= $buynow_placeorder ?>' != null) {
     console.log("buy noe")
-    if ('<?= $shipping_first_name ?>' != 'nill') {
+    if ('<?= $shipping_first_name ?>' != null) {
       data_used = {
         "buynow_placeorder": 1,
         "user": <?= $user ?>,
@@ -62,7 +62,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
         "shipping_ph_no2": '<?= $shipping_ph_no2 ?>',
         "shipping_address_1": '<?= $shipping_address_1 ?>',
         "shipping_postcode": '<?= $shipping_postcode ?>',
-        "order_notes": <?= $order_notes ?>,
+        "order_notes": '<?= $order_notes ?>',
         "pdt_cnt": <?= $pdt_cnt ?>,
         "total_amt": <?= $total_amt ?>,
         "idid": '<?= $idid ?>',
@@ -74,16 +74,16 @@ $store_id = $_POST['store_id'] ?? 'nill';
       "buynow_placeorder": 1,
       "user": <?= $user ?>,
       "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
+      "order_notes": '<?= $order_notes ?>',
       "pdt_cnt": <?= $pdt_cnt ?>,
       "total_amt": <?= $total_amt ?>,
-      "idid": <?= $idid ?>,
-      "store_id": <?= $store_id ?>,
-      "order_type": <?= $order_type ?>
+      "idid": '<?= $idid ?>',
+      "store_id": '<?= $store_id ?>',
+      "order_type": '<?= $order_type ?>'
     };
-  } else if ('<?= $placeorder ?>' != 'nill') {
+  } else if ('<?= $placeorder ?>' != null) {
     console.log("placeorder")
-    if ('<?= $shipping_first_name ?>' != 'nill') {
+    if ('<?= $shipping_first_name ?>' != null) {
       data_used = {
         "placeorder": 1,
         "user": <?= $user ?>,
@@ -94,7 +94,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
         "shipping_ph_no2": '<?= $shipping_ph_no2 ?>',
         "shipping_address_1": '<?= $shipping_address_1 ?>',
         "shipping_postcode": '<?= $shipping_postcode ?>',
-        "order_notes": <?= $order_notes ?>,
+        "order_notes": '<?= $order_notes ?>',
         "pdt_cnt": <?= $pdt_cnt ?>,
         "total_amt": <?= $total_amt ?>
       };
@@ -103,7 +103,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
       "placeorder": 1,
       "user": <?= $user ?>,
       "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
+      "order_notes": '<?= $order_notes ?>',
       "pdt_cnt": <?= $pdt_cnt ?>,
       "total_amt": <?= $total_amt ?>
     };
@@ -118,14 +118,14 @@ $store_id = $_POST['store_id'] ?? 'nill';
         icon: "warning",
         showCancelButton: true,
         showConfirmButton: true,
-        confirmButtonColor: 'red',
+        confirmButtonColor: 'green',
         allowOutsideClick: false,
-        confirmButtonText: '<i class="fa fa-close"></i> Cancel',
-        cancelButtonColor: 'green',
-        cancelButtonText: '<i class="fa fa-shopping-bag"></i> Place'
+        confirmButtonText: '<i class="fa fa-shopping-bag"></i> Place',
+        cancelButtonColor: 'red',
+        cancelButtonText: '<i class="fa fa-close"></i> Cancel'
       })
       .then((willSubmit) => {
-        if (willSubmit.dismiss) {
+        if (willSubmit.isConfirmed) {
           $('.background_loader').css('display', 'flex');
           $('.load_btn').show();
           $('.real_btn').hide();
@@ -198,7 +198,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
             }
           }); //closing ajax
         } //ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
-        else if (willSubmit.isConfirmed === Swal.DismissReason.cancel) {
+        else if (willSubmit.dismiss) {
           return;
         }
       }); //NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
@@ -316,18 +316,25 @@ $store_id = $_POST['store_id'] ?? 'nill';
       <div class="heading">
         <img src="..\..\images\payment-icons\icons8-UPI-32.png"> UPI
         <i class="fa fa-angle-right" id="cat-right-UPI" style="float: right; font-size:30px;"></i>
-        <i class="fa fa-angle-up " id="cat-down-UPI"
-          style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
+        <i class="fa fa-angle-up " id="cat-down-UPI" style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
       </div>
       <ul id="upi-options" class="ui-opt" background-color="#000">
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-google-pay-32.png" class="icon-img"><span
-            class="upi-span">Google pay</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-paytm-32.png" class="icon-img"><span
-            class="upi-span">Paytm</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-phone-pe-32.png" class="icon-img"><span
-            class="upi-span">Phone Pe</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-bhim-32.png" class="icon-img"><span
-            class="upi-span">Phone Pe</span< /li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-google-pay-32.png" class="icon-img">
+          <span class="upi-span">Google pay</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-paytm-32.png" class="icon-img">
+          <span class="upi-span">Paytm</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-phone-pe-32.png" class="icon-img">
+          <span class="upi-span">Phone Pe</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-bhim-32.png" class="icon-img">
+          <span class="upi-span">BHIM</span>
+        </li>
       </ul>
     </div>
     <hr>
@@ -335,16 +342,21 @@ $store_id = $_POST['store_id'] ?? 'nill';
       <div class="heading">
         <img src="..\..\images\payment-icons\icons8-card-32.png"> Cards
         <i class="fa fa-angle-right" id="cat-right-cards" style="float: right; font-size:30px;"></i>
-        <i class="fa fa-angle-up " id="cat-down-cards"
-          style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
+        <i class="fa fa-angle-up " id="cat-down-cards" style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
       </div>
       <ul id="card-options" class="ui-opt" background-color="#000">
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-visa-32.png" class="icon-img"><span
-            class="upi-span">Visa</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-mastercard-logo-32.png" class="icon-img"><span
-            class="upi-span">Master card</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-rupay-32.png" class="icon-img"><span
-            class="upi-span">Rupay</span< /li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-visa-32.png" class="icon-img">
+          <span class="upi-span">Visa</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-mastercard-logo-32.png" class="icon-img">
+          <span class="upi-span">Master card</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\icons8-rupay-32.png" class="icon-img">
+          <span class="upi-span">Rupay</span>
+        </li>
       </ul>
     </div>
     <hr>
@@ -352,18 +364,25 @@ $store_id = $_POST['store_id'] ?? 'nill';
       <div class="heading">
         <img src="..\..\images\payment-icons\icons8-bank-building-32.png"> Net banking
         <i class="fa fa-angle-right " id="cat-right-bank" style="float: right; font-size:30px;"></i>
-        <i class="fa fa-angle-up" id="cat-down-bank"
-          style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
+        <i class="fa fa-angle-up" id="cat-down-bank" style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
       </div>
       <ul id="net-banking-options" class="ui-opt" background-color="#000">
-        <li class="li-opt"><img src="..\..\images\payment-icons\sbi-logo-33234.png" style="width: 40%; height: 40%;"
-            class="icon-img"><span class="upi-span">SBI bank</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\IBN.png" style="width: 40%; height: 40%;"
-            class="icon-img"><span class="upi-span">ICICI bank</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\KOTAKBANK.NS.png" style="width: 40%; height: 40%;"
-            class="icon-img"><span class="upi-span">Kotak</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\AXISBANK.BO.png" style="width: 40%; height: 40%;"
-            class="icon-img"><span class="upi-span">Axis</span< /li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\sbi-logo-33234.png" style="width: 40%; height: 40%;" class="icon-img">
+          <span class="upi-span">SBI bank</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\IBN.png" style="width: 40%; height: 40%;" class="icon-img">
+          <span class="upi-span">ICICI bank</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\KOTAKBANK.NS.png" style="width: 40%; height: 40%;" class="icon-img">
+          <span class="upi-span">Kotak</span>
+        </li>
+        <li class="li-opt">
+          <img src="..\..\images\payment-icons\AXISBANK.BO.png" style="width: 40%; height: 40%;" class="icon-img">
+          <span class="upi-span">Axis</span>
+        </li>
       </ul>
     </div>
     <hr>
@@ -371,8 +390,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
       <div class="heading">
         <img src="..\..\images\payment-icons\icons8-installment-plan-32.png"> EMI
         <i class="fa fa-angle-right " id="cat-right-emi" style="float: right; font-size:30px;"></i>
-        <i class="fa fa-angle-up" id="cat-down-emi"
-          style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
+        <i class="fa fa-angle-up" id="cat-down-emi" style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
       </div>
       <div class="pay-select" id="emi-options">
         <select>
@@ -385,16 +403,18 @@ $store_id = $_POST['store_id'] ?? 'nill';
       <div class="heading">
         <img src="..\..\images\payment-icons\icons8-wallet-32.png"> Wallet
         <i class="fa fa-angle-right " id="cat-right-wallet" style="float: right; font-size:30px;"></i>
-        <i class="fa fa-angle-up " id="cat-down-wallet"
-          style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
+        <i class="fa fa-angle-up " id="cat-down-wallet" style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
       </div>
       <ul id="wallet-options" class="ui-opt" background-color="#000">
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-google-pay-32.png" class="icon-img"><span
-            class="upi-span">Gpay wallet</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-paytm-32.png" class="icon-img"><span
-            class="upi-span">Paytm wallet</span< /li>
-        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-phone-pe-32.png" class="icon-img"><span
-            class="upi-span">Phone Pe wallet</span< /li>
+        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-google-pay-32.png" class="icon-img">
+          <span class="upi-span">Gpay wallet</span>
+        </li>
+        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-paytm-32.png" class="icon-img">
+          <span class="upi-span">Paytm wallet</span>
+        </li>
+        <li class="li-opt"><img src="..\..\images\payment-icons\icons8-phone-pe-32.png" class="icon-img">
+          <span class="upi-span">Phone Pe wallet</span>
+        </li>
       </ul>
     </div>
     <hr>
@@ -402,8 +422,7 @@ $store_id = $_POST['store_id'] ?? 'nill';
       <div class="heading">
         <img src="..\..\images\payment-icons\icons8-time-32.png"> Pay Later
         <i class="fa fa-angle-right" id="cat-right-pay" style="float: right; font-size:30px;"></i>
-        <i class="fa fa-angle-up" id="cat-down-pay"
-          style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
+        <i class="fa fa-angle-up" id="cat-down-pay" style="float: right;display: none; font-size:30px;border-bottom:none;"></i>
       </div>
       <div class="pay-select" id="pay-later-options">
         <select>
@@ -412,11 +431,14 @@ $store_id = $_POST['store_id'] ?? 'nill';
       </div>
     </div>
   </div>
-  <button style="    width: 100%;
+  <button
+    style="width: 100%;
     background: black;
     color: white;
     border-radius: 5px;
-    height: 50px;" onclick="onPay()"> Pay <?= $total_amt ?></button>
+    height: 50px;"
+    onclick="onPay()"> Pay <?= $total_amt ?>
+  </button>
 </div>
 <div style="margin: 10%;"></div>
 <?php

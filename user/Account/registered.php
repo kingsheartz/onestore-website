@@ -294,8 +294,8 @@ require "../Main/header.php";
                 unset($_SESSION['reg_error']);
               }
               ?>
-              <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i style="color: yellow"
-                  class="fa fa-warning"></i> Can't use any symbols(@ # $ % ... )
+              <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px">
+                <i style="color: yellow" class="fa fa-warning"></i> Can't use any symbols(@ # $ % ... )
               </p>
               <div class="input-group input-group_form  bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
                 <input

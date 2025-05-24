@@ -441,8 +441,7 @@ $pdt_cnt = $stmt->rowCount();
                           title="Minimal character count is 10"
                           placeholder="Street address"
                           class="input-text validate"
-                          onfocus="$('#myTextarea').prop('selectionStart');">
-                        </textarea>
+                          onfocus="$('#myTextarea').prop('selectionStart');"></textarea>
                       </p>
                     </div>
                     <div id="payment">
@@ -555,8 +554,7 @@ $pdt_cnt = $stmt->rowCount();
                         id="shipping_address_1"
                         name="shipping_address_1"
                         class="input-text validate"
-                        required="">
-                      </textarea>
+                        required=""></textarea>
                     </p>
                     <p
                       id="shipping_postcode_field"

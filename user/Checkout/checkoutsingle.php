@@ -13,12 +13,12 @@ if (isset($_GET['store_id'], $_GET['item_description_id'])) {
 require "../Main/header.php";
 $uid = $_SESSION['id'];
 $sql = "select category.category_id,sub_category.sub_category_id,item_description.item_description_id,store.store_id,item.item_name,product_details.price from product_details
-inner join item_description on item_description.item_description_id=product_details.item_description_id
-inner join item on item_description.item_id=item.item_id
-inner join category on category.category_id=item.category_id
-inner join sub_category on category.category_id=sub_category.category_id
-inner join store on store.store_id=product_details.store_id
-where item.sub_category_id=sub_category.sub_category_id and store.store_id=:store_id and item_description.item_description_id=:idid";
+        inner join item_description on item_description.item_description_id=product_details.item_description_id
+        inner join item on item_description.item_id=item.item_id
+        inner join category on category.category_id=item.category_id
+        inner join sub_category on category.category_id=sub_category.category_id
+        inner join store on store.store_id=product_details.store_id
+        where item.sub_category_id=sub_category.sub_category_id and store.store_id=:store_id and item_description.item_description_id=:idid";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array(
   ":store_id" => $store_id,
@@ -26,11 +26,11 @@ $stmt->execute(array(
 ));
 $pdt_cnt = $stmt->rowCount();
 $sql2 = "select * from item inner join category on category.category_id=item.category_id
-       inner join sub_category on category.category_id=sub_category.category_id
-       inner join item_description on item_description.item_id=item.item_id
-       inner join product_details on item_description.item_description_id=product_details.item_description_id
-       inner join store on store.store_id=product_details.store_id
-       where item.sub_category_id=sub_category.sub_category_id and item.item_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
+        inner join sub_category on category.category_id=sub_category.category_id
+        inner join item_description on item_description.item_id=item.item_id
+        inner join product_details on item_description.item_description_id=product_details.item_description_id
+        inner join store on store.store_id=product_details.store_id
+        where item.sub_category_id=sub_category.sub_category_id and item.item_id=:item_description_id and product_details.store_id=:store_id order by item_description.item_description_id";
 $stmt2 = $pdo->prepare($sql2);
 $stmt2->execute(array(
   ':item_description_id' => $idid,
@@ -342,7 +342,7 @@ $t_mrp = $mrprow['price'];
                           id="btn_s<?= $store_id . "i" . $idid ?>"
                           type="button"
                           style="width: 100%;width: 30px;height: 25px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
-                          onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . "i" . $idid ?>').show();}else{$('#qnty_s<?= $store_id . "i" . $idid ?>').show();}">
+                          onclick="$(this).hide(); if ($(this).html()<10) { $('#sel_s<?= $store_id . `i` . $idid ?>').show(); } else { $('#qnty_s<?= $store_id . `i` . $idid ?>').show(); }">
                           1
                         </button>
                         <select
@@ -364,16 +364,17 @@ $t_mrp = $mrprow['price'];
                           <option value="10" class="sc-update-quantity-option" data-a-css-class="quantity-option quantity-option-10" data-a-html-content="10+">10+</option>
                         </select>
                         <input
-                          type="number" id="qnty_s<?= $store_id . "i" . $idid ?>" size="4"
+                          type="number"
+                          id="qnty_s<?= $store_id . `i` . $idid ?>"
+                          size="4"
                           onchange="total('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')"
-                          onblur="$(this).hide();$('#sel_s<?= $store_id . `i` . $idid ?>').hide();$('#btn_s<?= $store_id . `i` . $idid ?>').show()"
+                          onblur="$(this).hide(); $('#sel_s<?= $store_id . `i` . $idid ?>').hide();$('#btn_s<?= $store_id . `i` . $idid ?>').show()"
                           style="text-align: center;display: none;height: 25px;width: 100%;max-width: 40px;outline: none;font-weight: bold"
                           class="input-text qty text"
                           title="Quantity"
-                          value="<?= $row1['quantity'] ?>"
                           min="1"
                           step="1"
-                          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+                          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"/>
                       </div>
                       <div
                         class="btn_add_q"
@@ -1051,104 +1052,7 @@ require "../Main/footer.php";
         form.appendChild(input);
       }
       document.body.appendChild(form);
-      form.submit(); // This opens payment.php with POST data
-      //     Swal.fire({
-      //         title: "Are you sure?",
-      //         text: "placing your orders !!!",
-      //         icon: "warning",
-      //         showCancelButton:true,
-      //         showConfirmButton:true,
-      //         confirmButtonColor: 'red',
-      //         allowOutsideClick: false,
-      //         confirmButtonText:'<i class="fa fa-close"></i> Cancel',
-      //         cancelButtonColor:'green',
-      //         cancelButtonText:'<i class="fa fa-shopping-bag"></i> Place'
-      //         })
-      // .then((willSubmit) => {
-      //     if (willSubmit.dismiss) {
-      //         $('.background_loader').css('display','flex');
-      //         $('.load_btn').show();
-      //         $('.real_btn').hide();
-      //         $('.std_text3').css('display','flex');
-      // var quantity=document.getElementById('btn_s<?= $store_id . "i" . $idid ?>').innerHTML;
-      // //1=booking;2=cash_on_delivery
-      // var order_type=document.getElementById('order_s'+'<?= $store_id . "i" . $idid ?>').value;
-      // var idid="<?= $idid ?>";
-      // var store_id="<?= $store_id ?>";
-      // var uid="<?= $_SESSION['id'] ?>";
-      // var total_amt=document.getElementById('total_s'+'<?= $store_id . "i" . $idid ?>').innerHTML;
-      // data: {"buynow_placeorder":1,"user":1,"user_id":uid,"order_notes":order_notes,"pdt_cnt":quantity,"total_amt":total_amt,"idid":idid,"store_id":store_id,"order_type":order_type},  //form data
-      //         $.ajax({
-      //             url: "../Common/functions.php", //passing page info
-      //             data: {"buynow_placeorder":1,"user":1,"user_id":uid,"order_notes":order_notes,"pdt_cnt":quantity,"total_amt":total_amt,"idid":idid,"store_id":store_id,"order_type":order_type},  //form data
-      //             type: "post",   //post data
-      //             dataType: "json",   //datatype=json format
-      //             timeout:30000,   //waiting time 30 sec
-      //             success: function(data){    //if registration is success
-      //                 if(data.status=='success'){
-      //                     $('.background_loader').hide();
-      //                     $('.std_text3').hide();
-      //                     swal({
-      //                         title: "Success!!!",
-      //                         text: "Order Placed Successfully",
-      //                         icon: "success",
-      //                         closeOnClickOutside: false,
-      //                         dangerMode: true,
-      //                     })
-      //                     .then((willSubmit1) => {
-      //                         if(willSubmit1) {
-      //                            location.href="../Order/myorders.php";
-      //                         }
-      //                         else{
-      //                             return ;
-      //                         }
-      //                     });
-      //                     }
-      //                 else if(data.status=='error'){
-      //                     $('.background_loader').hide();
-      //                     $('.load_btn').hide();
-      //                     $('.real_btn').show();
-      //                     $('.std_text3').hide();
-      //                     swal({
-      //                         title: "Sorry!!!",
-      //                         text: "Try again",
-      //                         icon: "error",
-      //                         closeOnClickOutside: false,
-      //                         dangerMode: true,
-      //                     })
-      //                     .then((willSubmit) => {
-      //                         if(willSubmit) {
-      //                             location.reload();
-      //                             return;
-      //                         }
-      //                         else{
-      //                             return ;
-      //                         }
-      //                     });
-      //                     }
-      //             },
-      //             error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
-      //                 if(textstatus==="timeout") {
-      //                     $('.background_loader').hide();
-      //                     $('.load_btn').hide();
-      //                     $('.real_btn').show();
-      //                     $('.std_text3').hide();
-      //                         swal({
-      //                             title: "Oops!!!",
-      //                             text: "server time out",
-      //                             icon: "error",
-      //                             closeOnClickOutside: false,
-      //                             dangerMode: true,
-      //                             timer: 6000,
-      //                         });
-      //                 return ;
-      //                 }
-      //                 else{return;}
-      //             }
-      //             }); //closing ajax
-      //     }//ELSE CLOSING (IN ACTUAL PRGM) ,NOW END WILL SUBMIT
-      //     else if(willSubmit.isConfirmed === Swal.DismissReason.cancel){return;}
-      // });//NOW .(THIS) END WILL SUBMIT (NOT NEEDED)
+      form.submit();
     } else if (checkBox_diff.checked == true) {
       var shipping_first_name = document.getElementById("shipping_first_name").value;
       var shipping_last_name = document.getElementById("shipping_last_name").value;
