@@ -155,9 +155,9 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                 <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey"> pending &nbsp;</i>
               </span>
             </h5>
-            <div id="error_dis" style="display: none;margin-bottom: 50px;">
+            <div id="error_dis" style="display: none;margin-bottom: 50px;overflow: hidden;">
               <p id="nameerror"
-                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey">
+                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey; margin-top: 5px">
               </p>
             </div>
             <form name="user_details_update_form" style="margin-top: 45px;">
@@ -285,7 +285,7 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                   onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                   maxlength="10"
                   pattern="^(\d{0}|\d{10})$"
-                  title="Phone Number Format (9876543210)- 10 digits">
+                  title="Phone Number Format (9876543210)- 10 digits"/>
                 <label class="form-label" for="phone">Phone</label>
                 <span id="dis_ph" class="input-group-btn">
                   <button
@@ -475,10 +475,10 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                 <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey">pending &nbsp;</i>
               </span>
             </h6>
-            <div id="error_dis2" style="display: none;margin-bottom: 50px;">
+            <div id="error_dis2" style="display: none;margin-bottom: 50px;overflow: hidden;">
               <p
                 id="nameerror2"
-                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey">
+                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey;margin-top: 5px">
               </p>
             </div>
             <div class="input-group bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 25px;margin-top: 45px;">

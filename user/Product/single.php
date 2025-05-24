@@ -1018,9 +1018,7 @@ function randomGen($min, $max, $quantity)
             return;
           }
         }
-      }); //closing ajax
-      //location.href="../Cart/cart.php?store="+id+"&item=<? //=$row['item_id']
-                                                          ?>";
+      });
     }
   }
 
