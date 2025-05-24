@@ -3515,6 +3515,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
   $stmt_cart = $pdo->prepare($sql);
   $stmt_cart->execute(array(':user_id' => $_SESSION['id']));
   while ($row_cart = $stmt_cart->fetch(PDO::FETCH_ASSOC)) {
+    //INSERT INTO NEW ORDERED PRODUCTS
     $sql = "insert into new_ordered_products (new_orders_id,product_details_id,order_type,item_quantity,total_amt,delivery_status)values(:noid,:pdid,:order_type,:item_quantity,:total_amt,'pending')";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(
@@ -3678,7 +3679,9 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                               <tbody>
                                 <tr>
                                   <td valign="top">
-                                    <p style="padding-left:15px;font-family:Arial;font-size:14px;line-height:1.58;margin-bottom:30px;margin-top:15;padding-top:2px"><span style="display:inline-block;width:167px;color:#212121">Total amount</span><span style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block">Rs. ' . $total_bill . '</span></p>
+                                    <p style="padding-left:15px;font-family:Arial;font-size:14px;line-height:1.58;margin-bottom:30px;margin-top:15;padding-top:2px">
+                                      <span style="display:inline-block;width:167px;color:#212121">Total amount</span>
+                                      <span style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block">Rs. ' . $total_bill . '</span></p>
                                   </td>
                                 </tr>
                                 <tr>
@@ -3715,6 +3718,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                         </tr>
                       </tbody>
                     </table>';
+  log_message('Data Array: ' . json_encode($store_array));
   for ($l = 0; $l < $i; $l++) {
     $store_total = 0;
     $message1 .= '  <table style="background-color: #02171e;width:100%;text-align:center" align="center">
@@ -3728,7 +3732,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                   <span style="float:right;">Store : ' . $store_array[$l]['store_name'] . '</span><br>
                                   <span style="float:left;">status : ' . $store_array[$l]['status'] . '</span>
                                   <span style="float:right;">Ph : ' . $store_array[$l]['phone'] . '</span>';
-      $message1 .= '
+    $message1 .= '
                                 </h4>
                               </td>
                             </tr>
@@ -4015,18 +4019,13 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                         style="font-family:Arial;color:#747474;font-size:11px;font-weight:normal;text-align:right;font-style:normal;line-height:1.1;font-stretch:normal;margin-top:7px;padding-top:0px;color:#878787"
                                       >
                                         Store ID
-                                        <span style="font-weight:bold;color:#000"
-                                          >OSSID' . sprintf('%06d', $store_array[$l]['store_id']) .
-                                          '</span
-                                        >
+                                        <span style="font-weight:bold;color:#000">OSSID' . sprintf('%06d', $store_array[$l]['store_id']) . '</span>
                                       </p>
                                       <p
                                         style="font-family:Arial;font-size:11px;color:#878787;line-height:1.22;text-align:right;padding-top:0px"
                                       >
                                         Order ID
-                                        <span style="font-weight:bold;color:#000"
-                                          >OSID' . sprintf('%06d', $noid) . '</span
-                                        >
+                                        <span style="font-weight:bold;color:#000">OSID' . sprintf('%06d', $noid) . '</span>
                                       </p>
                                     </td>
                                   </tr>
@@ -4050,7 +4049,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                         Below listed item(s) are requested by the customer by
                                         <b>' . date("F j") . " , " . date("Y") . '</b> from your store
                                         <b>' . $store_array[$l]['store_name'] . '</b>. Thanks for your
-                                        cooperation with us and also wishing you best with your sales .
+                                        cooperation with us and also wishing you best with your sales.
                                       </p>
                                     </td>
                                   </tr>
@@ -4063,12 +4062,14 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                       <p
                                         style="padding-left:15px;font-family:Arial;font-size:14px;line-height:1.58;margin-bottom:30px;margin-top:15;padding-top:2px"
                                       >
-                                        <span style="display:inline-block;width:167px;color:#212121"
-                                          >Total amount</span
-                                        ><span
-                                          style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block"
-                                          >Rs. ' . $total_bill . '</span
-                                        >
+                                        <span style="display:inline-block;width:167px;color:#212121">Total amount</span>';
+
+    for ($m = 0; $m < $store_cnt[$l]; $m++) {
+      $store_total += (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m];
+    }
+
+    $message2 .=  '
+                                        <span style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block">Rs. ' . $store_total . '</span>
                                       </p>
                                     </td>
                                   </tr>
@@ -4201,13 +4202,22 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                           </td>
                         </tr>
                       </table>';
+
+    // Reset store total for each store
+    $store_total = 0;
+
     for ($m = 0; $m < $store_cnt[$l]; $m++) {
-    $store_array[$l]['item_description_id'][$m];
-    $store_array[$l]['item_category_id'][$m];
-    $store_array[$l]['item_sub_category_id'][$m]; $store_array[$l]['item_name'][$m];
-    $store_array[$l]['item_description'][$m]; $store_array[$l]['item_price'][$m];
-    $store_array[$l]['item_quantity'][$m]; $store_array[$l]['item_ordertype'][$m];
-    $store_array[$l]['item_total_amt'][$m]; $message2 .= '
+      $store_array[$l]['item_description_id'][$m];
+      $store_array[$l]['item_category_id'][$m];
+      $store_array[$l]['item_sub_category_id'][$m];
+      $store_array[$l]['item_name'][$m];
+      $store_array[$l]['item_description'][$m];
+      $store_array[$l]['item_price'][$m];
+      $store_array[$l]['item_quantity'][$m];
+      $store_array[$l]['item_ordertype'][$m];
+      $store_array[$l]['item_total_amt'][$m];
+
+      $message2 .= '
                       <table
                         border="0"
                         width="600"
@@ -4281,11 +4291,10 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                       <p
                                         style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                       >
-                                        Total: &#8377; ' . (int) $store_array[$l]['item_quantity'][$m] *
-                                        (int) $store_array[$l]['item_price'][$m] . '
-                                      </p>
-                                      '; $store_total += (int) $store_array[$l]['item_quantity'][$m] *
-                                      (int) $store_array[$l]['item_price'][$m]; $message2 .= '
+                                        Total: &#8377; ' . (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m] . '
+                                      </p>';
+      $store_total += (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m];
+      $message2 .= '
                                     </td>
                                   </tr>
                                 </tbody>
@@ -4296,7 +4305,8 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                       </table>
                       <hr
                         style="border: 3px solid #E0E0E0 !important;margin: 0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;"
-                      />'; }
+                      />';
+    }
     $message2 .= '
                       <p
                         style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;font-weight:bold;line-height:12px"
@@ -5273,8 +5283,8 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . $store_array[$l]['item_total_amt'][$m] . '</p>';
-          $store_total += $store_array[$l]['item_total_amt'][$m];
-          $message1 .= '
+      $store_total += $store_array[$l]['item_total_amt'][$m];
+      $message1 .= '
                                   </td>
                                 </tr>
                               </tbody>
@@ -5591,8 +5601,8 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m] . '</p>';
-                              $store_total += (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m];
-                              $message2 .= '</td>
+      $store_total += (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m];
+      $message2 .= '</td>
                                           </tr>
                                         </tbody>
                                       </table>
@@ -5601,9 +5611,9 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                 </tbody>
                               </table>
                               <hr style="border: 3px solid #E0E0E0 !important;margin: 0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;">';
-                            }
-                            $message2 .= '<p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;font-weight:bold;line-height:12px">Total amount : &#8377; ' . $store_total . '</p><hr style="border: 3px solid #E0E0E0 !important;margin: 0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;">';
-                            $message2 .= '
+    }
+    $message2 .= '<p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;font-weight:bold;line-height:12px">Total amount : &#8377; ' . $store_total . '</p><hr style="border: 3px solid #E0E0E0 !important;margin: 0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;">';
+    $message2 .= '
                               <table border="0" width="600" cellpadding="0" cellspacing="0" style="padding-right:20px;padding-left:20px;background-color:#fff;width:640px;max-width:640px">
                                 <tbody>
                                   <tr>
@@ -6825,113 +6835,113 @@ if (isset($_POST['filter_cat_b'])) {
               <div class="col-sm-7 col-xs-7" style="min-height:200px;padding:0;">
                 <table width="100%" style="padding:0px;margin:0px;">
                   <tr  style="padding-top:10px;"><td colspan="2"><div style="width: 100%;text-align: left;color: #333;font-weight:normal;font-size:14px;padding-top:30px;padding-bottom:10px"></div></td> </tr>';
-                  if ($row_feature['size'] != 0) {
-                    $query1 = "SELECT * FROM size where size_id=" . $row_feature['size'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      if ($row_feature['size'] != 0) {
+        $query1 = "SELECT * FROM size where size_id=" . $row_feature['size'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Size</li></th>
                         <td class="cust_details"> ' . $row1['size_name'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['color'] != 0) {
-                    $query1 = "SELECT * FROM color where color_id=" . $row_feature['color'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['color'] != 0) {
+        $query1 = "SELECT * FROM color where color_id=" . $row_feature['color'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Color</li></th>
                         <td class="cust_details"><div style="height:16px;width:16px;border:.5px solid #999;background-color:' . $row1['color_name'] . '"></div></td>
                       </tr>';
-                  }
-                  if ($row_feature['weight'] != 0) {
-                    $dynamic_content .= '
+      }
+      if ($row_feature['weight'] != 0) {
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Weight</li></th>
                         <td class="cust_details">' . $row_feature['weight'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['flavour'] != 0) {
-                    $query1 = "SELECT * FROM flavour where flavour_id=" . $row_feature['flavour'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['flavour'] != 0) {
+        $query1 = "SELECT * FROM flavour where flavour_id=" . $row_feature['flavour'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Flavour</li></th>
                         <td class="cust_details">' . $row1['flavour_name'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['processor'] != 0) {
-                    $query1 = "SELECT * FROM processor where processor_id=" . $row_feature['processor'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['processor'] != 0) {
+        $query1 = "SELECT * FROM processor where processor_id=" . $row_feature['processor'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                     <tr class=" dw">
                       <th class="cust_header2"><li>Processor</li></th>
                       <td class="cust_details">' . $row1['processor_name'] . '</td>
                     </tr>';
-                  }
-                  if ($row_feature['display'] != 0) {
-                    $query1 = "SELECT * FROM display where display_id=" . $row_feature['display'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['display'] != 0) {
+        $query1 = "SELECT * FROM display where display_id=" . $row_feature['display'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Display</li></th>
                         <td class="cust_details">' . $row1['display_name'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['battery'] != 0) {
-                    $query1 = "SELECT * FROM battery where battery_id=" . $row_feature['battery'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['battery'] != 0) {
+        $query1 = "SELECT * FROM battery where battery_id=" . $row_feature['battery'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Battery</li></th>
                         <td class="cust_details">' . $row1['battery_name'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['internal_storage'] != 0) {
-                    $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row_feature['internal_storage'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['internal_storage'] != 0) {
+        $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row_feature['internal_storage'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Internal Storage</li></th>
                         <td class="cust_details">' . $row1['internal_storage_name'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['brand'] != 0) {
-                    $query1 = "SELECT * FROM brand where brand_id=" . $row_feature['brand'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['brand'] != 0) {
+        $query1 = "SELECT * FROM brand where brand_id=" . $row_feature['brand'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw">
                         <th class="cust_header2"><li>Brand</li></th>
                         <td class="cust_details">' . $row1['brand_name'] . '</td>
                       </tr>';
-                  }
-                  if ($row_feature['material'] != 0) {
-                    $query1 = "SELECT * FROM material where material_id=" . $row_feature['material'];
-                    $st1 = $pdo->query($query1);
-                    $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '
+      }
+      if ($row_feature['material'] != 0) {
+        $query1 = "SELECT * FROM material where material_id=" . $row_feature['material'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
                       <tr class=" dw"><th class="cust_header2"><li>Material</li></th>
                         <td class="cust_details">' . $row1['material_name'] . '</td>
                       </tr>';
-                  }
-                $item_det = $pdo->query(
-                  "select category.category_name,sub_category.sub_category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                  inner join item_description on item_description.item_id=item.item_id
-                  inner join product_details on product_details.item_description_id=item_description.item_description_id
-                  inner join store on product_details.store_id=store.store_id
-                  inner join category on category.category_id=item.category_id
-                  inner join sub_category on category.category_id= sub_category.category_id
-                  where category.category_id=" . $_POST['category'] . " and item_description.item_description_id=" . $row['item_description_id'] . " and sub_category.sub_category_id=item.sub_category_id"
-                );
-                $item_det_row = $item_det->fetch(PDO::FETCH_ASSOC);
-                $dynamic_content .= '
+      }
+      $item_det = $pdo->query(
+        "select category.category_name,sub_category.sub_category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+        inner join item_description on item_description.item_id=item.item_id
+        inner join product_details on product_details.item_description_id=item_description.item_description_id
+        inner join store on product_details.store_id=store.store_id
+        inner join category on category.category_id=item.category_id
+        inner join sub_category on category.category_id= sub_category.category_id
+        where category.category_id=" . $_POST['category'] . " and item_description.item_description_id=" . $row['item_description_id'] . " and sub_category.sub_category_id=item.sub_category_id"
+      );
+      $item_det_row = $item_det->fetch(PDO::FETCH_ASSOC);
+      $dynamic_content .= '
                   <tr class=" dw"><th class="cust_header2"><li>Category</li></th>
                     <td class="cust_details">' . $item_det_row['category_name'] . '</td>
                   </tr>
@@ -6945,8 +6955,8 @@ if (isset($_POST['filter_cat_b'])) {
               </div>
               <div class="col-sm-5 col-xs-5">
                 <table width="100%" style="padding:0px;margin:0px;">';
-                  $save = ($row['mrp'] != 0) ? round(($row['mrp'] - (int) $row['price']) / $row['mrp'] * 100) : 0;
-                  $dynamic_content .= '
+      $save = ($row['mrp'] != 0) ? round(($row['mrp'] - (int) $row['price']) / $row['mrp'] * 100) : 0;
+      $dynamic_content .= '
                   <tr>
                     <td align="right">
                       <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="../../images/logo/logofill-sm.png">
@@ -7786,104 +7796,119 @@ if (isset($_POST['filter_sub_cat_b'])) {
             <div class="col-sm-12 col-xs-12" style="padding:0px;">
               <div class="col-sm-7 col-xs-7" style="min-height:200px;padding:0;">
                 <table width="100%" style="padding:0px;margin:0px;">
-                  <tr  style="padding-top:10px;"><td colspan="2"><div style="width: 100%;text-align: left;color: #333;font-weight:normal;font-size:14px;padding-top:30px;padding-bottom:10px"></div></td> </tr>';
-                    if ($row_feature['size'] != 0) {
-                      $query1 = "SELECT * FROM size where size_id=" . $row_feature['size'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
-                  <th class="cust_header2"><li>Size</li></th>
-                  <td class="cust_details"> ' . $row1['size_name'] . '</td>
+                  <tr  style="padding-top:10px;">
+                    <td colspan="2">
+                      <div style="width: 100%;text-align: left;color: #333;font-weight:normal;font-size:14px;padding-top:30px;padding-bottom:10px"></div>
+                    </td>
                   </tr>';
-                    }
-                    if ($row_feature['color'] != 0) {
-                      $query1 = "SELECT * FROM color where color_id=" . $row_feature['color'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      if ($row_feature['size'] != 0) {
+        $query1 = "SELECT * FROM size where size_id=" . $row_feature['size'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
+                    <th class="cust_header2"><li>Size</li></th>
+                    <td class="cust_details"> ' . $row1['size_name'] . '</td>
+                  </tr>';
+      }
+      if ($row_feature['color'] != 0) {
+        $query1 = "SELECT * FROM color where color_id=" . $row_feature['color'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Color</li></th>
                     <td class="cust_details"><div style="height:16px;width:16px;border:.5px solid #999;background-color:' . $row1['color_name'] . '"></div></td>
                   </tr>';
-                    }
-                    if ($row_feature['weight'] != 0) {
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['weight'] != 0) {
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Weight</li></th>
                     <td class="cust_details">' . $row_feature['weight'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['flavour'] != 0) {
-                      $query1 = "SELECT * FROM flavour where flavour_id=" . $row_feature['flavour'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['flavour'] != 0) {
+        $query1 = "SELECT * FROM flavour where flavour_id=" . $row_feature['flavour'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Flavour</li></th>
                     <td class="cust_details">' . $row1['flavour_name'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['processor'] != 0) {
-                      $query1 = "SELECT * FROM processor where processor_id=" . $row_feature['processor'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['processor'] != 0) {
+        $query1 = "SELECT * FROM processor where processor_id=" . $row_feature['processor'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Processor</li></th>
                     <td class="cust_details">' . $row1['processor_name'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['display'] != 0) {
-                      $query1 = "SELECT * FROM display where display_id=" . $row_feature['display'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['display'] != 0) {
+        $query1 = "SELECT * FROM display where display_id=" . $row_feature['display'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Display</li></th>
                     <td class="cust_details">' . $row1['display_name'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['battery'] != 0) {
-                      $query1 = "SELECT * FROM battery where battery_id=" . $row_feature['battery'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['battery'] != 0) {
+        $query1 = "SELECT * FROM battery where battery_id=" . $row_feature['battery'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Battery</li></th>
                     <td class="cust_details">' . $row1['battery_name'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['internal_storage'] != 0) {
-                      $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row_feature['internal_storage'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['internal_storage'] != 0) {
+        $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row_feature['internal_storage'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Internal Storage</li></th>
                     <td class="cust_details">' . $row1['internal_storage_name'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['brand'] != 0) {
-                      $query1 = "SELECT * FROM brand where brand_id=" . $row_feature['brand'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw">
+      }
+      if ($row_feature['brand'] != 0) {
+        $query1 = "SELECT * FROM brand where brand_id=" . $row_feature['brand'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw">
                     <th class="cust_header2"><li>Brand</li></th>
                     <td class="cust_details">' . $row1['brand_name'] . '</td>
                   </tr>';
-                    }
-                    if ($row_feature['material'] != 0) {
-                      $query1 = "SELECT * FROM material where material_id=" . $row_feature['material'];
-                      $st1 = $pdo->query($query1);
-                      $row1 = $st1->fetch(PDO::FETCH_ASSOC);
-                      $dynamic_content .= '<tr class=" dw"><th class="cust_header2"><li>Material</li></th>
+      }
+      if ($row_feature['material'] != 0) {
+        $query1 = "SELECT * FROM material where material_id=" . $row_feature['material'];
+        $st1 = $pdo->query($query1);
+        $row1 = $st1->fetch(PDO::FETCH_ASSOC);
+        $dynamic_content .= '
+                  <tr class=" dw"><th class="cust_header2"><li>Material</li></th>
                     <td class="cust_details">' . $row1['material_name'] . '</td>
                   </tr>';
-                    }
-                    $item_det = $pdo->query(
-                      "select category.category_name,sub_category.sub_category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                      inner join item_description on item_description.item_id=item.item_id
-                      inner join product_details on product_details.item_description_id=item_description.item_description_id
-                      inner join store on product_details.store_id=store.store_id
-                      inner join category on category.category_id=item.category_id
-                      inner join sub_category on category.category_id= sub_category.category_id
-                      where category.category_id=" . $_POST['category'] . " and item_description.item_description_id=" . $row['item_description_id'] . " and sub_category.sub_category_id=item.sub_category_id"
-                    );
-                    $item_det_row = $item_det->fetch(PDO::FETCH_ASSOC);
-                    $dynamic_content .= '<tr class=" dw"><th class="cust_header2"><li>Category</th>
+      }
+      $item_det = $pdo->query(
+        "select category.category_name,sub_category.sub_category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
+        inner join item_description on item_description.item_id=item.item_id
+        inner join product_details on product_details.item_description_id=item_description.item_description_id
+        inner join store on product_details.store_id=store.store_id
+        inner join category on category.category_id=item.category_id
+        inner join sub_category on category.category_id= sub_category.category_id
+        where category.category_id=" . $_POST['category'] . " and item_description.item_description_id=" . $row['item_description_id'] . " and sub_category.sub_category_id=item.sub_category_id"
+      );
+      $item_det_row = $item_det->fetch(PDO::FETCH_ASSOC);
+      $dynamic_content .= '
+                  <tr class=" dw"><th class="cust_header2"><li>Category</th>
                     <td class="cust_details">' . $item_det_row['category_name'] . '</li></td>
                   </tr>
                   <tr class=" dw"><th class="cust_header2"><li>Sub Category</th>
@@ -7896,8 +7921,8 @@ if (isset($_POST['filter_sub_cat_b'])) {
               </div>
               <div class="col-sm-5 col-xs-5">
                 <table width="100%" style="padding:0px;margin:0px;">';
-                  $save = ($row['mrp'] != 0) ? round(($row['mrp'] - (int) $row['price']) / $row['mrp'] * 100) : 0;
-                  $dynamic_content .= '
+      $save = ($row['mrp'] != 0) ? round(($row['mrp'] - (int) $row['price']) / $row['mrp'] * 100) : 0;
+      $dynamic_content .= '
                   <tr>
                     <td align="right">
                       <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="../../images/logo/logofill-sm.png">
@@ -9441,9 +9466,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                       style="font-family:Arial;color:#878787;font-size:12px;font-weight:normal;font-style:normal;font-stretch:normal;margin-top:7px;line-height:.85;padding-top:0px"
                                     >
                                       Hi
-                                      <span style="font-weight:bold;color:#191919">
-                                        ' . $first_name . " " . $last_name . ',</span
-                                      >
+                                      <span style="font-weight:bold;color:#191919">' . $first_name . " " . $last_name . ',</span>
                                     </p>
                                     <p
                                       style="font-family:Arial;font-size:12px;color:#878787;line-height:1.22;padding-top:0px;margin-top:0px"
@@ -9462,17 +9485,13 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                       style="font-family:Arial;color:#747474;font-size:11px;font-weight:normal;text-align:right;font-style:normal;line-height:1.1;font-stretch:normal;margin-top:7px;padding-top:0px;color:#878787"
                                     >
                                       User ID
-                                      <span style="font-weight:bold;color:#000"
-                                        >OSUID' . sprintf('%06d', $user_id) . '</span
-                                      >
+                                      <span style="font-weight:bold;color:#000">OSUID' . sprintf('%06d', $user_id) . '</span>
                                     </p>
                                     <p
                                       style="font-family:Arial;font-size:11px;color:#878787;line-height:1.22;text-align:right;padding-top:0px"
                                     >
                                       Order ID
-                                      <span style="font-weight:bold;color:#000"
-                                        >OSID' . sprintf('%06d', $noid) . '</span
-                                      >
+                                      <span style="font-weight:bold;color:#000">OSID' . sprintf('%06d', $noid) . '</span>
                                     </p>
                                   </td>
                                 </tr>
@@ -9508,8 +9527,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                     <p
                                       style="padding-left:15px;font-family:Arial;font-size:14px;line-height:1.58;margin-bottom:30px;margin-top:15;padding-top:2px"
                                     >
-                                      <span style="display:inline-block;width:167px;color:#212121"
-                                        >Total amount</span
+                                      <span style="display:inline-block;width:167px;color:#212121">Total amount</span
                                       ><span
                                         style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block"
                                         >Rs. ' . $total_bill . '</span
@@ -9728,11 +9746,11 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                     >
                                       Total: &#8377; ' . $store_array[$l]['item_total_amt'][$m] . '
-                                    </p>
-                                    ';
+                                    </p>';
+
       $store_total += $store_array[$l]['item_total_amt'][$m];
-      $message1
-        .= '
+
+      $message1 .= '
                                   </td>
                                 </tr>
                               </tbody>
@@ -9750,14 +9768,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                     <p
                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;font-weight:bold;line-height:12px"
                     >
-                      Total amount to be Paid @' . $store_array[$l]['store_name'] . ': &#8377; ' .
-      $store_total . '
+                      Total amount to be Paid @' . $store_array[$l]['store_name'] . ': &#8377; ' . $store_total . '
                     </p>
                     <hr
                       style="border: 3px solid #E0E0E0 !important;margin: 0px;padding: 0px;color: #E0E0E0 !important;background-color:#E0E0E0 !important;"
                     />
                     ';
   }
+
   $message1 .= '
                     <table
                       border="0"
@@ -10053,9 +10071,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                         style="font-family:Arial;color:#878787;font-size:12px;font-weight:normal;font-style:normal;font-stretch:normal;margin-top:7px;line-height:.85;padding-top:0px"
                                       >
                                         Hi
-                                        <span style="font-weight:bold;color:#191919">
-                                          ' . $store_array[$l]['username'] . ',</span
-                                        >
+                                        <span style="font-weight:bold;color:#191919">' . $store_array[$l]['username'] . ',</span>
                                       </p>
                                       <p
                                         style="font-family:Arial;font-size:12px;color:#878787;line-height:1.22;padding-top:0px;margin-top:0px"
@@ -10074,18 +10090,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                         style="font-family:Arial;color:#747474;font-size:11px;font-weight:normal;text-align:right;font-style:normal;line-height:1.1;font-stretch:normal;margin-top:7px;padding-top:0px;color:#878787"
                                       >
                                         Store ID
-                                        <span style="font-weight:bold;color:#000"
-                                          >OSSID' . sprintf('%06d', $store_array[$l]['store_id']) .
-      '</span
+                                        <span style="font-weight:bold;color:#000">OSSID' . sprintf('%06d', $store_array[$l]['store_id']) . '</span
                                         >
                                       </p>
                                       <p
                                         style="font-family:Arial;font-size:11px;color:#878787;line-height:1.22;text-align:right;padding-top:0px"
                                       >
                                         Order ID
-                                        <span style="font-weight:bold;color:#000"
-                                          >OSID' . sprintf('%06d', $noid) . '</span
-                                        >
+                                        <span style="font-weight:bold;color:#000">OSID' . sprintf('%06d', $noid) . '</span>
                                       </p>
                                     </td>
                                   </tr>
@@ -10109,7 +10121,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                         Below listed item(s) are requested by the customer by
                                         <b>' . date("F j") . " , " . date("Y") . '</b> from your store
                                         <b>' . $store_array[$l]['store_name'] . '</b>. Thanks for your
-                                        cooperation with us and also wishing you best with your sales .
+                                        cooperation with us and also wishing you best with your sales.
                                       </p>
                                     </td>
                                   </tr>
@@ -10122,11 +10134,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                       <p
                                         style="padding-left:15px;font-family:Arial;font-size:14px;line-height:1.58;margin-bottom:30px;margin-top:15;padding-top:2px"
                                       >
-                                        <span style="display:inline-block;width:167px;color:#212121"
-                                          >Total amount</span
-                                        ><span
-                                          style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block"
-                                          >Rs. ' . $total_bill . '</span
+                                        <span style="display:inline-block;width:167px;color:#212121">Total amount</span>';
+
+    for ($m = 0; $m < $store_cnt[$l]; $m++) {
+      $store_total += (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m];
+    }
+
+    $message2 .=  '
+                                        <span style="display:inline-block;font-family:Arial;font-size:15px;font-weight:700;color:#139b3b;display:inline-block">Rs. ' . $store_total . '</span
                                         >
                                       </p>
                                     </td>
@@ -10193,8 +10208,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                           >Email updates sent to</span
                                         >
                                         <br />
-                                        <span style="font-family:Arial;font-size:12px;color:#212121"
-                                          >' . $email . '</span
+                                        <span style="font-family:Arial;font-size:12px;color:#212121">' . $email . '</span
                                         >
                                       </p>
                                     </td>
@@ -10210,8 +10224,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                 style="margin-top: 0px;"
                               >
                                 <tbody></tbody>
-                              </table>
-                              ';
+                              </table>';
     $message2 .= '
                               <table
                                 style="background-color: #02171e;width:100%;text-align:center"
@@ -10228,31 +10241,20 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                             <table width="100%" cellspacing="10px">
                                               <tr>
                                                 <td>
-                                                  <span style="color:#fff;float:left"
-                                                    >Customer name : ' . $first_name . " " . $last_name .
-      '</span
-                                                  >
+                                                  <span style="color:#fff;float:left">Customer name : ' . $first_name . " " . $last_name . '</span>
                                                 </td>
                                                 <td>
-                                                  <span style="color:#fff;float:right"
-                                                    >Ph : ' . $phone . '</span
-                                                  >
+                                                  <span style="color:#fff;float:right">Ph : ' . $phone . '</span>
                                                 </td>
                                               </tr>
                                               <tr>
                                                 <td>
-                                                  <span style="color:#fff;float:left"
-                                                    >Customer id : OSUID' . sprintf('%06d', $user_id) .
-      '</span
-                                                  >
+                                                  <span style="color:#fff;float:left">Customer id : OSUID' . sprintf('%06d', $user_id) . '</span>
                                                 </td>
                                                 <td>
-                                                  <span style="color:#fff;float:right"
-                                                    >' . $email . '</span
-                                                  >
+                                                  <span style="color:#fff;float:right">' . $email . '</span>
                                                 </td>
-                                              </tr>
-                                              ';
+                                              </tr>';
     $message2 .= '
                                             </table>
                                           </h4>
@@ -10261,8 +10263,11 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                     </table>
                                   </td>
                                 </tr>
-                              </table>
-                              ';
+                              </table>';
+
+    // Reset store total for each store
+    $store_total = 0;
+
     for ($m = 0; $m < $store_cnt[$l]; $m++) {
       $store_array[$l]['item_description_id'][$m];
       $store_array[$l]['item_category_id'][$m];
@@ -10273,6 +10278,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
       $store_array[$l]['item_quantity'][$m];
       $store_array[$l]['item_ordertype'][$m];
       $store_array[$l]['item_total_amt'][$m];
+
       $message2 .= '
                               <table
                                 border="0"
@@ -10353,14 +10359,11 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                               <p
                                                 style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                               >
-                                                Total: &#8377; ' . (int)
-      $store_array[$l]['item_quantity'][$m] * (int)
-      $store_array[$l]['item_price'][$m] . '
-                                              </p>
-                                              ';
-      $store_total += (int)
-      $store_array[$l]['item_quantity'][$m] * (int)
-      $store_array[$l]['item_price'][$m];
+                                                Total: &#8377; ' . (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m] . '
+                                              </p>';
+
+      $store_total += (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m];
+
       $message2 .= '
                                             </td>
                                           </tr>
@@ -11501,27 +11504,18 @@ if (isset($_POST['cancel_product'])) {
                                   <table width="100%" cellspacing="10px">
                                     <tr>
                                       <td>
-                                        <span style="color:#fff;float:left"
-                                          >Customer name : ' . $user_firstnm . " " . $user_lastnm .
-    '</span
-                                        >
+                                        <span style="color:#fff;float:left">Customer name : ' . $user_firstnm . " " . $user_lastnm . '</span>
                                       </td>
                                       <td>
-                                        <span style="color:#fff;float:right"
-                                          >Ph : ' . $row['phone'] . '</span
-                                        >
+                                        <span style="color:#fff;float:right">Ph : ' . $row['phone'] . '</span>
                                       </td>
                                     </tr>
                                     <tr>
                                       <td>
-                                        <span style="color:#fff;float:left"
-                                          >Customer id : OSUID' . sprintf('%06d', $user_id) . '</span
-                                        >
+                                        <span style="color:#fff;float:left">Customer id : OSUID' . sprintf('%06d', $user_id) . '</span>
                                       </td>
                                       <td>
-                                        <span style="color:#fff;float:right"
-                                          >' . $row['email'] . '</span
-                                        >
+                                        <span style="color:#fff;float:right">' . $row['email'] . '</span>
                                       </td>
                                     </tr>
                                     ';
@@ -11609,8 +11603,7 @@ if (isset($_POST['cancel_product'])) {
                                     <p
                                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                     >
-                                      Total: &#8377; ' . (int) $row['item_quantity'] * (int)
-  $row['price'] . '
+                                      Total: &#8377; ' . (int) $row['item_quantity'] * (int) $row['price'] . '
                                     </p>
                                     ';
   $message2 .= '

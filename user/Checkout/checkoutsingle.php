@@ -342,7 +342,7 @@ $t_mrp = $mrprow['price'];
                           id="btn_s<?= $store_id . "i" . $idid ?>"
                           type="button"
                           style="width: 100%;width: 30px;height: 25px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
-                          onclick="$(this).hide(); if ($(this).html()<10) { $('#sel_s<?= $store_id . `i` . $idid ?>').show(); } else { $('#qnty_s<?= $store_id . `i` . $idid ?>').show(); }">
+                          onclick="$(this).hide(); if ($(this).html()<10) { $('#sel_s<?= $store_id . 'i' . $idid ?>').show(); } else { $('#qnty_s<?= $store_id . 'i' . $idid ?>').show(); }">
                           1
                         </button>
                         <select
@@ -365,10 +365,10 @@ $t_mrp = $mrprow['price'];
                         </select>
                         <input
                           type="number"
-                          id="qnty_s<?= $store_id . `i` . $idid ?>"
+                          id="qnty_s<?= $store_id . 'i' . $idid ?>"
                           size="4"
                           onchange="total('<?= $store_id ?>','<?= $idid ?>','<?= $t_mrp ?>')"
-                          onblur="$(this).hide(); $('#sel_s<?= $store_id . `i` . $idid ?>').hide();$('#btn_s<?= $store_id . `i` . $idid ?>').show()"
+                          onblur="$(this).hide(); $('#sel_s<?= $store_id . 'i' . $idid ?>').hide();$('#btn_s<?= $store_id . 'i' . $idid ?>').show()"
                           style="text-align: center;display: none;height: 25px;width: 100%;max-width: 40px;outline: none;font-weight: bold"
                           class="input-text qty text"
                           title="Quantity"
@@ -511,18 +511,18 @@ $t_mrp = $mrprow['price'];
                       </span>
                     </span>
                   </li>
+                  <li></li>
                   <li>
                     <i style="font-weight: bolder;font-family:sans-serif; ;color: black;font-style: unset;">
                       Total <i>-</i>
                     </i>
-                    <span style="font-weight: bolder;font-family:sans-serif; ;color: black;">
+                    <span style="font-weight: bolder;font-family:sans-serif;color: black;">
                       &#8377;
                       <span id="total_s<?= $store_id . "i" . $idid ?>">
                         <?= $total_amt ?>
                       </span>
                     </span>
                   </li>
-                  <hr>
                 </div>
                 <br>
                 <a href="../Main/onestore.php">

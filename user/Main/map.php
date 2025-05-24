@@ -36,7 +36,16 @@
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        document.getElementById('daddr').value = car.lat + "," + car.lng;
+
+        // Check if the element exists before trying to set its value
+        const ele = document.getElementById('daddr');
+        if (ele) {
+          ele.value = car.lat + "," + car.lng;
+        } else {
+          console.warn("Element with id 'daddr' not found.");
+          return;
+        }
+
         //last cut
         for (var i = 1; i <= stores.length; i++) {
           var el = document.getElementById('c' + i.toString());
@@ -61,7 +70,16 @@
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        document.getElementById('wishlist_daddr').value = car.lat + "," + car.lng;
+
+        // Check if the element exists before trying to set its value
+        const ele = document.getElementById('wishlist_daddr');
+        if (ele) {
+          ele.value = car.lat + "," + car.lng;
+        } else {
+          console.warn("Element with id 'wishlist_daddr' not found.");
+          return;
+        }
+
         //last cut
         for (var i = 1; i <= stores.length; i++) {
           var el = document.getElementById('w' + i.toString());
@@ -86,7 +104,16 @@
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        document.getElementById('buynow_daddr').value = car.lat + "," + car.lng;
+
+        // Check if the element exists before trying to set its value
+        const ele = document.getElementById('buynow_daddr');
+        if (ele) {
+          ele.value = car.lat + "," + car.lng;
+        } else {
+          console.warn("Element with id 'wishlist_daddr' not found.");
+          return;
+        }
+
         //last cut
         for (var i = 1; i <= stores.length; i++) {
           var el = document.getElementById('b' + i.toString());

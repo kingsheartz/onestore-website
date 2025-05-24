@@ -1675,7 +1675,7 @@ if (session_status() === PHP_SESSION_NONE) {
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Coffee,Tea and Beverages</span>
+          <span style="font-family: arial;font-weight: 700; "> Coffee, Tea and Beverages</span>
         </li>
       </a>
 
@@ -1686,7 +1686,7 @@ if (session_status() === PHP_SESSION_NONE) {
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Meat,Poultry and Seafood</span>
+          <span style="font-family: arial;font-weight: 700; "> Meat, Poultry and Seafood</span>
         </li>
       </a>
 
@@ -1708,7 +1708,7 @@ if (session_status() === PHP_SESSION_NONE) {
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Dried Fruits,Nuts and Seeds</span>
+          <span style="font-family: arial;font-weight: 700; "> Dried Fruits, Nuts and Seeds</span>
         </li>
       </a>
       <a href="../Product/products.php?category_id=2&subcategory_id=13" style="width: 100%;padding: 0px">
@@ -1718,7 +1718,7 @@ if (session_status() === PHP_SESSION_NONE) {
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Rice,Flour and Pulses</span>
+          <span style="font-family: arial;font-weight: 700; "> Rice, Flour and Pulses</span>
         </li>
       </a>
       <a href="../Product/products.php?category_id=2&subcategory_id=14" style="width: 100%;padding: 0px">

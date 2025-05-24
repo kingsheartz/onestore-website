@@ -1069,7 +1069,7 @@ function randomGen($min, $max, $quantity)
                                                   id="btn_s<?= $store_id . "i" . $item_description_id ?>"
                                                   type="button"
                                                   style="width: 100%;min-width: 50px;height: 40px;font-weight: bold;font-size: 14px;background-color: white;outline: none;border-color:#02171e;padding: 0"
-                                                  onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . `i` . $item_description_id ?>').show();}else{$('#qnty_s<?= $store_id . `i` . $item_description_id ?>').show();}">
+                                                  onclick="$(this).hide();if($(this).html()<10){$('#sel_s<?= $store_id . 'i' . $item_description_id ?>').show();}else{$('#qnty_s<?= $store_id . 'i' . $item_description_id ?>').show();}">
                                                   <?= $row1['quantity'] ?>
                                                 </button>
                                                 <select
@@ -1096,7 +1096,7 @@ function randomGen($min, $max, $quantity)
                                                   id="qnty_s<?= $store_id . "i" . $item_description_id ?>"
                                                   size="4"
                                                   onchange="total('<?= $store_id ?>','<?= $item_description_id ?>','<?= $t_mrp ?>')"
-                                                  onblur="$(this).hide();$('#sel_s<?= $store_id . `i` . $item_description_id ?>').hide();$('#btn_s<?= $store_id . `i` . $item_description_id ?>').show()"
+                                                  onblur="$(this).hide();$('#sel_s<?= $store_id . 'i' . $item_description_id ?>').hide();$('#btn_s<?= $store_id . 'i' . $item_description_id ?>').show()"
                                                   style="text-align: center;display: none;height: 40px;width: 100%;min-width: 50px;outline: none;font-weight: bold"
                                                   class="input-text qty text" title="Quantity" value="<?= $row1['quantity'] ?>"
                                                   min="1" step="1"
@@ -1456,14 +1456,20 @@ function randomGen($min, $max, $quantity)
           <hr style="padding: 0;margin:0;">
           <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor1] ?>" style="background-color: #fff">
             <?php
-            $row = $pdo->query(
+            $stmt2 = $pdo->prepare(
               "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
               inner join item_description on item_description.item_id=item.item_id
               inner join category on category.category_id=item.category_id
               inner join sub_category on category.category_id=sub_category.category_id
-              where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+              where  sub_category.category_id=:category_id and sub_category.sub_category_id=:sub_category_id and item.sub_category_id=:sub_category_id"
             );
-            while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
+
+            $stmt2->execute(array(
+              ':category_id' => $cat_id1,
+              ':sub_category_id' => $sub_cat_id1
+            ));
+
+            while ($row1 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
                 <img
@@ -1497,14 +1503,18 @@ function randomGen($min, $max, $quantity)
           <hr style="padding: 0;margin:0;">
           <div class="scrollmenu mui_item_scroll <?= $color[$rancolor2] ?> " style="background-color: #fff">
             <?php
-            $row = $pdo->query(
+            $stmt2 = $pdo->prepare(
               "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
               inner join item_description on item_description.item_id=item.item_id
               inner join category on category.category_id=item.category_id
               inner join sub_category on category.category_id=sub_category.category_id
-              where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+              where  sub_category.category_id=:category_id and sub_category.sub_category_id=:sub_category_id and item.sub_category_id=:sub_category_id"
             );
-            while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
+            $stmt2->execute(array(
+              ':category_id' => $cat_id2,
+              ':sub_category_id' => $sub_cat_id2
+            ));
+            while ($row1 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
                 <img
@@ -1925,14 +1935,20 @@ function randomGen($min, $max, $quantity)
                     </h4>
                     <div class="scrollmenu mui_item_scroll <?= $color[$rancolor1] ?>" style="background-color: #fff">
                       <?php
-                      $row = $pdo->query(
+                      $stmt2 = $pdo->prepare(
                         "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
                         inner join item_description on item_description.item_id=item.item_id
                         inner join category on category.category_id=item.category_id
                         inner join sub_category on category.category_id=sub_category.category_id
-                        where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+                        where  sub_category.category_id=:category_id and sub_category.sub_category_id=:sub_category_id and item.sub_category_id=:sub_category_id"
                       );
-                      while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
+
+                      $stmt2->execute(array(
+                        ':category_id' => $cat_id1,
+                        ':sub_category_id' => $sub_cat_id1
+                      ));
+
+                      while ($row1 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                       ?>
                         <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
                           <img title=" " alt=" " class="new_size" src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg">
@@ -1961,14 +1977,20 @@ function randomGen($min, $max, $quantity)
                     </h4>
                     <div class="scrollmenu bl_item_scroll  <?= $color[$rancolor2] ?>" style="background-color: #fff">
                       <?php
-                      $row = $pdo->query(
+                      $stmt2 = $pdo->prepare(
                         "select item_description.item_description_id,item.item_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
                         inner join item_description on item_description.item_id=item.item_id
                         inner join category on category.category_id=item.category_id
                         inner join sub_category on category.category_id=sub_category.category_id
-                        where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+                        where  sub_category.category_id=:category_id and sub_category.sub_category_id=:sub_category_id and item.sub_category_id=:sub_category_id"
                       );
-                      while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
+
+                      $stmt2->execute(array(
+                        ':category_id' => $cat_id2,
+                        ':sub_category_id' => $sub_cat_id2
+                      ));
+
+                      while ($row1 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                       ?>
                         <a href="../Product/single.php?id=<?= $row1['item_description_id'] ?>">
                           <img title=" " alt=" " class="new_size" src="../../images/<?= $row1['category_id'] ?>/<?= $row1['sub_category_id'] ?>/<?= $row1['item_description_id'] ?>.jpg">

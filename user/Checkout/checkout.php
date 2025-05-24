@@ -370,7 +370,6 @@ $pdt_cnt = $stmt->rowCount();
                   <li><i style="font-weight: bolder;font-family:sans-serif; ;color: black;font-style: unset;">Total <i>-</i> </i>
                     <span style="font-weight: bolder;font-family:sans-serif; ;color: black;">&#8377;<?= $total_amt ?></span>
                   </li>
-                  <hr>
                 </div><br>
                 <a href="../Main/onestore.php">
                   <li id="bill_gap" class="shadow_b" style="padding:10px;background-color:#3399cc ">
