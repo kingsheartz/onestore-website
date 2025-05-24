@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "../Common/pdo.php";
+require_once __DIR__ . '/pdo.php';
+require_once dirname(__DIR__, 2) . '/includes/logger.php';
 /*
 require_once $_SERVER['DOCUMENT_ROOT'].'/mail/contactform/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/mail/contactform/functions.php';
@@ -9160,6 +9161,7 @@ if (isset($_POST['check_mul']) && $_POST['check_mul'] == 1) {
 //PLACE ORDER CART MULTI SELECT
 //COMPLETED 3
 if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
+  log_message("Place Order Multi Select");
   $user_id = $_POST['user_id'];
   if (isset($_POST['user'])) {
     $placesql_u = "select* from users where user_id=:user_id";
