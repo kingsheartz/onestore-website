@@ -9,11 +9,11 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
   $row = $statement->fetch(PDO::FETCH_ASSOC);
   if ($_POST['user'] != $row['username'] && !(password_verify($_POST['pass'], $row['password']))) {
     $_SESSION['error'] = "<script>$('#psin').show();
-      $('#psin2').hide();
-      $('#usin').show();
-      $('#usin2').hide();
-      $('#errorms').text('Incorrect UserName And Password');
-      $('#errorms').show();</script>";
+    $('#psin2').hide();
+    $('#usin').show();
+    $('#usin2').hide();
+    $('#errorms').text('Incorrect UserName And Password');
+    $('#errorms').show();</script>";
     header('Location:login.php');
     return;
   }
