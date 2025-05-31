@@ -143,7 +143,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
 
 
     function retry() {
-
       $('.background_loader').show();
       $('.std_loader').show();
 
@@ -160,9 +159,7 @@ if (!isset($_SESSION['forgot_pass_email'])) {
         timeout: 18000, //waiting time 3 sec
 
         success: function(data) { //if logging in is success
-
           if (data.status == 'success') {
-
             $('.background_loader').hide();
             $('.std_loader').hide();
 
@@ -186,7 +183,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
                 }
               });
           } else if (data.status == 'admin') {
-
             $('.background_loader').hide();
             $('.std_loader').hide();
 
@@ -228,7 +224,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
           }
         }
       }); //closing ajax
-
     }
 
 
@@ -244,7 +239,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     function verifyotp() {
-
       <?php
       if (isset($_GET['otp'])) {
         $otp = $_GET['otp'];
@@ -263,11 +257,9 @@ if (!isset($_SESSION['forgot_pass_email'])) {
     });
 
     function otpcheck() {
-
       var otp = document.getElementById("otp").value;
 
       if (otp == null || otp == "") {
-
         Toast.fire({
           icon: 'error',
           title: ' Enter your OTP !!! '
@@ -279,14 +271,12 @@ if (!isset($_SESSION['forgot_pass_email'])) {
       }
 
       if (isNaN(otp)) {
-
         toastr.error('Invalid OTP!!!')
         $('#emppass').html("Invalid OTP !!!");
         $('#emppass').show();
         document.getElementById("otp").focus();
         return;
       } else {
-
         $('.load_btn').show();
         $('.real_btn').hide();
 
@@ -301,9 +291,7 @@ if (!isset($_SESSION['forgot_pass_email'])) {
           timeout: 18000, //waiting time 3 sec
 
           success: function(data) { //if logging in is success
-
             if (data.status == 'success') {
-
               $('.load_btn').hide();
               $('.real_btn').show();
 
@@ -326,7 +314,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
                   }
                 });
             } else if (data.status == 'admin') {
-
               $('.load_btn').hide();
               $('.real_btn').show();
 
@@ -345,7 +332,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
                   }
                 });
             } else if (data.status == 'error') {
-
               $('.load_btn').hide();
               $('.real_btn').show();
 
@@ -364,7 +350,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
                   }
                 });
             } else if (data.status == 'expired') {
-
               $('.load_btn').hide();
               $('.real_btn').show();
 
@@ -387,7 +372,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
           },
           error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             if (textstatus === "timeout") {
-
               $('.load_btn').hide();
               $('.real_btn').show();
 
@@ -401,7 +385,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
               });
 
               return;
-
             } else {
               return;
             }
