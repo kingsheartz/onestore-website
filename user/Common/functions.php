@@ -2,6 +2,8 @@
 session_start();
 require_once __DIR__ . '/pdo.php';
 require_once dirname(__DIR__, 2) . '/includes/logger.php';
+
+global $pdo;
 /*
 require_once $_SERVER['DOCUMENT_ROOT'].'/mail/contactform/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/mail/contactform/functions.php';
@@ -1848,6 +1850,7 @@ if (isset($_POST['login'])) {
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     $osemail = "OneStore_email";
     $ospass = "OneStore_password";
+    log_message("login::" . "Login Attempt:: User:" . json_encode($row['email']) . ", Store Admin: " . json_encode($row2['email']));
     if ($row && $row2) {
       if (($row2['activation_code'] != 'activated') && ($row['activation_code'] != 'activated')) {
         $_SESSION['errorlogin'] = "Check and verify your email";
@@ -1879,7 +1882,8 @@ if (isset($_POST['login'])) {
             $response['user'] = "true";
             $response['id'] = $row2['id'];
           } else {
-            $_SESSION['errorlogin'] = "store-user admin check 1";
+            // store-user admin check 1
+            $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
             if (isset($_COOKIE[$osemail])) {
               setcookie($osemail, NULL, time() - 3600, "/");
               setcookie($ospass, NULL, time() - 3600, "/");
@@ -1887,7 +1891,8 @@ if (isset($_POST['login'])) {
             $response['status'] = "error";
           }
         } else {
-          $_SESSION['errorlogin'] = "store-user admin check 2";
+          // store-user admin check 2
+          $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
           if (isset($_COOKIE[$osemail])) {
             setcookie($osemail, NULL, time() - 3600, "/");
             setcookie($ospass, NULL, time() - 3600, "/");
@@ -1918,7 +1923,8 @@ if (isset($_POST['login'])) {
             $response['id'] = $row2['id'];
           }
         } else {
-          $_SESSION['errorlogin'] = "Incorrect Email ID or Password-store";
+          // Store user admin check
+          $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
           if (isset($_COOKIE[$osemail])) {
             setcookie($osemail, NULL, time() - 3600, "/");
             setcookie($ospass, NULL, time() - 3600, "/");
@@ -1950,7 +1956,8 @@ if (isset($_POST['login'])) {
             $response['user'] = "true";
             $response['status'] = "success";
           } else {
-            $_SESSION['errorlogin'] = "Incorrect Email ID or Password-user";
+            // User admin check
+            $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
             if (isset($_COOKIE[$osemail])) {
               setcookie($osemail, NULL, time() - 3600, "/");
               setcookie($ospass, NULL, time() - 3600, "/");
@@ -2600,21 +2607,30 @@ if (isset($_POST['adlogin'])) {
     $stmt2 = $pdo->query($sql2);
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     if ($row && $row2) {
+      log_message("adlogin::" . "Login Attempt:: User:" . json_encode($row['email']) . ", Store Admin: " . json_encode($row2['email']));
       if (($row2['activation_code'] != 'activated') && ($row['activation_code'] != 'activated')) {
+        log_message("adlogin::" . "User Login Attempt - Activation code not activated");
         $_SESSION['errorlogin'] = "Check and verify your email";
         $response['status'] = "error1";
       } else {
         if ((password_verify($_POST['password'], $row2['password'])) && (password_verify($_POST['password'], $row['password']))) {
+          log_message("adlogin::" . "User Login Attempt - Password Verified");
+
           $emailcasecheck2 = strcmp($row2['email'], $_POST['email']);
           $emailcasecheck1 = strcmp($row['email'], $_POST['email']);
+
           if ($emailcasecheck1 == 0 && $emailcasecheck2 == 0) {
+            log_message("adlogin::" . "User Login Attempt - Successful Login");
+
             $_SESSION['sname'] = $row2['username'];
             $_SESSION['sid'] = $row2['id'];
             $_SESSION['name'] = $row['first_name'];
             $_SESSION['id'] = $row['user_id'];
+
             if (isset($_COOKIE[$osemail])) {
               setcookie($osemail, NULL, time() - 3600, "/");
               setcookie($ospass, NULL, time() - 3600, "/");
+
               if ($remember == 1) {
                 setcookie($osemail, $_POST['email'], time() + (2 * 30 * 24 * 60 * 60), "/");
                 setcookie($ospass, $_POST['password'], time() + (2 * 30 * 24 * 60 * 60), "/");
@@ -2625,12 +2641,14 @@ if (isset($_POST['adlogin'])) {
                 setcookie($ospass, $_POST['password'], time() + (2 * 30 * 24 * 60 * 60), "/");
               }
             }
+
             $response['admin'] = "true";
             $response['user'] = "true";
             $response['id'] = $row2['id'];
           }
         } else {
           $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
+
           if (isset($_COOKIE[$osemail])) {
             setcookie($osemail, NULL, time() - 3600, "/");
             setcookie($ospass, NULL, time() - 3600, "/");
@@ -2638,6 +2656,8 @@ if (isset($_POST['adlogin'])) {
           $response['status'] = "error";
         }
       }
+
+      log_message("adlogin::" . "User Login Attempt - End");
       header('Content-type: application/json');
       echo json_encode($response);
       return;
@@ -2728,6 +2748,7 @@ if (isset($_POST['adlogin'])) {
       $response['status'] = "errornotfound";
     }
   }
+
   header('Content-type: application/json');
   echo json_encode($response);
 }
@@ -3391,25 +3412,49 @@ if (isset($_POST['recoverlogin'])) {
   $otp = $_POST['otp'];
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
   $type = $_POST['type'];
+
+  function isStoreAdminAndUser($email, $role)
+  {
+    global $pdo;
+    $sql = "SELECT * FROM  $role WHERE email = :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':email' => $email]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  };
+
   if ($type == "user") {
-    $sql3 = "select activation_code from users where password_reset=$otp";
+    $sql3 = "select activation_code, email from users where password_reset=$otp";
     $stmt3 = $pdo->query($sql3);
     $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
     if ($row3['activation_code'] != "activated") {
       $response['status'] = "error1";
     } else {
-      $sql = "update users set password='$password',password_reset=1 where password_reset=$otp";
+      if (isStoreAdminAndUser($row3['email'], 'store_admin')) {
+        $sql2 = "update store_admin set password='$password',password_reset=1 where email=:email";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->execute([':email' => $row3['email']]);
+      }
+
+      $sql = "update users set password='$password',password_reset=1 where password_reset=:otp";
       $stmt = $pdo->prepare($sql);
-      $stmt->execute();
+      $stmt->execute([':otp' => $otp]);
       $response['status'] = "success";
     }
   } else if ($type == "admin") {
-    $sql4 = "select activation_code from store_admin where password_reset=$otp";
+    $sql4 = "select activation_code, email from store_admin where password_reset=$otp";
     $stmt4 = $pdo->query($sql4);
     $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
     if ($row4['activation_code'] != "activated") {
       $response['status'] = "error1";
     } else {
+      if (isStoreAdminAndUser($row4['email'], 'user')) {
+        $sql2 = "update user set password='$password',password_reset=1 where email=:email";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->execute([':email' => $row4['email']]);
+      }
+
       $sql2 = "update store_admin set password='$password',password_reset=1 where password_reset=$otp";
       $stmt2 = $pdo->prepare($sql2);
       $stmt2->execute();
