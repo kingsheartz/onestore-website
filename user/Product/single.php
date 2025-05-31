@@ -1463,9 +1463,9 @@ function randomGen($min, $max, $quantity)
                                   <span class="m-sing pricetag" id="ini"> &#8377;<?= $mrp ?> /-</span>
                                   <span id="oldpriceofitem" style="display: none;">
                                     <span id="org" class="m-sing pricetag"></span>
-                                    <del>
-                                      <small><span style="color: #6d6d6d;font-size: 16px;">&#8377;<?= $mrp ?></span></small>
-                                    </del>
+                                    <span>
+                                      <small><del style="color: #6d6d6d;font-size: 16px;">&#8377;<?= $mrp ?></del></small>
+                                    </span>
                                   </span>
                                 </h2>
                                 <h4 class="mt-0">

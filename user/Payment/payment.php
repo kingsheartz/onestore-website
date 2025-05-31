@@ -6,23 +6,23 @@ if (!isset($_SESSION['id'])) {
 require "../Main/header.php";
 require_once dirname(__DIR__, 2) . '/includes/logger.php';
 
-$placeorder_mul        = json_decode(json_encode( $_POST['placeorder_mul'] ?? null));
-$buynow_placeorder     = json_decode(json_encode( $_POST['buynow_placeorder'] ?? null));
-$placeorder            = json_decode(json_encode( $_POST['placeorder'] ?? null));
-$shipping_first_name   = json_decode(json_encode($_POST['shipping_first_name'] ?? null));
-$shipping_last_name    = json_decode(json_encode($_POST['shipping_last_name'] ?? null));
-$user                  = json_decode(json_encode( $_POST['user'] ?? null));
-$user_id               = json_decode(json_encode( $_POST['user_id'] ?? null));
-$order_notes           = json_decode(json_encode( $_POST['order_notes'] ?? null));
-$pdt_cnt               = json_decode(json_encode( $_POST['pdt_cnt'] ?? null));
-$total_amt             = json_decode(json_encode( $_POST['total_amt'] ?? null));
-$shipping_postcode     = json_decode(json_encode( $_POST['shipping_postcode'] ?? null));
-$shipping_ph_no        = json_decode(json_encode( $_POST['shipping_ph_no'] ?? null));
-$idid                  = json_decode(json_encode( null));
-$shipping_ph_no2       = json_decode(json_encode( $_POST['shipping_ph_no2'] ?? null));
-$shipping_address_1    = json_decode(json_encode($_POST['shipping_address_1'] ?? null));
-$order_type            = json_decode(json_encode( $_POST['order_type'] ?? null));
-$store_id              = json_decode(json_encode( $_POST['store_id'] ?? null));
+$placeorder_mul        = json_encode(is_numeric($_POST['placeorder_mul'] ?? null) ? (int)$_POST['placeorder_mul'] : $_POST['placeorder_mul'] ?? null);
+$buynow_placeorder     = json_encode(is_numeric($_POST['buynow_placeorder'] ?? null) ? (int)$_POST['buynow_placeorder'] : $_POST['buynow_placeorder'] ?? null);
+$placeorder            = json_encode(is_numeric($_POST['placeorder'] ?? null) ? (int)$_POST['placeorder'] : $_POST['placeorder'] ?? null);
+$shipping_first_name   = json_encode($_POST['shipping_first_name'] ?? null);
+$shipping_last_name    = json_encode($_POST['shipping_last_name'] ?? null);
+$user                  = json_encode(is_numeric($_POST['user'] ?? null) ? (int)$_POST['user'] : $_POST['user'] ?? null);
+$user_id               = json_encode(is_numeric($_POST['user_id'] ?? null) ? (int)$_POST['user_id'] : $_POST['user_id'] ?? null);
+$order_notes           = json_encode(is_numeric($_POST['order_notes'] ?? null) ? (int)$_POST['order_notes'] : $_POST['order_notes'] ?? null);
+$pdt_cnt               = json_encode(is_numeric($_POST['pdt_cnt'] ?? null) ? (int)$_POST['pdt_cnt'] : $_POST['pdt_cnt'] ?? null);
+$total_amt             = json_encode(is_numeric($_POST['total_amt'] ?? null) ? (float)$_POST['total_amt'] : $_POST['total_amt'] ?? null);
+$shipping_postcode     = json_encode(is_numeric($_POST['shipping_postcode'] ?? null) ? (int)$_POST['shipping_postcode'] : $_POST['shipping_postcode'] ?? null);
+$shipping_ph_no        = json_encode(is_numeric($_POST['shipping_ph_no'] ?? null) ? (int)$_POST['shipping_ph_no'] : $_POST['shipping_ph_no'] ?? null);
+$idid                  = json_encode(is_numeric($_POST['idid'] ?? null) ? (int)$_POST['idid'] : null);
+$shipping_ph_no2       = json_encode(is_numeric($_POST['shipping_ph_no2'] ?? null) ? (int)$_POST['shipping_ph_no2'] : $_POST['shipping_ph_no2'] ?? null);
+$shipping_address_1    = json_encode($_POST['shipping_address_1'] ?? null);
+$order_type            = json_encode(is_numeric($_POST['order_type'] ?? null) ? (int)$_POST['order_type'] : $_POST['order_type'] ?? null);
+$store_id              = json_encode(is_numeric($_POST['store_id'] ?? null) ? (int)$_POST['store_id'] : $_POST['store_id'] ?? null);
 
 // Log the data used for the payment page
 log_message("Payment page data used: " . json_encode([
@@ -46,89 +46,107 @@ log_message("Payment page data used: " . json_encode([
 ]));
 ?>
 <script>
-  if (<?= $placeorder_mul ?> != null) {
+  var placeorder_mul = <?= $placeorder_mul ?>;
+  var buynow_placeorder = <?= $buynow_placeorder ?>;
+  var placeorder = <?= $placeorder ?>;
+  var shipping_first_name = <?= $shipping_first_name ?>;
+  var shipping_last_name = <?= $shipping_last_name ?>;
+  var user = <?= $user ?>;
+  var user_id = <?= $user_id ?>;
+  var order_notes = <?= $order_notes ?>;
+  var pdt_cnt = <?= $pdt_cnt ?>;
+  var total_amt = <?= $total_amt ?>;
+  var shipping_postcode = <?= $shipping_postcode ?>;
+  var shipping_ph_no = <?= $shipping_ph_no ?>;
+  var shipping_ph_no2 = <?= $shipping_ph_no2 ?>;
+  var shipping_address_1 = <?= $shipping_address_1 ?>;
+  var idid = <?= $idid ?>;
+  var order_type = <?= $order_type ?>;
+  var store_id = <?= $store_id ?>;
+
+  if (placeorder_mul != null) {
     console.log("mul")
-    if (<?= $shipping_first_name ?> != null) {
+    if (shipping_first_name != null) {
       data_used = {
         "placeorder_mul": 1,
-        "user": <?= $user ?>,
-        "user_id": <?= $user_id ?>,
-        "shipping_first_name": <?= $shipping_first_name ?>,
-        "shipping_last_name": <?= $shipping_last_name ?>,
-        "shipping_ph_no": <?= $shipping_ph_no ?>,
-        "shipping_ph_no2": <?= $shipping_ph_no2 ?>,
-        "shipping_address_1": <?= $shipping_address_1 ?>,
-        "shipping_postcode": <?= $shipping_postcode ?>,
-        "order_notes": <?= $order_notes ?>,
-        "pdt_cnt": <?= $pdt_cnt ?>,
-        "total_amt": <?= $total_amt ?>
+        "user": user,
+        "user_id": user_id,
+        "shipping_first_name": shipping_first_name,
+        "shipping_last_name": shipping_last_name,
+        "shipping_ph_no": shipping_ph_no,
+        "shipping_ph_no2": shipping_ph_no2,
+        "shipping_address_1": shipping_address_1,
+        "shipping_postcode": shipping_postcode,
+        "order_notes": order_notes,
+        "pdt_cnt": pdt_cnt,
+        "total_amt": total_amt
       };
     }
     data_used = {
       "placeorder_mul": 1,
-      "user": <?= $user ?>,
-      "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
-      "pdt_cnt": <?= $pdt_cnt ?>,
-      "total_amt": <?= $total_amt ?>
+      "user": user,
+      "user_id": user_id,
+      "order_notes": order_notes,
+      "pdt_cnt": pdt_cnt,
+      "total_amt": total_amt
     };
-  } else if (<?= $buynow_placeorder ?> != null) {
+  } else if (buynow_placeorder != null) {
     console.log("buy noe")
-    if (<?= $shipping_first_name ?> != null) {
+    if (shipping_first_name != null) {
       data_used = {
         "buynow_placeorder": 1,
-        "user": <?= $user ?>,
-        "user_id": <?= $user_id ?>,
-        "shipping_first_name": <?= $shipping_first_name ?>,
-        "shipping_last_name": <?= $shipping_last_name ?>,
-        "shipping_ph_no": <?= $shipping_ph_no ?>,
-        "shipping_ph_no2": <?= $shipping_ph_no2 ?>,
-        "shipping_address_1": <?= $shipping_address_1 ?>,
-        "shipping_postcode": <?= $shipping_postcode ?>,
-        "order_notes": <?= $order_notes ?>,
-        "pdt_cnt": <?= $pdt_cnt ?>,
-        "total_amt": <?= $total_amt ?>,
-        "idid": <?= $idid ?>,
-        "store_id": <?= $store_id ?>,
-        "order_type": <?= $order_type ?>
+        "user": user,
+        "user_id": user_id,
+        "shipping_first_name": shipping_first_name,
+        "shipping_last_name": shipping_last_name,
+        "shipping_ph_no": shipping_ph_no,
+        "shipping_ph_no2": shipping_ph_no2,
+        "shipping_address_1": shipping_address_1,
+        "shipping_postcode": shipping_postcode,
+        "order_notes": order_notes,
+        "pdt_cnt": pdt_cnt,
+        "total_amt": total_amt,
+        "idid": idid,
+        "store_id": store_id,
+        "order_type": order_type
       };
     }
     data_used = {
       "buynow_placeorder": 1,
-      "user": <?= $user ?>,
-      "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
-      "pdt_cnt": <?= $pdt_cnt ?>,
-      "total_amt": <?= $total_amt ?>,
-      "idid": <?= $idid ?>,
-      "store_id": <?= $store_id ?>,
-      "order_type": <?= $order_type ?>
+      "user": user,
+      "user_id": user_id,
+      "order_notes": order_notes,
+      "pdt_cnt": pdt_cnt,
+      "total_amt": total_amt,
+      "idid": idid,
+      "store_id": store_id,
+      "order_type": order_type
     };
-  } else if (<?= $placeorder ?> != null) {
+  } else if (placeorder != null) {
     console.log("placeorder")
-    if (<?= $shipping_first_name ?> != null) {
+    if (shipping_first_name != null) {
       data_used = {
         "placeorder": 1,
-        "user": <?= $user ?>,
-        "user_id": <?= $user_id ?>,
-        "shipping_first_name": <?= $shipping_first_name ?>,
-        "shipping_last_name": <?= $shipping_last_name ?>,
-        "shipping_ph_no": <?= $shipping_ph_no ?>,
-        "shipping_ph_no2": <?= $shipping_ph_no2 ?>,
-        "shipping_address_1": <?= $shipping_address_1 ?>,
-        "shipping_postcode": <?= $shipping_postcode ?>,
-        "order_notes": <?= $order_notes ?>,
-        "pdt_cnt": <?= $pdt_cnt ?>,
-        "total_amt": <?= $total_amt ?>
+        "user": user,
+        "user_id": user_id,
+        "shipping_first_name": shipping_first_name,
+        "shipping_last_name": shipping_last_name,
+        "shipping_ph_no": shipping_ph_no,
+        "shipping_ph_no2": shipping_ph_no2,
+        "shipping_address_1": shipping_address_1,
+        "shipping_postcode": shipping_postcode,
+        "order_notes": order_notes,
+        "pdt_cnt": pdt_cnt,
+        "total_amt": total_amt
       };
     }
     data_used = {
       "placeorder": 1,
-      "user": <?= $user ?>,
-      "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
-      "pdt_cnt": <?= $pdt_cnt ?>,
-      "total_amt": <?= $total_amt ?>
+      "user": user,
+      "user_id": user_id,
+      "order_notes": order_notes,
+      "pdt_cnt": pdt_cnt,
+      "total_amt": total_amt
     };
   }
   console.log(data_used)
