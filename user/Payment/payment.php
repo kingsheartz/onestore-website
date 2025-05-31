@@ -46,89 +46,107 @@ log_message("Payment page data used: " . json_encode([
 ]));
 ?>
 <script>
-  if (<?= $placeorder_mul ?> != null) {
+  var placeorder_mul = <?= $placeorder_mul ?>;
+  var buynow_placeorder = <?= $buynow_placeorder ?>;
+  var placeorder = <?= $placeorder ?>;
+  var shipping_first_name = <?= $shipping_first_name ?>;
+  var shipping_last_name = <?= $shipping_last_name ?>;
+  var user = <?= $user ?>;
+  var user_id = <?= $user_id ?>;
+  var order_notes = <?= $order_notes ?>;
+  var pdt_cnt = <?= $pdt_cnt ?>;
+  var total_amt = <?= $total_amt ?>;
+  var shipping_postcode = <?= $shipping_postcode ?>;
+  var shipping_ph_no = <?= $shipping_ph_no ?>;
+  var shipping_ph_no2 = <?= $shipping_ph_no2 ?>;
+  var shipping_address_1 = <?= $shipping_address_1 ?>;
+  var idid = <?= $idid ?>;
+  var order_type = <?= $order_type ?>;
+  var store_id = <?= $store_id ?>;
+
+  if (placeorder_mul != null) {
     console.log("mul")
-    if (<?= $shipping_first_name ?> != null) {
+    if (shipping_first_name != null) {
       data_used = {
         "placeorder_mul": 1,
-        "user": <?= $user ?>,
-        "user_id": <?= $user_id ?>,
-        "shipping_first_name": <?= $shipping_first_name ?>,
-        "shipping_last_name": <?= $shipping_last_name ?>,
-        "shipping_ph_no": <?= $shipping_ph_no ?>,
-        "shipping_ph_no2": <?= $shipping_ph_no2 ?>,
-        "shipping_address_1": <?= $shipping_address_1 ?>,
-        "shipping_postcode": <?= $shipping_postcode ?>,
-        "order_notes": <?= $order_notes ?>,
-        "pdt_cnt": <?= $pdt_cnt ?>,
-        "total_amt": <?= $total_amt ?>
+        "user": user,
+        "user_id": user_id,
+        "shipping_first_name": shipping_first_name,
+        "shipping_last_name": shipping_last_name,
+        "shipping_ph_no": shipping_ph_no,
+        "shipping_ph_no2": shipping_ph_no2,
+        "shipping_address_1": shipping_address_1,
+        "shipping_postcode": shipping_postcode,
+        "order_notes": order_notes,
+        "pdt_cnt": pdt_cnt,
+        "total_amt": total_amt
       };
     }
     data_used = {
       "placeorder_mul": 1,
-      "user": <?= $user ?>,
-      "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
-      "pdt_cnt": <?= $pdt_cnt ?>,
-      "total_amt": <?= $total_amt ?>
+      "user": user,
+      "user_id": user_id,
+      "order_notes": order_notes,
+      "pdt_cnt": pdt_cnt,
+      "total_amt": total_amt
     };
-  } else if (<?= $buynow_placeorder ?> != null) {
+  } else if (buynow_placeorder != null) {
     console.log("buy noe")
-    if (<?= $shipping_first_name ?> != null) {
+    if (shipping_first_name != null) {
       data_used = {
         "buynow_placeorder": 1,
-        "user": <?= $user ?>,
-        "user_id": <?= $user_id ?>,
-        "shipping_first_name": <?= $shipping_first_name ?>,
-        "shipping_last_name": <?= $shipping_last_name ?>,
-        "shipping_ph_no": <?= $shipping_ph_no ?>,
-        "shipping_ph_no2": <?= $shipping_ph_no2 ?>,
-        "shipping_address_1": <?= $shipping_address_1 ?>,
-        "shipping_postcode": <?= $shipping_postcode ?>,
-        "order_notes": <?= $order_notes ?>,
-        "pdt_cnt": <?= $pdt_cnt ?>,
-        "total_amt": <?= $total_amt ?>,
-        "idid": <?= $idid ?>,
-        "store_id": <?= $store_id ?>,
-        "order_type": <?= $order_type ?>
+        "user": user,
+        "user_id": user_id,
+        "shipping_first_name": shipping_first_name,
+        "shipping_last_name": shipping_last_name,
+        "shipping_ph_no": shipping_ph_no,
+        "shipping_ph_no2": shipping_ph_no2,
+        "shipping_address_1": shipping_address_1,
+        "shipping_postcode": shipping_postcode,
+        "order_notes": order_notes,
+        "pdt_cnt": pdt_cnt,
+        "total_amt": total_amt,
+        "idid": idid,
+        "store_id": store_id,
+        "order_type": order_type
       };
     }
     data_used = {
       "buynow_placeorder": 1,
-      "user": <?= $user ?>,
-      "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
-      "pdt_cnt": <?= $pdt_cnt ?>,
-      "total_amt": <?= $total_amt ?>,
-      "idid": <?= $idid ?>,
-      "store_id": <?= $store_id ?>,
-      "order_type": <?= $order_type ?>
+      "user": user,
+      "user_id": user_id,
+      "order_notes": order_notes,
+      "pdt_cnt": pdt_cnt,
+      "total_amt": total_amt,
+      "idid": idid,
+      "store_id": store_id,
+      "order_type": order_type
     };
-  } else if (<?= $placeorder ?> != null) {
+  } else if (placeorder != null) {
     console.log("placeorder")
-    if (<?= $shipping_first_name ?> != null) {
+    if (shipping_first_name != null) {
       data_used = {
         "placeorder": 1,
-        "user": <?= $user ?>,
-        "user_id": <?= $user_id ?>,
-        "shipping_first_name": <?= $shipping_first_name ?>,
-        "shipping_last_name": <?= $shipping_last_name ?>,
-        "shipping_ph_no": <?= $shipping_ph_no ?>,
-        "shipping_ph_no2": <?= $shipping_ph_no2 ?>,
-        "shipping_address_1": <?= $shipping_address_1 ?>,
-        "shipping_postcode": <?= $shipping_postcode ?>,
-        "order_notes": <?= $order_notes ?>,
-        "pdt_cnt": <?= $pdt_cnt ?>,
-        "total_amt": <?= $total_amt ?>
+        "user": user,
+        "user_id": user_id,
+        "shipping_first_name": shipping_first_name,
+        "shipping_last_name": shipping_last_name,
+        "shipping_ph_no": shipping_ph_no,
+        "shipping_ph_no2": shipping_ph_no2,
+        "shipping_address_1": shipping_address_1,
+        "shipping_postcode": shipping_postcode,
+        "order_notes": order_notes,
+        "pdt_cnt": pdt_cnt,
+        "total_amt": total_amt
       };
     }
     data_used = {
       "placeorder": 1,
-      "user": <?= $user ?>,
-      "user_id": <?= $user_id ?>,
-      "order_notes": <?= $order_notes ?>,
-      "pdt_cnt": <?= $pdt_cnt ?>,
-      "total_amt": <?= $total_amt ?>
+      "user": user,
+      "user_id": user_id,
+      "order_notes": order_notes,
+      "pdt_cnt": pdt_cnt,
+      "total_amt": total_amt
     };
   }
   console.log(data_used)

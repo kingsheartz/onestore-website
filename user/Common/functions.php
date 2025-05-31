@@ -2,6 +2,8 @@
 session_start();
 require_once __DIR__ . '/pdo.php';
 require_once dirname(__DIR__, 2) . '/includes/logger.php';
+
+global $pdo;
 /*
 require_once $_SERVER['DOCUMENT_ROOT'].'/mail/contactform/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/mail/contactform/functions.php';
@@ -1848,6 +1850,7 @@ if (isset($_POST['login'])) {
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     $osemail = "OneStore_email";
     $ospass = "OneStore_password";
+    log_message("login::" . "Login Attempt:: User:" . json_encode($row['email']) . ", Store Admin: " . json_encode($row2['email']));
     if ($row && $row2) {
       if (($row2['activation_code'] != 'activated') && ($row['activation_code'] != 'activated')) {
         $_SESSION['errorlogin'] = "Check and verify your email";
@@ -1879,7 +1882,8 @@ if (isset($_POST['login'])) {
             $response['user'] = "true";
             $response['id'] = $row2['id'];
           } else {
-            $_SESSION['errorlogin'] = "store-user admin check 1";
+            // store-user admin check 1
+            $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
             if (isset($_COOKIE[$osemail])) {
               setcookie($osemail, NULL, time() - 3600, "/");
               setcookie($ospass, NULL, time() - 3600, "/");
@@ -1887,7 +1891,8 @@ if (isset($_POST['login'])) {
             $response['status'] = "error";
           }
         } else {
-          $_SESSION['errorlogin'] = "store-user admin check 2";
+          // store-user admin check 2
+          $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
           if (isset($_COOKIE[$osemail])) {
             setcookie($osemail, NULL, time() - 3600, "/");
             setcookie($ospass, NULL, time() - 3600, "/");
@@ -1918,7 +1923,8 @@ if (isset($_POST['login'])) {
             $response['id'] = $row2['id'];
           }
         } else {
-          $_SESSION['errorlogin'] = "Incorrect Email ID or Password-store";
+          // Store user admin check
+          $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
           if (isset($_COOKIE[$osemail])) {
             setcookie($osemail, NULL, time() - 3600, "/");
             setcookie($ospass, NULL, time() - 3600, "/");
@@ -1950,7 +1956,8 @@ if (isset($_POST['login'])) {
             $response['user'] = "true";
             $response['status'] = "success";
           } else {
-            $_SESSION['errorlogin'] = "Incorrect Email ID or Password-user";
+            // User admin check
+            $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
             if (isset($_COOKIE[$osemail])) {
               setcookie($osemail, NULL, time() - 3600, "/");
               setcookie($ospass, NULL, time() - 3600, "/");
@@ -2600,21 +2607,30 @@ if (isset($_POST['adlogin'])) {
     $stmt2 = $pdo->query($sql2);
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     if ($row && $row2) {
+      log_message("adlogin::" . "Login Attempt:: User:" . json_encode($row['email']) . ", Store Admin: " . json_encode($row2['email']));
       if (($row2['activation_code'] != 'activated') && ($row['activation_code'] != 'activated')) {
+        log_message("adlogin::" . "User Login Attempt - Activation code not activated");
         $_SESSION['errorlogin'] = "Check and verify your email";
         $response['status'] = "error1";
       } else {
         if ((password_verify($_POST['password'], $row2['password'])) && (password_verify($_POST['password'], $row['password']))) {
+          log_message("adlogin::" . "User Login Attempt - Password Verified");
+
           $emailcasecheck2 = strcmp($row2['email'], $_POST['email']);
           $emailcasecheck1 = strcmp($row['email'], $_POST['email']);
+
           if ($emailcasecheck1 == 0 && $emailcasecheck2 == 0) {
+            log_message("adlogin::" . "User Login Attempt - Successful Login");
+
             $_SESSION['sname'] = $row2['username'];
             $_SESSION['sid'] = $row2['id'];
             $_SESSION['name'] = $row['first_name'];
             $_SESSION['id'] = $row['user_id'];
+
             if (isset($_COOKIE[$osemail])) {
               setcookie($osemail, NULL, time() - 3600, "/");
               setcookie($ospass, NULL, time() - 3600, "/");
+
               if ($remember == 1) {
                 setcookie($osemail, $_POST['email'], time() + (2 * 30 * 24 * 60 * 60), "/");
                 setcookie($ospass, $_POST['password'], time() + (2 * 30 * 24 * 60 * 60), "/");
@@ -2625,12 +2641,14 @@ if (isset($_POST['adlogin'])) {
                 setcookie($ospass, $_POST['password'], time() + (2 * 30 * 24 * 60 * 60), "/");
               }
             }
+
             $response['admin'] = "true";
             $response['user'] = "true";
             $response['id'] = $row2['id'];
           }
         } else {
           $_SESSION['errorlogin'] = "Incorrect Email ID or Password";
+
           if (isset($_COOKIE[$osemail])) {
             setcookie($osemail, NULL, time() - 3600, "/");
             setcookie($ospass, NULL, time() - 3600, "/");
@@ -2638,6 +2656,8 @@ if (isset($_POST['adlogin'])) {
           $response['status'] = "error";
         }
       }
+
+      log_message("adlogin::" . "User Login Attempt - End");
       header('Content-type: application/json');
       echo json_encode($response);
       return;
@@ -2728,6 +2748,7 @@ if (isset($_POST['adlogin'])) {
       $response['status'] = "errornotfound";
     }
   }
+
   header('Content-type: application/json');
   echo json_encode($response);
 }
@@ -3391,25 +3412,49 @@ if (isset($_POST['recoverlogin'])) {
   $otp = $_POST['otp'];
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
   $type = $_POST['type'];
+
+  function isStoreAdminAndUser($email, $role)
+  {
+    global $pdo;
+    $sql = "SELECT * FROM  $role WHERE email = :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':email' => $email]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  };
+
   if ($type == "user") {
-    $sql3 = "select activation_code from users where password_reset=$otp";
+    $sql3 = "select activation_code, email from users where password_reset=$otp";
     $stmt3 = $pdo->query($sql3);
     $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
     if ($row3['activation_code'] != "activated") {
       $response['status'] = "error1";
     } else {
-      $sql = "update users set password='$password',password_reset=1 where password_reset=$otp";
+      if (isStoreAdminAndUser($row3['email'], 'store_admin')) {
+        $sql2 = "update store_admin set password='$password',password_reset=1 where email=:email";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->execute([':email' => $row3['email']]);
+      }
+
+      $sql = "update users set password='$password',password_reset=1 where password_reset=:otp";
       $stmt = $pdo->prepare($sql);
-      $stmt->execute();
+      $stmt->execute([':otp' => $otp]);
       $response['status'] = "success";
     }
   } else if ($type == "admin") {
-    $sql4 = "select activation_code from store_admin where password_reset=$otp";
+    $sql4 = "select activation_code, email from store_admin where password_reset=$otp";
     $stmt4 = $pdo->query($sql4);
     $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
     if ($row4['activation_code'] != "activated") {
       $response['status'] = "error1";
     } else {
+      if (isStoreAdminAndUser($row4['email'], 'user')) {
+        $sql2 = "update user set password='$password',password_reset=1 where email=:email";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->execute([':email' => $row4['email']]);
+      }
+
       $sql2 = "update store_admin set password='$password',password_reset=1 where password_reset=$otp";
       $stmt2 = $pdo->prepare($sql2);
       $stmt2->execute();
@@ -3549,12 +3594,12 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
   for ($j = 0; $j < $i; $j++) {
     $k = 0;
     $order_id;
-    $placesql_i = "select id.item_description_id,ca.cart_id,it.category_id,it.sub_category_id,it.item_id,it.item_name,it.description,pd.price,ca.quantity,ca.order_type,ca.total_amt from cart ca
+    $placesql_i = "select id.item_description_id,ca.cart_id,it.category_id,it.sub_category_id,it.item_id,it.item_name,it.description,it.price as mrp,pd.price,ca.quantity,ca.order_type,ca.total_amt from cart ca
                   inner join product_details pd on ca.item_description_id=pd.item_description_id
                   inner join item_description id on id.item_description_id=pd.item_description_id
                   inner join store st on st.store_id=ca.store_id
                   inner join item it on it.item_id=id.item_id
-                  where id.item_description_id=ca.item_description_id and ca.user_id=:user_id and st.store_id=:store_id GROUP BY ca.item_description_id";
+                  where id.item_description_id=ca.item_description_id and st.store_id=pd.store_id and ca.user_id=:user_id and st.store_id=:store_id GROUP BY ca.item_description_id";
     $placestmt_i = $pdo->prepare($placesql_i);
     $placestmt_i->execute(array(
       ':user_id' => $user_id,
@@ -3587,6 +3632,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
       $store_array[$j]['item_description_id'][$k] = $placerow_i['item_description_id'];
       $store_array[$j]['item_name'][$k] = $placerow_i['item_name'];
       $store_array[$j]['item_description'][$k] = $placerow_i['description'];
+      $store_array[$j]['item_mrp'][$k] = $placerow_i['mrp'];
       $store_array[$j]['item_price'][$k] = $placerow_i['price'];
       $store_array[$j]['item_quantity'][$k] = $placerow_i['quantity'];
       $store_array[$j]['item_ordertype'][$k] = $placerow_i['order_type'];
@@ -3758,7 +3804,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                 <tr>
                                   <td valign="top" align="left">
                                     <p style="margin-bottom:13px;margin-top:20px"> <a href="" style="font-family:Arial;font-size:14.5px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:1.43;color:#15c;text-decoration:none!important;word-spacing:0.2em" rel="noreferrer" target="_blank" data-saferedirecturl=""> ' . $store_array[$l]['item_name'][$m] . '</a> </p>
-                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . '</p>
+                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . $store_array[$l]['item_total_amt'][$m] . '</p>';
@@ -4276,7 +4322,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                       <p
                                         style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                       >
-                                        Price: &#8377; ' . $store_array[$l]['item_price'][$m] . '
+                                        Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                       </p>
                                       <p
                                         style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
@@ -4944,11 +4990,11 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
   for ($j = 0; $j < $i; $j++) {
     $k = 0;
     $order_id;
-    $placesql_i = "select id.item_description_id,it.category_id,it.sub_category_id,it.item_id,it.item_name,it.description,pd.price from  product_details pd
+    $placesql_i = "select id.item_description_id,it.category_id,it.sub_category_id,it.item_id,it.item_name,it.description,it.price as mrp,pd.price from  product_details pd
                   inner join item_description id on id.item_description_id=pd.item_description_id
                   inner join store st on st.store_id=pd.store_id
                   inner join item it on it.item_id=id.item_id
-                  where id.item_description_id=pd.item_description_id and st.store_id=:store_id and pd.product_details_id=:pdid AND  id.item_description_id=:idid";
+                  where id.item_description_id=pd.item_description_id and st.store_id=pd.store_id and st.store_id=:store_id and pd.product_details_id=:pdid AND  id.item_description_id=:idid";
     $placestmt_i = $pdo->prepare($placesql_i);
     $placestmt_i->execute(array(
       ':pdid' => $pdid,
@@ -4961,6 +5007,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
       $store_array[$j]['item_description_id'][$k] = $placerow_i['item_description_id'];
       $store_array[$j]['item_name'][$k] = $placerow_i['item_name'];
       $store_array[$j]['item_description'][$k] = $placerow_i['description'];
+      $store_array[$j]['item_mrp'][$k] = $placerow_i['mrp'];
       $store_array[$j]['item_price'][$k] = $placerow_i['price'];
       $store_array[$j]['item_quantity'][$k] = $_POST['pdt_cnt'];
       $store_array[$j]['item_ordertype'][$k] = $_POST['order_type'];
@@ -5279,7 +5326,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                 <tr>
                                   <td valign="top" align="left">
                                     <p style="margin-bottom:13px;margin-top:20px"> <a href="" style="font-family:Arial;font-size:14.5px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:1.43;color:#15c;text-decoration:none!important;word-spacing:0.2em" rel="noreferrer" target="_blank" data-saferedirecturl=""> ' . $store_array[$l]['item_name'][$m] . '</a> </p>
-                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . '</p>
+                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . $store_array[$l]['item_total_amt'][$m] . '</p>';
@@ -5597,7 +5644,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                             <tr>
                                               <td valign="top" align="left">
                                                 <p style="margin-bottom:13px;margin-top:20px"> <a href="" style="font-family:Arial;font-size:14.5px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:1.43;color:#15c;text-decoration:none!important;word-spacing:0.2em" rel="noreferrer" target="_blank" data-saferedirecturl=""> ' . $store_array[$l]['item_name'][$m] . '</a> </p>
-                                                <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . '</p>
+                                                <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m] . '</p>';
@@ -5806,20 +5853,20 @@ if (isset($_POST['pricefinder'])) {
       ':store_id' => $_POST['store_id']
     ));
     $rowfeatures = $stmtfeatures->fetch(PDO::FETCH_ASSOC);
-    $rowfeatures['f0'] = $rowfeatures['size'];
-    $rowfeatures['f1'] = $rowfeatures['color'];
-    $rowfeatures['f2'] = $rowfeatures['weight'];
-    $rowfeatures['f3'] = $rowfeatures['flavour'];
-    $rowfeatures['f4'] = $rowfeatures['processor'];
-    $rowfeatures['f5'] = $rowfeatures['display'];
-    $rowfeatures['f6'] = $rowfeatures['battery'];
-    $rowfeatures['f7'] = $rowfeatures['internal_storage'];
-    $rowfeatures['f8'] = $rowfeatures['brand'];
-    $rowfeatures['f9'] = $rowfeatures['material'];
+    $rowfeatures['f0'] = json_decode(json_encode($rowfeatures['size'] ?? null));
+    $rowfeatures['f1'] = json_decode(json_encode($rowfeatures['color'] ?? null));
+    $rowfeatures['f2'] = json_decode(json_encode($rowfeatures['weight'] ?? null));
+    $rowfeatures['f3'] = json_decode(json_encode($rowfeatures['flavour'] ?? null));
+    $rowfeatures['f4'] = json_decode(json_encode($rowfeatures['processor'] ?? null));
+    $rowfeatures['f5'] = json_decode(json_encode($rowfeatures['display'] ?? null));
+    $rowfeatures['f6'] = json_decode(json_encode($rowfeatures['battery'] ?? null));
+    $rowfeatures['f7'] = json_decode(json_encode($rowfeatures['internal_storage'] ?? null));
+    $rowfeatures['f8'] = json_decode(json_encode($rowfeatures['brand'] ?? null));
+    $rowfeatures['f9'] = json_decode(json_encode($rowfeatures['material'] ?? null));
     $features = array('size', 'color', 'weight', 'flavour', 'processor', 'display', 'battery', 'internal_storage', 'brand', 'material', 'price', 'quantity');
     $f = 0;
     while ($f < 10) {
-      if ($rowfeatures['f' . $f] != 0 && $features[$f] != "0") {
+      if (!is_null($rowfeatures['f' . $f]) && $rowfeatures['f' . $f] != 0 && $features[$f] != "0") {
         if ($features[$f] != 'weight') {
           $sqlfeature_name = "select " . $features[$f] . '_name from ' . $features[$f] . ' where ' . $features[$f] . '_id=' . (int) $rowfeatures['f' . $f];
           $stmtfeature_name = $pdo->query($sqlfeature_name);
@@ -5913,20 +5960,20 @@ if (isset($_POST['wishlist_pricefinder'])) {
       ':store_id' => $sid
     ));
     $rowfeatures = $stmtfeatures->fetch(PDO::FETCH_ASSOC);
-    $rowfeatures['f0'] = $rowfeatures['size'];
-    $rowfeatures['f1'] = $rowfeatures['color'];
-    $rowfeatures['f2'] = $rowfeatures['weight'];
-    $rowfeatures['f3'] = $rowfeatures['flavour'];
-    $rowfeatures['f4'] = $rowfeatures['processor'];
-    $rowfeatures['f5'] = $rowfeatures['display'];
-    $rowfeatures['f6'] = $rowfeatures['battery'];
-    $rowfeatures['f7'] = $rowfeatures['internal_storage'];
-    $rowfeatures['f8'] = $rowfeatures['brand'];
-    $rowfeatures['f9'] = $rowfeatures['material'];
+    $rowfeatures['f0'] = json_decode(json_encode($rowfeatures['size']) ?? null);
+    $rowfeatures['f1'] = json_decode(json_encode($rowfeatures['color']) ?? null);
+    $rowfeatures['f2'] = json_decode(json_encode($rowfeatures['weight']) ?? null);
+    $rowfeatures['f3'] = json_decode(json_encode($rowfeatures['flavour']) ?? null);
+    $rowfeatures['f4'] = json_decode(json_encode($rowfeatures['processor']) ?? null);
+    $rowfeatures['f5'] = json_decode(json_encode($rowfeatures['display']) ?? null);
+    $rowfeatures['f6'] = json_decode(json_encode($rowfeatures['battery']) ?? null);
+    $rowfeatures['f7'] = json_decode(json_encode($rowfeatures['internal_storage']) ?? null);
+    $rowfeatures['f8'] = json_decode(json_encode($rowfeatures['brand']) ?? null);
+    $rowfeatures['f9'] = json_decode(json_encode($rowfeatures['material']) ?? null);
     $features = array('size', 'color', 'weight', 'flavour', 'processor', 'display', 'battery', 'internal_storage', 'brand', 'material', 'price', 'quantity');
     $f = 0;
     while ($f < 10) {
-      if ($rowfeatures['f' . $f] != 0 && $features[$f] != "0") {
+      if (!is_null($rowfeatures['f' . $f]) && $rowfeatures['f' . $f] != 0 && $features[$f] != "0") {
         if ($features[$f] != 'weight') {
           $sqlfeature_name = "select " . $features[$f] . '_name from ' . $features[$f] . ' where ' . $features[$f] . '_id=' . (int) $rowfeatures['f' . $f];
           $stmtfeature_name = $pdo->query($sqlfeature_name);
@@ -9314,13 +9361,13 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
   for ($j = 0; $j < $i; $j++) {
     $k = 0;
     $order_id;
-    $placesql_i = "select id.item_description_id,ca.cart_id,it.category_id,it.sub_category_id,it.item_id,it.item_name,it.description,pd.price,ca.quantity,ca.order_type,ca.total_amt from cart ca
+    $placesql_i = "select id.item_description_id,ca.cart_id,it.category_id,it.sub_category_id,it.item_id,it.item_name,it.description,it.price as mrp,pd.price,ca.quantity,ca.order_type,ca.total_amt from cart ca
                   join cart_temp ct on ct.cart_id=ca.cart_id
                   inner join product_details pd on ca.item_description_id=pd.item_description_id
                   inner join item_description id on id.item_description_id=pd.item_description_id
                   inner join store st on st.store_id=ca.store_id
                   inner join item it on it.item_id=id.item_id
-                  where id.item_description_id=ca.item_description_id and ca.user_id=:user_id and st.store_id=:store_id GROUP BY ca.item_description_id";
+                  where id.item_description_id=ca.item_description_id and st.store_id=pd.store_id and ca.user_id=:user_id and st.store_id=:store_id GROUP BY ca.item_description_id";
     $placestmt_i = $pdo->prepare($placesql_i);
     $placestmt_i->execute(array(
       ':user_id' => $user_id,
@@ -9353,6 +9400,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
       $store_array[$j]['item_description_id'][$k] = $placerow_i['item_description_id'];
       $store_array[$j]['item_name'][$k] = $placerow_i['item_name'];
       $store_array[$j]['item_description'][$k] = $placerow_i['description'];
+      $store_array[$j]['item_mrp'][$k] = $placerow_i['mrp'];
       $store_array[$j]['item_price'][$k] = $placerow_i['price'];
       $store_array[$j]['item_quantity'][$k] = $placerow_i['quantity'];
       $store_array[$j]['item_ordertype'][$k] = $placerow_i['order_type'];
@@ -9730,7 +9778,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                     <p
                                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                     >
-                                      Price: &#8377; ' . $store_array[$l]['item_price'][$m] . '
+                                      Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                     </p>
                                     <p
                                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
@@ -10344,7 +10392,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                               <p
                                                 style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                               >
-                                                Price: &#8377; ' . $store_array[$l]['item_price'][$m] . '
+                                                Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                               </p>
                                               <p
                                                 style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"

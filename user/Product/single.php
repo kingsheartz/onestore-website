@@ -1463,9 +1463,9 @@ function randomGen($min, $max, $quantity)
                                   <span class="m-sing pricetag" id="ini"> &#8377;<?= $mrp ?> /-</span>
                                   <span id="oldpriceofitem" style="display: none;">
                                     <span id="org" class="m-sing pricetag"></span>
-                                    <del>
-                                      <small><span style="color: #6d6d6d;font-size: 16px;">&#8377;<?= $mrp ?></span></small>
-                                    </del>
+                                    <span>
+                                      <small><del style="color: #6d6d6d;font-size: 16px;">&#8377;<?= $mrp ?></del></small>
+                                    </span>
                                   </span>
                                 </h2>
                                 <h4 class="mt-0">
@@ -2630,11 +2630,11 @@ function randomGen($min, $max, $quantity)
     </h4>
     <div class="difcat " style="border-radius: 5px;">
       <span class="difhed"></span>
-      <div class="difrow hidescroll" id="difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>" onscroll="scrolllisten('difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>');">
-        <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')" style="display: none;">
+      <div class="difrow hidescroll" id="difrow<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>" onscroll="scrolllisten('difrow<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>');">
+        <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>')" style="display: none;">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')">
+        <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>')">
           <i class="fas fa-chevron-right"></i>
         </button>
         <?php
@@ -2700,12 +2700,12 @@ function randomGen($min, $max, $quantity)
               <span class="difhed"></span>
               <div
                 class="difrow hidescroll"
-                id="difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>"
-                onscroll="scrolllisten('difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')">
-                <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')" style="display: none;">
+                id="difrow1<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>"
+                onscroll="scrolllisten('difrow1<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>')">
+                <button class="left-arrow-btn-all shadow_all_none" onclick="moveleft('difrow1<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>')" style="display: none;">
                   <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow1<?= json_decode(is_numeric($row['item_description_id'] ?? null) ? (int) $row['item_description_id'] : null) ?>')">
+                <button class="right-arrow-btn-all shadow_all_none" onclick="moveright('difrow1<?= json_decode(json_encode($row['item_description_id'] ?? null)) ?>')">
                   <i class="fas fa-chevron-right"></i>
                 </button>
                 <?php
@@ -2747,7 +2747,7 @@ function randomGen($min, $max, $quantity)
             <br><br>
             <!-- //new -->
             <?php
-            require '../Product/single_footer.php';
+            require __DIR__ . '/single_footer.php';
             ?>
             <script>
               $(document).ready(function() {
