@@ -532,20 +532,20 @@ if (isset($item_description_id)) {
                     ':item_description_id' => $item_description_id
                   ));
                   $rowfeatures = $stmtfeatures->fetch(PDO::FETCH_ASSOC);
-                  $rowfeatures['f0'] = $rowfeatures['size'];
-                  $rowfeatures['f1'] = $rowfeatures['color'];
-                  $rowfeatures['f2'] = $rowfeatures['weight'];
-                  $rowfeatures['f3'] = $rowfeatures['flavour'];
-                  $rowfeatures['f4'] = $rowfeatures['processor'];
-                  $rowfeatures['f5'] = $rowfeatures['display'];
-                  $rowfeatures['f6'] = $rowfeatures['battery'];
-                  $rowfeatures['f7'] = $rowfeatures['internal_storage'];
-                  $rowfeatures['f8'] = $rowfeatures['brand'];
-                  $rowfeatures['f9'] = $rowfeatures['material'];
+                  $rowfeatures['f0'] = json_decode(json_encode($rowfeatures['size'] ?? null));
+                  $rowfeatures['f1'] = json_decode(json_encode($rowfeatures['color'] ?? null));
+                  $rowfeatures['f2'] = json_decode(json_encode($rowfeatures['weight'] ?? null));
+                  $rowfeatures['f3'] = json_decode(json_encode($rowfeatures['flavour'] ?? null));
+                  $rowfeatures['f4'] = json_decode(json_encode($rowfeatures['processor'] ?? null));
+                  $rowfeatures['f5'] = json_decode(json_encode($rowfeatures['display'] ?? null));
+                  $rowfeatures['f6'] = json_decode(json_encode($rowfeatures['battery'] ?? null));
+                  $rowfeatures['f7'] = json_decode(json_encode($rowfeatures['internal_storage'] ?? null));
+                  $rowfeatures['f8'] = json_decode(json_encode($rowfeatures['brand'] ?? null));
+                  $rowfeatures['f9'] = json_decode(json_encode($rowfeatures['material'] ?? null));
                   $features = array('size', 'color', 'weight', 'flavour', 'processor', 'display', 'battery', 'internal_storage', 'brand', 'material', 'price', 'quantity');
                   $f = 0;
                   while ($f < 10) {
-                    if ($rowfeatures['f' . $f] != 0 && $rowfeatures['f' . $f] != '0') {
+                    if (!is_null($rowfeatures['f' . $f]) && $rowfeatures['f' . $f] != 0 && $rowfeatures['f' . $f] != '0') {
                       if ($features[$f] != 'weight') {
                         $sqlfeature_name = "select " . $features[$f] . '_name from ' . $features[$f] . ' where ' . $features[$f] . '_id=' . (int) $rowfeatures['f' . $f];
                         $stmtfeature_name = $pdo->query($sqlfeature_name);
@@ -868,20 +868,20 @@ if (isset($item_description_id)) {
                     ':item_description_id' => $item_description_id
                   ));
                   $rowfeatures = $stmtfeatures->fetch(PDO::FETCH_ASSOC);
-                  $rowfeatures['f0'] = $rowfeatures['size'];
-                  $rowfeatures['f1'] = $rowfeatures['color'];
-                  $rowfeatures['f2'] = $rowfeatures['weight'];
-                  $rowfeatures['f3'] = $rowfeatures['flavour'];
-                  $rowfeatures['f4'] = $rowfeatures['processor'];
-                  $rowfeatures['f5'] = $rowfeatures['display'];
-                  $rowfeatures['f6'] = $rowfeatures['battery'];
-                  $rowfeatures['f7'] = $rowfeatures['internal_storage'];
-                  $rowfeatures['f8'] = $rowfeatures['brand'];
-                  $rowfeatures['f9'] = $rowfeatures['material'];
+                  $rowfeatures['f0'] = json_decode(json_encode($rowfeatures['size'] ?? null));
+                  $rowfeatures['f1'] = json_decode(json_encode($rowfeatures['color'] ?? null));
+                  $rowfeatures['f2'] = json_decode(json_encode($rowfeatures['weight'] ?? null));
+                  $rowfeatures['f3'] = json_decode(json_encode($rowfeatures['flavour'] ?? null));
+                  $rowfeatures['f4'] = json_decode(json_encode($rowfeatures['processor'] ?? null));
+                  $rowfeatures['f5'] = json_decode(json_encode($rowfeatures['display'] ?? null));
+                  $rowfeatures['f6'] = json_decode(json_encode($rowfeatures['battery'] ?? null));
+                  $rowfeatures['f7'] = json_decode(json_encode($rowfeatures['internal_storage'] ?? null));
+                  $rowfeatures['f8'] = json_decode(json_encode($rowfeatures['brand'] ?? null));
+                  $rowfeatures['f9'] = json_decode(json_encode($rowfeatures['material'] ?? null));
                   $features = array('size', 'color', 'weight', 'flavour', 'processor', 'display', 'battery', 'internal_storage', 'brand', 'material', 'price', 'quantity');
                   $f = 0;
                   while ($f < 10) {
-                    if ($rowfeatures['f' . $f] != 0 && $rowfeatures['f' . $f] != '0') {
+                    if (!is_null($rowfeatures['f' . $f]) && $rowfeatures['f' . $f] != 0 && $rowfeatures['f' . $f] != '0') {
                       if ($features[$f] != 'weight') {
                         $sqlfeature_name = "select " . $features[$f] . '_name from ' . $features[$f] . ' where ' . $features[$f] . '_id=' . (int) $rowfeatures['f' . $f];
                         $stmtfeature_name = $pdo->query($sqlfeature_name);

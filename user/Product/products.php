@@ -2198,7 +2198,7 @@ if ($result_cnt == 0) {
                                             <li>Size</li>
                                           </th>
                                           <td class="cust_details">
-                                            <?= $row1['size_name'] ?>
+                                            <?= json_decode(json_encode($row1['size_name'] ?? "_")) ?>
                                           </td>
                                         </tr>
                                       <?php

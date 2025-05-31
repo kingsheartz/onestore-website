@@ -6,23 +6,23 @@ if (!isset($_SESSION['id'])) {
 require "../Main/header.php";
 require_once dirname(__DIR__, 2) . '/includes/logger.php';
 
-$placeorder_mul        = json_encode(is_numeric($_POST['placeorder_mul'] ?? null) ? (int)$_POST['placeorder_mul'] : $_POST['placeorder_mul'] ?? null);
-$buynow_placeorder     = json_encode(is_numeric($_POST['buynow_placeorder'] ?? null) ? (int)$_POST['buynow_placeorder'] : $_POST['buynow_placeorder'] ?? null);
-$placeorder            = json_encode(is_numeric($_POST['placeorder'] ?? null) ? (int)$_POST['placeorder'] : $_POST['placeorder'] ?? null);
-$shipping_first_name   = json_encode($_POST['shipping_first_name'] ?? null);
-$shipping_last_name    = json_encode($_POST['shipping_last_name'] ?? null);
-$user                  = json_encode(is_numeric($_POST['user'] ?? null) ? (int)$_POST['user'] : $_POST['user'] ?? null);
-$user_id               = json_encode(is_numeric($_POST['user_id'] ?? null) ? (int)$_POST['user_id'] : $_POST['user_id'] ?? null);
-$order_notes           = json_encode(is_numeric($_POST['order_notes'] ?? null) ? (int)$_POST['order_notes'] : $_POST['order_notes'] ?? null);
-$pdt_cnt               = json_encode(is_numeric($_POST['pdt_cnt'] ?? null) ? (int)$_POST['pdt_cnt'] : $_POST['pdt_cnt'] ?? null);
-$total_amt             = json_encode(is_numeric($_POST['total_amt'] ?? null) ? (float)$_POST['total_amt'] : $_POST['total_amt'] ?? null);
-$shipping_postcode     = json_encode(is_numeric($_POST['shipping_postcode'] ?? null) ? (int)$_POST['shipping_postcode'] : $_POST['shipping_postcode'] ?? null);
-$shipping_ph_no        = json_encode(is_numeric($_POST['shipping_ph_no'] ?? null) ? (int)$_POST['shipping_ph_no'] : $_POST['shipping_ph_no'] ?? null);
-$idid                  = json_encode(is_numeric($_POST['idid'] ?? null) ? (int)$_POST['idid'] : null);
-$shipping_ph_no2       = json_encode(is_numeric($_POST['shipping_ph_no2'] ?? null) ? (int)$_POST['shipping_ph_no2'] : $_POST['shipping_ph_no2'] ?? null);
-$shipping_address_1    = json_encode($_POST['shipping_address_1'] ?? null);
-$order_type            = json_encode(is_numeric($_POST['order_type'] ?? null) ? (int)$_POST['order_type'] : $_POST['order_type'] ?? null);
-$store_id              = json_encode(is_numeric($_POST['store_id'] ?? null) ? (int)$_POST['store_id'] : $_POST['store_id'] ?? null);
+$placeorder_mul        = json_decode(json_encode( $_POST['placeorder_mul'] ?? null));
+$buynow_placeorder     = json_decode(json_encode( $_POST['buynow_placeorder'] ?? null));
+$placeorder            = json_decode(json_encode( $_POST['placeorder'] ?? null));
+$shipping_first_name   = json_decode(json_encode($_POST['shipping_first_name'] ?? null));
+$shipping_last_name    = json_decode(json_encode($_POST['shipping_last_name'] ?? null));
+$user                  = json_decode(json_encode( $_POST['user'] ?? null));
+$user_id               = json_decode(json_encode( $_POST['user_id'] ?? null));
+$order_notes           = json_decode(json_encode( $_POST['order_notes'] ?? null));
+$pdt_cnt               = json_decode(json_encode( $_POST['pdt_cnt'] ?? null));
+$total_amt             = json_decode(json_encode( $_POST['total_amt'] ?? null));
+$shipping_postcode     = json_decode(json_encode( $_POST['shipping_postcode'] ?? null));
+$shipping_ph_no        = json_decode(json_encode( $_POST['shipping_ph_no'] ?? null));
+$idid                  = json_decode(json_encode( null));
+$shipping_ph_no2       = json_decode(json_encode( $_POST['shipping_ph_no2'] ?? null));
+$shipping_address_1    = json_decode(json_encode($_POST['shipping_address_1'] ?? null));
+$order_type            = json_decode(json_encode( $_POST['order_type'] ?? null));
+$store_id              = json_decode(json_encode( $_POST['store_id'] ?? null));
 
 // Log the data used for the payment page
 log_message("Payment page data used: " . json_encode([
