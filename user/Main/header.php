@@ -875,15 +875,17 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="#" style="float: left;margin-left:-10px;margin-right:5px;" id="sm_side_active">
                       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                     </a>
-                    <a href="../Main/onestore.php"><img src="../../images/logo/logo.svg" height="50px"
-                        style="padding: 0px;margin: 0px;left: 0px;right: 0px">
+                    <a href="../Main/onestore.php">
+                      <img src="../../images/logo/logo.svg" height="50px" style="padding: 0px;margin: 0px;left: 0px;right: 0px">
                     </a>
                   </div>
                 </li>
-                <li style="color: white;float: right;" class="topli" id="lg_top_ph_mail"><a href="tel:+918589024973"
-                    style="color:white;font-family:arial"><i class="fa fa-phone" aria-hidden="true"></i>Ph :
-                    <span><i>+91
-                        8589024973</i></span></a><br><i><span>onestoreforallyourneeds</span></i>
+                <li style="color: white;float: right;" class="topli" id="lg_top_ph_mail">
+                  <a href="tel:+918589024973" style="color:white;font-family:arial">
+                    <i class="fa fa-phone" aria-hidden="true"></i>Ph: <span><i>+91 8589024973</i></span>
+                  </a>
+                  <br />
+                  <i><span>onestoreforallyourneeds</span></i>
                 </li>
                 <li style="color: white;float: right;" class="topli" id="sm_top_ph_mail"><i class="fa fa-phone"
                     aria-hidden="true"></i><br><i><span><i class="fa fa-envelope"></i></span></i>
@@ -908,8 +910,7 @@ if (session_status() === PHP_SESSION_NONE) {
                       <ul class="phone_email topli">
                         <li style="float: left;">
                           <form action="#" method="post" class="last">
-                            <button class="w3view-cart location_marker popup2_open" type="submit" name="submit"
-                              value="">
+                            <button class="w3view-cart location_marker popup2_open" type="submit" name="submit" value="">
                               <i class="fa  fa-map-marker dropdown" aria-hidden="true"></i>
                             </button>
                             <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
@@ -936,11 +937,13 @@ if (session_status() === PHP_SESSION_NONE) {
                                   </div>
                                   <input type="hidden" name="cmd" value="_cart">
                                   <input type="hidden" name="display" value="1">
-                                  <button class="w3view-cart carticon" type="button" onclick="cartview()" name="submit"
-                                    value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                                  </button><span
+                                  <button class="w3view-cart carticon" type="button" onclick="cartview()" name="submit" value="">
+                                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                  </button>
+                                  <span
                                     style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
-                                    id="location">Cart</span>
+                                    id="location">Cart
+                                  </span>
                                 </div>
                               </a>
                             </div>
@@ -948,11 +951,10 @@ if (session_status() === PHP_SESSION_NONE) {
                         </li>
                         <li style="float: left;" class="wishdiv">
                           <form action="#" method="post" class="last">
-                            <button class="w3view-cart wishicon" type="button" name="submit" value=""
-                              onclick="location.href='../Wishlist/wishlist.php';">
+                            <button class="w3view-cart wishicon" type="button" name="submit" value="" onclick="location.href='../Wishlist/wishlist.php';">
                               <i class="fa fa-heart" aria-hidden="true"></i>
-                            </button><span style="bottom: 0px;display: flex;justify-content:center;"
-                              id="location">Wishlist</span>
+                            </button>
+                            <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Wishlist</span>
                           </form>
                         </li>
                       </ul>
@@ -970,11 +972,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <div class=" bar-srch" style="margin-left: 0px;width: 100%;">
                           <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px">
                             <div class="input-group-btn search-panel" style=" position: relative;">
-                              <button type="button" id="search-panel" class="btn btn-default dropdown-toggle"
-                                onclick="catlistview()" style="position: relative;">
+                              <button type="button" id="search-panel" class="btn btn-default dropdown-toggle" onclick="catlistview()" style="position: relative;">
                                 <span id="search_concept">All</span> <span class="caret" id="srch_pan"></span>
                               </button>
-                              <ul id="category" class="dropdown-menu" name="cat2" role="menu"
+                              <ul
+                                id="category"
+                                class="dropdown-menu"
+                                name="cat2"
+                                role="menu"
                                 style="position: absolute;display: none;background-color: #CACACA !important">
                                 <li><a href="#0">All</a></li>
                                 <?php
@@ -982,9 +987,8 @@ if (session_status() === PHP_SESSION_NONE) {
                                 $sql = $pdo->query("select category_id,category_name from category");
                                 while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
                                 ?>
-                                  <li value="<?= $row['category_id'] ?>" style="border-color: white;"><a
-                                      style='font-family:sans-serif '
-                                      href="#<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a>
+                                  <li value="<?= $row['category_id'] ?>" style="border-color: white;">
+                                    <a style='font-family:sans-serif' href="#<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a>
                                   </li>
                                 <?php
                                 }
@@ -992,13 +996,17 @@ if (session_status() === PHP_SESSION_NONE) {
                               </ul>
                             </div>
                             <input type="hidden" name="search_param" value="0" id="search_param">
-                            <input type="text" class="form-control" id="search" onkeyup="searchele()" name="Search"
-                              placeholder="Search" style="margin-top: 0px;z-index: 0">
+                            <input type="text" class="form-control" id="search" onkeyup="searchele()" name="Search" placeholder="Search" style="margin-top: 0px;z-index: 0">
                             <span class="input-group-btn">
-                              <button onclick="check()" onmouseover="$(this).css('background-color','#0c99cc')"
+                              <button
+                                onclick="check()"
+                                onmouseover="$(this).css('background-color','#0c99cc')"
                                 onmouseleave="$(this).css('background-color','#fe9126')"
-                                style="color: white;background-color:#fe9126 " class="btn btn-default search_btn"
-                                type="button"><span class="fa fa-search"></span></button>
+                                style="color: white;background-color:#fe9126 "
+                                class="btn btn-default search_btn"
+                                type="button">
+                                <span class="fa fa-search"></span>
+                              </button>
                             </span>
                           </div>
                         </div>
@@ -1022,8 +1030,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             <form action="../Account/registered.php" method="post" class="last" onclick="openNav()">
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                              </button><span style="bottom: 0px;display: flex;justify-content:center;"
-                                id="location"><?= $_SESSION['name'] ?></span>
+                              </button>
+                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['name'] ?></span>
                             </form>
                           </li>
                         </ul>
@@ -1066,11 +1074,19 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class=" bar-srch" style="margin-left: 0px;width: 100%;">
                       <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px">
                         <div id="v-small-div" class="input-group-btn search-panel" style=" position: relative;">
-                          <button type="button" id="search-panel2" class="btn btn-default dropdown-toggle"
-                            onclick="catlistview2()" style="position: relative;">
+                          <button
+                            type="button"
+                            id="search-panel2"
+                            class="btn btn-default dropdown-toggle"
+                            onclick="catlistview2()"
+                            style="position: relative;">
                             <span id="search_concept2">All</span> <span class="caret" id="srch_pan2"></span>
                           </button>
-                          <ul id="category2" class="dropdown-menu" name="cat2" role="menu"
+                          <ul
+                            id="category2"
+                            class="dropdown-menu"
+                            name="cat2"
+                            role="menu"
                             style="position: absolute;z-index: 1;display: none;background-color: #CACACA !important; margin-bottom:10px;">
                             <li><a href="#all">All</a></li>
                             <?php
@@ -1078,8 +1094,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             $sql = $pdo->query("select category_id,category_name from category");
                             while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
                             ?>
-                              <li value="<?= $row['category_id'] ?>"><a style='font-family:sans-serif;border:1px white;'
-                                  href="#<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a>
+                              <li value="<?= $row['category_id'] ?>">
+                                <a style='font-family:sans-serif;border:1px white;' href="#<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a>
                               </li>
                             <?php
                             }
@@ -1087,13 +1103,25 @@ if (session_status() === PHP_SESSION_NONE) {
                           </ul>
                         </div>
                         <input type="hidden" name="search_param" value="0" id="search_param2">
-                        <input type="text" class="form-control" id="search2" autocomplete="off" onkeyup="searchele2()"
-                          name="Search" placeholder="Search" style="margin-top: 0px;">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="search2"
+                          autocomplete="off"
+                          onkeyup="searchele2()"
+                          name="Search"
+                          placeholder="Search"
+                          style="margin-top: 0px;">
                         <span class="input-group-btn">
-                          <button onclick="check2()" onmouseover="$(this).css('background-color','#0c99cc')"
+                          <button
+                            onclick="check2()"
+                            onmouseover="$(this).css('background-color','#0c99cc')"
                             onmouseleave="$(this).css('background-color','#fe9126')"
-                            style="color: white;background-color:#fe9126 " class="btn btn-default search_btn"
-                            type="button"><span class="fa fa-search"></span></button>
+                            style="color: white;background-color:#fe9126 "
+                            class="btn btn-default search_btn"
+                            type="button">
+                            <span class="fa fa-search"></span>
+                          </button>
                         </span>
                       </div>
                     </div>
@@ -1145,11 +1173,10 @@ if (session_status() === PHP_SESSION_NONE) {
                               </div>
                               <input type="hidden" name="cmd" value="_cart">
                               <input type="hidden" name="display" value="1">
-                              <button class="w3view-cart carticon" onclick="cartview()" type="button" name="submit"
-                                value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                              <button class="w3view-cart carticon" onclick="cartview()" type="button" name="submit" value="">
+                                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                               </button>
-                              <span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
-                                id="location">Cart</span>
+                              <span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;" id="location">Cart</span>
                             </div>
                           </a>
                         </div>
@@ -1157,19 +1184,23 @@ if (session_status() === PHP_SESSION_NONE) {
                     </li>
                     <li style="float: left;" class="wishdiv">
                       <form action="#" method="post" class="last">
-                        <button class="w3view-cart wishicon" type="button" name="submit" value=""
+                        <button
+                          class="w3view-cart wishicon"
+                          type="button"
+                          name="submit"
+                          value=""
                           onclick="location.href='../Wishlist/wishlist.php';">
                           <i class="fa fa-heart" aria-hidden="true"></i>
-                        </button><span style="bottom: 0px;display: flex;justify-content:center;"
-                          id="location">Wishlist</span>
+                        </button>
+                        <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Wishlist</span>
                       </form>
                     </li>
                     <li style="float: left;" class="catdiv" id="sm_category">
                       <form action="#" method="post" class="last">
                         <button class="w3view-cart caticon popup1_open" type="button" name="submit" value="">
                           <i class="fa fa-list-alt" aria-hidden="true"></i>
-                        </button><span style="bottom: 0px;display: flex;justify-content:center;"
-                          id="location">Category</span>
+                        </button>
+                        <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Category</span>
                       </form>
                     </li>
                     <?php
@@ -1181,8 +1212,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             <form action="../Account/registered.php" method="post" class="last" onclick="openNav()">
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                              </button><span style="bottom: 0px;display: flex;justify-content:center;"
-                                id="location"><?= $_SESSION['name'] ?></span>
+                              </button>
+                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['name'] ?></span>
                             </form>
                           </li>
                         </a>
@@ -1192,8 +1223,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                       <div style="float: right;margin-top: 40px;" id="menu_items_reglog">
                         <li><a href="../Account/registered.php"> Create Account </a></li>
-                        <li style="margin-left: -20px;"><a href="#myModal" data-toggle="modal"
-                            data-dismiss="modal">Login</a></li>
+                        <li style="margin-left: -20px;">
+                          <a href="#myModal" data-toggle="modal" data-dismiss="modal">Login</a>
+                        </li>
                       </div>
                     <?php
                     }
@@ -1207,8 +1239,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             <form action="../Account/registered.php" method="post" class="last" onclick="openNav()">
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                              </button><span style="bottom: 0px;display: flex;justify-content:center;"
-                                id="location"><?= $_SESSION['name'] ?></span>
+                              </button>
+                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['name'] ?></span>
                             </form>
                           </li>
                         </a>
@@ -1221,8 +1253,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         <form action="../Account/registered.php" method="post" class="last">
                           <button class="w3view-cart usericon " type="button" name="submit" value="">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                          </button><span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
-                            id="location">Sign up</span>
+                          </button>
+                          <span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;" id="location">Sign up</span>
                         </form>
                       </li>
                     </a>
@@ -1231,8 +1263,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         <form action="../Account/login.php" method="post" class="last">
                           <button class="w3view-cart loginicon " type="button" name="submit" value="">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
-                          </button><span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;"
-                            id="location">Log in</span>
+                          </button>
+                          <span style="bottom: 0px;display: flex;justify-content:center;font-weight: normal;" id="location">Log in</span>
                         </form>
                       </li>
                     </a>
@@ -1258,12 +1290,10 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php
                         } else {
                         ?>
-                          <button class="w3view-cart loginicon" type="button" name="submit" value=""
-                            onclick="location.href='login.php'">
+                          <button class="w3view-cart loginicon" type="button" name="submit" value="" onclick="location.href='login.php'">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           </button>
-                          <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Log
-                            in</span>
+                          <span style="bottom: 0px;display: flex;justify-content:center;" id="location">Log in</span>
                         <?php
                         }
                         ?>
@@ -1278,17 +1308,18 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php
                         if (isset($_SESSION['name'])) {
                         ?>
-                          <button class="w3view-cart loginicon " type="button" name="submit" value=""
-                            onclick="openNav()">
+                          <button class="w3view-cart loginicon " type="button" name="submit" value="" onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
                           </button>
-                          <span style="bottom: 0px;display: flex;justify-content:center;"
-                            id="location"><?php echo "You"; ?>
-                          </span>
+                          <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?php echo "You"; ?></span>
                         <?php
                         } else {
                         ?>
-                          <button class="w3view-cart loginicon " type="button" name="submit" value=""
+                          <button
+                            class="w3view-cart loginicon "
+                            type="button"
+                            name="submit"
+                            value=""
                             onclick="location.href='login.php'">
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           </button>
@@ -1335,30 +1366,39 @@ if (session_status() === PHP_SESSION_NONE) {
                   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                 </a>
               </li>
-              <li id="homeactive" class="active"><a href="../Main/onestore.php"><i class="fa fa-home fa-lg"></i>
-                  Home</a></li>
+              <li id="homeactive" class="active">
+                <a href="../Main/onestore.php"><i class="fa fa-home fa-lg"></i>Home</a>
+              </li>
               <?php
               if (isset($_SESSION['sid'])) {
               ?>
-                <li id="shopactive"><a href="../../store-admin/index.php?id=<?= $_SESSION['sid'] ?>"><i
-                      class="fas fa-lg fa-store"></i> Store</a></li>
+                <li id="shopactive">
+                  <a href="../../store-admin/index.php?id=<?= $_SESSION['sid'] ?>">
+                    <i class="fas fa-lg fa-store"></i> Store
+                  </a>
+                </li>
               <?php
               }
               ?>
-              <li id="aboutactive"><a href="../Main/about.php"><i class="fa fa-lg fa-info-circle"></i>
-                  About</a></li>
-              <li id="contactactive"><a href="../Main/contact.php"><i class="fa fa-lg fa-users"></i>
-                  Contact Us</a></li>
+              <li id="aboutactive">
+                <a href="../Main/about.php"><i class="fa fa-lg fa-info-circle"></i>About</a>
+              </li>
+              <li id="contactactive">
+                <a href="../Main/contact.php"><i class="fa fa-lg fa-users"></i>Contact Us</a>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-center">
-              <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                    class="glyphicon glyphicon-user"></span> Profile <span class="caret"></span></a>
+              <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user"></span> Profile <span class="caret"></span>
+                </a>
                 <ul class="dropdown-menu" style="border:1px solid #337ab7;padding: 0px">
                   <?php
                   if (!isset($_SESSION['id'])) {
                   ?>
                     <a href="../Account/login.php">
-                      <li onmouseover="$(this).css('color','white')"
+                      <li
+                        onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
                         style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
                         <span class="fa fa-sign-in"></span>
@@ -1367,7 +1407,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     </a>
                     <hr style="margin:0;padding: 0">
                     <a href="../Account/registered.php">
-                      <li onmouseover="$(this).css('color','white')"
+                      <li
+                        onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
                         style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
                         <span class="fa fa-user-plus"></span>
@@ -1378,7 +1419,8 @@ if (session_status() === PHP_SESSION_NONE) {
                   } else if (isset($_SESSION['id'])) {
                   ?>
                     <a href="../Order/myorders.php">
-                      <li onmouseover="$(this).css('color','white')"
+                      <li
+                        onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
                         style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
                         <span class="fas fa-shopping-bag"></span>
@@ -1387,7 +1429,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     </a>
                     <hr style="margin:0;padding: 0">
                     <a href="../Order/orderhistory.php">
-                      <li onmouseover="$(this).css('color','white')"
+                      <li
+                        onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
                         style="padding-bottom: 8px;;padding-top: 8px;">&nbsp;
                         <span class="fas fa-history"></span>
@@ -1396,7 +1439,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     </a>
                     <hr style="margin:0;padding: 0">
                     <a href="../Account/edit_user_details.php">
-                      <li onmouseover="$(this).css('color','white')"
+                      <li
+                        onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
                         style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
                         <span class="fas fa-user-cog"></span>
@@ -1405,7 +1449,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     </a>
                     <hr style="margin:0;padding: 0">
                     <a href="../Account/logout.php">
-                      <li onmouseover="$(this).css('color','white')"
+                      <li
+                        onmouseover="$(this).css('color','white')"
                         onmouseleave="$(this).css('background-color','white')"
                         style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
                         <span class="fas fa-power-off"></span>
@@ -1491,7 +1536,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <h6>Your Location</h6>
         <li>
           <input type="tel" class="locmark" name="pincode" id="pincode" placeholder="PIN">
-          <button type="button" name="pin" class="locbtn" onclick="locate()"><i class="fa fa-search"></i>
+          <button type="button" name="pin" class="locbtn" onclick="locate()">
+            <i class="fa fa-search"></i>
           </button>
         </li>
         <li style="display: none;" id="setloc">
@@ -1522,66 +1568,83 @@ if (session_status() === PHP_SESSION_NONE) {
       </i>
     </a><br>
     <!------------------------------------------------- #1# ------------------------------------------------->
-    <a class="side_nav_content_header" href="#" style="color: #fe9126"> <i class="fa fa-sm fa-shopping-cart"
-        style="color:white "></i> Shop By Category</a>
-    <button class="dropdown-btn  category_side_head" id="list_enda"
-      style="width: 100%;float: left;padding-left: 0px;"><a href="#" style="color: white;"> Personal care
-        <i class="fa fa-caret-down"></i></a>
+    <a class="side_nav_content_header" href="#" style="color: #fe9126">
+      <i class="fa fa-sm fa-shopping-cart" style="color:white "></i> Shop By Category
+    </a>
+    <button class="dropdown-btn  category_side_head" id="list_enda" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Personal care <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container  side_drop_li_main slide_drop_li_main_first">
       <a href="../Product/products_limited.php?category_id=1&subcategory_id=1" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px; ">&nbsp;
           <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Body Lotions</span>
+          <span style="font-family: arial;font-weight: 700; ">Body Lotions</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=1&subcategory_id=2" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Femini</span>
+          <span style="font-family: arial;font-weight: 700; ">Femini</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=1&subcategory_id=3" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Foot Care</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=1&subcategory_id=4" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Hair Care</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=1&subcategory_id=5" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Make Up</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=1&subcategory_id=6" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Mouth Care</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #2# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endb" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Food & Groceries
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endb" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Food & Groceries <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=2&subcategory_id=7"
-        style="width: 100%;padding: 0px;padding-top: 37px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=2&subcategory_id=7" style="width: 100%;padding: 0px;padding-top: 37px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px; ">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1589,71 +1652,95 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=8" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Ceral and Muesli</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=9" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Coffee, Tea and Beverages</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=10" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Meat, Poultry and Seafood</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=11" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Pasta and Noodles</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=12" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Dried Fruits, Nuts and Seeds</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=13" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Rice, Flour and Pulses</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=14" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Snack Foods</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=2&subcategory_id=15" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Sweets, Choclate and Gum</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #3# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endc" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Mobile
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endc" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Mobile <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=3&subcategory_id=16"
-        style="width: 100%;padding: 0px;padding-top: 74px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=3&subcategory_id=16" style="width: 100%;padding: 0px;padding-top: 74px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1661,22 +1748,25 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=3&subcategory_id=17" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Basic Mobile</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #4# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endd" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Fasion
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endd" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Fasion <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=4&subcategory_id=18"
-        style="width: 100%;padding: 0px;padding-top: 111px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=4&subcategory_id=18" style="width: 100%;padding: 0px;padding-top: 111px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1684,50 +1774,65 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=4&subcategory_id=19" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Jwellery</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=4&subcategory_id=20" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Watches</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=4&subcategory_id=21" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Shoes</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=4&subcategory_id=22" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Eye Wear</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=4&subcategory_id=23" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Handbags and Clutches</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #5# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_ende" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Home
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_ende" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Home <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=5&subcategory_id=24"
-        style="width: 100%;padding: 0px;padding-top: 148px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=5&subcategory_id=24" style="width: 100%;padding: 0px;padding-top: 148px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1735,29 +1840,35 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=5&subcategory_id=25" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Home Appliances</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=5&subcategory_id=26" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Heating Cooling and Air Quality</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #6# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endf" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Electronics
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endf" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Electronics <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=6&subcategory_id=27"
-        style="width: 100%;padding: 0px;padding-top: 185px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=6&subcategory_id=27" style="width: 100%;padding: 0px;padding-top: 185px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1765,43 +1876,55 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=6&subcategory_id=28" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> TV and Home Entertainment</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=6&subcategory_id=29" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Audio</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=6&subcategory_id=30" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Cameras</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=6&subcategory_id=31" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Computer Pheripherals</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #7# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endg" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Toys and Baby
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endg" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Toys and Baby <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=7&subcategory_id=32"
-        style="width: 100%;padding: 0px;padding-top: 222px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=7&subcategory_id=32" style="width: 100%;padding: 0px;padding-top: 222px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1809,57 +1932,75 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=7&subcategory_id=33" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Baby Clothing</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=7&subcategory_id=34" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Baby Safety</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=7&subcategory_id=35" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Baby Shoes</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=7&subcategory_id=36" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Diappering and Nappy</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=7&subcategory_id=37" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Feeding</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=7&subcategory_id=38" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Toddler Toys</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #8# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endh" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Sports
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endh" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Sports <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=8&subcategory_id=39"
-        style="width: 100%;padding: 0px;padding-top: 259px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=8&subcategory_id=39" style="width: 100%;padding: 0px;padding-top: 259px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1867,78 +2008,105 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=40" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Badminton</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=41" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Excercise and Fitness</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=42" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Running</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=43" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Camping and Hiking</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=44" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Cycling</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=45" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Football</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=46" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Tennis</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=47" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Swimming</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=8&subcategory_id=48" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Sport Shoes</span>
         </li>
       </a>
     </div>
     <!------------------------------------------------- #9# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endi" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Beauty
-        <i class="fa fa-caret-down"></i></a>
+    <button class="dropdown-btn category_side_head" id="list_endi" style="width: 100%;float: left;padding-left: 0px;">
+      <a href="#" style="color: white;"> Beauty <i class="fa fa-caret-down"></i></a>
     </button>
     <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="../Product/products_limited.php?category_id=9&subcategory_id=49"
-        style="width: 100%;padding: 0px;padding-top: 296px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
+      <a href="../Product/products_limited.php?category_id=9&subcategory_id=49" style="width: 100%;padding: 0px;padding-top: 296px;">
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
           onmouseleave="$(this).css('background-color','white')"
           style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
@@ -1946,53 +2114,23 @@ if (session_status() === PHP_SESSION_NONE) {
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=9&subcategory_id=50" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Fragrance</span>
         </li>
       </a>
       <a href="../Product/products_limited.php?category_id=9&subcategory_id=53" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
+        <li
+          class="side_drop_li"
+          onmouseover="$(this).css('color','white')"
+          onmouseleave="$(this).css('background-color','white')"
+          style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
           <span class="fa fa-arrow-right"></span>
           <span style="font-family: arial;font-weight: 700; "> Skin Care</span>
-        </li>
-      </a>
-    </div>
-    <!------------------------------------------------- #10# ------------------------------------------------->
-    <button class="dropdown-btn category_side_head" id="list_endj" style="width: 100%;float: left;padding-left: 0px;"><a
-        href="#" style="color: white;"> Appliances
-        <i class="fa fa-caret-down"></i></a>
-    </button>
-    <div class="dropdown-container side_drop_li_main slide_drop_li_main_first">
-      <a href="#" style="width: 100%;padding: 0px;padding-top: 333px;">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')"
-          style="padding-bottom: 8px;padding-top: 8px;margin-top:22px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
-        </li>
-      </a>
-      <a href="#" style="width: 100%;padding: 0px">
-        <li class="side_drop_li" onmouseover="$(this).css('color','white')"
-          onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
-          <span class="fa fa-arrow-right"></span>
-          <span style="font-family: arial;font-weight: 700; "> Unknown</span>
         </li>
       </a>
     </div>
