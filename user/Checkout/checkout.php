@@ -6,13 +6,13 @@ if (!isset($_SESSION['id'])) {
 require "../Main/header.php";
 $uid = $_SESSION['id'];
 $sql = "select item.category_id,item.sub_category_id,item_description.item_description_id,cart.quantity,cart.store_id,item.item_name,product_details.price from cart
-inner join item_description on cart.item_description_id=item_description.item_description_id
-inner join item on item_description.item_id=item.item_id
-inner join category on category.category_id=item.category_id
-inner join sub_category on category.category_id=sub_category.category_id
-inner join product_details on cart.item_description_id=product_details.item_description_id
-inner join store on store.store_id=cart.store_id
-where user_id=:user and product_details.store_id=cart.store_id and product_details.item_description_id=cart.item_description_id GROUP BY cart.cart_id order by cart.cart_id";
+        inner join item_description on cart.item_description_id=item_description.item_description_id
+        inner join item on item_description.item_id=item.item_id
+        inner join category on category.category_id=item.category_id
+        inner join sub_category on category.category_id=sub_category.category_id
+        inner join product_details on cart.item_description_id=product_details.item_description_id
+        inner join store on store.store_id=cart.store_id
+        where user_id=:user and product_details.store_id=cart.store_id and product_details.item_description_id=cart.item_description_id GROUP BY cart.cart_id order by cart.cart_id";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array(
   ":user" => $uid
