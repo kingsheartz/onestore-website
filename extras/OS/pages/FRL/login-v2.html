@@ -120,8 +120,6 @@
   </script>
 
   <script type="text/javascript">
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     var capson_warning = document.getElementsByClassName("capson_warning");
     var password_field = document.getElementsByClassName('password_fields');
 
@@ -138,15 +136,12 @@
       });
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     function ValidateSigninEmail(mail) {
       if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail)) {
         return true;
       }
       return false;
     }
-
 
     function signin() {
       var password = document.getElementById("pwd").value;
@@ -182,9 +177,7 @@
         document.getElementById("pwd").value = "";
         document.getElementById("pwd").focus();
         return;
-      }
-
-      else {
+      } else {
         if (document.getElementById('remember').checked == true) {
           var rem = 1;
         }
@@ -211,14 +204,13 @@
                 cancelButtonColor: 'green',
                 allowOutsideClick: false,
                 cancelButtonText: '<i class="fa fa-shopping-cart"></i> User'
-              })
-                .then((willSubmit) => {
-                  if (willSubmit.dismiss) {
-                    location.href = "../../../../index.php";
-                  } else if (willSubmit.isConfirmed) {
-                    location.href = "../../../../store-admin/index.php?id=" + data.id + "";
-                  }
-                });
+              }).then((willSubmit) => {
+                if (willSubmit.dismiss) {
+                  location.href = "../../../../index.php";
+                } else if (willSubmit.isConfirmed) {
+                  location.href = "../../../../store-admin/index.php?id=" + data.id + "";
+                }
+              });
               return;
             } else if (data.status == 'success') {
               swal({
@@ -227,20 +219,19 @@
                 icon: "success",
                 closeOnClickOutside: false,
                 dangerMode: true,
-              })
-                .then((willSubmit) => {
-                  if (willSubmit) {
-                    $(function () {
-                      location.href = "../../../../index.php"
-                      $('#emppass').hide();
-                      $('#myModal').modal('toggle');
-                    });
-                    return;
-                  }
-                  else {
-                    return;
-                  }
-                });
+              }).then((willSubmit) => {
+                if (willSubmit) {
+                  $(function () {
+                    location.href = "../../../../index.php"
+                    $('#emppass').hide();
+                    $('#myModal').modal('toggle');
+                  });
+                  return;
+                }
+                else {
+                  return;
+                }
+              });
             } else if (data.status == 'admin') {
               swal({
                 title: "Success!!!",
@@ -248,16 +239,15 @@
                 icon: "success",
                 closeOnClickOutside: false,
                 dangerMode: true,
-              })
-                .then((willSubmit) => {
-                  if (willSubmit) {
-                    $('#emppass').hide();
-                    location.href = "../../../../store-admin/index.php?id=" + data.id + "";
-                  }
-                  else {
-                    return;
-                  }
-                });
+              }).then((willSubmit) => {
+                if (willSubmit) {
+                  $('#emppass').hide();
+                  location.href = "../../../../store-admin/index.php?id=" + data.id + "";
+                }
+                else {
+                  return;
+                }
+              });
             } else if (data.status == 'error') {
               swal({
                 title: "Oops!!!",
@@ -265,14 +255,13 @@
                 icon: "error",
                 closeOnClickOutside: false,
                 dangerMode: true,
-              })
-                .then((willSubmit) => {
-                  if (willSubmit) {
-                    $('#emppass').html("Incorrect Password");
-                    $('#emppass').show();
-                    //location.reload();
-                  }
-                });
+              }).then((willSubmit) => {
+                if (willSubmit) {
+                  $('#emppass').html("Incorrect Password");
+                  $('#emppass').show();
+                  //location.reload();
+                }
+              });
             } else if (data.status == 'errornotfound') {
               swal({
                 title: "Oops!!!",
@@ -280,14 +269,13 @@
                 icon: "error",
                 closeOnClickOutside: false,
                 dangerMode: true,
-              })
-                .then((willSubmit) => {
-                  if (willSubmit) {
-                    $('#emppass').html("You are not registered with us. Please sign up.");
-                    $('#emppass').show();
-                    //location.reload();
-                  }
-                });
+              }).then((willSubmit) => {
+                if (willSubmit) {
+                  $('#emppass').html("You are not registered with us. Please sign up.");
+                  $('#emppass').show();
+                  //location.reload();
+                }
+              });
             } else if (data.status == 'error1') {
               swal({
                 title: "Check your mailbox!!!",
@@ -295,14 +283,13 @@
                 icon: "warning",
                 closeOnClickOutside: false,
                 dangerMode: true,
-              })
-                .then((willSubmit) => {
-                  if (willSubmit) {
-                    $('#emppass').html("Verify your email");
-                    $('#emppass').show();
-                    //location.reload();
-                  }
-                });
+              }).then((willSubmit) => {
+                if (willSubmit) {
+                  $('#emppass').html("Verify your email");
+                  $('#emppass').show();
+                  //location.reload();
+                }
+              });
             }
           },
           error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
@@ -317,7 +304,6 @@
               });
 
               return;
-
             }
             else { return; }
           }

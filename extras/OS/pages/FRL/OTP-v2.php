@@ -141,7 +141,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
       }
     }, 1000);
 
-
     function retry() {
       $('.background_loader').show();
       $('.std_loader').show();
@@ -226,7 +225,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
       }); //closing ajax
     }
 
-
     var Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -236,8 +234,6 @@ if (!isset($_SESSION['forgot_pass_email'])) {
   </script>
 
   <script type="text/javascript">
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     function verifyotp() {
       <?php
       if (isset($_GET['otp'])) {
