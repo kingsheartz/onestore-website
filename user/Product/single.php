@@ -3176,6 +3176,7 @@ function randomGen($min, $max, $quantity)
               /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
               //BUY NOW ITEM RESPONSE
               function buynow_place_order_select() {
+                console.log('buynow_place_order_select::inside');
                 var tbl = document.getElementById("store_buynow");
                 var chks = tbl.getElementsByTagName("INPUT");
                 var id = 0;
@@ -3202,6 +3203,7 @@ function randomGen($min, $max, $quantity)
                       }
                     });
                 } else {
+                  console.log('buynow_place_order_select::before_API_call');
                   var item_description_id = <?= $item_description_id ?>;
                   $.ajax({
                     url: "../Common/functions.php", //passing page info
@@ -3215,8 +3217,8 @@ function randomGen($min, $max, $quantity)
                     timeout: 30000, //waiting time 30 sec
                     success: function(data) { //if registration is success
                       if (data.status == 'success') {
-                        location.href = "../Checkout/checkoutsingle.php?store_id=" + id + "&item_description_id=" +
-                          item_description_id + "";
+                        console.log("buynow_place_order_select::success");
+                        location.href = "../Checkout/checkoutsingle.php?store_id=" + id + "&item_description_id=" + item_description_id + "";
                         return;
                       } else if (data.status == 'error') {
                         swal({
@@ -3234,7 +3236,7 @@ function randomGen($min, $max, $quantity)
                               return;
                             }
                           });
-                      } else if (data.status == 'error1') {
+                      } else if (data.status == 'error1' || data.status == 'error2') {
                         swal({
                             title: "Required!!!",
                             text: "You need to create an Account",
@@ -3253,6 +3255,7 @@ function randomGen($min, $max, $quantity)
                       }
                     },
                     error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+                      console.log("buynow_place_order_select::error", textstatus, message)
                       if (textstatus === "timeout") {
                         swal({
                           title: "Oops!!!",

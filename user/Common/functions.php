@@ -1850,7 +1850,7 @@ if (isset($_POST['login'])) {
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     $osemail = "OneStore_email";
     $ospass = "OneStore_password";
-    log_message("login::" . "Login Attempt:: User:" . json_encode($row['email']) . ", Store Admin: " . json_encode($row2['email']));
+    log_message("login::" . "Login Attempt:: User:" . json_encode($row['email'] ?? null) . ", Store Admin: " . json_encode($row2['email'] ?? null));
     if ($row && $row2) {
       if (($row2['activation_code'] != 'activated') && ($row['activation_code'] != 'activated')) {
         $_SESSION['errorlogin'] = "Check and verify your email";
@@ -3804,7 +3804,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                 <tr>
                                   <td valign="top" align="left">
                                     <p style="margin-bottom:13px;margin-top:20px"> <a href="" style="font-family:Arial;font-size:14.5px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:1.43;color:#15c;text-decoration:none!important;word-spacing:0.2em" rel="noreferrer" target="_blank" data-saferedirecturl=""> ' . $store_array[$l]['item_name'][$m] . '</a> </p>
-                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
+                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; ' . $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . $store_array[$l]['item_total_amt'][$m] . '</p>';
@@ -4322,7 +4322,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                       <p
                                         style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                       >
-                                        Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
+                                        Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; ' . $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                       </p>
                                       <p
                                         style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
@@ -5326,7 +5326,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                 <tr>
                                   <td valign="top" align="left">
                                     <p style="margin-bottom:13px;margin-top:20px"> <a href="" style="font-family:Arial;font-size:14.5px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:1.43;color:#15c;text-decoration:none!important;word-spacing:0.2em" rel="noreferrer" target="_blank" data-saferedirecturl=""> ' . $store_array[$l]['item_name'][$m] . '</a> </p>
-                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
+                                    <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; ' . $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                     <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . $store_array[$l]['item_total_amt'][$m] . '</p>';
@@ -5644,7 +5644,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                             <tr>
                                               <td valign="top" align="left">
                                                 <p style="margin-bottom:13px;margin-top:20px"> <a href="" style="font-family:Arial;font-size:14.5px;font-weight:bold;font-style:normal;font-stretch:normal;line-height:1.43;color:#15c;text-decoration:none!important;word-spacing:0.2em" rel="noreferrer" target="_blank" data-saferedirecturl=""> ' . $store_array[$l]['item_name'][$m] . '</a> </p>
-                                                <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
+                                                <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; ' . $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Qty: ' . $store_array[$l]['item_quantity'][$m] . '</p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Order type: ' . $store_array[$l]['item_ordertype'][$m] . '</p>
                                                 <p style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px">Total: &#8377; ' . (int) $store_array[$l]['item_quantity'][$m] * (int) $store_array[$l]['item_price'][$m] . '</p>';
@@ -9778,7 +9778,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                     <p
                                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                     >
-                                      Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
+                                      Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; ' . $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                     </p>
                                     <p
                                       style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
@@ -10392,7 +10392,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                               <p
                                                 style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
                                               >
-                                                Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; '. $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
+                                                Price: &#8377; ' . $store_array[$l]['item_price'][$m] . ' <span><del style="color: #6d6d6d;">&#8377; ' . $store_array[$l]['item_mrp'][$m] . ' </del></span></p>
                                               </p>
                                               <p
                                                 style="font-family:Arial;font-style:normal;font-size:12px;font-stretch:normal;color:#212121;line-height:12px"
