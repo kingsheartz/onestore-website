@@ -105,7 +105,7 @@
         }
       }
       $.ajax({
-        url: "functions.php", //passing page info
+        url: "../Common/functions.php", //passing page info
         data: {
           "storecookie": 1,
           "sn": 1,
