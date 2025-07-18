@@ -245,7 +245,7 @@ require "../Common/cookie.php";
                   </p>
                   <p class="cap_body" style="font-family:Arial;"><?= $divider[1] ?></p>
                 </div>
-                <a class=" button-radius" href="#"><span class="icon"></span>Shop now</a>
+                <a class="button-radius" href="#"><span class="icon"></span>Shop now</a>
               </div>
             </div>
           </div>

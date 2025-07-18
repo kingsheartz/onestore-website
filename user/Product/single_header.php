@@ -1368,28 +1368,38 @@ if (session_status() === PHP_SESSION_NONE) {
                 </a>
               </li>
               <li id="homeactive" class="active">
-                <a href="../Main/onestore.php"><i class="fa fa-home fa-lg"></i> Home</a>
+                <a href="../Main/onestore.php" style="display:flex;align-items:center;justify-content:center;">
+                  <i class="fa fa-home fa-lg" style="font-size:20px;"></i> &nbsp; Home
+                </a>
               </li>
               <?php
               if (isset($_SESSION['sid'])) {
               ?>
                 <li id="shopactive">
-                  <a href="../../store-admin/index.php?id=<?= $_SESSION['sid'] ?>">
-                    <i class="fas fa-lg fa-store"></i> Store
+                  <a href="../../store-admin/index.php?id=<?= $_SESSION['sid'] ?>" style="display:flex;align-items:center;justify-content:center;">
+                    <i class="fas fa-lg fa-store" style="font-size:16px;"></i> &nbsp; Store
                   </a>
                 </li>
               <?php
               }
               ?>
 
-              <li id="aboutactive"><a href="../Main/about.php"><i class="fa fa-lg fa-info-circle"></i> About</a></li>
-              <li id="contactactive"><a href="../Main/contact.php"><i class="fa fa-lg fa-users"></i> Contact Us</a></li>
+              <li id="aboutactive">
+                <a href="../Main/about.php" style="display:flex;align-items:center;justify-content:center;">
+                  <i class="fa fa-lg fa-info-circle" style="font-size:18px;"></i> &nbsp; About
+                </a>
+              </li>
+              <li id="contactactive">
+                <a href="../Main/contact.php" style="display:flex;align-items:center;justify-content:center;">
+                  <i class="fa fa-lg fa-users" style="font-size:16px;"></i> &nbsp; Contact Us
+                </a>
+              </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right navbar-center">
               <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="glyphicon glyphicon-user"></span> Profile <span class="caret"></span>
+                  <span class="glyphicon glyphicon-user" style="font-size:16px;"></span> Profile <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" style="border:1px solid #337ab7;padding: 0px">
                   <?php
