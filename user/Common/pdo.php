@@ -6,6 +6,6 @@ try {
 	$_SESSION['success'] = "Connected successfully";
 } catch (PDOException $e) {
 	$_SESSION['error'] = "OOPS !!! CONNECTION CAN'T BE ESTABLISHED";
-	echo "exacption $e";
+	echo "exception occurred $e";
 }
 ?>

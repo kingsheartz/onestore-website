@@ -14,9 +14,11 @@ if (isset($_GET['item'])) {
     where  item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id GROUP BY item_description.item_description_id"
   );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
-  $name = $row2['item_name'];
-  $cat_id = $row2['category_id'];
-  $subcat_id = $row2['sub_category_id'];
+	if ($row2) {
+		$name = $row2['item_name'];
+		$cat_id = $row2['category_id'];
+		$subcat_id = $row2['sub_category_id'];
+	}
 } else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
   $cat = $_GET['category_id'];
   $sub = $_GET['subcategory_id'];

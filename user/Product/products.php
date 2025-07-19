@@ -12,9 +12,11 @@ if (isset($_GET['item'])) {
     where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id"
   );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
-  $name = $row2['item_name'];
-  $cat_id = $row2['category_id'];
-  $subcat_id = $row2['sub_category_id'];
+  if ($row2) {
+    $name = $row2['item_name'];
+    $cat_id = $row2['category_id'];
+    $subcat_id = $row2['sub_category_id'];
+  }
 } else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
   $cat = $_GET['category_id'];
   $sub = $_GET['subcategory_id'];
@@ -45,8 +47,10 @@ if (isset($_GET['item'])) {
     where item.category_id=$cat GROUP BY item.item_id order by item.sub_category_id"
   );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
-  $name = $row2['category_name'];
-  $cat_id = $row2['category_id'];
+  if ($row2) {
+    $name = $row2['category_name'];
+    $cat_id = $row2['category_id'];
+  }
 }
 ?>
 <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
