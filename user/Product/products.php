@@ -4,12 +4,12 @@ require "../Common/pdo.php";
 if (isset($_GET['item'])) {
   $nm = strtolower($_GET['item']);
   $res = $pdo->query(
-    "select category.category_name,item.item_id,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join product_details on product_details.item_description_id=item_description.item_description_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id= sub_category.category_id
-    where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id"
+    "SELECT category.category_name,item.item_id,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,sub_category.sub_category_name FROM item
+    INNER JOIN item_description ON item_description.item_id=item.item_id
+    INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+    INNER JOIN category ON category.category_id=item.category_id
+    INNER JOIN sub_category ON category.category_id= sub_category.category_id
+    WHERE item.item_name LIKE \"%$nm%\" AND sub_category.sub_category_id=item.sub_category_id"
   );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
   if ($row2) {
@@ -20,12 +20,12 @@ if (isset($_GET['item'])) {
 } else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
   $cat = $_GET['category_id'];
   $sub = $_GET['subcategory_id'];
-  $sql = "select category.category_name,item.item_id,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,sub_category.sub_category_name from item
-          inner join item_description on item_description.item_id=item.item_id
-          inner join product_details on product_details.item_description_id=item_description.item_description_id
-          inner join category on category.category_id=item.category_id
-          inner join sub_category on category.category_id= sub_category.category_id
-          where item.category_id=$cat and item.sub_category_id=$sub GROUP BY item.item_id order by item.sub_category_id";
+  $sql = "SELECT category.category_name,item.item_id,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,sub_category.sub_category_name FROM item
+          INNER JOIN item_description ON item_description.item_id=item.item_id
+          INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+          INNER JOIN category ON category.category_id=item.category_id
+          INNER JOIN sub_category ON category.category_id= sub_category.category_id
+          WHERE item.category_id=$cat AND item.sub_category_id=$sub GROUP BY item.item_id ORDER BY item.sub_category_id";
   $res = $pdo->query($sql);
   if ($res) {
     $row2 = $res->fetch(PDO::FETCH_ASSOC);
@@ -38,13 +38,13 @@ if (isset($_GET['item'])) {
 } else if (isset($_GET['category_id'])) {
   $cat = $_GET['category_id'];
   $res = $pdo->query(
-    "select category.category_name,store.store_id,store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join product_details on product_details.item_description_id=item_description.item_description_id
-    inner join store on product_details.store_id=store.store_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id= sub_category.category_id
-    where item.category_id=$cat GROUP BY item.item_id order by item.sub_category_id"
+    "SELECT category.category_name,store.store_id,store.store_name ,item.item_id,item.price AS 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id FROM item
+    INNER JOIN item_description ON item_description.item_id=item.item_id
+    INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+    INNER JOIN store ON product_details.store_id=store.store_id
+    INNER JOIN category ON category.category_id=item.category_id
+    INNER JOIN sub_category ON category.category_id= sub_category.category_id
+    WHERE item.category_id=$cat GROUP BY item.item_id ORDER BY item.sub_category_id"
   );
   $row2 = $res->fetch(PDO::FETCH_ASSOC);
   if ($row2) {
@@ -1487,16 +1487,16 @@ if ($result_cnt == 0) {
                     </h5>
                     <ul id="cat-filter-mob" class="list-group collapse" style="margin-bottom: 0px; ">
                       <?php
-                      $getcat = "select sub_category_name,sub_category_id from sub_category where category_id=" . $_GET['category_id'];
+                      $getcat = "SELECT sub_category_name,sub_category_id FROM sub_category WHERE category_id=" . $_GET['category_id'];
                       $getcat_stmt = $pdo->query($getcat);
                       while ($getcat_row = $getcat_stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $getsubcatqnty = "SELECT count(item_description.item_description_id) as qntycnt  from item
-                                          inner join item_description on item_description.item_id=item.item_id
-                                          inner join product_details  on product_details.item_description_id=item_description.item_description_id
-                                          inner join store on product_details.store_id=store.store_id
-                                          inner join category on category.category_id=item.category_id
-                                          inner join sub_category on item.sub_category_id= sub_category.sub_category_id
-                                          where category.category_id=(" . $_GET['category_id'] . ") AND sub_category.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")
+                        $getsubcatqnty = "SELECT count(item_description.item_description_id) AS qntycnt  FROM item
+                                          INNER JOIN item_description ON item_description.item_id=item.item_id
+                                          INNER JOIN product_details  ON product_details.item_description_id=item_description.item_description_id
+                                          INNER JOIN store ON product_details.store_id=store.store_id
+                                          INNER JOIN category ON category.category_id=item.category_id
+                                          INNER JOIN sub_category ON item.sub_category_id= sub_category.sub_category_id
+                                          WHERE category.category_id=(" . $_GET['category_id'] . ") AND sub_category.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")
                                           GROUP BY item.item_id AND item.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")";
                         $getsubcatqnty_stmt = $pdo->query($getsubcatqnty);
                         $getsubcatqnty_row = $getsubcatqnty_stmt->fetch(PDO::FETCH_ASSOC);
@@ -1532,15 +1532,15 @@ if ($result_cnt == 0) {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if (isset($_GET['category_id']) || isset($_GET['subcategory_id']) || isset($_GET['item'])) {
                   if (isset($_GET['item'])) {
-                    $brandsql = "select brand.brand_name,brand.brand_id from item
-                                inner join item_description on item_description.item_id=item.item_id
+                    $brandsql = "SELECT brand.brand_name,brand.brand_id FROM item
+                                INNER JOIN item_description ON item_description.item_id=item.item_id
                                 INNER JOIN brand ON item_description.brand=brand.brand_id
                                 INNER JOIN item_keys ON item_keys.item_description_id=item_description.item_description_id
-                                inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                inner join store on product_details.store_id=store.store_id
-                                inner join category on category.category_id=item.category_id
-                                inner join sub_category on category.category_id= sub_category.category_id
-                                where item.item_name like '%" . $_GET['item'] . "%' GROUP BY brand.brand_name";
+                                INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                                INNER JOIN store ON product_details.store_id=store.store_id
+                                INNER JOIN category ON category.category_id=item.category_id
+                                INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                                WHERE item.item_name LIKE '%" . $_GET['item'] . "%' GROUP BY brand.brand_name";
                   } else if (isset($_GET['category_id']) || isset($_GET['subcategory_id'])) {
                     if (isset($_GET['subcategory_id'])) {
                       $keeper = 'item.sub_category_id';
@@ -1549,15 +1549,15 @@ if ($result_cnt == 0) {
                       $keeper = 'item.category_id';
                       $brandval = $_GET['category_id'];
                     }
-                    $brandsql = "select brand.brand_name,brand.brand_id from item
-                                inner join item_description on item_description.item_id=item.item_id
+                    $brandsql = "SELECT brand.brand_name,brand.brand_id FROM item
+                                INNER JOIN item_description ON item_description.item_id=item.item_id
                                 INNER JOIN brand ON item_description.brand=brand.brand_id
                                 INNER JOIN item_keys ON item_keys.item_description_id=item_description.item_description_id
-                                inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                inner join store on product_details.store_id=store.store_id
-                                inner join category on category.category_id=item.category_id
-                                inner join sub_category on category.category_id= sub_category.category_id
-                                where " . $keeper . " IN (" . $brandval . ") GROUP BY brand.brand_name";
+                                INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                                INNER JOIN store ON product_details.store_id=store.store_id
+                                INNER JOIN category ON category.category_id=item.category_id
+                                INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                                WHERE " . $keeper . " IN (" . $brandval . ") GROUP BY brand.brand_name";
                   }
                   $brandstmt = $pdo->query($brandsql);
                   $brandcnt = $brandstmt->rowCount();
@@ -1679,10 +1679,10 @@ if ($result_cnt == 0) {
                 </div>
                 <?php
                 $pricesql = $pdo->query(
-                  "select product_details.price FROM product_details
-                  join item_description on item_description.item_description_id=product_details.item_description_id
-                  join item on item_description.item_id=item.item_id
-                  where category_id=$cat_id"
+                  "SELECT product_details.price FROM product_details
+                  join item_description ON item_description.item_description_id=product_details.item_description_id
+                  join item ON item_description.item_id=item.item_id
+                  WHERE category_id=$cat_id"
                 );
                 $pricecnt = 0;
                 while ($pricerow = $pricesql->fetch(PDO::FETCH_ASSOC)) {
@@ -1800,16 +1800,16 @@ if ($result_cnt == 0) {
                       </h5>
                       <ul id="cat-filter" class="list-group collapse" style="margin-bottom: 0px;">
                         <?php
-                        $getcat = "select sub_category_name,sub_category_id from sub_category where category_id=" . $_GET['category_id'];
+                        $getcat = "SELECT sub_category_name,sub_category_id FROM sub_category WHERE category_id=" . $_GET['category_id'];
                         $getcat_stmt = $pdo->query($getcat);
                         while ($getcat_row = $getcat_stmt->fetch(PDO::FETCH_ASSOC)) {
-                          $getsubcatqnty = "SELECT count(item_description.item_description_id) as qntycnt  from item
-                                            inner join item_description on item_description.item_id=item.item_id
-                                            inner join product_details  on product_details.item_description_id=item_description.item_description_id
-                                            inner join store on product_details.store_id=store.store_id
-                                            inner join category on category.category_id=item.category_id
-                                            inner join sub_category on item.sub_category_id= sub_category.sub_category_id
-                                            where category.category_id=(" . $_GET['category_id'] . ") AND sub_category.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")
+                          $getsubcatqnty = "SELECT count(item_description.item_description_id) AS qntycnt  FROM item
+                                            INNER JOIN item_description ON item_description.item_id=item.item_id
+                                            INNER JOIN product_details  ON product_details.item_description_id=item_description.item_description_id
+                                            INNER JOIN store ON product_details.store_id=store.store_id
+                                            INNER JOIN category ON category.category_id=item.category_id
+                                            INNER JOIN sub_category ON item.sub_category_id= sub_category.sub_category_id
+                                            WHERE category.category_id=(" . $_GET['category_id'] . ") AND sub_category.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")
                                             GROUP BY item.item_id AND item.sub_category_id IN (" . $getcat_row['sub_category_id'] . ")";
                           $getsubcatqnty_stmt = $pdo->query($getsubcatqnty);
                           $getsubcatqnty_row = $getsubcatqnty_stmt->fetch(PDO::FETCH_ASSOC);
@@ -1845,15 +1845,15 @@ if ($result_cnt == 0) {
                   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   if (isset($_GET['category_id']) || isset($_GET['subcategory_id']) || isset($_GET['item'])) {
                     if (isset($_GET['item'])) {
-                      $brandsql = "select brand.brand_name,brand.brand_id from item
-                                  inner join item_description on item_description.item_id=item.item_id
+                      $brandsql = "SELECT brand.brand_name,brand.brand_id FROM item
+                                  INNER JOIN item_description ON item_description.item_id=item.item_id
                                   INNER JOIN brand ON item_description.brand=brand.brand_id
                                   INNER JOIN item_keys ON item_keys.item_description_id=item_description.item_description_id
-                                  inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                  inner join store on product_details.store_id=store.store_id
-                                  inner join category on category.category_id=item.category_id
-                                  inner join sub_category on category.category_id= sub_category.category_id
-                                  where item.item_name like '%" . $_GET['item'] . "%' GROUP BY brand.brand_name";
+                                  INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                                  INNER JOIN store ON product_details.store_id=store.store_id
+                                  INNER JOIN category ON category.category_id=item.category_id
+                                  INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                                  WHERE item.item_name LIKE '%" . $_GET['item'] . "%' GROUP BY brand.brand_name";
                     } else if (isset($_GET['category_id']) || isset($_GET['subcategory_id'])) {
                       if (isset($_GET['subcategory_id'])) {
                         $keeper = 'item.sub_category_id';
@@ -1862,15 +1862,15 @@ if ($result_cnt == 0) {
                         $keeper = 'item.category_id';
                         $brandval = $_GET['category_id'];
                       }
-                      $brandsql = "select brand.brand_name,brand.brand_id from item
-                                  inner join item_description on item_description.item_id=item.item_id
+                      $brandsql = "SELECT brand.brand_name,brand.brand_id FROM item
+                                  INNER JOIN item_description ON item_description.item_id=item.item_id
                                   INNER JOIN brand ON item_description.brand=brand.brand_id
                                   INNER JOIN item_keys ON item_keys.item_description_id=item_description.item_description_id
-                                  inner join product_details on product_details.item_description_id=item_description.item_description_id
-                                  inner join store on product_details.store_id=store.store_id
-                                  inner join category on category.category_id=item.category_id
-                                  inner join sub_category on category.category_id= sub_category.category_id
-                                  where " . $keeper . " IN (" . $brandval . ") GROUP BY brand.brand_name";
+                                  INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                                  INNER JOIN store ON product_details.store_id=store.store_id
+                                  INNER JOIN category ON category.category_id=item.category_id
+                                  INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                                  WHERE " . $keeper . " IN (" . $brandval . ") GROUP BY brand.brand_name";
                     }
                     $brandstmt = $pdo->query($brandsql);
                     $brandcnt = $brandstmt->rowCount();
@@ -2081,36 +2081,36 @@ if ($result_cnt == 0) {
                     if (isset($_GET['item'])) {
                       $nm = $_GET['item'];
                       $res = $pdo->query(
-                        "select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                        inner join item_description on item_description.item_id=item.item_id
-                        inner join product_details on product_details.item_description_id=item_description.item_description_id
-                        inner join store on product_details.store_id=store.store_id
-                        inner join category on category.category_id=item.category_id
-                        inner join sub_category on category.category_id= sub_category.category_id
-                        where item.item_name like \"%$nm%\" and sub_category.sub_category_id=item.sub_category_id"
+                        "SELECT store.store_name ,item.item_id,item.price AS 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id FROM item
+                        INNER JOIN item_description ON item_description.item_id=item.item_id
+                        INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                        INNER JOIN store ON product_details.store_id=store.store_id
+                        INNER JOIN category ON category.category_id=item.category_id
+                        INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                        WHERE item.item_name LIKE \"%$nm%\" AND sub_category.sub_category_id=item.sub_category_id"
                       );
                     } else if (isset($_GET['category_id']) && isset($_GET['subcategory_id'])) {
                       $cat = $_GET['category_id'];
                       $sub = $_GET['subcategory_id'];
                       $res = $pdo->query(
-                        "select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id from item
-                        inner join item_description on item_description.item_id=item.item_id
-                        inner join product_details on product_details.item_description_id=item_description.item_description_id
-                        inner join store on product_details.store_id=store.store_id
-                        inner join category on category.category_id=item.category_id
-                        inner join sub_category on category.category_id= sub_category.category_id
-                        where category.category_id=$cat and sub_category.sub_category_id=$sub GROUP BY item.item_id order by item.sub_category_id"
+                        "SELECT store.store_name ,item.item_id,item.price AS 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id FROM item
+                        INNER JOIN item_description ON item_description.item_id=item.item_id
+                        INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                        INNER JOIN store ON product_details.store_id=store.store_id
+                        INNER JOIN category ON category.category_id=item.category_id
+                        INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                        WHERE category.category_id=$cat AND sub_category.sub_category_id=$sub GROUP BY item.item_id ORDER BY item.sub_category_id"
                       );
                     } else if (isset($_GET['category_id'])) {
                       $cat = $_GET['category_id'];
                       $res = $pdo->query(
-                        "select store.store_name ,item.item_id,item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,category.category_name,sub_category.sub_category_name,store.store_name from item
-                        inner join item_description on item_description.item_id=item.item_id
-                        inner join product_details on product_details.item_description_id=item_description.item_description_id
-                        inner join store on product_details.store_id=store.store_id
-                        inner join category on category.category_id=item.category_id
-                        inner join sub_category on category.category_id= sub_category.category_id
-                        where category.category_id=$cat GROUP BY item.item_id order by item.sub_category_id"
+                        "SELECT store.store_name ,item.item_id,item.price AS 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.description,item.category_id,item.sub_category_id,category.category_name,sub_category.sub_category_name,store.store_name FROM item
+                        INNER JOIN item_description ON item_description.item_id=item.item_id
+                        INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                        INNER JOIN store ON product_details.store_id=store.store_id
+                        INNER JOIN category ON category.category_id=item.category_id
+                        INNER JOIN sub_category ON category.category_id= sub_category.category_id
+                        WHERE category.category_id=$cat GROUP BY item.item_id ORDER BY item.sub_category_id"
                       );
                     }
                     ?>
@@ -2141,13 +2141,13 @@ if ($result_cnt == 0) {
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 offset-md-0 offset-sm-1"
                             style="height: 280px;margin:0px;padding:8px;padding-bottom:0px;padding-top:0px;">
                             <?php
-                            $query = "select store.store_name, category.category_name,sub_category.sub_category_name,size,color,weight,flavour,processor,display,battery,internal_storage,brand,material FROM product_details
+                            $query = "SELECT store.store_name, category.category_name,sub_category.sub_category_name,size,color,weight,flavour,processor,display,battery,internal_storage,brand,material FROM product_details
                                       JOIN item_description ON product_details.item_description_id=item_description.item_description_id
                                       JOIN item ON item.item_id=item_description.item_id
                                       JOIN category ON category.category_id=item.category_id
                                       JOIN sub_category ON sub_category.sub_category_id=item.sub_category_id
-                                      JOIN store on store.store_id=product_details.store_id
-                                      where item_description.item_description_id=:idid";
+                                      JOIN store ON store.store_id=product_details.store_id
+                                      WHERE item_description.item_description_id=:idid";
                             $statement = $pdo->prepare($query);
                             $statement->execute(array(
                               ':idid' => $row['item_description_id']
@@ -2193,7 +2193,7 @@ if ($result_cnt == 0) {
                                       </tr>
                                       <?php
                                       if ($row_feature['size'] != 0) {
-                                        $query1 = "SELECT * FROM size where size_id=" . $row_feature['size'];
+                                        $query1 = "SELECT * FROM size WHERE size_id=" . $row_feature['size'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2208,7 +2208,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['color'] != 0) {
-                                        $query1 = "SELECT * FROM color where color_id=" . $row_feature['color'];
+                                        $query1 = "SELECT * FROM color WHERE color_id=" . $row_feature['color'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2237,7 +2237,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['flavour'] != 0) {
-                                        $query1 = "SELECT * FROM flavour where flavour_id=" . $row_feature['flavour'];
+                                        $query1 = "SELECT * FROM flavour WHERE flavour_id=" . $row_feature['flavour'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2252,7 +2252,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['processor'] != 0) {
-                                        $query1 = "SELECT * FROM processor where processor_id=" . $row_feature['processor'];
+                                        $query1 = "SELECT * FROM processor WHERE processor_id=" . $row_feature['processor'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2267,7 +2267,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['display'] != 0) {
-                                        $query1 = "SELECT * FROM display where display_id=" . $row_feature['display'];
+                                        $query1 = "SELECT * FROM display WHERE display_id=" . $row_feature['display'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2282,7 +2282,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['battery'] != 0) {
-                                        $query1 = "SELECT * FROM battery where battery_id=" . $row_feature['battery'];
+                                        $query1 = "SELECT * FROM battery WHERE battery_id=" . $row_feature['battery'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2297,7 +2297,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['internal_storage'] != 0) {
-                                        $query1 = "SELECT * FROM internal_storage where internal_storage_id=" . $row_feature['internal_storage'];
+                                        $query1 = "SELECT * FROM internal_storage WHERE internal_storage_id=" . $row_feature['internal_storage'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2312,7 +2312,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['brand'] != 0) {
-                                        $query1 = "SELECT * FROM brand where brand_id=" . $row_feature['brand'];
+                                        $query1 = "SELECT * FROM brand WHERE brand_id=" . $row_feature['brand'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
@@ -2327,7 +2327,7 @@ if ($result_cnt == 0) {
                                       <?php
                                       }
                                       if ($row_feature['material'] != 0) {
-                                        $query1 = "SELECT * FROM material where material_id=" . $row_feature['material'];
+                                        $query1 = "SELECT * FROM material WHERE material_id=" . $row_feature['material'];
                                         $st1 = $pdo->query($query1);
                                         $row1 = $st1->fetch(PDO::FETCH_ASSOC);
                                       ?>
