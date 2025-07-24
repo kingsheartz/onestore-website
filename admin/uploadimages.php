@@ -413,7 +413,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
                           $cat = $pdo->query("select * from size");
                           while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                           ?>
-                            < option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option >\
+                            <option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option>\
                           <?php
                           }
                           ?>'
