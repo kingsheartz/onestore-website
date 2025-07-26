@@ -2,6 +2,8 @@
 session_start();
 require_once __DIR__ . '/pdo.php';
 require_once dirname(__DIR__, 2) . '/includes/logger.php';
+require_once dirname(__DIR__, 2) . '/utils/getBaseURL.php';
+require_once dirname(__DIR__, 2) . '/utils/getImageURL.php';
 
 global $pdo;
 /*
@@ -129,11 +131,11 @@ if (isset($_POST['register'])) {
       $from = 'onestoreforallyourneeds@gmail.com';
       $subject = 'Account Activation Required';
       $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-      $activate_link = '../Common/functions.php?emailverified=1&email=' . $_POST['email'] . '&code=' . $uniqid;
+      $activate_link = getBaseURL() . 'user/Common/functions.php?emailverified=1&email=' . $_POST['email'] . '&code=' . $uniqid;
       $message = '
         <table style="width:100%!important">
           <tbody>
-            <tr style="" width="834px" height="60" background="../../images/logo/log2.jpg" align="center">
+            <tr style="" width="834px" height="60" background="' . getImageURL() . 'images/logo/log2.jpg" align="center">
               <td>
                 <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
                   <tbody>
@@ -143,8 +145,8 @@ if (isset($_POST['register'])) {
                           <tbody>
                             <tr>
                               <td style="width:35%;text-align:left">
-                                <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                                  <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                                <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                                  <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                                 </a>
                               </td>
                               <td style="width:60%;text-align:right;padding-top:5px">
@@ -533,12 +535,12 @@ if (isset($_POST['update_user_details'])) {
       $from = 'onestoreforallyourneeds@gmail.com';
       $subject = 'Account Details Updated';
       $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-      $activate_link = '../Common/functions.php?emailupdateverified=1&emailcurrent=' . $row['email'] . '&emailnew=' . $_POST['email'] . '&code=' . $uniqid . '&id=' . $user_id;
-      $cancel = '../Common/functions.php?emailupdateverified=0&emailcurrent=' . $row['email'] . '&emailnew=' . $_POST['email'] . '&code=' . $uniqid;
+      $activate_link = getBaseURL() . 'user/Common/functions.php?emailupdateverified=1&emailcurrent=' . $row['email'] . '&emailnew=' . $_POST['email'] . '&code=' . $uniqid . '&id=' . $user_id;
+      $cancel = getBaseURL() . 'user/Common/functions.php?emailupdateverified=0&emailcurrent=' . $row['email'] . '&emailnew=' . $_POST['email'] . '&code=' . $uniqid;
       $message = '
         <table style="width:100%!important">
           <tbody>
-            <tr width="834px" height="60" background="../../images/logo/log2.jpg" align="center">
+            <tr width="834px" height="60" background="' . getImageURL() . 'images/logo/log2.jpg" align="center">
               <td>
                 <table
                   width="100%"
@@ -556,14 +558,14 @@ if (isset($_POST['update_user_details'])) {
                               <td style="width:35%;text-align:left">
                                 <a
                                   style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                  href="https://www.one-store.ml"
+                                  href="'. getBaseURL() . '"
                                   rel="noreferrer"
                                   target="_blank"
                                   data-saferedirecturl=""
                                 >
                                   <img
                                     border="0"
-                                    src="../../images/logo/logo.png"
+                                    src="' . getImageURL() . 'images/logo/logo.png"
                                     alt="OneStore.ml"
                                     style="border:none"
                                     class="CToWUd"
@@ -772,8 +774,7 @@ if (isset($_POST['update_user_details'])) {
                                 style="font-family:Arial;font-size:12px;text-align:left;color:#212121;padding-left:15px;padding-top:0px;padding-bottom:2px;line-height:19px;padding-right:10px;"
                               >
                                 if you\'re having trouble clicking the' . " \"<b>Verify Account</b>\" " . '
-                                button,copy and paste the URL below into your web browser : ' .
-        $activate_link . ' .
+                                button,copy and paste the URL below into your web browser : ' . $activate_link . ' .
                               </p>
                             </td>
                           </tr>
@@ -1244,11 +1245,11 @@ if (isset($_GET['email'], $_GET['code'], $_GET['emailverified'])) {
           //$activate_link = 'https://falconsinfoworld.000webhostapp.com/OneStore/functions.php?emailverified=1&email='.$_POST['email'].'&code='.$uniqid;
           //$activate_link = 'http://localhost/MY%20WEBSITES/ONESTORE/OneStore/functions.php?emailverified=1&email='.$_POST['email'].'&code='.$uniqid;
           //$activate_link = 'https://onestore.epizy.com/functions.php?emailverified=1&email='.$_POST['email'].'&code='.$uniqid;
-          $activate_link = 'http://localhost:81/One-Store-Renewed/onestore-website';
+          $activate_link = getBaseURL();
           $message = '
             <table style="width:100%!important">
               <tbody>
-                <tr style="" width="834px" height="60" background="../../images/logo/log2.jpg" align="center">
+                <tr style="" width="834px" height="60" background="' . getImageURL() . 'images/logo/log2.jpg" align="center">
                   <td>
                     <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
                       <tbody>
@@ -1258,8 +1259,8 @@ if (isset($_GET['email'], $_GET['code'], $_GET['emailverified'])) {
                               <tbody>
                                 <tr>
                                   <td style="width:35%;text-align:left">
-                                    <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                                      <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                                    <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                                      <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                                     </a>
                                   </td>
                                   <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Account <span style="font-weight:bold">Activated</span></p> </td>
@@ -1571,11 +1572,11 @@ if (isset($_GET['emailnew'], $_GET['code'], $_GET['emailupdateverified'], $_GET[
           //$activate_link = 'https://falconsinfoworld.000webhostapp.com/OneStore/functions.php?emailverified=1&email='.$_POST['email'].'&code='.$uniqid;
           //$activate_link = 'http://localhost/MY%20WEBSITES/ONESTORE/OneStore/functions.php?emailverified=1&email='.$_POST['email'].'&code='.$uniqid;
           //$activate_link = 'https://onestore.epizy.com/functions.php?emailverified=1&email='.$_POST['email'].'&code='.$uniqid;
-          $activate_link = 'http://localhost:81/One-Store-Renewed/onestore-website';
+          $activate_link = getBaseURL();
           $message = '
             <table style="width:100%!important">
               <tbody>
-                <tr style="" width="834px" height="60" background="../../images/logo/log2.jpg" align="center">
+                <tr style="" width="834px" height="60" background="' . getImageURL() . 'images/logo/log2.jpg" align="center">
                   <td>
                     <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
                       <tbody>
@@ -1585,8 +1586,8 @@ if (isset($_GET['emailnew'], $_GET['code'], $_GET['emailupdateverified'], $_GET[
                               <tbody>
                                 <tr>
                                   <td style="width:35%;text-align:left">
-                                    <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                                      <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                                    <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                                      <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                                     </a>
                                   </td>
                                   <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Email <span style="font-weight:bold">Verified</span></p> </td>
@@ -2789,11 +2790,11 @@ if (isset($_POST['forgotlogin'])) {
           $from = 'onestoreforallyourneeds@gmail.com';
           $subject = 'Reset password verification OTP';
           $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-          $activate_link = '../../extras/OS/pages/FRL/OTP-v2.php?otp=' . $otp;
+          $activate_link = getBaseURL() . 'extras/OS/pages/FRL/OTP-v2.php?otp=' . $otp;
           $message = '
             <table style="width:100%!important">
               <tbody>
-                <tr style="" width="834px" height="60" background="../../images/logo/log2.jpg" align="center">
+                <tr style="" width="834px" height="60" background="' . getImageURL() . 'images/logo/log2.jpg" align="center">
                   <td>
                     <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
                       <tbody>
@@ -2803,8 +2804,8 @@ if (isset($_POST['forgotlogin'])) {
                               <tbody>
                                 <tr>
                                   <td style="width:35%;text-align:left">
-                                    <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                                      <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                                    <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                                      <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                                     </a>
                                   </td>
                                   <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Reissuing <span style="font-weight:bold">Password</span></p> </td>
@@ -3087,11 +3088,11 @@ if (isset($_POST['forgotlogin'])) {
         $from = 'onestoreforallyourneeds@gmail.com';
         $subject = 'OTP generated for password recovery';
         $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-        $activate_link = '../../extras/OS/pages/FRL/OTP-v2.php?otp=' . $otp;
+        $activate_link = getBaseURL() . 'extras/OS/pages/FRL/OTP-v2.php?otp=' . $otp;
         $message = '
           <table style="width:100%!important">
             <tbody>
-              <tr style="" width="834px" height="60" background="../../images/logo/log2.jpg" align="center">
+              <tr style="" width="834px" height="60" background="' . getImageURL() . 'images/logo/log2.jpg" align="center">
                 <td>
                   <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
                     <tbody>
@@ -3101,8 +3102,8 @@ if (isset($_POST['forgotlogin'])) {
                             <tbody>
                               <tr>
                                 <td style="width:35%;text-align:left">
-                                  <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                                    <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                                  <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                                    <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                                   </a>
                                 </td>
                                 <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Reissuing <span style="font-weight:bold">Password</span></p> </td>
@@ -3651,7 +3652,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
   $from = 'onestoreforallyourneeds@gmail.com';
   $subject = 'Your requested orders';
   $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-  $activate_link = '../Order/myorders.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'user/Order/myorders.php?id=' . $user_id;
   //EMAIL SENDING//
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3659,7 +3660,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
   $message1 = '
     <table style="width:100%!important">
       <tbody>
-        <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+        <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
           <td>
             <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
               <tbody>
@@ -3669,8 +3670,8 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                       <tbody>
                         <tr>
                           <td style="width:35%;text-align:left">
-                            <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                              <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                            <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                              <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                             </a>
                           </td>
                           <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Order <span style="font-weight:bold">Processed</span></p> </td>
@@ -3732,7 +3733,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                 </tr>
                                 <tr>
                                   <td valign="top">
-                                    <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;"> <a href="../Order/myorders.php?id=' . $user_id . '" style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button" style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">View Order Status</button> </a> </p>
+                                    <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;"> <a href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '" style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button" style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">View Order Status</button> </a> </p>
                                   </td>
                                 </tr>
                               </tbody>
@@ -3795,7 +3796,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                             <table width="120" border="0" cellpadding="0" cellspacing="0" align="left" style="margin-bottom: 15px;">
                               <tbody>
                                 <tr>
-                                  <td valign="middle" width="120" align="center"> <a style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px" href="../Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" src="../../images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg" alt="' . $store_array[$l]['item_name'][$m] . '" style="border:none;max-width:125px;max-height:125px;margin-top:20px" class="CToWUd"> </a> </td>
+                                  <td valign="middle" width="120" align="center"> <a style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px" href="'. getBaseURL() . 'user/Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" src="' . getImageURL() . 'images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg" alt="' . $store_array[$l]['item_name'][$m] . '" style="border:none;max-width:125px;max-height:125px;margin-top:20px" class="CToWUd"> </a> </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -3857,7 +3858,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                     <table>
                                       <tbody>
                                         <tr>
-                                          <td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml"><img  border="0" src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd"> </a> </td>
+                                          <td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '"><img  border="0" src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd"> </a> </td>
                                           <td style="width:55%;text-align:left;font-family:Arial"> &#169; 2020 <a style="color:#027cd8;text-decoration:none;outline:none;font-weight:bold" href="">OneStore</a>. All rights reserved  </td>
                                           <td style="width:10%;text-align:right"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" height="24" src="https://ci6.googleusercontent.com/proxy/3QE9kvI6a_sNZY1yz9h1e9UTtBEe6bvUPfsokYVFhigLrmrCJxcv1_CZk0b5cJWyTHa1prcEfHSGUl1QMcg36fPaTs0H7MVxDk0pgC8ujoEedjfg26Rdff_eNArN9_s=s0-d-e1-ft#http://img6a.flixcart.com/www/promos/new/20160910-183744-google-play-min.png" alt="Flipkart.com" style="border:none;margin-top:10px" class="CToWUd"> </a> </td>
                                         </tr>
@@ -3950,7 +3951,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $subject = 'Requested service';
-  $activate_link = '../../Store%20admin/index.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'store-admin/index.php?id=' . $user_id;
   for ($l = 0; $l < $i; $l++) {
     $storerecieve_sql = "SELECT sum(total_amt) AS storerecieve FROM cart  WHERE  user_id=:user_id AND store_id=:store_id";
     $storerecieve_stmt = $pdo->prepare($storerecieve_sql);
@@ -3964,7 +3965,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
     $message2 = '
       <table style="width:100%!important">
         <tbody>
-          <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+          <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
             <td>
               <table
                 width="100%"
@@ -3982,14 +3983,14 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                             <td style="width:35%;text-align:left">
                               <a
                                 style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                href="https://www.one-store.ml"
+                                href="'. getBaseURL() . '"
                                 rel="noreferrer"
                                 target="_blank"
                                 data-saferedirecturl=""
                               >
                                 <img
                                   border="0"
-                                  src="../../images/logo/logo.png"
+                                  src="' . getImageURL() . 'images/logo/logo.png"
                                   alt="OneStore.ml"
                                   style="border:none"
                                   class="CToWUd"
@@ -4123,7 +4124,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                     <td valign="top">
                                       <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;">
                                         <a
-                                          href="../Order/myorders.php?id=' . $user_id . '"
+                                          href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '"
                                           style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                           rel="noreferrer"
                                           target="_blank"
@@ -4287,14 +4288,14 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                     <td valign="middle" width="120" align="center">
                                       <a
                                         style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px"
-                                        href="../Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '"
+                                        href="'. getBaseURL() . 'user/Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '"
                                         rel="noreferrer"
                                         target="_blank"
                                         data-saferedirecturl=""
                                       >
                                         <img
                                           border="0"
-                                          src="../../images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg"
+                                          src="' . getImageURL() . 'images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg"
                                           alt="' . $store_array[$l]['item_name'][$m] . '"
                                           style="border:none;max-width:125px;max-height:125px;margin-top:20px"
                                           class="CToWUd"
@@ -4440,10 +4441,10 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
                                             <td style="width:40%;text-align:left;padding-top:5px">
                                               <a
                                                 style="text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                                href="https://www.one-store.ml"
+                                                href="'. getBaseURL() . '"
                                                 ><img
                                                   border="0"
-                                                  src="../../images/logo/logo.png"
+                                                  src="' . getImageURL() . 'images/logo/logo.png"
                                                   alt="OneStore.ml"
                                                   style="border:none;width: 150px;"
                                                   class="CToWUd"
@@ -5024,7 +5025,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
   $from = 'onestoreforallyourneeds@gmail.com';
   $subject = 'Your requested orders';
   $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-  $activate_link = '../Order/myorders.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'user/Order/myorders.php?id=' . $user_id;
   //EMAIL SENDING//
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5032,7 +5033,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
   $message1 = '
     <table style="width:100%!important">
       <tbody>
-        <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+        <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
           <td>
             <table
               width="100%"
@@ -5050,14 +5051,14 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                           <td style="width:35%;text-align:left">
                             <a
                               style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                              href="https://www.one-store.ml"
+                              href="'. getBaseURL() . '"
                               rel="noreferrer"
                               target="_blank"
                               data-saferedirecturl=""
                             >
                               <img
                                 border="0"
-                                src="../../images/logo/logo.png"
+                                src="' . getImageURL() . 'images/logo/logo.png"
                                 alt="OneStore.ml"
                                 style="border:none"
                                 class="CToWUd"
@@ -5192,7 +5193,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                   <td valign="top">
                                     <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;">
                                       <a
-                                        href="../Order/myorders.php?id=' . $user_id . '"
+                                        href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '"
                                         style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                         rel="noreferrer"
                                         target="_blank"
@@ -5317,7 +5318,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                             <table width="120" border="0" cellpadding="0" cellspacing="0" align="left" style="margin-bottom: 15px;">
                               <tbody>
                                 <tr>
-                                  <td valign="middle" width="120" align="center"> <a style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px" href="../Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" src="../../images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg" alt="' . $store_array[$l]['item_name'][$m] . '" style="border:none;max-width:125px;max-height:125px;margin-top:20px" class="CToWUd"> </a> </td>
+                                  <td valign="middle" width="120" align="center"> <a style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px" href="'. getBaseURL() . 'user/Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" src="' . getImageURL() . 'images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg" alt="' . $store_array[$l]['item_name'][$m] . '" style="border:none;max-width:125px;max-height:125px;margin-top:20px" class="CToWUd"> </a> </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -5380,7 +5381,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                     <table>
                                       <tbody>
                                         <tr>
-                                          <td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml"><img  border="0" src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd"> </a> </td>
+                                          <td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '"><img  border="0" src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd"> </a> </td>
                                           <td style="width:55%;text-align:left;font-family:Arial"> &#169; 2020 <a style="color:#027cd8;text-decoration:none;outline:none;font-weight:bold" href="">OneStore</a>. All rights reserved  </td>
                                           <td style="width:10%;text-align:right"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" height="24" src="https://ci6.googleusercontent.com/proxy/3QE9kvI6a_sNZY1yz9h1e9UTtBEe6bvUPfsokYVFhigLrmrCJxcv1_CZk0b5cJWyTHa1prcEfHSGUl1QMcg36fPaTs0H7MVxDk0pgC8ujoEedjfg26Rdff_eNArN9_s=s0-d-e1-ft#http://img6a.flixcart.com/www/promos/new/20160910-183744-google-play-min.png" alt="Flipkart.com" style="border:none;margin-top:10px" class="CToWUd"> </a> </td>
                                         </tr>
@@ -5473,7 +5474,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $subject = 'Requested service';
-  $activate_link = '../../Store%20admin/index.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'store-admin/index.php?id=' . $user_id;
   for ($l = 0; $l < $i; $l++) {
     $storerecieve_sql = "SELECT sum(total_amt) AS storerecieve FROM cart  WHERE  user_id=:user_id AND store_id=:store_id";
     $storerecieve_stmt = $pdo->prepare($storerecieve_sql);
@@ -5487,7 +5488,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
     $message2 = '
       <table style="width:100%!important">
         <tbody>
-          <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+          <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
             <td>
               <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
                 <tbody>
@@ -5497,8 +5498,8 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                           <tbody>
                             <tr>
                               <td style="width:35%;text-align:left">
-                                <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                                  <img border="0"  src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                                <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                                  <img border="0"  src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                                 </a>
                               </td>
                               <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Order <span style="font-weight:bold">Requested</span></p> </td>
@@ -5558,7 +5559,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                   </tr>
                                   <tr>
                                     <td valign="top">
-                                      <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;"> <a href="../Order/myorders.php?id=' . $user_id . '" style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button" style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">View Order Status</button> </a> </p>
+                                      <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;"> <a href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '" style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button" style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">View Order Status</button> </a> </p>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -5635,7 +5636,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                         <table width="120" border="0" cellpadding="0" cellspacing="0" align="left" style="margin-bottom: 15px;">
                                           <tbody>
                                             <tr>
-                                              <td valign="middle" width="120" align="center"> <a style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px" href="../Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" src="../../images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg" alt="' . $store_array[$l]['item_name'][$m] . '" style="border:none;max-width:125px;max-height:125px;margin-top:20px" class="CToWUd"> </a> </td>
+                                              <td valign="middle" width="120" align="center"> <a style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px" href="'. getBaseURL() . 'user/Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" src="' . getImageURL() . 'images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg" alt="' . $store_array[$l]['item_name'][$m] . '" style="border:none;max-width:125px;max-height:125px;margin-top:20px" class="CToWUd"> </a> </td>
                                             </tr>
                                           </tbody>
                                         </table>
@@ -5694,7 +5695,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
                                               <table>
                                                 <tbody>
                                                   <tr>
-                                                    <td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml"><img  border="0" src="../../images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd"> </a> </td>
+                                                    <td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="'. getBaseURL() . '"><img  border="0" src="' . getImageURL() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd"> </a> </td>
                                                     <td style="width:55%;text-align:left;font-family:Arial"> &#169; 2020 <a style="color:#027cd8;text-decoration:none;outline:none;font-weight:bold" href="">OneStore</a>. All rights reserved  </td>
                                                     <td style="width:10%;text-align:right"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" height="24" src="https://ci6.googleusercontent.com/proxy/3QE9kvI6a_sNZY1yz9h1e9UTtBEe6bvUPfsokYVFhigLrmrCJxcv1_CZk0b5cJWyTHa1prcEfHSGUl1QMcg36fPaTs0H7MVxDk0pgC8ujoEedjfg26Rdff_eNArN9_s=s0-d-e1-ft#http://img6a.flixcart.com/www/promos/new/20160910-183744-google-play-min.png" alt="Flipkart.com" style="border:none;margin-top:10px" class="CToWUd"> </a> </td>
                                                   </tr>
@@ -6286,7 +6287,7 @@ if (isset($_POST['filter_cat_a'])) {
           <div class='flip-box'>
             <div class='flip-box-inner' >
               <div class='flip-box-front'>
-                <div class='card card-front' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' style='max-width: 100%;' src='../../images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
+                <div class='card card-front' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' style='max-width: 100%;' src='" . getImageURL() . "images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
                   <div class='card-body'>
                     <!--NAME--><br>
                     <h6 class='font-weight-bold pt-1'><center>" . $item_name . "</center></h6>
@@ -6326,7 +6327,7 @@ if (isset($_POST['filter_cat_a'])) {
                       </div>
                     </div>
                     <div class='flip-box-back'>
-                      <div class='card card-back' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' src='../../images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
+                      <div class='card card-back' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' src='" . getImageURL() . "images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
                         <div class='card-body'>
                           <!--NAME-->
                           <h6 class='font-weight-bold pt-1'><center>" . $item_name . "</center></h6>
@@ -6360,7 +6361,7 @@ if (isset($_POST['filter_cat_a'])) {
                               <div class='text-muted rebate'>MRP <del>&#8377; " . $row['mrp'] . "</del></div>
                             </div>
                             <!--VIEW ITEM-->
-                            <div class='btn-pdt_pg btn-primary-pdt_pg' onclick='location.href=\"../Product/single.php?id=" . $row['item_description_id'] . "\"' alt='" . $item_name . "' style='cursor:pointer;padding: 5px;padding-top:2px;padding-bottom:2px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0b8a00), color-stop(1, #006d12)) !important;'>
+                            <div class='btn-pdt_pg btn-primary-pdt_pg' onclick='location.href=\"". getBaseURL() . "user/Product/single.php?id=" . $row['item_description_id'] . "\"' alt='" . $item_name . "' style='cursor:pointer;padding: 5px;padding-top:2px;padding-bottom:2px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0b8a00), color-stop(1, #006d12)) !important;'>
                               View <i class='fas fa-eye '></i>
                             </div>
                           </div>
@@ -6588,7 +6589,7 @@ if (isset($_POST['filter_cat_a'])) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //$response['pages']=$output;
   if ($dynamic_content == "" || is_null($dynamic_content)) {
-    $dynamic_content .= '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
+    $dynamic_content .= '<center><img src="' . getImageURL() . 'images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
   }
   $response['content'] = $dynamic_content;
   $response['output'] = $output;
@@ -6862,13 +6863,13 @@ if (isset($_POST['filter_cat_b'])) {
       $row_feature = $statement->fetch(PDO::FETCH_ASSOC);
       $dynamic_content .= '
         <div class="order-single" style="margin:0;padding:0;background-color:#fff;width:100%;height:100%;border-bottom: 1px solid #666;">
-          <div class="col-sm-3 col-xs-3" style="background-color:#fff" onclick=\'location.href="../Product/single.php?id=' . $row['item_description_id'] . '"\'>
+          <div class="col-sm-3 col-xs-3" style="background-color:#fff" onclick=\'location.href="'. getBaseURL() . 'user/Product/single.php?id=' . $row['item_description_id'] . '"\'>
             <table>
               <tr style="padding-bottom:30px;"></tr>
               <tr>
                 <td>
                   <div style="height: 150px;width: 100%">
-                    <img style="height:auto;max-width: 100%;width:auto;max-height: 250px;display: block;margin: auto;padding-top:30px " class="img-responsive" src="../../images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg">
+                    <img style="height:auto;max-width: 100%;width:auto;max-height: 250px;display: block;margin: auto;padding-top:30px " class="img-responsive" src="' . getImageURL() . 'images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg">
                   </div>
                 </td>
               </tr>
@@ -7006,7 +7007,7 @@ if (isset($_POST['filter_cat_b'])) {
       $dynamic_content .= '
                   <tr>
                     <td align="right">
-                      <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="../../images/logo/logofill-sm.png">
+                      <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="' . getImageURL() . 'images/logo/logofill-sm.png">
                     </td>
                   </tr>
                   <tr class="div-wrapper dw" style="padding-top:30px;">
@@ -7227,7 +7228,7 @@ if (isset($_POST['filter_cat_b'])) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //$response['pages']=$output;
   if ($dynamic_content == "" || is_null($dynamic_content)) {
-    $dynamic_content .= '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
+    $dynamic_content .= '<center><img src="' . getImageURL() . 'images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
   }
   $response['content'] = $dynamic_content;
   $response['output'] = $output;
@@ -7417,7 +7418,7 @@ if (isset($_POST['filter_sub_cat_a'])) {
             <div class='flip-box'>
               <div class='flip-box-inner' >
                 <div class='flip-box-front'>
-                  <div class='card card-front' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' style='max-width: 100%;' src='../../images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
+                  <div class='card card-front' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' style='max-width: 100%;' src='" . getImageURL() . "images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
                     <div class='card-body'>
                       <!--NAME--><br>
                       <h6 class='font-weight-bold pt-1'><center>" . $item_name . "</center></h6>
@@ -7458,7 +7459,7 @@ if (isset($_POST['filter_sub_cat_a'])) {
                       </div>
                     </div>
                     <div class='flip-box-back'>
-                      <div class='card card-back' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' src='../../images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
+                      <div class='card card-back' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' src='" . getImageURL() . "images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
                         <div class='card-body'>
                           <!--NAME-->
                           <h6 class='font-weight-bold pt-1'><center>" . $item_name . "</center></h6>
@@ -7493,7 +7494,7 @@ if (isset($_POST['filter_sub_cat_a'])) {
                         <div class='text-muted rebate'>MRP <del>&#8377; " . $row['mrp'] . "</del></div>
                       </div>
                       <!--VIEW ITEM-->
-                      <div class='btn-pdt_pg btn-primary-pdt_pg' onclick='location.href=\"../Product/single.php?id=" . $row['item_description_id'] . "\"' alt='" . $item_name . "' style='cursor:pointer;padding: 5px;padding-top:2px;padding-bottom:2px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0b8a00), color-stop(1, #006d12)) !important;'>
+                      <div class='btn-pdt_pg btn-primary-pdt_pg' onclick='location.href=\"". getBaseURL() . "user/Product/single.php?id=" . $row['item_description_id'] . "\"' alt='" . $item_name . "' style='cursor:pointer;padding: 5px;padding-top:2px;padding-bottom:2px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0b8a00), color-stop(1, #006d12)) !important;'>
                         View <i class='fas fa-eye '></i>
                       </div>
                   </div>
@@ -7638,7 +7639,7 @@ if (isset($_POST['filter_sub_cat_a'])) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //$response['pages']=$output;
   if ($dynamic_content == "" || is_null($dynamic_content)) {
-    $dynamic_content .= '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
+    $dynamic_content .= '<center><img src="' . getImageURL() . 'images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
   }
   $response['content'] = $dynamic_content;
   $response['output'] = $output;
@@ -7824,13 +7825,13 @@ if (isset($_POST['filter_sub_cat_b'])) {
       $row_feature = $statement->fetch(PDO::FETCH_ASSOC);
       $dynamic_content .= '
         <div class="order-single" style="margin:0;padding:0;background-color:#fff;width:100%;height:100%;border-bottom: 1px solid #666;">
-          <div class="col-sm-3 col-xs-3" style="background-color:#fff" onclick=\'location.href="../Product/single.php?id=' . $row['item_description_id'] . '"\'>
+          <div class="col-sm-3 col-xs-3" style="background-color:#fff" onclick=\'location.href="'. getBaseURL() . 'user/Product/single.php?id=' . $row['item_description_id'] . '"\'>
             <table>
               <tr style="padding-bottom:30px;"></tr>
               <tr>
                   <td>
                       <div style="height: 150px;width: 100%">
-                          <img style="height:auto;max-width: 100%;width:auto;max-height: 250px;display: block;margin: auto;padding-top:30px " class="img-responsive" src="../../images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg">
+                          <img style="height:auto;max-width: 100%;width:auto;max-height: 250px;display: block;margin: auto;padding-top:30px " class="img-responsive" src="' . getImageURL() . 'images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg">
                       </div>
                   </td>
               </tr>
@@ -7972,7 +7973,7 @@ if (isset($_POST['filter_sub_cat_b'])) {
       $dynamic_content .= '
                   <tr>
                     <td align="right">
-                      <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="../../images/logo/logofill-sm.png">
+                      <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="' . getImageURL() . 'images/logo/logofill-sm.png">
                     </td>
                   </tr>
                   <tr class="div-wrapper dw" style="padding-top:30px;">
@@ -8110,7 +8111,7 @@ if (isset($_POST['filter_sub_cat_b'])) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //$response['pages']=$output;
   if ($dynamic_content == "" || is_null($dynamic_content)) {
-    $dynamic_content .= '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
+    $dynamic_content .= '<center><img src="' . getImageURL() . 'images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
   }
   $response['content'] = $dynamic_content;
   $response['output'] = $output;
@@ -8304,7 +8305,7 @@ if (isset($_POST['filter_item_a'])) {
           <div class='flip-box'>
             <div class='flip-box-inner' >
               <div class='flip-box-front'>
-                <div class='card card-front' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' style='max-width: 100%;' src='../../images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
+                <div class='card card-front' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' style='max-width: 100%;' src='" . getImageURL() . "images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
                   <div class='card-body'>
                     <!--NAME--><br>
                     <h6 class='font-weight-bold pt-1'><center>" . $item_name . "</center></h6>
@@ -8344,7 +8345,7 @@ if (isset($_POST['filter_item_a'])) {
                       </div>
                     </div>
                     <div class='flip-box-back'>
-                      <div class='card card-back' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' src='../../images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
+                      <div class='card card-back' style='height: 320px;padding-top: 10px;'> <img  class='card-img-top' src='" . getImageURL() . "images/" . $row['category_id'] . "/" . $row['sub_category_id'] . "/" . $row['item_description_id'] . ".jpg'>
                           <div class='card-body'>
                             <!--NAME-->
                             <h6 class='font-weight-bold pt-1'><center>" . $item_name . "</center></h6>
@@ -8378,7 +8379,7 @@ if (isset($_POST['filter_item_a'])) {
                                 <div class='text-muted rebate'>MRP <del>&#8377; " . $row['mrp'] . "</del></div>
                               </div>
                               <!--VIEW ITEM-->
-                              <div class='btn-pdt_pg btn-primary-pdt_pg' onclick='location.href=\"../Product/single.php?id=" . $row['item_description_id'] . "\"' alt='" . $item_name . "' style='cursor:pointer;padding: 5px;padding-top:2px;padding-bottom:2px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0b8a00), color-stop(1, #006d12)) !important;'>
+                              <div class='btn-pdt_pg btn-primary-pdt_pg' onclick='location.href=\"". getBaseURL() . "user/Product/single.php?id=" . $row['item_description_id'] . "\"' alt='" . $item_name . "' style='cursor:pointer;padding: 5px;padding-top:2px;padding-bottom:2px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0b8a00), color-stop(1, #006d12)) !important;'>
                                 View <i class='fas fa-eye '></i>
                               </div>
                             </div>
@@ -8524,7 +8525,7 @@ if (isset($_POST['filter_item_a'])) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //$response['pages']=$output;
   if ($dynamic_content == "" || is_null($dynamic_content)) {
-    $dynamic_content .= '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
+    $dynamic_content .= '<center><img src="' . getImageURL() . 'images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
   }
   $response['content'] = $dynamic_content;
   $response['output'] = $output;
@@ -8729,13 +8730,13 @@ if (isset($_POST['filter_item_b'])) {
       ));
       $row_feature = $statement->fetch(PDO::FETCH_ASSOC);
       $dynamic_content .= '<div class="order-single" style="margin:0;padding:0;background-color:#fff;width:100%;height:100%;border-bottom: 1px solid #666;">
-<div class="col-sm-3 col-xs-3" style="background-color:#fff" onclick=\'location.href="../Product/single.php?id=' . $row['item_description_id'] . '"\'>
+<div class="col-sm-3 col-xs-3" style="background-color:#fff" onclick=\'location.href="'. getBaseURL() . 'user/Product/single.php?id=' . $row['item_description_id'] . '"\'>
   <table>
     <tr style="padding-bottom:30px;"></tr>
     <tr>
       <td>
         <div style="height: 150px;width: 100%">
-          <img style="height:auto;max-width: 100%;width:auto;max-height: 250px;display: block;margin: auto;padding-top:30px " class="img-responsive" src="../../images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg">
+          <img style="height:auto;max-width: 100%;width:auto;max-height: 250px;display: block;margin: auto;padding-top:30px " class="img-responsive" src="' . getImageURL() . 'images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg">
         </div>
       </td>
     </tr>
@@ -8861,7 +8862,7 @@ if (isset($_POST['filter_item_b'])) {
       $save = ($row['mrp'] != 0) ? round(($row['mrp'] - (int) $row['price']) / $row['mrp'] * 100) : 0;
       $dynamic_content .= '<tr>
         <td align="right">
-            <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="../../images/logo/logofill-sm.png">
+            <img style="height:auto;max-width: 100%;width:auto;max-height: 50px;display: block;padding-top:30px; " class="img-responsive" src="' . getImageURL() . 'images/logo/logofill-sm.png">
             </td>
     </tr>
     <tr class="div-wrapper dw" style="padding-top:30px;">
@@ -8997,7 +8998,7 @@ if (isset($_POST['filter_item_b'])) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //$response['pages']=$output;
   if ($dynamic_content == "" || is_null($dynamic_content)) {
-    $dynamic_content .= '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
+    $dynamic_content .= '<center><img src="' . getImageURL() . 'images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Result Found...</h2></center><br><br>';
   }
   $response['content'] = $dynamic_content;
   $response['output'] = $output;
@@ -9426,7 +9427,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
   $from = 'onestoreforallyourneeds@gmail.com';
   $subject = 'Your requested orders';
   $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-  $activate_link = '../Order/myorders.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'user/Order/myorders.php?id=' . $user_id;
   //EMAIL SENDING//
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -9434,7 +9435,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
   $message1 = '
     <table style="width:100%!important">
       <tbody>
-        <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+        <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
           <td>
             <table
               width="100%"
@@ -9452,14 +9453,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                           <td style="width:35%;text-align:left">
                             <a
                               style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                              href="https://www.one-store.ml"
+                              href="'. getBaseURL() . '"
                               rel="noreferrer"
                               target="_blank"
                               data-saferedirecturl=""
                             >
                               <img
                                 border="0"
-                                src="../../images/logo/logo.png"
+                                src="' . getImageURL() . 'images/logo/logo.png"
                                 alt="OneStore.ml"
                                 style="border:none"
                                 class="CToWUd"
@@ -9587,7 +9588,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                   <td valign="top">
                                     <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;">
                                       <a
-                                        href="../Order/myorders.php?id=' . $user_id . '"
+                                        href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '"
                                         style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                         rel="noreferrer"
                                         target="_blank"
@@ -9743,14 +9744,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                   <td valign="middle" width="120" align="center">
                                     <a
                                       style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px"
-                                      href="../Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '"
+                                      href="'. getBaseURL() . 'user/Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '"
                                       rel="noreferrer"
                                       target="_blank"
                                       data-saferedirecturl=""
                                     >
                                       <img
                                         border="0"
-                                        src="../../images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg"
+                                        src="' . getImageURL() . 'images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg"
                                         alt="' . $store_array[$l]['item_name'][$m] . '"
                                         style="border:none;max-width:125px;max-height:125px;margin-top:20px"
                                         class="CToWUd"
@@ -9902,10 +9903,10 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                           <td style="width:40%;text-align:left;padding-top:5px">
                                             <a
                                               style="text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                              href="https://www.one-store.ml"
+                                              href="'. getBaseURL() . '"
                                               ><img
                                                 border="0"
-                                                src="../../images/logo/logo.png"
+                                                src="' . getImageURL() . 'images/logo/logo.png"
                                                 alt="OneStore.ml"
                                                 style="border:none;width: 150px;"
                                                 class="CToWUd"
@@ -10025,7 +10026,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $subject = 'Requested service';
-  $activate_link = '../../Store%20admin/index.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'store-admin/index.php?id=' . $user_id;
   for ($l = 0; $l < $i; $l++) {
     $storerecieve_sql = "SELECT sum(total_amt) AS storerecieve FROM cart  WHERE  user_id=:user_id AND store_id=:store_id";
     $storerecieve_stmt = $pdo->prepare($storerecieve_sql);
@@ -10039,7 +10040,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
     $message2 = '
       <table style="width:100%!important">
         <tbody>
-          <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+          <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
             <td>
               <table
                 width="100%"
@@ -10057,14 +10058,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                             <td style="width:35%;text-align:left">
                               <a
                                 style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                href="https://www.one-store.ml"
+                                href="'. getBaseURL() . '"
                                 rel="noreferrer"
                                 target="_blank"
                                 data-saferedirecturl=""
                               >
                                 <img
                                   border="0"
-                                  src="../../images/logo/logo.png"
+                                  src="' . getImageURL() . 'images/logo/logo.png"
                                   alt="OneStore.ml"
                                   style="border:none"
                                   class="CToWUd"
@@ -10198,7 +10199,7 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                     <td valign="top">
                                       <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;">
                                         <a
-                                          href="../Order/myorders.php?id=' . $user_id . '"
+                                          href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '"
                                           style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                           rel="noreferrer"
                                           target="_blank"
@@ -10351,14 +10352,14 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                             <td valign="middle" width="120" align="center">
                                               <a
                                                 style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px"
-                                                href="../Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '"
+                                                href="'. getBaseURL() . 'user/Product/single.php?id=' . $store_array[$l]['item_description_id'][$m] . '"
                                                 rel="noreferrer"
                                                 target="_blank"
                                                 data-saferedirecturl=""
                                               >
                                                 <img
                                                   border="0"
-                                                  src="../../images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg"
+                                                  src="' . getImageURL() . 'images/' . $store_array[$l]['item_category_id'][$m] . '/' . $store_array[$l]['item_sub_category_id'][$m] . '/' . $store_array[$l]['item_description_id'][$m] . '.jpg"
                                                   alt="' . $store_array[$l]['item_name'][$m] . '"
                                                   style="border:none;max-width:125px;max-height:125px;margin-top:20px"
                                                   class="CToWUd"
@@ -10514,10 +10515,10 @@ if (isset($_POST['user_id'], $_POST['placeorder_mul'])) {
                                                     <td style="width:40%;text-align:left;padding-top:5px">
                                                       <a
                                                         style="text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                                        href="https://www.one-store.ml"
+                                                        href="'. getBaseURL() . '"
                                                         ><img
                                                           border="0"
-                                                          src="../../images/logo/logo.png"
+                                                          src="' . getImageURL() . 'images/logo/logo.png"
                                                           alt="OneStore.ml"
                                                           style="border:none;width: 150px;"
                                                           class="CToWUd"
@@ -10697,7 +10698,7 @@ if (isset($_POST['cancel_product'])) {
   $from = 'onestoreforallyourneeds@gmail.com';
   $subject = 'Order cancelled';
   $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-  $activate_link = '../Order/myorders.php?id=' . $user_id;
+  $activate_link = getBaseURL() . 'user/Order/myorders.php?id=' . $user_id;
   //EMAIL SENDING//
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10705,7 +10706,7 @@ if (isset($_POST['cancel_product'])) {
   $message1 = '
     <table style="width:100%!important">
       <tbody>
-        <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+        <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
           <td>
             <table
               width="100%"
@@ -10723,14 +10724,14 @@ if (isset($_POST['cancel_product'])) {
                           <td style="width:35%;text-align:left">
                             <a
                               style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                              href="https://www.one-store.ml"
+                              href="'. getBaseURL() . '"
                               rel="noreferrer"
                               target="_blank"
                               data-saferedirecturl=""
                             >
                               <img
                                 border="0"
-                                src="../../images/logo/logo.png"
+                                src="' . getImageURL() . 'images/logo/logo.png"
                                 alt="OneStore.ml"
                                 style="border:none"
                                 class="CToWUd"
@@ -10864,7 +10865,7 @@ if (isset($_POST['cancel_product'])) {
                                   <td valign="top">
                                     <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;">
                                       <a
-                                        href="../Order/myorders.php?id=' . $user_id . '"
+                                        href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '"
                                         style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                         rel="noreferrer"
                                         target="_blank"
@@ -11012,14 +11013,14 @@ if (isset($_POST['cancel_product'])) {
                                   <td valign="middle" width="120" align="center">
                                     <a
                                       style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px"
-                                      href="../Product/single.php?id=' . $idid . '"
+                                      href="'. getBaseURL() . 'user/Product/single.php?id=' . $idid . '"
                                       rel="noreferrer"
                                       target="_blank"
                                       data-saferedirecturl=""
                                     >
                                       <img
                                         border="0"
-                                        src="../../images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg"
+                                        src="' . getImageURL() . 'images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $row['item_description_id'] . '.jpg"
                                         alt="' . $row['item_name'] . '"
                                         style="border:none;max-width:125px;max-height:125px;margin-top:20px"
                                         class="CToWUd"
@@ -11167,10 +11168,10 @@ if (isset($_POST['cancel_product'])) {
                                           <td style="width:40%;text-align:left;padding-top:5px">
                                             <a
                                               style="text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                              href="https://www.one-store.ml"
+                                              href="'. getBaseURL() . '"
                                               ><img
                                                 border="0"
-                                                src="../../images/logo/logo.png"
+                                                src="' . getImageURL() . 'images/logo/logo.png"
                                                 alt="OneStore.ml"
                                                 style="border:none;width: 150px;"
                                                 class="CToWUd"
@@ -11290,11 +11291,11 @@ if (isset($_POST['cancel_product'])) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $subject = 'Requested service cancelled by a user';
-  $activate_link = '../../Store%20admin/index.php?id=' . $row['store_id'];
+  $activate_link = getBaseURL() . 'store-admin/index.php?id=' . $row['store_id'];
   $message2 = '
     <table style="width:100%!important">
       <tbody>
-        <tr background="../../images/logo/log2.jpg" width="834px" height="60">
+        <tr background="' . getImageURL() . 'images/logo/log2.jpg" width="834px" height="60">
           <td>
             <table
               width="100%"
@@ -11312,14 +11313,14 @@ if (isset($_POST['cancel_product'])) {
                           <td style="width:35%;text-align:left">
                             <a
                               style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                              href="https://www.one-store.ml"
+                              href="'. getBaseURL() . '"
                               rel="noreferrer"
                               target="_blank"
                               data-saferedirecturl=""
                             >
                               <img
                                 border="0"
-                                src="../../images/logo/logo.png"
+                                src="' . getImageURL() . 'images/logo/logo.png"
                                 alt="OneStore.ml"
                                 style="border:none"
                                 class="CToWUd"
@@ -11453,7 +11454,7 @@ if (isset($_POST['cancel_product'])) {
                                   <td valign="top">
                                     <p style="padding-left:15px;margin-bottom:10px;margin-top: 0px;">
                                       <a
-                                        href="../Order/myorders.php?id=' . $user_id . '"
+                                        href="'. getBaseURL() . 'user/Order/myorders.php?id=' . $user_id . '"
                                         style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                         rel="noreferrer"
                                         target="_blank"
@@ -11601,14 +11602,14 @@ if (isset($_POST['cancel_product'])) {
                                   <td valign="middle" width="120" align="center">
                                     <a
                                       style="color:#027cd8;text-decoration:none;outline:none;color:#fff;font-size:13px"
-                                      href="../Product/single.php?id=' . $idid . '"
+                                      href="'. getBaseURL() . 'user/Product/single.php?id=' . $idid . '"
                                       rel="noreferrer"
                                       target="_blank"
                                       data-saferedirecturl=""
                                     >
                                       <img
                                         border="0"
-                                        src="../../images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $idid . '.jpg"
+                                        src="' . getImageURL() . 'images/' . $row['category_id'] . '/' . $row['sub_category_id'] . '/' . $idid . '.jpg"
                                         alt="' . $row['item_name'] . '"
                                         style="border:none;max-width:125px;max-height:125px;margin-top:20px"
                                         class="CToWUd"
@@ -11755,10 +11756,10 @@ if (isset($_POST['cancel_product'])) {
                                           <td style="width:40%;text-align:left;padding-top:5px">
                                             <a
                                               style="text-decoration:none;outline:none;color:#ffffff;font-size:13px"
-                                              href="https://www.one-store.ml"
+                                              href="'. getBaseURL() . '"
                                               ><img
                                                 border="0"
-                                                src="../../images/logo/logo.png"
+                                                src="' . getImageURL() . 'images/logo/logo.png"
                                                 alt="OneStore.ml"
                                                 style="border:none;width: 150px;"
                                                 class="CToWUd"
