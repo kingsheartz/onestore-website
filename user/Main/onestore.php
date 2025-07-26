@@ -49,23 +49,9 @@ require "../Common/cookie.php";
 //if(isset($_SESSION['id'])){
 ?>
 <script>
-  function getCookieset(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
   $(document).ready(function() {
-    //DELETE THIS COOKIE//document.cookie = "cookieset=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
+    //DELETE THIS COOKIE 
+    // document.cookie = "cookieset=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
     if (getCookieset('cookieset') !== "y") {
       <?php
       if (isset($_SESSION['id'])) {
@@ -116,6 +102,23 @@ require "../Common/cookie.php";
       }
       ?>
     }
+
+    <?php
+    if (isset($_SESSION['error_msg'])) {
+    ?>
+      swal({
+        title: "Error",
+        text: "<?= $_SESSION['error_msg'] ?>",
+        icon: "error",
+        closeOnClickOutside: false,
+        dangerMode: true,
+      }).then(() => {
+        location.href = '../Account/logout.php';
+      });
+    <?php
+      unset($_SESSION['error_msg']);
+    }
+    ?>
   });
   $(window).unload(function() {
     document.cookie = 'mainscrollTop=' + $(window).scrollTop();

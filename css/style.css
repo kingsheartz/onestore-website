@@ -1004,6 +1004,9 @@ a.w3_agile_vimeo:hover {
     padding: 1.5em 0;
     background: #f5f5f5;
 }
+.breadcrumbs .container {
+    width: 100% !important;
+}
 .breadcrumb {
     margin-bottom: 0 !important;
     padding: 0 !important;

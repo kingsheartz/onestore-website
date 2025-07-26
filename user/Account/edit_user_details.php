@@ -1,20 +1,52 @@
 <?php
+ob_start(); // Start output buffering
 session_start();
+
+// Check if session exists and has valid ID
 if (!isset($_SESSION['id'])) {
-  header("location:../Main/onestore.php");
+  // Set error message in session
+  $_SESSION['error_msg'] = "Your session has expired. Please login again.";
+  header("location:../Account/login.php");
+  exit();
 }
+
 require "../Main/header.php";
-if (isset($_SESSION['id'])) {
-  $id = $_SESSION['id'];
-} else if (isset($_GET['id'])) {
-  $id = $_GET['id'];
+
+try {
+  // Get user ID from session or query parameter
+  if (isset($_SESSION['id'])) {
+    $id = $_SESSION['id'];
+  } else if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+  } else {
+    throw new Exception("User ID not found");
+  }
+
+  // Validate that ID is numeric
+  if (!is_numeric($id)) {
+    throw new Exception("Invalid user ID");
+  }
+
+  // Fetch user details
+  $usersql = 'SELECT * FROM users WHERE users_id = :id';
+  $userstmt = $pdo->prepare($usersql);
+  $userstmt->execute(['id' => $id]);
+  $userrow = $userstmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$userrow) {
+    throw new Exception("Your session has expired. Please login again.");
+  }
+
+  // Fetch delivery details
+  $susersql = 'SELECT * FROM user_delivery_details WHERE type="permanent" AND user_id = :id';
+  $suserstmt = $pdo->prepare($susersql);
+  $suserstmt->execute(['id' => $id]);
+  $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+  $_SESSION['error_msg'] = $e->getMessage();
+  header("location:../Main/onestore.php");
+  exit();
 }
-$usersql = 'select* from users where user_id=' . $id;
-$userstmt = $pdo->query($usersql);
-$userrow = $userstmt->fetch(PDO::FETCH_ASSOC);
-$susersql = 'select* from user_delivery_details where type="permanent" and user_id=' . $id;
-$suserstmt = $pdo->query($susersql);
-$suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <style type="text/css">
   .left-log {
@@ -285,7 +317,7 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                   onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                   maxlength="10"
                   pattern="^(\d{0}|\d{10})$"
-                  title="Phone Number Format (9876543210)- 10 digits"/>
+                  title="Phone Number Format (9876543210)- 10 digits" />
                 <label class="form-label" for="phone">Phone</label>
                 <span id="dis_ph" class="input-group-btn">
                   <button
