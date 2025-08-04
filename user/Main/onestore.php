@@ -266,7 +266,7 @@ require "../Common/cookie.php";
   <!-- //top-header and slider -->
   <!-- top-brands -->
   <?php
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ---------------------------------------------------------------------------------------------------------------------------------
   //Generate Dynamic Loading
   function randomGenerate($min, $max, $quantity)
   {
@@ -275,7 +275,7 @@ require "../Common/cookie.php";
     return array_slice($numbers, 0, $quantity);
   }
   //Generate Dynamic Loading
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ---------------------------------------------------------------------------------------------------------------------------------
   /*COLOR PICKER*/
   $color = array('scroll_handle_orange', 'scroll_handle_blue', 'scroll_handle_red', 'scroll_handle_cyan', 'scroll_handle_magenta', 'scroll_handle_green', 'scroll_handle_green1', 'scroll_handle_peach', 'scroll_handle_munsell', 'scroll_handle_carmine', 'scroll_handle_lightbrown', 'scroll_handle_hanblue', 'scroll_handle_kellygreen');
   $bgcolor = array('orange', '#0c99cc', 'red', 'cyan', 'magenta', 'green', '#006622', '#FF6666', '#E6BF00', '#AB274F', '#C46210', '#485CBE', '#65BE00');

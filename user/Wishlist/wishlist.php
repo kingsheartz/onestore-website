@@ -75,7 +75,7 @@ require "../Main/header.php";
     transition: .3s;
   }
 
-  /*///////////////////////////////////////////////////////////////*/
+  /*---------------------------------------------------------------*/
   /*CREATE WISHLIST*/
   .create_wishlist_table td {
     align-items: left;
@@ -179,7 +179,7 @@ require "../Main/header.php";
     display: inline-flex;
   }
 
-  /*///////////////////////////////////////////////////////////////*/
+  /*---------------------------------------------------------------*/
 </style>
 <!-- breadcrumbs -->
 <div class="breadcrumbs" style="background-color: #eaeded">
@@ -429,7 +429,7 @@ require "../Main/header.php";
                     $stmt_wish1 = $pdo->prepare($sql_wish1);
                     $stmt_wish1->execute(array(':wish_id' => $row_wish['wishlist_id']));
                     $row_wish1 = $stmt_wish1->fetch(PDO::FETCH_ASSOC);
-                    ////////////////////////////////////////////////////////////////////////
+                    // ------------------------------------------------------------------------
                     if (strlen($row_wish['list_name']) < 15) {
                       $listname = $row_wish['list_name'];
                     } else {

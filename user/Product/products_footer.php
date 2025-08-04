@@ -321,7 +321,7 @@
       var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
     }
     $('#input_apk_link').val(link);
-    ///////////WHATSAPP///////////
+    // ---------WHATSAPP--------- //
     $('.whatsapp_apk').html('');
     var wa_content =
       '<div style="margin-left:15px;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=Download Apk Now :- ' +
@@ -414,9 +414,9 @@
     </div>
   </div>
 </div>
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////----->
+<!----------------------------------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------------------------------->
 <!-- Detail about shops-->
 <!--ADD TO CART-->
 <div id="avail_stores" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal modal-xl hidescroll" style="height: 90%;position:fixed">
@@ -806,7 +806,7 @@ if (isset($_SESSION['onestore_id'])) {
 <!-----------------------------------------SINGLE JSS----------------------------------------------------------------->
 <!-----------------------------------------SINGLE JSS----------------------------------------------------------------->
 <script type="text/javascript">
-  //////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------ //
   var capson_warning = document.getElementsByClassName("capson_warning");
   var password_field = document.getElementsByClassName('password_fields');
   for (var i = 0; i < password_field.length; i++) {
@@ -820,7 +820,7 @@ if (isset($_SESSION['onestore_id'])) {
       }
     });
   }
-  //////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------ //
   $('.tab-pane').on('click', function() {
     $('.tab-pane').css('border', '0px none');
     $('.tab-pane').css('border-bottom', '1px solid transparent');
@@ -880,7 +880,7 @@ if (isset($_SESSION['onestore_id'])) {
   $('#side_nav_bar_lock').click(function() {
     closeNav();
   });
-  ////////////////////////////////BREAK SIDE NAV EVENT/////////////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------ BREAK SIDE NAV EVENT--------------------------------------------- //
   $('#list_enda').click(function() {
     $("#side_cat_list_enda").css("display", "none");
     $("#side_cat_list_endb").css("display", "none");
@@ -1012,7 +1012,7 @@ if (isset($_SESSION['onestore_id'])) {
     $("#side_cat_list_end_default").css("display", "none");
     $("#side_cat_list_endj").css("display", "block");
   });
-  //////////////////////////////////BREAK SIDE NAV EVENT/////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------ BREAK SIDE NAV EVENT--------------------------------------------- //
   var dropdown = document.getElementsByClassName("dropdown-btn");
   var i;
   for (i = 0; i < dropdown.length; i++) {
@@ -1156,8 +1156,8 @@ if (isset($_SESSION['onestore_id'])) {
       $("#display2").hide();
     }
   }
-  /*/////////////////////////////////MODAL SIGN IN//////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+  /*---------------------------------MODAL SIGN IN---------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------------------------------------*/
   function signup() {
     location.href = "../Account/registered.php";
     return;
@@ -1386,8 +1386,8 @@ if (isset($_SESSION['onestore_id'])) {
     //    echo $fourRandomDigit;
     //
     ?>
-  /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+  /*------------------------------------------------------------------------------------------------------------------------------*/
+  /*------------------------------------------------------------------------------------------------------------------------------*/
 </script>
 <!-- //navigation -->
 <!-- navigation -->
@@ -1670,11 +1670,11 @@ if (isset($_SESSION['onestore_id'])) {
         }
       }
     }); //closing ajax
-    ////////////////////////////////////////////////////////////////////////////////////////
+    // ---------------------------------------------------------------------------------------/
     dis_locate();
     $('#update_user_details').show();
     document.getElementById("location").innerHTML = "You";
-    ///////////////////////////////////////////////////////////////////////////////////////
+    // ---------------------------------------------------------------------------------------/
     $("#popup2").hide();
     $("#popup2_background").hide();
     $("#popup2_wrapper").hide();
@@ -2015,7 +2015,7 @@ if (isset($_SESSION['onestore_id'])) {
 <!-- Slider -->
 <script type="text/javascript" src="../../js/bxslider.min.js"></script>
 <script type="text/javascript" src="../../js/script.slider.js"></script>
-<!-- Bootstrap Core JavaScript ///IMPORTANT///-->
+<!-- Bootstrap Core JavaScript - IMPORTANT --->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/skdslider.min.js"></script>
 <link href="../../css/skdslider.css" rel="stylesheet">

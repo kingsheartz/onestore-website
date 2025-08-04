@@ -52,9 +52,19 @@ if (($row2) && ($row2['activation_code'] == $code)) {
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
+<style>
+  body {
+    background: url(../../../../images/logo/check1.jpg) no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+  }
+</style>
 
-<body class="hold-transition login-page"
-  style="background: url(../../../../images/logo/check1.jpg) no-repeat;position: absolute;background-position: center;width: 100%;">
+<body class="hold-transition login-page">
   <div
     style="background-color: rgba(0,0,0,0.65); position: absolute;width: 100%;height: 100%;align-items: center;justify-content: center;display: flex;">
     <div class="register-box" style="display: inline-flex;">
@@ -133,7 +143,7 @@ if (($row2) && ($row2['activation_code'] == $code)) {
   </script>
 
   <script type="text/javascript">
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
     var capson_warning = document.getElementsByClassName("capson_warning");
     var password_field = document.getElementsByClassName('password_fields');

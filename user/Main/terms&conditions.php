@@ -451,13 +451,13 @@ require "header.php";
     ?>
   </script>
   <script type="text/javascript" language="javascript">
-    $(document).ready(function () { /// Wait till page is loaded
+    $(document).ready(function () { // Wait till page is loaded
       $('#bk-btn').click(function () {
         $('.bk-block').load('property-detailed.php #main', function () {
-          /// can add another function here
+          // can add another function here
         });
       });
-    }); //// End of Wait till page is loaded
+    }); // End of Wait till page is loaded
   </script>
 </body>
 

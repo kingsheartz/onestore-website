@@ -32,9 +32,19 @@ if (!isset($_SESSION['onestore_forgot_pass_email'])) {
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
+<style>
+  body {
+    background: url(../../../../images/logo/log2.jpg) no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+  }
+</style>
 
-<body onload="verifyotp()" class="hold-transition login-page"
-  style="background: url(../../../../images/logo/log2.jpg) no-repeat;position: absolute;background-position: center;width: 100%;">
+<body onload="verifyotp()" class="hold-transition login-page">
   <!--RESPONSE AWAITING-->
   <div class="background_loader"></div>
   <div class="std_loader"></div>
