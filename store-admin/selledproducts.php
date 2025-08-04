@@ -43,7 +43,7 @@ require "head.php";
       }
     </style>
     <?php
-    $id = $_SESSION['id'];
+    $id = $_SESSION['onestore_id'];
     require "pdo.php";
     $stmt = $pdo->query(
       "select sum(new_orders.sub_total)  FROM new_orders

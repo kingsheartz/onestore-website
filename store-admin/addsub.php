@@ -9,7 +9,7 @@ require "head.php";
     ?>
     <?php
     require "pdo.php";
-    $id = $_SESSION['id'];
+    $id = $_SESSION['onestore_id'];
     ?>
     <style type="text/css">
       #close {

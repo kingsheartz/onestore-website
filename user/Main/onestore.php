@@ -46,7 +46,7 @@ require "../Common/cookie.php";
   }
 </style>
 <?php
-//if(isset($_SESSION['id'])){
+//if(isset($_SESSION['onestore_id'])){
 ?>
 <script>
   $(document).ready(function() {
@@ -54,13 +54,13 @@ require "../Common/cookie.php";
     // document.cookie = "cookieset=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
     if (getCookieset('cookieset') !== "y") {
       <?php
-      if (isset($_SESSION['id'])) {
+      if (isset($_SESSION['onestore_id'])) {
       ?>
         $.ajax({
           url: "../Common/functions.php", //passing page info
           data: {
             "getcookie": 1,
-            "userid": <?= $_SESSION['id'] ?>
+            "userid": <?= $_SESSION['onestore_id'] ?>
           }, //form data
           type: "post", //post data
           dataType: "json", //datatype=json format
@@ -104,11 +104,11 @@ require "../Common/cookie.php";
     }
 
     <?php
-    if (isset($_SESSION['error_msg'])) {
+    if (isset($_SESSION['onestore_error_msg'])) {
     ?>
       swal({
         title: "Error",
-        text: "<?= $_SESSION['error_msg'] ?>",
+        text: "<?= $_SESSION['onestore_error_msg'] ?>",
         icon: "error",
         closeOnClickOutside: false,
         dangerMode: true,
@@ -116,7 +116,7 @@ require "../Common/cookie.php";
         location.href = '../Account/logout.php';
       });
     <?php
-      unset($_SESSION['error_msg']);
+      unset($_SESSION['onestore_error_msg']);
     }
     ?>
   });
@@ -969,8 +969,8 @@ require "../Common/cookie.php";
         </div>
         <!--banner-bottom-->
         <?php
-        if (isset($_SESSION['id'])) {
-          $presql = "select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['id'];
+        if (isset($_SESSION['onestore_id'])) {
+          $presql = "select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['onestore_id'];
           $prest = $pdo->query($presql);
           $precnt = $prest->rowCount();
           if ($precnt > 0) {
@@ -1777,7 +1777,7 @@ require "../Common/cookie.php";
                     </div>
                   </div>
                   <?php
-                  if (isset($_SESSION['id'])) {
+                  if (isset($_SESSION['onestore_id'])) {
                   ?>
                     <div class="col-md-4">
                       <div class="single-product-widget">
@@ -1788,7 +1788,7 @@ require "../Common/cookie.php";
                           "select views ,item_keys.item_description_id from item_keys
                           JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
                           join item on item.item_id=item_description.item_id
-                          where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC limit 3"
+                          where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC limit 3"
                         );
                         $isready = $ran->rowCount();
                         if ($isready != 0 && is_null($isready) == false) {

@@ -8,9 +8,9 @@ session_start();
 try{
   $pdo=new PDO("mysql:host=sql204.epizy.com;port=3306;dbname=epiz_28189397_os;charset=utf8","epiz_28189397","KinGsHearTz123");
   $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-  $_SESSION['success']="Connected successfully";
+  $_SESSION['onestore_success']="Connected successfully";
 }catch(PDOException $e){
-  $_SESSION['error']="OOPS !!! CONNECTION CAN'T BE ESTABLISHED";
+  $_SESSION['onestore_error']="OOPS !!! CONNECTION CAN'T BE ESTABLISHED";
 }
 */
 if (isset($_POST['setstorepass'])) {

@@ -209,7 +209,7 @@
     <?php
     $colors = array("red", "green", "#7d7d7d", "black", "#000c96", "dodgerblue", "#ff9800");
     $stmt = $pdo->query(
-      "select  * from to_do_list_store where store_id=" . $_SESSION['id']
+      "select  * from to_do_list_store where store_id=" . $_SESSION['onestore_id']
     );
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     ?>

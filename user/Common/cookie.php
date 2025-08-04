@@ -81,7 +81,7 @@
 
   function setcookie(val) {
     <?php
-    if (isset($_SESSION['id'])) {
+    if (isset($_SESSION['onestore_id'])) {
     ?>
       if (val == 1) {
         var pc = 1;
@@ -112,7 +112,7 @@
           "pc": pc,
           "fc": fc,
           "tc": tc,
-          "userid": <?= $_SESSION['id'] ?>
+          "userid": <?= $_SESSION['onestore_id'] ?>
         }, //form data
         type: "post", //post data
         dataType: "json", //datatype=json format

@@ -588,7 +588,7 @@ function randomGen($min, $max, $quantity)
     }
   }
   <?php
-  if (isset($_SESSION['id'])) {
+  if (isset($_SESSION['onestore_id'])) {
   ?>
 
     function check_mul() {
@@ -597,7 +597,7 @@ function randomGen($min, $max, $quantity)
         data: {
           "check_mul": 1,
           "key": filter,
-          "user": <?= $_SESSION['id'] ?>
+          "user": <?= $_SESSION['onestore_id'] ?>
         }, //form data
         type: "post", //post data
         dataType: "json", //datatype=json format
@@ -703,8 +703,8 @@ function randomGen($min, $max, $quantity)
     <div class="row" style="margin: 0px;">
       <div class="col-md-12" style="margin:0px;padding: 0px;width: 100%">
         <?php
-        if (isset($_SESSION['id'])) {
-          $id = $_SESSION['id'];
+        if (isset($_SESSION['onestore_id'])) {
+          $id = $_SESSION['onestore_id'];
           $sqlc = "select * from cart where user_id=:id";
           $stmtc = $pdo->prepare($sqlc);
           $stmtc->execute(array(
@@ -734,7 +734,7 @@ function randomGen($min, $max, $quantity)
                     <table class="shop_table cart" border="0px" style="background-color:#ffffff;margin: 0px;margin-top: -20px">
                       <tr>
                         <?php
-                        $id = $_SESSION['id'];
+                        $id = $_SESSION['onestore_id'];
                         $sql1 = "select * from cart where user_id=:id order by item_description_id";
                         $stmt1 = $pdo->prepare($sql1);
                         $stmt1->execute(array(
@@ -1155,7 +1155,7 @@ function randomGen($min, $max, $quantity)
                   ?>
                   <hr class="make_divc" style="margin-top: 40px;">
                   <?php
-                  $id = $_SESSION['id'];
+                  $id = $_SESSION['onestore_id'];
                   $sql = "select sum(product_details.price*cart.quantity) as subtotal from cart
                           inner join item_description on item_description.item_description_id=cart.item_description_id
                           inner join product_details on product_details.item_description_id=cart.item_description_id
@@ -1709,7 +1709,7 @@ function randomGen($min, $max, $quantity)
               join item on item.item_id=item_description.item_id
               join product_details on item_description.item_description_id=product_details.item_description_id
               join sub_category on item.sub_category_id=sub_category.sub_category_id
-              where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.views as UNSIGNED) DESC"
+              where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.views as UNSIGNED) DESC"
             );
             $isready = $viewstmt->rowCount();
             if ($isready != 0 && is_null($isready) == false) {
@@ -1798,7 +1798,7 @@ function randomGen($min, $max, $quantity)
               JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
               join item on item.item_id=item_description.item_id
               join sub_category on item.sub_category_id=sub_category.sub_category_id
-              where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
+              where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
             );
             $isready = $ran->rowCount();
             if ($isready != 0 && is_null($isready) == false) {

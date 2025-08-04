@@ -1,6 +1,6 @@
 <?php
 session_start();
-$id = $_SESSION['id'];
+$id = $_SESSION['onestore_id'];
 require "pdo.php";
 $stmt = $pdo->query(
   "select *  FROM new_orders

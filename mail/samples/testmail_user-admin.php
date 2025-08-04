@@ -430,7 +430,7 @@ for ($j = 0; $j < $i; $j++) {
 
       if(!$mail->send()){
       $response['status']="error4";
-      $_SESSION['error']="Email can't Send";
+      $_SESSION['onestore_error']="Email can't Send";
         //echo "Mailer Error: " . $mail->ErrorInfo;
       }
       else{

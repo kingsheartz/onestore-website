@@ -158,7 +158,7 @@ require "head.php";
     <div id="printarea">
       <?php
       require "pdo.php";
-      $id = $_SESSION['id'];
+      $id = $_SESSION['onestore_id'];
       $query = "select *  FROM new_orders
                 JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
                 JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id

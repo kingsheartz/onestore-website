@@ -7,7 +7,7 @@
           <img class="img-responsive" src="images/logo\logo-high.png">
         </p>
         <p style="text-decoration: none;padding-right: 5px;margin-top: 3px;font-size: 11px;">
-          <?= $_SESSION['username'] ?>
+          <?= $_SESSION['onestore_username'] ?>
           <i class="fa fa-circle" style="margin-left:12px;color: #3c763d;display: inline-block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit;text-rendering: auto; -webkit-font-smoothing: antialiased"></i>
           Online
         </p>
@@ -78,7 +78,7 @@
       </button>
       <?php
       require "pdo.php";
-      $id = $_SESSION['id'];
+      $id = $_SESSION['onestore_id'];
       $stmt = $pdo->query(
         "select *  FROM new_orders
                           JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
@@ -94,7 +94,7 @@
                           WHERE new_ordered_products.delivery_status='pending' and store.store_id=$id"
       );
       $stmtn = $stmt->rowCount();
-      $query1 = "SELECT COUNT(*) FROM chats WHERE rname='" . $_SESSION['username'] . "' AND stat=0";
+      $query1 = "SELECT COUNT(*) FROM chats WHERE rname='" . $_SESSION['onestore_username'] . "' AND stat=0";
       $statement1 = $pdo->prepare($query1);
       $statement1->execute();
       $row1 = $statement1->fetch(PDO::FETCH_ASSOC);

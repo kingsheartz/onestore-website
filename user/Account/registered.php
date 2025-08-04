@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -279,19 +279,19 @@ require "../Main/header.php";
             <h5><i class="fa fa-info-circle fa-lg"></i>&nbsp;profile information</h5>
             <form action="#" onsubmit="return err_display_fn();">
               <?php
-              if (isset($_SESSION['reg_success'])) {
+              if (isset($_SESSION['onestore_reg_success'])) {
               ?>
                 <div class="alert alert-success">Your message was sent successfully!</div>
               <?php
-                unset($_SESSION['reg_success']);
+                unset($_SESSION['onestore_reg_success']);
               }
               ?>
               <?php
-              if (isset($_SESSION['error'])) {
+              if (isset($_SESSION['onestore_error'])) {
               ?>
-                <div class="alert alert-danger"><?= $_SESSION['reg_error'] ?></div>
+                <div class="alert alert-danger"><?= $_SESSION['onestore_reg_error'] ?></div>
               <?php
-                unset($_SESSION['reg_error']);
+                unset($_SESSION['onestore_reg_error']);
               }
               ?>
               <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px">

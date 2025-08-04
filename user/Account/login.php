@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -32,16 +32,16 @@ require "../Main/header.php";
       <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s" style="border-top: 10px solid #fe9126;border-radius: 5px;">
         <form name="login_form">
           <?php
-          if (isset($_SESSION['errorlogin'])) {
+          if (isset($_SESSION['onestore_errorlogin'])) {
           ?>
-            <div class="alert alert-danger"><?= $_SESSION['errorlogin'] ?></div>
+            <div class="alert alert-danger"><?= $_SESSION['onestore_errorlogin'] ?></div>
           <?php
-            unset($_SESSION['errorlogin']);
+            unset($_SESSION['onestore_errorlogin']);
           }
           ?>
-          <!--<?/*php if(isset($_SESSION['errorlogin'])){
-echo'<p style="color:red;margin-top:-5px;float:left;padding-bottom:15px;">*'.$_SESSION['errorlogin']."</p>";
-unset($_SESSION['errorlogin']);
+          <!--<?/*php if(isset($_SESSION['onestore_errorlogin'])){
+echo'<p style="color:red;margin-top:-5px;float:left;padding-bottom:15px;">*'.$_SESSION['onestore_errorlogin']."</p>";
+unset($_SESSION['onestore_errorlogin']);
 }*/ ?>-->
           <input type="email" name="email" id="email" placeholder="Email Address" required=" ">
           <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">

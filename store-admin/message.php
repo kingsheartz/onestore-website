@@ -17,7 +17,7 @@ require "head.php";
     <?php
     require 'pdo.php';
     if (isset($_POST['status'])) {
-      $sql = "UPDATE chats SET stat=1 where rname='" . $_SESSION['username'] . "' AND uname='admin'";
+      $sql = "UPDATE chats SET stat=1 where rname='" . $_SESSION['onestore_username'] . "' AND uname='admin'";
       $st = $pdo->prepare($sql);
       $st->execute();
     }
@@ -434,7 +434,7 @@ require "head.php";
           $cn = 0;
           while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $cn++;
-            $query1 = "SELECT COUNT(*) FROM chats WHERE uname='admin' AND rname='" . $_SESSION['username'] . "' AND stat=0";
+            $query1 = "SELECT COUNT(*) FROM chats WHERE uname='admin' AND rname='" . $_SESSION['onestore_username'] . "' AND stat=0";
             $statement1 = $pdo->prepare($query1);
             $statement1->execute();
             $row1 = $statement1->fetch(PDO::FETCH_ASSOC);
@@ -461,10 +461,10 @@ require "head.php";
                 $statement = $pdo->prepare($query1);
                 $statement->execute(array(':name' => $_GET['name']));
                 $row1 = $statement->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['name'] = $row1['username'];
+                $_SESSION['onestore_name'] = $row1['username'];
               ?>
                 <span class="conimg"><i class="fa fa-user-circle-o" style="color:white;"></i></span>
-                <h4><?= $_SESSION['name'] ?></h4>
+                <h4><?= $_SESSION['onestore_name'] ?></h4>
               <?php
               }
               ?>
@@ -511,10 +511,10 @@ require "head.php";
           <form id="myform" method="POST" style="overflow-y: scroll;">
             <div class="inner_div" id="chathist">
               <input type="hidden" id="rname" name="rname" value="admin">
-              <input type="hidden" id="uname" name="uname" value="<?= $_SESSION['username'] ?>">
+              <input type="hidden" id="uname" name="uname" value="<?= $_SESSION['onestore_username'] ?>">
               <?php
               require 'pdo.php';
-              $c = $_SESSION['username'];
+              $c = $_SESSION['onestore_username'];
               $query = "SELECT * FROM chats where (uname='$c' and rname='admin') or (uname='admin' and rname='$c')";
               $run = $pdo->query($query);
               $i = 0;

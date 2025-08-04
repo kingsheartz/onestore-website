@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
-$uid = $_SESSION['id'];
+$uid = $_SESSION['onestore_id'];
 $sql = "select item.category_id,item.sub_category_id,item_description.item_description_id,cart.quantity,cart.store_id,item.item_name,product_details.price from cart
         inner join item_description on cart.item_description_id=item_description.item_description_id
         inner join item on item_description.item_id=item.item_id
@@ -339,7 +339,7 @@ $pdt_cnt = $stmt->rowCount();
                   $mrp_chrg = 0;
                   $service_chrg = 0;
                   $base = 0;
-                  $uid = $_SESSION['id'];
+                  $uid = $_SESSION['onestore_id'];
                   $sql = "select DISTINCT c.cart_id,i.item_id,id.item_description_id,i.item_name,pd.price,i.price as mrp,c.quantity,c.total_amt from cart c
                           inner join item_description id on c.item_description_id=id.item_description_id
                           inner join item i on i.item_id=id.item_id
@@ -651,7 +651,7 @@ require "../Main/footer.php";
       toastr.error('Require billing details!!!')
       return;
     } else if (checkBox_user.checked == true) {
-      var uid = "<?= $_SESSION['id'] ?>";
+      var uid = "<?= $_SESSION['onestore_id'] ?>";
       var pdt_cnt = "<?= $pdt_cnt ?>";
       var total_amt = "<?= $total_amt ?>";
       var data = {
@@ -816,7 +816,7 @@ require "../Main/footer.php";
       }
       //PIN check
       else {
-        var uid = "<?= $_SESSION['id'] ?>";
+        var uid = "<?= $_SESSION['onestore_id'] ?>";
         var pdt_cnt = "<?= $pdt_cnt ?>";
         var total_amt = "<?= $total_amt ?>";
         var data = {

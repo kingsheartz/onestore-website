@@ -1078,7 +1078,7 @@ $(document).ready(function() {
     return " ";
   }
   <?php
-		if (isset($_SESSION['id']) && !isset($_SESSION['cart_count'])) {
+		if (isset($_SESSION['onestore_id']) && !isset($_SESSION['onestore_cart_count'])) {
 			?>
   var email = getCookie("OneStore_email");
   var pass = getCookie("OneStore_password");
@@ -1123,14 +1123,14 @@ $(document).ready(function() {
   }
   <?php
 		}
-		if (isset($_SESSION['id']) && !isset($_SESSION['cart_count'])) {
+		if (isset($_SESSION['onestore_id']) && !isset($_SESSION['onestore_cart_count'])) {
 			?>
   //CART COUNT
   $.ajax({
     url: "../Common/functions.php", //passing page info
     data: {
       "cartcnt": 1,
-      "user": "<?= $_SESSION['id'] ?>"
+      "user": "<?= $_SESSION['onestore_id'] ?>"
     }, //form data
     type: "post", //post data
     dataType: "json", //datatype=json format

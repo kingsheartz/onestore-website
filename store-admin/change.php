@@ -478,7 +478,7 @@ require "head.php";
             </span><br>
             <div class="row">
               <?php
-              $id = $_SESSION['id'];
+              $id = $_SESSION['onestore_id'];
               $query = "SELECT * FROM item  JOIN item_description ON item.item_id=item_description.item_id JOIN product_details ON product_details.item_description_id=item_description.item_description_id where item_description.item_id=$it and product_details.store_id=$id";
               $st = $pdo->query($query);
               $tr = $st->rowCount();

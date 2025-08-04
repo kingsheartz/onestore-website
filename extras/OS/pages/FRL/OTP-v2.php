@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['forgot_pass_email'])) {
+if (!isset($_SESSION['onestore_forgot_pass_email'])) {
   header('location:forgot-password-v2.html');
   return;
 }
@@ -145,7 +145,7 @@ if (!isset($_SESSION['forgot_pass_email'])) {
       $('.background_loader').show();
       $('.std_loader').show();
 
-      var email = "<?= $_SESSION['forgot_pass_email'] ?>";
+      var email = "<?= $_SESSION['onestore_forgot_pass_email'] ?>";
 
       $.ajax({
         url: "../../../../user/Common/functions.php", //passing page info

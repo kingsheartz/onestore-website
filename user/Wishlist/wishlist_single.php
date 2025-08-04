@@ -575,8 +575,8 @@ $rowcount = $row_single_div['checksingle'];
           return array_slice($numbers, 0, $quantity);
         }
         //Generate Dynamic Loading
-        if (isset($_SESSION['id'])) {
-          $id = $_SESSION['id'];
+        if (isset($_SESSION['onestore_id'])) {
+          $id = $_SESSION['onestore_id'];
           $sqlc = "select * from wishlist_items where wishlist_id=:wid";
           $stmtc = $pdo->prepare($sqlc);
           $stmtc->execute(array(
@@ -604,7 +604,7 @@ $rowcount = $row_single_div['checksingle'];
                 <div class="woocommerce" style="padding: 0;">
                   <form method="post" action="#" class="hidescroll" style="overflow-x: hidden;width: 100%">
                     <?php
-                    $id = $_SESSION['id'];
+                    $id = $_SESSION['onestore_id'];
                     $sql1 = "select * from wishlist_items where wishlist_id=:wid order by item_description_id";
                     $stmt1 = $pdo->prepare($sql1);
                     $stmt1->execute(array(

@@ -1,9 +1,9 @@
 <?php
 session_start();
-$_SESSION['failed'] = "Unauthorised entry is prohibited";
+$_SESSION['onestore_failed'] = "Unauthorised entry is prohibited";
 try {
   if (isset($_GET['click'])) {
-    $_SESSION['failed'] = "The account is already activated <br> (or) <br> doesn't exist!";
+    $_SESSION['onestore_failed'] = "The account is already activated <br> (or) <br> doesn't exist!";
   }
 } catch (Exception $e) {
   return;
@@ -113,10 +113,10 @@ try {
   </div>
   <div id="main">
     <?php
-    if (isset($_SESSION['failed'])) {
+    if (isset($_SESSION['onestore_failed'])) {
       echo '<div id="cont"><div style="padding-top:100px;"><center><a href="../Main/onestore.php" ><img src="../../images/logo/logomail.png"  ></a></center></div>';
       echo '<div id="error">';
-      echo "<p style='text-align:center;font-size:42px;color:white;padding-top:5%;'><i style='color:yellow' class='fa fa-warning'></i> " . $_SESSION['failed'] . " <span style='color:red'>!!!</span></p><br>";
+      echo "<p style='text-align:center;font-size:42px;color:white;padding-top:5%;'><i style='color:yellow' class='fa fa-warning'></i> " . $_SESSION['onestore_failed'] . " <span style='color:red'>!!!</span></p><br>";
       echo "<center><a style='font-size:34px;color:white;font-weight:bold;text-decoration:none' href='../Account/login.php'><i style='color:#FFB04A' class='fas fa-hand-point-right'></i> <span style='color:red'><u>Log In</u></span></a></center>";
       echo '</div></div>';
     }

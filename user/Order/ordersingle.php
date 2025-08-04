@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 if (isset($_GET['nopid'])) {
@@ -365,7 +365,7 @@ require "../Common/pdo.php";
               WHERE users.user_id=:user_id and new_ordered_products.new_ordered_products_id=:nopid ";
     $statement = $pdo->prepare($query);
     $statement->execute(array(
-      ':user_id' => $_SESSION['id'],
+      ':user_id' => $_SESSION['onestore_id'],
       ':nopid' => $nopid
     ));
     $flag = 0;

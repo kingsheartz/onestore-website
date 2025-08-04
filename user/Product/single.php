@@ -3,8 +3,8 @@ require "../Product/single_header.php";
 require "../Main/map.php";
 require "../Common/pdo.php";
 $item_description_id = $_GET['id'];
-if (isset($_GET['id'], $_SESSION['id'])) {
-  $check = $pdo->query('select item_description_id from item_keys where item_description_id=' . $_GET['id'] . ' and user_id=' . $_SESSION['id']);
+if (isset($_GET['id'], $_SESSION['onestore_id'])) {
+  $check = $pdo->query('select item_description_id from item_keys where item_description_id=' . $_GET['id'] . ' and user_id=' . $_SESSION['onestore_id']);
   if ($check->rowCount() > 0) {
     $viewedsql = $pdo->prepare("update item_keys set views=views+1,date_of_preview=:dop where item_description_id=" . $_GET['id']);
     $date = date("Y\-m\-d");
@@ -15,7 +15,7 @@ if (isset($_GET['id'], $_SESSION['id'])) {
     $viewedsql = $pdo->prepare("insert into item_keys (views,user_id,item_description_id,date_of_preview) values (1,:uid,:idid,:dop)");
     $date = date("Y\-m\-d");
     $viewedsql->execute(array(
-      ':uid' => $_SESSION['id'],
+      ':uid' => $_SESSION['onestore_id'],
       ':idid' => $_GET['id'],
       ':dop' => $date
     ));
@@ -1683,8 +1683,8 @@ function randomGen($min, $max, $quantity)
                 $myreview = '0';
                 //USER REVIEW
                 //-------------------------------------------------------------------------------------------------------------------
-                if (isset($_SESSION['id'])) {
-                  $myreviewstmt = $pdo->query("select ordered_cnt,review,rating,date_of_review as date,users.first_name,users.last_name from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id=" . $_SESSION['id']);
+                if (isset($_SESSION['onestore_id'])) {
+                  $myreviewstmt = $pdo->query("select ordered_cnt,review,rating,date_of_review as date,users.first_name,users.last_name from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id=" . $_SESSION['onestore_id']);
                   $myreviewcount = $myreviewstmt->rowCount();
                   if ($myreviewcount != 0) {
                     $myreviewrow = $myreviewstmt->fetch(PDO::FETCH_ASSOC);
@@ -1755,7 +1755,7 @@ function randomGen($min, $max, $quantity)
                     //
                     //USER RATING & REVIEW
                     else {
-                      $checkbuysql = $pdo->query("select ordered_cnt,users.first_name,users.last_name from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id=" . $_SESSION['id'] . " and item_keys.ordered_cnt>0");
+                      $checkbuysql = $pdo->query("select ordered_cnt,users.first_name,users.last_name from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id=" . $_SESSION['onestore_id'] . " and item_keys.ordered_cnt>0");
                       $checkbuycnt = $checkbuysql->rowCount();
                       if (is_null($checkbuycnt) == false && $checkbuycnt != 0) {
                         $checkbuy = $checkbuysql->fetch(PDO::FETCH_ASSOC);
@@ -1779,8 +1779,8 @@ function randomGen($min, $max, $quantity)
                             <div class="clearfix"> </div>
                             <label class="form-label" for="reviewinput">Write a review <i class="fas fa-pen"></i>
                               <?php
-                              if (isset($_SESSION['id'])) {
-                                $checkbuysql = $pdo->query("select rating,review from item_keys where item_description_id=" . $_GET['id'] . " and user_id=" . $_SESSION['id']);
+                              if (isset($_SESSION['onestore_id'])) {
+                                $checkbuysql = $pdo->query("select rating,review from item_keys where item_description_id=" . $_GET['id'] . " and user_id=" . $_SESSION['onestore_id']);
                                 $checkbuy = $checkbuysql->fetch(PDO::FETCH_ASSOC);
                                 if ($checkbuy) {
                                   if ($checkbuy['rating'] != 0 && $checkbuy['ordered_cnt'] > 1 && $checkbuy['ordered_cnt'] != "0") {
@@ -1858,7 +1858,7 @@ function randomGen($min, $max, $quantity)
                 }
                 //USER REVIEW
                 //--------------------------------------------------------------------------------------------------------------------
-                if (isset($_SESSION['id'])) {
+                if (isset($_SESSION['onestore_id'])) {
                   ?>
                   <script>
                     function maxchar() {
@@ -1871,7 +1871,7 @@ function randomGen($min, $max, $quantity)
                       $('#std_loader').show();
                       $('#user_reviewed_already').hide();
                       var item_description_id = <?= $_GET['id'] ?>;
-                      var user_id = <?= $_SESSION['id'] ?>;
+                      var user_id = <?= $_SESSION['onestore_id'] ?>;
                       $.ajax({
                         url: "../Common/functions.php", //passing page info
                         data: {
@@ -1930,7 +1930,7 @@ function randomGen($min, $max, $quantity)
                       if (getSelectedValue != null) {
                         var noofstars = getSelectedValue.value;
                         var item_description_id = <?= $_GET['id'] ?>;
-                        var user_id = <?= $_SESSION['id'] ?>;
+                        var user_id = <?= $_SESSION['onestore_id'] ?>;
                         $('.real_btn').hide();
                         $('.load_btn').show();
                         $.ajax({
@@ -1988,7 +1988,7 @@ function randomGen($min, $max, $quantity)
 
                     function canceledit() {
                       var item_description_id = <?= $_GET['id'] ?>;
-                      var user_id = <?= $_SESSION['id'] ?>;
+                      var user_id = <?= $_SESSION['onestore_id'] ?>;
                       $.ajax({
                         url: "../Common/functions.php", //passing page info
                         data: {
@@ -2114,8 +2114,8 @@ function randomGen($min, $max, $quantity)
                   <?php
                 }
                 //PUBLIC REVIEW
-                if (isset($_SESSION['id'])) {
-                  $reviewstmt = $pdo->query("select item_keys.ordered_cnt,item_keys.review,rating,users.first_name,users.last_name,date_of_review as date from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id not in (" . $_SESSION['id'] . ") and rating>0 and review!='0' and item_keys.ordered_cnt>0 and review!='0' limit 5");
+                if (isset($_SESSION['onestore_id'])) {
+                  $reviewstmt = $pdo->query("select item_keys.ordered_cnt,item_keys.review,rating,users.first_name,users.last_name,date_of_review as date from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and item_keys.user_id not in (" . $_SESSION['onestore_id'] . ") and rating>0 and review!='0' and item_keys.ordered_cnt>0 and review!='0' limit 5");
                 } else {
                   $reviewstmt = $pdo->query("select item_keys.ordered_cnt,item_keys.review,rating,users.first_name,users.last_name,date_of_review as date from item_keys join users on users.user_id=item_keys.user_id where item_description_id=" . $_GET['id'] . " and rating>0 and review!='0' and item_keys.ordered_cnt>0 and review!='0' limit 5");
                 }
@@ -2652,7 +2652,7 @@ function randomGen($min, $max, $quantity)
       </div>
       <!-- //new -->
       <?php
-      if (isset($_SESSION['id'])) {
+      if (isset($_SESSION['onestore_id'])) {
       ?>
         <!-- new -->
         <div class="newproducts-w3agile" style="padding:0;padding-top:10px;">
@@ -2664,7 +2664,7 @@ function randomGen($min, $max, $quantity)
             JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
             join item on item.item_id=item_description.item_id
             join sub_category on item.sub_category_id=sub_category.sub_category_id
-            where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
+            where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
           );
           $isready = $ran->rowCount();
           if ($isready != 0 && is_null($isready) == false) {

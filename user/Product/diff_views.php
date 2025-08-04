@@ -109,24 +109,24 @@ require "../Main/header.php";
         inner join product_details on product_details.item_description_id=item_keys.item_description_id
         GROUP BY item_keys.item_description_id order by CAST(sum(item_keys.views) as UNSIGNED) DESC LIMIT $offset, $no_of_records_per_page"
       );
-    } else if (isset($_SESSION['id'], $_GET['recent'])) {
+    } else if (isset($_SESSION['onestore_id'], $_GET['recent'])) {
       $total_pages_sql = $pdo->query(
         "select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
         JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
         join item on item.item_id=item_description.item_id
         join sub_category on item.sub_category_id=sub_category.sub_category_id
-        where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
+        where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC"
       );
       $viewstmt = $pdo->query(
         "select views ,item_keys.item_description_id,sub_category.sub_category_id from item_keys
         JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
         join item on item.item_id=item_description.item_id
         join sub_category on item.sub_category_id=sub_category.sub_category_id
-        where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC LIMIT $offset, $no_of_records_per_page"
+        where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC LIMIT $offset, $no_of_records_per_page"
       );
-    } else if (isset($_SESSION['id'], $_GET['prev'])) {
-      $total_pages_sql = $pdo->query("select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['id'] . "");
-      $viewstmt = $pdo->query("select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['id'] . " LIMIT $offset, $no_of_records_per_page");
+    } else if (isset($_SESSION['onestore_id'], $_GET['prev'])) {
+      $total_pages_sql = $pdo->query("select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['onestore_id'] . "");
+      $viewstmt = $pdo->query("select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['onestore_id'] . " LIMIT $offset, $no_of_records_per_page");
     } else if (isset($_GET['topseller'])) {
       $total_pages_sql = $pdo->query(
         "select distinct(item_keys.item_description_id) from product_details
@@ -165,9 +165,9 @@ require "../Main/header.php";
     }
     if (isset($_GET['popular'])) {
       $total_rows = $total_pages_sql->rowCount();
-    } else if (isset($_SESSION['id'], $_GET['recent'])) {
+    } else if (isset($_SESSION['onestore_id'], $_GET['recent'])) {
       $total_rows = $total_pages_sql->rowCount();
-    } else if (isset($_SESSION['id'], $_GET['prev'])) {
+    } else if (isset($_SESSION['onestore_id'], $_GET['prev'])) {
       $total_rows = $total_pages_sql->rowCount();
     } else if (isset($_GET['topseller'])) {
       $total_rows = $total_pages_sql->rowCount();
@@ -248,7 +248,7 @@ require "../Main/header.php";
             </div>
           <?php
           }
-        } else if (isset($_SESSION['id'], $_GET['recent'])) {
+        } else if (isset($_SESSION['onestore_id'], $_GET['recent'])) {
           while ($view = $viewstmt->fetch(PDO::FETCH_ASSOC)) {
             $item_desc_id = $view['item_description_id'];
             $res = $pdo->query(
@@ -293,7 +293,7 @@ require "../Main/header.php";
             </div>
           <?php
           }
-        } else if (isset($_SESSION['id'], $_GET['prev'])) {
+        } else if (isset($_SESSION['onestore_id'], $_GET['prev'])) {
           while ($view = $viewstmt->fetch(PDO::FETCH_ASSOC)) {
             $res = $pdo->query(
               "select * from item_description

@@ -955,7 +955,7 @@ if (session_status() === PHP_SESSION_NONE) {
                               <i class="fa  fa-map-marker dropdown" aria-hidden="true"></i>
                             </button>
                             <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
-                              <?php if (isset($_SESSION['location'])) { ?>You<?php } else { ?>Location <?php } ?>
+                              <?php if (isset($_SESSION['onestore_location'])) { ?>You<?php } else { ?>Location <?php } ?>
                             </span>
                           </form>
                         </li style="float: left;">
@@ -970,8 +970,8 @@ if (session_status() === PHP_SESSION_NONE) {
                                     style="position: relative;margin-bottom: -10px;background-color: red;border-radius: 50px;width: 20px;height:20px;margin-left: 20px"
                                     class="crt-count">
                                     <?php
-                                    if (isset($_SESSION['cart_count'])) {
-                                      echo $_SESSION['cart_count'];
+                                    if (isset($_SESSION['onestore_cart_count'])) {
+                                      echo $_SESSION['onestore_cart_count'];
                                     } else {
                                       echo "0";
                                     }
@@ -1060,7 +1060,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="option_segment" style="margin-top: -20px">
                   <div class="agile-login">
                     <?php
-                    if (isset($_SESSION['name'])) {
+                    if (isset($_SESSION['onestore_name'])) {
                     ?>
                       <div style="float: right;margin-bottom: -7px" id="menu_items_reglog" class="menu_items_reglog">
                         <ul style="margin-top: -13px;">
@@ -1069,7 +1069,7 @@ if (session_status() === PHP_SESSION_NONE) {
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                               </button>
-                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['name'] ?></span>
+                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['onestore_name'] ?></span>
                             </form>
                           </li>
                         </ul>
@@ -1164,7 +1164,7 @@ if (session_status() === PHP_SESSION_NONE) {
                           <i class="fa  fa-map-marker dropdown" aria-hidden="true"></i>
                         </button>
                         <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
-                          <?php if (isset($_SESSION['location'])) { ?>You<?php } else { ?>Location <?php } ?>
+                          <?php if (isset($_SESSION['onestore_location'])) { ?>You<?php } else { ?>Location <?php } ?>
                         </span>
                       </form>
                     </li style="float: left;">
@@ -1179,8 +1179,8 @@ if (session_status() === PHP_SESSION_NONE) {
                                 style="position: relative;margin-bottom: -10px;background-color: red;border-radius: 50px;width: 20px;height:20px;margin-left: 20px"
                                 class="crt-count">
                                 <?php
-                                if (isset($_SESSION['cart_count'])) {
-                                  echo $_SESSION['cart_count'];
+                                if (isset($_SESSION['onestore_cart_count'])) {
+                                  echo $_SESSION['onestore_cart_count'];
                                 } else {
                                   echo "0";
                                 }
@@ -1214,7 +1214,7 @@ if (session_status() === PHP_SESSION_NONE) {
                       </form>
                     </li>
                     <?php
-                    if (isset($_SESSION['name'])) {
+                    if (isset($_SESSION['onestore_name'])) {
                     ?>
                       <div style="float: right;" id="menu_items_reglog">
                         <a href="#">
@@ -1223,7 +1223,7 @@ if (session_status() === PHP_SESSION_NONE) {
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                               </button>
-                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['name'] ?></span>
+                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['onestore_name'] ?></span>
                             </form>
                           </li>
                         </a>
@@ -1242,7 +1242,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                     <div id="userdetails" style="float: right;">
                       <?php
-                      if (isset($_SESSION['name'])) {
+                      if (isset($_SESSION['onestore_name'])) {
                       ?>
                         <a href="#">
                           <li class="userdiv" style="float: right;">
@@ -1250,7 +1250,7 @@ if (session_status() === PHP_SESSION_NONE) {
                               <button class="w3view-cart usericon " type="button" name="submit" value="">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                               </button>
-                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['name'] ?></span>
+                              <span style="bottom: 0px;display: flex;justify-content:center;" id="location"><?= $_SESSION['onestore_name'] ?></span>
                             </form>
                           </li>
                         </a>
@@ -1288,13 +1288,13 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li class="logindiv" style="float: right;">
                       <form action="#" method="post" class="last">
                         <?php
-                        if (isset($_SESSION['name'])) {
+                        if (isset($_SESSION['onestore_name'])) {
                         ?>
                           <button class="w3view-cart loginicon" type="button" name="submit" value="" onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
                           </button>
                           <span style="bottom: 0px;display: flex;justify-content:center;" id="location">
-                            <?= $_SESSION['name'] ?>
+                            <?= $_SESSION['onestore_name'] ?>
                           </span>
                         <?php
                         } else {
@@ -1315,7 +1315,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li class="logindiv" style="float: right;">
                       <form action="#" method="post" class="last">
                         <?php
-                        if (isset($_SESSION['name'])) {
+                        if (isset($_SESSION['onestore_name'])) {
                         ?>
                           <button class="w3view-cart loginicon " type="button" name="submit" value="" onclick="openNav()">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -1373,10 +1373,10 @@ if (session_status() === PHP_SESSION_NONE) {
                 </a>
               </li>
               <?php
-              if (isset($_SESSION['sid'])) {
+              if (isset($_SESSION['onestore_sid'])) {
               ?>
                 <li id="shopactive">
-                  <a href="../../store-admin/index.php?id=<?= $_SESSION['sid'] ?>" style="display:flex;align-items:center;justify-content:center;">
+                  <a href="../../store-admin/index.php?id=<?= $_SESSION['onestore_sid'] ?>" style="display:flex;align-items:center;justify-content:center;">
                     <i class="fas fa-lg fa-store" style="font-size:16px;"></i> &nbsp; Store
                   </a>
                 </li>
@@ -1403,7 +1403,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 </a>
                 <ul class="dropdown-menu" style="border:1px solid #337ab7;padding: 0px">
                   <?php
-                  if (!isset($_SESSION['id'])) {
+                  if (!isset($_SESSION['onestore_id'])) {
                   ?>
                     <a href="../Account/login.php">
                       <li onmouseover="$(this).css('color','white')" onmouseleave="$(this).css('background-color','white')" style="padding-bottom: 8px;padding-top: 8px;">&nbsp;
@@ -1572,8 +1572,8 @@ if (session_status() === PHP_SESSION_NONE) {
   <div id="mySidenav" class="sidenav scroll_handle_orange" style="z-index: 99999999;padding-top: 0px;overflow-y: scroll;">
     <a style="text-decoration:none;background-color: white;color: black">
       <i class="fas fa-user-circle fa-2x"><span style="font-family: arial;font-weight: bold;font-size: 22px"> Hello,
-          <?php if (isset($_SESSION['name'])) { ?>
-            <span> <?= $_SESSION['name'] ?></span>
+          <?php if (isset($_SESSION['onestore_name'])) { ?>
+            <span> <?= $_SESSION['onestore_name'] ?></span>
           <?php } else { ?>
             <span>Log in<?php } ?></span></span>
       </i>
@@ -2291,7 +2291,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <a class="side_nav_content_header" href="#" style="color: #fe9126"> <i class="fa fa-sm fa-cog"
         style="color:white "></i> Help & Settings</a>
     <?php
-    if (isset($_SESSION['id'])) {
+    if (isset($_SESSION['onestore_id'])) {
     ?>
       <a class="side_nav_content_head" href="../Account/edit_user_details.php">My Account</a>
       <a class="side_nav_content_head" href="../Order/myorders.php">My orders</a>
@@ -2301,7 +2301,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <a class="side_nav_content_head" href="../Main/about.php">About</a>
     <a class="side_nav_content_head" href="../Main/contact.php">Contact</a>
     <?php
-    if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['onestore_id'])) {
     ?>
       <a class="side_nav_content_head" onclick="closeNav()" href="#myModal" data-toggle="modal" data-dismiss="modal">Sign
         In</a>

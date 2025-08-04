@@ -18,7 +18,7 @@ require "head.php";
               $cat = $pdo->query("select distinct category_name from category");
               $catn = $cat->rowCount();
               //no of products
-              $id = $_SESSION['id'];
+              $id = $_SESSION['onestore_id'];
               $pro = $pdo->query("SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id
                                 where item_description.item_description_id IN (SELECT item_description_id FROM product_details where store_id=$id )");
               $product = $pro->rowCount();
@@ -26,7 +26,7 @@ require "head.php";
               $new = $pdo->query("select * from item where (added_date) in (select max(added_date) as date from item) ");
               $new_it = $new->rowCount();
               //new orders
-              $id = $_SESSION['id'];
+              $id = $_SESSION['onestore_id'];
               $stmt = $pdo->query(
                 "select *  FROM new_orders
                 JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id

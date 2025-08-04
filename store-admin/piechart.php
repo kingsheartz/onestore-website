@@ -1,7 +1,7 @@
 <?php
 require "pdo.php";
 session_start();
-$id = $_SESSION['id'];
+$id = $_SESSION['onestore_id'];
 $user = $pdo->query(
   "select count(distinct users.user_id) as user FROM new_orders
   JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id

@@ -3,14 +3,14 @@ require "head.php";
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/config.php';
 
-if (!empty($_SESSION['_contact_form_error'])) {
-  $error = $_SESSION['_contact_form_error'];
-  unset($_SESSION['_contact_form_error']);
+if (!empty($_SESSION['onestore_contact_form_error'])) {
+  $error = $_SESSION['onestore_contact_form_error'];
+  unset($_SESSION['onestore_contact_form_error']);
 }
 
-if (!empty($_SESSION['_contact_form_success'])) {
+if (!empty($_SESSION['onestore_contact_form_success'])) {
   $success = true;
-  unset($_SESSION['_contact_form_success']);
+  unset($_SESSION['onestore_contact_form_success']);
 }
 ?>
 

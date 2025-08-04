@@ -79,13 +79,13 @@
         <h3>Profile</h3>
         <ul class="info">
           <?php
-          if (isset($_SESSION['name'])) {
+          if (isset($_SESSION['onestore_name'])) {
           ?>
             <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Cart/cart.php">My Cart</a></li>
             <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Wishlist/wishlist.php">Wishlist</a></li>
           <?php
           }
-          if (!isset($_SESSION['name'])) {
+          if (!isset($_SESSION['onestore_name'])) {
           ?>
             <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Account/login.php">Login</a></li>
             <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../Account/registered.php">Create Account</a></li>
@@ -611,8 +611,8 @@ if (isset($item_description_id)) {
 <!-- Detail about lists-->
 <!--ADD TO WISHLIST-->
 <?php
-if (isset($_SESSION['id'])) {
-  $result = $pdo->query("select * from wishlist where user_id=" . $_SESSION['id']);
+if (isset($_SESSION['onestore_id'])) {
+  $result = $pdo->query("select * from wishlist where user_id=" . $_SESSION['onestore_id']);
   $status = 0;
 ?>
   <div id="avail_wishlist" tabindex="-1" role="dialog" aria-labelledby="store_title" class="modal fade modal-xl hidescroll" style="height: 90%;">
@@ -1967,7 +1967,7 @@ if (isset($item_description_id)) {
       return " ";
     }
     <?php
-    if (isset($_SESSION['id']) && !isset($_SESSION['cart_count'])) {
+    if (isset($_SESSION['onestore_id']) && !isset($_SESSION['onestore_cart_count'])) {
     ?>
       var email = getCookie("OneStore_email");
       var pass = getCookie("OneStore_password");
@@ -2012,14 +2012,14 @@ if (isset($item_description_id)) {
       }
     <?php
     }
-    if (isset($_SESSION['id']) && !isset($_SESSION['cart_count'])) {
+    if (isset($_SESSION['onestore_id']) && !isset($_SESSION['onestore_cart_count'])) {
     ?>
       //CART COUNT
       $.ajax({
         url: "../Common/functions.php", //passing page info
         data: {
           "cartcnt": 1,
-          "user": "<?= $_SESSION['id'] ?>"
+          "user": "<?= $_SESSION['onestore_id'] ?>"
         }, //form data
         type: "post", //post data
         dataType: "json", //datatype=json format

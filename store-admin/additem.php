@@ -407,7 +407,7 @@ require "head.php";
         }
       </script>
       <?php
-      $id = $_SESSION['id'];
+      $id = $_SESSION['onestore_id'];
       require "pdo.php";
       $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id where item_description.item_description_id NOT IN (SELECT item_description_id FROM product_details where store_id=$id ) GROUP BY item_description.item_id ORDER BY item_description.item_description_id DESC LIMIT 8";
       $st = $pdo->query($query);

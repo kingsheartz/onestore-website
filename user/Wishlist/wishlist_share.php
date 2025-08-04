@@ -298,8 +298,8 @@ require "../Main/header.php";
     <div class="row" style="margin: 0px;">
       <div class="col-md-12" style="margin:0px;padding: 0px;width: 100%">
         <?php
-        if (isset($_SESSION['id'])) {
-          $id = $_SESSION['id'];
+        if (isset($_SESSION['onestore_id'])) {
+          $id = $_SESSION['onestore_id'];
         }
         $sqlc = "select * from wishlist_items where wishlist_id=:wid";
         $stmtc = $pdo->prepare($sqlc);

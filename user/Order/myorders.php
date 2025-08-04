@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -290,7 +290,7 @@ require "../Common/pdo.php";
       url: "../Common/functions.php", //passing page info
       data: {
         "cartcnt": 1,
-        "user": "<?= $_SESSION['id'] ?>"
+        "user": "<?= $_SESSION['onestore_id'] ?>"
       }, //form data
       type: "post", //post data
       dataType: "json", //datatype=json format
@@ -322,7 +322,7 @@ require "../Common/pdo.php";
       name: inputVal,
       "filter": filter,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -344,7 +344,7 @@ require "../Common/pdo.php";
     $.get("getorder.php", {
       name: inputVal,
       'filter': filter,
-      id: <?= $_SESSION['id'] ?>
+      id: <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -365,7 +365,7 @@ require "../Common/pdo.php";
     $.get("getorder.php", {
       'name': inputVal,
       'filter': filter,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -390,7 +390,7 @@ require "../Common/pdo.php";
       'name': inputVal,
       'filter': filter,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -407,7 +407,7 @@ require "../Common/pdo.php";
   // Check if the user has any orders
   $sql_order_cnt = "select new_orders_id ,new_orders.sub_total from new_orders
                     JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
-                    JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id where user_delivery_details.user_id=" . $_SESSION['id'];
+                    JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id where user_delivery_details.user_id=" . $_SESSION['onestore_id'];
   $stmt_order_cnt = $pdo->prepare($sql_order_cnt);
   $stmt_order_cnt->execute();
   $order_cnt = $stmt_order_cnt->rowCount();

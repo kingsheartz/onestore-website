@@ -3,9 +3,9 @@ ob_start(); // Start output buffering
 session_start();
 
 // Check if session exists and has valid ID
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   // Set error message in session
-  $_SESSION['error_msg'] = "Your session has expired. Please login again.";
+  $_SESSION['onestore_error_msg'] = "Your session has expired. Please login again.";
   header("location:../Account/login.php");
   exit();
 }
@@ -14,8 +14,8 @@ require "../Main/header.php";
 
 try {
   // Get user ID from session or query parameter
-  if (isset($_SESSION['id'])) {
-    $id = $_SESSION['id'];
+  if (isset($_SESSION['onestore_id'])) {
+    $id = $_SESSION['onestore_id'];
   } else if (isset($_GET['id'])) {
     $id = $_GET['id'];
   } else {
@@ -43,7 +43,7 @@ try {
   $suserstmt->execute(['id' => $id]);
   $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
-  $_SESSION['error_msg'] = $e->getMessage();
+  $_SESSION['onestore_error_msg'] = $e->getMessage();
   header("location:../Main/onestore.php");
   exit();
 }

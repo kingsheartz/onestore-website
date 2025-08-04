@@ -407,7 +407,7 @@ require "head.php";
         }
       </script>
       <?php
-      $id = $_SESSION['id'];
+      $id = $_SESSION['onestore_id'];
       require "pdo.php";
       $query = "SELECT * FROM item JOIN item_description ON item.item_id=item_description.item_id
                 JOIN product_details ON product_details.item_description_id=item_description.item_description_id

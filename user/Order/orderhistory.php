@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -264,7 +264,7 @@ require "../Common/pdo.php";
     $.get("gethistorysearch.php", {
       "name": inputVal,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -282,7 +282,7 @@ require "../Common/pdo.php";
     var inputVal = $('#order_search').val();
     $.get("gethistorysearch.php", {
       name: inputVal,
-      id: <?= $_SESSION['id'] ?>
+      id: <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -302,7 +302,7 @@ require "../Common/pdo.php";
     $.get("gethistorysearch.php", {
       "name": inputVal,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
