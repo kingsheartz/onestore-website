@@ -6,6 +6,18 @@ if (isset($_SESSION['onestore_id'])) {
 require "../Main/header.php";
 ?>
 <style type="text/css">
+  .login {
+    background: url('../../images/logo/log2.jpg') no-repeat !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
   a:hover {
     color: #0c99cc !important;
   }
@@ -25,7 +37,7 @@ require "../Main/header.php";
 </div>
 <!-- //breadcrumbs -->
 <!-- login -->
-<div class="login" style="background: url(../../images/logo/log2.jpg) no-repeat;padding-top: 0px;padding-bottom: 0px;">
+<div class="login">
   <div style="background-color: rgba(0,0,0,0.55);width: 100%;height: 100%;padding-top: 30px;padding-bottom: 30px;">
     <div class="container">
       <h2 style="color: white">Login Form</h2>
@@ -40,9 +52,9 @@ require "../Main/header.php";
           }
           ?>
           <!--<?/*php if(isset($_SESSION['onestore_errorlogin'])){
-echo'<p style="color:red;margin-top:-5px;float:left;padding-bottom:15px;">*'.$_SESSION['onestore_errorlogin']."</p>";
-unset($_SESSION['onestore_errorlogin']);
-}*/ ?>-->
+          echo'<p style="color:red;margin-top:-5px;float:left;padding-bottom:15px;">*'.$_SESSION['onestore_errorlogin']."</p>";
+          unset($_SESSION['onestore_errorlogin']);
+          }*/ ?>-->
           <input type="email" name="email" id="email" placeholder="Email Address" required=" ">
           <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
             <p class="capson_warning" style="display: none;float:left;color: #d9534f">
