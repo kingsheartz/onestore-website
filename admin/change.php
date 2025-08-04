@@ -345,9 +345,7 @@ require "head.php";
         ':description' => $des1,
         ':price' => $rt1
       );
-      $query6 = "UPDATE item SET
-  description=:description, price=:price
-  WHERE item_id=:item_id";
+      $query6 = "UPDATE item SET description=:description, price=:price WHERE item_id=:item_id";
       $statement6 = $pdo->prepare($query6);
       print_r($statement6);
       $statement6->execute($data8);
@@ -481,7 +479,7 @@ require "head.php";
             data: dataString,
             contentType: false,
             cache: false,
-            processData: true,
+            processData: false,
             success: function() {
               $("#" + x).html("<div id='message'></div>");
               $("#message")
@@ -489,7 +487,8 @@ require "head.php";
                 .fadeIn(1500, function() {
                   $("#message").append(
                     "<div class='alert alert-success'>Product Updated \
-            <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button></div>"
+                      <button onclick='location.reload()' style='background: green;padding: 5px;border: none;color: white;border-radius: 5px;height: 30px;display: block;margin: auto;'>Refresh</button> \
+                    </div>"
                   );
                 });
             }

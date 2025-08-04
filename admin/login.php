@@ -44,6 +44,7 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
   <title>One Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="images/logo/favicon.png" rel="icon" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -53,9 +54,17 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
   body {
     overflow-x: hidden;
     width: 100%;
+    height: 100%;
+    background: url('images/logo/adminlogo.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .card {
+    z-index: 100;
+    opacity: 1;
     padding: 20px;
     padding-right: 50px;
     padding-left: 50px;
@@ -66,15 +75,21 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
   }
 
   .row {
+    height: 100%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     margin-right: -0.75rem;
     margin-left: -0.75rem;
     position: relative;
-    z-index: 100;
+    z-index: 99;
     padding: 0;
-    padding-top: 200px;
+    background: rgba(0, 0, 0, 0.5);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .justify-content-center {
@@ -121,15 +136,11 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 1000px;
+    height: 100%;
   }
 
   .back-bd {
-    background: url(images/logo/adminlogo.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 800px;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-right: -0.75rem;
@@ -154,7 +165,7 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
     width: 100%;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     .back-hd {
       display: none;
     }
@@ -192,12 +203,6 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
   }
 
   .back-bd-as {
-    height: 800px;
-    background: #000;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 9;
     position: absolute;
     opacity: 0.5;
     width: 100%;
@@ -251,8 +256,7 @@ if (isset($_POST['user']) || isset($_POST['pass'])) {
     <img class="img-responsive " src="images/logo/logo-high.png">
   </div>
   <div class="back-bd col-sm-12 justify-content-center">
-    <div class="col-sm-4" style="z-index:100;
-    padding: 50px;">
+    <div class="col-sm-4" style="z-index:100; padding: 50px;">
       <img class="img-responsive " src="images/logo/logo-high.png">
     </div>
   </div>

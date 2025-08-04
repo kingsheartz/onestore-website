@@ -254,15 +254,15 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
     ?>
     <script type="text/javascript">
       function showupda(x) {
-        /*$( '#'+x ).on( "submit", function(e) {
-            //stop submit the form, we will post it manually.
+        $('#' + x).on("submit", function(e) {
+          //stop submit the form, we will post it manually.
           e.preventDefault();
           // Get form
-          var form = $('#'+x)[0];
+          var form = $('#' + x)[0];
           // Create an FormData object
           var data = new FormData(form);
           // If you want to add an extra field for the FormData
-           // data.append("CustomField", "This is some extra data, testing");
+          // data.append("CustomField", "This is some extra data, testing");
           // disabled the submit button
           $("#btnSubmit").prop("disabled", true);
           $.ajax({
@@ -274,17 +274,29 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
             contentType: false,
             cache: false,
             timeout: 600000,
-            success: function (data) {
-              //console.log("SUCCESS");
-              //$("#btnSubmit").prop("disabled", false);
+            success: function(data) {
+              swal({
+                title: "Success!!!",
+                text: "Images uploaded successfully",
+                icon: "success",
+                closeOnClickOutside: false,
+                dangerMode: true,
+              }).then((willSubmit) => {
+                if (willSubmit) {
+                  $("#btnSubmit").prop("disabled", true);
+                  $("#btnSubmit").css("cursor", "not-allowed");
+                  return false;
+                } else {
+                  return false;
+                }
+              });
             },
-            error: function (e) {
-              //console.log("ERROR : ", e);
-              //$("#btnSubmit").prop("disabled", false);
+            error: function(e) {
+              console.log("ERROR : ", e);
+              $("#btnSubmit").prop("disabled", false);
             }
           });
-        });*/
-        document.forms[x].submit();
+        });
       }
 
       function previewFile(inp, i, x) {
@@ -314,66 +326,41 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
           async: true
         });
         return (result);
-        /*var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (this.readyState === this.DONE) {
-            if (xhr.status === 200) {
-              console.log('file exist');
-            } else {
-              return false;
-            }
-          }
-        }
-        xhr.error = function() {
-                  return false;
-        }
-        xhr.onabort = function() {
-                  return false;
-        }
-        xhr.timeout = function() {
-                  return false;
-        }
-        xhr.timeout = 5000;
-        xhr.open('HEAD', url, true);
-        xhr.send(null);
-        if (xhr.status == "404") {
-          console.log("File doesn't exist");
-          return false;
-        } else {
-          console.log("File exists");
-          return true;
-        }*/
       }
 
-      function upimg(cn, x) {
+      function upimg(cn, cat, sub, it) {
         cn = cn + 1;
         for (var i = cn; i <= 10; i++) {
-          $(".image-upload:has('#" + x + "file-input" + i + "')").remove();
+          $(".image-upload:has('#" + it + "file-input" + i + "')").remove();
         }
-        var n = $('#nj' + x).val();
+        var n = $('#nj' + it).val();
         for (var i = cn; i <= n; i++) {
-          $('#imgdiv' + x).append('<div class="image-upload">  \
-          <label for="' + x + 'file-input' + i + '" style="width: 100%; cursor: pointer;"><center>\
-          <img id="' + x + 'previewImg' + i + '" src="images/upload2.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;"> </center>      </label>      <input id="' + x + 'file-input' + i + '" required type="file" name="my_file' + i + '" onchange="previewFile(\'#' + x + 'file-input' + i + '\',' + i + ',' + x + ');" style="display: none; cursor: pointer;">    </div>');
+          $('#imgdiv' + it).append('<div class="image-upload">\
+            <label for="' + it + 'file-input' + i + '" style="width: 100%; cursor: pointer;">\
+              <center>\
+                <img id="' + it + 'previewImg' + i + '" src="images/upload2.png" style="max-width: 150px;max-height: 150px;height: auto;width: auto;">\
+              </center>\
+            </label>\
+            <input id="' + it + 'file-input' + i + '" required type="file" name="my_file' + i + '" onchange="previewFile(\'#' + it + 'file-input' + i + '\', ' + i + ', ' + it + ');" style="display: none; cursor: pointer;">\
+          </div>');
 
-          /* url="../images/"+cat+"/"+sub+"/"+it+"_"+i+".jpg";
-            st=ImageExist(url) ;
-            console.log(st);
-            if(st){
-              console.log('helo')
-              $("#previewImg"+i).attr("src", url);
-            }else {
-                console.log('hi')
-            $("#previewImg"+i).attr("src", 'images/upload2.png');
+          url = "../images/" + cat + "/" + sub + "/" + it + "_" + i + ".jpg";
+          st = ImageExist(url);
+          console.log(st);
+          if (st) {
+            $("#previewImg" + i).attr("src", url);
+          } else {
+            $("#btnSubmit").prop("disabled", false);
+            $("#btnSubmit").css("cursor", "pointer");
+            $("#previewImg" + i).attr("src", 'images/upload2.png');
           }
-        */
         }
       }
 
-      function numplusone(cn, x) {
-        var n = parseInt($('#nj' + x).val());
+      function numplusone(cn, cat, sub, it) {
+        var n = parseInt($('#nj' + it).val());
         console.log(n);
-        if ($('#nj' + x).val() == '') {
+        if ($('#nj' + it).val() == '') {
           n = cn;
         }
         b = n + 1;
@@ -381,13 +368,13 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
           return;
         }
         console.log(b);
-        $('#nj' + x).val('');
-        $('#nj' + x).val(b);
-        upimg(cn, x);
+        $('#nj' + it).val('');
+        $('#nj' + it).val(b);
+        upimg(cn, cat, sub, it);
       }
 
-      function numminone(cn, x) {
-        var n = parseInt($('#nj' + x).val());
+      function numminone(cn, cat, sub, it) {
+        var n = parseInt($('#nj' + it).val());
         if (n < 1) {
           return;
         }
@@ -395,9 +382,9 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
         if (b < cn) {
           return;
         }
-        $('#nj' + x).val('');
-        $('#nj' + x).val(b);
-        upimg(cn, x);
+        $('#nj' + it).val('');
+        $('#nj' + it).val(b);
+        upimg(cn, cat, sub, it);
       }
     </script>
     <?php
@@ -514,6 +501,7 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
                                 required=""
                                 class="form-control"
                                 name="nj"
+                                value="<?= $itcn ?>"
                                 style="height: 30px;"
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= <?= $k ?> && event.charCode <= 57"
                                 id="nj<?= $row['item_description_id'] ?>">
@@ -522,14 +510,14 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
                                   name="newim"
                                   type="button"
                                   style="background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #151414), color-stop(1, #1d1d1d)) !important;color: white;border: none;border-radius: 5px;height: 30px;width: 100%;"
-                                  onclick="upimg(<?= $itcn ?>,<?= $row['item_description_id'] ?>)">OK
+                                  onclick="upimg(<?= $itcn ?>, <?= $row['category_id'] ?>, <?= $row['sub_category_id'] ?>, <?= $row['item_description_id'] ?>)">OK
                                 </button>
                                 <button
                                   class="addim"
                                   type="button"
                                   style="width: 100%;height: 30px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ff0000), color-stop(1, #d00303)) !important;border: none;color: white;font-size: 16px;padding: 2px;border-radius: 5px;"
                                   name="numi"
-                                  onclick="numplusone(<?= $itcn ?>,<?= $row['item_description_id'] ?>)">
+                                  onclick="numplusone(<?= $itcn ?>, <?= $row['category_id'] ?>, <?= $row['sub_category_id'] ?>, <?= $row['item_description_id'] ?>)">
                                   <i class="fas fa-plus"></i>
                                 </button>
                                 <button
@@ -537,7 +525,7 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
                                   type="button"
                                   style="width: 100%;height: 30px;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #4caf50), color-stop(1, #08c310)) !important;border: none;color: white;font-size: 16px;padding: 2px;border-radius: 5px;"
                                   name="numk"
-                                  onclick="numminone(<?= $itcn ?>,<?= $row['item_description_id'] ?>)">
+                                  onclick="numminone(<?= $itcn ?>, <?= $row['category_id'] ?>, <?= $row['sub_category_id'] ?>, <?= $row['item_description_id'] ?>)">
                                   <i class="fas fa-minus"></i>
                                 </button>
                               </div>
