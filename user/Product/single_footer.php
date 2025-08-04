@@ -1,3 +1,6 @@
+<?php
+require dirname(__DIR__, 2) . '/utils/getBaseURL.php';
+?>
 <!--<marquee style="font-weight: bold;">I <i style="color: red" class="fa fa-heart"></i> U <span style="color: red">KICHUZ</span></marquee>-->
 <!-- //footer -->
 <style type="text/css">
@@ -1090,7 +1093,7 @@ if (isset($item_description_id)) {
                 <div class="input-group bar-srch"
                   style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
                   <input readonly="true" type="text" class="" id="input_apk_link" placeholder="URL to share"
-                    value="http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk"
+                    value="<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_high.apk"
                     name="" required=" "
                     style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline-color: #e59700;">
                   <span id="" class="input-group-btn">
@@ -1210,11 +1213,11 @@ if (isset($item_description_id)) {
 
   function copyapklink(n) {
     if (n == 1) {
-      var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk";
+      var link = "<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_high.apk";
     } else if (n == 2) {
-      var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
+      var link = "<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_low.apk";
     } else {
-      var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
+      var link = "<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_low.apk";
     }
     $('#input_apk_link').val(link);
     // ---------WHATSAPP--------- //
@@ -1339,7 +1342,7 @@ if (isset($item_description_id)) {
     // ---------WHATSAPP--------- //
     $('.whatsapp').html('');
     var wa_content =
-      '<div style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=See this product :- http://localhost:81/One-Store-Renewed/onestore-website/user/Product/single.php?id=' +
+      '<div style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;"><a target="_blank" data-action="share/whatsapp/share" href="https://api.whatsapp.com/send?text=See this product :- <?= getBaseUrl() ?>user/Product/single.php?id=' +
       code[1] + '"><i class="fa fa-whatsapp fa-lg" style="color: white;"></i></a></div><p>Whatsapp</p>';
     $('.whatsapp').html(wa_content);
   }

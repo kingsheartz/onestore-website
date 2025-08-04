@@ -1,5 +1,7 @@
 <?php
 require_once "pdo.php";
+require dirname(__DIR__, 2) . '/utils/getBaseURL.php';
+
 $user_id = $_GET['id'];
 
 $placesql_u = "select* from users where user_id=:user_id";
@@ -17,7 +19,7 @@ $email = $placerow_u['email'];
 ?>
 <table style="width:100%!important">
   <tbody>
-    <tr style="" width="834px" height="60" background="images/logo/log2.jpg" align="center">
+    <tr width="834px" height="60" background="images/logo/log2.jpg" align="center">
       <td>
         <table width="100%" cellspacing="0" cellpadding="0" height="60"
           style="width:600px!important;text-align:center;margin:0 auto">
@@ -148,7 +150,7 @@ $email = $placerow_u['email'];
                             <tr>
                               <td valign="top" align="left">
                                 <p style="padding-left:15px;margin-bottom:10px"> <a
-                                    href="http://localhost:81/One-Store-Renewed/onestore-website/user/Order/yourorders.php?id=<?= $user_id ?>"
+                                    href="<?= getBaseUrl() ?>user/Order/yourorders.php?id=<?= $user_id ?>"
                                     style="background-color:rgb(41,121,251);color:#fff;padding:8px 16px 7px 16px;border:0px;font-size:14px;display:inline-block;margin-top:10px;border-radius:2px;text-decoration:none"
                                     rel="noreferrer" target="_blank" data-saferedirecturl=""> <button type="button"
                                       style="background-color:rgb(41,121,251);color:#fff;border:0px;font-size:14px;border-radius:2px;text-decoration:none">Verify
@@ -238,7 +240,7 @@ $email = $placerow_u['email'];
                                   <!--<td style="width:40%;text-align:left;padding-top:5px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="https://www.one-store.ml"><img  border="0" src="images/logo/logo.png" alt="OneStore.ml" style="border:none;width: 150px;" class="CToWUd">-->
                                   <td style="width:80%;text-align:center;font-family:Arial;color: #fff"> &#169; 2020 <a
                                       style="color:#027cd8;text-decoration:none;outline:none;font-weight:bold"
-                                      href="http://localhost:81/One-Store-Renewed/onestore-website/">OneStore</a>. All
+                                      href="<?= getBaseUrl() ?>">OneStore</a>. All
                                     rights reserved </td>
                                   <td style="width:10%;text-align:right"> <a
                                       style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href=""

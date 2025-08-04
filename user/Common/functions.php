@@ -357,7 +357,7 @@ if (isset($_POST['register'])) {
         $mail->SMTPSecure = 'tls'; // ssl is deprecated
         $mail->SMTPAuth = true;
         $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-        $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+        $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
         $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
         $mail->addAddress($_POST['email'],$_POST['first_name'] ); // to email and name
         $mail->Subject = $subject;
@@ -1014,7 +1014,7 @@ if (isset($_POST['update_user_details'])) {
         $mail->SMTPSecure = 'tls'; // ssl is deprecated
         $mail->SMTPAuth = true;
         $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-        $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+        $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
         $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // from email and name
         $mail->addAddress($row['email'],$_POST['first_name'] ); // to email and name
         $mail->Subject = $subject;
@@ -1464,7 +1464,7 @@ if (isset($_GET['email'], $_GET['code'], $_GET['emailverified'])) {
             $mail->SMTPSecure = 'tls'; // ssl is deprecated
             $mail->SMTPAuth = true;
             $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-            $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+            $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
             $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
             $mail->addAddress($email,$first_name ); // to email and name
             $mail->Subject = $subject;
@@ -1790,7 +1790,7 @@ if (isset($_GET['emailnew'], $_GET['code'], $_GET['emailupdateverified'], $_GET[
             $mail->SMTPSecure = 'tls'; // ssl is deprecated
             $mail->SMTPAuth = true;
             $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-            $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+            $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
             $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
             $mail->addAddress($email,$first_name ); // to email and name
             $mail->Subject = $subject;
@@ -3017,7 +3017,7 @@ if (isset($_POST['forgotlogin'])) {
             $mail->SMTPSecure = 'tls'; // ssl is deprecated
             $mail->SMTPAuth = true;
             $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-            $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+            $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
             $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
             $mail->addAddress($_POST['email'],$first_name ); // to email and name
             $mail->Subject = $subject;
@@ -3911,7 +3911,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
     $mail->SMTPSecure = 'tls'; // ssl is deprecated
     $mail->SMTPAuth = true;
     $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-    $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+    $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
     $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
     $mail->addAddress($email,$first_name ); // to email and name
     $mail->Subject = $subject;
@@ -4541,7 +4541,7 @@ if (isset($_POST['user_id'], $_POST['placeorder'])) {
       $mail->SMTPSecure = 'tls'; // ssl is deprecated
       $mail->SMTPAuth = true;
       $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-      $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+      $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
       $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
       $mail->addAddress( $store_array[$l]['email'],$store_array[$l]['store_name'] ); // to email and name
       $mail->Subject = $subject;
@@ -5434,7 +5434,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
     $mail->SMTPSecure = 'tls'; // ssl is deprecated
     $mail->SMTPAuth = true;
     $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-    $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+    $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
     $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
     $mail->addAddress($email,$first_name ); // to email and name
     $mail->Subject = $subject;
@@ -5749,7 +5749,7 @@ if (isset($_POST['user_id'], $_POST['buynow_placeorder'])) {
       $mail->SMTPSecure = 'tls'; // ssl is deprecated
       $mail->SMTPAuth = true;
       $mail->Username = "onestoreforallyourneeds@gmail.com"; // email
-      $mail->Password = "lgjlpnjvlbdjlskh"; // Applicaton password
+      $mail->Password = "iwshnjhsafnrpzig"; // Applicaton password
       $mail->setFrom('onestoreforallyourneeds@gmail.com', 'OneStore'); // From email and name
       $mail->addAddress( $store_array[$l]['email'],$store_array[$l]['store_name'] ); // to email and name
       $mail->Subject = $subject;

@@ -1,3 +1,6 @@
+<?php
+require dirname(__DIR__, 2) . '/utils/getBaseURL.php';
+?>
 <!--<marquee style="font-weight: bold;">I <i style="color: red" class="fa fa-heart"></i> U <span style="color: red">KICHUZ</span></marquee>-->
 <!-- //footer -->
 <style type="text/css">
@@ -188,7 +191,7 @@
                     class=""
                     id="input_apk_link"
                     placeholder="URL to share"
-                    value="http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk"
+                    value="<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_high.apk"
                     name=""
                     required=" "
                     style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline-color: #e59700;">
@@ -314,11 +317,11 @@
 
   function copyapklink(n) {
     if (n == 1) {
-      var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_high.apk";
+      var link = "<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_high.apk";
     } else if (n == 2) {
-      var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
+      var link = "<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_low.apk";
     } else {
-      var link = "http://localhost:81/One-Store-Renewed/onestore-website/extras/APK/RELEASE/OneStore_version_low.apk";
+      var link = "<?= getBaseUrl() ?>extras/APK/RELEASE/OneStore_version_low.apk";
     }
     $('#input_apk_link').val(link);
     // ---------WHATSAPP--------- //

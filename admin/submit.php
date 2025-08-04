@@ -2,6 +2,8 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/config.php';
+require dirname(__DIR__, 1) . '/utils/getBaseURL.php';
+require dirname(__DIR__, 1) . '/utils/getImageURL.php';
 require 'pdo.php';
 session_start();
 /*
@@ -15,7 +17,7 @@ try{
 */
 if (isset($_POST['setstorepass'])) {
   if ($_POST['setstorepass'] == 1) {
-    $sql3 = "select activation_code from store_admin where email=':email'";
+    $sql3 = "select activation_code from store_admin where email=:email";
     $stmt3 = $pdo->prepare($sql3);
     $stmt3->execute(array(':email' => $_POST['email']));
     $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
@@ -107,13 +109,12 @@ if (isset($_POST['setstorepass'])) {
   // Everything seems OK, time to send the email.
   $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
   $uniqid = uniqid();
-  $activate_link = 'http://localhost:81/One-Store-Renewed/onestore-website/extras/OS/pages/FRL/register-v2.php?emailverified=1&email=' . $_POST['email'] . '&code=' . $uniqid;
+  $activate_link = getBaseUrl() . 'extras/OS/pages/FRL/register-v2.php?emailverified=1&email=' . $_POST['email'] . '&code=' . $uniqid;
   $que = "select max(store_id) from store ";
   $sta = $pdo->prepare($que);
   $sta->execute();
   $r = $sta->fetch(PDO::FETCH_ASSOC);
   $id = $r['max(store_id)'];
-  echo 'helo';
   $store_name = $_POST['store_name'];
   $opening_hours = $_POST['opening_hours'];
   $address = $_POST['address'];
@@ -127,8 +128,6 @@ if (isset($_POST['setstorepass'])) {
   $sta = $pdo->prepare($que);
   $sta->execute(array(':email' => $email));
   $co = $sta->rowCount();
-  echo 'helo';
-  echo 'helo';
   if ($co == 0) {
     $id = ++$id;
     //store table
@@ -178,7 +177,7 @@ if (isset($_POST['setstorepass'])) {
     $message = '
     <table style="width:100%!important">
       <tbody>
-        <tr style="" width="834px" height="60" background="http://localhost:81/One-Store-Renewed/onestore-website/images/logo/log2.jpg" align="center">
+        <tr style="" width="834px" height="60" background="' . getImageUrl() . 'images/logo/log2.jpg" align="center">
           <td>
             <table width="100%" cellspacing="0" cellpadding="0" height="60" style="width:600px!important;text-align:center;margin:0 auto">
               <tbody>
@@ -188,8 +187,8 @@ if (isset($_POST['setstorepass'])) {
                       <tbody>
                         <tr>
                           <td style="width:35%;text-align:left">
-                            <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="http://localhost:81/One-Store-Renewed/onestore-website/" rel="noreferrer" target="_blank" data-saferedirecturl="">
-                            <img border="0"  src="http://localhost:81/One-Store-Renewed/onestore-website/images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
+                            <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="' . getBaseUrl() . '" rel="noreferrer" target="_blank" data-saferedirecturl="">
+                            <img border="0"  src="' . getImageUrl() . 'images/logo/logo.png" alt="OneStore.ml" style="border:none" class="CToWUd">
                             </a>
                           </td>
                           <td style="width:60%;text-align:right;padding-top:5px"> <p style="color:rgba(255,255,255,0.8);font-family:Arial;font-size:16px;text-align:right;color:#ffffff;font-style:normal;font-stretch:normal">Store <span style="font-weight:bold">Added</span></p> </td>
@@ -324,8 +323,8 @@ if (isset($_POST['setstorepass'])) {
                           <tbody>
                             <tr>
                               <td style="width:10%;text-align:left;padding-top:5px"></td>
-                              <td style="width:80%;text-align:center;font-family:Arial;color: #fff"> &#169; 2020 <a style="color:#027cd8;text-decoration:none;outline:none;font-weight:bold" href="http://localhost:81/One-Store-Renewed/onestore-website/">OneStore</a>. All rights reserved  </td>
-                              <td style="width:10%;text-align:right"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" height="24" src="https://ci6.googleusercontent.com/proxy/3QE9kvI6a_sNZY1yz9h1e9UTtBEe6bvUPfsokYVFhigLrmrCJxcv1_CZk0b5cJWyTHa1prcEfHSGUl1QMcg36fPaTs0H7MVxDk0pgC8ujoEedjfg26Rdff_eNArN9_s=s0-d-e1-ft#http://img6a.flixcart.com/www/promos/new/20160910-183744-google-play-min.png" alt="Flipkart.com" style="border:none;margin-top:10px" class="CToWUd"> </a> </td>
+                              <td style="width:80%;text-align:center;font-family:Arial;color: #fff"> &#169; 2020 <a style="color:#027cd8;text-decoration:none;outline:none;font-weight:bold" href="' . getBaseUrl() . '">OneStore</a>. All rights reserved  </td>
+                              <td style="width:10%;text-align:right"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="" rel="noreferrer" target="_blank" data-saferedirecturl=""> <img border="0" height="24" src="https://ci6.googleusercontent.com/proxy/3QE9kvI6a_sNZY1yz9h1e9UTtBEe6bvUPfsokYVFhigLrmrCJxcv1_CZk0b5cJWyTHa1prcEfHSGUl1QMcg36fPaTs0H7MVxDk0pgC8ujoEedjfg26Rdff_eNArN9_s=s0-d-e1-ft#http://img6a.flixcart.com/www/promos/new/20160910-183744-google-play-min.png" alt="OneStore.com" style="border:none;margin-top:10px" class="CToWUd"> </a> </td>
                             </tr>
                           </tbody>
                         </table>

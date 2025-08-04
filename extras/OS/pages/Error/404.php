@@ -1,3 +1,7 @@
+<?php
+require dirname(__DIR__, 4) . '/utils/getBaseURL.php';
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -76,6 +80,7 @@
       repeat: true,
       close: true
     });
+
     function animate(containerSelector) {
       var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
       var _ref$repeat = _ref.repeat;
@@ -96,8 +101,10 @@
       var styles = '';
       container.addClass('svg-animated');
       MorphSVGPlugin.convertToPath(containerSelector + ' circle,\n                                ' + containerSelector + ' rect,\n                                ' + containerSelector + ' ellipse,\n                                ' + containerSelector + ' line,\n                                ' + containerSelector + ' polygon,\n                                ' + containerSelector + ' polyline');
-      frameNames.forEach(function (frameName) {
-        var tl = new TimelineMax({ repeat: repeat });
+      frameNames.forEach(function(frameName) {
+        var tl = new TimelineMax({
+          repeat: repeat
+        });
         var firstFrame = container.find('.' + frameName + '1')[0];
         var i = undefined;
         var previousFrame = firstFrame;
@@ -108,17 +115,22 @@
           var className = '.' + frameName + i;
           var frame = container.find(className);
           styles += className + '{visibility:hidden;}';
-          tl.to(firstFrame, timing(i), { morphSVG: frame.length ? frame : previousFrame }, '+=0');
+          tl.to(firstFrame, timing(i), {
+            morphSVG: frame.length ? frame : previousFrame
+          }, '+=0');
           previousFrame = frame;
         }
         window.CP.exitedLoop(1);
         styles += '.' + frameName + '1{visibility:visible;}';
         if (close) {
-          tl.to(firstFrame, timing(i), { morphSVG: firstFrame }, '+=0');
+          tl.to(firstFrame, timing(i), {
+            morphSVG: firstFrame
+          }, '+=0');
         }
         styleElt.innerHTML += styles;
         container.prepend(styleElt);
       });
+
       function timing(i) {
         return timings[Math.min(i - 2, timings.length - 1)];
       }
@@ -568,7 +580,7 @@
       <path class="pupilL3 moko-404__l" d="M218.07,96.89s-1.43,0-3.2,0-3.2,0-3.2,0,1.44-.05,3.2-.05,3.2,0,3.2.05" />
       <path class="pupilR3 moko-404__l" d="M269.1,96.89s1.43,0,3.19,0,3.19,0,3.19,0-1.43-.05-3.19-.05-3.19,0-3.19.05" />
     </svg>
-    <p><a href="http://localhost:81/One-Store-Renewed/onestore-website/">Back to homepage</a></p>
+    <p><a href="<?= getBaseUrl() ?>">Back to homepage</a></p>
     <!-- Main content -->
     <section class="content">
       <br><br>
@@ -593,7 +605,7 @@
         <b>KinGsHearTz</b> 1.0
       </div>
       <strong>Copyright &copy; 2020 <a style="color:#007BFF "
-          href="http://localhost:81/One-Store-Renewed/onestore-website/">OneStore</a>.</strong> All rights reserved.
+          href="<?= getBaseUrl() ?>">OneStore</a>.</strong> All rights reserved.
     </footer>
   </div>
 </body>
