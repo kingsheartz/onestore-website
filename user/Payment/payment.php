@@ -248,7 +248,8 @@ log_message("Payment page data used: " . json_encode([
 <style>
   .payment_full {
     background-color: #fff;
-    width: 50%;
+    width: 80%;
+    max-width: 600px;
     margin: auto;
     color: #000;
     border-radius: 15px;
