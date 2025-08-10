@@ -10,5 +10,9 @@ function getBaseUrl()
   // Adjust 'HFE-Store' part length (here: 1 level deep)
   $basePath = '/' . $parts[0] . '/';
 
-  return $protocol . $host . $basePath;
+  if ($host === 'localhost') {
+    return $protocol . $host . $basePath;
+  } else {
+    return $protocol . $host . '/';
+  }
 }
