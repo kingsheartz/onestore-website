@@ -75,7 +75,7 @@ require "../Main/header.php";
     transition: .3s;
   }
 
-  /*///////////////////////////////////////////////////////////////*/
+  /*---------------------------------------------------------------*/
   /*CREATE WISHLIST*/
   .create_wishlist_table td {
     align-items: left;
@@ -179,7 +179,7 @@ require "../Main/header.php";
     display: inline-flex;
   }
 
-  /*///////////////////////////////////////////////////////////////*/
+  /*---------------------------------------------------------------*/
 </style>
 <!-- breadcrumbs -->
 <div class="breadcrumbs" style="background-color: #eaeded">
@@ -194,38 +194,33 @@ require "../Main/header.php";
 <div style="background: url(../../images/logo/check1.jpg);">
   <div style="background-color: rgba(0,0,0,.65);">
     <center>
-      <div class="img_wishlist_div"
-        style="background-color: rgba(255,255,255);padding: 30px;display: inline-block;border-radius: 50%;margin-top: 20px;border:3px solid black">
+      <div class="img_wishlist_div" style="background-color: rgba(255,255,255);padding: 30px;display: inline-block;border-radius: 50%;margin-top: 20px;border:3px solid black">
         <img class="img_wishlist" src="../../images/logo/wishlist2.png" style="max-width: 100px;">
       </div>
       <h2 style="display: none;" class="create_wishlist_head">
         <a href="#" style="color: #000;font-size: 1.5em">
-          <span class="fa fa-file-text" style="color: #F1E5B5;"></span><span style="color: #fff"> Create a
-            wishlist </span>
+          <span class="fa fa-file-text" style="color: #F1E5B5;"></span><span style="color: #fff"> Create a wishlist </span>
         </a>
       </h2>
       <h2 class="your_wishlist_head">
         <a href="#" style="color: #000;font-size: 1.5em">
-          <span class="fa fa-heart" style="color: #c50505;"></span><span style="color: #fff"> Your Wishlists
-          </span>
+          <span class="fa fa-heart" style="color: #c50505;"></span><span style="color: #fff"> Your Wishlists </span>
         </a>
       </h2>
       <h2 style="display: none;" class="search_wishlist_head">
         <a href="#" style="color: #000;font-size: 1.5em">
-          <span class="fa fa-search" style="color: #fe9126;"></span><span style="color: #fff"> Search Wishlist
-          </span>
+          <span class="fa fa-search" style="color: #fe9126;"></span><span style="color: #fff"> Search Wishlist </span>
         </a>
       </h2>
       <!------------------------------------------------------------------------------------------------------------------------------>
-      <!--///////////////////////////////////WISHLIST SELECTION MENU LARGE//////////////////////////////////////////////////////////-->
+      <!------------------------------------ WISHLIST SELECTION MENU LARGE ----------------------------------------------------------->
       <!------------------------------------------------------------------------------------------------------------------------------>
       <div class="container  wl_menu_large" style="margin-top: 50px;">
         <div class="row" style="background-color: black;color: white;padding-bottom: 10px;">
           <div class="col-md-12">
             <h3>
               <div class="div-wrapper">
-                <div class="wishlist-method caw" data-backdrop="static" data-keyboard="false" data-toggle="modal"
-                  data-target="#myModal_create_wishlist">
+                <div class="wishlist-method caw" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_create_wishlist">
                   <span class="fa fa-file-text"> Create a wishlist</span>
                 </div>
                 <div class="wishlist-method  caw-active" style="display: none;">
@@ -237,8 +232,7 @@ require "../Main/header.php";
                   <span class="fa fa-heart"> Your wishlist</span>
                 </div>
                 <div class="wishlist-method yw-active" style="border-left:1px solid #fff;">
-                  <span class="fa fa-heart" style="color:#c50505 "> <span style="color: #0f99ff">Your
-                      wishlist</span></span>
+                  <span class="fa fa-heart" style="color:#c50505 "> <span style="color: #0f99ff">Your wishlist</span></span>
                 </div>
                 <div class="wishlist-method sw" style="border-left:1px solid #fff">
                   <span class="fa fa-search"> Search wishlist</span>
@@ -254,44 +248,46 @@ require "../Main/header.php";
         </div>
       </div>
       <!------------------------------------------------------------------------------------------------------------------------------>
-      <!--///////////////////////////////////WISHLIST SELECTION MENU SMALL//////////////////////////////////////////////////////////-->
+      <!------------------------------------ WISHLIST SELECTION MENU SMALL ----------------------------------------------------------->
       <!------------------------------------------------------------------------------------------------------------------------------>
       <div class="container   wl_menu_small" style="margin-top: 50px; display: none;">
         <div class="row" style="color: white;padding-bottom: 0px;">
           <div class="col-md-12">
             <h3>
               <div class="div-wrapper">
-                <div style="background-color: black;padding: 15px;border-radius: 5px;" data-backdrop="static"
-                  data-keyboard="false" data-toggle="modal" data-target="#myModal_create_wishlist">
+                <div
+                  style="background-color: black;padding: 15px;border-radius: 5px;"
+                  data-backdrop="static"
+                  data-keyboard="false"
+                  data-toggle="modal"
+                  data-target="#myModal_create_wishlist">
                   <div class="wishlist-method caw" style="display:flex;align-items: center;justify-content: center;">
                     <span class="fa fa-file-text"> Create</span>
                   </div>
-                  <div class="wishlist-method  caw-active"
-                    style="display:flex;align-items: center;justify-content: center;display: none;">
-                    <span class="fa fa-file-text" style="color: #F1E5B5"> <span
-                        style="color: #0f99ff;">Create</span></span>
+                  <div class="wishlist-method  caw-active" style="display:flex;align-items: center;justify-content: center;display: none;">
+                    <span class="fa fa-file-text" style="color: #F1E5B5">
+                      <span style="color: #0f99ff;">Create</span>
+                    </span>
                   </div>
                 </div>
                 <div style="background-color: black;padding: 15px;border-radius: 5px;">
-                  <div class="wishlist-method yw"
-                    style="display:flex;align-items: center;justify-content: center;display: none;">
+                  <div class="wishlist-method yw" style="display:flex;align-items: center;justify-content: center;display: none;">
                     <span class="fa fa-heart"> Wishlist</span>
                   </div>
-                  <div class="wishlist-method yw-active"
-                    style="display:flex;align-items: center;justify-content: center;">
-                    <span class="fa fa-heart" style="color:#c50505 "> <span
-                        style="color: #0f99ff;">Wishlist</span></span>
+                  <div class="wishlist-method yw-active" style="display:flex;align-items: center;justify-content: center;">
+                    <span class="fa fa-heart" style="color:#c50505 ">
+                      <span style="color: #0f99ff;">Wishlist</span>
+                    </span>
                   </div>
                 </div>
                 <div style="background-color: black;padding: 15px;border-radius: 5px;">
-                  <div style="" class="wishlist-method sw"
-                    style="display:flex;align-items: center;justify-content: center;">
+                  <div class="wishlist-method sw" style="display:flex;align-items: center;justify-content: center;">
                     <span class="fa fa-search"> Search</span>
                   </div>
-                  <div class="wishlist-method sw-active"
-                    style="display:flex;align-items: center;justify-content: center;display: none;">
-                    <span class="fa fa-search" style="color: #fe9126"> <span
-                        style="color: #0f99ff;">Search</span></span>
+                  <div class="wishlist-method sw-active" style="display:flex;align-items: center;justify-content: center;display: none;">
+                    <span class="fa fa-search" style="color: #fe9126">
+                      <span style="color: #0f99ff;">Search</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -300,21 +296,20 @@ require "../Main/header.php";
         </div>
       </div>
       <!------------------------------------------------------------------------------------------------------------------------------>
-      <!------------------------------------------------------------------------------------------------------------------------------>
-      <!--///////////////////////////////////YOUR WISHLIST//////////////////////////////////////////////////////////////////////////-->
+      <!------------------------------------ YOUR WISHLIST --------------------------------------------------------------------------->
       <!------------------------------------------------------------------------------------------------------------------------------>
       <!--YOUR WISHLIST-->
       <div class="your_wishlist">
         <div class="your_wishlist_large">
           <?php
-          if (isset($_SESSION['id'])) {
+          if (isset($_SESSION['onestore_id'])) {
             $sql_check = 'select count(wishlist_id) as cnt from wishlist where user_id=:user_id';
             $stmt_check = $pdo->prepare($sql_check);
-            $stmt_check->execute(array(':user_id' => $_SESSION['id']));
+            $stmt_check->execute(array(':user_id' => $_SESSION['onestore_id']));
             $row_check = $stmt_check->fetch(PDO::FETCH_ASSOC);
             $sql_wish = 'select * FROM wishlist WHERE user_id=:user_id';
             $stmt_wish = $pdo->prepare($sql_wish);
-            $stmt_wish->execute(array(':user_id' => $_SESSION['id']));
+            $stmt_wish->execute(array(':user_id' => $_SESSION['onestore_id']));
             if ($row_check['cnt'] > 0) {
           ?>
               <div class="container" style="margin-top: 50px;">
@@ -355,34 +350,27 @@ require "../Main/header.php";
                               $listname = $cutname . "...";
                             }
                             ?>
-                            <div
-                              onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
-                              <td
-                                onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
+                            <div onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
+                              <td onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
                                 <h4 title="<?= $row_wish['list_name'] ?>"><?= $listname ?></h4>
                               </td>
-                              <td
-                                onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
+                              <td onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
                                 <h4><?= $row_wish['privacy'] ?></h4>
                               </td>
-                              <td
-                                onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
+                              <td onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
                                 <h4><?= $row_wish1['item_count'] ?></h4>
                               </td>
-                              <td
-                                onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
+                              <td onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
                                 <h4><?= $row_wish['date'] ?></h4>
                               </td>
                             </div>
                             <td>
                               <h4>
-                                <select style="font-size: 16px;" onchange="actions(this,'<?= $row_wish['wishlist_id'] ?>')"
-                                  id="sharewid_<?= $row_wish['wishlist_id'] ?>">
+                                <select style="font-size: 16px;" onchange="actions(this,'<?= $row_wish['wishlist_id'] ?>')" id="sharewid_<?= $row_wish['wishlist_id'] ?>">
                                   <option value="0" selected="" disabled="">Select</option>
                                   <option value='1' style="color: #333;">Edit</option>
-                                  <option value="2" style="color: #333;">Delete</i></option>
-                                  <option value="wishlist_share.php?sharelink=<?= $row_wish['share_link'] ?>"
-                                    style="color: #333;">Share</i></option>
+                                  <option value="2" style="color: #333;">Delete</option>
+                                  <option value="wishlist_share.php?sharelink=<?= $row_wish['share_link'] ?>" style="color: #333;">Share</option>
                                 </select>
                               </h4>
                             </td>
@@ -398,33 +386,38 @@ require "../Main/header.php";
             <?php
             } else {
             ?>
-              <h4 style="margin-top: 50px;color: #ccc">No lists are found.<a data-backdrop="static" data-keyboard="false"
-                  data-toggle="modal" data-target="#myModal_create_wishlist">Create
-                  one!</a></h4>
+              <h4 style="margin-top: 50px;color: #ccc">
+                No lists are found.
+                <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_create_wishlist">
+                  Create one!
+                </a>
+              </h4>
               <br><br><br><br><br>
             <?php
             }
           } else {
             ?>
-            <h4 style="margin-top: 50px;color: #ccc">You are not logged in. Please <a href="#myModal" data-toggle="modal"
-                data-dismiss="modal">Log in!</a></h4>
+            <h4 style="margin-top: 50px;color: #ccc">
+              You are not logged in. Please
+              <a href="#myModal" data-toggle="modal" data-dismiss="modal"> Log in!</a>
+            </h4>
           <?php
           }
           ?>
         </div>
         <!------------------------------------------------------------------------------------------------------------------------------>
-        <!--///////////////////////////////////YOUR WISHLIST SMALL//////////////////////////////////////////////////////////////////////////-->
+        <!------------------------------------ YOUR WISHLIST SMALL --------------------------------------------------------------------->
         <!------------------------------------------------------------------------------------------------------------------------------>
         <!--YOUR WISHLIST SMALL-->
         <div class="your_wishlist_small" style="display: none;">
           <?php
           $sql_check = 'select count(wishlist_id) as cnt from wishlist where user_id=:user_id';
           $stmt_check = $pdo->prepare($sql_check);
-          $stmt_check->execute(array(':user_id' => $_SESSION['id']));
+          $stmt_check->execute(array(':user_id' => $_SESSION['onestore_id']));
           $row_check = $stmt_check->fetch(PDO::FETCH_ASSOC);
           $sql_wish = 'select * FROM wishlist WHERE user_id=:user_id';
           $stmt_wish = $pdo->prepare($sql_wish);
-          $stmt_wish->execute(array(':user_id' => $_SESSION['id']));
+          $stmt_wish->execute(array(':user_id' => $_SESSION['onestore_id']));
           if ($row_check['cnt'] > 0) {
           ?>
             <div class="container" style="margin-top: 50px;">
@@ -436,7 +429,7 @@ require "../Main/header.php";
                     $stmt_wish1 = $pdo->prepare($sql_wish1);
                     $stmt_wish1->execute(array(':wish_id' => $row_wish['wishlist_id']));
                     $row_wish1 = $stmt_wish1->fetch(PDO::FETCH_ASSOC);
-                    ////////////////////////////////////////////////////////////////////////
+                    // ------------------------------------------------------------------------
                     if (strlen($row_wish['list_name']) < 15) {
                       $listname = $row_wish['list_name'];
                     } else {
@@ -445,14 +438,19 @@ require "../Main/header.php";
                     }
                   ?>
                     <div id="show_wishlist_small">
-                      <table class="wltr ywl_table_small del_w_<?= $row_wish['wishlist_id'] ?>" cellpadding="20px"
-                        cellspacing="20px" width="100%" style="background-color: rgba(0,0,0,.65);">
-                        <tr style="background-color: #0f99cc;"
-                          onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
+                      <table
+                        class="wltr ywl_table_small del_w_<?= $row_wish['wishlist_id'] ?>"
+                        cellpadding="20px"
+                        cellspacing="20px"
+                        width="100%"
+                        style="background-color: rgba(0,0,0,.65);">
+                        <tr style="background-color: #0f99cc;" onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>'">
                           <th colspan="2">
-                            <h4 class="ywl_table_small_list_head" title="<?= $row_wish['list_name'] ?>"><?= $listname ?>
-                              &nbsp;<i class="fa fa-file-text"></i><i class="fa fa-heart"
-                                style="font-size: 12px;color:#c50505 "></i></h4>
+                            <h4 class="ywl_table_small_list_head" title="<?= $row_wish['list_name'] ?>">
+                              <?= $listname ?>
+                              &nbsp;<i class="fa fa-file-text"></i>
+                              <i class="fa fa-heart" style="font-size: 12px;color:#c50505 "></i>
+                            </h4>
                           </th>
                         </tr>
                         <tr>
@@ -485,8 +483,7 @@ require "../Main/header.php";
                               <tr>
                                 <td>
                                   <h4>
-                                    <i class="fa fa-edit"
-                                      onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>&setting=1'"></i>
+                                    <i class="fa fa-edit" onclick="location.href='../Wishlist/wishlist_single.php?wishlist_id=<?= $row_wish['wishlist_id'] ?>&setting=1'"></i>
                                   </h4>
                                 </td>
                                 <td>
@@ -496,8 +493,7 @@ require "../Main/header.php";
                                 </td>
                                 <td>
                                   <h4>
-                                    <i class="fa fa-share"
-                                      onclick="copylink(<?= $row_wish['wishlist_id'] ?>,'wishlist_share.php?sharelink=<?= $row_wish['share_link'] ?>')"></i>
+                                    <i class="fa fa-share" onclick="copylink(<?= $row_wish['wishlist_id'] ?>,'wishlist_share.php?sharelink=<?= $row_wish['share_link'] ?>')"></i>
                                   </h4>
                                 </td>
                               </tr>
@@ -516,9 +512,12 @@ require "../Main/header.php";
           <?php
           } else {
           ?>
-            <h4 style="margin-top: 50px;color: #ccc">No lists are found.<a data-backdrop="static" data-keyboard="false"
-                data-toggle="modal" data-target="#myModal_create_wishlist">Create
-                one!</a></h4>
+            <h4 style="margin-top: 50px;color: #ccc">
+              No lists are found.
+              <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_create_wishlist">
+                Create one!
+              </a>
+            </h4>
             <br><br><br><br><br>
           <?php
           }
@@ -526,7 +525,7 @@ require "../Main/header.php";
         </div>
       </div>
       <!------------------------------------------------------------------------------------------------------------------------------>
-      <!--///////////////SEARCH WISHLIST////////////////////////////////////////////////////////////////////////////////////////////-->
+      <!------------------------------------ SEARCH WISHLIST ------------------------------------------------------------------------->
       <!------------------------------------------------------------------------------------------------------------------------------>
       <!--SEARCH WISHLIST-->
       <script>
@@ -565,23 +564,37 @@ require "../Main/header.php";
               <div class="col-md-12">
                 <table id="wishlisttable" cellpadding="20px" cellspacing="20px" width="100%">
                   <tr>
-                    <div class="input-group bar-srch"
-                      style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                      <input type="text" class="" id="wishsrch" placeholder="Search wishlist" value="" name=""
+                    <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
+                      <input
+                        type="text"
+                        class=""
+                        id="wishsrch"
+                        placeholder="Search wishlist"
+                        value=""
+                        name=""
                         required=" "
                         style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline: none;">
                       <span id="" class="input-group-btn">
-                        <button onclick="dispsrch()" onmouseover="$(this).css('background-color','#ee8126')"
+                        <button
+                          onclick="dispsrch()"
+                          onmouseover="$(this).css('background-color','#ee8126')"
                           onmouseleave="$(this).css('background-color','#fe9126')"
                           style="color: white;background-color:#fe9126;padding-top:10px;padding-bottom: 10px;outline: none;border-radius: 0;"
-                          class="btn btn-default search_btn" type="button"><span class="fa fa-search"></span></button>
+                          class="btn btn-default search_btn"
+                          type="button">
+                          <span class="fa fa-search"></span>
+                        </button>
                       </span>
                       <span id="" class="input-group-btn">
-                        <button onmouseover="$(this).css('background-color','#0d99cc')"
+                        <button
+                          onmouseover="$(this).css('background-color','#0d99cc')"
                           onmouseleave="$(this).css('background-color','#0f99cc')"
                           onclick="$('#wishsrch').val('');dispsrch()"
                           style="color: white;background-color:#0f99cc;padding-top:10px;padding-bottom: 10px;outline: none;"
-                          class="btn btn-default search_btn" type="button"><span class="fa fa-refresh"></span></button>
+                          class="btn btn-default search_btn"
+                          type="button">
+                          <span class="fa fa-refresh"></span>
+                        </button>
                       </span>
                     </div>
                   </tr>
@@ -645,8 +658,11 @@ require "../Main/header.php";
         <?php
         } else {
         ?>
-          <h4 style="margin-top: 50px;color: #ccc;">No lists are found.<a data-backdrop="static" data-keyboard="false"
-              data-toggle="modal" data-target="#myModal_create_wishlist">Create one!</a>
+          <h4 style="margin-top: 50px;color: #ccc;">
+            No lists are found.
+            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal_create_wishlist">
+              Create one!
+            </a>
           </h4>
           <br><br><br><br><br>
         <?php
@@ -659,7 +675,7 @@ require "../Main/header.php";
   </div>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------------>
-<!--///////////////////////////CREATE WISHLIST////////////////////////////////////////////////////////////////////////////////-->
+<!------------------------------------ CREATE WISHLIST ------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!--CREATE WISHLIST-->
 <!-- Modal -->
@@ -676,8 +692,7 @@ require "../Main/header.php";
       </div>
       <div class="modal-body">
         <center>
-          <div
-            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid black;">
+          <div style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid black;">
             <img src="../../images/logo/wishlist1.png" style="max-width: 80px;">
             <span class="fa fa-plus fa-lg" style="margin-left: -10px;"></span>
           </div>
@@ -694,8 +709,7 @@ require "../Main/header.php";
             </tr>
             <tr>
               <td>
-                <input type="text" placeholder="Wishlist name" name="Wishlist_name" id="Wishlist_name" required=""
-                  style="width: 100%;border-radius: 5px;outline-color: #e59700">
+                <input type="text" placeholder="Wishlist name" name="Wishlist_name" id="Wishlist_name" required="" style="width: 100%;border-radius: 5px;outline-color: #e59700">
               </td>
             </tr>
             <tr>
@@ -707,8 +721,7 @@ require "../Main/header.php";
             </tr>
             <tr>
               <td>
-                <textarea placeholder="Describe your wishlist" name="Wishlist_descibe" id="Wishlist_descibe"
-                  style="width: 100%;border-radius: 5px;outline-color: #e59700"></textarea>
+                <textarea placeholder="Describe your wishlist" name="Wishlist_descibe" id="Wishlist_descibe" style="width: 100%;border-radius: 5px;outline-color: #e59700"></textarea>
               </td>
             </tr>
             <tr>
@@ -720,34 +733,41 @@ require "../Main/header.php";
             </tr>
             <tr>
               <td>
-                <div class="div-wrapper" style="grid-gap: 0;margin: auto;display: flex;"><input type="radio" id="public"
-                    class="privacy" name="privacy" value='public'><label for="public">&nbsp;Public</label>
-                  <div><span style="font-size: 12px;color: #666">-Anyone can search for and see this
-                      list.You can also share using a link</span></div>
+                <div class="div-wrapper" style="grid-gap: 0;margin: auto;display: flex;"><input type="radio" id="public" class="privacy" name="privacy" value='public'>
+                  <label for="public">&nbsp;Public</label>
+                  <div>
+                    <span style="font-size: 12px;color: #666">-Anyone can search for and see this list.You can also share using a link</span>
+                  </div>
                 </div>
               </td>
             </tr>
             <tr>
               <td>
-                <div class="div-wrapper" style="grid-gap: 0;margin: auto;display: flex;"><input type="radio" id="shared"
-                    class="privacy" name="privacy" value="shared"><label for="shared">&nbsp;Shared</label>
-                  <div><span style="font-size: 12px;color: #666">-Only people with the link see this
-                      list.It will not appear in public search results.</span></div>
+                <div class="div-wrapper" style="grid-gap: 0;margin: auto;display: flex;"><input type="radio" id="shared" class="privacy" name="privacy" value="shared">
+                  <label for="shared">&nbsp;Shared</label>
+                  <div>
+                    <span style="font-size: 12px;color: #666">-Only people with the link see this list.It will not appear in public search results.</span>
+                  </div>
                 </div>
               </td>
             </tr>
             <tr>
               <td>
-                <input type="radio" id="private" class="privacy" name="privacy" value="private"><label
-                  for="private">&nbsp;Private</label><span style="font-size: 12px;color: #666"> - Only
-                  you can see the list</span>
+                <input type="radio" id="private" class="privacy" name="privacy" value="private">
+                <label for="private">&nbsp;Private</label>
+                <span style="font-size: 12px;color: #666"> - Only you can see the list</span>
               </td>
             </tr>
             <tr>
               <td><br><br>
                 <center>
-                  <button style="width: 100%;color: white;padding-top: 3px;padding-bottom: 3px;" type="submit"
-                    id="createlist" class="btn btn-default search" name="createlist" onclick="">
+                  <button
+                    style="width: 100%;color: white;padding-top: 3px;padding-bottom: 3px;"
+                    type="submit"
+                    id="createlist"
+                    class="btn btn-default search"
+                    name="createlist"
+                    onclick="">
                     <h4 style="text-transform: capitalize;">create wishlist</h4>
                   </button>
                 </center>
@@ -764,9 +784,8 @@ require "../Main/header.php";
 </div>
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------------------>
+<!----------------------------- SHARE WISHLIST --------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------>
-<!------------------------------------------------------------------------------------------------------------------------------>
-<!--///////////////////////////SHARE WISHLIST////////////////////////////////////////////////////////////////////////////////-->
 <!------------------------------------------------------------------------------------------------------------------------------>
 <!--SHARE WISHLIST-->
 <!-- Modal -->
@@ -783,8 +802,7 @@ require "../Main/header.php";
       </div>
       <div class="modal-body">
         <center>
-          <div
-            style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid black;">
+          <div style="background-color: rgba(255,255,255);padding: 10px;display: inline-block;border-radius: 50%;margin-top: 0px;border:3px solid black;">
             <img src="../../images/logo/wishlist1.png" style="max-width: 80px;">
             <span class="fa fa-share fa-lg" style="margin-left: -10px;"></span>
           </div>
@@ -801,15 +819,25 @@ require "../Main/header.php";
             </tr>
             <tr>
               <td>
-                <div class="input-group bar-srch"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
-                  <input readonly="true" type="text" class="" id="input_link" placeholder="URL to share" value=""
-                    name="" required=" "
+                <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
+                  <input
+                    readonly="true"
+                    type="text"
+                    class=""
+                    id="input_link"
+                    placeholder="URL to share"
+                    value=""
+                    name=""
+                    required=" "
                     style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline-color: #e59700;">
                   <span id="" class="input-group-btn">
-                    <button onclick="clipboard()"
+                    <button
+                      onclick="clipboard()"
                       style="color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #740000), color-stop(1, #ff0000)) !important;padding-top:10px;padding-bottom: 10px;outline: none;border-radius: 0;border-bottom-right-radius: 3px;border-top-right-radius: 3px;"
-                      class="btn btn-default search_btn" type="button"><span class="fas fa-copy"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fas fa-copy"></span>
+                    </button>
                   </span>
                 </div>
               </td>
@@ -826,8 +854,7 @@ require "../Main/header.php";
                 <table style="width: 100%;">
                   <tr style="overflow-x: scroll;">
                     <td class="social-share whatsapp" style="text-align: center;" onclick="sharelink(1)">
-                      <div
-                        style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;">
+                      <div style="margin:auto;width: 30px;height: 30px;background-color: darkgreen;border-radius:3px;display: flex;align-items: center;justify-content: center;">
                         <i class="fa fa-whatsapp fa-lg" style="color: white;"></i>
                       </div>
                       <p>Whatsapp</p>
@@ -835,15 +862,13 @@ require "../Main/header.php";
                     <td class="social-share facebook" style="text-align: center;">
                     </td>
                     <td class="social-share twitter" style="text-align: center;" onclick="setShareLinks()">
-                      <div
-                        style="margin:auto;width: 30px;height: 30px;background-color: #1da1f2;border-radius:3px;display: flex;align-items: center;justify-content: center;">
+                      <div style="margin:auto;width: 30px;height: 30px;background-color: #1da1f2;border-radius:3px;display: flex;align-items: center;justify-content: center;">
                         <i class="fa fa-twitter fa-lg" style="color: white;"></i>
                       </div>
                       <p>Twitter</p>
                     </td>
                     <td class="social-share linkedin" style="text-align: center;" onclick="setShareLinks()">
-                      <div
-                        style="margin:auto;width: 30px;height: 30px;background-color: #0077af;border-radius:3px;display: flex;align-items: center;justify-content: center;">
+                      <div style="margin:auto;width: 30px;height: 30px;background-color: #0077af;border-radius:3px;display: flex;align-items: center;justify-content: center;">
                         <i class="fa fa-linkedin fa-lg" style="color: white;"></i>
                       </div>
                       <p>Linkedin</p>

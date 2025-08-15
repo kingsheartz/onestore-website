@@ -308,7 +308,7 @@ require "header.php";
         <b>onestoreforallyourneeds@gmail.com</b>.
       </p>
       <p style="margin-top: 5em; font-size: 0.7em;">This <a href="https://policymaker.io/privacy-policy/">Privacy
-          Policy</a> was created for <b>one-store.ml</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on
+          Policy</a> was created for <b style="font-size: 1em;">one-store.ml</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on
         2020-07-04.</p>
     </div>
   </div>

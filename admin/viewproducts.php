@@ -77,8 +77,7 @@ require "head.php";
     <div class="content table1 col-sm-12">
       <div class="divhed">
         <?php
-        $query6 = "SELECT * FROM category
-where category_id=$ctid ";
+        $query6 = "SELECT * FROM category where category_id=$ctid ";
         $st6 = $pdo->query($query6);
         $row6 = $st6->fetch(PDO::FETCH_ASSOC);
         ?><?= $row6['category_name'] ?>
@@ -92,34 +91,31 @@ where category_id=$ctid ";
         <div class="products col-sm-4">
           <div
             style="display: flex; justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
-            <img class="image" align="middle"
-              src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+            <img class="image" align="middle" src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
           </div>
           <div class="middle">
-            <form id="<?= $row['item_description_id'] ?>" method="post" action="change.php"
-              name="<?= $row['item_description_id'] ?>">
+            <form id="<?= $row['item_description_id'] ?>" method="post" action="change.php" name="<?= $row['item_description_id'] ?>">
               <input type="hidden" name="pr_id" value="<?= $row['item_description_id'] ?>">
               <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-              <input type="hidden" name="im_url"
-                value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+              <input type="hidden" name="im_url" value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
               <input type="hidden" name="name" value="<?= $row['item_name'] ?>">
               <input type="hidden" name="description" value="<?= $row['description'] ?>">
               <input type="hidden" name="price" value="<?= $row['price'] ?>">
-              <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation"><i
-                  class="fa fa-pencil-square-o" style="font-size: 24px;padding-right: 12px"
-                  aria-hidden="true"></i>Change</button>
+              <button onclick="showupda(<?= $row['item_description_id'] ?>)" class="updation">
+                <i class="fa fa-pencil-square-o" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Change
+              </button>
             </form>
             <form id="a<?= $row['item_description_id'] ?>" method="post" action="productuplo.php"
               name="1<?= $row['item_description_id'] ?>">
               <input type="hidden" name="uppr_id" value="<?= $row['item_description_id'] ?>">
               <input type="hidden" name="upitem_id" value="<?= $row['item_id'] ?>">
-              <input type="hidden" name="upim_url"
-                value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
+              <input type="hidden" name="upim_url" value="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
               <input type="hidden" name="upname" value="<?= $row['item_name'] ?>">
               <input type="hidden" name="updescription" value="<?= $row['description'] ?>">
               <input type="hidden" name="upprice" value="<?= $row['price'] ?>">
-              <button onclick="showupda('1<?= $row['item_description_id'] ?>')" class="updation"><i class="fas fa-upload"
-                  style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Upload</button>
+              <button onclick="showupda('1<?= $row['item_description_id'] ?>')" class="updation">
+                <i class="fas fa-upload" style="font-size: 24px;padding-right: 12px" aria-hidden="true"></i>Upload
+              </button>
             </form>
           </div>
           <div class="deupd"><?= $row['item_name'] ?><br><br>
@@ -133,19 +129,31 @@ where category_id=$ctid ";
     <div class="clearfix"> </div>
     <nav class="numbering">
       <ul class="pagination">
-        <li><a href="<?php
-                      $_GET['pageno'] = 1;
-                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-                      ?>">First</a></li>
-        <li class="<?php if ($pageno <= 1) {
-                      echo 'disabled';
-                    } ?>">
-          <a href="<?php if ($pageno <= 1) {
-                      echo '#';
-                    } else {
-                      $_GET['pageno'] = $pageno - 1;
-                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-                    } ?>">Prev</a>
+        <li>
+          <a href="
+        <?php
+        $_GET['pageno'] = 1;
+        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+        ?>
+        ">First
+          </a>
+        </li>
+        <li class="
+        <?php if ($pageno <= 1) {
+          echo 'disabled';
+        }
+        ?>
+        ">
+          <a href="
+          <?php if ($pageno <= 1) {
+            echo '#';
+          } else {
+            $_GET['pageno'] = $pageno - 1;
+            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+          }
+          ?>
+          ">Prev
+          </a>
         </li>
         <?php
         $ends_count = 1;  //how many items at the ends (before and after [...])
@@ -155,10 +163,14 @@ where category_id=$ctid ";
           if ($page == $pageno) {
         ?>
             <li class="active">
-              <a href="<?php
-                        $_GET['pageno'] = $page;
-                        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
-                <?= $page ?></a>
+              <a href="
+              <?php
+              $_GET['pageno'] = $page;
+              echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+              ?>
+              ">
+                <?= $page ?>
+              </a>
             </li>
             <?php
             $dots = true;
@@ -166,10 +178,14 @@ where category_id=$ctid ";
             if ($page <= $ends_count || ($pageno && $page >= $pageno - $middle_count && $page <= $pageno + $middle_count) || $page > $number_of_page - $ends_count) {
             ?>
               <li>
-                <a href="<?php
-                          $_GET['pageno'] = $page;
-                          echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET); ?>">
-                  <?= $page ?></a>
+                <a href="
+                <?php
+                $_GET['pageno'] = $page;
+                echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+                ?>
+                ">
+                  <?= $page ?>
+                </a>
               </li>
             <?php
               $dots = true;
@@ -182,21 +198,33 @@ where category_id=$ctid ";
           }
         }
         ?>
-        <li class="<?php if ($pageno >= $number_of_page) {
-                      echo 'disabled';
-                    } ?>">
-          <a href="<?php if ($pageno >= $number_of_page) {
-                      echo '#';
-                    } else {
-                      $_GET['pageno'] = $pageno + 1;
-                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-                    } ?>">
-            Next</a>
+        <li class="
+        <?php if ($pageno >= $number_of_page) {
+          echo 'disabled';
+        }
+        ?>
+        ">
+          <a href="
+          <?php if ($pageno >= $number_of_page) {
+            echo '#';
+          } else {
+            $_GET['pageno'] = $pageno + 1;
+            echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+          }
+          ?>
+          ">
+            Next
+          </a>
         </li>
-        <li><a href="<?php
-                      $_GET['pageno'] = $number_of_page;
-                      echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
-                      ?>">Last</a></li>
+        <li>
+          <a href="
+        <?php
+        $_GET['pageno'] = $number_of_page;
+        echo $_SERVER['SCRIPT_NAME'] . '?' . http_build_query($_GET);
+        ?>
+        ">Last
+          </a>
+        </li>
       </ul>
     </nav>
     <div class="clearfix">

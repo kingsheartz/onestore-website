@@ -1,5 +1,5 @@
 <?php
-require "../../../../pdo.php";
+require "../../../../user/Common/pdo.php";
 if (isset($_GET['code']) && isset($_GET['email']) && isset($_GET['emailverified']) && $_GET['emailverified'] == 1) {
   $code = $_GET['code'];
   $email = $_GET['email'];
@@ -16,7 +16,7 @@ $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 if (($row2) && ($row2['activation_code'] == $code)) {
 
   if ($code == 'activated') {
-    header('location:../../../../error.php?click=1');
+    header('location:../../../../user/Common/error.php?click=1');
     return;
   }
 } else {
@@ -52,23 +52,29 @@ if (($row2) && ($row2['activation_code'] == $code)) {
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
+<style>
+  body {
+    background: url(../../../../images/logo/check1.jpg) no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+  }
+</style>
 
-<body class="hold-transition login-page"
-  style="background: url(../../../../images/logo/check1.jpg) no-repeat;position: absolute;background-position: center;width: 100%;">
+<body class="hold-transition login-page">
   <div
     style="background-color: rgba(0,0,0,0.65); position: absolute;width: 100%;height: 100%;align-items: center;justify-content: center;display: flex;">
     <div class="register-box" style="display: inline-flex;">
       <div class="card card-outline card-primary">
         <div class="card-header text-center">
-          <a href="../../index2.html" class="h1"><img src="../../../../images/logo/logost.svg" height="auto"
-              width="auto " style="width: 80%;height: auto;" class="image-fluid mb-2"></a>
+          <a href="../../index2.html" class="h1"><img src="../../../../images/logo/logost.svg" height="auto" width="auto " style="width: 80%;height: auto;" class="image-fluid mb-2"></a>
         </div>
         <div class="card-body">
           <p class="login-box-msg" style="padding-bottom: 0px;">Set your password for sign in</p>
           <p id="emppass" style="color: red;display: none;"></p>
-
-
-
           <form action="#">
             <div class="input-group mb-3 input-field">
               <p class="capson_warning" style="display: none;float:left;color: #d9534f"><i class="fa fa-warning"></i>
@@ -105,8 +111,6 @@ if (($row2) && ($row2['activation_code'] == $code)) {
               <!-- /.col -->
             </div>
           </form>
-
-
         </div>
         <!-- /.login-card-body -->
       </div>
@@ -139,18 +143,17 @@ if (($row2) && ($row2['activation_code'] == $code)) {
   </script>
 
   <script type="text/javascript">
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
     var capson_warning = document.getElementsByClassName("capson_warning");
     var password_field = document.getElementsByClassName('password_fields');
 
     for (var i = 0; i < password_field.length; i++) {
-      password_field[i].addEventListener("keyup", function (event) {
+      password_field[i].addEventListener("keyup", function(event) {
         for (var j = 0; j < capson_warning.length; j++) {
           if (event.getModifierState("CapsLock")) {
             capson_warning[j].style.display = "block";
-          }
-          else {
+          } else {
             capson_warning[j].style.display = "none"
           }
         }
@@ -160,11 +163,9 @@ if (($row2) && ($row2['activation_code'] == $code)) {
 
 
     function recover() {
-
       var pass_input = document.getElementById("pass1");
       var pass1 = document.getElementById("pass1").value;
       var pass2 = document.getElementById("pass2").value;
-
 
       //password verification of null value
       if (pass1 == null || pass1 == "") {
@@ -234,9 +235,7 @@ if (($row2) && ($row2['activation_code'] == $code)) {
         document.getElementById("pass1").className += " invalid";
         document.getElementById("pass2").className += " invalid";
         return;
-      }
-
-      else {
+      } else {
 
         $('.load_btn').show();
         $('.real_btn').hide();
@@ -246,12 +245,17 @@ if (($row2) && ($row2['activation_code'] == $code)) {
 
         $.ajax({
           url: "../../../../admin/submit.php", //passing page info
-          data: { "setstorepass": 1, "password": pass1, "email": email, "code": code },  //form data
+          data: {
+            "setstorepass": 1,
+            "password": pass1,
+            "email": email,
+            "code": code
+          }, //form data
           type: "post", //post data
-          dataType: "json",   //datatype=json format
-          timeout: 60000,  //waiting time 3 sec
+          dataType: "json", //datatype=json format
+          timeout: 60000, //waiting time 3 sec
 
-          success: function (data) {  //if logging in is success
+          success: function(data) { //if logging in is success
 
             if (data.status == 'success') {
 
@@ -259,40 +263,36 @@ if (($row2) && ($row2['activation_code'] == $code)) {
               $('.real_btn').show();
 
               swal({
-                title: "Success!!!",
-                text: "Password is set for your store",
-                icon: "success",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Success!!!",
+                  text: "Password is set for your store",
+                  icon: "success",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
-                    $(function () {
+                    $(function() {
                       location.href = "login-v2.html"
                       $('#emppass').hide();
                       $('#myModal').modal('toggle');
                     });
                     return;
-                  }
-                  else {
+                  } else {
                     return;
                   }
                 });
-            }
-
-
-            else if (data.status == 'error') {
+            } else if (data.status == 'error') {
 
               $('.load_btn').hide();
               $('.real_btn').show();
 
               swal({
-                title: "Oops!!!",
-                text: "Something went wrong",
-                icon: "error",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Oops!!!",
+                  text: "Something went wrong",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
                     $('#emppass').html("Something went wrong");
@@ -300,20 +300,18 @@ if (($row2) && ($row2['activation_code'] == $code)) {
                     //location.reload();
                   }
                 });
-            }
-
-            else if (data.status == 'error1') {
+            } else if (data.status == 'error1') {
 
               $('.load_btn').hide();
               $('.real_btn').show();
 
               swal({
-                title: "Check your mailbox!!!",
-                text: "Pending email verification",
-                icon: "warning",
-                closeOnClickOutside: false,
-                dangerMode: true,
-              })
+                  title: "Check your mailbox!!!",
+                  text: "Pending email verification",
+                  icon: "warning",
+                  closeOnClickOutside: false,
+                  dangerMode: true,
+                })
                 .then((willSubmit) => {
                   if (willSubmit) {
                     $('#emppass').html("Verify your email");
@@ -324,7 +322,7 @@ if (($row2) && ($row2['activation_code'] == $code)) {
             }
 
           },
-          error: function (xmlhttprequest, textstatus, message) { //if it exceeds timeout period
+          error: function(xmlhttprequest, textstatus, message) { //if it exceeds timeout period
             if (textstatus === "timeout") {
 
               $('.load_btn').hide();
@@ -341,13 +339,13 @@ if (($row2) && ($row2['activation_code'] == $code)) {
 
               return;
 
+            } else {
+              return;
             }
-            else { return; }
           }
         }); //closing ajax
       }
     }
-
   </script>
 </body>
 

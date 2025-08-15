@@ -1004,6 +1004,9 @@ a.w3_agile_vimeo:hover {
     padding: 1.5em 0;
     background: #f5f5f5;
 }
+.breadcrumbs .container {
+    width: 100% !important;
+}
 .breadcrumb {
     margin-bottom: 0 !important;
     padding: 0 !important;
@@ -4633,25 +4636,6 @@ div.scrollmenu a {
     .cap_body {
         font-size: 12px;
         margin-right: -30px;
-    }
-}
-@media(max-width: 411px) {
-    .cap_head {
-        font-size: 18px;
-        margin-right: -60px !important;
-        margin-left: 60px;
-    }
-    .cap_body {
-        font-size: 12px;
-        margin-right: -60px !important;
-        margin-left: 60px;
-    }
-    .button-radius {
-        float: right !important;
-        margin-top: 10px !important;
-        margin-bottom: -20px !important;
-        margin-right: -40px !important;
-        font-size: 14px !important;
     }
 }
 /*REGISTER PIN & LOCATION*/

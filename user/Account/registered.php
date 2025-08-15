@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -230,15 +230,13 @@ require "../Main/header.php";
 </div>
 <!-- //breadcrumbs -->
 <!-- register -->
-<div class="register"
-  style="background: url(../../images/logo/check1.jpg) no-repeat;padding-top: 0px;padding-bottom: 0px;position: sticky;background-size: cover;">
+<div class="register" style="background: url(../../images/logo/check1.jpg) no-repeat;padding-top: 0px;padding-bottom: 0px;position: sticky;background-size: cover;">
   <div style="background-color: rgba(0,0,0,0.55);width: 100%;height: 100%;padding-top: 20px;padding-bottom: 20px;">
     <div class="container" style="padding: 0px;">
       <div class="col-lg-4 col-md-5 lt_menu" style="color: white">
         <h3>Create Account</h3>
         <div class="stprd">
-          <div style="border-top-left-radius: 10px;border-bottom-left-radius: 10px "
-            class="stage_reg stage_reg_1 active"></div>
+          <div style="border-top-left-radius: 10px;border-bottom-left-radius: 10px " class="stage_reg stage_reg_1 active"></div>
           <div class="round_reg round_reg_1">1</div>
           <div class="stage_reg stage_reg_2"></div>
           <div class="stage_reg stage_reg_2"></div>
@@ -279,81 +277,100 @@ require "../Main/header.php";
         <div class="login-form-grids" style="border-top: 10px solid #fe9126;border-radius: 5px;width: 100%">
           <div class="account-details pi account-details-active tab_reg">
             <h5><i class="fa fa-info-circle fa-lg"></i>&nbsp;profile information</h5>
-            <!--<? /*php if(isset($_SESSION['error'])){
-              echo'<p style="color:red;float:left;">*'.."</p>";
-              unset($_SESSION['error']);
-            }*/ ?>-->
             <form action="#" onsubmit="return err_display_fn();">
               <?php
-              if (isset($_SESSION['reg_success'])) {
+              if (isset($_SESSION['onestore_reg_success'])) {
               ?>
                 <div class="alert alert-success">Your message was sent successfully!</div>
               <?php
-                unset($_SESSION['reg_success']);
+                unset($_SESSION['onestore_reg_success']);
               }
               ?>
               <?php
-              if (isset($_SESSION['error'])) {
+              if (isset($_SESSION['onestore_error'])) {
               ?>
-                <div class="alert alert-danger"><?= $_SESSION['reg_error'] ?></div>
+                <div class="alert alert-danger"><?= $_SESSION['onestore_reg_error'] ?></div>
               <?php
-                unset($_SESSION['reg_error']);
+                unset($_SESSION['onestore_reg_error']);
               }
               ?>
-              <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i style="color: yellow"
-                  class="fa fa-warning"></i> Can't use any symbols(@ # $ % ... )
+              <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px">
+                <i style="color: yellow" class="fa fa-warning"></i> Can't use any symbols(@ # $ % ... )
               </p>
-              <div class="input-group input-group_form  bar-srch input-field"
-                style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
-                <input type="text" id="first_name" oninput="$(this).removeClass('invalid');" required=" "
+              <div class="input-group input-group_form  bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
+                <input
+                  type="text"
+                  id="first_name"
+                  oninput="$(this).removeClass('invalid');"
+                  required=" "
                   style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
-                  pattern="^\S[a-zA-Z]{2,30}$" title="Minimum character '3'.Use alphabets" class="validate">
+                  pattern="^\S[a-zA-Z]{2,30}$"
+                  title="Minimum character '3'.Use alphabets"
+                  class="validate">
                 <label class="form-label" for="first_name">First Name</label>
                 <span class="input-group-btn">
                   <button
                     style="color: #000;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span class="fas fa-user"
-                      style="color: #777"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fas fa-user" style="color: #777"></span>
+                  </button>
                 </span>
               </div>
-              <div class="input-group input-group_form bar-srch input-field"
-                style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
-                <input type="text" id="last_name" oninput="$(this).removeClass('invalid');" required=" "
+              <div class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
+                <input
+                  type="text"
+                  id="last_name"
+                  oninput="$(this).removeClass('invalid');"
+                  required=" "
                   style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
-                  pattern="^[a-zA-Z ]{1,20}$" title="Use alphabets" class="validate">
+                  pattern="^[a-zA-Z ]{1,20}$"
+                  title="Use alphabets"
+                  class="validate">
                 <label class="form-label" for="last_name">Last Name</label>
                 <span class="input-group-btn">
                   <button
                     style="color: #000;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span
-                      class="   glyphicon glyphicon-text-color"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="glyphicon glyphicon-text-color"></span>
+                  </button>
                 </span>
               </div>
-              <div class="input-group input-group_form bar-srch input-field"
-                style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
+              <div class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
                 <!---------------------------------------------------------------------------------------------------------------------------->
                 <div class="input-group-btn mob-panel" style=" position: relative;">
-                  <button type="button" class="btn btn-default dropdown-toggle mob-btn" onclick="moblistview()"
+                  <button
+                    type="button"
+                    class="btn btn-default dropdown-toggle mob-btn"
+                    onclick="moblistview()"
                     style="position: relative;padding:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
                     <span class="mob_concept">+91</span> <span class="caret mob_pan"></span>
                   </button>
-                  <ul class="dropdown-menu mobcategory" role="menu"
-                    style="position: absolute;display: none;background-color: #CACACA !important;min-width:55px !important;">
+                  <ul class="dropdown-menu mobcategory" role="menu" style="position: absolute;display: none;background-color: #CACACA !important;min-width:55px !important;">
                     <li><a style="font-family:arial;padding-left:10px;padding-right:10px" href="#+91">+91</a></li>
                   </ul>
                 </div>
                 <!---------------------------------------------------------------------------------------------------------------------------->
-                <input type="tel" id="phone" oninput="$(this).removeClass('invalid')" required=" "
+                <input
+                  type="tel"
+                  id="phone"
+                  oninput="$(this).removeClass('invalid')"
+                  required=" "
                   style="margin: 0px;z-index: 0;border-radius: 0px;"
                   onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57;"
-                  pattern="^\d{10}$" title="Phone Number Format (9876543210)- 10 digits" maxlength="10"
+                  pattern="^\d{10}$"
+                  title="Phone Number Format (9876543210)- 10 digits"
+                  maxlength="10"
                   class="validate">
                 <label class="form-label label-ph" for="phone">Phone</label>
                 <span class="input-group-btn">
                   <button
                     style="color: #000;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span
-                      class="glyphicon glyphicon-earphone"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="glyphicon glyphicon-earphone"></span>
+                  </button>
                 </span>
               </div>
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
@@ -363,52 +380,77 @@ require "../Main/header.php";
               <!--PIN & LOCATE-->
               <ul style="margin-bottom: -20px;">
                 <li style="list-style:none; ">
-                  <div id="pin" class="input-group input-group_form bar-srch input-field"
-                    style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                    <input type="tel" oninput="$(this).removeClass('invalid')" class="locmark validate" id="regpin"
-                      value="" name="pincode" maxlength="6" required=" "
+                  <div id="pin" class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
+                    <input
+                      type="tel"
+                      oninput="$(this).removeClass('invalid')"
+                      class="locmark validate"
+                      id="regpin"
+                      value=""
+                      name="pincode"
+                      maxlength="6"
+                      required=" "
                       style="width: 100%;margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
                       onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                      pattern="^\d{6}$" title="PIN Number Format (654321)- 6 digits">
+                      pattern="^\d{6}$"
+                      title="PIN Number Format (654321)- 6 digits">
                     <label class="form-label" for="regpin">PIN</label>
                     <span id="dis_pin" class="input-group-btn">
-                      <button onclick="dis_pin()" onmouseover="$(this).css('background-color','#0c66cc')"
+                      <button
+                        onclick="dis_pin()"
+                        onmouseover="$(this).css('background-color','#0c66cc')"
                         onmouseleave="$(this).css('background-color','#0c77cc')"
                         style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                        class="btn btn-default search_btn" type="button"><span
-                          class="fa fa-lg fa-map-marker"></span></button>
+                        class="btn btn-default search_btn"
+                        type="button">
+                        <span class="fa fa-lg fa-map-marker"></span>
+                      </button>
                     </span>
                     <span id="hide_pin1" class="input-group-btn" style="display: none;">
-                      <button onclick="reglocate()"
+                      <button
+                        onclick="reglocate()"
                         onmouseover="$(this).css('background-color','#ee8126');$(this).css('border-color','#ee8126')"
                         onmouseleave="$(this).css('background-color','#fe9126');$(this).css('border-color','#fe9126')"
                         style="color: white;background-color:#fe9126;padding-top:10px;padding-bottom: 10px;outline: none;border-color:#fe9126 "
-                        class="btn btn-default search_btn" type="button"><span class="fa fa-search"></span></button>
+                        class="btn btn-default search_btn"
+                        type="button">
+                        <span class="fa fa-search"></span>
+                      </button>
                     </span>
                     <span id="hide_pin" class="input-group-btn" style="display: none;">
-                      <button onclick="reset_pin()" onmouseover="$(this).css('background-color','#bb0000')"
+                      <button
+                        onclick="reset_pin()"
+                        onmouseover="$(this).css('background-color','#bb0000')"
                         onmouseleave="$(this).css('background-color','red')"
                         style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                        class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                          style="margin-left: -18px;"></span></button>
+                        class="btn btn-default search_btn" type="button">
+                        <span class="fa fa-close" style="margin-left: -18px;"></span>
+                      </button>
                     </span>
                   </div>
                   <!---------------------------------------------------------------------------------------------------------------------------------------------->
                   <!---------------------------------------------------------------------------------------------------------------------------------------------->
                   <div id="setloc2" style="display: none;">
-                    <div class="input-group input-group_form bar-srch input-field"
-                      style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                      <select name="po_list" oninput="$(this).removeClass('invalid')" class="locmark validate"
-                        id="po_list1" name="pincode" required=" "
+                    <div class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
+                      <select
+                        name="po_list"
+                        oninput="$(this).removeClass('invalid')"
+                        class="locmark validate"
+                        id="po_list1"
+                        name="pincode" required=" "
                         style="width: 100%;height: 40px;margin: 0px;z-index: 0;border-radius: 5px;border:1px solid #DBDBDB;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
                         <option value="0" selected="" disabled="">Location</option>
                       </select>
                       <span id="hide_locate" class="input-group-btn">
-                        <button onclick="regsetlocation()" onmouseover="$(this).css('background-color','#4f994f')"
+                        <button
+                          onclick="regsetlocation()"
+                          onmouseover="$(this).css('background-color','#4f994f')"
                           onmouseleave="$(this).css('background-color','#006904')"
                           style="color: white;background-color:#006904;padding-top:10px;padding-bottom: 10px;outline: none;"
-                          class="btn btn-default search_btn popuptext pin" type="button"><span
-                            class="fa fa-check"></span></button>
+                          class="btn btn-default search_btn popuptext pin"
+                          type="button">
+                          <span class="fa fa-check"></span>
+                        </button>
                       </span>
                     </div>
                   </div>
@@ -420,16 +462,22 @@ require "../Main/header.php";
               <!------------------------------------------------------------------------------------------------------------------------------------------->
               <!------------------------------------------------------------------------------------------------------------------------------------------->
               <div class="form-group input-field" style="text-align: right;width: 100%;position: relative;">
-                <textarea rows="4" oninput="$(this).removeClass('invalid')" title="Minimal character count is 10"
-                  required="" id="address" class="validate"></textarea>
+                <textarea
+                  rows="4"
+                  oninput="$(this).removeClass('invalid')"
+                  title="Minimal character count is 10"
+                  required=""
+                  id="address"
+                  class="validate">
+                </textarea>
                 <label class="form-label" for="address">Address</label>
-                <span class="glyphicon glyphicon-home glyphicon-sm"
-                  style="position: absolute;right: 0;top: 0;padding: 4px;"></span>
+                <span class="glyphicon glyphicon-home glyphicon-sm" style="position: absolute;right: 0;top: 0;padding: 4px;"></span>
               </div>
               <div class="register-check-box">
                 <div class="check">
-                  <label class="checkbox"><input type="checkbox" id="subscribe" name="checkbox"><i>
-                    </i>Subscribe to Newsletter</label>
+                  <label class="checkbox">
+                    <input type="checkbox" id="subscribe" name="checkbox"><i></i>Subscribe to Newsletter
+                  </label>
                 </div>
               </div>
               <br>
@@ -444,50 +492,69 @@ require "../Main/header.php";
           <form action="#" onsubmit="return err_display_fn();">
             <div class="li account-details tab_reg">
               <!--EMAIL-->
-              <h6 style="margin-top: 0px !important;"><i class="fa fa-info-circle fa-lg"></i>&nbsp;Login
-                information</h6>
-              <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i
-                  style="color: yellow" class="fa fa-warning"></i> example@gmail.com</p>
-              <div class="input-group input-group_form bar-srch input-field"
-                style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
-                <input type="email" oninput="$(this).removeClass('invalid')" name="email" id="email" required=" "
+              <h6 style="margin-top: 0px !important;"><i class="fa fa-info-circle fa-lg"></i>&nbsp;Login information</h6>
+              <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px">
+                <i style="color: yellow" class="fa fa-warning"></i> example@gmail.com
+              </p>
+              <div class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
+                <input
+                  type="email"
+                  oninput="$(this).removeClass('invalid')"
+                  name="email" id="email"
+                  required=" "
                   style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
                   class="validate">
                 <label class="form-label" for="email">Email Address</label>
                 <span class="input-group-btn">
                   <button
                     style="color: #000;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span
-                      class="glyphicon glyphicon-envelope"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                  </button>
                 </span>
               </div>
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!--PASSWORD-->
-              <p class="capson_warning" style="display: none;color: #d9534f"><i class="fa fa-warning"></i>
-                &nbsp;WARNING! Caps lock is ON.</p>
-              <div id="pass" style="">
-                <div class="input-group input-group_form bar-srch input-field"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
-                  <input type="password" id="passfir" oninput="$(this).removeClass('invalid')" value=""
+              <p class="capson_warning" style="display: none;color: #d9534f">
+                <i class="fa fa-warning"></i>
+                &nbsp;WARNING! Caps lock is ON.
+              </p>
+              <div id="pass">
+                <div class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
+                  <input
+                    type="password"
+                    id="passfir"
+                    oninput="$(this).removeClass('invalid')"
+                    value=""
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                    required=" " class="password_fields validate"
+                    required=" "
+                    class="password_fields validate"
                     style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
                     onblur="err_display_fn()">
                   <label class="form-label" for="passfir">Password</label>
                   <span id="dis_pass1" class="input-group-btn">
-                    <button onclick="view()" onmouseover="$(this).css('background-color','#c0c0c0')"
+                    <button
+                      onclick="view()"
+                      onmouseover="$(this).css('background-color','#c0c0c0')"
                       onmouseleave="$(this).css('background-color','#f1f2f3')"
                       style="color: #000;background-color:#f1f2f3;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                      class="reg-btn-pass btn btn-default search_btn" type="button"><span
-                        class="fas fa-eye"></span></button>
+                      class="reg-btn-pass btn btn-default search_btn"
+                      type="button">
+                      <span class="fas fa-eye"></span>
+                    </button>
                   </span>
                   <span id="hide_pass1" class="input-group-btn" style="display: none;">
-                    <button onclick="view()" onmouseover="$(this).css('background-color','#c0c0c0')"
+                    <button
+                      onclick="view()"
+                      onmouseover="$(this).css('background-color','#c0c0c0')"
                       onmouseleave="$(this).css('background-color','#f1f2f3')"
                       style="color: #000;background-color:#f1f2f3;padding-top:10px;padding-bottom: 10px;outline: none;"
-                      class="reg-btn-pass btn btn-default search_btn" type="button"><span
-                        class="fas fa-eye-slash"></span></button>
+                      class="reg-btn-pass btn btn-default search_btn"
+                      type="button">
+                      <span class="fas fa-eye-slash"></span>
+                    </button>
                   </span>
                 </div>
                 <div id="message" style="display:none">
@@ -497,18 +564,24 @@ require "../Main/header.php";
                   <p id="number" class="invalid-msg">A <b>number</b></p>
                   <p id="length" class="invalid-msg">Minimum <b>8 characters</b></p>
                 </div>
-                <div class="input-group input-group_form bar-srch input-field"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
-                  <input type="password" oninput="$(this).removeClass('invalid')" id="passre"
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Confirm your password by re-type as above"
-                    required=" " class="password_fields validate"
+                <div class="input-group input-group_form bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 15px;">
+                  <input
+                    type="password"
+                    oninput="$(this).removeClass('invalid')"
+                    id="passre"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Confirm your password by re-type as above"
+                    required=" "
+                    class="password_fields validate"
                     style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
                   <label class="form-label" for="passre">Confirm password</label>
                   <span class="input-group-btn">
                     <button
                       style="color: #000;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                      class=" btn btn-default search_btn" type="button"><span
-                        class="glyphicon glyphicon-lock"></span></button>
+                      class=" btn btn-default search_btn"
+                      type="button">
+                      <span class="glyphicon glyphicon-lock"></span>
+                    </button>
                   </span>
                 </div>
               </div>
@@ -522,36 +595,49 @@ require "../Main/header.php";
             <div class="ada account-details tab_reg">
               <!--EMAIL-->
               <h6 style="margin-top: 0px !important;"><i class="fa fa-info-circle fa-lg"></i>&nbsp;Delivery Address</h6>
-              <p style="color:#666"><b>Note<b><span style="font-weight:normal"> : You can skip this step
-                      for now by choosing </span><b>"USE AS REGISTER DETAILS"<b></p>
-              <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i
-                  style="color: yellow" class="fa fa-warning"></i> example@gmail.com</p>
+              <p style="color:#666"><b>Note<b><span style="font-weight:normal"> : You can skip this step for now by choosing </span><b>"USE AS REGISTER DETAILS"<b></p>
+              <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px">
+                <i style="color: yellow" class="fa fa-warning"></i> example@gmail.com
+              </p>
               <br>
               <h5 id="ship-to-different-address" class="">
                 <label class="options" for="use-as-register-checkbox">Use as register details?
-                  <input type="radio" onclick="" style="float: left;" value="register_details"
-                    name="use-as-register-checkbox" id="use-as-register-checkbox">
+                  <input
+                    type="radio"
+                    onclick=""
+                    style="float: left;"
+                    value="register_details"
+                    name="use-as-register-checkbox"
+                    id="use-as-register-checkbox">
                   <span class="checkmark"></span>
                 </label>
                 <br><br>
                 <label class="options" for="stda_check">Add to a different address?
-                  <input type="radio" style="float: left;" onclick="stda()" name="use-as-register-checkbox"
-                    class="stda-checkbox" id="stda_check"> <span class="checkmark"></span>
+                  <input
+                    type="radio"
+                    style="float: left;"
+                    onclick="stda()"
+                    name="use-as-register-checkbox"
+                    class="stda-checkbox"
+                    id="stda_check">
+                  <span class="checkmark"></span>
                 </label>
               </h5>
               <div class="shipping_address" style="display: none;" id="stda_div">
                 <p id="shipping_first_name_field" class="form-row form-row-first validate-required">
-                  <label class="" for="shipping_first_name"
-                    style="font-weight: normal;text-transform: capitalize;">First Name <abbr title="required"
-                      class="required" style="color: #c50505">*</abbr>
+                  <label
+                    class=""
+                    for="shipping_first_name"
+                    style="font-weight: normal;text-transform: capitalize;">
+                    First Name <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
                   <input type="text" oninput="$(this).removeClass('invalid')" value="" placeholder="First name"
                     id="shipping_first_name" name="shipping_first_name" class="input-text validate"
                     pattern="^\S[a-zA-Z]{3,30}$" title="Minimum character '3'.Use alphabets" required="">
                 </p>
                 <p id="shipping_last_name_field" class="form-row form-row-last validate-required">
-                  <label class="" for="shipping_last_name" style="font-weight: normal;text-transform: capitalize;">Last
-                    Name <abbr title="required" class="required" style="color: #c50505">*</abbr>
+                  <label class="" for="shipping_last_name" style="font-weight: normal;text-transform: capitalize;">
+                    Last Name <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
                   <input type="text" oninput="$(this).removeClass('invalid')" value="" placeholder="Last name"
                     id="shipping_last_name" name="shipping_last_name" class="input-text validate"
@@ -585,21 +671,36 @@ require "../Main/header.php";
                     style="font-weight: normal;text-transform: capitalize;">Address <abbr title="required"
                       class="required" style="color: #c50505">*</abbr>
                   </label>
-                  <textarea oninput="$(this).removeClass('invalid')" value="" title="Minimal character count is 10"
-                    placeholder="Street address" id="shipping_address_1" name="shipping_address_1"
-                    class="input-text validate" required=""></textarea>
+                  <textarea
+                    oninput="$(this).removeClass('invalid')"
+                    value=""
+                    title="Minimal character count is 10"
+                    placeholder="Street address"
+                    id="shipping_address_1"
+                    name="shipping_address_1"
+                    class="input-text validate"
+                    required="">
+                  </textarea>
                 </p>
                 <p id="shipping_postcode_field"
                   class="form-row form-row-last address-field validate-required validate-postcode"
                   data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-                  <label class="" for="shipping_postcode"
-                    style="font-weight: normal;text-transform: capitalize;">Postcode <abbr title="required"
-                      class="required" style="color: #c50505">*</abbr>
+                  <label class="" for="shipping_postcode" style="font-weight: normal;text-transform: capitalize;">
+                    Postcode <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
-                  <input type="text" oninput="$(this).removeClass('invalid')" value="" placeholder="Postcode / Zip"
-                    id="shipping_postcode" maxlength="6" name="shipping_postcode" class="input-text validate"
+                  <input
+                    type="text"
+                    oninput="$(this).removeClass('invalid')"
+                    value=""
+                    placeholder="Postcode / Zip"
+                    id="shipping_postcode"
+                    maxlength="6"
+                    name="shipping_postcode"
+                    class="input-text validate"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                    pattern="^\d{6}$" title="PIN Number Format (654321)- 6 digits" required="">
+                    pattern="^\d{6}$"
+                    title="PIN Number Format (654321)- 6 digits"
+                    required="">
                 </p>
                 <div class="clear"></div>
                 <input type="submit" id="delivery_button" style="display:none" />
@@ -609,31 +710,42 @@ require "../Main/header.php";
             <div id="update_user_details" style="display: none;">
               <div class="register-check-box">
                 <div class="check">
-                  <label class="checkbox"><input type="checkbox" id="accept" name="checkbox"><i> </i>I
-                    accept the <a href="../Main/terms&conditions.php" target="_blank">terms and
-                      conditions</a></label>
+                  <label class="checkbox"><input type="checkbox" id="accept" name="checkbox">
+                    <i> </i>I accept the <a href="../Main/terms&conditions.php" target="_blank">terms and conditions</a>
+                  </label>
                 </div>
               </div>
               <div class="div-wrapper" style="display: flex;align-items: flex-end;justify-content: flex-end;">
-                <button type="button"
+                <button
+                  type="button"
                   style="padding:8px;border-radius: 50%;padding-left: 9px;padding-right: 9px;background-color: #02171e"
                   onclick="nextPrev(-1)">
                   <i class="fa fa-lg fa-arrow-left" style="color: #fff"></i>
                 </button>
                 <input class="shadow_b real_btn" type="button" onclick="checkregister()" value="Register">
-                <button class="shadow_b load_btn" style="display:none" type="button"><i
-                    class="fa fa-refresh fa-spin"></i>&nbsp;Register</button>
+                <button
+                  class="shadow_b load_btn"
+                  style="display:none"
+                  type="button">
+                  <i class="fa fa-refresh fa-spin"></i>&nbsp;Register
+                </button>
               </div>
             </div>
             <!------------------------------------------------------------------------------------------------------------------------------>
             <div style="overflow:auto;">
               <div style="float:right;">
-                <button type="button" id="prevBtn"
+                <button
+                  type="button"
+                  id="prevBtn"
                   style="background-color: #999;color: #ffffff;border: none;padding: 6px 10px;font-size: 15px;font-family: Raleway;cursor: pointer;"
-                  onclick="nextPrev(-1)">Previous</button>
-                <button type="button" id="nextBtn"
+                  onclick="nextPrev(-1)">Previous
+                </button>
+                <button
+                  type="button"
+                  id="nextBtn"
                   style="background-color: #0c77cc;color: #ffffff;border: none;padding: 6px 20px;font-size: 15px;font-family: Raleway;cursor: pointer;"
-                  onclick="nextPrev(1)">Next</button>
+                  onclick="nextPrev(1)">Next
+                </button>
               </div>
             </div>
             <!-- Circles which indicates the steps of the form: -->
@@ -658,32 +770,9 @@ require "../Main/header.php";
 <?php
 require "../Main/footer.php";
 ?>
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!-- Bootstrap Core JavaScript -->
-<!--<script src="../../js/bootstrap.min.js"></script>-->
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
-<!--
-    <script type="text/javascript">
-        $(document).ready(function() {
-            /*
-                var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-                };
-            */
-            $().UItoTop({ easingType: 'easeOutQuart' });
-            });
-    </script>-->
-<!-- //here ends scrolling icon -->
-<!--<script src="../../js/minicart.min.js"></script>-->
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!-- ------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------ -->
 <script>
   var page_selector = 0;
   var currentTab_reg = 0; // Current tab_reg is set to be the first tab_reg (0)
@@ -810,9 +899,9 @@ require "../Main/footer.php";
     //... and adds the "active" class on the current step:
     x[n].className += " active";
   }
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------------------------------------------------/
+  // ------------------------------------------------------------------------------------------------------/
+  // ------------------------------------------------------------------------------------------------------/
   var checkBox_diff = document.getElementById("stda_check");
   var checkBox_user = document.getElementById("use-as-register-checkbox");
 
@@ -834,7 +923,7 @@ require "../Main/footer.php";
     $("#stda_div").css("display", "none");
     checkBox_diff.checked = false;
   });
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------------------------------------------------------------------------------------/
   // Mini Cart
   paypal.minicart.render({
     action: '#'
@@ -1020,7 +1109,7 @@ if (isset($_GET['verified'])) {
   $(document).ready(function(e) {
     $("#setloc2").hide();
   });
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
   function err_display_fn() {
     return false;
   }
@@ -1246,7 +1335,7 @@ if (isset($_GET['verified'])) {
     }
     return true;
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
   var pass_input = document.getElementById('passfir');
   var letter = document.getElementById("letter");
   var capital = document.getElementById("capital");
@@ -1424,8 +1513,8 @@ if (isset($_GET['verified'])) {
     }
     return true;
   }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
   function checkregister() {
     //fetch data into variables
     var first_name = document.getElementById("first_name").value;
@@ -1481,15 +1570,15 @@ if (isset($_GET['verified'])) {
                 var subscribe = "0";
               }
               //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
-              ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
               /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
                   //REQUIRED FOR GEOLOCATION ACCESS
                       var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
                       xmlhttp.onreadystatechange = function() {
-                          if (this.readyState == 4 && this.status == 200) { ////START IF
+                          if (this.readyState == 4 && this.status == 200) { ---/START IF
                               addr = JSON.parse(this.responseText);
                               console.log(addr);
                               var lat=addr.data[0].latitude;
@@ -1511,10 +1600,10 @@ if (isset($_GET['verified'])) {
                 }
               */
               var lat = long = 0;
-              ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
               $.ajax({
                 url: "../Common/functions.php", //passing page info
                 data: {
@@ -1918,15 +2007,15 @@ if (isset($_GET['verified'])) {
                 var subscribe = "0";
               }
               //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
-              ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
               /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
                   //REQUIRED FOR GEOLOCATION ACCESS
                       var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
                       xmlhttp.onreadystatechange = function() {
-                          if (this.readyState == 4 && this.status == 200) { ////START IF
+                          if (this.readyState == 4 && this.status == 200) { ---/START IF
                               addr = JSON.parse(this.responseText);
                               console.log(addr);
                               var lat=addr.data[0].latitude;
@@ -1948,10 +2037,10 @@ if (isset($_GET['verified'])) {
                 }
               */
               var lat = long = 0;
-              ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
+              // ------------------------------------------------------------------------------------------------------------------
               $.ajax({
                 url: "../Common/functions.php", //passing page info
                 data: {
@@ -2171,7 +2260,7 @@ if (isset($_GET['verified'])) {
       $("#hide_pass1").hide();
     }
   }
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 </script>
 </body>
 

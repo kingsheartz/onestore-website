@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -290,7 +290,7 @@ require "../Common/pdo.php";
       url: "../Common/functions.php", //passing page info
       data: {
         "cartcnt": 1,
-        "user": "<?= $_SESSION['id'] ?>"
+        "user": "<?= $_SESSION['onestore_id'] ?>"
       }, //form data
       type: "post", //post data
       dataType: "json", //datatype=json format
@@ -322,7 +322,7 @@ require "../Common/pdo.php";
       name: inputVal,
       "filter": filter,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -344,7 +344,7 @@ require "../Common/pdo.php";
     $.get("getorder.php", {
       name: inputVal,
       'filter': filter,
-      id: <?= $_SESSION['id'] ?>
+      id: <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -365,7 +365,7 @@ require "../Common/pdo.php";
     $.get("getorder.php", {
       'name': inputVal,
       'filter': filter,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -390,7 +390,7 @@ require "../Common/pdo.php";
       'name': inputVal,
       'filter': filter,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -404,12 +404,14 @@ require "../Common/pdo.php";
 </script>
 <div class="table1" style="padding:5px;">
   <?php
+  // Check if the user has any orders
   $sql_order_cnt = "select new_orders_id ,new_orders.sub_total from new_orders
-JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
-JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id where user_delivery_details.user_id=" . $_SESSION['id'];
+                    JOIN order_delivery_details ON order_delivery_details.order_delivery_details_id=new_orders.order_delivery_details_id
+                    JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=order_delivery_details.user_delivery_details_id where user_delivery_details.user_id=" . $_SESSION['onestore_id'];
   $stmt_order_cnt = $pdo->prepare($sql_order_cnt);
   $stmt_order_cnt->execute();
   $order_cnt = $stmt_order_cnt->rowCount();
+
   if ($order_cnt == 0) {
     echo '<center><img src="../../images/logo/noorder.png" style="width:100%;justify-content: center;max-width:300px;height:auto;" ><h2 class="noorder-title" style="text-align: center;color:#f16b7f;display: inline-flex;font-weight: 600;">No Orders Yet...</h2></center><br><br>';
   } else {
@@ -419,7 +421,14 @@ JOIN user_delivery_details ON user_delivery_details.user_delivery_details_id=ord
         <div class="col-sm-12 " style="padding: 0;margin:0;">
           <div class="col-sm-6 col-xs-7 ord_srch">
             <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
-              <input type="text" class="" id="order_search" placeholder="Search" value="" name="" required=" "
+              <input
+                type="text"
+                class=""
+                id="order_search"
+                placeholder="Search"
+                value=""
+                name=""
+                required=" "
                 style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline: none;">
               <span id="" class="input-group-btn">
                 <button id="ord_srch" onclick="dispsrch()"

@@ -44,20 +44,22 @@
 <?php
 session_start();
 if (isset($_GET['id'])) {
-  $_SESSION['id'] = $_GET['id'];
+  $_SESSION['onestore_id'] = $_GET['id'];
 }
 require "pdo.php";
-$nw = $_SESSION['id'];
+$nw = $_SESSION['onestore_id'];
 $qu = "SELECT username from store_admin where store_id=$nw";
 $st = $pdo->query($qu);
 $r = $st->fetch(PDO::FETCH_ASSOC);
-$_SESSION['username'] = $r['username'];
-if (!isset($_SESSION['username'])) {
-  die("<div style='width: 100%;
-display: flex;
-flex-wrap: wrap;
-margin-right: -0.75rem;
-margin-left: -0.75rem;justify-content:center;padding-top:50px;padding-bottom:50px'>
-<a href='../login.php'><img class='img-responsive' src='images/logo/loginerr.png'></a></div>");
+
+if ($r) {
+  $_SESSION['onestore_username'] = $r['username'];
+}
+
+if (!isset($_SESSION['onestore_username'])) {
+  die("
+    <div style='width: 100%;display: flex;flex-wrap: wrap;margin-right: -0.75rem;margin-left: -0.75rem;justify-content:center;padding-top:50px;padding-bottom:50px'>
+      <a href='../user/Account/login.php'><img class='img-responsive' src='images/logo/loginerr.png'></a>
+    </div>");
 }
 ?>

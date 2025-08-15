@@ -46,35 +46,21 @@ require "../Common/cookie.php";
   }
 </style>
 <?php
-//if(isset($_SESSION['id'])){
+//if(isset($_SESSION['onestore_id'])){
 ?>
 <script>
-  function getCookieset(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
   $(document).ready(function() {
-    //DELETE THIS COOKIE//document.cookie = "cookieset=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
+    //DELETE THIS COOKIE 
+    // document.cookie = "cookieset=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
     if (getCookieset('cookieset') !== "y") {
       <?php
-      if (isset($_SESSION['id'])) {
+      if (isset($_SESSION['onestore_id'])) {
       ?>
         $.ajax({
           url: "../Common/functions.php", //passing page info
           data: {
             "getcookie": 1,
-            "userid": <?= $_SESSION['id'] ?>
+            "userid": <?= $_SESSION['onestore_id'] ?>
           }, //form data
           type: "post", //post data
           dataType: "json", //datatype=json format
@@ -116,6 +102,23 @@ require "../Common/cookie.php";
       }
       ?>
     }
+
+    <?php
+    if (isset($_SESSION['onestore_error_msg'])) {
+    ?>
+      swal({
+        title: "Error",
+        text: "<?= $_SESSION['onestore_error_msg'] ?>",
+        icon: "error",
+        closeOnClickOutside: false,
+        dangerMode: true,
+      }).then(() => {
+        location.href = '../Account/logout.php';
+      });
+    <?php
+      unset($_SESSION['onestore_error_msg']);
+    }
+    ?>
   });
   $(window).unload(function() {
     document.cookie = 'mainscrollTop=' + $(window).scrollTop();
@@ -245,7 +248,7 @@ require "../Common/cookie.php";
                   </p>
                   <p class="cap_body" style="font-family:Arial;"><?= $divider[1] ?></p>
                 </div>
-                <a class=" button-radius" href="#"><span class="icon"></span>Shop now</a>
+                <a class="button-radius" href="#"><span class="icon"></span>Shop now</a>
               </div>
             </div>
           </div>
@@ -263,7 +266,7 @@ require "../Common/cookie.php";
   <!-- //top-header and slider -->
   <!-- top-brands -->
   <?php
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ---------------------------------------------------------------------------------------------------------------------------------
   //Generate Dynamic Loading
   function randomGenerate($min, $max, $quantity)
   {
@@ -272,7 +275,7 @@ require "../Common/cookie.php";
     return array_slice($numbers, 0, $quantity);
   }
   //Generate Dynamic Loading
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ---------------------------------------------------------------------------------------------------------------------------------
   /*COLOR PICKER*/
   $color = array('scroll_handle_orange', 'scroll_handle_blue', 'scroll_handle_red', 'scroll_handle_cyan', 'scroll_handle_magenta', 'scroll_handle_green', 'scroll_handle_green1', 'scroll_handle_peach', 'scroll_handle_munsell', 'scroll_handle_carmine', 'scroll_handle_lightbrown', 'scroll_handle_hanblue', 'scroll_handle_kellygreen');
   $bgcolor = array('orange', '#0c99cc', 'red', 'cyan', 'magenta', 'green', '#006622', '#FF6666', '#E6BF00', '#AB274F', '#C46210', '#485CBE', '#65BE00');
@@ -331,11 +334,13 @@ require "../Common/cookie.php";
         style="background-color: #fff;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
         <?php
         require "../Common/pdo.php";
-        $row = $pdo->query("select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 ");
+        $row = $pdo->query(
+          "select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+          inner join item_description on item_description.item_id=item.item_id
+          inner join category on category.category_id=item.category_id
+          inner join sub_category on category.category_id=sub_category.category_id
+          where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 "
+        );
         while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
         ?>
           <a class="img_trans" href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
@@ -351,7 +356,7 @@ require "../Common/cookie.php";
   <hr class="make_div">
   <hr class="make_div">
   <!-- //top-brands -->
-  <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!------------------------------------------------------------------------------------------------------->
   <!-- main-slider -->
   <ul id="demo1">
     <li>
@@ -396,11 +401,13 @@ require "../Common/cookie.php";
         style="background-color: #fff;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
         <?php
         require "../Common/pdo.php";
-        $row = $pdo->query("select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2");
+        $row = $pdo->query(
+          "select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+          inner join item_description on item_description.item_id=item.item_id
+          inner join category on category.category_id=item.category_id
+          inner join sub_category on category.category_id=sub_category.category_id
+          where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2"
+        );
         while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
         ?>
           <a class="img_trans" href="../Product/single.php?id=<?= $row1['item_description_id'] ?>"><img
@@ -783,11 +790,13 @@ require "../Common/cookie.php";
               <div class="row cn-slider cn cn1" style="background-color: #fff;">
                 <?php
                 require_once "../Common/pdo.php";
-                $row = $pdo->query("select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 LIMIT 10");
+                $row = $pdo->query(
+                  "select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                  inner join item_description on item_description.item_id=item.item_id
+                  inner join category on category.category_id=item.category_id
+                  inner join sub_category on category.category_id=sub_category.category_id
+                  where  sub_category.category_id=$cat_id1 and sub_category.sub_category_id=$sub_cat_id1 and item.sub_category_id=$sub_cat_id1 LIMIT 10"
+                );
                 while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                   <div class="col-lg-3" title="<?= $row1['item_name'] ?>"
@@ -815,11 +824,13 @@ require "../Common/cookie.php";
               <h4 style=""><?= $sub_catrow2['sub_category_name'] ?></h4>
               <div class="row cn-slider cn cn2" style="background-color: #fff">
                 <?php
-                $row = $pdo->query("select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2 LIMIT 10");
+                $row = $pdo->query(
+                  "select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                  inner join item_description on item_description.item_id=item.item_id
+                  inner join category on category.category_id=item.category_id
+                  inner join sub_category on category.category_id=sub_category.category_id
+                  where  sub_category.category_id=$cat_id2 and sub_category.sub_category_id=$sub_cat_id2 and item.sub_category_id=$sub_cat_id2 LIMIT 10"
+                );
                 while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                   <div class="col-lg-3" title="<?= $row1['item_name'] ?>"
@@ -855,11 +866,13 @@ require "../Common/cookie.php";
               <h4 style=""><?= $sub_catrow3['sub_category_name'] ?></h4>
               <div class="row cn-slider cn cn3">
                 <?php
-                $row = $pdo->query("select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where  sub_category.category_id=$cat_id3 and sub_category.sub_category_id=$sub_cat_id3 and item.sub_category_id=$sub_cat_id3 LIMIT 10");
+                $row = $pdo->query(
+                  "select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                  inner join item_description on item_description.item_id=item.item_id
+                  inner join category on category.category_id=item.category_id
+                  inner join sub_category on category.category_id=sub_category.category_id
+                  where  sub_category.category_id=$cat_id3 and sub_category.sub_category_id=$sub_cat_id3 and item.sub_category_id=$sub_cat_id3 LIMIT 10"
+                );
                 while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                   <div class="col-lg-3" title="<?= $row1['item_name'] ?>"
@@ -888,11 +901,13 @@ require "../Common/cookie.php";
             <h4 style=""><?= $sub_catrow4['sub_category_name'] ?></h4>
             <div class="row cn-slider cn cn4">
               <?php
-              $row = $pdo->query("select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
-    inner join item_description on item_description.item_id=item.item_id
-    inner join category on category.category_id=item.category_id
-    inner join sub_category on category.category_id=sub_category.category_id
-    where sub_category.category_id=$cat_id4 and sub_category.sub_category_id=$sub_cat_id4 and item.sub_category_id=$sub_cat_id4 LIMIT 10");
+              $row = $pdo->query(
+                "select item_description.item_description_id,item.item_name,category.category_name,category.category_id,sub_category.sub_category_id,sub_category.sub_category_name from item
+                inner join item_description on item_description.item_id=item.item_id
+                inner join category on category.category_id=item.category_id
+                inner join sub_category on category.category_id=sub_category.category_id
+                where sub_category.category_id=$cat_id4 and sub_category.sub_category_id=$sub_cat_id4 and item.sub_category_id=$sub_cat_id4 LIMIT 10"
+              );
               while ($row1 = $row->fetch(PDO::FETCH_ASSOC)) {
               ?>
                 <div class="col-lg-3" title="<?= $row1['item_name'] ?>"
@@ -954,8 +969,8 @@ require "../Common/cookie.php";
         </div>
         <!--banner-bottom-->
         <?php
-        if (isset($_SESSION['id'])) {
-          $presql = "select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['id'];
+        if (isset($_SESSION['onestore_id'])) {
+          $presql = "select item_description_id from item_keys WHERE rating=0 AND ordered_cnt>0 AND review= '0' and user_id=" . $_SESSION['onestore_id'];
           $prest = $pdo->query($presql);
           $precnt = $prest->rowCount();
           if ($precnt > 0) {
@@ -1003,11 +1018,13 @@ require "../Common/cookie.php";
                       class="fas fa-chevron-right"></i></button>
                   <?php
                   while ($prerow = $prest->fetch(PDO::FETCH_ASSOC)) {
-                    $ran = $pdo->query("select * from item_description
-        inner join item on item.item_id=item_description.item_id
-        inner join category on category.category_id=item.category_id
-        inner join sub_category on category.category_id=sub_category.category_id
-        where item.sub_category_id=sub_category.sub_category_id and item_description_id=" . $prerow['item_description_id']);
+                    $ran = $pdo->query(
+                      "select * from item_description
+                      inner join item on item.item_id=item_description.item_id
+                      inner join category on category.category_id=item.category_id
+                      inner join sub_category on category.category_id=sub_category.category_id
+                      where item.sub_category_id=sub_category.sub_category_id and item_description_id=" . $prerow['item_description_id']
+                    );
                     $row = $ran->fetch(PDO::FETCH_ASSOC);
                   ?>
                     <div class="products-all-in-one" title="<?= $row['item_name'] ?>"
@@ -1079,11 +1096,13 @@ require "../Common/cookie.php";
                       <h2 class="section-title">Latest Products</h2>
                       <div class="product-carousel">
                         <?php
-                        $sql = $pdo->query("select item_description.item_description_id,category_id,sub_category_id,item_name,item.price as mrp,product_details.price from item
-join item_description on item_description.item_id=item.item_id
-join product_details on product_details.item_description_id=item_description.item_description_id
-where sub_category_id=16
-group by item_description.item_description_id limit 2,17");
+                        $sql = $pdo->query(
+                          "select item_description.item_description_id,category_id,sub_category_id,item_name,item.price as mrp,product_details.price from item
+                          join item_description on item_description.item_id=item.item_id
+                          join product_details on product_details.item_description_id=item_description.item_description_id
+                          where sub_category_id=16
+                          group by item_description.item_description_id limit 2,17"
+                        );
                         while ($ph = $sql->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="single-product">
@@ -1141,9 +1160,11 @@ group by item_description.item_description_id limit 2,17");
                 <h3>New offers</h3>
                 <div class="agile_top_brands_grids">
                   <?php
-                  $no = $pdo->query("select item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.category_id,item.sub_category_id from item_description
-join product_details on product_details.item_description_id=item_description.item_description_id
-join item on item.item_id=item_description.item_id where sub_category_id=25 limit 4");
+                  $no = $pdo->query(
+                    "select item.price as 'mrp',product_details.price,item_description.item_description_id,item.item_name,item.category_id,item.sub_category_id from item_description
+                    join product_details on product_details.item_description_id=item_description.item_description_id
+                    join item on item.item_id=item_description.item_id where sub_category_id=25 limit 4"
+                  );
                   while ($norow = $no->fetch(PDO::FETCH_ASSOC)) {
                   ?>
                     <div class="col-md-3 top_brand_left-1">
@@ -1163,8 +1184,8 @@ join item on item.item_id=item_description.item_id where sub_category_id=25 limi
                                   <div class="stars">
                                     <?php
                                     $starsql = "select round(avg(item_keys.rating),0) AS avgrate FROM item_keys
-JOIN item_description on item_keys.item_description_id=item_description.item_description_id
-WHERE item_keys.rating!=0 and item_description.item_description_id=" . $norow['item_description_id'];
+                                                JOIN item_description on item_keys.item_description_id=item_description.item_description_id
+                                                WHERE item_keys.rating!=0 and item_description.item_description_id=" . $norow['item_description_id'];
                                     $startstmt = $pdo->query($starsql);
                                     $starrow = $startstmt->fetch(PDO::FETCH_ASSOC);
                                     $stars = round($starrow['avgrate']);
@@ -1210,8 +1231,9 @@ WHERE item_keys.rating!=0 and item_description.item_description_id=" . $norow['i
                     <div class="container-fluid">
                       <div class="fruit_container">
                         <?php
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=39 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=39 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1226,8 +1248,9 @@ where item.sub_category_id=39 ORDER BY rand() LIMIT 3");
                           </div>
                         <?php
                         }
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=45 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=45 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1242,8 +1265,9 @@ where item.sub_category_id=45 ORDER BY rand() LIMIT 3");
                           </div>
                         <?php
                         }
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=40 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=40 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1271,8 +1295,9 @@ where item.sub_category_id=40 ORDER BY rand() LIMIT 3");
                     <div class="container-fluid">
                       <div class="fruit_container">
                         <?php
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=23 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=23 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1288,8 +1313,9 @@ where item.sub_category_id=23 ORDER BY rand() LIMIT 3");
                           </div>
                         <?php
                         }
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=21 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=21 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1304,8 +1330,9 @@ where item.sub_category_id=21 ORDER BY rand() LIMIT 3");
                           </div>
                         <?php
                         }
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=18 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=18 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1333,8 +1360,9 @@ where item.sub_category_id=18 ORDER BY rand() LIMIT 3");
                     <div class="container-fluid">
                       <div class="fruit_container">
                         <?php
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=35 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=35 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1349,8 +1377,9 @@ where item.sub_category_id=35 ORDER BY rand() LIMIT 3");
                           </div>
                         <?php
                         }
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=36 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=36 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1365,8 +1394,9 @@ where item.sub_category_id=36 ORDER BY rand() LIMIT 3");
                           </div>
                         <?php
                         }
-                        $cat = $pdo->query("select * from item join item_description on item_description.item_id=item.item_id
-where item.sub_category_id=32 ORDER BY rand() LIMIT 3");
+                        $cat = $pdo->query(
+                          "select * from item join item_description on item_description.item_id=item.item_id where item.sub_category_id=32 ORDER BY rand() LIMIT 3"
+                        );
                         while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                           <div class="box">
@@ -1411,7 +1441,7 @@ where item.sub_category_id=32 ORDER BY rand() LIMIT 3");
                 }
 
                 .divmain {
-                  height: 500px;
+                  height: auto;
                 }
               }
 
@@ -1683,25 +1713,31 @@ where item.sub_category_id=32 ORDER BY rand() LIMIT 3");
                       <h2 class="product-wid-title">Top Sellers</h2>
                       <a href="../Product/diff_views.php?topseller=1" class="wid-view-more">View All</a>
                       <?php
-                      $ran = $pdo->query("select distinct(item_keys.item_description_id) from item_keys
-inner join product_details on product_details.item_description_id=item_keys.item_description_id
-GROUP BY item_description_id order by CAST(sum(item_keys.ordered_cnt) as UNSIGNED) DESC LIMIT 3");
+                      $ran = $pdo->query(
+                        "select distinct(item_keys.item_description_id) from item_keys
+                        inner join product_details on product_details.item_description_id=item_keys.item_description_id
+                        GROUP BY item_description_id order by CAST(sum(item_keys.ordered_cnt) as UNSIGNED) DESC LIMIT 3"
+                      );
                       $isready = $ran->rowCount();
                       if ($isready != 0 && is_null($isready) == false) {
                         $l = 1;
                         while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                           $item_desc_id = $view['item_description_id'];
-                          $preview = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                          $preview = $pdo->query(
+                            'select * from item_description
+                            inner join item on item.item_id=item_description.item_id
+                            INNER JOIN product_details ON product_details.item_description_id=item_description.item_description_id
+                            where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                          );
                           $row = $preview->fetch(PDO::FETCH_ASSOC);
                           if (strlen($row['item_name']) > 28) {
                             $item_name = substr($row['item_name'], 0, 28) . "...";
                           } else {
                             $item_name = $row['item_name'];
                           }
-                          $ratingstmt = $pdo->query("select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'");
+                          $ratingstmt = $pdo->query(
+                            "select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'"
+                          );
                           $ratecount = $ratingstmt->rowCount();
                           if ($ratecount != 0 && !is_null($ratecount)) {
                             $ratingrow = $ratingstmt->fetch(PDO::FETCH_ASSOC);
@@ -1741,32 +1777,38 @@ GROUP BY item_description_id order by CAST(sum(item_keys.ordered_cnt) as UNSIGNE
                     </div>
                   </div>
                   <?php
-                  if (isset($_SESSION['id'])) {
+                  if (isset($_SESSION['onestore_id'])) {
                   ?>
                     <div class="col-md-4">
                       <div class="single-product-widget">
                         <h2 class="product-wid-title">Recently Viewed</h2>
                         <a href="../Product/diff_views.php?recent=1" class="wid-view-more">View All</a>
                         <?php
-                        $ran = $pdo->query("select views ,item_keys.item_description_id from item_keys
-JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
-join item on item.item_id=item_description.item_id
-where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC limit 3");
+                        $ran = $pdo->query(
+                          "select views ,item_keys.item_description_id from item_keys
+                          JOIN item_description ON item_keys.item_description_id=item_description.item_description_id
+                          join item on item.item_id=item_description.item_id
+                          where user_id=" . $_SESSION['onestore_id'] . " GROUP BY item_description_id ORDER BY CAST(item_keys.date_of_preview as UNSIGNED) DESC limit 3"
+                        );
                         $isready = $ran->rowCount();
                         if ($isready != 0 && is_null($isready) == false) {
                           $m = 0;
                           while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                             $item_desc_id = $view['item_description_id'];
-                            $preview = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                            $preview = $pdo->query(
+                              'select * from item_description
+                              inner join item on item.item_id=item_description.item_id
+                              where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                            );
                             $row = $preview->fetch(PDO::FETCH_ASSOC);
                             if (strlen($row['item_name']) > 28) {
                               $item_name = substr($row['item_name'], 0, 28) . "...";
                             } else {
                               $item_name = $row['item_name'];
                             }
-                            $ratingstmt = $pdo->query("select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'");
+                            $ratingstmt = $pdo->query(
+                              "select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'"
+                            );
                             $ratecount = $ratingstmt->rowCount();
                             if ($ratecount != 0 && !is_null($ratecount)) {
                               $ratingrow = $ratingstmt->fetch(PDO::FETCH_ASSOC);
@@ -1808,22 +1850,28 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             <h2 class="product-wid-title">Popular Products</h2>
                             <a href="../Product/diff_views.php?popular=1" class="wid-view-more">View All</a>
                             <?php
-                            $ran = $pdo->query("select distinct(item_keys.item_description_id) from item_keys GROUP BY item_description_id order by CAST(sum(item_keys.views) as UNSIGNED) DESC LIMIT 3");
+                            $ran = $pdo->query(
+                              "select distinct(item_keys.item_description_id) from item_keys GROUP BY item_description_id order by CAST(sum(item_keys.views) as UNSIGNED) DESC LIMIT 3"
+                            );
                             $isready = $ran->rowCount();
                             if ($isready != 0 && is_null($isready) == false) {
                               $n = 0;
                               while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                                 $item_desc_id = $view['item_description_id'];
-                                $preview = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                                $preview = $pdo->query(
+                                  'select * from item_description
+                                  inner join item on item.item_id=item_description.item_id
+                                  where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                                );
                                 $row = $preview->fetch(PDO::FETCH_ASSOC);
                                 if (strlen($row['item_name']) > 28) {
                                   $item_name = substr($row['item_name'], 0, 28) . "...";
                                 } else {
                                   $item_name = $row['item_name'];
                                 }
-                                $ratingstmt = $pdo->query("select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'");
+                                $ratingstmt = $pdo->query(
+                                  "select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'"
+                                );
                                 $ratecount = $ratingstmt->fetch(PDO::FETCH_ASSOC);
                                 $rating = $ratecount['avgrate'];
                                 if ($rating == 0 || is_null($rating)) {
@@ -1867,18 +1915,22 @@ where user_id=" . $_SESSION['id'] . " GROUP BY item_description_id ORDER BY CAST
                             <h2 class="product-wid-title">Top New</h2>
                             <a href="../Product/allitems.php?topnew=1" class="wid-view-more">View All</a>
                             <?php
-                            $ran = $pdo->query("select * from item_description
-join item on item.item_id=item_description.item_id WHERE (item.added_date) in (
-    select max(added_date) as date
-    from item) GROUP BY item_description.item_id ORDER BY CAST(item.item_id AS UNSIGNED) DESC limit 3");
+                            $ran = $pdo->query(
+                              "select * from item_description
+                              join item on item.item_id=item_description.item_id WHERE (item.added_date) in (
+                              select max(added_date) as date
+                              from item) GROUP BY item_description.item_id ORDER BY CAST(item.item_id AS UNSIGNED) DESC limit 3"
+                            );
                             $isready = $ran->rowCount();
                             if ($isready != 0 && is_null($isready) == false) {
                               $k = 1;
                               while ($view = $ran->fetch(PDO::FETCH_ASSOC)) {
                                 $item_desc_id = $view['item_description_id'];
-                                $preview = $pdo->query('select * from item_description
-    inner join item on item.item_id=item_description.item_id
-    where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id');
+                                $preview = $pdo->query(
+                                  'select * from item_description
+                                  inner join item on item.item_id=item_description.item_id
+                                  where item_description.item_description_id=' . $item_desc_id . ' GROUP BY item_description.item_description_id'
+                                );
                                 $row = $preview->fetch(PDO::FETCH_ASSOC);
                                 $subcat_id = $view['sub_category_id'];
                                 if (strlen($row['item_name']) > 28) {
@@ -1886,7 +1938,9 @@ join item on item.item_id=item_description.item_id WHERE (item.added_date) in (
                                 } else {
                                   $item_name = $row['item_name'];
                                 }
-                                $ratingstmt = $pdo->query("select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'");
+                                $ratingstmt = $pdo->query(
+                                  "select round(avg(item_keys.rating)) AS avgrate from item_keys where item_description_id=" . $item_desc_id . " and rating>0 and ordered_cnt>0 and review!='0'"
+                                );
                                 $ratecount = $ratingstmt->rowCount();
                                 if ($ratecount != 0) {
                                   $ratingrow = $ratingstmt->fetch(PDO::FETCH_ASSOC);
@@ -1930,9 +1984,10 @@ join item on item.item_id=item_description.item_id WHERE (item.added_date) in (
                     </div>
                 </div> <!-- End product widget area -->
               </div>
-              <?php
-              require "footer.php";
-              ?>
-              </body>
+            </div>
+            <?php
+            require "footer.php";
+            ?>
+            </body>
 
-              </html>
+            </html>

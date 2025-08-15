@@ -66,9 +66,9 @@ $providerName = '';
 
 if (array_key_exists('provider', $_GET)) {
     $providerName = $_GET['provider'];
-    $_SESSION['provider'] = $providerName;
+    $_SESSION['onestore_provider'] = $providerName;
 } elseif (array_key_exists('provider', $_SESSION)) {
-    $providerName = $_SESSION['provider'];
+    $providerName = $_SESSION['onestore_provider'];
 }
 if (!in_array($providerName, ['Google', 'Microsoft', 'Yahoo'])) {
     exit('Only Google, Microsoft and Yahoo OAuth2 providers are currently supported in this script.');
@@ -123,16 +123,16 @@ if (null === $provider) {
 if (!isset($_GET['code'])) {
     // If we don't have an authorization code then get one
     $authUrl = $provider->getAuthorizationUrl($options);
-    $_SESSION['oauth2state'] = $provider->getState();
+    $_SESSION['onestore_oauth2state'] = $provider->getState();
     header('Location: ' . $authUrl);
     exit;
     // Check given state against previously stored one to mitigate CSRF attack
-} elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
-    unset($_SESSION['oauth2state']);
-    unset($_SESSION['provider']);
+} elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['onestore_oauth2state'])) {
+    unset($_SESSION['onestore_oauth2state']);
+    unset($_SESSION['onestore_provider']);
     exit('Invalid state');
 } else {
-    unset($_SESSION['provider']);
+    unset($_SESSION['onestore_provider']);
     // Try to get an access token (using the authorization code grant)
     $token = $provider->getAccessToken(
         'authorization_code',

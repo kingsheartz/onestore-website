@@ -15,7 +15,7 @@ require "head.php";
       $("#chatphp").click();
     </script>
     <?php
-    unset($_SESSION['name']);
+    unset($_SESSION['onestore_name']);
     if (isset($_POST['status'])) {
       $sql = "UPDATE chats SET stat=1 where rname='admin' AND uname='" . $_GET['name'] . "'";
       $st = $pdo->prepare($sql);
@@ -52,7 +52,6 @@ require "head.php";
     ?>
     <style>
       #chat-cont {
-        height: 500px;
         background: white;
         margin: 0 auto;
         font-size: 0;
@@ -62,7 +61,7 @@ require "head.php";
 
       main {
         width: 100%;
-        height: 500px;
+        height: 100%;
         display: inline-block;
         font-size: 15px;
         vertical-align: top;
@@ -181,18 +180,9 @@ require "head.php";
       }
 
       main footer {
-        height: 100px;
+        height: 85px;
         padding: 20px 30px 10px 20px;
         background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #360c88), color-stop(1, #6f0c79)) !important;
-      }
-
-      main footer textarea {
-        outline: none;
-        float: left;
-        height: 50px;
-        border-radius: 100px;
-        padding-right: 100px;
-        white-space: pre-wrap;
       }
 
       #myBtn {
@@ -379,6 +369,28 @@ require "head.php";
       .dark .date {
         background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #000000), color-stop(1, #000000)) !important;
       }
+
+      .textarea-container {
+        max-width: 500px;
+        margin: auto;
+      }
+
+      main footer textarea {
+        outline: none;
+        float: left;
+        border-radius: 50px;
+        white-space: pre-wrap;
+        width: calc(100% - 50px) !important;
+        height: 45px;
+        min-height: 40px;
+        max-height: 180px;
+        /* Optional: to limit growth */
+        resize: none;
+        padding: 10px;
+        padding-right: 100px;
+        line-height: 1.4;
+        overflow-y: auto;
+      }
     </style>
     <div id="chat">
       <div class="newhed">New Chats</div>
@@ -392,8 +404,9 @@ require "head.php";
           <span class="icon-bar"></span>
         </button>
         <div class="connect" style="background: #000000;text-align: center;">
-          <span><i class="fa fa-user-circle-o
-"></i></span>
+          <span>
+            <i class="fa fa-user-circle-o"></i>
+          </span>
           <h6 style="color:white;font-size:16px">CONTACTS</h6>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar2">
@@ -405,15 +418,17 @@ require "head.php";
             $cn++;
           ?>
             <div id="<?= $row['username'] ?>" class="connect" onclick="getfile('<?= $row['username'] ?>')">
-              <span class="conimg"><i id="<?= $row['username'] ?><?= $cn ?>" class="fa fa-user-circle-o"></i> <span
-                  class="uppernum3">
+              <span class="conimg">
+                <i id="<?= $row['username'] ?><?= $cn ?>" class="fa fa-user-circle-o"></i>
+                <span class="uppernum3">
                   <?php
                   $query1 = "SELECT COUNT(*) FROM chats WHERE uname='" . $row['username'] . "' AND stat=0";
                   $statement1 = $pdo->prepare($query1);
                   $statement1->execute();
                   $row1 = $statement1->fetch(PDO::FETCH_ASSOC);
                   ?> <?= $row1['COUNT(*)'] ?>
-                </span></span>
+                </span>
+              </span>
               <h6>
                 <?= $row['username'] ?>
               </h6>
@@ -433,10 +448,10 @@ require "head.php";
                 $statement = $pdo->prepare($query1);
                 $statement->execute(array(':name' => $_GET['name']));
                 $row1 = $statement->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['name'] = $row1['username'];
+                $_SESSION['onestore_name'] = $row1['username'];
               ?>
                 <span class="conimg"><i class="fa fa-user-circle-o" style="color:white;"></i></span>
-                <h4><?= $_SESSION['name'] ?></h4>
+                <h4><?= $_SESSION['onestore_name'] ?></h4>
               <?php
               }
               ?>
@@ -451,8 +466,8 @@ require "head.php";
               container.scrollTop = container.scrollHeight - container.clientHeight;
             var pageRefresh = 5000; //5 s
               setInterval(function() {
-                 $('#chathist').load(location.href + " #chathist >");
-                 $('#myNavbar2').load(location.href + " #myNavbar2 >");
+                $('#chathist').load(location.href + " #chathist >");
+                $('#myNavbar2').load(location.href + " #myNavbar2 >");
               }, pageRefresh);
             });
             */
@@ -481,16 +496,16 @@ require "head.php";
               return false;
             }
           </script>
-          <form id="myform" method="POST">
+          <form id="myform" method="POST" style="overflow-y: scroll;">
             <div class="inner_div" id="chathist">
               <?php
-              if (isset($_SESSION['name'])) {
+              if (isset($_SESSION['onestore_name'])) {
               ?>
-                <input type="hidden" id="rname" name="rname" value="<?= $_SESSION['name'] ?>">
+                <input type="hidden" id="rname" name="rname" value="<?= $_SESSION['onestore_name'] ?>">
                 <input type="hidden" id="uname" name="uname" value="admin">
                 <?php
                 require 'pdo.php';
-                $c = $_SESSION['name'];
+                $c = $_SESSION['onestore_name'];
                 $query = "SELECT * FROM chats where (uname='$c' and rname='admin') or (uname='admin' and rname='$c') order by dt";
                 $run = $pdo->query($query);
                 $i = 0;
@@ -512,10 +527,7 @@ require "head.php";
                   ?>
                     <div id="triangle1" class="triangle1"></div>
                     <div id="message1" class="message1">
-                      <div style="color: white;
-  float: right;
-  padding: 0;
-  width: 100%;">
+                      <div style="color: white;float: right;padding: 0;width: 100%;">
                         <pre><?php echo trim($row['msg']); ?></pre>
                       </div>
                       <div class="spdat">
@@ -529,10 +541,7 @@ require "head.php";
                     ?>
                       <div id="triangle" class="triangle"></div>
                       <div id="message" class="message">
-                        <div style="color: white;
-  float: right;
-  padding: 0;
-  width: 100%;">
+                        <div style="color: white;float: right;padding: 0;width: 100%;">
                           <pre><?php echo trim($row['msg']); ?></pre>
                         </div>
                         <div class="spdat">
@@ -545,10 +554,7 @@ require "head.php";
                     ?>
                       <div id="triangle1" class="triangle1"></div>
                       <div id="message1" class="message1">
-                        <div style="color: white;
-  float: right;
-  padding: 0;
-  width: 100%;">
+                        <div style="color: white;float: right;padding: 0;width: 100%;">
                           <pre><?php echo trim($row['msg']); ?></pre>
                         </div>
                         <div class="spdat">
@@ -607,11 +613,18 @@ require "head.php";
                 window.history.replaceState(null, null, window.location.href);
               }
             </script>
-            <footer>
-              <textarea class="col-sm-12" id="textarea" style="white-space: pre-line" wrap="hard" name="msg"
-                onChange={handleChange} onkeyup="change()"></textarea>
+            <footer id="footer">
+              <textarea
+                class="col-sm-12"
+                id="textarea"
+                style="white-space: pre-line"
+                wrap="hard"
+                name="msg"
+                onChange={handleChange}
+                onkeyup="change()"></textarea>
               <button id="myBtn" disabled name="submit" type="submit">
-                <i class="fa fa-arrow-right"></i></button>
+                <i class="fa fa-arrow-right"></i>
+              </button>
             </footer>
           </form>
         </main>
@@ -621,6 +634,15 @@ require "head.php";
     require 'foot.php';
     ?>
     <script>
+			const textarea = document.getElementById("textarea");
+      const footer = document.getElementById("footer");
+
+      textarea.addEventListener("input", function() {
+        this.style.height = "auto"; // Reset height
+        this.style.height = Math.min(this.scrollHeight - 20, 160) + "px"; // Set new height
+				footer.style.height = ((this.scrollHeight > 165) ? 205 : Math.max(this.scrollHeight + 20, 85)) + "px";
+      });
+
       $(".inner-switch").on("click", function() {
         if ($("#chat").hasClass("dark")) {
           $("#chat").removeClass("dark");

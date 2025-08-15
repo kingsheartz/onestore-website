@@ -3,13 +3,13 @@ require "head.php";
 ?>
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
-if (!empty($_SESSION['_contact_form_error'])) {
-  $error = $_SESSION['_contact_form_error'];
-  unset($_SESSION['_contact_form_error']);
+if (!empty($_SESSION['onestore_contact_form_error'])) {
+  $error = $_SESSION['onestore_contact_form_error'];
+  unset($_SESSION['onestore_contact_form_error']);
 }
-if (!empty($_SESSION['_contact_form_success'])) {
+if (!empty($_SESSION['onestore_contact_form_success'])) {
   $success = true;
-  unset($_SESSION['_contact_form_success']);
+  unset($_SESSION['onestore_contact_form_success']);
 }
 ?>
 
@@ -330,14 +330,23 @@ if (!empty($_SESSION['_contact_form_success'])) {
           </div>
           <div class="form-group">
             <span class="floating-label">Price</span>
-            <input type="number" required="" class="form-control"
+            <input
+              type="number"
+              required=""
+              class="form-control"
               onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-              style="width: 100%" name="item_price"/>
+              style="width: 100%"
+              name="item_price" />
           </div>
           <div class="form-group">
             <span class="floating-label">Product Description</span>
-            <textarea required="" class="form-control" style="white-space: pre-line;width:100%;height:200px;"
-              id="address" name="description"></textarea>
+            <textarea
+              required=""
+              class="form-control"
+              style="white-space: pre-line;width:100%;height:200px;"
+              id="address"
+              name="description">
+            </textarea>
           </div>
         </div>
         <div class="col-md-12 addte">
@@ -404,7 +413,7 @@ if (!empty($_SESSION['_contact_form_success'])) {
                           $cat = $pdo->query("select * from size");
                           while ($row = $cat->fetch(PDO::FETCH_ASSOC)) {
                           ?>
-                            < option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option >\
+                            <option value = "<?= $row['size_id'] ?>" > <?= $row['size_name'] ?></option>\
                           <?php
                           }
                           ?>'

@@ -425,24 +425,30 @@ require "head.php";
       ?>
         <div class="difcat ">
           <span class="difhed"><?= $row11['category_name'] ?>
-            <button onclick="location.href='viewnewitems.php?category_id=<?= $ct ?>'">View All</button></span>
+            <button onclick="location.href='viewnewitems.php?category_id=<?= $ct ?>'">View All</button>
+          </span>
           </span>
           <div class="difrow" id="difrow<?= $ct ?>" onscroll="movefr('difrow<?= $ct ?>')">
-            <button class="left-arrow" onclick="moveleft('difrow<?= $ct ?>')"><i class="fas fa-chevron-right"></i></button>
-            <button class="right-arrow" onclick="moveright('difrow<?= $ct ?>')" style="display: none;"><i
-                class="fas fa-chevron-left"></i></button>
+            <button class="left-arrow" onclick="moveleft('difrow<?= $ct ?>')">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="right-arrow" onclick="moveright('difrow<?= $ct ?>')" style="display: none;">
+              <i class="fas fa-chevron-left"></i>
+            </button>
             <?php
             while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
             ?>
               <div class="products">
-                <div style="display: flex;
-  justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
-                  <img data-toggle="modal" data-target="#exampleModal" onclick="appjos('<?= $row['item_description_id'] ?>' )"
-                    class="image" align="middle"
+                <div style="display: flex;justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+                  <img
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    onclick="appjos('<?= $row['item_description_id'] ?>' )"
+                    class="image"
+                    align="middle"
                     src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                 </div>
-                <div class="deupd"><?= $row['item_name'] ?><br>
-                </div>
+                <div class="deupd"><?= $row['item_name'] ?><br></div>
               </div>
         <?php
             }
@@ -462,26 +468,27 @@ require "head.php";
           $product = $st->rowCount();
           ?>
           <div class="difcat ">
-            <span class="difhed3"><?= $row11['sub_category_name'] ?>
-            </span>
-            </span>
+            <span class="difhed3"><?= $row11['sub_category_name'] ?></span>
             <div class="difrow" id="2difrow<?= $ct ?>" onscroll="movefr('2difrow<?= $ct ?>')">
-              <button class="left-arrow" onclick="moveleft('2difrow<?= $ct ?>')"><i
-                  class="fas fa-chevron-right"></i></button>
-              <button class="right-arrow" onclick="moveright('2difrow<?= $ct ?>')" style="display: none;"><i
-                  class="fas fa-chevron-left"></i></button>
+              <button class="left-arrow" onclick="moveleft('2difrow<?= $ct ?>')">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <button class="right-arrow" onclick="moveright('2difrow<?= $ct ?>')" style="display: none;">
+                <i class="fas fa-chevron-left"></i>
+              </button>
               <?php
               while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
               ?>
                 <div class="products">
-                  <div style="display: flex;
-  justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
-                    <img data-toggle="modal" data-target="#exampleModal"
-                      onclick="appjos('<?= $row['item_description_id'] ?>' )" class="image" align="middle"
+                  <div style="display: flex;justify-content: center;height: 200px;width:100%;background: white;text-align: center;">
+                    <img
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                      onclick="appjos('<?= $row['item_description_id'] ?>' )"
+                      class="image" align="middle"
                       src="../images/<?= $row['category_id'] ?>/<?= $row['sub_category_id'] ?>/<?= $row['item_description_id'] ?>.jpg">
                   </div>
-                  <div class="deupd"><?= $row['item_name'] ?><br>
-                  </div>
+                  <div class="deupd"><?= $row['item_name'] ?><br></div>
                 </div>
             <?php
               }

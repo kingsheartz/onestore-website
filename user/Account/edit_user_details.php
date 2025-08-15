@@ -1,20 +1,52 @@
 <?php
+ob_start(); // Start output buffering
 session_start();
-if (!isset($_SESSION['id'])) {
-  header("location:../Main/onestore.php");
+
+// Check if session exists and has valid ID
+if (!isset($_SESSION['onestore_id'])) {
+  // Set error message in session
+  $_SESSION['onestore_error_msg'] = "Your session has expired. Please login again.";
+  header("location:../Account/login.php");
+  exit();
 }
+
 require "../Main/header.php";
-if (isset($_SESSION['id'])) {
-  $id = $_SESSION['id'];
-} else if (isset($_GET['id'])) {
-  $id = $_GET['id'];
+
+try {
+  // Get user ID from session or query parameter
+  if (isset($_SESSION['onestore_id'])) {
+    $id = $_SESSION['onestore_id'];
+  } else if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+  } else {
+    throw new Exception("User ID not found");
+  }
+
+  // Validate that ID is numeric
+  if (!is_numeric($id)) {
+    throw new Exception("Invalid user ID");
+  }
+
+  // Fetch user details
+  $usersql = 'SELECT * FROM users WHERE users_id = :id';
+  $userstmt = $pdo->prepare($usersql);
+  $userstmt->execute(['id' => $id]);
+  $userrow = $userstmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$userrow) {
+    throw new Exception("Your session has expired. Please login again.");
+  }
+
+  // Fetch delivery details
+  $susersql = 'SELECT * FROM user_delivery_details WHERE type="permanent" AND user_id = :id';
+  $suserstmt = $pdo->prepare($susersql);
+  $suserstmt->execute(['id' => $id]);
+  $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+  $_SESSION['onestore_error_msg'] = $e->getMessage();
+  header("location:../Main/onestore.php");
+  exit();
 }
-$usersql = 'select* from users where user_id=' . $id;
-$userstmt = $pdo->query($usersql);
-$userrow = $userstmt->fetch(PDO::FETCH_ASSOC);
-$susersql = 'select* from user_delivery_details where type="permanent" and user_id=' . $id;
-$suserstmt = $pdo->query($susersql);
-$suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <style type="text/css">
   .left-log {
@@ -96,15 +128,18 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
 <div class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-      <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li>
+        <a href="index.html">
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+        </a>
+      </li>
       <li class="active">My Account</li>
     </ol>
   </div>
 </div>
 <!-- //breadcrumbs -->
 <!-- update -->
-<div class="register"
-  style="background: url(../../images/logo/check1.jpg) no-repeat;padding-top: 0px;padding-bottom: 0px;">
+<div class="register" style="background: url(../../images/logo/check1.jpg) no-repeat;padding-top: 0px;padding-bottom: 0px;">
   <div style="background-color: rgba(0,0,0,0.55);width: 100%;height: 100%;padding-top: 20px;padding-bottom: 20px;">
     <div class="container" style="padding: 0px;">
       <div class="col-lg-3 col-md-5 lt_menu" style="color: white">
@@ -141,22 +176,20 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
         <h2 style="color: white;" class="account-head del_add">Delivery Address</h2>
         <div class="login-form-grids" style="border-top: 10px solid #fe9126;border-radius: 5px;width: 100%">
           <div class="account-details pi account-details-active">
-            <h5 style=""><i class="fa fa-info-circle fa-lg"></i>&nbsp;profile information
+            <h5>
+              <i class="fa fa-info-circle fa-lg"></i>&nbsp;profile information
               <span id='succeeded' style="float: right;background-color: green;border-radius: 5px;color:white">&nbsp;
                 <i class="fa fa-check" style="color: orange;text-shadow: 1px 2px 3px grey"></i>
-                <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey">
-                  verified &nbsp;</i>
+                <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey">verified &nbsp;</i>
               </span>
-              <span id='pending'
-                style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
+              <span id='pending' style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
                 <i class="fa fa-close" style="color: red;text-shadow: 1px 2px 3px grey"></i>
-                <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey">
-                  pending &nbsp;</i>
+                <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey"> pending &nbsp;</i>
               </span>
             </h5>
-            <div id="error_dis" style="display: none;margin-bottom: 50px;">
+            <div id="error_dis" style="display: none;margin-bottom: 50px;overflow: hidden;">
               <p id="nameerror"
-                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey">
+                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey; margin-top: 5px">
               </p>
             </div>
             <form name="user_details_update_form" style="margin-top: 45px;">
@@ -164,31 +197,52 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
-              <div class="input-group bar-srch input-field"
-                style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top:15px;">
-                <input type="text" oninput="$(this).removeClass('invalid');" onkeyup="changed_details()" id="first_name"
-                  placeholder="" value="<?= $userrow['first_name'] ?>" required=" "
+              <div class="input-group bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top:15px;">
+                <input
+                  type="text"
+                  oninput="$(this).removeClass('invalid');"
+                  onkeyup="changed_details()"
+                  id="first_name"
+                  placeholder=""
+                  value="<?= $userrow['first_name'] ?>"
+                  required=" "
                   style="margin-top: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;padding-right: 1px;"
-                  readonly class="validate" pattern="^\S[a-zA-Z]{2,30}$" title="Minimum character '3'.Use alphabets">
+                  readonly class="validate"
+                  pattern="^\S[a-zA-Z]{2,30}$"
+                  title="Minimum character '3'.Use alphabets">
                 <label class="form-label" for="first_name">First Name</label>
                 <span id="dis_fn" class="input-group-btn">
-                  <button onclick="dis_fn()" onmouseover="$(this).css('background-color','#0c66cc')"
+                  <button
+                    onclick="dis_fn()"
+                    onmouseover="$(this).css('background-color','#0c66cc')"
                     onmouseleave="$(this).css('background-color','#0c77cc')"
                     style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-edit"></span>
+                  </button>
                 </span>
                 <span id="hide_fn" class="input-group-btn" style="display: none;">
-                  <button onclick="reset_fn()" onmouseover="$(this).css('background-color','#bb0000')"
+                  <button
+                    onclick="reset_fn()"
+                    onmouseover="$(this).css('background-color','#bb0000')"
                     onmouseleave="$(this).css('background-color','red')"
                     style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                      style="margin-left: -18px;"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-close" style="margin-left: -18px;"></span>
+                  </button>
                 </span>
                 <span id="hide_fn1" style="display: none;" class="input-group-btn">
-                  <button onclick="dis_fn()" onmouseover="$(this).css('background-color','#4f994f')"
+                  <button
+                    onclick="dis_fn()"
+                    onmouseover="$(this).css('background-color','#4f994f')"
                     onmouseleave="$(this).css('background-color','#07C103')"
                     style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-check"></span>
+                  </button>
                 </span>
               </div>
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
@@ -197,62 +251,106 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <div class="input-group bar-srch input-field"
                 style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top:25px;">
-                <input pattern="^[a-zA-Z ]{1,20}$" title="Use alphabets" oninput="$(this).removeClass('invalid');"
-                  type="text" onkeyup="changed_details()" id="last_name" placeholder=""
-                  value="<?= $userrow['last_name'] ?>" required=" "
+                <input
+                  pattern="^[a-zA-Z ]{1,20}$"
+                  title="Use alphabets"
+                  oninput="$(this).removeClass('invalid');"
+                  type="text"
+                  onkeyup="changed_details()"
+                  id="last_name"
+                  placeholder=""
+                  value="<?= $userrow['last_name'] ?>"
+                  required=" "
                   style="margin-top: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
-                  readonly class="validate">
+                  readonly
+                  class="validate">
                 <label class="form-label" for="last_name">Last Name</label>
                 <span id="dis_ln" class="input-group-btn">
-                  <button onclick="dis_ln()" onmouseover="$(this).css('background-color','#0c66cc')"
+                  <button
+                    onclick="dis_ln()"
+                    onmouseover="$(this).css('background-color','#0c66cc')"
                     onmouseleave="$(this).css('background-color','#0c77cc')"
                     style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-edit"></span>
+                  </button>
                 </span>
                 <span id="hide_ln" class="input-group-btn" style="display: none;">
-                  <button onclick="reset_ln()" onmouseover="$(this).css('background-color','#bb0000')"
+                  <button
+                    onclick="reset_ln()"
+                    onmouseover="$(this).css('background-color','#bb0000')"
                     onmouseleave="$(this).css('background-color','red')"
                     style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                      style="margin-left: -18px;"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-close" style="margin-left: -18px;"></span>
+                  </button>
                 </span>
                 <span id="hide_ln1" class="input-group-btn" style="display: none;">
-                  <button onclick="dis_ln()" onmouseover="$(this).css('background-color','#4f994f')"
+                  <button
+                    onclick="dis_ln()"
+                    onmouseover="$(this).css('background-color','#4f994f')"
                     onmouseleave="$(this).css('background-color','#07C103')"
                     style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-check"></span>
+                  </button>
                 </span>
               </div>
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
-              <div class="input-group bar-srch input-field"
-                style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top:25px;">
-                <input oninput="$(this).removeClass('invalid');" onkeyup="changed_details()" type="tel" id="phone"
-                  placeholder="" value="<?= $userrow['phone'] ?>" required=" "
-                  style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;" readonly
+              <div class="input-group bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top:25px;">
+                <input
+                  oninput="$(this).removeClass('invalid');"
+                  onkeyup="changed_details()"
+                  type="tel"
+                  id="phone"
+                  placeholder=""
+                  value="<?= $userrow['phone'] ?>"
+                  required=" "
+                  style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+                  readonly
                   onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                  maxlength="10" pattern="^(\d{0}|\d{10})$" title="Phone Number Format (9876543210)- 10 digits">
+                  maxlength="10"
+                  pattern="^(\d{0}|\d{10})$"
+                  title="Phone Number Format (9876543210)- 10 digits" />
                 <label class="form-label" for="phone">Phone</label>
                 <span id="dis_ph" class="input-group-btn">
-                  <button onclick="dis_ph()" onmouseover="$(this).css('background-color','#0c66cc')"
+                  <button
+                    onclick="dis_ph()"
+                    onmouseover="$(this).css('background-color','#0c66cc')"
                     onmouseleave="$(this).css('background-color','#0c77cc')"
                     style="color:white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-edit"></span>
+                  </button>
                 </span>
                 <span id="hide_ph" class="input-group-btn" style="display: none;">
-                  <button onclick="reset_ph()" onmouseover="$(this).css('background-color','#bb0000')"
+                  <button
+                    onclick="reset_ph()"
+                    onmouseover="$(this).css('background-color','#bb0000')"
                     onmouseleave="$(this).css('background-color','red')"
                     style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                      style="margin-left: -18px;"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-close" style="margin-left: -18px;"></span>
+                  </button>
                 </span>
                 <span id="hide_ph1" class="input-group-btn" style="display: none;">
-                  <button onclick="dis_ph()" onmouseover="$(this).css('background-color','#4f994f')"
+                  <button
+                    onclick="dis_ph()"
+                    onmouseover="$(this).css('background-color','#4f994f')"
                     onmouseleave="$(this).css('background-color','#07C103')"
                     style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                    class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fa fa-check"></span>
+                  </button>
                 </span>
               </div>
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
@@ -264,31 +362,54 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                 <li style="list-style:none; ">
                   <div id="pin" class="input-group bar-srch input-field"
                     style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;margin-top: 25px;">
-                    <input pattern="^\d{6}$" title="PIN Number Format (654321)- 6 digits" maxlength="6"
-                      onkeyup="changed_details()" type="tel" class="locmark" id="regpin" placeholder=""
-                      value="<?= $userrow['pincode'] ?>" name="pincode" required=" "
+                    <input
+                      pattern="^\d{6}$"
+                      title="PIN Number Format (654321)- 6 digits"
+                      maxlength="6"
+                      onkeyup="changed_details()"
+                      type="tel"
+                      class="locmark"
+                      id="regpin"
+                      placeholder=""
+                      value="<?= $userrow['pincode'] ?>"
+                      name="pincode"
+                      required=" "
                       style="width: 100%;margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
                       readonly
                       onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                     <label class="form-label" for="regpin">Pincode</label>
                     <span id="dis_pin" class="input-group-btn">
-                      <button onclick="dis_pin()" onmouseover="$(this).css('background-color','#0c66cc')"
+                      <button
+                        onclick="dis_pin()"
+                        onmouseover="$(this).css('background-color','#0c66cc')"
                         onmouseleave="$(this).css('background-color','#0c77cc')"
                         style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                        class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                        class="btn btn-default search_btn"
+                        type="button">
+                        <span class="fa fa-edit"></span>
+                      </button>
                     </span>
                     <span id="hide_pin1" class="input-group-btn" style="display: none;">
-                      <button onclick="user_update_locate()" onmouseover="$(this).css('background-color','#ee8126')"
+                      <button
+                        onclick="user_update_locate()"
+                        onmouseover="$(this).css('background-color','#ee8126')"
                         onmouseleave="$(this).css('background-color','#fe9126')"
                         style="color: white;background-color:#fe9126;padding-top:10px;padding-bottom: 10px;outline: none;"
-                        class="btn btn-default search_btn" type="button"><span class="fa fa-search"></span></button>
+                        class="btn btn-default search_btn"
+                        type="button">
+                        <span class="fa fa-search"></span>
+                      </button>
                     </span>
                     <span id="hide_pin" class="input-group-btn" style="display: none;">
-                      <button onclick="reset_pin()" onmouseover="$(this).css('background-color','#bb0000')"
+                      <button
+                        onclick="reset_pin()"
+                        onmouseover="$(this).css('background-color','#bb0000')"
                         onmouseleave="$(this).css('background-color','red')"
                         style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                        class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                          style="margin-left: -18px;"></span></button>
+                        class="btn btn-default search_btn"
+                        type="button">
+                        <span class="fa fa-close" style="margin-left: -18px;"></span>
+                      </button>
                     </span>
                   </div>
                   <!---------------------------------------------------------------------------------------------------------------------------------------------->
@@ -296,19 +417,31 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                   <div id="setloc2" style="display: none;">
                     <div class="input-group bar-srch"
                       style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                      <select name="po_list" onchange="changed_details()" class="locmark" id="po_list1"
-                        placeholder="PIN" name="pincode" required=" "
+                      <select
+                        name="po_list"
+                        onchange="changed_details()"
+                        class="locmark"
+                        id="po_list1"
+                        placeholder="PIN"
+                        name="pincode"
+                        required=" "
                         style="width: 100%;height: 40px;margin: 0px;z-index: 0;border-radius: 3px;border:1px solid #DBDBDB;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
-                        <option value="<?= $userrow['location'] ?>" selected="" disabled="">
+                        <option value="<?= $userrow['location'] ?>"
+                          selected=""
+                          disabled="">
                           <?= $userrow['location'] ?>
                         </option>
                       </select>
                       <span id="hide_locate" class="input-group-btn">
-                        <button onclick="regsetlocation()" onmouseover="$(this).css('background-color','#4f994f')"
+                        <button
+                          onclick="regsetlocation()"
+                          onmouseover="$(this).css('background-color','#4f994f')"
                           onmouseleave="$(this).css('background-color','#07C103')"
                           style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                          class="btn btn-default search_btn popuptext pin" type="button"><span
-                            class="fa fa-check"></span></button>
+                          class="btn btn-default search_btn popuptext pin"
+                          type="button">
+                          <span class="fa fa-check"></span>
+                        </button>
                       </span>
                     </div>
                   </div>
@@ -320,18 +453,35 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
               <!---------------------------------------------------------------------------------------------------------------------------------------------->
               <!--ADDRESS-->
               <div class="form-group input-field" style="text-align: right;width: 100%;position: relative;">
-                <textarea title="Minimal character count is 10" rows="4" oninput="$(this).removeClass('invalid');"
-                  onkeyup="changed_details()" id="address" placeholder="" readonly><?= $userrow['address'] ?></textarea>
+                <textarea
+                  title="Minimal character count is 10"
+                  rows="4"
+                  oninput="$(this).removeClass('invalid');"
+                  onkeyup="changed_details()"
+                  id="address"
+                  placeholder=""
+                  readonly><?= $userrow['address'] ?>
+                </textarea>
                 <label class="form-label" for="address">Address</label>
-                <span onclick="dis_add()" id="dis_add" class="fa fa-sm fa-edit"
+                <span
+                  onclick="dis_add()"
+                  id="dis_add"
+                  class="fa fa-sm fa-edit"
                   style="position: absolute;right: 0;top: 0;color: white;background-color:#0c77cc;padding: 4px;"
                   onmouseover="$(this).css('background-color','#0c66cc')"
-                  onmouseleave="$(this).css('background-color','#0c77cc')"></span>
-                <span onclick="reset_add()" id="hide_add" class="fa fa-sm fa-close"
+                  onmouseleave="$(this).css('background-color','#0c77cc')">
+                </span>
+                <span
+                  onclick="reset_add()"
+                  id="hide_add"
+                  class="fa fa-sm fa-close"
                   style="display: none;position: absolute;right: 0;top: 0;color: white;background-color:red;padding: 5px;padding-top: 4px;padding-bottom: 4px;"
                   onmouseover="$(this).css('background-color','#bb0000')"
                   onmouseleave="$(this).css('background-color','red')"></span>
-                <span onclick="dis_add()" id="hide_add1" class="fa fa-check"
+                <span
+                  onclick="dis_add()"
+                  id="hide_add1"
+                  class="fa fa-check"
                   style="display:none;position: absolute;right: 0;top: 23px;color: white;background-color:#07C103;padding: 3px;"
                   onmouseover="$(this).css('background-color','#4f994f')"
                   onmouseleave="$(this).css('background-color','#07C103')"></span>
@@ -344,49 +494,70 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
           <!---------------------------------------------------------------------------------------------------------------------------------------------->
           <div class="li account-details" style="display: none;">
             <!--EMAIL-->
-            <h6 style="margin-top: 0px !important;"><i class="fa fa-info-circle fa-lg"></i>&nbsp;Login
-              information
+            <h6 style="margin-top: 0px !important;">
+              <i class="fa fa-info-circle fa-lg"></i>&nbsp;Login information
               <span id='succeeded1' style="float: right;background-color: green;border-radius: 5px;color:white">&nbsp;
                 <i class="fa fa-check" style="color: orange;text-shadow: 1px 2px 3px grey"></i>
                 <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey">
-                  verified &nbsp;</i>
+                  verified &nbsp;
+                </i>
               </span>
-              <span id='pending1'
-                style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
+              <span id='pending1' style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
                 <i class="fa fa-close" style="color: red;text-shadow: 1px 2px 3px grey"></i>
-                <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey">
-                  pending &nbsp;</i>
+                <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey">pending &nbsp;</i>
               </span>
             </h6>
-            <div id="error_dis2" style="display: none;margin-bottom: 50px;">
-              <p id="nameerror2"
-                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey">
+            <div id="error_dis2" style="display: none;margin-bottom: 50px;overflow: hidden;">
+              <p
+                id="nameerror2"
+                style="color: red;font-weight: bolder;margin-top:-5px;float:left;padding-bottom:0px;margin-bottom: 0px;text-shadow: 2px 3px 4px grey;margin-top: 5px">
               </p>
             </div>
-            <div class="input-group bar-srch input-field"
-              style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 25px;margin-top: 45px;">
-              <input oninput="$(this).removeClass('invalid');" onkeyup="changed_details()" type="email" name="email"
-                id="email" value="<?= $userrow['email'] ?>" placeholder="" required=" "
-                style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;" readonly>
+            <div class="input-group bar-srch input-field" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 25px;margin-top: 45px;">
+              <input
+                oninput="$(this).removeClass('invalid');"
+                onkeyup="changed_details()"
+                type="email"
+                name="email"
+                id="email"
+                value="<?= $userrow['email'] ?>"
+                placeholder=""
+                required=" "
+                style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;"
+                readonly>
               <label class="form-label" for="email">Email Address</label>
               <span id="dis_mail" class="input-group-btn">
-                <button onclick="dis_mail()" onmouseover="$(this).css('background-color','#0c66cc')"
+                <button
+                  onclick="dis_mail()"
+                  onmouseover="$(this).css('background-color','#0c66cc')"
                   onmouseleave="$(this).css('background-color','#0c77cc')"
                   style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                  class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                  class="btn btn-default search_btn"
+                  type="button">
+                  <span class="fa fa-edit"></span>
+                </button>
               </span>
               <span id="hide_mail" class="input-group-btn" style="display: none;">
-                <button onclick="reset_mail()" onmouseover="$(this).css('background-color','#bb0000')"
+                <button
+                  onclick="reset_mail()"
+                  onmouseover="$(this).css('background-color','#bb0000')"
                   onmouseleave="$(this).css('background-color','red')"
                   style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                  class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                    style="margin-left: -18px;"></span></button>
+                  class="btn btn-default search_btn"
+                  type="button">
+                  <span class="fa fa-close" style="margin-left: -18px;"></span>
+                </button>
               </span>
               <span id="hide_mail1" class="input-group-btn" style="display: none;">
-                <button onclick="dis_mail()" onmouseover="$(this).css('background-color','#4f994f')"
+                <button
+                  onclick="dis_mail()"
+                  onmouseover="$(this).css('background-color','#4f994f')"
                   onmouseleave="$(this).css('background-color','#07C103')"
                   style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                  class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                  class="btn btn-default search_btn"
+                  type="button">
+                  <span class="fa fa-check"></span>
+                </button>
               </span>
             </div>
             <!---------------------------------------------------------------------------------------------------------------------------------------------->
@@ -396,57 +567,100 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
             <!--PASSWORD-->
             <div class="input-group bar-srch input-field"
               style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-              <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be same as you had already entered"
-                oninput="$(this).removeClass('invalid');" type="password" id="pass3" onkeyup="changed_details()"
-                value="abcdefghijklmnopqrstuvwxyz" placeholder="" required=" "
+              <input
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must be same as you had already entered"
+                oninput="$(this).removeClass('invalid');"
+                type="password"
+                id="pass3"
+                onkeyup="changed_details()"
+                value="abcdefghijklmnopqrstuvwxyz"
+                placeholder=""
+                required=" "
                 style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;" readonly>
               <label class="form-label" for="pass3">Current password</label>
               <span id="dis_pass3" class="input-group-btn click-pass-opt">
-                <button onclick="dis_pass3()" onmouseover="$(this).css('background-color','#0c66cc')"
+                <button
+                  onclick="dis_pass3()"
+                  onmouseover="$(this).css('background-color','#0c66cc')"
                   onmouseleave="$(this).css('background-color','#0c77cc')"
                   style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                  class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                  class="btn btn-default search_btn"
+                  type="button">
+                  <span class="fa fa-edit"></span>
+                </button>
               </span>
               <span id="hide_pass3_1" class="input-group-btn click-pass-opt" style="display: none;">
-                <button onclick="reset_pass3()" onmouseover="$(this).css('background-color','#bb0000')"
+                <button
+                  onclick="reset_pass3()"
+                  onmouseover="$(this).css('background-color','#bb0000')"
                   onmouseleave="$(this).css('background-color','red')"
                   style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;"
-                  class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                    style="margin-left: -18px;"></span></button>
+                  class="btn btn-default search_btn"
+                  type="button">
+                  <span class="fa fa-close" style="margin-left: -18px;"></span>
+                </button>
               </span>
               <span id="hide_pass3_2" class="input-group-btn click-pass-opt" style="display: none;">
-                <button onclick="dis_pass3()" onmouseover="$(this).css('background-color','#4f994f')"
+                <button
+                  onclick="dis_pass3()"
+                  onmouseover="$(this).css('background-color','#4f994f')"
                   onmouseleave="$(this).css('background-color','#07C103')"
                   style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;"
-                  class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                  class="btn btn-default search_btn"
+                  type="button">
+                  <span class="fa fa-check"></span>
+                </button>
               </span>
             </div>
             <div id="pass" style="display: none;margin-top:25px;">
               <hr class="make_divc">
               <div class="input-group bar-srch input-field"
                 style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 10px;">
-                <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                <input
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                  oninput="$(this).removeClass('invalid');" onkeyup="changed_details()" type="password" id="passfir"
-                  value="" placeholder="New password" required=" "
+                  oninput="$(this).removeClass('invalid');"
+                  onkeyup="changed_details()"
+                  type="password"
+                  id="passfir"
+                  value=""
+                  placeholder="New password"
+                  required=" "
                   style="margin: 0px;z-index: 0;border-top-right-radius: 0px;border-bottom-right-radius: 0px;" readonly>
                 <label class="form-label" for="passfir"></label>
                 <span id="dis_pass1" class="input-group-btn">
-                  <button onclick="view()" onmouseover="$(this).css('background-color','#c0c0c0')"
+                  <button
+                    onclick="view()"
+                    onmouseover="$(this).css('background-color','#c0c0c0')"
                     onmouseleave="$(this).css('background-color','#f1f2f3')"
                     style="color: #000;background-color:#f1f2f3;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px"
-                    class="btn btn-default search_btn" type="button"><span class="fas fa-eye"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fas fa-eye"></span>
+                  </button>
                 </span>
                 <span id="hide_pass1" class="input-group-btn" style="display: none;">
-                  <button onclick="view()" onmouseover="$(this).css('background-color','#c0c0c0')"
+                  <button
+                    onclick="view()"
+                    onmouseover="$(this).css('background-color','#c0c0c0')"
                     onmouseleave="$(this).css('background-color','#f1f2f3')"
                     style="color: #000;background-color:#f1f2f3;padding-top:10px;padding-bottom: 10px;outline: none;"
-                    class="btn btn-default search_btn" type="button"><span class="fas fa-eye-slash"></span></button>
+                    class="btn btn-default search_btn"
+                    type="button">
+                    <span class="fas fa-eye-slash"></span>
+                  </button>
                 </span>
               </div>
-              <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Entered input must  matches the current password" oninput="$(this).removeClass('invalid');"
-                type="password" onkeyup="changed_details()" id="passre" placeholder="Re-enter password" required=" "
+              <input
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Entered input must  matches the current password"
+                oninput="$(this).removeClass('invalid');"
+                type="password"
+                onkeyup="changed_details()"
+                id="passre"
+                placeholder="Re-enter password"
+                required=" "
                 style="margin-bottom: 0px;">
               <hr class="make_divc" style="margin-bottom: 14px;">
             </div>
@@ -464,8 +678,7 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                   <i style="text-transform: capitalize;font-size: 12px;text-shadow: 1px 2px 3px grey">
                     verified &nbsp;</i>
                 </span>
-                <span id='pending2'
-                  style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
+                <span id='pending2' style="display: none;float: right;background-color: white;border: 1px solid black;border-radius: 5px;color:white">&nbsp;
                   <i class="fa fa-close" style="color: red;text-shadow: 1px 2px 3px grey"></i>
                   <i style="text-transform: capitalize;font-size: 12px;color: black;text-shadow: 1px 2px 3px grey">
                     pending &nbsp;</i>
@@ -475,150 +688,246 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                 <p id="shipping_first_name_field" class="form-row form-row-first validate-required">
                 <div class="input-group bar-srch"
                   style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                  <label class="" for="shipping_first_name"
-                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">First
-                    Name <abbr title="required" class="required" style="color: #c50505">*</abbr>
+                  <label
+                    class=""
+                    for="shipping_first_name"
+                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">First Name
+                    <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
-                  <input oninput="$(this).removeClass('invalid');" type="text" onkeyup="changed_details()"
-                    oninput="$(this).removeClass('invalid')" value="<?= $suserrow['first_name'] ?>"
-                    placeholder="First name" id="shipping_first_name" name="shipping_first_name"
-                    class="input-text validate" pattern="^\S[a-zA-Z]{3,30}$" title="Minimum character '3'.Use alphabets"
+                  <input
+                    oninput="$(this).removeClass('invalid');"
+                    type="text"
+                    onkeyup="changed_details()"
+                    oninput="$(this).removeClass('invalid')"
+                    value="<?= $suserrow['first_name'] ?>"
+                    placeholder="First name"
+                    id="shipping_first_name"
+                    name="shipping_first_name"
+                    class="input-text validate"
+                    pattern="^\S[a-zA-Z]{3,30}$"
+                    title="Minimum character '3'.Use alphabets"
                     required=""
                     style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-bottom: 0px;"
                     readonly>
                   <span id="dis_sfn" class="input-group-btn">
-                    <button onclick="dis_sfn()" onmouseover="$(this).css('background-color','#0c66cc')"
+                    <button
+                      onclick="dis_sfn()"
+                      onmouseover="$(this).css('background-color','#0c66cc')"
                       onmouseleave="$(this).css('background-color','#0c77cc')"
                       style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-edit"></span>
+                    </button>
                   </span>
                   <span id="hide_sfn" class="input-group-btn" style="display: none;">
-                    <button onclick="reset_sfn()" onmouseover="$(this).css('background-color','#bb0000')"
+                    <button
+                      onclick="reset_sfn()"
+                      onmouseover="$(this).css('background-color','#bb0000')"
                       onmouseleave="$(this).css('background-color','red')"
                       style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                        style="margin-left: -18px;"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-close" style="margin-left: -18px;"></span>
+                    </button>
                   </span>
                   <span id="hide_sfn1" style="display: none;" class="input-group-btn">
-                    <button onclick="dis_sfn()" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="dis_sfn()"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-check"></span>
+                    </button>
                   </span>
                 </div>
                 </p>
                 <p id="shipping_last_name_field" class="form-row form-row-last validate-required">
                 <div class="input-group bar-srch"
                   style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                  <label class="" for="shipping_last_name"
-                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">Last
-                    Name <abbr title="required" class="required" style="color: #c50505">*</abbr>
+                  <label
+                    class=""
+                    for="shipping_last_name"
+                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">Last Name
+                    <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
-                  <input oninput="$(this).removeClass('invalid');" type="text" onkeyup="changed_details()"
-                    oninput="$(this).removeClass('invalid')" value="<?= $suserrow['last_name'] ?>"
-                    placeholder="Last name" id="shipping_last_name" name="shipping_last_name"
-                    class="input-text validate" pattern="^[a-zA-Z ]{1,20}$" title="Use alphabets" required=""
+                  <input
+                    oninput="$(this).removeClass('invalid');"
+                    type="text"
+                    onkeyup="changed_details()"
+                    oninput="$(this).removeClass('invalid')"
+                    value="<?= $suserrow['last_name'] ?>"
+                    placeholder="Last name"
+                    id="shipping_last_name"
+                    name="shipping_last_name"
+                    class="input-text validate"
+                    pattern="^[a-zA-Z ]{1,20}$"
+                    title="Use alphabets"
+                    required=""
                     style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-bottom:0;"
                     readonly>
                   <span id="dis_sln" class="input-group-btn">
-                    <button onclick="dis_sln()" onmouseover="$(this).css('background-color','#0c66cc')"
+                    <button
+                      onclick="dis_sln()"
+                      onmouseover="$(this).css('background-color','#0c66cc')"
                       onmouseleave="$(this).css('background-color','#0c77cc')"
                       style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-edit"></span>
+                    </button>
                   </span>
                   <span id="hide_sln" class="input-group-btn" style="display: none;">
-                    <button onclick="reset_sln()" onmouseover="$(this).css('background-color','#bb0000')"
+                    <button
+                      onclick="reset_sln()"
+                      onmouseover="$(this).css('background-color','#bb0000')"
                       onmouseleave="$(this).css('background-color','red')"
                       style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                        style="margin-left: -18px;"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-close" style="margin-left: -18px;"></span>
+                    </button>
                   </span>
                   <span id="hide_sln1" style="display: none;" class="input-group-btn">
-                    <button onclick="dis_sln()" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="dis_sln()"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-check"></span>
+                    </button>
                   </span>
                 </div>
                 </p>
                 <p id="shipping_phone_number_field" class="form-row form-row-last validate-required">
-                <div class="input-group bar-srch"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                  <label class="" for="shipping_phone_number"
-                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">Phone
-                    Number<abbr title="required" class="required" style="color: #c50505">*</abbr>
+                <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
+                  <label
+                    class=""
+                    for="shipping_phone_number"
+                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">
+                    Phone Number
+                    <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
-                  <input oninput="$(this).removeClass('invalid');" type="text" onkeyup="changed_details()"
-                    oninput="$(this).removeClass('invalid')" value="<?= $suserrow['phone'] ?>"
-                    placeholder="Phone number" id="shipping_ph_no" maxlength="10" name="shipping_ph_no"
+                  <input
+                    oninput="$(this).removeClass('invalid');"
+                    type="text"
+                    onkeyup="changed_details()"
+                    oninput="$(this).removeClass('invalid')"
+                    value="<?= $suserrow['phone'] ?>"
+                    placeholder="Phone number"
+                    id="shipping_ph_no"
+                    maxlength="10"
+                    name="shipping_ph_no"
                     class="input-text validate"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57;"
-                    pattern="^\d{10}$" title="Phone Number Format (9876543210)- 10 digits" required=""
+                    pattern="^\d{10}$"
+                    title="Phone Number Format (9876543210)- 10 digits"
+                    required=""
                     style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-bottom:0;"
                     readonly>
                   <span id="dis_sph" class="input-group-btn">
-                    <button onclick="dis_sph()" onmouseover="$(this).css('background-color','#0c66cc')"
+                    <button
+                      onclick="dis_sph()"
+                      onmouseover="$(this).css('background-color','#0c66cc')"
                       onmouseleave="$(this).css('background-color','#0c77cc')"
                       style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-edit"></span>
+                    </button>
                   </span>
                   <span id="hide_sph" class="input-group-btn" style="display: none;">
-                    <button onclick="reset_sph()" onmouseover="$(this).css('background-color','#bb0000')"
+                    <button
+                      onclick="reset_sph()"
+                      onmouseover="$(this).css('background-color','#bb0000')"
                       onmouseleave="$(this).css('background-color','red')"
                       style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                        style="margin-left: -18px;"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-close" style="margin-left: -18px;"></span>
+                    </button>
                   </span>
                   <span id="hide_sph1" style="display: none;" class="input-group-btn">
-                    <button onclick="dis_sph()" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="dis_sph()"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-check"></span>
+                    </button>
                   </span>
                 </div>
                 </p>
                 <p id="shipping_phone_number2_field" class="form-row form-row-last validate-required">
-                <div class="input-group bar-srch"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
+                <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
                   <label class="" for="shipping_ph_no2"
-                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">Alternate
-                    phone number<small title="required" class="required" style="color: #c50505">
-                      (Optional)</small>
+                    style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">
+                    Alternate phone number
+                    <small title="required" class="required" style="color: #c50505"> (Optional)</small>
                   </label>
-                  <input oninput="$(this).removeClass('invalid');" type="text" onkeyup="changed_details()"
-                    oninput="$(this).removeClass('invalid')" value="<?= $suserrow['alternative_phone'] ?>"
-                    placeholder="Alternate Phone Number" id="shipping_ph_no2" maxlength="10" name="shipping_ph_no2"
+                  <input
+                    oninput="$(this).removeClass('invalid');"
+                    type="text"
+                    onkeyup="changed_details()"
+                    oninput="$(this).removeClass('invalid')"
+                    value="<?= $suserrow['alternative_phone'] ?>"
+                    placeholder="Alternate Phone Number"
+                    id="shipping_ph_no2"
+                    maxlength="10"
+                    name="shipping_ph_no2"
                     class="input-text validate"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57;"
-                    pattern="^(\d{0}|\d{10})$" title="Phone Number Format (9876543210)- 10 digits"
+                    pattern="^(\d{0}|\d{10})$"
+                    title="Phone Number Format (9876543210)- 10 digits"
                     style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-bottom:0;"
                     readonly>
                   <span id="dis_s2ph" class="input-group-btn">
-                    <button onclick="dis_s2ph()" onmouseover="$(this).css('background-color','#0c66cc')"
+                    <button
+                      onclick="dis_s2ph()"
+                      onmouseover="$(this).css('background-color','#0c66cc')"
                       onmouseleave="$(this).css('background-color','#0c77cc')"
                       style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-edit"></span>
+                    </button>
                   </span>
                   <span id="hide_s2ph" class="input-group-btn" style="display: none;">
-                    <button onclick="reset_s2ph()" onmouseover="$(this).css('background-color','#bb0000')"
+                    <button
+                      onclick="reset_s2ph()"
+                      onmouseover="$(this).css('background-color','#bb0000')"
                       onmouseleave="$(this).css('background-color','red')"
                       style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                        style="margin-left: -18px;"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-close" style="margin-left: -18px;"></span>
+                    </button>
                   </span>
                   <span id="hide_s2ph1" style="display: none;" class="input-group-btn">
-                    <button onclick="dis_s2ph()" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="dis_s2ph()"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-check"></span>
+                    </button>
                   </span>
                 </div>
                 </p>
                 <div class="clear"></div>
                 <p id="shipping_address_1_field" class="form-row form-row-wide address-field validate-required">
-                <div class="input-group bar-srch"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;display: block;">
-                  <label class="" for="shipping_address_1"
+                <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;display: block;">
+                  <label
+                    class=""
+                    for="shipping_address_1"
                     style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">Address
                     <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
@@ -643,12 +952,14 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 </p>
-                <p id="shipping_postcode_field"
+                <p
+                  id="shipping_postcode_field"
                   class="form-row form-row-last address-field validate-required validate-postcode"
                   data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-                <div class="input-group bar-srch"
-                  style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
-                  <label class="" for="shipping_postcode"
+                <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 15px;">
+                  <label
+                    class=""
+                    for="shipping_postcode"
                     style="font-weight: normal;text-transform: capitalize;color:#9e9e9e;font-size:12px;">Postcode
                     <abbr title="required" class="required" style="color: #c50505">*</abbr>
                   </label>
@@ -661,23 +972,37 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
                     style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-bottom:0;"
                     readonly>
                   <span id="dis_spin" class="input-group-btn">
-                    <button onclick="dis_spin()" onmouseover="$(this).css('background-color','#0c66cc')"
+                    <button
+                      onclick="dis_spin()"
+                      onmouseover="$(this).css('background-color','#0c66cc')"
                       onmouseleave="$(this).css('background-color','#0c77cc')"
                       style="color: white;background-color:#0c77cc;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-edit"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-edit"></span>
+                    </button>
                   </span>
                   <span id="hide_spin" class="input-group-btn" style="display: none;">
-                    <button onclick="reset_spin()" onmouseover="$(this).css('background-color','#bb0000')"
+                    <button
+                      onclick="reset_spin()"
+                      onmouseover="$(this).css('background-color','#bb0000')"
                       onmouseleave="$(this).css('background-color','red')"
                       style="color: white;background-color:red;padding-top:10px;padding-bottom: 10px;outline: none;border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: -1px;padding-left: 28px;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-close"
-                        style="margin-left: -18px;"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-close" style="margin-left: -18px;"></span>
+                    </button>
                   </span>
                   <span id="hide_spin1" style="display: none;" class="input-group-btn">
-                    <button onclick="dis_spin()" onmouseover="$(this).css('background-color','#4f994f')"
+                    <button
+                      onclick="dis_spin()"
+                      onmouseover="$(this).css('background-color','#4f994f')"
                       onmouseleave="$(this).css('background-color','#07C103')"
                       style="color: white;background-color:#07C103;padding-top:10px;padding-bottom: 10px;outline: none;margin-top: 25px;"
-                      class="btn btn-default search_btn" type="button"><span class="fa fa-check"></span></button>
+                      class="btn btn-default search_btn"
+                      type="button">
+                      <span class="fa fa-check"></span>
+                    </button>
                   </span>
                 </div>
                 </p>
@@ -693,20 +1018,32 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
           <div id="update_user_details" style="display: none;">
             <div class="register-check-box">
               <div class="check">
-                <label class="checkbox"><input type="checkbox" id="accept" name="checkbox"><i> </i>I
-                  accept the terms and conditions</label>
+                <label class="checkbox">
+                  <input type="checkbox" id="accept" name="checkbox" />
+                  <i></i>
+                  I accept the terms and conditions
+                </label>
               </div>
             </div>
             <input class="shadow_b real_btn" type="button" onclick="checkupdate()" value="Update">
-            <button class="shadow_b load_btn" style="display:none" type="button"><i
-                class="fa fa-refresh fa-spin"></i>&nbsp;Update</button>
+            <button
+              class="shadow_b load_btn"
+              style="display:none"
+              type="button">
+              <i class="fa fa-refresh fa-spin"></i>&nbsp;
+              Update
+            </button>
           </div>
           </form>
         </div>
         <div class="register-home">
-          <a href="../Main/onestore.php" onmouseover="$(this).css('background-color','#0c66cc')"
+          <a
+            href="../Main/onestore.php"
+            onmouseover="$(this).css('background-color','#0c66cc')"
             onmouseleave="$(this).css('background-color','#fe9126')"
-            style="color: white;background-color:#fe9126;">Home</a>
+            style="color: white;background-color:#fe9126;">
+            Home
+          </a>
         </div>
       </div>
     </div>
@@ -716,32 +1053,6 @@ $suserrow = $suserstmt->fetch(PDO::FETCH_ASSOC);
 <?php
 require "../Main/footer.php";
 ?>
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!-- Bootstrap Core JavaScript -->
-<!--<script src="../../js/bootstrap.min.js"></script>-->
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
-<!--
-    <script type="text/javascript">
-        $(document).ready(function() {
-            /*
-                var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-                };
-            */
-            $().UItoTop({ easingType: 'easeOutQuart' });
-            });
-    </script>-->
-<!-- //here ends scrolling icon -->
-<!--<script src="../../js/minicart.min.js"></script>-->
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <script>
   // Mini Cart
   paypal.minicart.render({
@@ -817,11 +1128,6 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
 }
 ?>
 <script type="text/javascript">
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function user_update_locate() {
     $("#po_list1").empty().append(
       '<option selected="" disabled="" value="<?= $userrow['location'] ?>"><?= $userrow['location'] ?></option>');
@@ -887,7 +1193,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
       xmlhttp.send();
     }
   }
-  //////////////////DISPLAY DETAILS/////////////////
+  // ------------------DISPLAY DETAILS--------------- //
   function listenchanges() {
     var first_name = document.getElementById("first_name").value;
     var last_name = document.getElementById("last_name").value;
@@ -1761,11 +2067,7 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
     listenchanges();
     succeeded();
   }
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   //Check name
   function checkname() {
     var name = document.getElementById('first_name').value;
@@ -2323,15 +2625,11 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
             $('.load_btn').show();
             $('.real_btn').hide();
             //var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             /* var post="http://api.positionstack.com/v1/forward?access_key=02d2fe0121d695587c3ea6ec300a8a8e&query="+loc+"";//JSON RESPONSE
                 //REQUIRED FOR GEOLOCATION ACCESS
                     var xmlhttp = new XMLHttpRequest();//HTTP REQUEST START
                     xmlhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) { ////START IF
+                        if (this.readyState == 4 && this.status == 200) { // START IF
                             addr = JSON.parse(this.responseText);
                             console.log(addr);
                             var lat=addr.data[0].latitude;
@@ -2353,10 +2651,6 @@ if ((isset($_GET['changed'])) && ($_GET['changed'] == "no")) {
               }
             */
             var lat = long = 0;
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $.ajax({
               url: "../Common/functions.php", //passing page info
               data: {

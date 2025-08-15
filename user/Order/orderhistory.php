@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['onestore_id'])) {
   header("location:../Main/onestore.php");
 }
 require "../Main/header.php";
@@ -264,7 +264,7 @@ require "../Common/pdo.php";
     $.get("gethistorysearch.php", {
       "name": inputVal,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -282,7 +282,7 @@ require "../Common/pdo.php";
     var inputVal = $('#order_search').val();
     $.get("gethistorysearch.php", {
       name: inputVal,
-      id: <?= $_SESSION['id'] ?>
+      id: <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -302,7 +302,7 @@ require "../Common/pdo.php";
     $.get("gethistorysearch.php", {
       "name": inputVal,
       'page_no': pageId,
-      "id": <?= $_SESSION['id'] ?>
+      "id": <?= $_SESSION['onestore_id'] ?>
     }).done(function(data) {
       $('#content_order').empty();
       $('#dynamic-paging').empty();
@@ -322,12 +322,24 @@ require "../Common/pdo.php";
         <div class="col-md-2 col-sm-2 col-xs-1"></div>
         <div class="col-md-4 col-sm-8 col-xs-10 ord_filt">
           <div class="input-group bar-srch" style="padding: 0px;margin: 0px;left: 0px;right: 0px;margin-bottom: 0px;">
-            <input type="text" class="" id="order_search" placeholder="Search" value="" name="" required=" "
+            <input
+              type="text"
+              class=""
+              id="order_search"
+              placeholder="Search"
+              value=""
+              name=""
+              required=" "
               style="width: 100%;margin: 0px;z-index: 0;border-radius: 3px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;outline: none;">
             <span id="" class="input-group-btn">
-              <button id="ord_srch" onclick="dispsrch()"
+              <button
+                id="ord_srch"
+                onclick="dispsrch()"
                 style="color: white;background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #002b41), color-stop(1, #004f63)) !important;padding-top:10px;padding-bottom: 10px;outline: none;border-radius: 0;border-bottom-right-radius: 3px;border-top-right-radius: 3px;"
-                class="btn btn-default search_btn" type="button"><span class="fa fa-search"></span></button>
+                class="btn btn-default search_btn"
+                type="button">
+                <span class="fa fa-search"></span>
+              </button>
             </span>
           </div>
         </div>

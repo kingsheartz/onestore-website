@@ -66,26 +66,37 @@ require "header.php"
           <div class="agile_map">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.6102591769463!2d76.21932811431537!3d10.531331466550668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7ee5256ead4f5%3A0x561f76122d6724e6!2sMaharaja&#39;s%20Technological%20Institute%2C%20Thrissur!5e0!3m2!1sen!2sin!4v1625389112967!5m2!1sen!2sin"
-              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy">
+            </iframe>
           </div>
           <div class="agileits_w3layouts_map_pos" style="background-color: #0c77aa">
             <div class="agileits_w3layouts_map_pos1" style=" background-color: rgba(0,0,0,0.75)">
               <img src="../../images/logo/logo.png">
               <br><br>
               <ul class="wthree_contact_info_address">
-                <li><i class="fa fa-envelope" aria-hidden="true"></i><a
-                    href="mailto:onestoreforallyourneeds@gmail.com">onestore</a></li>
-                <li><i class="fa fa-phone" aria-hidden="true" style="padding:0 14px 0 0;margin: 0;"></i>+91 8113990368
+                <li>
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <a href="mailto:onestoreforallyourneeds@gmail.com">onestore</a>
+                </li>
+                <li>
+                  <i class="fa fa-phone" aria-hidden="true" style="padding:0 14px 0 0;margin: 0;"></i>+91 8113990368
                 </li>
               </ul>
               <div class="w3_agile_social_icons w3_agile_social_icons_contact">
                 <ul>
-                  <li><a href="https://www.facebook.com/falconsinfoworld/" target="_blank"
-                      class="icon icon-cube agile_facebook"></a></li>
-                  <li><a href="https://wa.me/[918113990368]?text=Hai%2C%20There!" data-action="share/whatsapp/share"
-                      target="_blank" class="icon icon-cube agile_phone"></a></li>
-                  <li><a href="mailto:onestoreforallyourneeds@gmail.com" target="_blank"
-                      class="icon icon-cube agile_email"></a></li>
+                  <li>
+                    <a href="https://www.facebook.com/falconsinfoworld/" target="_blank" class="icon icon-cube agile_facebook"></a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/[918113990368]?text=Hai%2C%20There!" data-action="share/whatsapp/share" target="_blank" class="icon icon-cube agile_phone"></a>
+                  </li>
+                  <li>
+                    <a href="mailto:onestoreforallyourneeds@gmail.com" target="_blank" class="icon icon-cube agile_email"></a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -96,36 +107,45 @@ require "header.php"
           <div style="background-color: #0c77aa;padding:5px;width: 100%;">
             <div style="background-color: rgba(0,0,0,0.65);padding: 15px">
               <h3 class="w3_agile_header" style="color: white;font-weight: bolder;margin-top: 0px;padding-top: 20px;">
-                Leave
-                a<span> Message</span></h3>
+                Leave a<span> Message</span>
+              </h3>
               <form action="#" name="feedback_form" method="post"
                 style="background-color: rgba(0,0,0,0.55);padding: 5px;">
                 <span class="input input--ichiro">
-                  <input class="input__field input__field--ichiro" type="text" id="input-25" name="Name"
-                    onkeyup="checkname()" placeholder=" " required="" />
+                  <input
+                    class="input__field input__field--ichiro"
+                    type="text"
+                    id="input-25"
+                    name="Name"
+                    onkeyup="checkname()"
+                    placeholder=" "
+                    required="" />
                   <label class="input__label input__label--ichiro" for="input-25">
-                    <span class="input__label-content input__label-content--ichiro" style="color: white">Your
-                      Name</span>
+                    <span class="input__label-content input__label-content--ichiro" style="color: white">Your Name</span>
                   </label>
                 </span>
-                <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i
-                    style="color: yellow" class="fa fa-warning"></i> Can't use any symbols(@ # $ %
-                  ... )</p>
+                <p id="nameerror" style="display: none;color: red;font-weight: bolder;margin:0px">
+                  <i style="color: yellow" class="fa fa-warning"></i>
+                  Can't use any symbols(@ # $ %... )
+                </p>
                 <span class="input input--ichiro">
-                  <input class="input__field input__field--ichiro" type="email" onkeyup="checkmail()" id="input-26"
-                    name="Email" placeholder=" " required="" />
+                  <input class="input__field input__field--ichiro" type="email" onkeyup="checkmail()" id="input-26" name="Email" placeholder=" " required="" />
                   <label class="input__label input__label--ichiro" for="input-26">
-                    <span class="input__label-content input__label-content--ichiro" style="color: white">Your
-                      Email</span>
+                    <span class="input__label-content input__label-content--ichiro" style="color: white">Your Email</span>
                   </label>
                 </span>
-                <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px"><i
-                    style="color: yellow" class="fa fa-warning"></i> example@gmail.com</p>
-                <textarea name="Message" style="color: white" id="input-27" placeholder="Your message here..."
-                  required=""></textarea>
-                <input class="button" style="background-color: #fe9126"
+                <p id="emailerror" style="display: none;color: red;font-weight: bolder;margin:0px">
+                  <i style="color: yellow" class="fa fa-warning"></i>
+                  example@gmail.com
+                </p>
+                <textarea name="Message" style="color: white" id="input-27" placeholder="Your message here..." required=""></textarea>
+                <input
+                  class="button"
+                  style="background-color: #fe9126"
                   onmouseover="$('.button').css('background-color','#0c99cc')"
-                  onmouseleave="$('.button').css('background-color','#fe9126')" type="button" onclick="feedback()"
+                  onmouseleave="$('.button').css('background-color','#fe9126')"
+                  type="button"
+                  onclick="feedback()"
                   value="Submit">
               </form>
             </div>

@@ -1,22 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-<title>map test</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style type="text/css">
-/* map needs width and height to appear */
-/*
-#map{
-		width: 900px;
-		max-width: 100%;
-		height: 500px;
-}
-*/
-</style>
-</head>
--->
 </script>
 
 <body onload="getLocationa();getLocationb();getLocationc()">
@@ -39,30 +20,6 @@
       };
       xmlhttp.open("GET", "../Main/getjson.php", true);
       xmlhttp.send();
-      /*
-      function handlePermission() {
-      	navigator.permissions.query({name:'geolocation'}).then(function(result) {
-      		if (result.state == 'granted') {
-      			report(result.state);
-      			geoBtn.style.display = 'none';
-      		} else if (result.state == 'prompt') {
-      			report(result.state);
-      			geoBtn.style.display = 'none';
-      			navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
-      		} else if (result.state == 'denied') {
-      			report(result.state);
-      			geoBtn.style.display = 'inline';
-      		}
-      		result.onchange = function() {
-      			report(result.state);
-      		}
-      	});
-      }
-      function report(state) {
-      	console.log('Permission ' + state);
-      }
-      handlePermission();
-      */
       // Getting location info
       function getLocationa() {
         if (navigator.geolocation) {
@@ -71,7 +28,6 @@
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
       }
-      /////////////////////////////////////////////////////
       //ADD TO CART
       var car;
 
@@ -80,7 +36,16 @@
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        document.getElementById('daddr').value = car.lat + "," + car.lng;
+
+        // Check if the element exists before trying to set its value
+        const ele = document.getElementById('daddr');
+        if (ele) {
+          ele.value = car.lat + "," + car.lng;
+        } else {
+          console.warn("Element with id 'daddr' not found.");
+          return;
+        }
+
         //last cut
         for (var i = 1; i <= stores.length; i++) {
           var el = document.getElementById('c' + i.toString());
@@ -99,14 +64,22 @@
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
       }
-      /////////////////////////////////////////////////////
       //WISHLIST
       function showPositionb(position) {
         car = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        document.getElementById('wishlist_daddr').value = car.lat + "," + car.lng;
+
+        // Check if the element exists before trying to set its value
+        const ele = document.getElementById('wishlist_daddr');
+        if (ele) {
+          ele.value = car.lat + "," + car.lng;
+        } else {
+          console.warn("Element with id 'wishlist_daddr' not found.");
+          return;
+        }
+
         //last cut
         for (var i = 1; i <= stores.length; i++) {
           var el = document.getElementById('w' + i.toString());
@@ -125,14 +98,22 @@
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
       }
-      /////////////////////////////////////////////////////
       //BUY NOW
       function showPositionc(position) {
         car = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        document.getElementById('buynow_daddr').value = car.lat + "," + car.lng;
+
+        // Check if the element exists before trying to set its value
+        const ele = document.getElementById('buynow_daddr');
+        if (ele) {
+          ele.value = car.lat + "," + car.lng;
+        } else {
+          console.warn("Element with id 'wishlist_daddr' not found.");
+          return;
+        }
+
         //last cut
         for (var i = 1; i <= stores.length; i++) {
           var el = document.getElementById('b' + i.toString());
@@ -169,15 +150,8 @@
           return dist.toFixed(2);
         }
       }
-      /*
-      		function initMap() {
-      		}
-      */
     </script>
     <!-- This will find the post office and store the longitude and latitude-->
-    <!--
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM6g1c7vkW8WZjAy-vfKfCOQ3ysJrrIxY&callback=initMap" async defer></script>
--->
 </body>
 
 </html>

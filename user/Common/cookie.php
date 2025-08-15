@@ -81,7 +81,7 @@
 
   function setcookie(val) {
     <?php
-    if (isset($_SESSION['id'])) {
+    if (isset($_SESSION['onestore_id'])) {
     ?>
       if (val == 1) {
         var pc = 1;
@@ -105,14 +105,14 @@
         }
       }
       $.ajax({
-        url: "functions.php", //passing page info
+        url: "../Common/functions.php", //passing page info
         data: {
           "storecookie": 1,
           "sn": 1,
           "pc": pc,
           "fc": fc,
           "tc": tc,
-          "userid": <?= $_SESSION['id'] ?>
+          "userid": <?= $_SESSION['onestore_id'] ?>
         }, //form data
         type: "post", //post data
         dataType: "json", //datatype=json format
@@ -156,8 +156,9 @@
     style="background-color:white;border-radius:5px;height:max-content">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" style="margin-top:5px" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">�</span></button>
+        <button type="button" class="close" style="margin-top:5px" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">�</span>
+        </button>
         <h3 class="modal-title" id="myModalLabel"><b>Cookie Setting</b></h3>
       </div>
       <div class="modal-body">
