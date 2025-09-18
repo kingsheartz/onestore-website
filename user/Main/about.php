@@ -189,60 +189,13 @@ require "header.php";
     <div class="team-agileitsinfo">
       <div class="col-md-12">
         <div class="col-md-3 about-team-grids">
-          <img src="../../images/team/t1.JPG" alt="" height="450px" />
-          <div class="team-w3lstext">
-            <h4><span>KRISHNENDU,</span> Leader</h4>
-            <p>Controls overall project and direct into the right path for the fullfilness of work.</p>
-          </div>
-          <div class="social-icons caption">
-            <ul>
-              <li><a href="https://www.facebook.com/As.Govind" target="_blank" class="fa fa-facebook facebook"></a>
-              </li>
-              <li>
-                <a href="https://wa.me/[918113990368]?text=Hai%2C%20There!" data-action="share/whatsapp/share" target="_blank" class="fa fa-whatsapp" style="font-size:15px"> </a>
-              </li>
-              <li>
-                <a href="mailto:govind.das279@gmail.com" target="_blank" class="fa fa-envelope mail"></a>
-              </li>
-            </ul>
-            <div class="clearfix"> </div>
-          </div>
-        </div>
-        <div class=" col-md-3 about-team-grids flip-box">
-          <div class='flip-box-inner'>
-            <div class='flip-box-front'>
-              <img src="../../images/team/t2.JPG" alt="" height="450px" />
-              <div class="team-w3lstext">
-                <h4><span>KRISHNENDU,</span> Member</h4>
-                <p>Provides datas and support to the team which helps in reaching fullness of work.</p>
-              </div>
-            </div>
-            <div class='flip-box-back'>
-              <img src="../../images/team/t5.jpg" alt="" height="450px" />
-              <div class="team-w3lstext">
-                <h4><span>KRISHNENDU,</span> Member</h4>
-                <p>Helps collecting datas for the project completion.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 about-team-grids">
           <img src="../../images/team/t4.JPG" alt="" height="450px" />
           <div class="team-w3lstext">
-            <h4><span>KRISHNENDU,</span> Co-Leader</h4>
+            <h4><span>KRISHNENDU,</span> Founder</h4>
             <p>Functional advisor of the extra-ordinary requirements in our work.</p>
           </div>
           <div class="social-icons caption">
             <div class="clearfix"> </div>
-          </div>
-        </div>
-        <div class="col-md-3 about-team-grids">
-          <img src="../../images/team/t3.JPG" alt="" height="450px" />
-          <div class="team-w3lstext">
-            <h4><span>KRISHNENDU,</span> Supervisor</h4>
-            <p>Holds the root of our project and supervise the members group .</p>
-          </div>
-          <div class="social-icons caption">
           </div>
         </div>
       </div>
