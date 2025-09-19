@@ -32,10 +32,15 @@ if (isset($_POST['add'])) {
   if (empty($_POST['item_price'])) {
     redirectWithError("Please enter Price in the form.");
   }
+  if (empty($_POST['description'])) {
+    redirectWithError(error: "Please enter description.");
+  }
   $flag = 0;
   for ($i = 1; $i <= 9; $i++) {
-    if (($_FILES['my_file' . $i]['name'] != "")) {
-      $flag = 1;
+    if (isset($_FILES['my_file' . $i])) {
+      if (($_FILES['my_file' . $i]['name'] != "")) {
+        $flag = 1;
+      }
     }
   }
   if ($flag == 0) {
@@ -107,12 +112,14 @@ if (isset($_POST['add'])) {
       if ($material == '') {
         $material = 0;
       }
-      if (($_FILES['my_file' . $i]['name'] != "")) {
-        $file = $_FILES['my_file' . $i]['name'];
-        $path = pathinfo($file);
-        $ext = $path['extension'];
-        if ($ext != "jpg" && $ext != "JPG") {
-          redirectWithError("Please Select a jpg file");
+      if (isset($_FILES['my_file' . $i])) {
+        if (($_FILES['my_file' . $i]['name'] != "")) {
+          $file = $_FILES['my_file' . $i]['name'];
+          $path = pathinfo($file);
+          $ext = $path['extension'];
+          if ($ext != "jpg" && $ext != "JPG") {
+            redirectWithError("Please Select a jpg file");
+          }
         }
       }
       $data1 = array(
@@ -132,29 +139,31 @@ if (isset($_POST['add'])) {
                 VALUES (:item_id, :size, :color, :weight, :flavour, :processor, :display, :battery, :internal_storage, :brand, :material)";
       $statement1 = $pdo->prepare($query1);
       $statement1->execute($data1);
-      if (($_FILES['my_file' . $i]['name'] != "")) {
-        // Where the file is going to be stored
-        $t1 = $_POST['cat'];
-        $t2 = $_POST['sub'];
-        $query = "SELECT max(item_description_id) FROM item_description  ";
-        $statement = $pdo->prepare($query);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        $max1 = $result['max(item_description_id)'];
-        makeDir("../images/" . $t1);
-        makeDir("../images/" . $t1 . "/" . $t2);
-        $target_dir = "../images/" . $t1 . "/" . $t2 . "/";
-        $file = $_FILES['my_file' . $i]['name'];
-        $path = pathinfo($file);
-        $filename = $max1;
-        $ext = $path['extension'];
-        $temp_name = $_FILES['my_file' . $i]['tmp_name'];
-        $path_filename_ext = $target_dir . $filename . "." . $ext;
-        // Check if file already exists
-        if (file_exists($path_filename_ext)) {
-          redirectWithError("Sorry, file already exists.");
-        } else {
-          move_uploaded_file($temp_name, $path_filename_ext);
+      if (isset($_FILES['my_file' . $i])) {
+        if (($_FILES['my_file' . $i]['name'] != "")) {
+          // Where the file is going to be stored
+          $t1 = $_POST['cat'];
+          $t2 = $_POST['sub'];
+          $query = "SELECT max(item_description_id) FROM item_description  ";
+          $statement = $pdo->prepare($query);
+          $statement->execute();
+          $result = $statement->fetch(PDO::FETCH_ASSOC);
+          $max1 = $result['max(item_description_id)'];
+          makeDir("../images/" . $t1);
+          makeDir("../images/" . $t1 . "/" . $t2);
+          $target_dir = "../images/" . $t1 . "/" . $t2 . "/";
+          $file = $_FILES['my_file' . $i]['name'];
+          $path = pathinfo($file);
+          $filename = $max1;
+          $ext = $path['extension'];
+          $temp_name = $_FILES['my_file' . $i]['tmp_name'];
+          $path_filename_ext = $target_dir . $filename . "." . $ext;
+          // Check if file already exists
+          if (file_exists($path_filename_ext)) {
+            redirectWithError("Sorry, file already exists.");
+          } else {
+            move_uploaded_file($temp_name, $path_filename_ext);
+          }
         }
       }
     }

@@ -159,6 +159,7 @@ require "head.php";
         pageSize: 5,
         controller: {
           loadData: function(filter) {
+						console.log("Loading data with filter:", <?=$_SESSION['onestore_id']?>);
             console.log(filter);
             return $.ajax({
               type: "GET",

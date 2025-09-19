@@ -345,8 +345,7 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
               class="form-control"
               style="white-space: pre-line;width:100%;height:200px;"
               id="address"
-              name="description">
-            </textarea>
+              name="description"></textarea>
           </div>
         </div>
         <div class="col-md-12 addte">

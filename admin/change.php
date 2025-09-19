@@ -465,7 +465,10 @@ require "head.php";
         }
       }
 
+			var prev_upd_item_id = null;
       function showupda(x, y) {
+				if(x === prev_upd_item_id) return;
+				prev_upd_item_id = x;
         $('#' + x).on("submit", function(e) {
           var dataString = new FormData(this);
           if (y == 1) {

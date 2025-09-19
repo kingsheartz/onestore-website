@@ -376,7 +376,10 @@ require "head.php";
         }
       }
 
+			var prev_upd_item_id = null;
       function showupda(x, y) {
+				if(x === prev_upd_item_id) return;
+				prev_upd_item_id = x;
         $('#' + x).on("submit", function(e) {
           var dataString = new FormData(this);
           if (y == 1) {
@@ -485,7 +488,7 @@ require "head.php";
               if ($tr == 0) {
               ?>
                 <div class="alert alert-danger">item not yet added</div>
-                <button style="background: red;padding: 10px;color: white;border-radius: 5px;border:none;font-weight: bolder;" onclick="location.href='additem.php'">Go To Add Product</button>
+                <button style="padding-left:20px;background: red;padding: 10px;color: white;border-radius: 5px;border:none;font-weight: bolder;" onclick="location.href='additem.php'">Go To Add Product</button>
                 <?php
               } else {
                 while ($row = $st->fetch(PDO::FETCH_ASSOC)) {

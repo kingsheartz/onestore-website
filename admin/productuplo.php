@@ -261,6 +261,7 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
           var form = $('#' + x)[0];
           // Create an FormData object
           var data = new FormData(form);
+					data.append("upload_image", 1);
           // If you want to add an extra field for the FormData
           // data.append("CustomField", "This is some extra data, testing");
           // disabled the submit button
@@ -268,7 +269,7 @@ if (!empty($_SESSION['onestore_contact_form_success'])) {
           $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "productuplo.php",
+            url: "prosub.php",
             data: data,
             processData: false,
             contentType: false,
